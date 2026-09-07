@@ -125,3 +125,5 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 
 - Orchestrator independently ran the intake Python suite: 14 passed with bytecode/cache writes disabled. Production Python matches `a4f9f316`; added scan/configuration regressions were present in the worker test file (SHA-256 `19fbaa337a16fde21c5f09bfcd8c25c524de1afad1db379f6f6780c949b2650f`). GitHub/Rust portion and final report still await acceptance.
 - UI worker has pushed `26a4bc8d` and integrated accepted main as `53349671`; continues email transport wiring and browser tests. Pi worker researches/implements its scoped bridge independently. Final Design Studio audit/fix/recheck remains pending.
+
+- Early GitHub-pack review requested two corrections: live evidence validation before ask-rule queueing, and preservation of the accepted missing-scope propose default. [Review](reports/review-intake-github.md). Neither is claimed as a live filing bypass; PR #5 remains unaccepted while the worker fixes/tests the boundaries.
