@@ -1,0 +1,106 @@
+{
+  "deduped": [
+    {
+      "surface": "Ops thread in Arabic layout",
+      "element": "Back to inbox arrow and English message text",
+      "severity": "med",
+      "check": "BC-3 / CRAP alignment: back arrow stays left-facing in RTL and inherited direction reorders English punctuation",
+      "fix": "Mirror directional navigation and isolate content direction per message/email identifier; keep the surrounding RTL layout.",
+      "specialists": [
+        "aesthetic-judge"
+      ]
+    },
+    {
+      "surface": "Ops header",
+      "element": "Account1 prefix and repeated setup explanation",
+      "severity": "low",
+      "check": "BC-18 / CRAP proximity: mobile header spends extra height on an internal account ID before correspondence",
+      "fix": "Remove the internal account-number prefix; retain only setup guidance that helps the operator choose an action.",
+      "specialists": [
+        "aesthetic-judge"
+      ]
+    },
+    {
+      "surface": "workspace shell",
+      "element": "status bar, sidebar empty/group text",
+      "severity": "high",
+      "check": "BC-2 / WCAG1.4.3: measured text contrast below4.5; status text4.35 light, No chats2.66 light/4.06 dark, group labels3.68 light",
+      "fix": "Remove excessive text opacity and use readable inherited foreground treatment on the actual backgrounds; remeasure both themes.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "workspace shell",
+      "element": "terminal new-tab and status alert buttons",
+      "severity": "high",
+      "check": "BC-2 / Button accessible name: actual ARIA tree exposes unnamed icon controls; source lacks labels",
+      "fix": "Reuse the existing translated action names as accessible labels; retain visible keyboard focus and verify the empty alert state.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "login",
+      "element": "access token field and invalid-token error",
+      "severity": "med",
+      "check": "BC-1 / Input labels and validation: actual DOM has no persistent label, aria-invalid, describedBy or live error semantics",
+      "fix": "Add a visible associated token label, validation association and announced error while preserving existing login behavior.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "Ops editing across Settings language change",
+      "element": "AppI18nProvider loading branch",
+      "severity": "high",
+      "check": "BC-3/BC-9 | wrong-state-rendered: separate settings-tab language change remounts workspace and loses unsaved reply without confirmation",
+      "fix": "Keep the already-mounted subtree during subsequent locale message loads; retain initial boot guard and backend isolation. Test reply/note/review and rerun actual CLI locale transition.",
+      "specialists": [
+        "flow-validator"
+      ]
+    },
+    {
+      "surface": "accepted email review",
+      "element": "terminal delivery copy",
+      "severity": "low",
+      "check": "BC-12 | content ambiguity: generic no-receipt implication remains alongside an actual accepted provider receipt",
+      "fix": "Condition explanatory copy on delivery state so accepted receipt, denial and unknown each have one consistent explanation.",
+      "specialists": [
+        "flow-validator"
+      ]
+    }
+  ],
+  "top3": [
+    {
+      "surface": "workspace shell",
+      "element": "status bar, sidebar empty/group text",
+      "severity": "high",
+      "check": "BC-2 / WCAG1.4.3: measured text contrast below4.5; status text4.35 light, No chats2.66 light/4.06 dark, group labels3.68 light",
+      "fix": "Remove excessive text opacity and use readable inherited foreground treatment on the actual backgrounds; remeasure both themes.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "workspace shell",
+      "element": "terminal new-tab and status alert buttons",
+      "severity": "high",
+      "check": "BC-2 / Button accessible name: actual ARIA tree exposes unnamed icon controls; source lacks labels",
+      "fix": "Reuse the existing translated action names as accessible labels; retain visible keyboard focus and verify the empty alert state.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "Ops editing across Settings language change",
+      "element": "AppI18nProvider loading branch",
+      "severity": "high",
+      "check": "BC-3/BC-9 | wrong-state-rendered: separate settings-tab language change remounts workspace and loses unsaved reply without confirmation",
+      "fix": "Keep the already-mounted subtree during subsequent locale message loads; retain initial boot guard and backend isolation. Test reply/note/review and rerun actual CLI locale transition.",
+      "specialists": [
+        "flow-validator"
+      ]
+    }
+  ]
+}

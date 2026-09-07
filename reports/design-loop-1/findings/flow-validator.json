@@ -1,0 +1,23 @@
+{
+  "specialist": "flow-validator",
+  "scores": {
+    "functional": 7
+  },
+  "findings": [
+    {
+      "surface": "Ops editing across Settings language change",
+      "element": "AppI18nProvider loading branch",
+      "severity": "high",
+      "check": "BC-3/BC-9 | wrong-state-rendered: separate settings-tab language change remounts workspace and loses unsaved reply without confirmation",
+      "fix": "Keep the already-mounted subtree during subsequent locale message loads; retain initial boot guard and backend isolation. Test reply/note/review and rerun actual CLI locale transition."
+    },
+    {
+      "surface": "accepted email review",
+      "element": "terminal delivery copy",
+      "severity": "low",
+      "check": "BC-12 | content ambiguity: generic no-receipt implication remains alongside an actual accepted provider receipt",
+      "fix": "Condition explanatory copy on delivery state so accepted receipt, denial and unknown each have one consistent explanation."
+    }
+  ],
+  "notes": "Root sequential specialist pass against executed CLI records. Email terminal states, responsive preservation, offline retry and actual draft/private-note saves passed. Locale transition fails. BC14 browser recovery, complete P1/phone flow and final keyboard/theme coverage remain unassessed; no fabricated flow-test/LLM run."
+}
