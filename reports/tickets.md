@@ -135,3 +135,9 @@ Checkpoint evidence:
 - Staged `git diff --cached --check`: exit 2, extra blank line at EOF in
   `src-tauri/src/db/entities/ops_ticket.rs:135`. Preserved unchanged for this
   requested stop; remove with formatting when resumed.
+
+Checkpoint implementation commit:
+`cc0d862ac4afe6c537e3fc2b595983b1b690db58` — committed and pushed to
+`origin/feat/step1-tickets`, both exit 0. This report-only follow-up records that
+immutable SHA. Resume from it plus this report update. Work is deliberately
+paused awaiting orchestrator resumption; no further product edits after the stop.
