@@ -42,3 +42,12 @@ and Telegram dispatch. Rebrand lines 4538/4540, tickets 4533/4534, approvals
 so these records correctly have context_emitted=false. This confirms ongoing
 worker hook execution, not universal write-proof enforcement or root-session
 live enforcement. Existing smoke-test and scope limitations still apply.
+
+## Continued independent audit —2026-09-08
+
+Latest metadata inspected by root: rebrand PostToolUse lines6064/6065 at
+1788823961, approvals Post/Pre lines6021/6022 at1788823901, tickets Post/Pre
+6045/6055 at1788823936/1788823943. All exit0 and correct existing session/cwd;
+context_emitted=false after prior reminders. Root session still predates hook
+registration; this is worker observation, not root enforcement or universal
+write interception. No secret values are included in the audit evidence.

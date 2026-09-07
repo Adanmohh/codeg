@@ -241,3 +241,12 @@ Root independently passed13 Telegram Rust tests and checked mobile login,
 stale-link rejection and full pending-review payload through Playwright CLI.
 [Review](reports/review-telegram.md), [browser evidence](reports/browser-phone-independent/).
 Full phone decision/receipt-completion and final PR10 gates remain pending.
+
+## Follow-on ownership reserved
+
+After current feature acceptance, rebrand will own `fix/design-ops`: required
+locale preservation and scoped Ops RTL/copy findings. Approvals has been told
+to reserve those files and focus the typed P1 Telegram extension after PR9/10
+acceptance. Tickets retains shell accessibility fixes, then pi P1 integration.
+These follow-ons are planned, not yet dispatched branches. All retain their
+existing worktrees/topic panes and Astra max; max three workers.
