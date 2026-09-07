@@ -24,6 +24,7 @@ pub mod mcp;
 pub mod mcp_service;
 pub mod model_provider;
 pub mod office_tools;
+pub mod ops;
 pub mod office_watch_proxy;
 pub mod pet;
 pub mod project_boot;

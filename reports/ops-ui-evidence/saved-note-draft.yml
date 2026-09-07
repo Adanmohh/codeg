@@ -1,0 +1,83 @@
+- generic [active]:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e609]:
+      - generic [ref=f3e610]:
+        - button "Show Sidebar" [ref=f3e611]
+        - button "Search" [ref=f3e612]
+        - button "New Conversation" [ref=f3e613]
+      - button "Open Settings" [ref=f3e616]
+    - main [ref=f3e618]:
+      - generic [ref=f3e620]:
+        - generic [ref=f3e621]: Ops desk
+        - region "Ops desk" [ref=f3e625]:
+          - generic [ref=f3e626]:
+            - navigation "Ops views" [ref=f3e627]:
+              - button "Inbox" [ref=f3e628]
+              - button "Approvals" [ref=f3e629]
+              - button "Morning" [ref=f3e630]
+            - button "Refresh" [ref=f3e631]
+          - generic [ref=f3e633]:
+            - generic [ref=f3e634]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+            - generic [ref=f3e885]:
+              - button "Back to inbox" [ref=f3e887]
+              - article [ref=f3e888]:
+                - generic [ref=f3e889]:
+                  - generic [ref=f3e890]: "Open · Thread #5"
+                  - heading "An imported support question" [level=1] [ref=f3e891]
+                  - paragraph [ref=f3e892]: Reader · reader@example.com
+                - generic "Conversation messages" [ref=f3e893]:
+                  - generic [ref=f3e894]:
+                    - generic [ref=f3e895]:
+                      - strong [ref=f3e896]: Incoming email
+                      - generic [ref=f3e897]: reader@example.com
+                      - time [ref=f3e898]: 8.9.2026 klo 0.49.59
+                    - paragraph [ref=f3e900]: Can you send a copy of my receipt? <script>window.fixtureUnsafe=true</script>
+                  - generic [ref=f3e901]:
+                    - generic [ref=f3e902]:
+                      - strong [ref=f3e907]: Private note
+                      - generic [ref=f3e908]: operator:http
+                      - time [ref=f3e909]: 8.9.2026 klo 1.13.01
+                    - paragraph [ref=f3e911]: Browser private note saved only to the workspace.
+                - region "Compose" [ref=f3e912]:
+                  - generic [ref=f3e913]:
+                    - button "Reply draft" [pressed] [ref=f3e914]
+                    - button "Private note" [ref=f3e915]
+                  - paragraph [ref=f3e916]: Saved draft · revision 1. Prepare the full reply here. Sending requires a proposal, human review and connected delivery.
+                  - generic [ref=f3e917]:
+                    - generic [ref=f3e918]:
+                      - text: From · inbox identity
+                      - textbox "From · inbox identity" [ref=f3e919]: support@example.com
+                    - generic [ref=f3e920]:
+                      - text: To
+                      - textbox "To" [ref=f3e921]: reader@example.com
+                    - generic [ref=f3e922]:
+                      - generic [ref=f3e923]:
+                        - text: Cc
+                        - textbox "Cc" [ref=f3e924]
+                      - generic [ref=f3e925]:
+                        - text: Bcc · hidden from other recipients
+                        - textbox "Bcc · hidden from other recipients" [ref=f3e926]
+                    - paragraph [ref=f3e927]: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.
+                    - generic [ref=f3e928]:
+                      - text: Subject
+                      - textbox "Subject" [ref=f3e929]: "Re: An imported support question"
+                    - generic [ref=f3e930]:
+                      - text: Reply message
+                      - textbox "Reply message" [ref=f3e931]: Browser prepared draft, not sent.
+                    - group [ref=f3e932]:
+                      - generic "Thread headers · part of the complete payload" [ref=f3e933] [cursor=pointer]
+                    - paragraph [ref=f3e934]: Plain text only. Attachments are not supported in this draft.
+                  - status [ref=f3e935]: Draft saved · revision 1. Saving a draft does not send email.
+                  - generic [ref=f3e936]:
+                    - button "Save draft" [disabled]
+                    - generic [ref=f3e937]: No unsaved changes
+    - generic [ref=f3e72]:
+      - generic [ref=f3e73]:
+        - button "Quick actions" [ref=f3e74]
+        - button "4 conversations" [ref=f3e347]
+      - generic [ref=f3e75]:
+        - button "Add Command" [ref=f3e668]
+        - button "codeg-mcp service" [ref=f3e669]
+        - button [ref=f3e677]

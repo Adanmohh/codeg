@@ -1,10 +1,13 @@
 "use client"
 
+import { OpsSessionBoundary } from "@/components/ops/session"
+
 import {
   createContext,
   useCallback,
   useContext,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react"
@@ -25,6 +28,7 @@ export type WorkbenchRouteId =
   | "forge"
   | "tokenUsage"
   | "canvas"
+  | "ops"
 
 interface WorkbenchRouteContextValue {
   routeId: WorkbenchRouteId
@@ -33,6 +37,7 @@ interface WorkbenchRouteContextValue {
   setRoute: (id: WorkbenchRouteId) => void
   /** Sugar for returning to the conversation workspace. */
   openConversations: () => void
+  registerLeaveGuard: (guard: (next: WorkbenchRouteId) => boolean) => () => void
 }
 
 const WorkbenchRouteContext = createContext<WorkbenchRouteContextValue | null>(
@@ -73,9 +78,24 @@ export function useOptionalWorkbenchRoute(): WorkbenchRouteContextValue | null {
 
 export function WorkbenchRouteProvider({ children }: { children: ReactNode }) {
   const [routeId, setRouteId] = useState<WorkbenchRouteId>("conversations")
+  const leaveGuard = useRef<((next: WorkbenchRouteId) => boolean) | null>(null)
+  const registerLeaveGuard = useCallback(
+    (guard: (next: WorkbenchRouteId) => boolean) => {
+      leaveGuard.current = guard
+      return () => {
+        if (leaveGuard.current === guard) leaveGuard.current = null
+      }
+    },
+    []
+  )
 
-  const setRoute = useCallback((id: WorkbenchRouteId) => setRouteId(id), [])
-  const openConversations = useCallback(() => setRouteId("conversations"), [])
+  const setRoute = useCallback((id: WorkbenchRouteId) => {
+    if (!leaveGuard.current || leaveGuard.current(id)) setRouteId(id)
+  }, [])
+  const openConversations = useCallback(
+    () => setRoute("conversations"),
+    [setRoute]
+  )
 
   const value = useMemo<WorkbenchRouteContextValue>(
     () => ({
@@ -83,13 +103,14 @@ export function WorkbenchRouteProvider({ children }: { children: ReactNode }) {
       isConversations: routeId === "conversations",
       setRoute,
       openConversations,
+      registerLeaveGuard,
     }),
-    [routeId, setRoute, openConversations]
+    [routeId, setRoute, openConversations, registerLeaveGuard]
   )
 
   return (
     <WorkbenchRouteContext.Provider value={value}>
-      {children}
+      <OpsSessionBoundary>{children}</OpsSessionBoundary>
     </WorkbenchRouteContext.Provider>
   )
 }

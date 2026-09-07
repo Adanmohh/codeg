@@ -1,6 +1,24 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 transport, integration and UI work continues autonomously. Browser baseline passes; new Ops flow checks and final Design Studio loops remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI and delivery are reviewed and merged; pi and bug-workflow integration continue autonomously. Step 3 Telegram is dispatched. Final combined browser and Design Studio loops remain.
+
+## Current position
+
+| Area | Current result | Next gate |
+| --- | --- | --- |
+| Foundation: brand, tickets, approvals | Reviewed and merged, PRs #1–3 | Retain combined regressions |
+| Direct Resend transport | Reviewed and merged, PR #6; UI integration accepted in #7 | Combined beta validation |
+| Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
+| Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
+| Pi scoped bridge/default | PR #8 in progress; independent 11 extension/discovery tests pass | Accepted Ops helper integration, full launch checks; Astra model configuration remains unavailable |
+| Bug workflow host/UI | Worker implementing `feat/step2-bug-workflow` | Evidence/config/review UI and real fixture browser tests |
+| Telegram and beta validation | Step 3 Telegram dispatched to approvals worker | Typed notifications/review links, local fixtures and beta checks |
+| Final Design Studio loops | Brief, checklist and initial measured findings prepared | Specialist audit, worker fixes, targeted CLI rechecks |
+
+The macOS debug app bundle currently contains Step 1 only. No live email,
+GitHub issue, Telegram message, App installation or deployment has been performed.
+Historical dispatch/review entries below describe their state at that time;
+the table above is the latest status.
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
@@ -138,3 +156,31 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 
 - Reused `rebrand`, `wR:p2`, for `feat/step2-bug-workflow` from accepted main: trusted intake/configuration and evidence attachment, exact GitHub issue review/receipt UI, and linkage to existing fix tasks. Deliverable `reports/bug-workflow.md`; separate host/frontend modules, reserved migration 000006, shared auth/navigation integration coordinated after email UI acceptance.
 - Email owner continues PR #7; pi owner continues PR #8 and coordinates typed P1 proposal access with the host owner. All retain Astra max, docs-first and gh api research. Isolated browser ports: root 4318, email 4320, bug workflow 4322. No live external actions are part of fixture validation.
+
+- Root independently passed 11 pi extension tests, including real installed RPC discovery without inference; [review in progress](reports/review-pi-desk.md). No Astra catalogue entry is available in installed pi, so live model setup remains explicit. Fresh hook records at timestamps 1788817374–1788817397 confirm PreToolUse/PostToolUse execution for all three worker sessions; this does not claim root-session enforcement or universal write interception.
+
+## Email UI browser review — correction required
+
+- Independent combined Rust Ops suite passes (22 tests, one ignored manual fixture), as do five frontend component tests. Real Playwright CLI login/inbox/thread checks are running against the protected API with a test-only loopback provider.
+- Found P2 unsaved-edit loss when resizing from desktop to mobile: the layout resets selection and discards edited reply text without confirmation. Sent the reproduction to the UI owner; PR #7 remains unaccepted until fixed and rechecked. [Review and evidence](reports/review-ops-ui.md).
+
+- Fix `0e375c97` now verified independently: reply, private note and review edits/selection survive responsive remounts; discard dismissal preserves content; seven component tests pass, including backend isolation. Light Deny contrast recheck passes. PR #7 still awaits final combined gates and remaining browser scenarios before acceptance.
+
+## Email UI accepted; Telegram dispatched — 2026-09-08
+
+PR #7 reviewed at `756d064f1cc391ed1da32ba90429adef225f080d` and merged as
+`f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`. Independent source review, 22 Rust
+and seven component tests, desktop/mobile edit-preservation checks and the full
+protected-API/loopback-provider Playwright CLI pass succeeded. Dark Ops contrast
+also passes. Evidence and limits: [review](reports/review-ops-ui.md),
+[worker report](reports/ops-ui.md), [browser artifacts](reports/browser-step2/).
+
+Pi and bug-workflow workers were notified to integrate the accepted shared Ops
+helpers/Operator/session boundary. Approvals worker was dispatched through Herdr
+in the same worktree, tab `wR:t3` / pane `wR:p3`, to new branch
+`feat/step3-telegram`, deliverable `reports/telegram.md`. The prompt requires
+docs-first/gh-api pinned borrowing, existing channel reuse, scoped typed Ops
+notifications and mobile review links, no ACP approval bypass, local-only
+provider tests, actual Playwright CLI checks and a committed report/draft PR.
+All workers remain GPT-6 Astra max; no additional worker or live outbound action.
+Final Design Studio review/fix/recheck and integrated native build remain.

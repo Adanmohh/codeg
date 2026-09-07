@@ -1,0 +1,66 @@
+- generic [active]:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e609]:
+      - generic [ref=f3e610]:
+        - button "Show Sidebar" [ref=f3e611]
+        - button "Search" [ref=f3e612]
+        - button "New Conversation" [ref=f3e613]
+      - button "Open Settings" [ref=f3e616]
+    - main [ref=f3e618]:
+      - generic [ref=f3e620]:
+        - generic [ref=f3e621]: Ops desk
+        - region "Ops desk" [ref=f3e625]:
+          - generic [ref=f3e626]:
+            - navigation "Ops views" [ref=f3e627]:
+              - button "Inbox" [ref=f3e628]
+              - button "Approvals" [ref=f3e629]
+              - button "Morning" [ref=f3e630]
+            - button "Refresh" [ref=f3e631]
+          - generic [ref=f3e633]:
+            - generic [ref=f3e634]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+            - generic [ref=f3e636]:
+              - button "Back to review queue" [ref=f3e638]
+              - article [ref=f3e639]:
+                - generic [ref=f3e640]:
+                  - paragraph [ref=f3e641]: "Proposal #1 · Task #1 · Run 1 · Account 1"
+                  - heading "Pending human review" [level=1] [ref=f3e642]
+                  - button "Open original thread" [ref=f3e643]
+                - paragraph [ref=f3e644]: "Draft #1 · Revision 1. Review all recipients and the complete message below. Edits apply to this approval; the saved draft is not reread for delivery."
+                - generic [ref=f3e645]:
+                  - generic [ref=f3e646]:
+                    - text: From · inbox identity
+                    - textbox "From · inbox identity" [ref=f3e647]: support@example.com
+                  - generic [ref=f3e648]:
+                    - text: To
+                    - textbox "To" [ref=f3e649]: reader@example.com
+                  - generic [ref=f3e650]:
+                    - generic [ref=f3e651]:
+                      - text: Cc
+                      - textbox "Cc" [ref=f3e652]
+                    - generic [ref=f3e653]:
+                      - text: Bcc · hidden from other recipients
+                      - textbox "Bcc · hidden from other recipients" [ref=f3e654]: copy@example.com
+                  - paragraph [ref=f3e655]: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.
+                  - generic [ref=f3e656]:
+                    - text: Subject
+                    - textbox "Subject" [ref=f3e657]: "Re: A real local thread"
+                  - generic [ref=f3e658]:
+                    - text: Reply message
+                    - textbox "Reply message" [ref=f3e659]: Review viewport sentinel
+                  - group [ref=f3e660]:
+                    - generic "Thread headers · part of the complete payload" [ref=f3e661] [cursor=pointer]
+                  - paragraph [ref=f3e662]: Plain text only. Attachments are not supported in this draft.
+                - status [ref=f3e664]: Approving sends this exact reply through Resend. Check To, Cc and Bcc before continuing.
+                - generic [ref=f3e665]:
+                  - button "Approve and send reply" [ref=f3e666]
+                  - button "Deny proposal" [ref=f3e667]
+    - generic [ref=f3e72]:
+      - generic [ref=f3e73]:
+        - button "Quick actions" [ref=f3e74]
+        - button "4 conversations" [ref=f3e347]
+      - generic [ref=f3e75]:
+        - button "Add Command" [ref=f3e668]
+        - button "codeg-mcp service" [ref=f3e669]
+        - button [ref=f3e677]

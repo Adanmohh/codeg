@@ -1,0 +1,91 @@
+- generic [active]:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e609]:
+      - generic [ref=f3e610]:
+        - button "Show Sidebar" [ref=f3e611]
+        - button "Search" [ref=f3e612]
+        - button "New Conversation" [ref=f3e613]
+      - button "Open Settings" [ref=f3e616]
+    - main [ref=f3e618]:
+      - generic [ref=f3e620]:
+        - generic [ref=f3e621]: Ops desk
+        - region "Ops desk" [ref=f3e625]:
+          - generic [ref=f3e626]:
+            - navigation "Ops views" [ref=f3e627]:
+              - button "Inbox" [ref=f3e628]
+              - button "Approvals" [ref=f3e629]
+              - button "Morning" [ref=f3e630]
+            - button "Refresh" [ref=f3e631]
+          - generic [ref=f3e633]:
+            - generic [ref=f3e634]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+            - complementary "Ticket list" [ref=f3e790]:
+              - generic [ref=f3e791]:
+                - generic [ref=f3e841]:
+                  - generic [ref=f3e842]:
+                    - generic [ref=f3e843]: Resend key configured
+                    - button "Pull now" [ref=f3e844]
+                  - group [ref=f3e845]:
+                    - generic "Manage email connection" [ref=f3e846] [cursor=pointer]
+                  - paragraph [ref=f3e847]: "Last pull: complete · 8.9.2026 klo 1.12.33"
+                  - status [ref=f3e848]: 0 messages imported · 1 already present.
+                - generic [ref=f3e799]:
+                  - text: Inbox
+                  - combobox "Inbox" [ref=f3e800]:
+                    - option "Support · support@example.com" [selected]
+                - generic [ref=f3e801]:
+                  - text: Ticket status
+                  - combobox "Ticket status" [ref=f3e802]:
+                    - option "All statuses" [selected]
+                    - option "Open"
+                    - option "Resolved"
+                    - option "Pending"
+                    - option "Snoozed"
+              - list [ref=f3e849]:
+                - listitem [ref=f3e850]:
+                  - button "Reader Open A real local thread 8.9.2026" [ref=f3e851]:
+                    - generic [ref=f3e852]:
+                      - generic [ref=f3e853]: Reader
+                      - generic [ref=f3e854]: Open
+                    - generic [ref=f3e855]: A real local thread
+                    - generic [ref=f3e856]: 8.9.2026
+                - listitem [ref=f3e857]:
+                  - button "Reader Open An imported support question 8.9.2026" [ref=f3e858]:
+                    - generic [ref=f3e859]:
+                      - generic [ref=f3e860]: Reader
+                      - generic [ref=f3e861]: Open
+                    - generic [ref=f3e862]: An imported support question
+                    - generic [ref=f3e863]: 8.9.2026
+                - listitem [ref=f3e864]:
+                  - button "Fixture reader Open An outdated review 8.9.2026" [ref=f3e865]:
+                    - generic [ref=f3e866]:
+                      - generic [ref=f3e867]: Fixture reader
+                      - generic [ref=f3e868]: Open
+                    - generic [ref=f3e869]: An outdated review
+                    - generic [ref=f3e870]: 8.9.2026
+                - listitem [ref=f3e871]:
+                  - button "Fixture reader Open A rejected delivery 8.9.2026" [ref=f3e872]:
+                    - generic [ref=f3e873]:
+                      - generic [ref=f3e874]: Fixture reader
+                      - generic [ref=f3e875]: Open
+                    - generic [ref=f3e876]: A rejected delivery
+                    - generic [ref=f3e877]: 8.9.2026
+                - listitem [ref=f3e878]:
+                  - button "Fixture reader Open An uncertain delivery 8.9.2026" [ref=f3e879]:
+                    - generic [ref=f3e880]:
+                      - generic [ref=f3e881]: Fixture reader
+                      - generic [ref=f3e882]: Open
+                    - generic [ref=f3e883]: An uncertain delivery
+                    - generic [ref=f3e884]: 8.9.2026
+              - generic [ref=f3e840]:
+                - button "Previous" [disabled]
+                - button "Next" [disabled]
+    - generic [ref=f3e72]:
+      - generic [ref=f3e73]:
+        - button "Quick actions" [ref=f3e74]
+        - button "4 conversations" [ref=f3e347]
+      - generic [ref=f3e75]:
+        - button "Add Command" [ref=f3e668]
+        - button "codeg-mcp service" [ref=f3e669]
+        - button [ref=f3e677]

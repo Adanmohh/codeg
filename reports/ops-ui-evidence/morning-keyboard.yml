@@ -1,0 +1,92 @@
+- generic:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e609]:
+      - generic [ref=f3e610]:
+        - button "Show Sidebar" [ref=f3e611]
+        - button "Search" [ref=f3e612]
+        - button "New Conversation" [ref=f3e613]
+      - button "Open Settings" [ref=f3e616]
+    - main [ref=f3e618]:
+      - generic [ref=f3e620]:
+        - generic [ref=f3e621]: Ops desk
+        - region "Ops desk" [ref=f3e625]:
+          - generic [ref=f3e626]:
+            - navigation "Ops views" [ref=f3e627]:
+              - button "Inbox" [ref=f3e628]
+              - button "Approvals" [ref=f3e629]
+              - button "Morning" [active] [ref=f3e630]
+            - button "Refresh" [ref=f3e631]
+          - generic [ref=f3e633]:
+            - generic [ref=f3e634]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+            - generic [ref=f3e939]:
+              - generic [ref=f3e940]:
+                - paragraph [ref=f3e941]: Morning desk
+                - heading "What needs your attention" [level=1] [ref=f3e942]
+                - paragraph [ref=f3e943]: Current task runs and local inbox queues. Refresh to pick up new activity.
+              - generic [ref=f3e944]:
+                - heading "Replies to review" [level=2] [ref=f3e945]
+                - paragraph [ref=f3e946]: No pending reply proposals.
+              - generic [ref=f3e947]:
+                - generic [ref=f3e948]:
+                  - heading "Tasks awaiting attention" [level=2] [ref=f3e949]
+                  - button "Open task workspace" [ref=f3e950]
+                - paragraph [ref=f3e951]: No tasks in this queue.
+              - generic [ref=f3e952]:
+                - heading "In progress" [level=2] [ref=f3e954]
+                - list [ref=f3e955]:
+                  - listitem [ref=f3e956]:
+                    - generic [ref=f3e957]:
+                      - paragraph [ref=f3e958]: Review email
+                      - paragraph [ref=f3e959]: "Task #3"
+                    - generic "Running" [ref=f3e960]
+                  - listitem [ref=f3e964]:
+                    - generic [ref=f3e965]:
+                      - paragraph [ref=f3e966]: Review email
+                      - paragraph [ref=f3e967]: "Task #2"
+                    - generic "Running" [ref=f3e968]
+                  - listitem [ref=f3e972]:
+                    - generic [ref=f3e973]:
+                      - paragraph [ref=f3e974]: Review email
+                      - paragraph [ref=f3e975]: "Task #4"
+                    - generic "Running" [ref=f3e976]
+                  - listitem [ref=f3e980]:
+                    - generic [ref=f3e981]:
+                      - paragraph [ref=f3e982]: Review email
+                      - paragraph [ref=f3e983]: "Task #1"
+                    - generic "Running" [ref=f3e984]
+              - generic [ref=f3e988]:
+                - heading "Up next" [level=2] [ref=f3e990]
+                - paragraph [ref=f3e991]: No tasks in this queue.
+              - generic [ref=f3e992]:
+                - heading "Open correspondence" [level=2] [ref=f3e993]
+                - list [ref=f3e994]:
+                  - listitem [ref=f3e995]:
+                    - 'button "An imported support question Reader · Thread #5" [ref=f3e996]':
+                      - generic [ref=f3e997]: An imported support question
+                      - generic [ref=f3e998]: "Reader · Thread #5"
+                  - listitem [ref=f3e999]:
+                    - 'button "A real local thread Reader · Thread #1" [ref=f3e1000]':
+                      - generic [ref=f3e1001]: A real local thread
+                      - generic [ref=f3e1002]: "Reader · Thread #1"
+                  - listitem [ref=f3e1003]:
+                    - 'button "An outdated review Fixture reader · Thread #4" [ref=f3e1004]':
+                      - generic [ref=f3e1005]: An outdated review
+                      - generic [ref=f3e1006]: "Fixture reader · Thread #4"
+                  - listitem [ref=f3e1007]:
+                    - 'button "A rejected delivery Fixture reader · Thread #3" [ref=f3e1008]':
+                      - generic [ref=f3e1009]: A rejected delivery
+                      - generic [ref=f3e1010]: "Fixture reader · Thread #3"
+                  - listitem [ref=f3e1011]:
+                    - 'button "An uncertain delivery Fixture reader · Thread #2" [ref=f3e1012]':
+                      - generic [ref=f3e1013]: An uncertain delivery
+                      - generic [ref=f3e1014]: "Fixture reader · Thread #2"
+    - generic [ref=f3e72]:
+      - generic [ref=f3e73]:
+        - button "Quick actions" [ref=f3e74]
+        - button "4 conversations" [ref=f3e347]
+      - generic [ref=f3e75]:
+        - button "Add Command" [ref=f3e668]
+        - button "codeg-mcp service" [ref=f3e669]
+        - button [ref=f3e677]
