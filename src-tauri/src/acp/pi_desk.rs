@@ -303,6 +303,36 @@ mod tests {
                 .iter()
                 .any(|command| command["name"] == name && command["source"] == "extension"));
         }
+        // Exercise the shipped wrapper, not only rpcRefusal's unit fixture.
+        // Model/session changes must be rejected locally; abort remains usable.
+        for (i, (command, allowed)) in [
+            (serde_json::json!({"type": "set_model", "provider": "desk-fixture", "modelId": "cheap"}), false),
+            (serde_json::json!({"type": "set_thinking_level", "level": "high"}), false),
+            (serde_json::json!({"type": "new_session"}), false),
+            (serde_json::json!({"type": "abort"}), true),
+            (serde_json::json!({"type": "get_state"}), true),
+        ].into_iter().enumerate() {
+            let id = format!("fixture-command-{i}");
+            let mut command = command;
+            command["id"] = id.clone().into();
+            let mut wire = serde_json::to_vec(&command).unwrap();
+            wire.push(b'\n');
+            input.write_all(&wire).await.unwrap();
+            let response = tokio::time::timeout(std::time::Duration::from_secs(5), async {
+                loop {
+                    let line = output.next_line().await.unwrap().expect("wrapper stays live");
+                    let response: serde_json::Value = serde_json::from_str(&line).unwrap();
+                    assert_ne!(response["type"], "message_start", "no inference is allowed");
+                    if response["id"] == id { break response; }
+                }
+            }).await.unwrap();
+            assert_eq!(response["success"], allowed);
+            if command["type"] == "get_state" {
+                assert_eq!(response["data"]["model"]["id"], "gpt-6-astra");
+                assert_eq!(response["data"]["thinkingLevel"], "max");
+                assert_eq!(response["data"]["messageCount"], 0);
+            }
+        }
         assert!(
             tokio::time::timeout(std::time::Duration::from_millis(30), sink.accept())
                 .await

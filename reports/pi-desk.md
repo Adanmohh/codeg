@@ -357,3 +357,17 @@ Latest fetched main is `58fbbf6f`: UI PR #7 and the host seam are still
 unaccepted, so their product sources have not been copied. The remaining
 configured-deny-through-Ops regression is explicitly pending those accepted
 helpers; the stable scope and low-level token/abort tests above are complete.
+
+Accepted intake/main integration is pushed as `e766ca7c`; root planning docs,
+lockfiles and registries match that main, and NOTICE retains main verbatim plus
+this branch's Pi sections. After that merge the Desk suite passed again (9 plus
+1 explicit ignored fixture). The explicitly run extracted-asset RPC fixture
+also passed, now checking actual wrapper refusals of cheaper model/high
+reasoning/new-session commands, permitted abort, and retained Astra/max with
+zero model messages and zero loopback provider connections.
+
+UI PR #7 is now accepted at `f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`
+(source `756d064f1cc391ed1da32ba90429adef225f080d`). Read its accepted
+`ops/{agent,review,types,mod}.rs` completely via git show before integration.
+The next commit wires only those shared helpers; ACP will not construct an
+operator or copy draft validation/SQL.
