@@ -520,3 +520,52 @@ async fn assert_persisted(engine: &TaskEngine, original: &Value) {
         original["reply"]
     );
 }
+
+/// Reuses the accepted Ops browser fixture's AppState/protected-router setup.
+/// No normal server startup, global skill installation, task or model prompt.
+#[tokio::test]
+#[ignore = "manual isolated Playwright CLI fixture on 127.0.0.1:4324"]
+async fn pi_desk_browser_fixture() {
+    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("target/pi-desk-browser");
+    std::fs::create_dir_all(&root).unwrap();
+    let stop = root.join("stop");
+    assert!(!stop.exists(), "remove the previous fixture stop file first");
+    let catalogue = std::path::PathBuf::from(
+        std::env::var("PI_CODING_AGENT_DIR").expect("an isolated empty Pi catalogue is required"),
+    );
+    assert!(catalogue.starts_with(&root));
+    assert!(!catalogue.join("models.json").exists());
+    assert!(!catalogue.join("auth.json").exists());
+    let dir = tempfile::tempdir_in(&root).unwrap();
+    let workspace = dir.path().join("fresh-desk-workspace");
+    std::fs::create_dir_all(&workspace).unwrap();
+    let db = crate::db::init_database(dir.path(), "pi-desk-browser")
+        .await
+        .unwrap();
+    let folder = crate::db::test_helpers::seed_folder(&db, workspace.to_str().unwrap()).await;
+    let state = Arc::new(crate::app_state::AppState::new_for_test(
+        db,
+        dir.path().into(),
+    ));
+    let router = crate::web::router::build_router(
+        state,
+        "pi-desk-browser-fixture".into(), // Public, synthetic test-only token.
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .parent()
+            .unwrap()
+            .join("out"),
+        Arc::new(crate::web::shutdown::ShutdownSignal::new()),
+    );
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:4324")
+        .await
+        .unwrap();
+    println!("Pi Desk browser fixture ready on 127.0.0.1:4324; fresh folder {folder}");
+    axum::serve(listener, router)
+        .with_graceful_shutdown(async move {
+            while !stop.exists() {
+                tokio::time::sleep(Duration::from_millis(200)).await;
+            }
+        })
+        .await
+        .unwrap();
+}

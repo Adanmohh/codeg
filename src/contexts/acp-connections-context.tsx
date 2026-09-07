@@ -11,6 +11,7 @@ import {
 } from "react"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"
+import { toErrorMessage as normalizeErrorMessage } from "@/lib/app-error"
 import { subscribe, getEventStream } from "@/lib/platform"
 import type {
   AttachHandlers,
@@ -2964,11 +2965,6 @@ function getAffectedKey(action: Action): string | null {
   if (action.type === "STREAM_BATCH") return null
   if ("contextKey" in action) return action.contextKey
   return null
-}
-
-function normalizeErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message
-  return String(error)
 }
 
 type AlertedError = Error & { alerted: true }

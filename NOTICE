@@ -401,4 +401,11 @@ Ops agent/review helpers from Adanmohh/codeg UI head
 756d064f1cc391ed1da32ba90429adef225f080d (merged f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6).
 Tests adapt src-tauri/src/ops/tests/{agent.rs,integration.rs} public-view and
 writer-race fixtures and the original Codeg listener/task transition fixtures.
+The manual Pi browser fixture also reuses src-tauri/src/ops/tests/integration/browser.rs
+at that accepted UI head for its isolated AppState/protected-router setup.
 Original Apache-2.0 license and all notices above remain in force.
+
+Pi setup-error display reuses src/lib/app-error.ts::toErrorMessage from Codeg
+v0.30.4 (6f6bd648b206412644842a98d9ffeebf57292bed), verified blob
+9ddaab9e53c9c9c6971f8ad1a32938f364722457. The connection lifecycle and ACP
+context call that existing helper; no new error parser is introduced.

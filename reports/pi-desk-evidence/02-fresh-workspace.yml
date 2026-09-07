@@ -1,0 +1,171 @@
+- generic:
+  - alert [ref=e7]: Hafidh Ops Desk
+  - region "Notifications alt+T"
+  - generic [ref=e17]:
+    - generic [ref=e19]:
+      - complementary [ref=e22]:
+        - generic [ref=e26]:
+          - button "Locate Active Conversation" [ref=e27]
+          - button "Collapse All Groups" [ref=e28]
+          - button "View options" [ref=e29]
+        - generic [ref=e30]:
+          - button "Ops desk" [ref=e31]
+          - button "New chat ⌘T" [ref=e36]:
+            - generic [ref=e40]: New chat
+            - generic [ref=e41]: ⌘T
+          - button "Automations" [ref=e42]
+          - button "To-dos" [ref=e46]
+          - button "Repository panel" [ref=e51]
+          - button "Infinite Conversations" [ref=e57]
+        - generic [ref=e66]:
+          - generic [ref=e70]:
+            - button "Folders" [expanded] [ref=e71]
+            - generic [ref=e75]:
+              - button "New group" [ref=e76] [cursor=pointer]
+              - button "Import local sessions" [ref=e81] [cursor=pointer]
+              - button "Clone Repository" [ref=e85] [cursor=pointer]
+              - button "Open Folder" [ref=e91] [cursor=pointer]
+          - generic [ref=e98]:
+            - button "fresh-desk-workspace" [expanded] [ref=e99]
+            - button "More options" [ref=e104] [cursor=pointer]
+            - button "New Conversation" [ref=e109] [cursor=pointer]
+          - generic [ref=e113]: No conversations
+          - generic [ref=e120]:
+            - button "Chat" [expanded] [ref=e121]
+            - button "New chat" [ref=e125] [cursor=pointer]
+          - generic [ref=e129]: No chats
+          - generic [ref=e135]:
+            - button "Recent" [expanded] [ref=e136]
+            - button "New Conversation" [ref=e140] [cursor=pointer]
+          - generic [ref=e144]: No recent conversations
+      - separator [ref=e147]
+      - main [ref=e149]:
+        - generic [ref=e150]:
+          - generic [ref=e154]:
+            - generic [ref=e156]:
+              - tablist [ref=e159]:
+                - tab "New Conversation Close conversation tab" [selected] [ref=e161] [cursor=pointer]:
+                  - generic "fresh-desk-workspace · feat/step2-pi-desk — New Conversation" [ref=e163]: New Conversation
+                  - button "Close conversation tab" [ref=e164]
+                - button "New Conversation" [ref=e169]
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - button "fresh-desk-workspace" [ref=e179]
+                    - generic "New Conversation" [ref=e183]
+                  - button "More actions" [ref=e185]
+                - generic [ref=e201]:
+                  - generic [ref=e203]:
+                    - heading "What would you like to do today?" [level=1] [ref=e204]
+                    - generic [ref=e205]:
+                      - tablist [ref=e206]:
+                        - tab "Code Development" [selected] [ref=e207]
+                        - tab "Office Work" [ref=e208]
+                        - tab "Scientific Research" [ref=e209]
+                      - tabpanel "Code Development" [ref=e210]:
+                        - generic [ref=e211]:
+                          - button "Brainstorming Explore intent & requirements before building" [ref=e212]:
+                            - generic [ref=e218]: Brainstorming
+                            - generic [ref=e219]: Explore intent & requirements before building
+                          - button "Systematic Debugging Find the root cause before proposing fixes" [ref=e220]:
+                            - generic [ref=e233]: Systematic Debugging
+                            - generic [ref=e234]: Find the root cause before proposing fixes
+                          - button "Writing Skills Create, edit & verify reusable skills" [ref=e235]:
+                            - generic [ref=e244]: Writing Skills
+                            - generic [ref=e245]: Create, edit & verify reusable skills
+                        - generic [ref=e246]:
+                          - button "Show previous skills" [disabled]
+                          - generic [ref=e248]:
+                            - button "Writing Plans" [ref=e249]
+                            - button "Executing Plans" [ref=e257]
+                            - button "Subagent-Driven Development" [ref=e265]
+                            - button "Dispatching Parallel Agents" [ref=e273]
+                            - button "Using Git Worktrees" [ref=e283]
+                            - button "Test-Driven Development" [ref=e292]
+                            - button "Verification Before Completion" [ref=e299]
+                            - button "Requesting Code Review" [ref=e307]
+                            - button "Receiving Code Review" [ref=e316]
+                            - button "Finishing a Development Branch" [ref=e325]
+                            - button "Using Superpowers" [ref=e334]
+                          - button "Show more skills" [ref=e342]
+                    - generic [ref=e347]:
+                      - button "Pi Pi" [pressed] [ref=e349] [cursor=pointer]:
+                        - img "Pi" [ref=e352]
+                        - generic [ref=e357]: Pi
+                      - button [ref=e359] [cursor=pointer]:
+                        - img "Claude Code" [ref=e362]
+                        - generic: Claude Code
+                      - button [ref=e365] [cursor=pointer]:
+                        - img "Codex" [ref=e368]
+                        - generic: Codex
+                      - button [ref=e371] [cursor=pointer]:
+                        - img "Gemini CLI" [ref=e374]
+                        - generic: Gemini CLI
+                      - button [ref=e378] [cursor=pointer]:
+                        - img "OpenClaw" [ref=e381]
+                        - generic: OpenClaw
+                      - button [ref=e389] [cursor=pointer]:
+                        - img "OpenCode" [ref=e392]
+                        - generic: OpenCode
+                      - button [ref=e395] [cursor=pointer]:
+                        - img "Cline" [ref=e398]
+                        - generic: Cline
+                      - button [ref=e402] [cursor=pointer]:
+                        - img "Hermes Agent" [ref=e405]
+                        - generic: Hermes Agent
+                      - button [ref=e410] [cursor=pointer]:
+                        - img "CodeBuddy" [ref=e413]
+                        - generic: CodeBuddy
+                      - button [ref=e418] [cursor=pointer]:
+                        - img "Kimi Code" [ref=e421]
+                        - generic: Kimi Code
+                      - button [ref=e426] [cursor=pointer]:
+                        - img "Grok" [ref=e429]
+                        - generic: Grok
+                      - button [ref=e433] [cursor=pointer]:
+                        - img "Cursor" [ref=e436]
+                        - generic: Cursor
+                      - button [ref=e439] [cursor=pointer]:
+                        - img "DeepSeek Harness" [ref=e442]
+                        - generic: DeepSeek Harness
+                      - button [ref=e445] [cursor=pointer]:
+                        - img "Qoder" [ref=e448]
+                        - generic: Qoder
+                      - button [ref=e451] [cursor=pointer]:
+                        - img "Google Antigravity" [ref=e454]
+                        - generic: Google Antigravity
+                    - button "[object Object]" [ref=e458] [cursor=pointer]
+                    - generic [ref=e461]:
+                      - generic [ref=e462]:
+                        - textbox "Send a message..." [active] [ref=e465]:
+                          - paragraph [ref=e466]: Send a message...
+                        - generic [ref=e467]:
+                          - generic [ref=e468]:
+                            - button "Add" [disabled]
+                          - generic [ref=e469]:
+                            - button "Send" [disabled]
+                      - generic [ref=e470]:
+                        - generic [ref=e471]:
+                          - button "fresh-desk-workspace" [ref=e472]
+                          - button "feat/step2-pi-desk" [ref=e474]
+                        - 'button "Agent connection: Disconnected" [ref=e477]'
+                  - paragraph [ref=e489]: Open the + button next to the input and pick Quick Messages to insert a saved snippet (manage them under Settings → Quick Messages).
+            - separator
+          - separator
+          - generic [ref=e491]:
+            - button [ref=e493]
+            - button "Hide Terminal (⌘J)" [ref=e494]
+      - separator
+    - generic [ref=e495]:
+      - button "Quick actions" [ref=e497]
+      - generic [ref=e498]:
+        - button "Add Command" [ref=e499]
+        - button "codeg-mcp service" [ref=e500]
+        - button "1" [ref=e508]
+    - generic [ref=e514]:
+      - button "Hide Sidebar (⌘B)" [ref=e515]
+      - button "Search" [ref=e516]
+    - generic [ref=e521]:
+      - button "Toggle Terminal (⌘J)" [ref=e522]
+      - button "Toggle Auxiliary Panel (⌘E)" [ref=e523]
+      - button "Open Settings (⌘,)" [ref=e524]

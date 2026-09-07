@@ -424,3 +424,32 @@ returns pending review, never an execution handoff. Both real database writer
 races preserve the original draft. The linker reported a large debug unwind
 section warning; no test failure or runtime corruption was observed. Final
 strict compile/Clippy gates below will not suppress diagnostics.
+
+Stable companion window: 2026-09-07T22:48:59.948079+00:00; owned real binary /Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/target/debug/codeg-mcp, 14698456 bytes, SHA-256 58211aff505f32828595239370be3d3890ea59e862d8b0351b12c05f7d891972. Desktop checks/Clippy are complete; no desktop build will overwrite it during browser work. Production remains 7d376edb.
+
+
+## Final browser checkpoint — 2026-09-08
+
+Default desktop check, server/companion check, both Clippy gates, root and
+isolated extension typechecks, and the integrated frontend build passed at
+7d376edbe0e9a05116e9326499e3c2988dc55f58. Root independently passed 13 Rust
+Desk tests, the explicitly invoked extracted-assets fixture, 14 Desk unit tests
+and both restored-companion process tests; see the final handoff consolidation.
+
+Actual headed Playwright CLI exposed a structured-error display bug: the real
+Astra setup failure rendered as `[object Object]`. Both connection-context and
+lifecycle formatting now reuse the existing Codeg `toErrorMessage` helper,
+verified via gh api at v0.30.4, blob 9ddaab9e53c9c9c6971f8ad1a32938f364722457.
+No Rust runtime/extension change was needed. New web/Tauri/Error regressions and
+existing connection/default suites pass: 125/125, exit 0. Typecheck, affected
+ESLint and rebuilt 32-page frontend pass, exit 0. Added manual browser fixture
+compiles under Clippy with required test-utils, exit 0.
+
+Browser evidence: reports/pi-desk-evidence/README.md. Fresh Pi selection, actual
+Astra setup failure, explicit folder Codex selection for a new conversation and
+preservation after reload were observed. Zero prompt requests; no inference.
+The banner remains one line and truncated. Clicking it opens the verified Pi
+Settings destination, not expanded guidance. The browser uses an availability-
+only pi-acp fixture to reach the real model guard; actual pi-acp is unavailable.
+Owned browser closed; isolated server fixture passed/exited 0 and cleaned its
+database. P1 cached reads/proposal remain the separately authorized follow-on.
