@@ -12,55 +12,11 @@ import { Input } from "@/components/ui/input"
 import { useWorkbenchRoute } from "@/contexts/workbench-route-context"
 import { useRemoteConnection } from "@/contexts/remote-connection-context"
 import { ops, type OpsContext, type ThreadKey } from "@/lib/ops/api"
-import { cn } from "@/lib/utils"
 import { InboxView } from "./inbox-view"
 import { ApprovalsView } from "./proposals-view"
 import { MorningView } from "./morning-view"
 import { opsError, useOpsResource } from "./use-ops-resource"
-
-export const touchButton = "min-h-11 rounded-lg"
-export function Notice({
-  children,
-  error = false,
-}: {
-  children: React.ReactNode
-  error?: boolean
-}) {
-  return (
-    <p
-      role={error ? "alert" : "status"}
-      className={cn(
-        "rounded-lg border bg-muted/30 p-3 text-sm leading-relaxed",
-        error && "border-destructive/40 text-destructive"
-      )}
-    >
-      {children}
-    </p>
-  )
-}
-export function Loading({ label }: { label: string }) {
-  return (
-    <p role="status" className="p-6 text-sm text-muted-foreground">
-      {label}
-    </p>
-  )
-}
-export function LoadError({
-  error,
-  retry,
-}: {
-  error: string
-  retry: () => void
-}) {
-  return (
-    <div className="space-y-3 p-4">
-      <Notice error>{error}</Notice>
-      <Button className={touchButton} variant="outline" onClick={retry}>
-        Try again
-      </Button>
-    </div>
-  )
-}
+import { LoadError, Loading, Notice, touchButton } from "./ui"
 
 export function OpsPageTitle() {
   return <span className="text-sm font-medium">Ops desk</span>
@@ -142,9 +98,7 @@ function OpsWorkspace() {
         context.data && (
           <div className="flex min-h-0 flex-1 flex-col">
             <div className="shrink-0 border-b bg-muted/25 px-4 py-2 text-xs leading-relaxed text-muted-foreground sm:px-6">
-              Local workspace · Account {context.data.accountId} · Email
-              delivery not connected. Nothing is sent from drafts or private
-              notes.
+              Account {context.data.accountId} · {context.data.transportMessage}
             </div>
             {view === "inbox" &&
               (context.data.inboxes.length === 0 ? (

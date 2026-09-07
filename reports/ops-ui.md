@@ -207,3 +207,83 @@ server compile found WorkTaskStatus/string mismatch (101), fixed and rerun 0.
 Focused test compile found a private ThreadHeaders import, corrected to its
 discovered public threading module; test run is pending. Full checks, frontend
 tests and Playwright screenshots remain to be completed after this early push.
+
+## Active transport and bridge integration contract (2026-09-08)
+
+UI/API checkpoint **26a4bc8d** is pushed. Draft PR **#7**:
+https://github.com/Adanmohh/codeg/pull/7. Merged accepted origin/main
+**5bfdd07872e40ec0deee078fa7c881b9303e4954**, including Resend PR #6 / **2fecb1cf**;
+all NOTICE/planning/module entries preserved. Transport implementation is now
+being wired; the previous permanent-unconfigured stage is superseded by the
+owner's explicit instruction to complete real P2 email integration.
+
+Reserved **m20260907_000004_ops_email** now belongs to this integration: per-inbox
+random credential references into the existing keyring/file store, and durable
+send attempts. No key value in SQLite, reads, errors, logs or agent environments.
+Manual pull uses the accepted client, one operation per inbox, maximum five pages
+of 100 and a 55-second whole-pass deadline; only scoped insert/duplicate counts
+are returned, not credential-wide metadata. No scheduler engine.
+
+Durable dispatch design: reserve exact reviewed payload/hash, proposal/draft/run,
+RFC Message-ID and idempotency key before consuming approval. Unique proposal
+and draft-revision bindings plus an unresolved-thread index prevent another key
+after an ambiguous outcome. Only the owned AuthorizedReply can claim reserved →
+sending with an exact payload match. A crash at either side of authorization or
+provider I/O leaves an unconfirmed attempt, never an automatic resend. Provider
+receipt is durably recorded before the receipt-only public-reply path; finishing
+local receipt recording must not call the provider again. Core approval protocol
+and propose_reply signature remain unchanged. Fixture validation is pending.
+
+Read the GitHub worker's `reports/intake-github.md` directly, without copying its
+uncommitted source. Future registry pack: `ops_intake::github`, action
+`github.create_issue`, frozen PreparedIssue, dispatch consumes AuthorizedAction.
+Email-only facade remains until that typed pack is accepted; unknown non-email
+payloads are never sent to a generic action-name executor.
+
+Read pi worker's `reports/pi-desk.md` directly. Stable bridge seam implemented in
+new **ops::agent** (validated by three regression tests; this checkpoint is being pushed):
+
+```text
+// Backend-derived only, no Deserialize and no token/actor JSON input.
+RunContext { account_id: i32, task_id: i32, run_seq: i32,
+             connection_id: String, agent_id: String }
+agent::thread(&DatabaseConnection, &RunContext, ThreadInput) -> Result<Thread, DbError>
+agent::tickets(&DatabaseConnection, &RunContext, TicketsInput) -> Result<TicketPage, DbError>
+agent::save_draft(&DatabaseConnection, &RunContext, SaveDraftInput) -> Result<Draft, DbError>
+review::propose_reply(db, task_id, run_seq, agent, account_id, draft_id, expected_revision)
+```
+
+The bridge owns TokenRegistry/parent/task/agent/account attribution. Shared helpers
+recheck connection ID, current run, live folder and running/awaiting-input state.
+Draft save acquires SQLite's write lock before checking that context and the draft
+revision in the SAME transaction; no separate precheck/write gap. Agent thread
+projection selects MessageView::Public before constructing DTOs, so private notes
+and their counts never serialize. Agent authorship is `agent:<backend agent id>`;
+the bridge receives no Operator::server principal, private-note method, credentials
+or send/approve/deny method. No edits to the pi worker's ACP/delegation modules.
+
+Transport/bridge checkpoint validation: `CARGO_TARGET_DIR=target-approvals cargo
+test --locked --features test-utils --lib ops::tests` **0, 20/20 passed**. Includes
+the full protected router with the accepted HTTP client talking only to a
+synthetic loopback provider; exact edited To/Cc/Bcc/body/header/key verification,
+single dispatch, receipt-only recording/recovery, unknown outcome after restart,
+concurrent approval/pull, payload mismatch and cancellation before dispatch.
+Agent tests cover private-note exclusion, account/connection/run checks, competing
+operator CAS, and a held cancellation writer before agent save. The latter would
+expose a separate precheck followed by an unrestricted draft write.
+
+`pnpm exec tsc --noEmit` **0** and `pnpm build` **0** at this checkpoint. Final
+Clippy, desktop/server checks, additional browser/component evidence and receipt
+failure flows remain in progress. Build warnings: own compile-only MCP sidecar
+placeholder; existing proc-macro-error2 future incompatibility and macOS large
+test-binary unwind warning. No live provider calls, real inbox keys or emails.
+
+Latest hook evidence: live PreToolUse/PostToolUse at timestamp **1788816398**,
+session/cwd above, exit 0; hooks remained active through edits and validation.
+Additional pinned source proof: Codeg keyring_store.rs blob
+**d3e9041b95ebf2b36db66f5d15ba15df2ec494cd** at the same v0.30.4 commit, verified
+with gh api. One mistaken repository lookup returned 404, then corrected to the
+FOUNDING URL xintaofei/codeg. Existing keyring 3.6.3 source read locally. Only
+email_transport change: cfg(test) local_mock visibility pub(super) → pub(crate),
+retaining the loopback check. Server credential-file mutations now share a lock
+across the complete read/modify/write; no secret appears in DTOs or errors.

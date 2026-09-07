@@ -10,7 +10,7 @@ export interface OpsContext {
   accountId: number
   operator: string
   inboxes: Inbox[]
-  emailTransport: "unconfigured" | "configured"
+  emailTransport: "per_inbox"
   transportMessage: string
 }
 export interface ThreadKey {
@@ -78,6 +78,30 @@ export interface Proposal {
   reason: string | null
   payload: ReplyPayload | null
   createdAt: string
+  delivery: DeliveryStatus | null
+}
+export interface EmailStatus {
+  inboxId: number
+  configured: boolean
+  lastPullAt: string | null
+  lastPullStatus: string | null
+  lastPullError: string | null
+}
+export interface DeliveryStatus {
+  id: number
+  proposalId: number
+  status:
+    | "reserved"
+    | "sending"
+    | "not_sent"
+    | "failed"
+    | "unknown"
+    | "receipt_recorded"
+    | "sent"
+  messageId: string
+  providerId: string | null
+  error: string | null
+  updatedAt: string
 }
 export interface Morning {
   tasks: WorkTask[]
@@ -90,6 +114,20 @@ const call = <T>(command: string, input?: unknown) =>
   getTransport().call<T>(command, input === undefined ? {} : { input })
 
 export const ops = {
+  emailStatus: (inboxId: number) =>
+    call<EmailStatus>("ops_email_status", { inboxId }),
+  configureEmail: (inboxId: number, apiKey: string) =>
+    call<EmailStatus>("ops_email_configure", { inboxId, apiKey }),
+  disconnectEmail: (inboxId: number) =>
+    call<EmailStatus>("ops_email_disconnect", { inboxId }),
+  pullEmail: (inboxId: number) =>
+    getTransport().call<{ inserted: number; duplicates: number }>(
+      "ops_email_pull",
+      { input: { inboxId } },
+      { timeoutMs: 65000 }
+    ),
+  reconcileReceipt: (id: number) =>
+    call<DeliveryStatus>("ops_email_reconcile_receipt", { id }),
   context: () => call<OpsContext>("ops_context"),
   createInbox: (input: { name: string; email: string }) =>
     call<Inbox>("ops_inbox_create", input),

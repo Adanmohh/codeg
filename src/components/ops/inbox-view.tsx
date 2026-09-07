@@ -12,9 +12,10 @@ import {
   type ThreadKey,
 } from "@/lib/ops/api"
 import { cn } from "@/lib/utils"
-import { LoadError, Loading, Notice, touchButton } from "./ops-page"
+import { LoadError, Loading, Notice, touchButton } from "./ui"
 import { ReplyEditor, completeReply, replyFields } from "./reply-editor"
 import { opsError, useOpsResource } from "./use-ops-resource"
+import { EmailSettings } from "./email-settings"
 
 const statuses = ["Open", "Resolved", "Pending", "Snoozed"]
 export function InboxView({
@@ -51,7 +52,12 @@ export function InboxView({
           selected && "hidden sm:flex"
         )}
       >
-        <div className="space-y-3 border-b p-4">
+        <div className="space-y-3 overflow-y-auto border-b p-4">
+          <EmailSettings
+            key={inboxId}
+            inboxId={inboxId}
+            onPulled={tickets.reload}
+          />
           <div className="space-y-1.5">
             <label
               htmlFor="ops-inbox"
@@ -300,7 +306,7 @@ function ThreadBody({
         setSavedFields(JSON.stringify(fields))
         onDirty(note.length > 0)
         setNotice(
-          `Draft saved · revision ${saved.revision}. No email has been sent.`
+          `Draft saved · revision ${saved.revision}. Saving a draft does not send email.`
         )
       }
     } catch (e) {

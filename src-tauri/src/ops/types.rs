@@ -168,6 +168,50 @@ pub struct Proposal {
     pub reason: Option<&'static str>,
     pub payload: Option<ReplyPayload>,
     pub created_at: String,
+    pub delivery: Option<DeliveryStatus>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct EmailInboxInput {
+    pub inbox_id: i32,
+}
+
+// Deliberately neither Debug nor Serialize; reads never return the secret.
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct EmailConfigureInput {
+    pub inbox_id: i32,
+    pub api_key: String,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct EmailStatus {
+    pub inbox_id: i32,
+    pub configured: bool,
+    pub last_pull_at: Option<String>,
+    pub last_pull_status: Option<String>,
+    pub last_pull_error: Option<String>,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PullResult {
+    pub inserted: usize,
+    pub duplicates: usize,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct DeliveryStatus {
+    pub id: i32,
+    pub proposal_id: i32,
+    pub status: String,
+    pub message_id: String,
+    pub provider_id: Option<String>,
+    pub error: Option<String>,
+    pub updated_at: String,
 }
 
 #[derive(Serialize)]

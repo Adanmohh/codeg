@@ -2,7 +2,13 @@
 use crate::{
     app_error::AppCommandError,
     app_state::AppState,
-    ops::{command_error, review, store, types::*, Operator},
+    ops::{
+        command_error, delivery,
+        email::{self, EmailRuntime},
+        review, store,
+        types::*,
+        Operator,
+    },
     web::auth::AuthenticatedOperator,
 };
 use axum::{routing::post, Extension, Json, Router};
@@ -58,13 +64,71 @@ input_handler!(ops_note_add, store::add_note, NoteInput, Message);
 input_handler!(ops_draft_save, store::save_draft, SaveDraftInput, Draft);
 input_handler!(ops_proposal_get, review::get, ProposalInput, Proposal);
 input_handler!(ops_proposal_deny, review::deny, DenyInput, Proposal);
+input_handler!(
+    ops_email_reconcile_receipt,
+    delivery::reconcile_receipt,
+    ProposalInput,
+    DeliveryStatus
+);
+
+fn email_runtime(value: Option<Extension<Arc<EmailRuntime>>>) -> Arc<EmailRuntime> {
+    value
+        .map(|Extension(runtime)| runtime)
+        .unwrap_or_else(EmailRuntime::production)
+}
+macro_rules! email_handler {
+    ($name:ident, $core:path, $input:ty, $result:ty) => {
+        async fn $name(
+            Extension(state): Extension<Arc<AppState>>,
+            Extension(_human): Extension<AuthenticatedOperator>,
+            runtime: Option<Extension<Arc<EmailRuntime>>>,
+            Json(params): Json<Input<$input>>,
+        ) -> Result<Json<$result>, AppCommandError> {
+            Ok(Json(
+                $core(
+                    &state.db.conn,
+                    &Operator::server()?,
+                    &email_runtime(runtime),
+                    params.input,
+                )
+                .await?,
+            ))
+        }
+    };
+}
+email_handler!(
+    ops_email_status,
+    email::status,
+    EmailInboxInput,
+    EmailStatus
+);
+email_handler!(
+    ops_email_configure,
+    email::configure,
+    EmailConfigureInput,
+    EmailStatus
+);
+email_handler!(
+    ops_email_disconnect,
+    email::disconnect,
+    EmailInboxInput,
+    EmailStatus
+);
+email_handler!(ops_email_pull, email::pull, EmailInboxInput, PullResult);
 async fn ops_proposal_approve(
     Extension(state): Extension<Arc<AppState>>,
     Extension(_human): Extension<AuthenticatedOperator>,
+    runtime: Option<Extension<Arc<EmailRuntime>>>,
     Json(params): Json<Input<ReviewInput>>,
 ) -> Result<Json<Proposal>, AppCommandError> {
     Ok(Json(
-        review::approve(&state.db.conn, &Operator::server()?, params.input).await?,
+        review::approve_using(
+            &state.db.conn,
+            &Operator::server()?,
+            &email_runtime(runtime),
+            params.input,
+        )
+        .await?,
     ))
 }
 
@@ -81,4 +145,12 @@ pub fn router() -> Router {
         .route("/ops_proposal_approve", post(ops_proposal_approve))
         .route("/ops_proposal_deny", post(ops_proposal_deny))
         .route("/ops_morning", post(ops_morning))
+        .route("/ops_email_status", post(ops_email_status))
+        .route("/ops_email_configure", post(ops_email_configure))
+        .route("/ops_email_disconnect", post(ops_email_disconnect))
+        .route("/ops_email_pull", post(ops_email_pull))
+        .route(
+            "/ops_email_reconcile_receipt",
+            post(ops_email_reconcile_receipt),
+        )
 }

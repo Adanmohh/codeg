@@ -3,7 +3,13 @@
 use crate::{
     app_error::AppCommandError,
     db::AppDatabase,
-    ops::{command_error, review, store, types::*, Operator},
+    ops::{
+        command_error, delivery,
+        email::{self, EmailRuntime},
+        review, store,
+        types::*,
+        Operator,
+    },
 };
 
 macro_rules! read_command {
@@ -39,6 +45,49 @@ input_command!(ops_note_add, store::add_note, NoteInput, Message);
 input_command!(ops_draft_save, store::save_draft, SaveDraftInput, Draft);
 input_command!(ops_proposal_get, review::get, ProposalInput, Proposal);
 input_command!(ops_proposal_deny, review::deny, DenyInput, Proposal);
+input_command!(
+    ops_email_reconcile_receipt,
+    delivery::reconcile_receipt,
+    ProposalInput,
+    DeliveryStatus
+);
+
+macro_rules! email_command {
+    ($name:ident, $core:path, $input:ty, $result:ty) => {
+        #[tauri::command]
+        pub async fn $name(
+            db: tauri::State<'_, AppDatabase>,
+            input: $input,
+        ) -> Result<$result, AppCommandError> {
+            $core(
+                &db.conn,
+                &Operator::desktop()?,
+                &EmailRuntime::production(),
+                input,
+            )
+            .await
+        }
+    };
+}
+email_command!(
+    ops_email_status,
+    email::status,
+    EmailInboxInput,
+    EmailStatus
+);
+email_command!(
+    ops_email_configure,
+    email::configure,
+    EmailConfigureInput,
+    EmailStatus
+);
+email_command!(
+    ops_email_disconnect,
+    email::disconnect,
+    EmailInboxInput,
+    EmailStatus
+);
+email_command!(ops_email_pull, email::pull, EmailInboxInput, PullResult);
 
 #[tauri::command]
 pub async fn ops_proposal_approve(

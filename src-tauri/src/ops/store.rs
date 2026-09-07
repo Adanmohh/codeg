@@ -13,7 +13,7 @@ use crate::db::{
     service::{ticket_service as tickets, work_task_service},
 };
 
-pub const TRANSPORT_MESSAGE: &str = "Email delivery is not connected. Drafts and private notes stay local; proposals remain pending until a durable delivery adapter is configured.";
+pub const TRANSPORT_MESSAGE: &str = "Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.";
 const PAGE_SIZE: u64 = 50;
 
 pub async fn context(db: &DatabaseConnection, op: &Operator) -> Result<Context, DbError> {
@@ -25,7 +25,7 @@ pub async fn context(db: &DatabaseConnection, op: &Operator) -> Result<Context, 
             .into_iter()
             .map(inbox_dto)
             .collect(),
-        email_transport: "unconfigured",
+        email_transport: "per_inbox",
         transport_message: TRANSPORT_MESSAGE,
     })
 }
@@ -77,8 +77,8 @@ async fn ticket_dto<C: ConnectionTrait>(
     })
 }
 
-pub async fn list_tickets(
-    db: &DatabaseConnection,
+pub async fn list_tickets<C: ConnectionTrait>(
+    db: &C,
     op: &Operator,
     input: TicketsInput,
 ) -> Result<TicketPage, DbError> {
@@ -149,13 +149,25 @@ pub async fn thread(
     op: &Operator,
     input: ThreadInput,
 ) -> Result<Thread, DbError> {
+    thread_for_view(db, op, input, tickets::MessageView::Internal, None).await
+}
+
+pub(super) async fn thread_for_view(
+    db: &DatabaseConnection,
+    op: &Operator,
+    input: ThreadInput,
+    view: tickets::MessageView,
+    run: Option<&super::agent::RunContext>,
+) -> Result<Thread, DbError> {
     let txn = db.begin().await?;
+    if let Some(ctx) = run {
+        super::agent::require_live(&txn, ctx).await?;
+    }
     let scope = op.scope(input.inbox_id);
     let inbox = tickets::require_inbox(&txn, scope).await?;
     let row = tickets::get_conversation(&txn, scope, input.conversation_id).await?;
     let contact = tickets::get_contact(&txn, scope, row.id).await?;
-    let messages =
-        tickets::list_messages(&txn, scope, row.id, tickets::MessageView::Internal).await?;
+    let messages = tickets::list_messages(&txn, scope, row.id, view).await?;
     let ticket = ticket_dto(&txn, op, row).await?;
     let last_public = messages
         .iter()
@@ -311,6 +323,16 @@ pub async fn save_draft(
     op: &Operator,
     input: SaveDraftInput,
 ) -> Result<Draft, DbError> {
+    save_draft_for_run(db, op, input, None, op.actor).await
+}
+
+pub(super) async fn save_draft_for_run(
+    db: &DatabaseConnection,
+    op: &Operator,
+    input: SaveDraftInput,
+    run: Option<&super::agent::RunContext>,
+    actor: &str,
+) -> Result<Draft, DbError> {
     validate_reply(&input.reply, false)?;
     if input.expected_revision < 0
         || input.expected_revision == i32::MAX
@@ -330,6 +352,9 @@ pub async fn save_draft(
         [input.inbox_id.into(), op.account_id.into()],
     ))
     .await?;
+    if let Some(ctx) = run {
+        super::agent::require_live(&txn, ctx).await?;
+    }
     check_reply_scope(&txn, op, &input.reply).await?;
     let key = ThreadInput {
         inbox_id: input.inbox_id,
@@ -350,7 +375,7 @@ pub async fn save_draft(
                 Expr::value(input.expected_revision + 1),
             )
             .col_expr(draft::Column::UpdatedAt, Expr::value(now))
-            .col_expr(draft::Column::UpdatedBy, Expr::value(op.actor))
+            .col_expr(draft::Column::UpdatedBy, Expr::value(actor))
             .filter(draft::Column::Id.eq(row.id))
             .filter(draft::Column::Revision.eq(input.expected_revision))
             .exec(&txn)
@@ -365,7 +390,7 @@ pub async fn save_draft(
             conversation_id: Set(input.conversation_id),
             revision: Set(1),
             reply_json: Set(json),
-            updated_by: Set(op.actor.into()),
+            updated_by: Set(actor.into()),
             updated_at: Set(now),
             ..Default::default()
         }

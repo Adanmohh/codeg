@@ -222,6 +222,7 @@ async fn dto(
         },
         payload: parsed,
         created_at: row.created_at.to_rfc3339(),
+        delivery: super::delivery::for_proposal(db, op, row.id).await?,
     })
 }
 
@@ -268,6 +269,7 @@ pub async fn deny(
     // Pending payloads are immutable in the core. A racing terminal decision
     // fails its transactional pending/run CAS, including after this read.
     approvals::deny(db, row.task_id, row.run_seq, row.id, op.actor, &action).await?;
+    super::delivery::not_authorized(db, row.id).await?;
     get(db, op, ProposalInput { id: row.id }).await
 }
 
@@ -276,26 +278,64 @@ pub async fn approve(
     op: &Operator,
     input: ReviewInput,
 ) -> Result<Proposal, AppCommandError> {
-    let (_, action) = review_binding(db, op, input.id, &input.expected_payload)
+    approve_using(db, op, &super::email::EmailRuntime::production(), input).await
+}
+
+pub(crate) async fn approve_using(
+    db: &DatabaseConnection,
+    op: &Operator,
+    runtime: &super::email::EmailRuntime,
+    input: ReviewInput,
+) -> Result<Proposal, AppCommandError> {
+    let (row, action) = review_binding(db, op, input.id, &input.expected_payload)
         .await
         .map_err(super::command_error)?;
-    action
-        .validate(
-            &serde_json::to_value(input.approved_payload)
-                .map_err(|_| AppCommandError::invalid_input("Complete reply required"))?,
-        )
-        .map_err(super::command_error)?;
+    let _guard = runtime.guard(op.scope(action.binding.reply.inbox_id))?;
+    let value = serde_json::to_value(&input.approved_payload)
+        .map_err(|_| AppCommandError::invalid_input("Complete reply required"))?;
+    action.validate(&value).map_err(super::command_error)?;
     let current = get(db, op, ProposalInput { id: input.id })
         .await
         .map_err(super::command_error)?;
     if current.stale {
         return Err(super::command_error(conflict()));
     }
-    // Deliberately before approvals::approve. No transport/attempt store exists
-    // yet: consuming authorization here would strand the exact owned payload.
-    Err(AppCommandError::configuration_missing(
-        store::TRANSPORT_MESSAGE,
-    ))
+    // Both configuration and durable reservation precede consuming approval.
+    let client = runtime
+        .client(db, op, action.binding.reply.inbox_id)
+        .await?;
+    super::delivery::reserve(db, op, &row, &input.approved_payload)
+        .await
+        .map_err(super::command_error)?;
+    let action = match approvals::approve(
+        db,
+        row.task_id,
+        row.run_seq,
+        row.id,
+        op.actor,
+        &action,
+        approvals::Review {
+            expected_payload: &input.expected_payload,
+            approved_payload: value,
+        },
+    )
+    .await
+    {
+        Ok(action) => action,
+        Err(error) => {
+            super::delivery::not_authorized(db, row.id)
+                .await
+                .map_err(super::command_error)?;
+            return Err(super::command_error(error));
+        }
+    };
+    let authorized = AuthorizedReply::from_action(action).map_err(super::command_error)?;
+    super::delivery::dispatch(db, client, authorized)
+        .await
+        .map_err(super::command_error)?;
+    get(db, op, ProposalInput { id: row.id })
+        .await
+        .map_err(super::command_error)
 }
 
 /// Owned handoff for the future trusted dispatcher. It must persist an attempt,

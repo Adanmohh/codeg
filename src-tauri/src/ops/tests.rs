@@ -14,6 +14,9 @@ use sea_orm::{ConnectionTrait, EntityTrait};
 use sea_orm_migration::{MigratorTrait, SchemaManager};
 use serde_json::{json, Value};
 
+mod agent;
+mod integration;
+
 fn operator(account_id: i32) -> Operator {
     Operator {
         account_id,
@@ -544,5 +547,5 @@ async fn real_router_auth_actor_injection_and_scope_matrix() {
         .add_header("authorization", "Bearer ops-fixture-token")
         .json(&json!({}))
         .await
-        .assert_status_not_found();
+        .assert_status(axum::http::StatusCode::NOT_IMPLEMENTED);
 }

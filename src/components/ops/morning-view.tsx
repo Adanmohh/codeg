@@ -5,7 +5,7 @@ import { groupTasksByColumn } from "@/components/tasks/board-columns"
 import { StatusChip } from "@/components/tasks/task-card"
 import { TASK_LIST_LINE } from "@/components/tasks/task-row"
 import { ops, type ThreadKey } from "@/lib/ops/api"
-import { LoadError, Loading, touchButton } from "./ops-page"
+import { LoadError, Loading, touchButton } from "./ui"
 import { useOpsResource } from "./use-ops-resource"
 
 export function MorningView({

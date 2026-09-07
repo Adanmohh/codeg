@@ -10,11 +10,24 @@ import {
   type ThreadKey,
 } from "@/lib/ops/api"
 import { cn } from "@/lib/utils"
-import { LoadError, Loading, Notice, touchButton } from "./ops-page"
+import { LoadError, Loading, Notice, touchButton } from "./ui"
 import { completeReply, ReplyEditor, replyFields } from "./reply-editor"
 import { opsError, useOpsResource } from "./use-ops-resource"
 
 export function proposalStatus(p: Proposal): string {
+  if (p.delivery) {
+    switch (p.delivery.status) {
+      case "sent":
+        return "Sent · provider accepted"
+      case "receipt_recorded":
+        return "Provider accepted · recording pending"
+      case "failed":
+      case "not_sent":
+        return "Not sent · needs attention"
+      default:
+        return "Delivery unconfirmed · do not resend"
+    }
+  }
   if (p.stale) return "Stale · new review needed"
   if (p.status === "approved") return "Approved · delivery unconfirmed"
   if (p.status === "denied") return "Denied · not sent"
@@ -188,7 +201,27 @@ export function ReviewCard({
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState("")
   const inFlight = useRef(false)
+  const loadConnection = useCallback(
+    () => ops.emailStatus(proposal.inboxId),
+    [proposal.inboxId]
+  )
+  const connection = useOpsResource(`email:${proposal.inboxId}`, loadConnection)
   useEffect(() => () => onDirty(false), [onDirty])
+  const finishRecording = async () => {
+    if (inFlight.current) return
+    inFlight.current = true
+    setBusy(true)
+    setError("")
+    try {
+      await ops.reconcileReceipt(proposal.id)
+      onResolved()
+    } catch (e) {
+      setError(opsError(e))
+    } finally {
+      inFlight.current = false
+      setBusy(false)
+    }
+  }
   const resolve = async (decision: "approve" | "deny") => {
     if (inFlight.current || !original || !fields) return
     inFlight.current = true
@@ -216,6 +249,7 @@ export function ReviewCard({
         <p className="text-xs font-medium text-muted-foreground">
           Proposal #{proposal.id} · Task #{proposal.taskId} · Run{" "}
           {proposal.runSeq}
+          {" · "}Account {context.accountId}
         </p>
         <h1 className="text-xl font-semibold">{proposalStatus(proposal)}</h1>
         <Button
@@ -234,6 +268,51 @@ export function ReviewCard({
       {proposal.reason && (
         <Notice error={proposal.stale}>{proposal.reason}</Notice>
       )}
+      {proposal.delivery && (
+        <div className="space-y-3">
+          <Notice error={!!proposal.delivery.error}>
+            {proposal.delivery.error ??
+              (proposal.delivery.status === "sent"
+                ? "Resend accepted this reply and it is recorded in the thread. Provider acceptance does not confirm recipient delivery."
+                : "A delivery attempt exists. Do not resend this proposal or create another delivery key.")}
+          </Notice>
+          <dl className="space-y-1 break-all text-xs text-muted-foreground">
+            <dt>Message ID</dt>
+            <dd>{proposal.delivery.messageId}</dd>
+            {proposal.delivery.providerId && (
+              <>
+                <dt>Provider receipt</dt>
+                <dd>{proposal.delivery.providerId}</dd>
+              </>
+            )}
+          </dl>
+          {proposal.delivery.status === "receipt_recorded" && (
+            <Button
+              variant="outline"
+              className={touchButton}
+              disabled={busy}
+              onClick={() => void finishRecording()}
+            >
+              {busy ? "Recording…" : "Finish recording receipt"}
+            </Button>
+          )}
+        </div>
+      )}
+      {error && (
+        <div className="space-y-3">
+          <Notice error>
+            {error} Refresh this review to check the current decision and
+            delivery state.
+          </Notice>
+          <Button
+            className={touchButton}
+            variant="outline"
+            onClick={onResolved}
+          >
+            Refresh review
+          </Button>
+        </div>
+      )}
       {original && fields ? (
         <>
           <p className="text-sm text-muted-foreground">
@@ -243,7 +322,7 @@ export function ReviewCard({
           </p>
           <ReplyEditor
             fields={fields}
-            disabled={busy || proposal.stale}
+            disabled={busy || proposal.stale || !!proposal.delivery}
             onChange={(next) => {
               setFields(next)
               onDirty(
@@ -253,26 +332,31 @@ export function ReviewCard({
             }}
           />
           <div id="ops-delivery-state">
-            <Notice>{context.transportMessage}</Notice>
+            {connection.loading ? (
+              <Loading label="Checking inbox connection…" />
+            ) : connection.error ? (
+              <LoadError error={connection.error} retry={connection.reload} />
+            ) : (
+              <Notice>
+                {connection.data?.configured
+                  ? "Approving sends this exact reply through Resend. Check To, Cc and Bcc before continuing."
+                  : "Open the original thread and connect Resend for this inbox. The proposal stays pending until configured."}
+              </Notice>
+            )}
           </div>
-          {error && (
-            <Notice error>
-              {error} No delivery is confirmed. Refresh the queue to see the
-              current decision before retrying.
-            </Notice>
-          )}
           <div className="flex flex-wrap gap-3">
             <Button
               className={touchButton}
               disabled={
                 busy ||
                 proposal.stale ||
-                context.emailTransport !== "configured"
+                !!proposal.delivery ||
+                !connection.data?.configured
               }
               aria-describedby="ops-delivery-state"
               onClick={() => void resolve("approve")}
             >
-              {busy ? "Resolving…" : "Approve reply"}
+              {busy ? "Resolving…" : "Approve and send reply"}
             </Button>
             <Button
               className={touchButton}

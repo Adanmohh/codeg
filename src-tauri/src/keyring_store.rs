@@ -39,6 +39,12 @@ pub fn delete_token(account_id: &str) -> Result<(), String> {
 
 // ── Server mode: file-based token store ──
 
+// Every file-store mutation is read/modify/write. Serialize the whole sequence
+// so configuring two inboxes (or a GitHub account alongside one) preserves both
+// entries, rather than atomically renaming a stale copy over the newer map.
+#[cfg(not(feature = "tauri-runtime"))]
+static TOKEN_WRITE_LOCK: std::sync::Mutex<()> = std::sync::Mutex::new(());
+
 #[cfg(not(feature = "tauri-runtime"))]
 fn tokens_file_path() -> std::path::PathBuf {
     tokens_file_path_for(std::env::var("CODEG_DATA_DIR").ok().as_deref())
@@ -78,9 +84,7 @@ fn read_tokens_at(path: &std::path::Path) -> std::collections::HashMap<String, S
     #[cfg(unix)]
     if path.exists() {
         use std::os::unix::fs::PermissionsExt;
-        if let Err(err) =
-            std::fs::set_permissions(path, std::fs::Permissions::from_mode(0o600))
-        {
+        if let Err(err) = std::fs::set_permissions(path, std::fs::Permissions::from_mode(0o600)) {
             // Keep reading (a read-only mount is not made worse), but make the
             // failed hardening observable instead of silently world-readable.
             tracing::warn!(
@@ -162,6 +166,9 @@ fn write_tokens_at(
 
 #[cfg(not(feature = "tauri-runtime"))]
 pub fn set_token(account_id: &str, token: &str) -> Result<(), String> {
+    let _guard = TOKEN_WRITE_LOCK
+        .lock()
+        .map_err(|_| "credential store unavailable".to_string())?;
     let mut tokens = read_tokens();
     tokens.insert(token_key(account_id), token.to_string());
     write_tokens(&tokens)
@@ -174,6 +181,9 @@ pub fn get_token(account_id: &str) -> Option<String> {
 
 #[cfg(not(feature = "tauri-runtime"))]
 pub fn delete_token(account_id: &str) -> Result<(), String> {
+    let _guard = TOKEN_WRITE_LOCK
+        .lock()
+        .map_err(|_| "credential store unavailable".to_string())?;
     let mut tokens = read_tokens();
     tokens.remove(&token_key(account_id));
     write_tokens(&tokens)
@@ -210,6 +220,9 @@ pub fn delete_channel_token(channel_id: i32) -> Result<(), String> {
 
 #[cfg(not(feature = "tauri-runtime"))]
 pub fn set_channel_token(channel_id: i32, token: &str) -> Result<(), String> {
+    let _guard = TOKEN_WRITE_LOCK
+        .lock()
+        .map_err(|_| "credential store unavailable".to_string())?;
     let mut tokens = read_tokens();
     tokens.insert(channel_token_key(channel_id), token.to_string());
     write_tokens(&tokens)
@@ -222,6 +235,9 @@ pub fn get_channel_token(channel_id: i32) -> Option<String> {
 
 #[cfg(not(feature = "tauri-runtime"))]
 pub fn delete_channel_token(channel_id: i32) -> Result<(), String> {
+    let _guard = TOKEN_WRITE_LOCK
+        .lock()
+        .map_err(|_| "credential store unavailable".to_string())?;
     let mut tokens = read_tokens();
     tokens.remove(&channel_token_key(channel_id));
     write_tokens(&tokens)
@@ -269,7 +285,11 @@ mod tests {
     #[cfg(unix)]
     fn mode_bits(path: &std::path::Path) -> u32 {
         use std::os::unix::fs::PermissionsExt;
-        std::fs::metadata(path).expect("metadata").permissions().mode() & 0o777
+        std::fs::metadata(path)
+            .expect("metadata")
+            .permissions()
+            .mode()
+            & 0o777
     }
 
     /// A fresh store must be 0600 from its very first byte on disk — there is
@@ -285,12 +305,19 @@ mod tests {
         tokens.insert("github-token:a".to_string(), "secret".to_string());
         write_tokens_at(&path, &tokens).expect("write");
         assert_eq!(mode_bits(&path), 0o600);
-        assert_eq!(read_tokens_at(&path).get("github-token:a").unwrap(), "secret");
+        assert_eq!(
+            read_tokens_at(&path).get("github-token:a").unwrap(),
+            "secret"
+        );
         // No temp residue left behind.
         let leftovers: Vec<_> = std::fs::read_dir(dir.path())
             .unwrap()
             .filter_map(|e| e.ok())
-            .filter(|e| e.file_name().to_string_lossy().starts_with(".tokens.json.tmp"))
+            .filter(|e| {
+                e.file_name()
+                    .to_string_lossy()
+                    .starts_with(".tokens.json.tmp")
+            })
             .collect();
         assert!(leftovers.is_empty(), "temp files must not survive a write");
     }
