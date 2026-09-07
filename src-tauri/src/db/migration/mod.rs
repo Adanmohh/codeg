@@ -49,6 +49,7 @@ mod m20260907_000002_ops_tickets;
 mod m20260907_000003_ops_ui;
 mod m20260907_000004_ops_email;
 mod m20260907_000005_ops_intake;
+mod m20260908_000007_ops_telegram;
 pub struct Migrator;
 
 #[async_trait::async_trait]
@@ -104,6 +105,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20260907_000003_ops_ui::Migration),
             Box::new(m20260907_000004_ops_email::Migration),
             Box::new(m20260907_000005_ops_intake::Migration),
+            Box::new(m20260908_000007_ops_telegram::Migration),
         ]
     }
 }

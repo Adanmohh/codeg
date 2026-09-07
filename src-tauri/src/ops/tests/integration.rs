@@ -23,6 +23,7 @@ use std::{
 const RECEIPT: &str = "67d9bcdb-5a02-42d7-8da9-0d6feea18cff";
 const TOKEN: &str = "ops-ui-synthetic-operator";
 mod browser;
+mod telegram_browser;
 #[derive(Default)]
 struct MemorySecrets(Mutex<HashMap<String, String>>);
 impl SecretStore for MemorySecrets {

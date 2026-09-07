@@ -1,3 +1,30 @@
+Ops Telegram review notifications (2026)
+========================================
+Derived from Codeg v0.30.4, Apache-2.0, immutable source
+6f6bd648b206412644842a98d9ffeebf57292bed:
+  src-tauri/src/chat_channel/backends/telegram.rs
+    (plain message builder, configured bot endpoint and backend lifecycle)
+  src-tauri/src/chat_channel/{scheduler.rs,manager.rs,types.rs,traits.rs}
+    (existing recurring host seam and typed channel/target configuration)
+  src-tauri/src/db/entities/chat_channel.rs
+  src-tauri/src/db/service/{chat_channel_service.rs,canvas_service.rs}
+    (channel binding and writer-first SQLite transactions)
+  src-tauri/src/keyring_store.rs (existing credential store only)
+  src-tauri/src/web/handlers/canvas.rs and commands/canvas.rs
+    (dual-runtime authenticated command wrappers)
+  src/app/login/page.tsx and src/lib/transport/web-auth.ts
+    (operator login and a closed internal locator return path)
+Adaptation: ops_telegram/, Telegram backend ops.rs, named 000007 migration,
+commands/handlers/ops_telegram.rs, src/components/ops-telegram/,
+src/lib/ops-telegram/ and /ops-review. Original Apache LICENSE is retained.
+Accepted local Ops review/session/receipt and synthetic provider fixtures from
+f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6 are reused without repinning their
+IntroMail, Chatwoot or Resend ports; those original attributions remain below.
+Official tdlib/telegram-bot-api API source at
+e3e9dd8e5b3d7ab8537cd5a10dc31d5ffa8f82d1 (Boost-1.0) was read as API reference
+only (Client.cpp JsonUser/JsonChat/JsonMessage, getChat/sendMessage/link preview).
+No Telegram C++ implementation is copied or translated.
+
 Codeg
 Copyright its contributors. Based on xintaofei/codeg v0.30.4,
 commit 6f6bd648b206412644842a98d9ffeebf57292bed.
