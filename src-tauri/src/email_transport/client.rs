@@ -86,7 +86,7 @@ impl ResendClient {
     /// The only endpoint injection seam is test-only and loopback-only. Production
     /// callers cannot redirect a credential to an arbitrary endpoint.
     #[cfg(test)]
-    pub(super) async fn local_mock(
+    pub(crate) async fn local_mock(
         conn: &DatabaseConnection,
         scope: Scope,
         address: std::net::SocketAddr,

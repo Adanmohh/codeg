@@ -1,0 +1,127 @@
+- generic:
+  - alert [ref=f2e2]: Hafidh Ops Desk
+  - region "Notifications alt+T"
+  - generic [ref=f2e12]:
+    - generic [ref=f2e14]:
+      - complementary [ref=f2e17]:
+        - generic [ref=f2e21]:
+          - button "Locate Active Conversation" [ref=f2e22]
+          - button "Collapse All Groups" [ref=f2e23]
+          - button "View options" [ref=f2e24]
+        - generic [ref=f2e25]:
+          - button "Ops desk" [ref=f2e26]
+          - button "New chat ⌘T" [ref=f2e103]:
+            - generic [ref=f2e35]: New chat
+            - generic [ref=f2e36]: ⌘T
+          - button "Automations" [ref=f2e37]
+          - button "To-dos 4" [ref=f2e104]:
+            - generic [ref=f2e45]: To-dos
+            - generic [ref=f2e105]: "4"
+          - button "Repository panel" [ref=f2e46]
+          - button "Infinite Conversations" [ref=f2e52]
+        - generic [ref=f2e109]:
+          - generic [ref=f2e113]:
+            - button "Folders" [expanded] [ref=f2e114]
+            - generic [ref=f2e118]:
+              - button "New group" [ref=f2e119] [cursor=pointer]
+              - button "Import local sessions" [ref=f2e124] [cursor=pointer]
+              - button "Clone Repository" [ref=f2e128] [cursor=pointer]
+              - button "Open Folder" [ref=f2e134] [cursor=pointer]
+          - generic [ref=f2e141]:
+            - button "ops-ui-task-fixture 4 sessions running" [expanded] [ref=f2e142]:
+              - generic [ref=f2e143]:
+                - generic [ref=f2e144]: ops-ui-task-fixture
+                - generic "4 sessions running" [ref=f2e145]: "4"
+            - button "More options" [ref=f2e150] [cursor=pointer]
+            - button "New Conversation" [ref=f2e155] [cursor=pointer]
+          - generic [ref=f2e162]:
+            - button "Untitled conversation" [ref=f2e163]
+            - generic "Running" [ref=f2e167]
+          - generic [ref=f2e174]:
+            - button "Untitled conversation" [ref=f2e175]
+            - generic "Running" [ref=f2e179]
+          - generic [ref=f2e186]:
+            - button "Untitled conversation" [ref=f2e187]
+            - generic "Running" [ref=f2e191]
+          - generic [ref=f2e198]:
+            - button "Untitled conversation" [ref=f2e199]
+            - generic "Running" [ref=f2e203]
+          - generic [ref=f2e210]:
+            - button "Chat" [expanded] [ref=f2e211]
+            - button "New chat" [ref=f2e215] [cursor=pointer]
+          - generic [ref=f2e219]: No chats
+          - generic [ref=f2e225]:
+            - button "Recent" [expanded] [ref=f2e226]
+            - button "New Conversation" [ref=f2e230] [cursor=pointer]
+          - generic [ref=f2e237]:
+            - button "Untitled conversation" [ref=f2e238]
+            - generic "Running" [ref=f2e242]
+          - generic [ref=f2e249]:
+            - button "Untitled conversation" [ref=f2e250]
+            - generic "Running" [ref=f2e254]
+          - generic [ref=f2e261]:
+            - button "Untitled conversation" [ref=f2e262]
+            - generic "Running" [ref=f2e266]
+          - generic [ref=f2e273]:
+            - button "Untitled conversation" [ref=f2e274]
+            - generic "Running" [ref=f2e278]
+      - separator [ref=f2e63]
+      - main [ref=f2e65]:
+        - generic [ref=f2e66]:
+          - generic [ref=f2e634]:
+            - generic [ref=f2e635]: Ops desk
+            - region "Ops desk" [ref=f2e639]:
+              - generic [ref=f2e640]:
+                - navigation "Ops views" [ref=f2e641]:
+                  - button "Inbox" [ref=f2e642]
+                  - button "Approvals" [active] [ref=f2e643]
+                  - button "Morning" [ref=f2e644]
+                - button "Refresh" [ref=f2e645]
+              - generic [ref=f2e647]:
+                - generic [ref=f2e648]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+                - generic [ref=f2e699]:
+                  - complementary "Proposal queue" [ref=f2e700]:
+                    - generic [ref=f2e701]:
+                      - heading "Review queue" [level=1] [ref=f2e702]
+                      - paragraph [ref=f2e703]: Pending first, then recent decisions. Approval alone is not delivery.
+                    - list [ref=f2e704]:
+                      - listitem [ref=f2e705]:
+                        - 'button "Re: An outdated review Task #4 · Run 1 Stale · new review needed" [ref=f2e706]':
+                          - generic [ref=f2e707]: "Re: An outdated review"
+                          - generic [ref=f2e708]: "Task #4 · Run 1"
+                          - generic [ref=f2e709]: Stale · new review needed
+                      - listitem [ref=f2e710]:
+                        - 'button "Re: A rejected delivery Task #3 · Run 1 Pending human review" [ref=f2e711]':
+                          - generic [ref=f2e712]: "Re: A rejected delivery"
+                          - generic [ref=f2e713]: "Task #3 · Run 1"
+                          - generic [ref=f2e714]: Pending human review
+                      - listitem [ref=f2e715]:
+                        - 'button "Re: An uncertain delivery Task #2 · Run 1 Pending human review" [ref=f2e716]':
+                          - generic [ref=f2e717]: "Re: An uncertain delivery"
+                          - generic [ref=f2e718]: "Task #2 · Run 1"
+                          - generic [ref=f2e719]: Pending human review
+                      - listitem [ref=f2e720]:
+                        - 'button "Re: A real local thread Task #1 · Run 1 Pending human review" [ref=f2e721]':
+                          - generic [ref=f2e722]: "Re: A real local thread"
+                          - generic [ref=f2e723]: "Task #1 · Run 1"
+                          - generic [ref=f2e724]: Pending human review
+                  - generic [ref=f2e726]:
+                    - heading "Review the complete reply" [level=2] [ref=f2e727]
+                    - paragraph [ref=f2e728]: Check every recipient, edit the content and resolve the proposal. A newer draft or task run invalidates an old review.
+          - separator
+          - generic [ref=f2e79]:
+            - button [ref=f2e616]
+            - button "Hide Terminal (⌘J)" [ref=f2e617]
+      - separator
+    - generic [ref=f2e82]:
+      - generic [ref=f2e83]:
+        - button "Quick actions" [ref=f2e84]
+        - button "4 conversations" [ref=f2e619]
+      - generic [ref=f2e85]:
+        - button "Add Command" [ref=f2e622]
+        - button "codeg-mcp service" [ref=f2e86]
+        - button [ref=f2e89]
+    - generic [ref=f2e94]:
+      - button "Hide Sidebar (⌘B)" [ref=f2e630]
+      - button "Search" [ref=f2e96]
+    - button "Open Settings (⌘,)" [ref=f2e633]

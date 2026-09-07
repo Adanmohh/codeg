@@ -10,6 +10,7 @@ import {
   ListTodo,
   Map as MapIcon,
   Menu,
+  Inbox,
   MessagesSquare,
   SquarePen,
   Zap,
@@ -495,6 +496,15 @@ export function Sidebar() {
           the list below. Each row is a `group` so its shortcut hint reveals on
           hover / keyboard focus. */}
       <div className="flex shrink-0 flex-col gap-0.5 px-1.5 pt-1.5">
+        <SidebarNavButton
+          icon={Inbox}
+          label="Ops desk"
+          active={routeId === "ops"}
+          onClick={() => {
+            if (isMobile) toggle()
+            setRoute("ops")
+          }}
+        />
         <SidebarNavButton
           icon={SquarePen}
           label={t("newChat")}

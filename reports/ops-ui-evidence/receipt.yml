@@ -1,0 +1,45 @@
+- generic [active]:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e609]:
+      - generic [ref=f3e610]:
+        - button "Show Sidebar" [ref=f3e611]
+        - button "Search" [ref=f3e612]
+        - button "New Conversation" [ref=f3e613]
+      - button "Open Settings" [ref=f3e616]
+    - main [ref=f3e618]:
+      - generic [ref=f3e620]:
+        - generic [ref=f3e621]: Ops desk
+        - region "Ops desk" [ref=f3e625]:
+          - generic [ref=f3e626]:
+            - navigation "Ops views" [ref=f3e627]:
+              - button "Inbox" [ref=f3e628]
+              - button "Approvals" [ref=f3e629]
+              - button "Morning" [ref=f3e630]
+            - button "Refresh" [ref=f3e631]
+          - generic [ref=f3e633]:
+            - generic [ref=f3e634]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+            - generic [ref=f3e636]:
+              - button "Back to review queue" [ref=f3e638]
+              - article [ref=f3e680]:
+                - generic [ref=f3e681]:
+                  - paragraph [ref=f3e682]: "Proposal #1 · Task #1 · Run 1 · Account 1"
+                  - heading "Sent · provider accepted" [level=1] [ref=f3e683]
+                  - button "Open original thread" [ref=f3e684]
+                - generic [ref=f3e685]:
+                  - status [ref=f3e686]: Resend accepted this reply and it is recorded in the thread. Provider acceptance does not confirm recipient delivery.
+                  - generic [ref=f3e687]:
+                    - term [ref=f3e688]: Message ID
+                    - definition [ref=f3e689]: ops-f1f67e43-ba04-4473-aa1e-dac7e6b1414c@example.com
+                    - term [ref=f3e690]: Provider receipt
+                    - definition [ref=f3e691]: db982cde-5ee3-4e43-8fd9-65df069d8c53
+                - status [ref=f3e692]: This record has no editable pending payload. Open the thread for its current draft. No delivery receipt is implied by this decision.
+    - generic [ref=f3e72]:
+      - generic [ref=f3e73]:
+        - button "Quick actions" [ref=f3e74]
+        - button "4 conversations" [ref=f3e347]
+      - generic [ref=f3e75]:
+        - button "Add Command" [ref=f3e668]
+        - button "codeg-mcp service" [ref=f3e669]
+        - button [ref=f3e677]
