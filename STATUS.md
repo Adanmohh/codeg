@@ -32,3 +32,11 @@ All three workers are running through Herdr, each in its own worktree and branch
 - Docs-first hook audit found Claude-only registration. Added and trusted a scoped Codex adapter; five smoke tests passed. All three workers pushed checkpoints and resumed; live PreToolUse and PostToolUse records verified for each session. Details: [reports/docs-first-hook.md](reports/docs-first-hook.md).
 
 - All three workers resumed on explicit `gpt-6-astra` with `model_reasoning_effort=max`, keeping `never` approval and full access. Product implementation and acceptance checks are still in progress; no worker branch merged yet.
+
+## Latest worker snapshot — 2026-09-07
+
+- Rebrand: implementation committed as `10009312`; reported passing desktop/server compilation, frontend typecheck/build/lint, 129 focused frontend tests and 3 icon tests. Final Rust update tests and report/PR completion still running.
+- Approvals: gate/proposal/audit implementation with live task-state integration; latest report records 17 focused tests passing, desktop compilation and frontend typecheck passing. Remaining final checks and implementation commit/PR pending.
+- Tickets: scoped store/threading implementation committed as `427108f8`; final validation reported passing, report/PR completion still running.
+- All three Herdr workers still working at this snapshot. No draft PRs were open and no Step 1 branch has been reviewed/merged. Completion requires report/diff/source review, acceptance gates, and integration.
+- Immediate scope remains Step 1 only. Step 2 adapters/UI and Step 3 Telegram/end-to-end testing have not started.
