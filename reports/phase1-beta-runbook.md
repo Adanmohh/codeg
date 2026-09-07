@@ -10,9 +10,9 @@ no product code. Current source of truth: STATUS.md.
 | --- | --- | --- |
 | Received email → thread → draft/note → complete human review → provider receipt | Accepted PR6/7; independent protected-API/loopback Playwright flow and Rust assertions | Live inbox/key not used |
 | Stale/denied/failed/unknown email | Independently exercised UI and durable state tests | No real email sent |
-| Agent token → live task/run → public ticket/draft/proposal | PR8 final independent checks underway | Astra catalogue/provider setup missing; no inference |
+| Agent token → live task/run → public ticket/draft/proposal | PR8 accepted; independent bridge/extraction/default checks passed | Astra catalogue/provider setup missing; no inference |
 | TestFlight read → human proof → GitHub App issue | Accepted read/filing modules; PR9 host/UI under review | Hafidh admin/App credentials and repository not validated live |
-| Phone notification → login → exact review | Step3 Telegram worker implementing local fixture | Reachable protected origin/private recipient/bot not configured or activated |
+| Phone notification → login → exact review | PR10 local fixture; independent13 Rust tests/login/stale/full payload passed | Reachable protected origin/private recipient/bot not configured or activated |
 | Fixed-build note | Existing Tasks plus native reply-draft tools will compose it after actual fix/build evidence | No fix/build on Hafidh or reporter delivery claimed |
 
 ## P1 beta rehearsal

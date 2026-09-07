@@ -228,3 +228,16 @@ preliminary design evidence. Deliverable `reports/design-pi-specialist.md`
 plus structured findings; no product edits or additional agents. P1 host
 integration follows acceptance. Root continues independent bug UI and Telegram
 source/test review while their owners finish actual browser checks.
+
+## Design fixes queued and Telegram independently checked
+
+Tickets worker will continue from its report-only review into isolated
+`fix/design-shell`: verified shell accessible names and light/dark contrast
+only, deliverable `reports/design-shell-fixes.md`, actual CLI rechecks.
+Locale preservation remains approvals-owned; login is corrected in its PR10.
+No fourth worker, new UI system or root product edits.
+
+Root independently passed13 Telegram Rust tests and checked mobile login,
+stale-link rejection and full pending-review payload through Playwright CLI.
+[Review](reports/review-telegram.md), [browser evidence](reports/browser-phone-independent/).
+Full phone decision/receipt-completion and final PR10 gates remain pending.
