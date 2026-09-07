@@ -287,3 +287,50 @@ FOUNDING URL xintaofei/codeg. Existing keyring 3.6.3 source read locally. Only
 email_transport change: cfg(test) local_mock visibility pub(super) → pub(crate),
 retaining the loopback check. Server credential-file mutations now share a lock
 across the complete read/modify/write; no secret appears in DTOs or errors.
+
+## Browser and shared-helper checkpoint
+
+Checkpoint **dce45beb** is pushed. Follow-up Ops suite **22/22 passed**, with one
+explicitly ignored manual browser fixture; focused frontend component suite
+**5/5 passed** (facade mocks, explicitly not E2E). Private notes now leave agent
+thread/list activity timestamps and ordering unchanged, covered by an exact
+before/after projection comparison. A server credential-store regression uses
+an explicit temporary path, never the user's keychain or process environment.
+
+Added bridge helpers: `agent::context(db, &RunContext)` returns only accountId
+and inbox id/name/email, checking the live run inside its read transaction;
+`agent::account_id()` shares trusted process configuration with Ops;
+`agent::command_error(DbError)` is the sanitized bridge error projection. The
+bridge must apply it before returning an internal database error. Existing
+thread/tickets/save_draft and review::propose_reply signatures are unchanged.
+
+For the separate intake host, reuse `web::auth::AuthenticatedOperator` from the
+existing successful bearer middleware, then `Operator::server()` (crate-visible)
+or the desktop command's `Operator::desktop()`. New read-only
+`Operator::account_id()` / `Operator::actor()` accessors expose the established
+scope/identity without accepting a caller-selected actor or making constructors
+public. No second auth system or new public marker-injection route.
+
+Manual fixture source:
+`src-tauri/src/ops/tests/integration/browser.rs::ops_ui_browser_fixture`.
+Run from this worktree: first `pnpm build`, then from `src-tauri`:
+
+```sh
+env CARGO_TARGET_DIR=target-approvals cargo test --locked --features test-utils --lib ops_ui_browser_fixture -- --ignored --nocapture
+```
+
+It binds **127.0.0.1:4320**, uses a fresh temporary SQLite DB, the full real
+protected router and an injectable memory credential store. Only the accepted
+Resend client's upstream is replaced by an actual loopback HTTP provider. The
+synthetic-only operator token is **ops-ui-synthetic-operator**; use the ordinary
+login page. A synthetic inbox key such as **fixture-resend-key** configures only
+this memory store; the test client cannot reach Resend. The provider returns
+fixtures for Pull now; exact reply text `simulate unknown` returns 500 and
+`simulate rejection` returns 422, otherwise a synthetic receipt. Pending and
+stale task/run proposals are seeded by trusted test code, never production UI.
+Set `OPS_UI_FIXTURE_EMPTY=1` before the command for a completely empty instance.
+No front-end request interception is required. Owned listening PID and actual
+browser evidence will be recorded once the final fixture process starts.
+
+Root's server/session on 4318 remains untouched. Use a distinct Playwright CLI
+session name, e.g. `ops-ui-independent`, when independently browsing this fixture.

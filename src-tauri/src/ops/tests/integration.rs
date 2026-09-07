@@ -22,6 +22,7 @@ use std::{
 
 const RECEIPT: &str = "67d9bcdb-5a02-42d7-8da9-0d6feea18cff";
 const TOKEN: &str = "ops-ui-synthetic-operator";
+mod browser;
 #[derive(Default)]
 struct MemorySecrets(Mutex<HashMap<String, String>>);
 impl SecretStore for MemorySecrets {
@@ -41,6 +42,7 @@ impl SecretStore for MemorySecrets {
 struct ProviderState {
     replies: Arc<Mutex<VecDeque<(StatusCode, Value, Duration)>>>,
     seen: Arc<Mutex<Vec<(String, HeaderMap, Value)>>>,
+    browser: bool,
 }
 struct Provider {
     state: ProviderState,
@@ -54,24 +56,31 @@ impl Drop for Provider {
 }
 impl Provider {
     async fn new() -> Self {
+        Self::start(false).await
+    }
+    async fn start(browser: bool) -> Self {
         async fn handle(State(state): State<ProviderState>, req: Request) -> impl IntoResponse {
             let (head, body) = req.into_parts();
             let bytes = to_bytes(body, 2 * 1024 * 1024).await.unwrap();
-            state.seen.lock().unwrap().push((
-                head.uri.to_string(),
-                head.headers,
-                serde_json::from_slice(&bytes).unwrap_or(Value::Null),
-            ));
-            let (status, body, delay) = state
-                .replies
+            let input: Value = serde_json::from_slice(&bytes).unwrap_or(Value::Null);
+            let uri = head.uri.to_string();
+            state
+                .seen
                 .lock()
                 .unwrap()
-                .pop_front()
-                .expect("unexpected provider call");
+                .push((head.uri.to_string(), head.headers, input.clone()));
+            let reply = state.replies.lock().unwrap().pop_front();
+            let (status, body, delay) = reply.unwrap_or_else(|| {
+                assert!(state.browser, "unexpected provider call");
+                browser::provider_reply(&uri, &input)
+            });
             tokio::time::sleep(delay).await;
             (status, axum::Json(body))
         }
-        let state = ProviderState::default();
+        let state = ProviderState {
+            browser,
+            ..Default::default()
+        };
         let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
         let runtime = EmailRuntime::fixture(
             Box::<MemorySecrets>::default(),

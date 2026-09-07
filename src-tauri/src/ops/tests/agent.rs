@@ -30,6 +30,11 @@ async fn trusted_agent_projection_omits_notes_and_checks_scope_run_and_connectio
     .unwrap();
     let (task, seq) = start(&db).await;
     let mut ctx = context(task, seq);
+    let info = serde_json::to_value(agent::context(&db.conn, &ctx).await.unwrap()).unwrap();
+    assert_eq!(
+        info,
+        json!({"accountId":1,"inboxes":[{"id":key.inbox_id,"name":"Support","email":"support@example.com"}]})
+    );
     let public = agent::thread(&db.conn, &ctx, key).await.unwrap();
     assert_eq!(public.messages.len(), 1);
     assert!(!serde_json::to_string(&public)
@@ -64,6 +69,7 @@ async fn trusted_agent_projection_omits_notes_and_checks_scope_run_and_connectio
         .unwrap();
     assert_eq!(stored.updated_by, "agent:fixture-pi");
     ctx.connection_id = "another-parent".into();
+    assert!(agent::context(&db.conn, &ctx).await.is_err());
     assert!(agent::thread(&db.conn, &ctx, key).await.is_err());
     ctx.connection_id = "ops-ui-fixture".into();
     ctx.run_seq += 1;
@@ -72,6 +78,7 @@ async fn trusted_agent_projection_omits_notes_and_checks_scope_run_and_connectio
     assert!(tasks::cancel_running_generation(&db.conn, task, seq)
         .await
         .unwrap());
+    assert!(agent::context(&db.conn, &ctx).await.is_err());
     assert!(agent::tickets(
         &db.conn,
         &ctx,
@@ -83,6 +90,23 @@ async fn trusted_agent_projection_omits_notes_and_checks_scope_run_and_connectio
     )
     .await
     .is_err());
+}
+
+#[test]
+fn shared_host_account_configuration_and_bridge_errors_fail_closed() {
+    use std::ffi::OsStr;
+    assert_eq!(crate::ops::account_id_from(None).unwrap(), 1);
+    assert_eq!(
+        crate::ops::account_id_from(Some(OsStr::new("27"))).unwrap(),
+        27
+    );
+    for invalid in ["", "0", "-1", "1.5", "foreign"] {
+        assert!(crate::ops::account_id_from(Some(OsStr::new(invalid))).is_err());
+    }
+    let error = agent::command_error(DbError::Conflict("private sql payload".into()));
+    assert!(!serde_json::to_string(&error)
+        .unwrap()
+        .contains("private sql payload"));
 }
 
 #[tokio::test]
@@ -160,4 +184,40 @@ async fn agent_and_operator_draft_writers_share_one_revision_cas() {
         .unwrap();
     assert_eq!(current.revision, 2);
     assert_eq!(current.reply, winning.reply);
+}
+
+#[tokio::test]
+async fn private_notes_do_not_change_agent_thread_or_list_metadata() {
+    let db = fresh_in_memory_db().await;
+    let (op, key) = seed(&db, 1).await;
+    let (task, seq) = start(&db).await;
+    let ctx = context(task, seq);
+    let input = || TicketsInput {
+        inbox_id: key.inbox_id,
+        status: None,
+        page: 0,
+    };
+    let before_thread =
+        serde_json::to_value(agent::thread(&db.conn, &ctx, key).await.unwrap()).unwrap();
+    let before_list =
+        serde_json::to_value(agent::tickets(&db.conn, &ctx, input()).await.unwrap()).unwrap();
+    store::add_note(
+        &db.conn,
+        &op,
+        NoteInput {
+            inbox_id: key.inbox_id,
+            conversation_id: key.conversation_id,
+            content: "hidden note".into(),
+        },
+    )
+    .await
+    .unwrap();
+    assert_eq!(
+        serde_json::to_value(agent::thread(&db.conn, &ctx, key).await.unwrap()).unwrap(),
+        before_thread
+    );
+    assert_eq!(
+        serde_json::to_value(agent::tickets(&db.conn, &ctx, input()).await.unwrap()).unwrap(),
+        before_list
+    );
 }

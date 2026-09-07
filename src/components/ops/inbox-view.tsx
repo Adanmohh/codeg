@@ -271,14 +271,6 @@ function ThreadBody({
   const draftDirty = JSON.stringify(fields) !== savedFields
   const dirty = draftDirty || note.length > 0
   useEffect(() => () => onDirty(false), [onDirty])
-  useEffect(() => {
-    const warn = (event: BeforeUnloadEvent) => {
-      event.preventDefault()
-      event.returnValue = ""
-    }
-    if (dirty) window.addEventListener("beforeunload", warn)
-    return () => window.removeEventListener("beforeunload", warn)
-  }, [dirty])
   const key = {
     inboxId: thread.ticket.inboxId,
     conversationId: thread.ticket.id,

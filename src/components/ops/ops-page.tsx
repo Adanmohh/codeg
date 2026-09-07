@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import {
   Inbox as InboxIcon,
   RefreshCw,
@@ -29,13 +29,33 @@ export function OpsPage() {
 
 type View = "inbox" | "approvals" | "morning"
 function OpsWorkspace() {
-  const { setRoute } = useWorkbenchRoute()
+  const { setRoute, registerLeaveGuard } = useWorkbenchRoute()
   const context = useOpsResource("context", ops.context)
   const [view, setView] = useState<View>("inbox")
   const [selected, setSelected] = useState<ThreadKey | null>(null)
   const [proposalId, setProposalId] = useState<number | null>(null)
   const [epoch, setEpoch] = useState(0)
   const [dirty, setDirty] = useState(false)
+  useEffect(
+    () =>
+      registerLeaveGuard(
+        (next) =>
+          next === "ops" ||
+          !dirty ||
+          window.confirm(
+            "Discard unsaved Ops changes? Save your draft or private note before leaving to keep it."
+          )
+      ),
+    [dirty, registerLeaveGuard]
+  )
+  useEffect(() => {
+    const warn = (event: BeforeUnloadEvent) => {
+      event.preventDefault()
+      event.returnValue = ""
+    }
+    if (dirty) window.addEventListener("beforeunload", warn)
+    return () => window.removeEventListener("beforeunload", warn)
+  }, [dirty])
   const navigate = (action: () => void) => {
     if (
       dirty &&

@@ -21,6 +21,12 @@ pub struct Operator {
 }
 
 impl Operator {
+    pub fn account_id(&self) -> i32 {
+        self.account_id
+    }
+    pub fn actor(&self) -> &'static str {
+        self.actor
+    }
     pub(crate) fn server() -> Result<Self, AppCommandError> {
         Self::configured("operator:http")
     }
@@ -31,16 +37,7 @@ impl Operator {
     }
 
     fn configured(actor: &'static str) -> Result<Self, AppCommandError> {
-        let raw = std::env::var("CODEG_OPS_ACCOUNT_ID").unwrap_or_else(|_| "1".into());
-        let account_id = raw
-            .parse::<i32>()
-            .ok()
-            .filter(|id| *id > 0)
-            .ok_or_else(|| {
-                AppCommandError::configuration_invalid(
-                    "Ops account configuration must be a positive integer",
-                )
-            })?;
+        let account_id = configured_account_id()?;
         Ok(Self { account_id, actor })
     }
 
@@ -49,6 +46,25 @@ impl Operator {
             account_id: self.account_id,
             inbox_id,
         }
+    }
+}
+
+fn configured_account_id() -> Result<i32, AppCommandError> {
+    let raw = std::env::var_os("CODEG_OPS_ACCOUNT_ID");
+    account_id_from(raw.as_deref())
+}
+fn account_id_from(raw: Option<&std::ffi::OsStr>) -> Result<i32, AppCommandError> {
+    match raw {
+        None => Ok(1),
+        Some(value) => value
+            .to_str()
+            .and_then(|s| s.parse::<i32>().ok())
+            .filter(|id| *id > 0)
+            .ok_or_else(|| {
+                AppCommandError::configuration_invalid(
+                    "Ops account configuration must be a positive integer",
+                )
+            }),
     }
 }
 

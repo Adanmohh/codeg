@@ -20,6 +20,37 @@ pub struct RunContext {
     pub agent_id: String,
 }
 
+/// Trusted host configuration, shared with the operator boundary; no principal.
+pub fn account_id() -> Result<i32, crate::app_error::AppCommandError> {
+    super::configured_account_id()
+}
+
+/// Bridge error projection: never serialize an underlying database error.
+pub fn command_error(error: DbError) -> crate::app_error::AppCommandError {
+    super::command_error(error)
+}
+
+#[derive(serde::Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Context {
+    pub account_id: i32,
+    pub inboxes: Vec<Inbox>,
+}
+pub async fn context(db: &DatabaseConnection, ctx: &RunContext) -> Result<Context, DbError> {
+    let txn = db.begin().await?;
+    require_live(&txn, ctx).await?;
+    let inboxes = crate::db::service::ticket_service::list_inboxes(&txn, ctx.account_id)
+        .await?
+        .into_iter()
+        .map(store::inbox_dto)
+        .collect();
+    txn.commit().await?;
+    Ok(Context {
+        account_id: ctx.account_id,
+        inboxes,
+    })
+}
+
 pub(super) async fn require_live<C: ConnectionTrait>(
     db: &C,
     ctx: &RunContext,
@@ -72,7 +103,8 @@ pub async fn tickets(
 ) -> Result<TicketPage, DbError> {
     let txn = db.begin().await?;
     require_live(&txn, ctx).await?;
-    let result = store::list_tickets(&txn, &scope(ctx), input).await?;
+    let result =
+        store::list_tickets_for_view(&txn, &scope(ctx), input, MessageView::Public).await?;
     txn.commit().await?;
     Ok(result)
 }

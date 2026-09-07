@@ -30,7 +30,7 @@ pub async fn context(db: &DatabaseConnection, op: &Operator) -> Result<Context, 
     })
 }
 
-fn inbox_dto(row: inbox::Model) -> Inbox {
+pub(super) fn inbox_dto(row: inbox::Model) -> Inbox {
     Inbox {
         id: row.id,
         name: row.name,
@@ -82,6 +82,15 @@ pub async fn list_tickets<C: ConnectionTrait>(
     op: &Operator,
     input: TicketsInput,
 ) -> Result<TicketPage, DbError> {
+    list_tickets_for_view(db, op, input, tickets::MessageView::Internal).await
+}
+
+pub(super) async fn list_tickets_for_view<C: ConnectionTrait>(
+    db: &C,
+    op: &Operator,
+    input: TicketsInput,
+    view: tickets::MessageView,
+) -> Result<TicketPage, DbError> {
     tickets::require_inbox(db, op.scope(input.inbox_id)).await?;
     if input.page > 10000 || input.status.is_some_and(|s| !(0..=3).contains(&s)) {
         return Err(DbError::Validation("Invalid ticket page or status".into()));
@@ -92,8 +101,13 @@ pub async fn list_tickets<C: ConnectionTrait>(
     if let Some(status) = input.status {
         query = query.filter(conversation::Column::Status.eq(status));
     }
+    let query = if matches!(view, tickets::MessageView::Public) {
+        // Private notes must not change an agent's ordering/activity metadata.
+        query.order_by_desc(Expr::cust("(SELECT MAX(m.created_at) FROM ops_ticket_message m WHERE m.conversation_id = ops_ticket_conversation.id AND m.account_id = ops_ticket_conversation.account_id AND m.inbox_id = ops_ticket_conversation.inbox_id AND m.private = 0 AND m.message_type IN (0,1))"))
+    } else {
+        query.order_by_desc(conversation::Column::LastActivityAt)
+    };
     let mut rows = query
-        .order_by_desc(conversation::Column::LastActivityAt)
         .order_by_desc(conversation::Column::Id)
         .offset(u64::from(input.page) * PAGE_SIZE)
         .limit(PAGE_SIZE + 1)
@@ -103,7 +117,21 @@ pub async fn list_tickets<C: ConnectionTrait>(
     rows.truncate(PAGE_SIZE as usize);
     let mut items = Vec::with_capacity(rows.len());
     for row in rows {
-        items.push(ticket_dto(db, op, row).await?);
+        let mut dto = ticket_dto(db, op, row).await?;
+        if matches!(view, tickets::MessageView::Public) {
+            dto.updated_at = message::Entity::find()
+                .filter(message::Column::AccountId.eq(op.account_id))
+                .filter(message::Column::InboxId.eq(dto.inbox_id))
+                .filter(message::Column::ConversationId.eq(dto.id))
+                .filter(message::Column::Private.eq(false))
+                .filter(message::Column::MessageType.is_in([0, 1]))
+                .order_by_desc(message::Column::CreatedAt)
+                .one(db)
+                .await?
+                .map(|m| m.created_at.to_rfc3339())
+                .unwrap_or_default();
+        }
+        items.push(dto);
     }
     Ok(TicketPage { items, has_more })
 }
@@ -168,7 +196,15 @@ pub(super) async fn thread_for_view(
     let row = tickets::get_conversation(&txn, scope, input.conversation_id).await?;
     let contact = tickets::get_contact(&txn, scope, row.id).await?;
     let messages = tickets::list_messages(&txn, scope, row.id, view).await?;
-    let ticket = ticket_dto(&txn, op, row).await?;
+    let mut ticket = ticket_dto(&txn, op, row).await?;
+    if matches!(view, tickets::MessageView::Public) {
+        ticket.updated_at = messages
+            .iter()
+            .map(|m| m.created_at)
+            .max()
+            .map(|t| t.to_rfc3339())
+            .unwrap_or_default();
+    }
     let last_public = messages
         .iter()
         .rev()
