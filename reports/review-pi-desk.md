@@ -61,3 +61,12 @@ exit0, one pass in0.79s. It loads the actual installed pinned pi/adapter from
 extracted assets, discovers both commands and verifies model/session guard
 refusals with isolated synthetic catalogue metadata, zero model messages and
 zero provider connections. Log `/tmp/ops-pi-independent-extracted-assets.log`.
+
+Restored artifact gate passed: after desktop checks, the worker rebuilt its own
+real companion (SHA256 `58211aff505f32828595239370be3d3890ea59e862d8b0351b12c05f7d891972`).
+Root reran only `integrations/pi-desk/process.test.ts`:2 passes, exit0, including
+actual closed MCP tool discovery and aborting a parked native request. Log
+`/tmp/ops-pi-independent-process-restored.log`. Together with the earlier14 Desk
+unit passes, all16 extension/process cases have now passed at7d376edb. The initial
+placeholder failure remains recorded above; final browser/default/report review
+is still pending.
