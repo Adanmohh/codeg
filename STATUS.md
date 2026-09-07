@@ -12,7 +12,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 independent17 Rust,9 isolated Python,8 frontend tests and protected CLI review/held-task checks pass | Final committed report/gates and exact-head acceptance |
-| Telegram and beta validation | PR #10 independent13 Rust tests and phone login/stale/payload checks pass | Browser decisions/receipt completion, final report/gates, then typed P1 extension |
+| Telegram and beta validation | PR #10 independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Final committed report/gates and acceptance, then typed P1 extension |
 | Final Design Studio loops | Preliminary sequential seven-finding review committed; independent specialist active; shell fixes queued | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
@@ -250,3 +250,20 @@ to reserve those files and focus the typed P1 Telegram extension after PR9/10
 acceptance. Tickets retains shell accessibility fixes, then pi P1 integration.
 These follow-ons are planned, not yet dispatched branches. All retain their
 existing worktrees/topic panes and Astra max; max three workers.
+
+## Design specialist reviewed and merged; fixes dispatched
+
+PR #11 report-only review accepted at `b68de0517b4ccdb63c2ab779537a04684df21429`,
+merged as `625d8ed7266ed4cf49454942f3dbb5c48409bd07`. Root verified the new
+Pi settings-label finding against source/DOM/image and confirmed the measured
+shell findings. [Report](reports/design-pi-specialist.md). This accepts the
+review evidence, not the current design: three high and two medium findings
+require fixes. The worker used the three specialist methods sequentially; it
+also authored the Pi implementation, so this is not independent-person review.
+
+Tickets is dispatched to separate `fix/design-shell`, sameworktree/wR:p4,
+deliverable `reports/design-shell-fixes.md`, expanded to allfive bounded findings:
+shell labels/contrast, Pi field labels, complete mobile setup guidance and
+scoped banner contrast/readiness copy. Preserve model/credential semantics;
+actual CLI rechecks and normal relevant gates required. No automatic
+installation/login/inference, fourth worker or root product changes.
