@@ -1,6 +1,10 @@
 # Intake / GitHub acceptance review
 
-In progress, 2026-09-08. PR #5 is not accepted. Python production code reviewed at `a4f9f316`; early Rust observations below refer to the worker’s in-progress module (`mod.rs` SHA-256 `b1252e1c6359e4f5ee538c398e0a01835386cffaa884d6475095ad42ffa8e8da`, `store.rs` SHA-256 `e1efbd531825abbe6dce350a3d906a2d29803f67f1fd1128aac19376598fd029`), not a final immutable Rust delivery.
+Accepted, 2026-09-08. PR #5 reviewed at `493df48ca92699c5818fde39d5819596712b9fdb`, merged as `4988f46bf20e7c22a83ea9a231c8073fd5d0b391`. Product source is `140b66b3`; the closing commit changes only the report. The initial findings below are retained as review history and are fixed.
+
+Both P2 findings and canonical operator-label compatibility are corrected at `140b66b3`. Root inspected live evidence validation in `resource`, missing-scope propose semantics and actor validation, with regressions for revoked/expired/rebound source, explicit read/deny, missing scope and canonical HTTP/desktop principals. Independently ran `cargo test --locked --no-default-features --bin codeg-server --lib ops_intake` against that product source using the root-owned target: exit 0, 22 passed in 1.25s. Log: `/tmp/ops-intake-independent-rust.log`.
+
+Root reviewed the final source mapping, NOTICE and dependency delta. Only the established JWT signer and its required dependencies are added; existing versions, Resend transport, approvals core and frontend lock remain preserved. Worker evidence: desktop/server checks and Clippy, 109 server/110 desktop selected Ops tests, 18 ticket and 18 email regressions, typecheck all pass. Independent Python evidence follows. No remaining blocking module finding. Authenticated host/UI integration, live configuration and browser validation are separate remaining work, not implied by this acceptance.
 
 ## P2 — live evidence check skipped before queuing under ask
 

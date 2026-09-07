@@ -127,3 +127,9 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - UI worker has pushed `26a4bc8d` and integrated accepted main as `53349671`; continues email transport wiring and browser tests. Pi worker researches/implements its scoped bridge independently. Final Design Studio audit/fix/recheck remains pending.
 
 - Early GitHub-pack review requested two corrections: live evidence validation before ask-rule queueing, and preservation of the accepted missing-scope propose default. [Review](reports/review-intake-github.md). Neither is claimed as a live filing bypass; PR #5 remains unaccepted while the worker fixes/tests the boundaries.
+
+## Intake and GitHub module accepted and merged
+
+- PR #5 accepted at `493df48ca92699c5818fde39d5819596712b9fdb`, merged as `4988f46bf20e7c22a83ea9a231c8073fd5d0b391`. Both evidence/policy findings and canonical operator labels are fixed. Root independently ran all 22 Rust intake tests successfully, in addition to the earlier 14 Python tests. [Review](reports/review-intake-github.md).
+- Worker desktop/server checks, both Clippy gates, selected Ops suites, 18 ticket and 18 Resend regressions and frontend typecheck pass. This accepts the read-only intake and approved filing modules; host/UI wiring and external configuration remain.
+- Prepared the [Design Studio acceptance checklist](reports/design-acceptance-checklist.md). Its 18 checks are requirements, not completed audit results. Email UI and pi bridge work continue in their existing panes.
