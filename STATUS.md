@@ -83,3 +83,8 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - PR #3 accepted at `85e5f665c59ce040cb412fa95de36c396d9a1ff9`, merged as `65aca88916b4af398a568c09ece431440d660e3b`. Both review findings are fixed: transactional ACP/Ops wait ownership preserves concurrent requests, and migration tests target approvals by name with later migrations present.
 - Orchestrator reviewed the fix and concurrency/cleanup regressions, verified the final commit changes only the report, and independently reran all 21 approval tests successfully. Worker combined evidence: 18 ticket, 39 work-task and 128 engine tests; desktop/server checks, both Clippy gates and frontend typecheck pass. See [approvals report](reports/approvals.md). No CI or packaged-app pass claimed.
 - All Step 1 PRs are merged. These are foundation services; approval routes, trusted action execution and Ops UI are Step 2 work. The isolated browser server will be upgraded on its existing ticket database to verify migration compatibility.
+
+## Step 2 UI dispatched — 2026-09-07
+
+- Reused approvals worker/pane on new `feat/step2-ops-ui` from accepted main for shared Ops API, real ticket/thread/private-note/draft and approval screens, plus the morning list. Deliverable `reports/ops-ui.md`; actual Playwright CLI checks required in its own isolated instance.
+- Email worker owns direct Resend transport; GitHub/Hafidh worker owns intake contracts and subsequent implementation. Product writes remain worker-only. Human review and exact-payload dispatch are required at the UI/API seam; unavailable external configuration must be shown honestly.
