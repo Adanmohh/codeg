@@ -344,3 +344,13 @@ unchanged from **85a5dd18**. The fixture is compiling at this integrated head;
 4320 is not yet claimed as listening. Root independently confirmed the five
 frontend tests; its Rust run hit temporary merge markers, a coordination race,
 and must be rerun against this stable integrated checkpoint.
+
+Fixture availability **2026-09-08 00:47 EEST**: live listener confirmed by lsof,
+owned server PID **54941** on **127.0.0.1:4320**, source **c6066921** (plus report
+only). Build/test launcher is exec session 58690; server log is ignored
+`reports/ops-ui-browser-server.log`. Browser **ops-ui-check**, PID **54010**,
+loaded the actual login page. A first navigation before startup returned
+connection refused; retry after listener readiness succeeded. Worker mutation
+scenarios are in progress; root may read now and should wait for the next
+readiness entry before mutating the same fixture. Synthetic credentials and
+relaunch command are above. Root 4318 remains untouched.
