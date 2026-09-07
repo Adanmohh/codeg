@@ -1,0 +1,70 @@
+{
+  "file": "src/components/terminal/terminal-tab-bar.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": true,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": false,
+    "hoverState": true,
+    "focusState": false,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": false,
+    "errorState": false,
+    "motion": false,
+    "responsive": false,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": true,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "high",
+      "msg": "Button/CTA has no loading/pending state — async actions give no feedback (checklist: Button → States)."
+    },
+    {
+      "sev": "med",
+      "msg": "No explicit focus state — verify a visible focus ring (a11y)."
+    },
+    {
+      "sev": "high",
+      "msg": "Input/form has no error/validation state (checklist: Input field, Showing input error)."
+    },
+    {
+      "sev": "high",
+      "msg": "List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data)."
+    },
+    {
+      "sev": "med",
+      "msg": "List/grid has no loading/skeleton state (checklist: Loading)."
+    }
+  ],
+  "probe": null
+}
+
+SUMMARY src/components/terminal/terminal-tab-bar.tsx: 5 gap(s) — [high] Button/CTA has no loading/pending state — async actions give no feedback (checklist: Button → States).  |  [med] No explicit focus state — verify a visible focus ring (a11y).  |  [high] Input/form has no error/validation state (checklist: Input field, Showing input error).  |  [high] List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data).  |  [med] List/grid has no loading/skeleton state (checklist: Loading).

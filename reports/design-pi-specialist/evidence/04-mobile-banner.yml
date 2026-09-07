@@ -1,0 +1,99 @@
+- generic:
+  - alert [ref=e7]: Hafidh Ops Desk
+  - region "Notifications alt+T"
+  - generic [ref=e17]:
+    - generic [ref=e530]:
+      - generic [ref=e531]:
+        - button "Show Sidebar" [ref=e954]
+        - button "Search" [ref=e533]
+        - button "New Conversation" [ref=e534]
+      - generic [ref=e536]:
+        - button "Toggle Terminal" [ref=e537]
+        - button "Toggle Auxiliary Panel" [ref=e538]
+        - button "Open Settings" [ref=e539]
+    - main [ref=e672]:
+      - generic [ref=e677]:
+        - generic [ref=e678]:
+          - generic [ref=e679]:
+            - button "fresh-desk-workspace" [ref=e680]
+            - generic "New Conversation" [ref=e684]
+          - button "More actions" [ref=e686]
+        - generic [ref=e702]:
+          - generic [ref=e704]:
+            - heading "What would you like to do today?" [level=1] [ref=e705]
+            - generic [ref=e706]:
+              - tablist [ref=e707]:
+                - tab "Code Development" [selected] [ref=e708]
+                - tab "Office Work" [ref=e709]
+                - tab "Scientific Research" [ref=e710]
+              - tabpanel "Code Development" [ref=e711]:
+                - generic [ref=e712]:
+                  - button "Brainstorming Explore intent & requirements before building" [ref=e713]:
+                    - generic [ref=e719]: Brainstorming
+                    - generic [ref=e720]: Explore intent & requirements before building
+                  - button "Systematic Debugging Find the root cause before proposing fixes" [ref=e721]:
+                    - generic [ref=e734]: Systematic Debugging
+                    - generic [ref=e735]: Find the root cause before proposing fixes
+                  - button "Writing Skills Create, edit & verify reusable skills" [ref=e736]:
+                    - generic [ref=e745]: Writing Skills
+                    - generic [ref=e746]: Create, edit & verify reusable skills
+                - generic [ref=e747]:
+                  - button "Show previous skills" [disabled]
+                  - generic [ref=e749]:
+                    - button "Writing Plans" [ref=e750]
+                    - button "Executing Plans" [ref=e758]
+                    - button "Subagent-Driven Development" [ref=e766]
+                    - button "Dispatching Parallel Agents" [ref=e774]
+                    - button "Using Git Worktrees" [ref=e784]
+                    - button "Test-Driven Development" [ref=e793]
+                    - button "Verification Before Completion" [ref=e800]
+                    - button "Requesting Code Review" [ref=e808]
+                    - button "Receiving Code Review" [ref=e817]
+                    - button "Finishing a Development Branch" [ref=e826]
+                    - button "Using Superpowers" [ref=e835]
+                  - button "Show more skills" [ref=e843]
+            - generic [ref=e848]:
+              - button "Pi Pi" [pressed] [ref=e850] [cursor=pointer]:
+                - img "Pi" [ref=e853]
+                - generic [ref=e858]: Pi
+              - button [ref=e860] [cursor=pointer]:
+                - img "Claude Code" [ref=e863]
+                - generic: Claude Code
+              - button [ref=e866] [cursor=pointer]:
+                - img "Codex" [ref=e869]
+                - generic: Codex
+              - button [ref=e872] [cursor=pointer]:
+                - img "Gemini CLI" [ref=e875]
+                - generic: Gemini CLI
+              - button [ref=e879] [cursor=pointer]:
+                - img "OpenClaw" [ref=e882]
+                - generic: OpenClaw
+              - button [ref=e890] [cursor=pointer]:
+                - img "OpenCode" [ref=e893]
+                - generic: OpenCode
+              - button [ref=e896] [cursor=pointer]:
+                - img "Cline" [ref=e899]
+                - generic: Cline
+              - button "More agents (8)" [ref=e903] [cursor=pointer]
+            - 'button "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted." [ref=e909] [cursor=pointer]'
+            - generic [ref=e912]:
+              - generic [ref=e913]:
+                - textbox "Send a message..." [active] [ref=e916]:
+                  - paragraph [ref=e917]: Send a message...
+                - generic [ref=e918]:
+                  - generic [ref=e919]:
+                    - button "Add" [disabled]
+                  - generic [ref=e920]:
+                    - button "Send" [disabled]
+              - generic [ref=e921]:
+                - generic [ref=e922]:
+                  - button "fresh-desk-workspace" [ref=e923]
+                  - button "docs/design-pi-review" [ref=e925]
+                - 'button "Agent connection: Disconnected" [ref=e928]'
+          - paragraph [ref=e940]: Settings → Skill Packs bundles coding experts, scientific research, and office skills — switch them on per agent.
+    - generic [ref=e87]:
+      - button "Quick actions" [ref=e89]
+      - generic [ref=e90]:
+        - button "Add Command" [ref=e941]
+        - button "codeg-mcp service" [ref=e942]
+        - button "2" [ref=e950]

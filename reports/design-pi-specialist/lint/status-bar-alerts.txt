@@ -1,0 +1,70 @@
+{
+  "file": "src/components/layout/status-bar-alerts.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": false,
+    "loadingState": false,
+    "hoverState": true,
+    "focusState": false,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": false,
+    "errorState": true,
+    "motion": true,
+    "responsive": false,
+    "altText": false,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": true,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "high",
+      "msg": "Button/CTA has no loading/pending state — async actions give no feedback (checklist: Button → States)."
+    },
+    {
+      "sev": "med",
+      "msg": "Button has no disabled state (checklist: Button → States)."
+    },
+    {
+      "sev": "med",
+      "msg": "No explicit focus state — verify a visible focus ring (a11y)."
+    },
+    {
+      "sev": "high",
+      "msg": "List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data)."
+    },
+    {
+      "sev": "med",
+      "msg": "List/grid has no loading/skeleton state (checklist: Loading)."
+    }
+  ],
+  "probe": null
+}
+
+SUMMARY src/components/layout/status-bar-alerts.tsx: 5 gap(s) — [high] Button/CTA has no loading/pending state — async actions give no feedback (checklist: Button → States).  |  [med] Button has no disabled state (checklist: Button → States).  |  [med] No explicit focus state — verify a visible focus ring (a11y).  |  [high] List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data).  |  [med] List/grid has no loading/skeleton state (checklist: Loading).

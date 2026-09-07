@@ -1,0 +1,6 @@
+{
+  "tag": "BUTTON",
+  "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+  "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) auto 1px",
+  "shadow": "none"
+}

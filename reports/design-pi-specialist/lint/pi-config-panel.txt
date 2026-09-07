@@ -1,0 +1,62 @@
+{
+  "file": "src/components/settings/pi-config-panel.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": false,
+    "hoverState": true,
+    "focusState": false,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": true,
+    "errorState": true,
+    "motion": true,
+    "responsive": false,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "high",
+      "msg": "Button/CTA has no loading/pending state — async actions give no feedback (checklist: Button → States)."
+    },
+    {
+      "sev": "med",
+      "msg": "No explicit focus state — verify a visible focus ring (a11y)."
+    },
+    {
+      "sev": "med",
+      "msg": "List/grid has no loading/skeleton state (checklist: Loading)."
+    }
+  ],
+  "probe": null
+}
+
+SUMMARY src/components/settings/pi-config-panel.tsx: 3 gap(s) — [high] Button/CTA has no loading/pending state — async actions give no feedback (checklist: Button → States).  |  [med] No explicit focus state — verify a visible focus ring (a11y).  |  [med] List/grid has no loading/skeleton state (checklist: Loading).

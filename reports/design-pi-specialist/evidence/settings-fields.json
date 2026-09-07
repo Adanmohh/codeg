@@ -1,0 +1,36 @@
+{
+  "width": 390,
+  "documentWidth": 390,
+  "fields": [
+    {
+      "placeholder": null,
+      "labels": [],
+      "ariaLabel": "Adapter version",
+      "labelledBy": null
+    },
+    {
+      "placeholder": null,
+      "labels": [],
+      "ariaLabel": null,
+      "labelledBy": null
+    },
+    {
+      "placeholder": "claude-sonnet-5",
+      "labels": [],
+      "ariaLabel": null,
+      "labelledBy": null
+    },
+    {
+      "placeholder": null,
+      "labels": [],
+      "ariaLabel": null,
+      "labelledBy": null
+    },
+    {
+      "placeholder": "sk-...",
+      "labels": [],
+      "ariaLabel": null,
+      "labelledBy": null
+    }
+  ]
+}

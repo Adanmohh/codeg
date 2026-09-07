@@ -1,0 +1,86 @@
+{
+  "deduped": [
+    {
+      "surface": "Pi Agent Settings",
+      "element": "src/components/settings/pi-config-panel.tsx:919,1000,1140,1171 — Provider, Model, Thinking and API Key",
+      "severity": "high",
+      "check": "BC-6 / Input labels and accessible names: actual Settings ARIA exposes unnamed Provider and Thinking comboboxes; DOM labels=[], aria-label=null, aria-labelledby=null on all four fields. Model/API Key get only example placeholders as fallback names.",
+      "fix": "Associate each visible translated label with its control using stable id/htmlFor or aria-labelledby on SelectTrigger. Verify Provider, Model, Thinking and API Key names with empty and populated values; do not use placeholders as labels.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "workspace shell",
+      "element": "src/components/terminal/terminal-tab-bar.tsx:160 and src/components/layout/status-bar-alerts.tsx:158 — new terminal and empty alert trigger",
+      "severity": "high",
+      "check": "BC-8 / Button accessible name: fresh actual CLI ARIA has bare unnamed buttons; source icons are aria-hidden, with no label/title/text in the empty state. The disabled-only parent tooltip does not label the enabled terminal action.",
+      "fix": "Reuse translated New terminal and Alerts labels on the actual buttons. Verify names before any alert and with alerts present, and retain keyboard focus.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "workspace shell",
+      "element": "src/components/conversations/sidebar-section-header.tsx:161; sidebar-conversation-list.tsx:2806,2854,2872,2882,2892,2987; src/components/layout/status-bar.tsx:21,37",
+      "severity": "high",
+      "check": "BC-9 / Contrast: new actual computed sRGB measurements give section labels 3.71:1 light, No chats/other empty text 2.66:1 light and 4.05:1 dark. Root's existing status text evidence is 4.35:1 light. These are 12–14px normal text, below the checklist 4.5:1 threshold.",
+      "fix": "Remove excessive opacity from inherited sidebar text and use readable existing foreground tokens on the status surface. Remeasure actual light/dark backgrounds; keep user theme choices and the existing design system.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "Pi blocked composer",
+      "element": "src/components/conversations/conversation-detail-panel.tsx:2175,2254 — setup banner foreground",
+      "severity": "med",
+      "check": "BC-9 / CRAP Contrast: 12px destructive text measures 4.42:1 on the actual light tinted background; dark is 6.57:1. This is text carrying the reason sending is disabled, not decoration.",
+      "fix": "Use an existing scoped readable destructive foreground treatment for this banner and verify at least 4.5:1 in both themes; preserve the neutral surfaces, Inter and paired Hafidh accent.",
+      "specialists": [
+        "aesthetic-judge"
+      ]
+    },
+    {
+      "surface": "Pi blocked composer to Agent Settings",
+      "element": "src/components/conversations/conversation-detail-panel.tsx:2178,2257; src/components/settings/pi-config-panel.tsx:1006,1144; src-tauri/src/acp/pi_desk.rs:92",
+      "severity": "med",
+      "check": "assertions BC-3 and BC-7 | first-point-of-failure: wrong-state-rendered (recovery guidance). At 390px the 1310px full setup string occupies a 332px one-line clipped button. Shift+Tab then Enter correctly opens /settings/agents?agent=pi, where the configuration offers a claude-sonnet-5 placeholder and Thinking Off, with no visible Desk-specific Astra/max or adapter-catalogue readiness guidance.",
+      "fix": "Expose the complete setup reason without hover and label the action Open Pi settings. Show the required Astra/max catalogue setup and separate adapter availability from Desk readiness at the destination; preserve the fail-closed model guard and existing credentials. Do not initiate login, install or inference automatically.",
+      "specialists": [
+        "flow-validator"
+      ]
+    }
+  ],
+  "top3": [
+    {
+      "surface": "Pi Agent Settings",
+      "element": "src/components/settings/pi-config-panel.tsx:919,1000,1140,1171 — Provider, Model, Thinking and API Key",
+      "severity": "high",
+      "check": "BC-6 / Input labels and accessible names: actual Settings ARIA exposes unnamed Provider and Thinking comboboxes; DOM labels=[], aria-label=null, aria-labelledby=null on all four fields. Model/API Key get only example placeholders as fallback names.",
+      "fix": "Associate each visible translated label with its control using stable id/htmlFor or aria-labelledby on SelectTrigger. Verify Provider, Model, Thinking and API Key names with empty and populated values; do not use placeholders as labels.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "workspace shell",
+      "element": "src/components/terminal/terminal-tab-bar.tsx:160 and src/components/layout/status-bar-alerts.tsx:158 — new terminal and empty alert trigger",
+      "severity": "high",
+      "check": "BC-8 / Button accessible name: fresh actual CLI ARIA has bare unnamed buttons; source icons are aria-hidden, with no label/title/text in the empty state. The disabled-only parent tooltip does not label the enabled terminal action.",
+      "fix": "Reuse translated New terminal and Alerts labels on the actual buttons. Verify names before any alert and with alerts present, and retain keyboard focus.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    },
+    {
+      "surface": "workspace shell",
+      "element": "src/components/conversations/sidebar-section-header.tsx:161; sidebar-conversation-list.tsx:2806,2854,2872,2882,2892,2987; src/components/layout/status-bar.tsx:21,37",
+      "severity": "high",
+      "check": "BC-9 / Contrast: new actual computed sRGB measurements give section labels 3.71:1 light, No chats/other empty text 2.66:1 light and 4.05:1 dark. Root's existing status text evidence is 4.35:1 light. These are 12–14px normal text, below the checklist 4.5:1 threshold.",
+      "fix": "Remove excessive opacity from inherited sidebar text and use readable existing foreground tokens on the status surface. Remeasure actual light/dark backgrounds; keep user theme choices and the existing design system.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    }
+  ]
+}
