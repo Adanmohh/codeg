@@ -59,6 +59,17 @@ pub(super) enum SendOutcome {
 }
 
 impl GithubAppClient {
+    /// Test-only host/browser fixtures. No runtime API URL override exists.
+    #[cfg(any(test, feature = "test-utils"))]
+    pub(crate) fn loopback_fixture(
+        config: Option<GithubAppConfig>,
+        address: std::net::SocketAddr,
+    ) -> Result<Self, IntakeError> {
+        if !address.ip().is_loopback() { return Err(IntakeError::AccessDenied); }
+        let mut client = Self::new(config)?;
+        client.api = format!("http://{address}");
+        Ok(client)
+    }
     pub fn new(config: Option<GithubAppConfig>) -> Result<Self, IntakeError> {
         let identity = config
             .map(|config| {

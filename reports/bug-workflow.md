@@ -157,3 +157,29 @@ must leave the fix as an uncreated review draft. No scheduler/approvals changes
 have been made. This remains an explicit final-integration item.
 
 This is resumable progress, not a finished workflow claim.
+
+Host checkpoint: initial scoped snapshot/draft storage tests **4/4 pass**, command
+`CARGO_TARGET_DIR=../.build/intake-host cargo test --locked --no-default-features --lib ops_intake_host`
+exit 0. This is the owned target; the initial compile took 96 seconds. Expected
+unused-code warnings remain until host route registration. New operator/review
+and pi bridge source is written but not registered/compiled against Ops yet,
+because PR7 is not accepted main. Do not treat this as final Rust acceptance.
+
+PR7 at `0e375c9770505ac708ca97d12d07163c81a03f15` now includes the requested
+Operator accessors. It is still open/unmerged. Read its report and lifted session
+state implementation; P1 will reuse that accepted memory-only lifetime so screen
+size changes cannot discard evidence or draft edits. No live Ops file is edited.
+
+Current concrete pi signature in `ops_intake_host/agent.rs`:
+`prepare_and_propose(db, &ops::agent::RunContext, draft_id: &str, expected_revision: i32)`
+returns `Proposed { status, proposal_id, prepared }` or a fixed HostError. It derives
+product/folder from the owned draft/config and rechecks account, live task/run and
+connection inside the existing gate transaction, including its resource hook.
+Human proof attachment and severity confirmation remain separate operator-only
+mutations. There is no HTTP agent-proposal endpoint or generic executor.
+
+Added client test seam only: `GithubAppClient::loopback_fixture` is compiled only
+for tests/test-utils, rejects non-loopback addresses and otherwise uses the
+accepted client. Production has no API-origin override. Dedicated random
+`ops-intake-<uuid>` references reuse the existing credential client; no Git PAT
+slot, credential value or global setting is read during fixture validation.

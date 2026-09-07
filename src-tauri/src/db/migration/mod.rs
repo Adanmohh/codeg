@@ -47,6 +47,7 @@ mod m20260831_000001_canvas_node_group_grid;
 mod m20260907_000001_ops_approvals;
 mod m20260907_000002_ops_tickets;
 mod m20260907_000005_ops_intake;
+mod m20260908_000006_ops_intake_host;
 pub struct Migrator;
 
 #[async_trait::async_trait]
@@ -100,6 +101,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20260907_000001_ops_approvals::Migration),
             Box::new(m20260907_000002_ops_tickets::Migration),
             Box::new(m20260907_000005_ops_intake::Migration),
+            Box::new(m20260908_000006_ops_intake_host::Migration),
         ]
     }
 }
