@@ -156,6 +156,9 @@ pub async fn list(
 ) -> Result<Listing, HostError> {
     let mut guard = runtime.guard(&input.product_id).await?;
     let p = enabled(db, op.account_id(), &input.product_id).await?;
+    // A new scan (including auth failure/cancellation) cannot retain an old
+    // verified read. Only an explicit successful get grants freshness again.
+    invalidate_product(db, &input.product_id).await?;
     let page: Page = guard
         .read(
             runtime,

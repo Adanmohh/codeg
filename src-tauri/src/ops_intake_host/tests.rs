@@ -8,7 +8,9 @@ use crate::ops_intake::{self, RepositoryBinding};
 use sea_orm::ConnectionTrait;
 use serde_json::json;
 
+mod browser;
 mod fixture;
+mod http;
 fn human() -> crate::ops::Operator {
     crate::ops::Operator::server().unwrap()
 }
@@ -158,8 +160,13 @@ fn record() -> Record {
     })).unwrap()
 }
 async fn seeded() -> (crate::db::AppDatabase, SourceInput) {
-    let db = fresh_in_memory_db().await;
-    let folder = seed_folder(&db, "/synthetic/host").await;
+    seed_into(fresh_in_memory_db().await, "/synthetic/host").await
+}
+async fn seed_into(
+    db: crate::db::AppDatabase,
+    folder_path: &str,
+) -> (crate::db::AppDatabase, SourceInput) {
+    let folder = seed_folder(&db, folder_path).await;
     let binding = RepositoryBinding {
         product_id: "synthetic-hafidh".into(),
         folder_id: folder,

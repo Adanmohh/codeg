@@ -9,6 +9,40 @@ accessors, authenticated marker and memory-only Ops session boundary. Separate
 12-command desktop/HTTP registrations and Bug intake navigation are now wired.
 Earlier chronological checkpoints below describe their state at that time.
 
+Scope/rebind/pending corrections committed and pushed at
+`fd7bcdce92716c8eb2874b6c7acac51b3ca708f1`. Next checkpoint includes only
+`invalidate_product` plus its pre-list call as additional Rust production logic:
+new scans clear old freshness before awaiting an upstream read, including failed
+or canceled scans. Root has reported independently checking that exact diff.
+Full owned host tests: **17 passed / 1 ignored manual fixture**, exit 0; focused
+frontend tests: **7 passed**, exit 0. Real missing/invalid auth routes, forbidden
+actor/path/credential/freshness fields, secret projection, absent App key keeping
+pending, omitted/private/stale evidence, changed source, edited/stale approval,
+explicit read scope/deny and response-lost reconciliation are covered. A test
+fixture initially used `read_only` instead of schema mode `read`; corrected
+after reading accepted entities/store, no product policy change. The previous
+invalid rule-column fixture was also corrected to accepted action_name/resource/
+behavior before its next run. Initial frontend lint found a bare external anchor;
+read and reused BrowserLink for the desktop opener. Hook dependency warnings fixed.
+Static Next export and typecheck currently pass; final lint/Clippy/desktop/server
+and browser flow verification remain in progress.
+
+Runnable manual fixture (no production credentials; this target is test-only):
+from `src-tauri`, run
+`CODEG_OPS_ACCOUNT_ID=1 CARGO_TARGET_DIR=../.build/intake-host cargo test --locked --no-default-features --lib intake_host_browser_fixture -- --ignored --nocapture`.
+Serves the owned `out/` on **http://127.0.0.1:4322**. Ordinary login token:
+**ops-intake-synthetic-operator**. Unique local SQLite/state directory under
+`.build/intake-host/browser-<uuid>/`; dedicated synthetic project subdirectory.
+Provider only binds a random loopback port; private-key fixture is synthetic RSA
+and credentials live in test memory. Default products: `synthetic-hafidh` ready
+for a read, `synthetic-unconfigured` missing credentials. Optional process env
+`OPS_INTAKE_FIXTURE_EMPTY=1` starts without any host product. It does not start
+the task engine or inference: a synthetic parent run only calls the real bounded
+prepare/propose seam after a human-prepared draft exists, never evidence/config/
+approval/filing. Browser must Reload proposal status to read that real queue row.
+Test-only authenticated `POST /_fixture/source` accepts `{mode: denied|ok|changed}`
+for upstream error/revision scenarios. No production route contains that control.
+
 Root review fixes are implemented and the integrated host suite passes **10/10**
 (`reports/bug-host-rust-regressions.log`, exit 0). Existing fix links and global
 source duplicates are checked against the authorized product/account, live bound

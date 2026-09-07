@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useOpsSessionState } from "@/components/ops/session"
 import { intake, intakeError } from "@/lib/ops-intake/api"
 import type {
@@ -46,20 +46,21 @@ export function BugWorkflowPage() {
   const product = status?.products.find(
     (p) => p.binding.product_id === productId
   )
-  const loadStatus = async () => {
+  const loadStatus = useCallback(async () => {
     try {
       const status = await intake.status()
       setStatus(status)
-      if (!productId && status.products[0])
-        setProductId(status.products[0].binding.product_id)
+      setProductId(
+        (current) => current || status.products[0]?.binding.product_id || ""
+      )
       setError(null)
     } catch (error) {
       setError(intakeError(error))
     }
-  }
+  }, [setStatus, setProductId])
   useEffect(() => {
     void loadStatus()
-  }, []) // This provider is destroyed on backend change.
+  }, [loadStatus]) // This provider is destroyed on backend change.
   const read = async (cursor: string | null = null) => {
     if (busy || inFlight.current) return
     inFlight.current = true
@@ -314,7 +315,7 @@ function BugDetail({
       active = false
       window.clearInterval(clock)
     }
-  }, [source.product_id, source.ulid])
+  }, [source, setDetail, setError])
   const run = async (action: () => Promise<void>) => {
     if (busy || inFlight.current) return
     inFlight.current = true

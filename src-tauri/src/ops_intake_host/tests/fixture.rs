@@ -8,6 +8,19 @@ use axum::{
 use std::sync::{Arc, Mutex};
 
 pub(super) const TOKEN: &str = "ops-intake-synthetic-operator";
+pub(super) fn router(
+    state: Arc<crate::app_state::AppState>,
+    runtime: Arc<HostRuntime>,
+    static_dir: std::path::PathBuf,
+) -> Router {
+    crate::web::router::build_router(
+        state,
+        TOKEN.into(),
+        static_dir,
+        Arc::new(crate::web::shutdown::ShutdownSignal::new()),
+    )
+    .layer(axum::Extension(runtime))
+}
 const KEY: &str = include_str!("../../ops_intake/fixtures/synthetic-only-private.pem");
 #[derive(Default)]
 pub(super) struct Observed {

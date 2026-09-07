@@ -153,6 +153,24 @@ pub(super) async fn invalidate(
     txn.commit().await?;
     Ok(())
 }
+pub(super) async fn invalidate_product(
+    db: &DatabaseConnection,
+    product: &str,
+) -> Result<(), HostError> {
+    let txn = db.begin().await?;
+    txn.execute(sql(
+        "UPDATE ops_intake_source SET fetched_at=0 WHERE product_id=?",
+        vec![product.into()],
+    ))
+    .await?;
+    txn.execute(sql(
+        "UPDATE ops_intake_host_snapshot SET verified_at=NULL WHERE product_id=?",
+        vec![product.into()],
+    ))
+    .await?;
+    txn.commit().await?;
+    Ok(())
+}
 pub(super) async fn draft<C: ConnectionTrait>(
     db: &C,
     source: &SourceInput,

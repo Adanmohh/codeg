@@ -1,6 +1,7 @@
 "use client"
 
 import { useOpsSessionState } from "@/components/ops/session"
+import { BrowserLink } from "@/components/ui/browser-link"
 import { useOptionalWorkbenchRoute } from "@/contexts/workbench-route-context"
 import { useTasksView } from "@/contexts/tasks-view-context"
 import {
@@ -397,14 +398,12 @@ export function IssueReview({
             <>
               <p className="text-sm">
                 Created issue{" "}
-                <a
+                <BrowserLink
                   className="text-primary inline-flex min-h-11 items-center underline underline-offset-4"
                   href={detail.receipt.issue.html_url}
-                  target="_blank"
-                  rel="noreferrer"
                 >
                   #{detail.receipt.issue.number} in {product.binding.full_name}
-                </a>
+                </BrowserLink>
                 .
               </p>
               {!detail.receipt.issue.labels_match && (
