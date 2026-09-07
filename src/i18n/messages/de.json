@@ -3055,7 +3055,7 @@
           "mentionTargets": "@ holt mehr als Dateien: Erwähne einen anderen Agenten, um eine Teilaufgabe abzugeben, oder verweise auf eine frühere Sitzung, einen Commit oder einen Skill.",
           "splitGroups": "Rechtsklick auf einen Tab, dann Nach rechts teilen oder Nach unten teilen – so bleiben zwei Konversationen in eigenen Bereichen offen.",
           "worktrees": "Öffne die Branch-Schaltfläche und wähle Neuer Worktree, damit mehrere Agenten dasselbe Repository bearbeiten, ohne sich gegenseitig die Dateien zu überschreiben.",
-          "importSessions": "Schon Sitzungen im Terminal gelaufen? Im Menü eines Ordners holt Lokale Sitzungen importieren diesen Verlauf nach codeg.",
+          "importSessions": "Schon Sitzungen im Terminal gelaufen? Im Menü eines Ordners holt Lokale Sitzungen importieren diesen Verlauf nach Hafidh Ops Desk.",
           "subSessions": "Delegiert ein Agent, erscheint die Untersitzung in der Seitenleiste verschachtelt darunter – klapp die Zeile auf, um jeder einzeln zu folgen.",
           "liveFeedback": "Live-Feedback im +-Menü schiebt eine Notiz in den Zug, den der Agent gerade ausführt – ohne ihn zu unterbrechen.",
           "skillPacks": "Einstellungen → Skill-Pakete bündelt Coding-Experten, wissenschaftliche Recherche und Office-Skills – pro Agent aktivierbar.",

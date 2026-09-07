@@ -722,7 +722,7 @@
     },
     "hostTools": {
       "label": "Let the agent handle files and commands",
-      "description": "Hafidh Ops Desk stops serving file access and terminal commands, so the agent runs them in its own process — where its own sandbox and permission rules apply. Delegating to other agents is also turned off, since that would route the same work back through codeg. Hafidh Ops Desk adds no sandbox itself, so turn this on only if the agent has one configured."
+      "description": "Hafidh Ops Desk stops serving file access and terminal commands, so the agent runs them in its own process — where its own sandbox and permission rules apply. Delegating to other agents is also turned off, since that would route the same work back through Hafidh Ops Desk. Hafidh Ops Desk adds no sandbox itself, so turn this on only if the agent has one configured."
     },
     "nativeJsonConfig": "Native JSON Config",
     "modelHintDefault": "Leave empty to use system default model.",
@@ -3055,7 +3055,7 @@
           "mentionTargets": "@ pulls in more than files — mention another agent to hand off a subtask, or reference a past session, a commit, or a skill.",
           "splitGroups": "Right-click a tab and pick Split Right or Split Down to keep two conversations open in their own panes.",
           "worktrees": "Open the branch button and pick New worktree so several agents can work the same repo without overwriting each other's files.",
-          "importSessions": "Already ran sessions in the terminal? A folder's menu has Import local sessions — bring that history into codeg.",
+          "importSessions": "Already ran sessions in the terminal? A folder's menu has Import local sessions — bring that history into Hafidh Ops Desk.",
           "subSessions": "When an agent delegates, the sub-session appears nested under it in the sidebar — expand the row to follow what each one did.",
           "liveFeedback": "Live feedback in the + menu drops a note into the turn the agent is already running, without interrupting it.",
           "skillPacks": "Settings → Skill Packs bundles coding experts, scientific research, and office skills — switch them on per agent.",
@@ -4593,7 +4593,7 @@
         "later": "Later"
       }
     },
-    "remoteUnsupported": "Backup & restore acts on the data of the machine running codeg. You're connected to a remote workspace — manage its backups from that server directly.",
+    "remoteUnsupported": "Backup & restore acts on the data of the machine running Hafidh Ops Desk. You're connected to a remote workspace — manage its backups from that server directly.",
     "progress": {
       "cancel": "Cancel"
     },
@@ -5383,7 +5383,7 @@
     "resetFilters": "Reset filters",
     "refresh": "Refresh",
     "rebuild": "Rebuild all",
-    "rebuildHint": "Re-reads every transcript from scratch. Use this if a session grew outside codeg.",
+    "rebuildHint": "Re-reads every transcript from scratch. Use this if a session grew outside Hafidh Ops Desk.",
     "syncing": "Counting sessions…",
     "syncProgress": "{done} / {total}",
     "syncDone": "Counted {synced} sessions",

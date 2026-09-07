@@ -131,7 +131,7 @@
       },
       "css": {
         "dialogTitle": "CSS personalizado",
-        "dialogDescription": "Se aplica a todas las ventanas de codeg. Los cambios se previsualizan en vivo; pulsa Aplicar para guardar.",
+        "dialogDescription": "Se aplica a todas las ventanas de Hafidh Ops Desk. Los cambios se previsualizan en vivo; pulsa Aplicar para guardar.",
         "size": "{used} KB / {max} KB",
         "ruleCount": "{count} reglas",
         "errorTooLarge": "Demasiado grande para guardar. Redúcelo por debajo del límite.",
@@ -722,7 +722,7 @@
     },
     "hostTools": {
       "label": "Dejar que el agente gestione archivos y comandos",
-      "description": "Hafidh Ops Desk deja de atender el acceso a archivos y los comandos de terminal, de modo que el agente los ejecuta en su propio proceso, donde sí se aplican su sandbox y sus reglas de permisos. También se desactiva la delegación a otros agentes, ya que devolvería ese mismo trabajo a codeg. Hafidh Ops Desk no añade ningún sandbox propio, así que actívalo solo si el agente tiene uno configurado."
+      "description": "Hafidh Ops Desk deja de atender el acceso a archivos y los comandos de terminal, de modo que el agente los ejecuta en su propio proceso, donde sí se aplican su sandbox y sus reglas de permisos. También se desactiva la delegación a otros agentes, ya que devolvería ese mismo trabajo a Hafidh Ops Desk. Hafidh Ops Desk no añade ningún sandbox propio, así que actívalo solo si el agente tiene uno configurado."
     },
     "nativeJsonConfig": "Configuración JSON nativa",
     "modelHintDefault": "Déjalo vacío para usar el modelo predeterminado del sistema.",
@@ -1237,7 +1237,7 @@
       "authModeApiKey": "Clave de API",
       "authModeLogin": "Inicio de sesión de Kimi (suscripción)",
       "authModeApiKeyHint": "Escribe un proveedor gestionado en config.toml y siembra el token de acceso para que las sesiones puedan abrirse.",
-      "loginHint": "Ejecuta `kimi login` en una terminal para iniciar sesión con una cuenta de suscripción de Kimi; desde Kimi 0.39.0, añade `--region global` para una cuenta de kimi.ai, ya que de forma predeterminada se inicia sesión en kimi.com. Hafidh Ops Desk no guarda nada y reutiliza el inicio de sesión de Kimi. Guardar aquí elimina el token de acceso por clave de API de codeg.",
+      "loginHint": "Ejecuta `kimi login` en una terminal para iniciar sesión con una cuenta de suscripción de Kimi; desde Kimi 0.39.0, añade `--region global` para una cuenta de kimi.ai, ya que de forma predeterminada se inicia sesión en kimi.com. Hafidh Ops Desk no guarda nada y reutiliza el inicio de sesión de Kimi. Guardar aquí elimina el token de acceso por clave de API de Hafidh Ops Desk.",
       "credentialTitle": "Credencial",
       "interfaceTypeLabel": "Tipo de proveedor",
       "interfaceTypeHint": "El protocolo de proveedor que habla Kimi (el `type` de config.toml). Usa Kimi / Moonshot para una clave de Moonshot / platform.kimi.com.",
@@ -2053,7 +2053,7 @@
           "unknown": "Desconocido"
         },
         "hint": {
-          "running": "Los agentes de aquí pueden usar las herramientas de codeg.",
+          "running": "Los agentes de aquí pueden usar las herramientas de Hafidh Ops Desk.",
           "stopped": "El socket del broker no responde.",
           "disabled": "Todos los grupos de herramientas están desactivados.",
           "unavailable": "No se encuentra el binario codeg-mcp.",
@@ -3055,7 +3055,7 @@
           "mentionTargets": "@ no solo trae archivos: menciona a otro agente para delegarle una subtarea, o referencia una sesión anterior, un commit o una habilidad.",
           "splitGroups": "Haz clic derecho en una pestaña y elige Dividir a la derecha o Dividir abajo para mantener dos conversaciones en paneles propios.",
           "worktrees": "Abre el botón de rama y elige Nuevo worktree para que varios agentes trabajen en el mismo repositorio sin pisarse los archivos.",
-          "importSessions": "¿Ya ejecutaste sesiones en la terminal? El menú de una carpeta tiene Importar sesiones locales para traer ese historial a codeg.",
+          "importSessions": "¿Ya ejecutaste sesiones en la terminal? El menú de una carpeta tiene Importar sesiones locales para traer ese historial a Hafidh Ops Desk.",
           "subSessions": "Cuando un agente delega, la subsesión aparece anidada bajo él en la barra lateral: despliega la fila para seguir lo que hizo cada una.",
           "liveFeedback": "Comentarios en vivo, en el menú +, inserta una nota en el turno que el agente ya está ejecutando, sin interrumpirlo.",
           "skillPacks": "Configuración → Paquetes de habilidades reúne expertos de programación, investigación científica y ofimática; actívalos por agente.",
@@ -4125,7 +4125,7 @@
     },
     "confirm": {
       "disableTitle": "¿Desactivar estos enlaces?",
-      "disableBody": "Esto eliminará {count} enlaces de habilidades gestionados por codeg. Las habilidades que ocupan un directorio personalizado no se modifican. Puedes reactivarlas cuando quieras.",
+      "disableBody": "Esto eliminará {count} enlaces de habilidades gestionados por Hafidh Ops Desk. Las habilidades que ocupan un directorio personalizado no se modifican. Puedes reactivarlas cuando quieras.",
       "cancel": "Cancelar",
       "confirm": "Desactivar"
     },
@@ -4593,7 +4593,7 @@
         "later": "Más tarde"
       }
     },
-    "remoteUnsupported": "La copia de seguridad y la restauración actúan sobre los datos de la máquina que ejecuta codeg. Estás conectado a un espacio de trabajo remoto: gestiona sus copias desde ese servidor directamente.",
+    "remoteUnsupported": "La copia de seguridad y la restauración actúan sobre los datos de la máquina que ejecuta Hafidh Ops Desk. Estás conectado a un espacio de trabajo remoto: gestiona sus copias desde ese servidor directamente.",
     "progress": {
       "cancel": "Cancelar"
     },
@@ -5383,7 +5383,7 @@
     "resetFilters": "Restablecer filtros",
     "refresh": "Actualizar",
     "rebuild": "Reconstruir todo",
-    "rebuildHint": "Descarta lo contabilizado y vuelve a leer todas las transcripciones. Útil si una sesión creció fuera de codeg.",
+    "rebuildHint": "Descarta lo contabilizado y vuelve a leer todas las transcripciones. Útil si una sesión creció fuera de Hafidh Ops Desk.",
     "syncing": "Contando sesiones…",
     "syncProgress": "{done} / {total}",
     "syncDone": "{synced} sesiones contabilizadas",

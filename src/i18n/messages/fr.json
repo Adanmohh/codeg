@@ -131,7 +131,7 @@
       },
       "css": {
         "dialogTitle": "CSS personnalisé",
-        "dialogDescription": "S'applique à toutes les fenêtres codeg. Les modifications sont prévisualisées en direct ; cliquez sur Appliquer pour enregistrer.",
+        "dialogDescription": "S'applique à toutes les fenêtres Hafidh Ops Desk. Les modifications sont prévisualisées en direct ; cliquez sur Appliquer pour enregistrer.",
         "size": "{used} Ko / {max} Ko",
         "ruleCount": "{count} règles",
         "errorTooLarge": "Trop volumineux pour être enregistré. Réduisez-le sous la limite.",
@@ -715,14 +715,14 @@
     "envVars": "Variables d'environnement",
     "adapterChannel": {
       "label": "Version de l'adaptateur",
-      "description": "Installer et Mettre à niveau utilisent la version examinée et épinglée par codeg. Avec Dernière, c'est la version npm la plus récente du paquet qui est installée ; si cette installation échoue, Hafidh Ops Desk revient à la version épinglée et l'indique dans le journal d'installation.",
+      "description": "Installer et Mettre à niveau utilisent la version examinée et épinglée par Hafidh Ops Desk. Avec Dernière, c'est la version npm la plus récente du paquet qui est installée ; si cette installation échoue, Hafidh Ops Desk revient à la version épinglée et l'indique dans le journal d'installation.",
       "pinned": "Épinglée (recommandée)",
       "latest": "Dernière (non examinée)",
       "latestWarning": "Les versions les plus récentes ne sont pas examinées et peuvent casser cet agent dans Hafidh Ops Desk ; il arrive même qu'une version soit connue pour être défectueuse. Le statut de version affiche ce qui est réellement installé."
     },
     "hostTools": {
       "label": "Laisser l'agent gérer les fichiers et les commandes",
-      "description": "Hafidh Ops Desk cesse d'assurer l'accès aux fichiers et les commandes de terminal : l'agent les exécute dans son propre processus, là où son bac à sable et ses règles d'autorisation s'appliquent réellement. La délégation à d'autres agents est également désactivée, car elle ferait repasser le même travail par codeg. Hafidh Ops Desk n'ajoute aucun bac à sable, n'activez donc ceci que si l'agent en a un configuré."
+      "description": "Hafidh Ops Desk cesse d'assurer l'accès aux fichiers et les commandes de terminal : l'agent les exécute dans son propre processus, là où son bac à sable et ses règles d'autorisation s'appliquent réellement. La délégation à d'autres agents est également désactivée, car elle ferait repasser le même travail par Hafidh Ops Desk. Hafidh Ops Desk n'ajoute aucun bac à sable, n'activez donc ceci que si l'agent en a un configuré."
     },
     "nativeJsonConfig": "Configuration JSON native",
     "modelHintDefault": "Laissez vide pour utiliser le modèle système par défaut.",
@@ -1237,7 +1237,7 @@
       "authModeApiKey": "Clé API",
       "authModeLogin": "Connexion au compte Kimi (abonnement)",
       "authModeApiKeyHint": "Écrit un fournisseur géré dans config.toml et dépose le jeton d'accès pour que les sessions puissent s'ouvrir.",
-      "loginHint": "Exécutez `kimi login` dans un terminal pour vous connecter avec un compte Kimi par abonnement ; depuis Kimi 0.39.0, ajoutez `--region global` pour un compte kimi.ai, car la connexion cible kimi.com par défaut. Hafidh Ops Desk ne stocke rien et réutilise la connexion de Kimi. Enregistrer ici supprime le jeton d'accès par clé API de codeg.",
+      "loginHint": "Exécutez `kimi login` dans un terminal pour vous connecter avec un compte Kimi par abonnement ; depuis Kimi 0.39.0, ajoutez `--region global` pour un compte kimi.ai, car la connexion cible kimi.com par défaut. Hafidh Ops Desk ne stocke rien et réutilise la connexion de Kimi. Enregistrer ici supprime le jeton d'accès par clé API de Hafidh Ops Desk.",
       "credentialTitle": "Identifiant",
       "interfaceTypeLabel": "Type de fournisseur",
       "interfaceTypeHint": "Le protocole de fournisseur que parle Kimi (le `type` de config.toml). Choisissez Kimi / Moonshot pour une clé Moonshot / platform.kimi.com.",
@@ -2053,7 +2053,7 @@
           "unknown": "Inconnu"
         },
         "hint": {
-          "running": "Les agents lancés ici peuvent utiliser les outils de codeg.",
+          "running": "Les agents lancés ici peuvent utiliser les outils de Hafidh Ops Desk.",
           "stopped": "Le socket du broker ne répond pas.",
           "disabled": "Tous les groupes d'outils sont désactivés.",
           "unavailable": "Le binaire codeg-mcp est introuvable.",
@@ -3055,7 +3055,7 @@
           "mentionTargets": "@ ne sert pas qu'aux fichiers : mentionnez un autre agent pour lui confier une sous-tâche, ou référencez une session passée, un commit ou une compétence.",
           "splitGroups": "Faites un clic droit sur un onglet et choisissez Diviser à droite ou Diviser en bas pour garder deux conversations dans leurs propres volets.",
           "worktrees": "Ouvrez le bouton de branche et choisissez Nouveau worktree pour que plusieurs agents travaillent sur le même dépôt sans écraser les fichiers des autres.",
-          "importSessions": "Vous avez déjà lancé des sessions dans le terminal ? Le menu d'un dossier propose Importer les sessions locales pour récupérer cet historique dans codeg.",
+          "importSessions": "Vous avez déjà lancé des sessions dans le terminal ? Le menu d'un dossier propose Importer les sessions locales pour récupérer cet historique dans Hafidh Ops Desk.",
           "subSessions": "Quand un agent délègue, la sous-session apparaît imbriquée sous lui dans la barre latérale : dépliez la ligne pour suivre ce que chacune a fait.",
           "liveFeedback": "Retour en direct, dans le menu +, glisse une note dans le tour que l'agent exécute déjà, sans l'interrompre.",
           "skillPacks": "Paramètres → Packs de compétences regroupe experts du code, recherche scientifique et bureautique ; activez-les agent par agent.",
@@ -4125,7 +4125,7 @@
     },
     "confirm": {
       "disableTitle": "Désactiver ces liens ?",
-      "disableBody": "Cela supprimera {count} liens de compétences gérés par codeg. Les compétences occupant un répertoire personnalisé ne sont pas touchées. Vous pouvez les réactiver à tout moment.",
+      "disableBody": "Cela supprimera {count} liens de compétences gérés par Hafidh Ops Desk. Les compétences occupant un répertoire personnalisé ne sont pas touchées. Vous pouvez les réactiver à tout moment.",
       "cancel": "Annuler",
       "confirm": "Désactiver"
     },
@@ -4593,7 +4593,7 @@
         "later": "Plus tard"
       }
     },
-    "remoteUnsupported": "La sauvegarde et la restauration agissent sur les données de la machine qui exécute codeg. Vous êtes connecté à un espace de travail distant : gérez ses sauvegardes directement depuis ce serveur.",
+    "remoteUnsupported": "La sauvegarde et la restauration agissent sur les données de la machine qui exécute Hafidh Ops Desk. Vous êtes connecté à un espace de travail distant : gérez ses sauvegardes directement depuis ce serveur.",
     "progress": {
       "cancel": "Annuler"
     },
@@ -5383,7 +5383,7 @@
     "resetFilters": "Réinitialiser les filtres",
     "refresh": "Actualiser",
     "rebuild": "Tout reconstruire",
-    "rebuildHint": "Efface les données comptées et relit toutes les transcriptions. Utile si une session a grandi hors de codeg.",
+    "rebuildHint": "Efface les données comptées et relit toutes les transcriptions. Utile si une session a grandi hors de Hafidh Ops Desk.",
     "syncing": "Comptage des sessions…",
     "syncProgress": "{done} / {total}",
     "syncDone": "{synced} sessions comptées",

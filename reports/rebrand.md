@@ -1,6 +1,6 @@
 # Step 1: rebrand
 
-Hafidh Ops Desk branding is implemented. Final Rust policy validation is in progress; draft PR pending. No integration or merge performed.
+Hafidh Ops Desk branding is implemented and the required checks pass. Draft PR is being prepared. No integration or merge performed.
 
 Worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`
 Branch: `feat/step1-rebrand`
@@ -13,7 +13,7 @@ Upstream product baseline: `xintaofei/codeg@v0.30.4`, immutable SHA `6f6bd648b20
 - Original code-native H vector with deep teal `#123c3a`, warm white `#f5f1e7` and gold `#dbb66b`. Reused Tauri icon generation for existing PNG/ICO/ICNS/web assets; retained upstream macOS safe-area generator. Tray H uses the same CLI pipeline, requiring no Pillow or new dependency.
 - Existing default theme uses teal `#245e58` in light mode and mint `#9bd4c5` in dark mode, including pre-hydration fallbacks. The persisted neutral ID stays compatible; its picker label is Hafidh. Other themes and the existing UI system remain available.
 - Sponsor promotions removed from all ten README files. Tagged runtime provider source had no sponsor presets to remove; no user provider data was changed.
-- Internal application updates disabled: updater config/key/registration/capability removed, no updater artifacts; frontend rejects check/install/restart/rollback actions and ignores cached upstream offers. Rust refuses before plugin access, network or state mutation; server status advertises no self-update/rollback. Retained dormant upstream lifecycle code is not a distribution channel.
+- Internal application updates disabled: updater config/key/registration/capability removed, no updater artifacts; frontend skips release checks, rejects install/restart/rollback actions and ignores cached upstream offers. Rust refuses before plugin access, network or state mutation; server status advertises no self-update/rollback. Retained dormant upstream lifecycle code is not a distribution channel.
 - Root release job restricted to `xintaofei/codeg`, so dependent signing, packaging and publishing jobs skip in this fork. No workflow triggered, signing, notarization, deployment, store release, merge or external message performed.
 - Apache LICENSE unchanged; NOTICE added without replacing any vendored notices. Future workers can append their entries. No AGPL, Chatwoot enterprise, Kun or other third-party source imported.
 
@@ -40,8 +40,15 @@ Piece 8 requires config/assets and minimal glue, not an outside code port. Every
 
 New files: `NOTICE`, `src/lib/brand.ts` (one build-policy flag), `src/lib/internal-build.test.ts` (disabled-mode coverage using the existing updater test patterns), this report and the three review screenshots. No other source repository was ported.
 
+Final display-only sweep also rebranded chat permission/question/help prompts, default Telegram/Lark titles, remote workspace title and Web-service failure notification. Internal routing frame formats and technical diagnostic names remain codeg for compatibility.
+
 Exact inherited paths changed:
 
+- `src-tauri/src/commands/remote_workspace.rs`
+- `src-tauri/src/chat_channel/session_commands.rs`
+- `src-tauri/src/chat_channel/i18n.rs`
+- `src-tauri/src/chat_channel/backends/telegram.rs`
+- `src-tauri/src/chat_channel/backends/lark.rs`
 - `.github/workflows/release.yml`
 - `README.md`
 - `docs/readme/README.ar.md`
@@ -136,16 +143,16 @@ Raw logs are local ignored `reports/*.log`; this committed report is the durable
 | `pnpm tauri icon src-tauri/icons/icon.svg -o reports/rebrand-generated-icons` | PASS, exit 0; copied only existing tracked desktop outputs plus web favicon assets |
 | `python3 src-tauri/icons/macos-icon.gen.py` | PASS, exit 0, retained 824/1024 body inset |
 | `python3 src-tauri/icons/tray-icon-template.gen.py` | PASS, exit 0, original H alpha template |
-| `cargo check --locked` (src-tauri) | PASS, exit 0; final repeat pending after last policy guard |
-| `cargo check --locked --no-default-features --bin codeg-server` | PASS, exit 0 |
+| `cargo check --locked` (src-tauri) | PASS, exit 0, final source; rebrand-cargo-desktop-final.log |
+| `cargo check --locked --no-default-features --bin codeg-server` | PASS, exit 0, final source; rebrand-cargo-server-final.log |
 | `pnpm exec tsc --noEmit` | PASS, exit 0, including final update guards |
-| `pnpm build` | PASS, exit 0, 32 static pages; final repeat in progress |
+| `pnpm build` | PASS, exit 0, 32 static pages; rebrand-build-final.log |
 | `pnpm eslint .` | PASS, exit 0; one unchanged upstream `_dropped` warning in status-bar-mcp.tsx |
 | Focused Vitest, 10 suites | PASS, exit 0; 129/129 tests |
 | Final affected update suites, 3 suites | PASS, exit 0; 47/47 tests |
 | `cargo test --locked --features test-utils --test macos_icon_geometry` | PASS, exit 0; 3/3 tests: safe area, 1024 master geometry, legacy ICNS masks |
-| `cargo test --locked --no-default-features --lib update::version::tests` | In progress |
-| Rust server update handler tests | Pending |
+| `cargo test --locked --no-default-features --lib update::version::tests` | PASS, exit 0; 5/5 tests, including manifest refusal before networking |
+| `cargo test --locked --no-default-features --lib web::handlers::app_update::tests` | PASS, exit 0; 4/4 tests: update/restart/rollback refusal without state/lock mutation |
 | Locale keys/interpolation/inline-code comparison with upstream | PASS; all existing keys, placeholders and inline code unchanged |
 | `git diff --check` | PASS, exit 0 |
 | Protected docs, LICENSE and both lockfiles against assigned baseline | PASS, unchanged |
