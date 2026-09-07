@@ -1,34 +1,93 @@
 # Step 1 — tickets (pieces 2 + 2b)
 
-Worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`  
-Branch: `feat/step1-tickets`. Sole writer; no workers started.
+Implementation and local validation complete. Final commit/push and draft PR
+record will be added below immediately after publication.
 
-## Progress
+Worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`
+Branch: `feat/step1-tickets`
+Sole writer; no workers, model changes, main pulls, merges, messages to people,
+or deployments. Protected project documents and both lockfiles are unchanged.
 
-Read FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md, AGENTS.md,
-reports/step0.md and CI before implementation. Reserved the locally unused
-migration name `m20260907_000002_ops_tickets` (existing names use dated modules).
-Source reads complete; implementation and validation in progress.
+## Outcome
 
-## Grounding and decisions
+Ported the Chatwoot default finder chain into Rust: receiver UUID → In-Reply-To
+→ References → new conversation. Every lookup is scoped to account and inbox.
+One SeaORM migration registers five related ticket tables, including the
+contact/inbox join, with assignment and private/public message distinctions.
+The shared store supports atomic ingestion, replay deduplication, contact reuse,
+assignment/status, notes, public-reply receipts and scoped reads.
 
-- Chatwoot v4.17.1 resolves via `gh api` to immutable commit
-  `b354a9550e1fb59fa537a9c384232cb076213e72`. Only MIT files outside enterprise/ read.
-- code-context guide exited 0: applied “SQLite-first persistence”. No codeg-specific
-  rule returned. Dependency docs exited 3: no corpus database for this worktree;
-  fallback is installed SeaORM/sea-orm-migration 1.1.19 source and existing codeg
-  migrations/entities/services. No corpus coverage claimed.
-- Port chain order: receiver UUID → In-Reply-To → References → new conversation.
-  Extend upstream References inbox isolation to ALL strategies and fallback.
-  Resolve an explicit account/inbox scope before ingestion; Step 2 owns transport
-  routing and MIME/header decoding. No subject-only or sender-only thread merging.
-- New conversation and first message persist atomically, as the source requires.
-  Reuse codeg canvas store's first-write transaction claim to avoid SQLite stale
-  read snapshot promotion; source-id deduplication belongs to the same transaction.
-- Keep registry edits to migration registration and one entity/service module.
-  No dependency or lockfile changes intended. No UI, outbound send, or Resend.
+## Validation
 
-## Source-to-port mapping (all at the immutable Chatwoot SHA above)
+Rust commands run from this worktree's `src-tauri/`; frontend commands from the
+worktree root. All build outputs belong to this worktree. No lockfile changes.
+
+| Command | Exit / result | Local log under reports/ |
+| --- | --- | --- |
+| `cargo check --locked` | 0; default desktop features | tickets-desktop-final.log |
+| `cargo check --locked --no-default-features --bin codeg-server` | 0 | tickets-server-check.log |
+| `cargo test --locked --no-default-features --lib db::service::ticket_service --target-dir /Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/target` | 0; 15 passed, 0 failed | tickets-tests-final.log |
+| `cargo clippy --locked --no-default-features --bin codeg-server --lib -- -D warnings` | 0 | tickets-clippy.log |
+| `pnpm exec tsc --noEmit` | 0 | tickets-typecheck.log |
+| `rustfmt --edition 2021 --check` on all five new Rust implementation/test files | 0 | tool output |
+| `git diff --check` | 0 | tool output |
+| Lockfile comparison to upstream `v0.30.4` and protected-doc comparison to checkpoint | 0, no diff | tool output |
+| Verify downloaded source blobs against immutable Git tree | 0, all 17 match | mapping below |
+
+The 15 focused tests cover competing strategy precedence; receiver validity and
+first syntactic match; UUID/fallback/source-id precedence and ordered values;
+all-strategy account/inbox isolation and skipped foreign references; contact reuse
+without sender/subject merges; exact scoped original-header fallback; rollback of
+contact/join/conversation when the first message fails; idempotent replay;
+assignment/private notes/lifecycle across close/reopen; database ownership and
+privacy constraints; migration down/up; malformed identities; public-reply receipt
+replay/conflict and subsequent threading; two independent SQLite connections racing
+on replay and shared-parent ingestion; and atomic DDL rollback on migration failure.
+
+No frontend source changed, so no new frontend tests were added. Desktop runtime,
+real email, attachment or end-to-end process testing remains outside this store task.
+Known upstream warnings: zero-byte codeg-mcp compile sidecar; future compatibility
+notice for proc-macro-error2 2.0.1. The ignored out/index.html placeholder follows
+CI and reports/step0.md; no real sidecar, package or deployment was produced.
+Raw logs remain local because upstream ignores *.log.
+
+## Docs-first and hook evidence
+
+Read FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md, AGENTS.md completely
+before implementation, plus reports/step0.md and CI. No nested AGENTS.md exists.
+Applied code-context using the existing rag-skills .venv and HF_HUB_OFFLINE=1:
+guide exited 0, applying “SQLite-first persistence”; no codeg-specific rule was
+returned. Dependency docs exited 3 because no tickets corpus database exists.
+Used local installed source rather than claiming missing corpus coverage.
+
+Pinned dependencies read: SeaORM and sea-orm-migration 1.1.19 (entities,
+ConnectionTrait, Statement, transactions, ConnectOptions, migration runner and
+SchemaManager); regex 1.12.3; uuid 1.20.0; Tokio 1.49.0 join docs; chrono 0.4.43;
+serde_json 1.0.149; tempfile 3.24.0. Frontend manifest/help confirmed React 19.2.4,
+TypeScript 5.8.3 and pnpm 11.9.0. Installed gh api/pr create/view/edit help,
+cargo check/test/clippy help and rustfmt help were read before reliance.
+
+The owner requested a checkpoint for Codex hook reload. Resumed first with two
+SEPARATE read commands: `cat node_modules/react/package.json`, then
+`cat src-tauri/Cargo.toml`, both exit 0. Verified live audit records in
+`/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl`:
+
+| Lines | Unix time | Session | Events / result |
+| --- | --- | --- | --- |
+| 12, 13 | 1788789299 | `01a07c1c-d82f-7022-84db-778a438632f1` | PreToolUse / PostToolUse; Bash; exit 0 |
+| 14, 15 | 1788789303 | `01a07c1c-d82f-7022-84db-778a438632f1` | PreToolUse / PostToolUse; Bash; exit 0 |
+
+All four have cwd `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`.
+The live docs-first reminder also appeared during subsequent source/patch calls.
+No hook disabled or bypassed. All remote source/documentation research used gh api
+at the required immutable commit; no latest version replaced the mandated pin.
+
+## Source-to-port mapping
+
+Chatwoot **v4.17.1**, resolved via `gh api repos/chatwoot/chatwoot/commits/v4.17.1`
+to **b354a9550e1fb59fa537a9c384232cb076213e72**. Only MIT sources outside enterprise/
+were read/ported. Original copyright, complete permission/warranty text and exact
+file names are reproduced in NOTICE. No AGPL, restricted enterprise or Kun code.
 
 | Exact source | Target / behavior |
 | --- | --- |
@@ -50,94 +109,133 @@ Source reads complete; implementation and validation in progress.
 | `spec/services/mailbox/conversation_finder_strategies/new_conversation_strategy_spec.rb` | Contact reuse, metadata and atomic persistence cases |
 | `LICENSE` | Original copyright and MIT permission/warranty in NOTICE |
 
-Original raw source and tree responses are local under ignored
-`reports/tickets-source.log/`; immutable URLs can be reconstructed as
-`https://github.com/chatwoot/chatwoot/blob/<SHA>/<exact source>`.
 
-## Commands / exits so far
+All finder/strategy files map to
+`src-tauri/src/db/service/ticket_service/threading.rs`; new-conversation
+persistence/model behavior maps to `src-tauri/src/db/service/ticket_service/mod.rs`.
+The five model shapes map to `src-tauri/src/db/entities/ops_ticket.rs` and
+`src-tauri/src/db/migration/m20260907_000002_ops_tickets.rs`; upstream spec cases
+map to `src-tauri/src/db/service/ticket_service/tests.rs`.
 
-- Required document and local pinned source reads: 0.
-- `gh api repos/chatwoot/chatwoot/commits/v4.17.1`, exact-SHA tree and content reads: 0.
-- Installed `gh api --help`, `gh pr create --help`, cargo check/test help: 0.
-- `git push -h`: 129 (help convention); stopped chained help reads, reran remaining.
-- `pnpm exec --help`: 1 (tries to execute --help); pnpm auto-installed this
-  worktree's frozen dependencies first successfully. Correct `pnpm help exec`: 0.
-- code-context guide: 0; docs: 3 (missing index, described above).
+Local Apache glue references: xintaofei/codeg v0.30.4 at
+`6f6bd648b206412644842a98d9ffeebf57292bed`, specifically
+`src-tauri/src/db/service/canvas_service.rs` (writer claim/transaction pattern),
+`src-tauri/src/db/entities/canvas_node.rs` (entity conventions),
+`src-tauri/src/db/test_helpers.rs` (full migrated test DB), and existing migration
+registration in `src-tauri/src/db/migration/mod.rs`. Apache LICENSE is unchanged.
+
+Additionally inspected `app/mailboxes/mailbox_sanitizer.rb` at the same Chatwoot
+SHA to resolve the base strategy dependency; no sanitizer source ported. The
+adapter must provide decoded UTF-8 input. Malformed source identities are rejected
+instead of silently rewritten; header parsing remains Step 2.
+
+### Immutable source integrity
+
+Raw responses are preserved locally in ignored reports/tickets-source.log/.
+All 17 following downloaded blobs match the immutable commit's Git tree.
+
+| Source file (immutable commit linked) | Git blob SHA |
+| --- | --- |
+| [LICENSE](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/LICENSE) | `d0425a707ab6f0cf06c9aa3c08e8edf5c64adc61` |
+| [app/models/contact.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/contact.rb) | `a63b164bb2669adc9cbbe10a4581cd86ae497267` |
+| [app/models/contact_inbox.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/contact_inbox.rb) | `893ab87f3c534e9eb78268a7c6577bff959de3e4` |
+| [app/models/conversation.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/conversation.rb) | `5d9394afe241b5612c9010c21d45a5e77b991836` |
+| [app/models/inbox.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/inbox.rb) | `cb9870538305a127331875ad9bc675b2e18107cc` |
+| [app/models/message.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/message.rb) | `913fb5a6469b43bd347ed6ee8992f56deed81433` |
+| [app/services/mailbox/conversation_finder.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder.rb) | `2f8128ecdb333104dc3940ea555b39dfe26585d1` |
+| [app/services/mailbox/conversation_finder_strategies/base_strategy.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder_strategies/base_strategy.rb) | `fd61fd9e090227d1b7d6d653cf96fa41be616b0e` |
+| [app/services/mailbox/conversation_finder_strategies/in_reply_to_strategy.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder_strategies/in_reply_to_strategy.rb) | `e3d8270f1c6265e0958336007f246b3a78804418` |
+| [app/services/mailbox/conversation_finder_strategies/new_conversation_strategy.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder_strategies/new_conversation_strategy.rb) | `f9f5c3cf87c93bd6a1cbcc7487ad7eb503e023f5` |
+| [app/services/mailbox/conversation_finder_strategies/receiver_uuid_strategy.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder_strategies/receiver_uuid_strategy.rb) | `39b155cf8834f0eeaefb7355dd797b2731c1fe04` |
+| [app/services/mailbox/conversation_finder_strategies/references_strategy.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder_strategies/references_strategy.rb) | `4420c5c7d31971f9a7379465818e3adda80cfb06` |
+| [spec/services/mailbox/conversation_finder_spec.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/spec/services/mailbox/conversation_finder_spec.rb) | `313ca409a4dddb1305a5a5f8da5bfbac1578ccd6` |
+| [spec/services/mailbox/conversation_finder_strategies/in_reply_to_strategy_spec.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/spec/services/mailbox/conversation_finder_strategies/in_reply_to_strategy_spec.rb) | `3fca8c3c916a225a17d746be5b8a0cbfeffed5d3` |
+| [spec/services/mailbox/conversation_finder_strategies/new_conversation_strategy_spec.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/spec/services/mailbox/conversation_finder_strategies/new_conversation_strategy_spec.rb) | `8609d0133b0f8a4e2d6a35278832e093eb7f77b0` |
+| [spec/services/mailbox/conversation_finder_strategies/receiver_uuid_strategy_spec.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/spec/services/mailbox/conversation_finder_strategies/receiver_uuid_strategy_spec.rb) | `d45f6f4febfd98e7d996606d5cf183b151782b47` |
+| [spec/services/mailbox/conversation_finder_strategies/references_strategy_spec.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/spec/services/mailbox/conversation_finder_strategies/references_strategy_spec.rb) | `6ef61a58f5c10d8f42da39970a16eba29755fc78` |
+
+
+## API, decisions and limitations
+
+Use `db::service::ticket_service` with the existing `AppDatabase.conn` in either
+runtime. The normal database initializer registers the migration automatically.
+The module exposes inbox create/list, conversation list/get, contact lookup,
+internal/public message views, `ingest_email`, assignment, status,
+`add_private_note`, and `record_public_reply`. The latter persists a confirmed
+external human reply; it has no network operation and cannot approve a send.
+Replay with changed content/author/conversation returns a conflict.
+
+The schema transcribes the email-ticket subset of the MIT model annotations:
+
+- Inbox: account ownership, name, email, channel type, auto-assignment setting,
+  timestamps. Auto-assignment is off; no assignment scheduler was ported.
+- Contact: name/email/phone/identifier, account, visitor/lead/customer integer
+  vocabulary, blocked flag, custom/additional attributes and timestamps. This
+  email-only store requires an email; other source contact kinds remain future work.
+- ContactInbox: account-scoped contact/inbox/source-id association and timestamps.
+- Conversation: UUID, account/inbox/contact/join, status (open/resolved/pending/
+  snoozed), priority, human/bot/team assignment, JSON attributes, activity/waiting/
+  first-reply/snooze timestamps. Human assignment resets bot ownership.
+- Message: account/inbox/conversation, source-id, incoming/outgoing/activity/template
+  direction, separate private flag, content/type, sent/delivered/read/failed
+  vocabulary, sender type/id, content/additional attributes and timestamps.
+
+Rails-only identity/channel tables, per-account display-id sequences, campaigns,
+SLA/CSAT, labels, presence/unread counters, CRM profile fields and attachment/search
+infrastructure were not copied. The local ticket id is its display identifier.
+Account ids are logical caller scopes; assignment ids are opaque strings, because
+codeg has no equivalent Chatwoot User/AgentBot/Team tables. This module is not an
+account authorization boundary. The Step 2 API must select an authorized scope.
+
+The fixed default strategy chain preserves upstream order, first syntactic receiver
+behavior, UUID-before-source-id matching, ordered In-Reply-To/References values,
+and exact original-header fallback. Unlike global upstream receiver/In-Reply-To
+queries, every lookup is constrained to account AND inbox. There is no injected
+custom-strategy API. Message ids retain case and trim only framing brackets/outer
+whitespace; UUID lookup is case insensitive. No subject/contact-only merging.
+
+No MIME/RFC header parser, Resend integration, outbound send, approval UI, email
+panel or deployment is included. Input contains decoded envelope addresses and
+ordered parsed header ids; Step 2 supplies that adapter, sender verification,
+HTML sanitation/rendering and approval enforcement. The module does not interpret
+an email body as instructions. The pre-existing zero-byte MCP sidecar and ignored
+`out/index.html` are compile placeholders from CI, not a packaged application.
+
+
+Additional implementation decisions:
+
+- SQLite mutations claim the writer before their first SELECT (the existing canvas
+  store pattern), avoiding stale read-snapshot promotion and cross-process races.
+  Source-id deduplication and contact/conversation/message writes commit together.
+- SeaORM 1.1.19 does not wrap SQLite migrations; explicitly wrap five-table up/down
+  in one transaction. The inherited migrator still owns its migration-history row.
+- Composite foreign keys enforce ownership, and the database forbids assigning
+  both human and bot, or giving a private note an external source-id.
+- Source-id uniqueness is per inbox, allowing the same received email in separate
+  inboxes. Public receipt replay must also match conversation, author and content.
+- Shared registry changes total four inserted lines relative to baseline. Reserved
+  migration name is `m20260907_000002_ops_tickets`; keep it alongside the approvals
+  migration when orchestrator integrates. If another branch adds NOTICE, preserve
+  both attribution sections. No main changes were pulled to resolve integration.
+
+## Checkpoint history and corrected command failures
+
+- `10225544554351d0bd96948d2a53cb952998e9a5`: initial sources/report, pushed exit 0.
+- `cc0d862ac4afe6c537e3fc2b595983b1b690db58`: requested incomplete implementation
+  checkpoint, pushed exit 0; `69f7336b` report follow-up also pushed exit 0. Stopped
+  as requested; resumed only on owner instruction. Tests/formatting were then pending.
+- Checkpoint staged whitespace check exited 2 for an extra blank line at EOF;
+  fixed by rustfmt on resumption. Final check passes.
+- `git push -h` exited 129 (help convention). `pnpm exec --help` exited 1 because
+  it attempted to execute --help; dependency auto-install itself succeeded without
+  changing the lockfile. Correct `pnpm help exec` exited 0.
+- Initial dependency-corpus docs command exited 3 (missing index, above).
+- A source probe for a nonexistent tokio-1.50.0 path exited 2; discovered actual
+  files and read lockfile-pinned Tokio 1.49.0 before using its API.
+- One test invocation at repo root exited 101 (no Cargo.toml there); corrected cwd
+  to src-tauri and final suite passed. Early reads of not-yet-created gate logs
+  returned 1; final logs exist. No product workaround or hook bypass was used.
 
 ## Delivery
 
-Implementation SHA: pending. Draft PR URL: pending. Required gates: pending.
-
-## Orchestrator checkpoint — stopped for docs-first hook reload
-
-Owner requested a safe checkpoint and STOP before further product edits. This
-is an incomplete implementation checkpoint, not a completion claim.
-
-Current files:
-
-- `src-tauri/src/db/migration/m20260907_000002_ops_tickets.rs`: one registered
-  migration with five tables (four requested models plus their contact/inbox
-  join), composite ownership foreign keys, assignment exclusivity, privacy and
-  scoped source-id constraints, and queue/thread lookup indexes.
-- `src-tauri/src/db/entities/ops_ticket.rs`: five nested SeaORM entity modules.
-- `src-tauri/src/db/service/ticket_service/threading.rs`: ordered finder,
-  receiver and both header patterns, source-id lookup, original-header fallback;
-  account/inbox scope on every branch.
-- `src-tauri/src/db/service/ticket_service/mod.rs`: shared store interface for
-  inbox creation/listing, conversations/contact/messages, atomic deduplicated
-  ingestion, assignment, status and private notes. Public message filtering
-  follows Message.chat. No outbound transport or approval side effects.
-- `NOTICE`: original Chatwoot copyright and licence text with exact source paths
-  and immutable SHA; original codeg Apache LICENSE untouched.
-- Shared registries changed by only four lines total.
-
-Resumption checklist (do not treat any item as already validated):
-
-1. Reload the configured docs-first hook as orchestrator requested. Continue as
-   sole writer on this same branch/worktree; no workers, model changes or scope
-   changes. Latest documentation uses `gh api`; pinned source remains v4.17.1.
-2. Review and format the new Rust files. They have NOT been compiled or rustfmt'd.
-   `ticket_service/mod.rs` declares `#[cfg(test)] mod tests;` but **tests.rs has
-   not yet been created**, so test compilation is knowingly incomplete.
-3. Add meaningful focused tests ported from the listed Chatwoot specs: competing
-   strategy precedence, ordered headers, message-specific and fallback patterns,
-   receiver validity, skipped foreign inbox references, all-strategy account/
-   inbox isolation, no subject/sender-only merge, stored original-header fallback,
-   contact reuse, duplicate ingestion, rollback of first-message failure, private
-   versus public views, assignment reset, lifecycle, and on-disk close/reopen.
-4. Audit the store's narrow schema transcription and record omissions clearly:
-   no Rails account/user/team/channel implementations, no enterprise behavior,
-   no CRM-only fields, no attachments, no mail parser, no UI. Account ids are
-   explicit caller scopes; user/bot/team ids are opaque strings for future identity
-   integration. Inbox auto-assignment defaults off because no scheduler is ported.
-   Private notes cannot have source_id. Public outgoing rows are representable
-   by the entity/schema; the approved-send integration remains Step 2.
-5. Create the ignored local `out/index.html` placeholder from CI if needed.
-   Build in THIS worktree's own target directory, never another worktree's output.
-   Run default desktop `cargo check --locked`, server
-   `cargo check --locked --no-default-features --bin codeg-server`, focused Rust
-   tests, and `pnpm exec tsc --noEmit`. Record commands/exits and any failures.
-6. Recheck both lockfiles remain unchanged, attribution, minimal registry edits,
-   `git diff --check`; finish commits/push with lowercase prefixes. Open small
-   DRAFT PR to main after required checks, using gh help already read and a body
-   file. Do not merge or deploy. Add PR URL and validated implementation SHA here.
-
-Checkpoint evidence:
-
-- Initial docs commit `10225544554351d0bd96948d2a53cb952998e9a5` pushed to origin,
-  exit 0.
-- `git diff --check` at checkpoint: exit 0 (tracked edits); newly added source
-  still requires formatting/review and compilation.
-- No default desktop/server compile, typecheck or focused test has been run yet.
-- No draft PR exists yet; owner requested checkpoint before continuing.
-- Source downloads remain preserved in ignored `reports/tickets-source.log/`.
-- No edits to FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md or lockfiles.
-- Staged `git diff --cached --check`: exit 2, extra blank line at EOF in
-  `src-tauri/src/db/entities/ops_ticket.rs:135`. Preserved unchanged for this
-  requested stop; remove with formatting when resumed.
-
-Checkpoint implementation commit:
-`cc0d862ac4afe6c537e3fc2b595983b1b690db58` — committed and pushed to
-`origin/feat/step1-tickets`, both exit 0. This report-only follow-up records that
-immutable SHA. Resume from it plus this report update. Work is deliberately
-paused awaiting orchestrator resumption; no further product edits after the stop.
+Validated implementation SHA: pending final commit. Draft PR URL: pending creation.

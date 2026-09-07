@@ -1,5 +1,6 @@
 //! MIT transcription of Chatwoot v4.17.1 core ticket schema (see NOTICE).
 //! SQLite composite foreign keys additionally enforce account/inbox isolation.
+use sea_orm::TransactionTrait;
 use sea_orm_migration::prelude::*;
 
 #[derive(DeriveMigrationName)]
@@ -8,8 +9,10 @@ pub struct Migration;
 #[async_trait::async_trait]
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-        // Explicit SQLite DDL keeps composite ownership constraints reviewable.
-        manager.get_connection().execute_unprepared(r#"
+        // SeaORM 1.1.19 does not wrap SQLite migrations in a transaction.
+        // Keep all five tables atomic if any later DDL statement fails.
+        let txn = manager.get_connection().begin().await?;
+        txn.execute_unprepared(r#"
 CREATE TABLE ops_ticket_inbox (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     account_id INTEGER NOT NULL CHECK(account_id > 0),
@@ -86,15 +89,17 @@ CREATE TABLE ops_ticket_message (
 CREATE INDEX idx_ops_ticket_message_thread
     ON ops_ticket_message(conversation_id, account_id, created_at, id);
 "#).await?;
-        Ok(())
+        txn.commit().await
     }
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-        manager.get_connection().execute_unprepared(
+        let txn = manager.get_connection().begin().await?;
+        txn.execute_unprepared(
             "DROP TABLE ops_ticket_message; DROP TABLE ops_ticket_conversation; \
              DROP TABLE ops_ticket_contact_inbox; DROP TABLE ops_ticket_contact; \
              DROP TABLE ops_ticket_inbox;",
-        ).await?;
-        Ok(())
+        )
+        .await?;
+        txn.commit().await
     }
 }

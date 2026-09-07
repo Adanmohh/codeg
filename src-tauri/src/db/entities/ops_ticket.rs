@@ -132,4 +132,3 @@ pub mod message {
     pub enum Relation {}
     impl ActiveModelBehavior for ActiveModel {}
 }
-
