@@ -4,7 +4,13 @@ import { useCallback, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ops } from "@/lib/ops/api"
-import { LoadError, Loading, Notice, touchButton } from "./ui"
+import {
+  LoadError,
+  Loading,
+  Notice,
+  touchButton,
+  destructiveButton,
+} from "./ui"
 import { opsError, useOpsResource } from "./use-ops-resource"
 
 export function EmailSettings({
@@ -114,7 +120,7 @@ export function EmailSettings({
         </form>
         {status?.configured && (
           <Button
-            className={`${touchButton} mt-3`}
+            className={`${destructiveButton} mt-3`}
             variant="destructive"
             disabled={!!busy}
             onClick={() => void run("disconnect")}

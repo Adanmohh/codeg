@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export const touchButton = "min-h-11 rounded-lg"
+// Keep the shared destructive tint and focus ring; use the paired foreground
+// token so enabled small text meets contrast on both light and dark surfaces.
+export const destructiveButton = `${touchButton} text-foreground`
 export function Notice({
   children,
   error = false,

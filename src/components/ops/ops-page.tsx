@@ -17,6 +17,7 @@ import { ApprovalsView } from "./proposals-view"
 import { MorningView } from "./morning-view"
 import { opsError, useOpsResource } from "./use-ops-resource"
 import { LoadError, Loading, Notice, touchButton } from "./ui"
+import { useOpsSession, useOpsSessionState } from "./session"
 
 export function OpsPageTitle() {
   return <span className="text-sm font-medium">Ops desk</span>
@@ -31,22 +32,34 @@ type View = "inbox" | "approvals" | "morning"
 function OpsWorkspace() {
   const { setRoute, registerLeaveGuard } = useWorkbenchRoute()
   const context = useOpsResource("context", ops.context)
-  const [view, setView] = useState<View>("inbox")
-  const [selected, setSelected] = useState<ThreadKey | null>(null)
-  const [proposalId, setProposalId] = useState<number | null>(null)
+  const session = useOpsSession()
+  const [view, setView] = useOpsSessionState<View>("nav:view", "inbox")
+  const [selected, setSelected] = useOpsSessionState<ThreadKey | null>(
+    "nav:thread",
+    null
+  )
+  const [proposalId, setProposalId] = useOpsSessionState<number | null>(
+    "nav:proposal",
+    null
+  )
   const [epoch, setEpoch] = useState(0)
-  const [dirty, setDirty] = useState(false)
+  const [dirty, setDirty] = useOpsSessionState("nav:dirty", false)
   useEffect(
     () =>
-      registerLeaveGuard(
-        (next) =>
-          next === "ops" ||
-          !dirty ||
-          window.confirm(
+      registerLeaveGuard((next) => {
+        if (next === "ops") return true
+        if (
+          session.get("nav:dirty", false) &&
+          !window.confirm(
             "Discard unsaved Ops changes? Save your draft or private note before leaving to keep it."
           )
-      ),
-    [dirty, registerLeaveGuard]
+        )
+          return false
+        session.discardEdits()
+        setDirty(false)
+        return true
+      }),
+    [registerLeaveGuard, session, setDirty]
   )
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => {
@@ -64,6 +77,8 @@ function OpsWorkspace() {
       )
     )
       return
+    session.discardEdits()
+    setDirty(false)
     action()
   }
   const openThread = (key: ThreadKey) =>

@@ -37,6 +37,8 @@ Ops UI/API glue (2026), codeg v0.30.4, Apache-2.0, same commit above:
   src/components/tasks/board-columns.ts and task-row.tsx (queue grouping/rows)
   src/components/tasks/task-card.tsx (status chips)
   src/components/workbench/workbench-content.tsx and layout/sidebar.tsx (entry)
+  src/contexts/workbench-route-context.tsx and automations-view-context.tsx
+    (lifted in-memory view lifetime above responsive shells; Ops session glue)
   src/lib/transport/{index,web-transport,tauri-transport}.ts (shared API calls)
   src-tauri/src/web/{auth.rs,handlers/canvas.rs,handlers/work_task.rs}
   src-tauri/src/commands/canvas.rs (dual-runtime command wrappers)

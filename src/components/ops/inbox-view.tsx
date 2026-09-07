@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import { ArrowLeft, LockKeyhole, FilePenLine } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -16,6 +16,7 @@ import { LoadError, Loading, Notice, touchButton } from "./ui"
 import { ReplyEditor, completeReply, replyFields } from "./reply-editor"
 import { opsError, useOpsResource } from "./use-ops-resource"
 import { EmailSettings } from "./email-settings"
+import { useOpsSessionState } from "./session"
 
 const statuses = ["Open", "Resolved", "Pending", "Snoozed"]
 export function InboxView({
@@ -29,10 +30,13 @@ export function InboxView({
   onSelect: (key: ThreadKey | null) => void
   onDirty: (dirty: boolean) => void
 }) {
-  const [chosenInbox, setChosenInbox] = useState(context.inboxes[0].id)
+  const [chosenInbox, setChosenInbox] = useOpsSessionState(
+    "nav:inbox",
+    context.inboxes[0].id
+  )
   const inboxId = selected?.inboxId ?? chosenInbox
-  const [status, setStatus] = useState("")
-  const [page, setPage] = useState(0)
+  const [status, setStatus] = useOpsSessionState("nav:status", "")
+  const [page, setPage] = useOpsSessionState("nav:page", 0)
   const loader = useCallback(
     () =>
       ops.tickets({
@@ -248,7 +252,7 @@ function ThreadView({
   )
 }
 
-function ThreadBody({
+export function ThreadBody({
   thread,
   onDirty,
 }: {
@@ -256,27 +260,37 @@ function ThreadBody({
   onDirty: (dirty: boolean) => void
 }) {
   const [messages, setMessages] = useState(thread.messages)
-  const [draft, setDraft] = useState(thread.draft)
-  const binding = draft?.reply ?? thread.suggestedReply
-  const [fields, setFields] = useState(() => replyFields(binding))
-  const [savedFields, setSavedFields] = useState(() =>
-    JSON.stringify(replyFields(binding))
-  )
-  const [note, setNote] = useState("")
-  const [mode, setMode] = useState<"reply" | "note">("reply")
-  const [busy, setBusy] = useState(false)
+  const editorKey = `thread:${thread.ticket.inboxId}:${thread.ticket.id}`
+  const [editor, setEditor] = useOpsSessionState(`edit:${editorKey}`, () => {
+    const binding = thread.draft?.reply ?? thread.suggestedReply
+    return {
+      draft: thread.draft,
+      binding,
+      fields: replyFields(binding),
+      savedFields: JSON.stringify(replyFields(binding)),
+      note: "",
+      mode: "reply" as "reply" | "note",
+    }
+  })
+  const { draft, binding, fields, savedFields, note, mode } = editor
+  const setFields = (fields: typeof editor.fields) =>
+    setEditor((previous) => ({ ...previous, fields }))
+  const setNote = (note: string) =>
+    setEditor((previous) => ({ ...previous, note }))
+  const setMode = (mode: "reply" | "note") =>
+    setEditor((previous) => ({ ...previous, mode }))
+  const [busy, setBusy] = useOpsSessionState(`busy:${editorKey}`, false)
   const inFlight = useRef(false)
   const [error, setError] = useState("")
   const [notice, setNotice] = useState("")
   const draftDirty = JSON.stringify(fields) !== savedFields
   const dirty = draftDirty || note.length > 0
-  useEffect(() => () => onDirty(false), [onDirty])
   const key = {
     inboxId: thread.ticket.inboxId,
     conversationId: thread.ticket.id,
   }
   const save = async () => {
-    if (inFlight.current) return
+    if (inFlight.current || busy) return
     inFlight.current = true
     setBusy(true)
     setError("")
@@ -294,8 +308,12 @@ function ThreadBody({
           expectedRevision: draft?.revision ?? 0,
           reply: completeReply(binding, fields),
         })
-        setDraft(saved)
-        setSavedFields(JSON.stringify(fields))
+        setEditor((previous) => ({
+          ...previous,
+          draft: saved,
+          binding: saved.reply,
+          savedFields: JSON.stringify(fields),
+        }))
         onDirty(note.length > 0)
         setNotice(
           `Draft saved · revision ${saved.revision}. Saving a draft does not send email.`

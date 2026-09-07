@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import { ArrowLeft, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -10,9 +10,16 @@ import {
   type ThreadKey,
 } from "@/lib/ops/api"
 import { cn } from "@/lib/utils"
-import { LoadError, Loading, Notice, touchButton } from "./ui"
+import {
+  LoadError,
+  Loading,
+  Notice,
+  touchButton,
+  destructiveButton,
+} from "./ui"
 import { completeReply, ReplyEditor, replyFields } from "./reply-editor"
 import { opsError, useOpsResource } from "./use-ops-resource"
+import { useOpsSessionState } from "./session"
 
 export function proposalStatus(p: Proposal): string {
   if (p.delivery) {
@@ -194,11 +201,19 @@ export function ReviewCard({
   onThread: (key: ThreadKey) => void
   onResolved: () => void
 }) {
-  const original = proposal.payload
-  const [fields, setFields] = useState(() =>
-    original ? replyFields(original.reply) : null
+  const [editor, setEditor] = useOpsSessionState(
+    `edit:review:${proposal.id}`,
+    () => ({
+      original: proposal.payload,
+      fields: proposal.payload ? replyFields(proposal.payload.reply) : null,
+    })
   )
-  const [busy, setBusy] = useState(false)
+  const original = proposal.status === "pending" ? editor.original : null
+  const fields = editor.fields
+  const [busy, setBusy] = useOpsSessionState(
+    `busy:review:${proposal.id}`,
+    false
+  )
   const [error, setError] = useState("")
   const inFlight = useRef(false)
   const loadConnection = useCallback(
@@ -206,9 +221,8 @@ export function ReviewCard({
     [proposal.inboxId]
   )
   const connection = useOpsResource(`email:${proposal.inboxId}`, loadConnection)
-  useEffect(() => () => onDirty(false), [onDirty])
   const finishRecording = async () => {
-    if (inFlight.current) return
+    if (inFlight.current || busy) return
     inFlight.current = true
     setBusy(true)
     setError("")
@@ -223,7 +237,7 @@ export function ReviewCard({
     }
   }
   const resolve = async (decision: "approve" | "deny") => {
-    if (inFlight.current || !original || !fields) return
+    if (inFlight.current || busy || !original || !fields) return
     inFlight.current = true
     setBusy(true)
     setError("")
@@ -235,6 +249,7 @@ export function ReviewCard({
           reply: completeReply(original.reply, fields),
         })
       onDirty(false)
+      setEditor({ original: null, fields: null })
       onResolved()
     } catch (e) {
       setError(opsError(e))
@@ -324,7 +339,7 @@ export function ReviewCard({
             fields={fields}
             disabled={busy || proposal.stale || !!proposal.delivery}
             onChange={(next) => {
-              setFields(next)
+              setEditor((previous) => ({ ...previous, fields: next }))
               onDirty(
                 JSON.stringify(next) !==
                   JSON.stringify(replyFields(original.reply))
@@ -359,7 +374,7 @@ export function ReviewCard({
               {busy ? "Resolving…" : "Approve and send reply"}
             </Button>
             <Button
-              className={touchButton}
+              className={destructiveButton}
               variant="destructive"
               disabled={busy || proposal.status !== "pending"}
               onClick={() => void resolve("deny")}

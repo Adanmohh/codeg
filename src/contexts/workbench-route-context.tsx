@@ -1,5 +1,7 @@
 "use client"
 
+import { OpsSessionBoundary } from "@/components/ops/session"
+
 import {
   createContext,
   useCallback,
@@ -108,7 +110,7 @@ export function WorkbenchRouteProvider({ children }: { children: ReactNode }) {
 
   return (
     <WorkbenchRouteContext.Provider value={value}>
-      {children}
+      <OpsSessionBoundary>{children}</OpsSessionBoundary>
     </WorkbenchRouteContext.Provider>
   )
 }

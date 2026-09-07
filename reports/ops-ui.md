@@ -354,3 +354,39 @@ connection refused; retry after listener readiness succeeded. Worker mutation
 scenarios are in progress; root may read now and should wait for the next
 readiness entry before mutating the same fixture. Synthetic credentials and
 relaunch command are above. Root 4318 remains untouched.
+
+## Independent browser findings addressed
+
+Root found a P2 at the responsive shell boundary: switching desktop/mobile
+remounted Ops and silently lost unsaved draft, note and review state. New
+`components/ops/session.tsx` lifts selection and edit snapshots above those
+shells, following Codeg's existing lifted workbench/automation view lifetime.
+It is per-provider, backend-keyed memory only; no localStorage/disk or module
+singleton. Changing backend destroys the old provider before new content paints.
+Draft edit state retains its original revision/binding and review retains its
+original payload; a remount never substitutes a newer server snapshot into an
+older edit. Explicit confirmed navigation discards edits. In-flight busy state
+also survives shell remounts. Private content is never persisted implicitly.
+
+Two new component regressions render the actual Ops page through different
+parent component types, forcing a full subtree remount. They cover selection,
+draft, private note, Bcc/review edits, no automatic mutation/storage, and a backend
+switch with colliding IDs. Focused Ops plus existing route suite **9/9 passed**;
+production build and focused ESLint **0**. Typecheck caught test-only use of a
+Playwright `exact` option in Testing Library and incomplete remote fixture fields;
+corrected after reading installed query types and local RemoteWorkspaceConnection.
+
+Actual Playwright CLI repeat on PID54941: draft sentinel survives 1280×800 →
+390×844 plus Escape; private note survives return to desktop with the draft;
+discard dismissal preserves text; review body/Bcc and selected proposal survive
+desktop → mobile, document overflow false. Evidence in
+`reports/ops-ui-evidence/mobile-{draft,review}-preserved.yml` and draft screenshot.
+Root independently repeated these cases successfully (its own session and
+`/tmp/ops-ui-preserved-review-mobile.png`), without API mutations.
+
+Root's enabled light-theme Deny control measured 4.07:1. Ops destructive actions
+now retain the shared destructive tint/focus ring and use the paired foreground
+token, scoped only to Ops; shared tokens are unchanged. Light/dark measurement
+is the remaining visual check. Root will independently recheck after this commit.
+Pinned React 19.2.4 useSyncExternalStore/context/ref/state contracts and Testing
+Library 16.3.2 renderHook/act/query types were read before the changes.
