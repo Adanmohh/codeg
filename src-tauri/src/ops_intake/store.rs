@@ -92,7 +92,12 @@ pub async fn attach_evidence(
 ) -> Result<EvidenceRef, IntakeError> {
     let a = attachment;
     a.source_ref.validate()?;
-    if !identifier(human_actor)
+    // Preserve the authenticated adapter's canonical principal, including
+    // operator:http / operator:desktop. This argument is never a wire field.
+    if human_actor.trim().is_empty()
+        || human_actor.trim() != human_actor
+        || human_actor.len() > 128
+        || human_actor.chars().any(char::is_control)
         || !evidence_value(&a.value)
         || a.content.is_empty()
         || a.content.len() > 8192
@@ -215,7 +220,9 @@ pub(super) async fn agent_allowed<C: ConnectionTrait>(
             r.try_get::<String>("", "mode")?.as_str(),
             "propose" | "act_low_risk"
         ),
-        None => false,
+        // Match the accepted gate's missing-scope default. Propose still hits
+        // the destructive floor; only explicit read/unknown modes deny here.
+        None => true,
     })
 }
 

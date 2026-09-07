@@ -678,3 +678,140 @@ async fn authentication_failures_and_durable_rate_deadline_are_safe() {
         }
     }
 }
+
+#[tokio::test]
+async fn ask_rule_cannot_queue_stale_bound_evidence() {
+    for mutation in ["deleted", "expired", "disabled", "revision"] {
+        let (db, draft, mut b) = seeded().await;
+        let p = prepare(&db.conn, draft).await.unwrap();
+        db.conn.execute(store::sql("INSERT INTO ops_agent_rule(agent_id,domain,behavior) VALUES('intake-agent','github','ask')",vec![])).await.unwrap();
+        match mutation {
+            "deleted" => revoke_evidence(&db.conn, &p.draft.evidence.log.artifact_id)
+                .await
+                .unwrap(),
+            "expired" => {
+                db.conn
+                    .execute_unprepared("UPDATE ops_intake_evidence SET expires_at=0")
+                    .await
+                    .unwrap();
+            }
+            "disabled" => {
+                b.enabled = false;
+                configure_repository(&db.conn, &b).await.unwrap();
+            }
+            _ => record_source(
+                &db.conn,
+                &p.draft.source_ref,
+                &types::digest("new source"),
+                Utc::now().timestamp(),
+            )
+            .await
+            .unwrap(),
+        }
+        assert!(
+            approvals::propose(
+                &db.conn,
+                p.draft.task_id,
+                p.draft.run_seq,
+                "intake-agent",
+                &GithubIssueAction,
+                p.payload().unwrap()
+            )
+            .await
+            .is_err(),
+            "{mutation}"
+        );
+        assert_eq!(
+            db.conn
+                .query_one(store::sql("SELECT COUNT(*) AS n FROM ops_proposal", vec![]))
+                .await
+                .unwrap()
+                .unwrap()
+                .try_get::<i64>("", "n")
+                .unwrap(),
+            0
+        );
+    }
+}
+
+#[tokio::test]
+async fn missing_scope_defaults_to_propose_while_read_and_deny_stay_restricted() {
+    let (db, draft, _) = seeded().await;
+    let p = prepare(&db.conn, draft).await.unwrap();
+    db.conn
+        .execute_unprepared("DELETE FROM ops_agent_scope")
+        .await
+        .unwrap();
+    let auth = authorized(&db.conn, &p).await; // no scope row still requires human
+    let fixture = Fixture::new(Mode::Success).await;
+    assert_eq!(
+        dispatch(&db.conn, &fixture.client, auth)
+            .await
+            .unwrap()
+            .state,
+        FilingState::Created
+    );
+    for mode in ["read", "deny"] {
+        let (db, draft, _) = seeded().await;
+        let p = prepare(&db.conn, draft).await.unwrap();
+        db.conn
+            .execute_unprepared("DELETE FROM ops_agent_scope")
+            .await
+            .unwrap();
+        if mode == "read" {
+            set_scope(&db.conn, "read").await;
+        } else {
+            db.conn.execute_unprepared("INSERT INTO ops_agent_rule(agent_id,domain,behavior) VALUES('intake-agent','github','ask'),('intake-agent','github','deny')").await.unwrap();
+        }
+        assert!(
+            matches!(
+                approvals::propose(
+                    &db.conn,
+                    p.draft.task_id,
+                    p.draft.run_seq,
+                    "intake-agent",
+                    &GithubIssueAction,
+                    p.payload().unwrap()
+                )
+                .await
+                .unwrap(),
+                approvals::ProposalOutcome::Denied(_)
+            ),
+            "{mode}"
+        );
+    }
+}
+
+#[tokio::test]
+async fn attachments_accept_canonical_backend_operator_labels_without_aliases() {
+    let (db, draft, _) = seeded().await;
+    for actor in ["operator:http", "operator:desktop"] {
+        let proof = attach_evidence(
+            &db.conn,
+            EvidenceAttachment {
+                source_ref: draft.source_ref.clone(),
+                source_revision: draft.source_revision.clone(),
+                field: EvidenceField::Screen,
+                value: "Mushaf reader".into(),
+                content: b"Mushaf reader".to_vec(),
+                captured_at: None,
+                session_ulid: None,
+                provenance: EvidenceProvenance::HumanReport,
+                expires_at: None,
+            },
+            actor,
+        )
+        .await
+        .unwrap();
+        let row = db
+            .conn
+            .query_one(store::sql(
+                "SELECT reviewed_by FROM ops_intake_evidence WHERE artifact_id=?",
+                vec![proof.artifact_id.into()],
+            ))
+            .await
+            .unwrap()
+            .unwrap();
+        assert_eq!(row.try_get::<String>("", "reviewed_by").unwrap(), actor);
+    }
+}

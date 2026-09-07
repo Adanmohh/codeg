@@ -42,9 +42,15 @@ impl Action for GithubIssueAction {
     async fn resource(
         &self,
         payload: &Value,
-        _: &ActionContext<'_>,
+        ctx: &ActionContext<'_>,
     ) -> Result<Option<String>, DbError> {
-        Ok(Some(prepared(payload).map_err(gate_error)?.repository))
+        let p = prepared(payload).map_err(gate_error)?;
+        // The accepted gate resolves resource BEFORE its ask-rule shortcut.
+        // Bind live evidence here so stale drafts cannot enter the queue.
+        store::validate_bound(ctx.db, &p)
+            .await
+            .map_err(gate_error)?;
+        Ok(Some(p.repository))
     }
     async fn check_permission(
         &self,

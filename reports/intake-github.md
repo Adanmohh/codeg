@@ -82,8 +82,12 @@ Host-only setup functions are `configure_repository(conn,&RepositoryBinding)`,
 `attach_evidence(conn,EvidenceAttachment,human_actor)` and
 `revoke_evidence(conn,artifact_id)` (all async). `RepositoryBinding` contains
 product_id,folder_id,app_id,installation_id,repository_id,full_name,enabled.
-An explicit existing `ops_agent_scope` for the agent/domain/repo (or domain
-default) must be `propose` or `act_low_risk`; missing/read scope is denied.
+Existing `ops_agent_scope` for the agent/domain/repo (or domain default) uses
+the accepted gate semantics: missing scope defaults to `propose`; `propose`
+and `act_low_risk` both require human review for this destructive action.
+Explicit `read` (the stored spelling of read-only scope) and deny rules remain
+restricted. Repository installation/enabled/product/folder bindings are still
+mandatory; a missing policy row does not invent missing repository config.
 Host calls `record_source` only after authorized successful GET revalidation,
 never from an agent-asserted timestamp/revision. Local source freshness is
 bounded to 15 minutes; re-read via intake before human review when stale.
@@ -91,8 +95,12 @@ bounded to 15 minutes; re-read via intake before human review when stale.
 `EvidenceAttachment` deliberately is not Deserialize. It takes the source/ref
 revision, field, value, reviewed sanitized UTF-8 `content`, optional capture
 time/session ULID/expiry and `EvidenceProvenance` (AscBuild, HumanReport,
-Recorder, LocalDiagnostic, SessionDiagnostic). The human actor is a trusted
-opaque ID. SessionDiagnostic requires the explicit session ULID; screenshot,
+Recorder, LocalDiagnostic, SessionDiagnostic). The human actor is backend derived:
+canonical UI principals `operator:http` and `operator:desktop` are accepted
+unchanged. Validation requires trimmed nonempty text of at most 128 bytes with
+no control characters; it does not require an identity alias. Actor is a
+separate host-only function argument, never a JSON field or agent assertion.
+SessionDiagnostic requires the explicit session ULID; screenshot,
 URI, empty log, guessed reciter and marketing-version-only human build fail.
 Data is stored by generated artifact ID; no arbitrary path/URL is read.
 `GithubAppConfig` contains app_id/private_key_pem and deliberately has no
@@ -122,7 +130,9 @@ approval/CAS and keyring seams. No corpus/global environment changes.
 
 Live hook evidence in `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl`:
 session `01a07c1c-cf2e-73e1-bbe3-e758c8363042`, this worktree, PreToolUse line
-1584 and PostToolUse line 1585, timestamp 1788813122. Hooks remain enabled.
+1584 and PostToolUse line 1585, timestamp 1788813122. Separate React/Cargo
+reads on continuation also produced live PreToolUse line 2640 and PostToolUse
+line 2633 for this same session/worktree. Hooks remain enabled.
 
 ## Exact source mapping (implementation ledger)
 
@@ -189,8 +199,21 @@ documentation/main-only integration. TypeScript `pnpm exec tsc --noEmit` passed
 (0). Initial strict server Clippy `--locked --no-default-features --bin
 codeg-server --lib -- -D warnings` passed (0).
 
-Owner authorized accepted-main integration after the stable Rust checkpoint;
-pre-integration focused Rust suite passed 19/19 (0), including disk SQLite
-reopen/recovery, auth failures, label preflight and persisted rate deadlines.
-Merge/final post-integration gates are next. Preserve Resend mail-parser,
-registry and appended notices. No email transport or approval-engine edits.
+Owner authorized accepted-main integration after the stable Rust checkpoint
+`3a04f14d`; pre-integration focused Rust suite passed 19/19 (0), including disk
+SQLite reopen/recovery, auth failures, label preflight and persisted rate
+deadlines. Merged accepted `origin/main` at
+`ebee0cc8b67b51192db2d6a6f3fd506f1c6e2510` (including Resend `2fecb1cf`)
+in `516e6da4`. The only conflict was append-only NOTICE: retained the complete
+main contents then appended this worker's entries. Preserved mail-parser
+0.11.1, hashify 0.2.9, registry and all migrations. Approval-engine and email
+transport paths have no diff from the integrated main.
+
+Owner-review fixes: live bound evidence is checked in `Action::resource`
+before the accepted ask-rule shortcut, missing scope uses the accepted
+`propose` default, and host-only evidence accepts `operator:http` and
+`operator:desktop` unchanged. Regression tests failed first (two gate cases,
+exit 101; actor case, exit 101), then passed after the fixes. Integrated
+`cargo test --locked --no-default-features --bin codeg-server --lib ops_`
+passed 109 tests (exit 0), including 22 intake tests and 21 core approval
+tests. Desktop/server checks and final Clippy remain in progress.
