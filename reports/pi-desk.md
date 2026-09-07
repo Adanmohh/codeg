@@ -91,6 +91,35 @@ The safe catalogue currently has no Astra entry per the root contract;
 verify installed custom-model support without printing credentials or
 modifying global config. Final validation and exact commit/PR evidence follow.
 
+Independent implementation checkpoint: the extension, TypeBox input revalidation,
+detached IPC payload, synchronous adapter broker, closed companion tools and
+token read lease now exist. The listener holds its lease through a bounded Ops
+call; completed revocation cannot be followed by a new mutation. Peer close
+cancels pending work. Draft/proposal calls never wait on a human and never send.
+The Ops trait currently refuses requests until accepted UI helpers are wired.
+Launch wrapper and default-agent integration are still being completed.
+
+Verified local results (2026-09-08): `pnpm exec vitest run --config
+integrations/pi-desk/vitest.config.ts` exit 0, 11 tests. Includes actual installed
+pi 0.85.1 RPC `get_commands` discovering both `desk-status` and `mcp` from the
+explicit Desk extension and isolated adapter (no inference or live MCP server).
+`cargo test --locked --no-default-features --lib desk_` exit 0, four tests:
+closed allowlist, token-to-parent identity and revocation, revocation versus
+in-flight operation, peer-abort lease cleanup. Server check exit 0. A temporary
+unused scope-struct warning was removed. First typecheck caught ES2022
+`Object.hasOwn` under this repo's ES2020 target; replaced with the installed
+ES5 `hasOwnProperty.call` primitive. Final gates remain pending.
+
+No dependency install or lock changes. Fixture typechecking links the existing
+global pi/adapter and pi's typebox 1.3.7 into this worktree's ignored package
+node_modules. The isolated package records exact peer versions. API grounding:
+pi 0.85.1 installed `dist/core/extensions/{types.d.ts,runner.js,loader.js}`, RPC
+and models docs; adapter 2.32.1 installed sources plus exact downloaded tests;
+TypeBox 1.3.7 `build/type/types/*.d.mts`, `value/check/check.d.mts`; vitest 2.1.9
+`dist/{config,index}.d.ts`, local test/config patterns; Node 24.19.0 CLI help and
+installed `@types/node@25.2.2` net/child_process/fs/readline/crypto declarations.
+Original MIT notices are now in NOTICE and the extension LICENSE.
+
 Checkpoint commit: `5a5561ff` (pushed). Draft PR:
 https://github.com/Adanmohh/codeg/pull/8
 

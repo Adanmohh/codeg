@@ -466,6 +466,40 @@ impl DelegationListener {
             BrokerMessage::TaskComplete(req) => {
                 task_ack_response(self.process_task_complete(req).await)?
             }
+            BrokerMessage::Desk(req) => {
+                use crate::acp::desk::{DeskError, DeskResponse, MAX_DESK_BYTES};
+                // Hold the registry read lease through the bounded operation.
+                // A completed revoke therefore precedes a refusal or follows an
+                // already committed operation; no write can start after revoke
+                // returned. Ops also checks cancellation/run_seq in its own DB
+                // writer transaction. Never hold this lease while waiting on a
+                // human approval: proposals return a pending identifier.
+                let entries = self.tokens.inner.read().await;
+                let result = if let Some(entry) = entries.get(&req.token) {
+                    if serde_json::to_vec(&req.request).map_or(true, |b| b.len() > MAX_DESK_BYTES) {
+                        DeskResponse::rejected(DeskError::InvalidInput)
+                    } else {
+                        let operation = self.tasks.desk_call(&entry.parent_connection_id, req.request);
+                        let mut probe = [0u8; 1];
+                        tokio::select! {
+                            biased;
+                            // EOF or another request byte cancels this one-shot call.
+                            _ = conn.read(&mut probe) => return Ok(()),
+                            result = tokio::time::timeout(std::time::Duration::from_secs(10), operation) => {
+                                result.unwrap_or_else(|_| DeskResponse::rejected(DeskError::Unavailable))
+                            }
+                        }
+                    }
+                } else {
+                    DeskResponse::rejected(DeskError::Denied)
+                };
+                let mut outcome = serde_json::to_value(result).map_err(std::io::Error::other)?;
+                if serde_json::to_vec(&outcome).map_or(true, |b| b.len() > MAX_DESK_BYTES - 64) {
+                    outcome = serde_json::to_value(DeskResponse::rejected(DeskError::Unavailable))
+                        .map_err(std::io::Error::other)?;
+                }
+                BrokerResponse { outcome }
+            }
             BrokerMessage::CreateAutomation(req) => {
                 // A bounded DB write. Like SessionInfo it never long-polls, so
                 // there is no peer-close race to run — and unlike Ask there is
@@ -1153,6 +1187,115 @@ mod tests {
         ) -> TaskReportAck {
             TaskReportAck::rejected("no task engine in this process")
         }
+    }
+
+    #[derive(Default)]
+    struct DeskAccess {
+        parents: tokio::sync::Mutex<Vec<String>>,
+        entered: tokio::sync::Notify,
+        release: tokio::sync::Notify,
+        completed: std::sync::atomic::AtomicUsize,
+        parked: bool,
+    }
+
+    #[async_trait]
+    impl WorkTaskToolAccess for DeskAccess {
+        async fn report_progress(&self, _: &str, _: &str) -> TaskReportAck {
+            TaskReportAck::rejected("not a report fixture")
+        }
+        async fn complete(&self, _: &str, _: &str, _: Option<&str>) -> TaskReportAck {
+            TaskReportAck::rejected("not a report fixture")
+        }
+        async fn desk_call(&self, parent: &str, _: crate::acp::desk::DeskCall) -> crate::acp::desk::DeskResponse {
+            self.parents.lock().await.push(parent.to_string());
+            self.entered.notify_one();
+            if self.parked { self.release.notified().await; }
+            self.completed.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+            crate::acp::desk::DeskResponse::success(serde_json::json!({ "fixture": true }))
+        }
+    }
+
+    fn desk_listener(tokens: Arc<TokenRegistry>, desk: Arc<DeskAccess>) -> Arc<DelegationListener> {
+        let broker = Arc::new(DelegationBroker::new(
+            Arc::new(MockSpawner::new()) as Arc<dyn ConnectionSpawner>,
+            Arc::new(AlwaysRootLookup) as Arc<dyn ConversationDepthLookup>,
+        ));
+        DelegationListener::new(broker, tokens, Arc::new(StaticParentLookup(Some(1))),
+            Arc::new(StubFeedback::default()), Arc::new(StubQuestion::default()),
+            Arc::new(StubSessionInfo::default()), desk, Arc::new(StubAuthoring::default()))
+    }
+
+    fn desk_request(token: &str) -> BrokerMessage {
+        BrokerMessage::Desk(super::super::transport::BrokerDeskRequest {
+            token: token.to_string(), request: crate::acp::desk::DeskCall {
+                tool: crate::acp::desk::DeskTool::DeskContext, input: serde_json::json!({}),
+            },
+        })
+    }
+
+    async fn desk_pair(listener: Arc<DelegationListener>, token: &str) -> (tokio::io::DuplexStream, tokio::task::JoinHandle<()>) {
+        let (mut client, mut server) = tokio::io::duplex(4096);
+        let task = tokio::spawn(async move { listener.serve_one(&mut server).await.unwrap(); });
+        write_frame(&mut client, &desk_request(token)).await.unwrap();
+        (client, task)
+    }
+
+    #[tokio::test]
+    async fn desk_token_supplies_parent_and_revocation_denies_future_calls() {
+        let tokens = Arc::new(TokenRegistry::default());
+        tokens.register("fixture".into(), TokenEntry {
+            parent_connection_id: "trusted-parent".into(), working_dir: PathBuf::from("/fixture"),
+        }).await;
+        let access = Arc::new(DeskAccess::default());
+        let listener = desk_listener(tokens.clone(), access.clone());
+        let (mut client, task) = desk_pair(listener.clone(), "fixture").await;
+        let response: BrokerResponse = read_frame(&mut client).await.unwrap();
+        assert_eq!(response.outcome["ok"], true);
+        task.await.unwrap();
+        assert_eq!(*access.parents.lock().await, vec!["trusted-parent"]);
+        tokens.revoke_by_parent("trusted-parent").await;
+        for token in ["fixture", "invalid"] {
+            let (mut client, task) = desk_pair(listener.clone(), token).await;
+            let response: BrokerResponse = read_frame(&mut client).await.unwrap();
+            assert_eq!(response.outcome, serde_json::json!({"ok": false, "code": "denied"}));
+            task.await.unwrap();
+        }
+        assert_eq!(access.completed.load(std::sync::atomic::Ordering::SeqCst), 1);
+    }
+
+    #[tokio::test]
+    async fn desk_revocation_is_linearized_with_an_inflight_operation() {
+        let tokens = Arc::new(TokenRegistry::default());
+        tokens.register("fixture".into(), TokenEntry {
+            parent_connection_id: "trusted-parent".into(), working_dir: PathBuf::from("/fixture"),
+        }).await;
+        let access = Arc::new(DeskAccess { parked: true, ..Default::default() });
+        let listener = desk_listener(tokens.clone(), access.clone());
+        let (mut client, task) = desk_pair(listener, "fixture").await;
+        access.entered.notified().await;
+        let mut revoke = tokio::spawn(async move { tokens.revoke("fixture").await });
+        assert!(tokio::time::timeout(std::time::Duration::from_millis(20), &mut revoke).await.is_err());
+        access.release.notify_one();
+        let _: BrokerResponse = read_frame(&mut client).await.unwrap();
+        revoke.await.unwrap(); task.await.unwrap();
+        assert_eq!(access.completed.load(std::sync::atomic::Ordering::SeqCst), 1);
+    }
+
+    #[tokio::test]
+    async fn desk_peer_abort_drops_pending_operation_and_releases_token_lease() {
+        let tokens = Arc::new(TokenRegistry::default());
+        tokens.register("fixture".into(), TokenEntry {
+            parent_connection_id: "trusted-parent".into(), working_dir: PathBuf::from("/fixture"),
+        }).await;
+        let access = Arc::new(DeskAccess { parked: true, ..Default::default() });
+        let listener = desk_listener(tokens.clone(), access.clone());
+        let (client, task) = desk_pair(listener, "fixture").await;
+        access.entered.notified().await;
+        drop(client);
+        tokio::time::timeout(std::time::Duration::from_secs(1), task).await.unwrap().unwrap();
+        tokens.revoke("fixture").await;
+        access.release.notify_one();
+        assert_eq!(access.completed.load(std::sync::atomic::Ordering::SeqCst), 0);
     }
 
     use crate::acp::chat_authoring::{NewAutomationSpec, NewWorkTaskSpec};

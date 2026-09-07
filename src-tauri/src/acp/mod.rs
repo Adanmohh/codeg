@@ -9,6 +9,7 @@ pub mod codex_model_catalog;
 pub mod connection;
 pub mod custom_registry;
 pub mod delegation;
+pub mod desk;
 pub mod error;
 pub mod event_stream;
 pub mod feedback;
