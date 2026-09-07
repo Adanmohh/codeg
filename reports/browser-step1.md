@@ -24,3 +24,9 @@ The only console errors observed were the intentional invalid-token 401 and an `
 Accessibility snapshots show unnamed icon controls and some appearance selectors without explicit accessible labels; login uses a placeholder and renders its error as an ordinary paragraph. These are concrete review candidates for the final Design Studio loop, not a claim that all accessibility checks passed. Full measured/specialist audit and the new Ops flows remain pending. Native Tauri/WKWebView and a packaged binary were not tested.
 
 The real System settings page shows “Internal build · updates disabled” and a disabled Check for updates button. Its inherited explanatory sentence still describes installing releases; include that contradictory copy in the final UI cleanup. No update check was triggered.
+
+## Combined foundation upgrade
+
+Rebuilt the real standalone server at merged approvals `65aca889` with `cargo build --locked --no-default-features --bin codeg-server` (exit 0). Stopped only the owned port-4318 process and restarted on the same `/tmp/ops-desk-browser-data` database previously running tickets without approvals. Startup applied `m20260907_000001_ops_approvals` successfully despite the later-named tickets migration already being recorded. Read-only SQLite inspection confirms both migration records and all ten Ops tables, including `ops_acp_wait`.
+
+Playwright CLI reloaded the existing named browser. Settings renders as Hafidh Ops Desk at 1280px with no document overflow. The health polling recorded three expected connection-refused errors during the deliberate server restart; after restart the page recovered. The inherited backup password control emits a browser form-association advisory. This is migration and shell recovery evidence, not an Ops queue UI or native package test.

@@ -83,3 +83,40 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - PR #3 accepted at `85e5f665c59ce040cb412fa95de36c396d9a1ff9`, merged as `65aca88916b4af398a568c09ece431440d660e3b`. Both review findings are fixed: transactional ACP/Ops wait ownership preserves concurrent requests, and migration tests target approvals by name with later migrations present.
 - Orchestrator reviewed the fix and concurrency/cleanup regressions, verified the final commit changes only the report, and independently reran all 21 approval tests successfully. Worker combined evidence: 18 ticket, 39 work-task and 128 engine tests; desktop/server checks, both Clippy gates and frontend typecheck pass. See [approvals report](reports/approvals.md). No CI or packaged-app pass claimed.
 - All Step 1 PRs are merged. These are foundation services; approval routes, trusted action execution and Ops UI are Step 2 work. The isolated browser server will be upgraded on its existing ticket database to verify migration compatibility.
+
+## Step 2 UI dispatched — 2026-09-07
+
+- Reused approvals worker/pane on new `feat/step2-ops-ui` from accepted main for shared Ops API, real ticket/thread/private-note/draft and approval screens, plus the morning list. Deliverable `reports/ops-ui.md`; actual Playwright CLI checks required in its own isolated instance.
+- Email worker owns direct Resend transport; GitHub/Hafidh worker owns intake contracts and subsequent implementation. Product writes remain worker-only. Human review and exact-payload dispatch are required at the UI/API seam; unavailable external configuration must be shown honestly.
+
+- Combined-foundation browser server upgrade passed: existing ticket-only test database applied approvals, retained both migration records and ten Ops tables; Playwright CLI reload recovered at desktop width. Evidence: [browser report](reports/browser-step1.md).
+
+## Intake contracts accepted; implementation dispatched
+
+- Report-only PR #4 accepted at `c5452682534a08981c131290488890e3777aa8fd`, merged as `bb9134d3966c6904cc5dddfda6e067878d03d307`. Orchestrator reviewed the source/API/evidence contracts and independently verified the pinned SDK import and quickstart through gh api. No product behavior or runtime test is claimed by this report.
+- Rebrand worker now implements `feat/step2-intake-github` in its existing worktree/pane: read-only MCP intake, evidence validator, direct GitHub App client and filing receipts. Deliverable `reports/intake-github.md`. UI and email workers continue separately.
+- Reserved migrations: UI/drafts `000003_ops_ui`, email `000004_ops_email` if needed, intake/filing `000005_ops_intake`. Shared registration edits must preserve every entry.
+- Verified source gaps: in-app feedback read and diagnostic download routes are absent in Hafidh; existing TestFlight reads use bounded offset scans. SDK v2.0.1 uses MCPServer, not FastMCP. Configuration/evidence gaps remain explicit; no live App install or issue filing.
+
+## Email transport acceptance in progress
+
+- First 15 worker transport tests pass; implementation checkpoint `37f205bf` integrated accepted main as `2555fff2`. Final gates are running.
+- Orchestrator found a P2 Reply-To loss in normalization, verified the pinned Chatwoot preference through gh api, and requested a worker fix/regression tests before merge. See [review](reports/review-email-transport.md). Transport is not yet accepted.
+- Real desktop sidecar release build is running in the root checkout; no app packaging/distribution result is claimed yet.
+
+## Native foundation bundle validated
+
+- Real sidecar preparation and unsigned debug macOS app bundling both pass. Bundle is `src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app`; isolated native startup applied both foundation migrations and remained alive, then the owned process was stopped. [Evidence and limits](reports/native-foundation-build.md).
+- This artifact contains merged Step 1, not unmerged Step 2. Rebuild after integration; Playwright CLI checks remain the browser evidence and final Design Studio loops are still pending.
+
+## Direct Resend transport accepted and merged
+
+- PR #6 accepted at `80b0cb0e6fe26695801b1d661054f1c8155cd99c`, merged as `2fecb1cfdce57cba451520ce192bc404fe081051`. Reply-To review finding fixed. Orchestrator independently reran all 18 transport tests successfully and reviewed source mapping, validation, scope/receipt boundaries and dependency changes. [Review](reports/review-email-transport.md), [implementation report](reports/email-transport.md).
+- Worker final gates pass: 18 transport and 18 ticket tests in each runtime, desktop/server checks, both Clippy gates and frontend typecheck. Only mail-parser 0.11.1 and hashify 0.2.9 are added; existing dependency versions and frontend lock remain unchanged.
+- UI worker is authorized to wire the merged client through durable attempts/receipts and existing credential storage. No direct send endpoint or mutable-draft bypass. The now-free email worker is reassigned to pi integration next.
+
+## Pi bridge dispatched; email UI integration continues
+
+- `tickets` worker now owns `feat/step2-pi-desk`, same worktree/pane `wR:p4`, tab Pi · agent bridge. Deliverable `reports/pi-desk.md`: pinned pi extension/adapter, per-launch scoped proposal/read bridge and default-agent wiring. No operator token in agent tools, no silent model downgrade.
+- `approvals` worker continues `feat/step2-ops-ui`, pane `wR:p3`, tab Email · approvals UI, now authorized to connect the merged Resend client to per-inbox credentials/pulls and durable approved-send attempts/receipts. It owns reserved 000004 delivery storage as transport left it unused.
+- `rebrand` worker continues GitHub/Hafidh implementation on `feat/step2-intake-github`, pane `wR:p2`. All three remain GPT-6 Astra max with docs-first, gh api research, isolated branches and report deliverables.
