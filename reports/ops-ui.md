@@ -334,3 +334,13 @@ browser evidence will be recorded once the final fixture process starts.
 
 Root's server/session on 4318 remains untouched. Use a distinct Playwright CLI
 session name, e.g. `ops-ui-independent`, when independently browsing this fixture.
+
+Stable integrated checkpoint **c6066921**: merged accepted main
+**5829cfd797afd9088b08611c6c9bbd385be1bd0d** (includes GitHub PR #5 / 4988f46b).
+Resolved only lib.rs and migration/mod.rs additions, retaining both modules and
+ordered migrations 000001–000005. All root planning docs match origin/main;
+NOTICE and accepted dependency/lockfile additions are preserved. Ops sources are
+unchanged from **85a5dd18**. The fixture is compiling at this integrated head;
+4320 is not yet claimed as listening. Root independently confirmed the five
+frontend tests; its Rust run hit temporary merge markers, a coordination race,
+and must be rerun against this stable integrated checkpoint.
