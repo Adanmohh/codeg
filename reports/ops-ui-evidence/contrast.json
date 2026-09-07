@@ -1,0 +1,44 @@
+{
+  "sourceCommit": "0e375c97",
+  "fixturePID": 54941,
+  "session": "ops-ui-check",
+  "method": "Playwright CLI; computed CSS composited root-to-control on sRGB canvas, WCAG relative luminance; 390x844 viewport",
+  "samples": [
+    {
+      "theme": "light",
+      "control": "Deny proposal",
+      "enabled": true,
+      "fontSize": "14px",
+      "foreground": [
+        10,
+        10,
+        10
+      ],
+      "background": [
+        252,
+        233,
+        233
+      ],
+      "contrast": 16.942775298192014,
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "control": "Deny proposal",
+      "enabled": true,
+      "fontSize": "14px",
+      "foreground": [
+        250,
+        250,
+        250
+      ],
+      "background": [
+        59,
+        28,
+        29
+      ],
+      "contrast": 14.687837398014917,
+      "overflow": false
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+- generic [active]:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e408]:
+      - generic [ref=f3e409]:
+        - button "Show Sidebar" [ref=f3e410]
+        - button "Search" [ref=f3e411]
+        - button "New Conversation" [ref=f3e412]
+      - button "Open Settings" [ref=f3e415]
+    - main [ref=f3e417]:
+      - generic [ref=f3e419]:
+        - generic [ref=f3e420]: Ops desk
+        - region "Ops desk" [ref=f3e424]:
+          - generic [ref=f3e425]:
+            - navigation "Ops views" [ref=f3e426]:
+              - button "Inbox" [ref=f3e427]
+              - button "Approvals" [ref=f3e428]
+              - button "Morning" [ref=f3e429]
+            - button "Refresh" [ref=f3e430]
+          - generic [ref=f3e432]:
+            - generic [ref=f3e433]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+            - generic [ref=f3e435]:
+              - button "Back to inbox" [ref=f3e437]
+              - article [ref=f3e438]:
+                - generic [ref=f3e439]:
+                  - generic [ref=f3e440]: "Open · Thread #1"
+                  - heading "A real local thread" [level=1] [ref=f3e441]
+                  - paragraph [ref=f3e442]: Reader · reader@example.com
+                - generic "Conversation messages" [ref=f3e443]:
+                  - generic [ref=f3e444]:
+                    - generic [ref=f3e445]:
+                      - strong [ref=f3e446]: Incoming email
+                      - generic [ref=f3e447]: reader@example.com
+                      - time [ref=f3e448]: 8.9.2026 klo 0.47.20
+                    - paragraph [ref=f3e450]: Please help
+                  - generic [ref=f3e451]:
+                    - generic [ref=f3e452]:
+                      - strong [ref=f3e457]: Private note
+                      - generic [ref=f3e458]: operator:http
+                      - time [ref=f3e459]: 8.9.2026 klo 0.47.20
+                    - paragraph [ref=f3e461]: "Fixture private note: verify the receipt with finance."
+                - region "Compose" [ref=f3e462]:
+                  - generic [ref=f3e463]:
+                    - button "Reply draft" [pressed] [ref=f3e464]
+                    - button "Private note" [ref=f3e465]
+                  - paragraph [ref=f3e466]: Saved draft · revision 1. Prepare the full reply here. Sending requires a proposal, human review and connected delivery.
+                  - generic [ref=f3e467]:
+                    - generic [ref=f3e468]:
+                      - text: From · inbox identity
+                      - textbox "From · inbox identity" [ref=f3e469]: support@example.com
+                    - generic [ref=f3e470]:
+                      - text: To
+                      - textbox "To" [ref=f3e471]: reader@example.com
+                    - generic [ref=f3e472]:
+                      - generic [ref=f3e473]:
+                        - text: Cc
+                        - textbox "Cc" [ref=f3e474]
+                      - generic [ref=f3e475]:
+                        - text: Bcc · hidden from other recipients
+                        - textbox "Bcc · hidden from other recipients" [ref=f3e476]
+                    - paragraph [ref=f3e477]: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.
+                    - generic [ref=f3e478]:
+                      - text: Subject
+                      - textbox "Subject" [ref=f3e479]: "Re: A real local thread"
+                    - generic [ref=f3e480]:
+                      - text: Reply message
+                      - textbox "Reply message" [ref=f3e481]: Unsaved viewport preservation sentinel
+                    - group [ref=f3e482]:
+                      - generic "Thread headers · part of the complete payload" [ref=f3e483] [cursor=pointer]
+                    - paragraph [ref=f3e484]: Plain text only. Attachments are not supported in this draft.
+                  - generic [ref=f3e485]:
+                    - button "Save draft" [ref=f3e486]
+                    - generic [ref=f3e487]: Unsaved changes · save before leaving
+    - generic [ref=f3e72]:
+      - generic [ref=f3e73]:
+        - button "Quick actions" [ref=f3e74]
+        - button "4 conversations" [ref=f3e347]
+      - generic [ref=f3e75]:
+        - button "Add Command" [ref=f3e488]
+        - button "codeg-mcp service" [ref=f3e489]
+        - button [ref=f3e497]

@@ -1,0 +1,47 @@
+- generic [active]:
+  - alert [ref=f2e2]: Hafidh Ops Desk
+  - region "Notifications alt+T"
+  - generic [ref=f2e12]:
+    - generic [ref=f2e14]:
+      - complementary [ref=f2e17]:
+        - generic [ref=f2e21]:
+          - button "Locate Active Conversation" [ref=f2e22]
+          - button "Collapse All Groups" [ref=f2e23]
+          - button "View options" [ref=f2e24]
+        - generic [ref=f2e25]:
+          - button "Ops desk" [ref=f2e26]
+          - button "New chat Ctrl+T" [ref=f2e31]:
+            - generic [ref=f2e35]: New chat
+            - generic [ref=f2e36]: Ctrl+T
+          - button "Automations" [ref=f2e37]
+          - button "To-dos" [ref=f2e41]
+          - button "Repository panel" [ref=f2e46]
+          - button "Infinite Conversations" [ref=f2e52]
+        - generic [ref=f2e58]:
+          - button "Open Folder" [ref=f2e59]
+          - button "Clone Repository" [ref=f2e60]
+          - button "Project Boot" [ref=f2e61]
+          - button "Import local sessions" [ref=f2e62]
+      - separator [ref=f2e63]
+      - main [ref=f2e65]:
+        - generic [ref=f2e66]:
+          - generic [ref=f2e70]:
+            - separator
+          - separator
+          - generic [ref=f2e79]:
+            - generic [ref=f2e80]:
+              - button [disabled]
+            - button "Hide Terminal (Ctrl+J)" [ref=f2e81]
+      - separator
+    - generic [ref=f2e82]:
+      - button "Quick actions" [ref=f2e84]
+      - generic [ref=f2e85]:
+        - button "codeg-mcp service" [ref=f2e86]
+        - button [ref=f2e89]
+    - generic [ref=f2e94]:
+      - button "Hide Sidebar (Ctrl+B)" [ref=f2e95]
+      - button "Search" [ref=f2e96]
+    - generic [ref=f2e101]:
+      - button "Toggle Terminal (Ctrl+J)" [disabled]
+      - button "Toggle Auxiliary Panel (Ctrl+E)" [disabled]
+      - button "Open Settings (Ctrl+,)" [ref=f2e102]

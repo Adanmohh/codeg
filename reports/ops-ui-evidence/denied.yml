@@ -1,0 +1,38 @@
+- generic [active]:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e609]:
+      - generic [ref=f3e610]:
+        - button "Show Sidebar" [ref=f3e611]
+        - button "Search" [ref=f3e612]
+        - button "New Conversation" [ref=f3e613]
+      - button "Open Settings" [ref=f3e616]
+    - main [ref=f3e618]:
+      - generic [ref=f3e620]:
+        - generic [ref=f3e621]: Ops desk
+        - region "Ops desk" [ref=f3e625]:
+          - generic [ref=f3e626]:
+            - navigation "Ops views" [ref=f3e627]:
+              - button "Inbox" [ref=f3e628]
+              - button "Approvals" [ref=f3e629]
+              - button "Morning" [ref=f3e630]
+            - button "Refresh" [ref=f3e631]
+          - generic [ref=f3e633]:
+            - generic [ref=f3e634]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+            - generic [ref=f3e693]:
+              - button "Back to review queue" [ref=f3e695]
+              - article [ref=f3e696]:
+                - generic [ref=f3e697]:
+                  - paragraph [ref=f3e698]: "Proposal #4 · Task #4 · Run 1 · Account 1"
+                  - heading "Denied · not sent" [level=1] [ref=f3e699]
+                  - button "Open original thread" [ref=f3e700]
+                - status [ref=f3e701]: This proposal was denied. Its private reply content has been redacted from the review record.
+    - generic [ref=f3e72]:
+      - generic [ref=f3e73]:
+        - button "Quick actions" [ref=f3e74]
+        - button "4 conversations" [ref=f3e347]
+      - generic [ref=f3e75]:
+        - button "Add Command" [ref=f3e668]
+        - button "codeg-mcp service" [ref=f3e669]
+        - button [ref=f3e677]
