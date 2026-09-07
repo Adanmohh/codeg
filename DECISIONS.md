@@ -31,3 +31,12 @@
 | sacp / ACP schema | 11.0.0 / 0.11.7 |
 
 Dependency versions above were read from the installed packages and Cargo.lock, not inferred from manifest ranges.
+
+## 2026-09-07 — Step 1 dispatch
+
+- Owner authorized three Codex workers via Herdr, command approval `never`, full filesystem access, isolated worktrees/branches, docs-first borrowing and report-file deliverables. All three launched from the pushed Step 0 baseline.
+- One topic per tab in Ops Desk workspace wR, with one worker pane in each. Herdr worktree creation created top-level wrappers despite `--workspace wR`; worker panes were moved into wR tabs before agents started. Empty wrapper shells were left intact to avoid the documented close blast radius.
+- Rebrand uses Hafidh Ops Desk as the product name, config/assets/minimal branding glue; preserve internal binary/module identifiers where renaming expands scope. No signing or distribution.
+- Reserve distinct migration names: approvals `m20260907_000001_ops_approvals`, tickets `m20260907_000002_ops_tickets`, adapted to verified repository conventions. Workers keep shared registry and NOTICE edits minimal.
+- Intromail has no source tag specified: approvals must resolve and record one immutable commit before reading the named private source files via gh api. Chatwoot remains pinned to v4.17.1, MIT files outside enterprise only.
+- Owner requires best/latest models throughout. All project agents verified as GPT-6 Astra, the installed catalogue flagship; official model guidance confirms it is OpenAI's most capable model: https://developers.openai.com/api/docs/models/gpt-6-astra. This is worker-runtime selection; FOUNDING's product agent choices remain in force.

@@ -1,6 +1,6 @@
 # Status — 2026-09-07
 
-Step 0 complete. All requested local build gates passed.
+Step 0 complete. Step 1 dispatched; three Codex workers are implementing in parallel.
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
@@ -11,4 +11,18 @@ Step 0 complete. All requested local build gates passed.
 - Product source and both dependency lockfiles match the upstream tag. Apache LICENSE retained. No AGPL source imported.
 - Herdr environment verified and CLI syntax read. No workers started for Step 0.
 
-Next: Step 1 — dispatch rebrand, approvals and tickets as three Codex workers through Herdr, each in its own worktree/branch. Enforce docs-first reads, exact-source borrowing, attribution, file reports and build/typecheck review before acceptance. Step 1 has not started.
+## Step 1 — dispatched 2026-09-07
+
+All three workers are running through Herdr, each in its own worktree and branch from `2f74992e`. Each topic has a separate tab in the Ops Desk workspace (`wR`), with its worker pane inside. Orchestrator: `wR:t1`, pane `wR:p1`.
+
+| Worker | Tab / pane | Branch | Worktree | Report | Review / merge |
+| --- | --- | --- | --- | --- | --- |
+| rebrand | `wR:t2` / `wR:p2` | `feat/step1-rebrand` | `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand` | `reports/rebrand.md` in worktree | Pending |
+| approvals | `wR:t3` / `wR:p3` | `feat/step1-approvals` | `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals` | `reports/approvals.md` in worktree | Pending |
+| tickets | `wR:t4` / `wR:p4` | `feat/step1-tickets` | `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets` | `reports/tickets.md` in worktree | Pending |
+
+- Verified all four active project agents use `gpt-6-astra`, the most capable model in the installed Codex model catalogue. Owner requires the best current models for all project workers; no cheaper-model delegation.
+- Worker launch arguments explicitly set `-a never -s danger-full-access`.
+- Every prompt requires complete founding/orchestration document reads, docs-first pinned-source reads, exact-source borrowing, licence/NOTICE attribution, no AGPL or enterprise source, early commits/pushes, draft PRs to main, and committed file reports.
+- Review gates: default desktop `cargo check --locked`, frontend typecheck, focused behavioral tests and server compilation for Rust changes; inspect source citations and licence provenance before accepting.
+- The orchestrator writes no product code. Update this file after each review and merge. Step 2 has not started.
