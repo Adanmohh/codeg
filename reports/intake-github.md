@@ -1,6 +1,6 @@
 # Step 2 intake / GitHub implementation
 
-Status: implementation underway. Branch `feat/step2-intake-github`, created after
+Status: implementation and final validation underway. Branch `feat/step2-intake-github`, created after
 a clean check and fetch from `dc7ce45d97ce5df3ad33a40fb80923c6467406b9`.
 Accepted contract: `reports/step2-intake-contracts.md` (PR #4, merged bb9134d3).
 No other worktree, Hafidh source/environment, protected planning document or
@@ -13,7 +13,7 @@ worker owns these modules, their tests and `m20260907_000005_ops_intake` only;
 minimal lib/migration exports are the shared-file seams. UI owns the registry,
 authenticated command/HTTP/review adapters and all frontend changes.
 
-Planned public interface (final signatures will be recorded here before handoff):
+Implemented public interface (`src-tauri/src/ops_intake/mod.rs` re-exports types):
 
 - `IssueDraftV1` and `PreparedIssue`: strict serializable draft and complete
   frozen preview/payload; `prepare(conn, draft)` validates the trusted local
@@ -34,6 +34,72 @@ Planned public interface (final signatures will be recorded here before handoff)
 - `github::GithubAppClient`: runtime App configuration/private key supplied
   only by trusted host code. Missing config is `not_configured`. No PAT or gh
   auth fallback. Tests inject synthetic local HTTP/RSA fixtures only.
+
+Exact functions for UI registry/review integration:
+
+```rust
+prepare(&DatabaseConnection, IssueDraftV1) -> Result<PreparedIssue, IntakeError> // async
+PreparedIssue::payload(&self) -> Result<serde_json::Value, IntakeError>
+PreparedIssue::payload_digest(&self) -> Result<String, IntakeError>
+dispatch(&DatabaseConnection, &GithubAppClient, AuthorizedAction)
+    -> Result<FilingReceipt, IntakeError> // async
+filing_status(&DatabaseConnection, &SourceRef, repository_id: i64)
+    -> Result<Option<FilingReceipt>, IntakeError> // async, no network
+reconcile_filing(&DatabaseConnection, &GithubAppClient, attempt_id: i64)
+    -> Result<FilingReceipt, IntakeError> // async, GitHub reads only
+GithubAppClient::new(Option<GithubAppConfig>) -> Result<GithubAppClient, IntakeError>
+GithubAppClient::is_configured(&self) -> bool
+```
+
+`GithubIssueAction` is a unit struct implementing the **existing** `Action`.
+For propose, pass `prepared.payload()` to existing `ops_approvals::propose`
+with the same trusted task/run IDs stored in the draft. Human edits must call
+`prepare` again with the complete edited draft before reviewing the new render;
+then existing `approve(Review { expected_payload, approved_payload })` yields
+the one-use handoff passed directly to `dispatch`. No network occurs in Action
+callbacks. Dispatch also requires the persisted proposal task/run to match the
+payload. Do not expose approval, repository configuration, source import or
+evidence attachment as agent tools.
+
+`IssueDraftV1` JSON fields: `schema_version:1`,
+`template_version:"hafidh-issue-v1"`, `task_id`, `run_seq`,
+`source_ref:{product_id,source:"testflight"|"in_app",ulid}`, `source_revision`,
+`title`, `summary`, `labels:string[]`, and `evidence:{build,screen,reciter,log}`.
+Each evidence reference is `{artifact_id,sha256,value}` minted by trusted
+attachment glue. Convert the Python source ref to this subset (its optional
+`external_id` is upstream provenance, not the local identity). Unknown fields
+are rejected at every draft/prepared boundary. All four proofs are mandatory.
+Labels are explicit, human-reviewed, existing repo label names; this module
+does not create labels. Source triage remains a suggestion until that review.
+
+`PreparedIssue` freezes `{draft,repository_id,repository,binding_digest,outgoing}`;
+`outgoing` is the exact `{title,body,labels}` posted. Receipt fields are
+`attempt_id,proposal_id,state:unknown|failed|created,issue?,error_code?,retry_after?`;
+issue fields are `id,number,html_url,labels,labels_match`. No execution capability
+or installation token is serialized. Missing App config is `not_configured`;
+adapters should also check `is_configured` before showing a filing affordance.
+
+Host-only setup functions are `configure_repository(conn,&RepositoryBinding)`,
+`record_source(conn,&SourceRef,revision,fetched_at_epoch)`,
+`attach_evidence(conn,EvidenceAttachment,human_actor)` and
+`revoke_evidence(conn,artifact_id)` (all async). `RepositoryBinding` contains
+product_id,folder_id,app_id,installation_id,repository_id,full_name,enabled.
+An explicit existing `ops_agent_scope` for the agent/domain/repo (or domain
+default) must be `propose` or `act_low_risk`; missing/read scope is denied.
+Host calls `record_source` only after authorized successful GET revalidation,
+never from an agent-asserted timestamp/revision. Local source freshness is
+bounded to 15 minutes; re-read via intake before human review when stale.
+
+`EvidenceAttachment` deliberately is not Deserialize. It takes the source/ref
+revision, field, value, reviewed sanitized UTF-8 `content`, optional capture
+time/session ULID/expiry and `EvidenceProvenance` (AscBuild, HumanReport,
+Recorder, LocalDiagnostic, SessionDiagnostic). The human actor is a trusted
+opaque ID. SessionDiagnostic requires the explicit session ULID; screenshot,
+URI, empty log, guessed reciter and marketing-version-only human build fail.
+Data is stored by generated artifact ID; no arbitrary path/URL is read.
+`GithubAppConfig` contains app_id/private_key_pem and deliberately has no
+Debug/Serialize. Supply it through the trusted host credential adapter; no
+keyring, PAT, environment auto-discovery or gh fallback is introduced here.
 
 Python package: `integrations/hafidh-intake`, isolated `.venv`. Exactly three
 stdio MCP tools: `hafidh_feedback_list`, `hafidh_feedback_get`,
@@ -107,3 +173,12 @@ retained dependency MIT license. Reqwest 0.12.28 source shows default protocol
 retries, so the new client must use `reqwest::retry::never()` and no redirects.
 Bootstrap server `cargo check --no-default-features --bin codeg-server` passed
 (0) while resolving the new lock entries; focused implementation checks remain.
+
+Rust implementation checkpoint: locked server check passed (0); first focused
+server library suite passed 15/15 (0). Coverage includes real RS256 verification,
+narrow single-flight token cache, repo/installation separation, early expiry,
+malformed token grants, strict proofs, edited payload handoff, read scopes and
+destructive floor, stale review/run, evidence tamper/revocation, concurrent
+filing reservation, lost response, read reconciliation, label mismatch, known
+rejection and migration round trip. Latest follow-up persists/observes retry
+deadlines across new client instances; final rerun remains pending.
