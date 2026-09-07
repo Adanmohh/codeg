@@ -520,6 +520,104 @@ async fn notes_assignment_and_lifecycle_survive_disk_reopen() {
     conn.close().await.unwrap();
 }
 
+// Message#reopen_conversation checks ConversationMuteHelpers#muted?, which
+// belongs to the primary contact even when another participant sends the reply.
+async fn assert_other_sender_reopen_policy(
+    status: ConversationStatus,
+    primary_blocked: bool,
+    sender_blocked: bool,
+) {
+    let db = fresh_in_memory_db().await;
+    let s = scope(&db.conn, 1, "support@example.com").await;
+    let initial = seed(&db.conn, s, "initial@example.com").await;
+    let mut primary = get_contact(&db.conn, s, initial.conversation.id)
+        .await
+        .unwrap()
+        .into_active_model();
+    primary.blocked = Set(primary_blocked);
+    primary.update(&db.conn).await.unwrap();
+
+    let mut participant = mail("participant@example.com");
+    participant.sender_email = "cc@example.com".into();
+    let participant = ingest_email(&db.conn, s, participant).await.unwrap();
+    let mut sender = get_contact(&db.conn, s, participant.conversation.id)
+        .await
+        .unwrap()
+        .into_active_model();
+    sender.blocked = Set(sender_blocked);
+    let sender = sender.update(&db.conn).await.unwrap();
+    assert_ne!(sender.id, initial.conversation.contact_id);
+
+    let closed = set_status(&db.conn, s, initial.conversation.id, status)
+        .await
+        .unwrap();
+    let mut reply = mail("reply@example.com");
+    reply.sender_email = sender.email.clone();
+    reply.headers.in_reply_to = vec!["initial@example.com".into()];
+    let received = ingest_email(&db.conn, s, reply).await.unwrap();
+    assert_eq!(received.strategy, Some(Strategy::InReplyTo));
+    assert_eq!(received.conversation.id, initial.conversation.id);
+    assert_eq!(
+        received.conversation.contact_id,
+        initial.conversation.contact_id
+    );
+    assert_eq!(received.message.sender_id, sender.id.to_string());
+    assert_eq!(
+        received.conversation.status,
+        if primary_blocked { closed.status } else { 0 },
+        "reopening follows the primary contact's mute state, not the sender's"
+    );
+    assert_eq!(
+        received.conversation.snoozed_until,
+        if primary_blocked {
+            closed.snoozed_until
+        } else {
+            None
+        }
+    );
+    assert!(received.conversation.waiting_since.is_some());
+    assert_eq!(
+        get_conversation(&db.conn, s, initial.conversation.id)
+            .await
+            .unwrap(),
+        received.conversation
+    );
+    assert_eq!(
+        get_contact(&db.conn, s, initial.conversation.id)
+            .await
+            .unwrap()
+            .blocked,
+        primary_blocked
+    );
+    let messages = list_messages(&db.conn, s, initial.conversation.id, MessageView::Public)
+        .await
+        .unwrap();
+    assert_eq!(messages.len(), 2);
+    assert_eq!(messages.last().unwrap(), &received.message);
+}
+
+#[tokio::test]
+async fn resolved_thread_with_blocked_primary_contact_stays_resolved_for_other_sender() {
+    assert_other_sender_reopen_policy(ConversationStatus::Resolved, true, false).await;
+}
+
+#[tokio::test]
+async fn snoozed_thread_with_blocked_primary_contact_stays_snoozed_for_other_sender() {
+    assert_other_sender_reopen_policy(ConversationStatus::Snoozed(Utc::now()), true, false).await;
+}
+
+#[tokio::test]
+async fn other_sender_reopens_unblocked_primary_contact_regardless_of_sender_block() {
+    for status in [
+        ConversationStatus::Resolved,
+        ConversationStatus::Snoozed(Utc::now()),
+    ] {
+        for sender_blocked in [false, true] {
+            assert_other_sender_reopen_policy(status, false, sender_blocked).await;
+        }
+    }
+}
+
 #[tokio::test]
 async fn database_constraints_prevent_cross_inbox_links_and_private_source_ids() {
     let db = fresh_in_memory_db().await;

@@ -1,13 +1,46 @@
 # Step 1 — tickets (pieces 2 + 2b)
 
-Complete and pushed. Draft PR: https://github.com/Adanmohh/codeg/pull/1
+Acceptance revision in progress. Draft PR: https://github.com/Adanmohh/codeg/pull/1
 
-Validated implementation: `427108f87f965073d235089212cba0e34f5197f3`.
+Initial validated implementation: `427108f87f965073d235089212cba0e34f5197f3`.
 
 Worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`
 Branch: `feat/step1-tickets`
-Sole writer; no workers, model changes, main pulls, merges, messages to people,
-or deployments. Protected project documents and both lockfiles are unchanged.
+Sole writer; no additional workers, model changes, messages to people or deployments.
+Owner-authorized main/rebrand merge: `31f27050` from main `d63f98b9`.
+All root planning documents are inherited unchanged from that main commit; both
+NOTICE sections are preserved. Both lockfiles remain unchanged. The independent
+approvals review is inherited from main and is not a separate change in this PR.
+
+Acceptance review read completely from the approvals worker's
+`reports/review-tickets.md` (also preserved in main). One P2 finding: a different
+unblocked sender could reopen a thread whose primary contact is blocked. Pinned
+Chatwoot `message.rb:404–410` and `ConversationMuteHelpers#muted?` confirm that
+reopening must check the primary contact. All three new regressions failed against
+the old guard (exit 101). The fix reads the primary contact in the existing scoped
+writer transaction; message sender attribution remains separate. Incoming
+`waiting_since` updates follow `Message#set_waiting_since_on_incoming_message`
+independently of reopening. All 18 server-mode ticket tests, typecheck, formatting
+and whitespace checks now pass. Desktop/server compile and Clippy gates are pending.
+
+Three new regression tests cover blocked-primary resolved and snoozed threads,
+plus unblocked-primary controls with both blocked and unblocked secondary senders.
+They verify persisted status, snooze preservation/clearing, primary-contact
+identity, separate sender attribution, incoming waiting time and stored messages.
+The existing same-contact reopen and independent-connection tests remain passing.
+
+Current raw logs: `tickets-review-regression-before.log` (exit 101, all three
+regressions fail against the old guard), `tickets-review-tests-server.log`
+(exit 0, 18 passed), `tickets-review-typecheck.log` (exit 0), under reports/.
+
+Docs-first on this revision: separate React/Cargo manifest reads exited 0. Audit
+lines 545/546 and 547/548 contain live PreToolUse/PostToolUse pairs for session
+`01a07c1c-d82f-7022-84db-778a438632f1` and this tickets worktree. The offline
+code-context guide exited 0 with generic SQLite-first guidance; task-specific
+corpus coverage is still missing. Read installed SeaORM 1.1.19 select/entity/update
+implementations and the existing scoped contact lookup before the edit. Read the
+cached immutable Chatwoot message source first, then the newly needed mute concern
+through `gh api` at the same required commit. No hook disabled or bypassed.
 
 ## Outcome
 
@@ -18,7 +51,7 @@ contact/inbox join, with assignment and private/public message distinctions.
 The shared store supports atomic ingestion, replay deduplication, contact reuse,
 assignment/status, notes, public-reply receipts and scoped reads.
 
-## Validation
+## Initial validation
 
 Rust commands run from this worktree's `src-tauri/`; frontend commands from the
 worktree root. All build outputs belong to this worktree. No lockfile changes.
@@ -100,6 +133,7 @@ file names are reproduced in NOTICE. No AGPL, restricted enterprise or Kun code.
 | `app/services/mailbox/conversation_finder_strategies/new_conversation_strategy.rb` | Stored In-Reply-To fallback; contact reuse; atomic creation |
 | `app/models/conversation.rb` | Conversation, assignment, lifecycle fields |
 | `app/models/message.rb` | Message direction, privacy, source_id and public-chat filtering |
+| `app/models/concerns/conversation_mute_helpers.rb` (`muted?` only) | Primary-contact blocked guard for reopening; read/ported during acceptance fix |
 | `app/models/contact.rb` | Contact identity and normalized scoped email |
 | `app/models/inbox.rb` | Inbox ownership, channel, name/email |
 | `app/models/contact_inbox.rb` | Contact/inbox join used by new-conversation strategy |
@@ -133,7 +167,9 @@ instead of silently rewritten; header parsing remains Step 2.
 ### Immutable source integrity
 
 Raw responses are preserved locally in ignored reports/tickets-source.log/.
-All 17 following downloaded blobs match the immutable commit's Git tree.
+All 18 following downloaded blobs match the immutable commit's source metadata.
+The original 17 were checked against the full Git tree; the additional concern's
+Git blob hash matches its exact-commit contents response from `gh api`.
 
 | Source file (immutable commit linked) | Git blob SHA |
 | --- | --- |
@@ -143,6 +179,7 @@ All 17 following downloaded blobs match the immutable commit's Git tree.
 | [app/models/conversation.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/conversation.rb) | `5d9394afe241b5612c9010c21d45a5e77b991836` |
 | [app/models/inbox.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/inbox.rb) | `cb9870538305a127331875ad9bc675b2e18107cc` |
 | [app/models/message.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/message.rb) | `913fb5a6469b43bd347ed6ee8992f56deed81433` |
+| [app/models/concerns/conversation_mute_helpers.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/models/concerns/conversation_mute_helpers.rb) | `ebc0542d23aa5e8b361ef07e2c0ca1e156e61d69` |
 | [app/services/mailbox/conversation_finder.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder.rb) | `2f8128ecdb333104dc3940ea555b39dfe26585d1` |
 | [app/services/mailbox/conversation_finder_strategies/base_strategy.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder_strategies/base_strategy.rb) | `fd61fd9e090227d1b7d6d653cf96fa41be616b0e` |
 | [app/services/mailbox/conversation_finder_strategies/in_reply_to_strategy.rb](https://github.com/chatwoot/chatwoot/blob/b354a9550e1fb59fa537a9c384232cb076213e72/app/services/mailbox/conversation_finder_strategies/in_reply_to_strategy.rb) | `e3d8270f1c6265e0958336007f246b3a78804418` |
@@ -216,8 +253,8 @@ Additional implementation decisions:
   inboxes. Public receipt replay must also match conversation, author and content.
 - Shared registry changes total four inserted lines relative to baseline. Reserved
   migration name is `m20260907_000002_ops_tickets`; keep it alongside the approvals
-  migration when orchestrator integrates. If another branch adds NOTICE, preserve
-  both attribution sections. No main changes were pulled to resolve integration.
+  migration when orchestrator integrates. The owner-authorized main/rebrand merge
+  preserves both NOTICE sections. Approvals branch integration remains separate.
 
 ## Checkpoint history and corrected command failures
 
@@ -237,7 +274,7 @@ Additional implementation decisions:
   to src-tauri and final suite passed. Early reads of not-yet-created gate logs
   returned 1; final logs exist. No product workaround or hook bypass was used.
 
-## Delivery
+## Initial delivery
 
 Validated implementation SHA: `427108f87f965073d235089212cba0e34f5197f3`.
 Commit `feat: complete scoped ticket persistence and threading tests` and push to

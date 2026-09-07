@@ -356,18 +356,19 @@ pub async fn ingest_email(
     .await?;
     let should_reopen = matches!(conversation.status, 1 | 3);
     let needs_waiting_since = conversation.waiting_since.is_none();
+    let primary_contact = get_contact(&txn, scope, conversation.id).await?;
     let mut active = conversation.into_active_model();
     active.last_activity_at = Set(now);
     active.updated_at = Set(now);
-    if !sender.blocked {
-        // Email replies reopen resolved/snoozed conversations (Message.rb).
-        if should_reopen {
-            active.status = Set(0);
-            active.snoozed_until = Set(None);
-        }
-        if needs_waiting_since {
-            active.waiting_since = Set(Some(now));
-        }
+    // Message#reopen_conversation uses ConversationMuteHelpers#muted?, which
+    // checks the conversation's primary contact, not another message sender.
+    if !primary_contact.blocked && should_reopen {
+        active.status = Set(0);
+        active.snoozed_until = Set(None);
+    }
+    // Message#set_waiting_since_on_incoming_message is independent of reopening.
+    if needs_waiting_since {
+        active.waiting_since = Set(Some(now));
     }
     let conversation = active.update(&txn).await?;
     txn.commit().await?;
