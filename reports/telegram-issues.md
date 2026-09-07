@@ -4,6 +4,8 @@ Contract checkpoint, 2026-09-08. Sole writer in
 `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`, new branch
 **feat/step3-telegram-issues**, created clean from accepted origin/main
 **77c88d9c615072a11b6e24224ec954c398b33518**. No additional agents.
+Contract commit **a7e2e2f3eee3be3e34b0f7006bf8d96bc5f004bb** is pushed.
+Draft PR: **https://github.com/Adanmohh/codeg/pull/12**.
 
 PR10 was accepted at **c7a46acf30296a9e7c41a5a5c57d47afaeaa00e4**, merged as
 **c3cef09a896308b2501947e5aaafa533e36d9053**. Its last report-only commit
@@ -161,7 +163,25 @@ installation, paid inference, deployment or messages to people.
 Clean-status check, `git fetch origin`, `git switch -c feat/step3-telegram-issues
 origin/main`, full planning/NOTICE/source reads and immutable gh api metadata
 checks exited **0**. Guide/docs query results are above. Initial branch base is
-fixed at **77c88d9c615072a11b6e24224ec954c398b33518**. Commit/push/PR metadata
-will follow this contract checkpoint. Await accepted host integration before
-source wiring; meanwhile inspect accepted notification transaction primitives
-and plan exact upgrade/regression cases. No product behavior is claimed yet.
+fixed at **77c88d9c615072a11b6e24224ec954c398b33518**. Commit/push and PR creation
+exited **0**, draft PR12 created after reading installed `gh pr create --help`.
+PR9's later report checkpoint is **7a3e88d1510134b0010df22a41b617b22bd3a224**,
+still unmerged at the latest metadata check. Product wiring remains gated by the
+owner's explicit accepted-host requirement. No product behavior is claimed yet.
+
+Read the full accepted Telegram claim/live/dispatch/scan/resolve implementation
+and its named-migration/authentication tests. Read installed SeaORM **1.1.19**
+`database/transaction.rs` begin/commit/rollback/drop and sea-orm-migration
+**1.1.19** `migrator.rs` up/down/SQLite dispatch. SQLite migrations do not receive
+an automatic transaction wrapper there, so the forward migration must explicitly
+own its DDL transaction. Test upgrade from real email sent/unknown/checking rows,
+injected mid-DDL failure with all original rows intact, strict two-kind rejection
+and explicit issue opt-in. Preserve claim IDs when upgrading; no retry is minted
+by a schema change. These are planned regressions, not executed test claims.
+
+Latest live hook observations for this session/worktree include PreToolUse
+**1788825480**, PostToolUse **1788825422**, exit 0. This remains a report-only
+checkpoint while PR9 acceptance is pending. After acceptance: fetch/merge accepted
+main, verify full host source/attribution, add NOTICE mapping, implement the closed
+projection and forward migration, then run the reported gates and isolated CLI
+fixture. No extra authorization is needed beyond that already specified sequence.
