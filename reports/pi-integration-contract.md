@@ -31,3 +31,11 @@ Planning evidence for FOUNDING pieces 1b/6, not an implemented integration. All 
 - No live send or issue filing is needed for automated tests: use local provider fixtures and explicitly distinguish them from production configuration.
 
 Before implementation, read complete source/license/tests at the pins above and cite every adapted file in NOTICE. This contract records verified behavior and review requirements; it adds no Pi extension, dependency, runtime registration or new authority.
+
+## Runtime model and scoped proposal handoff follow-up
+
+Read installed pi 0.85.1 provider/model/auth-storage documentation and codeg `src/lib/resolve-default-agent.ts`, Pi configuration API wrappers and `acp/delegation/listener.rs` on 2026-09-07. Safe offline `pi --no-extensions --no-skills --no-prompt-templates --no-themes --no-context-files --list-models gpt-6-astra` returns no matches; the installed generated model catalogue also has no Astra entry. The available offline list currently contains a configured Qwen-plan provider. This is a product-runtime setup gap, not a worker downgrade: all Herdr workers remain GPT-6 Astra max. Do not silently select a cheaper model for the Desk. The later pi worker must verify current catalogue/custom-model support and expose missing configuration honestly; no auth files or global defaults were modified by this inspection.
+
+The existing `TokenRegistry` binds a per-launch token to `parent_connection_id` and working directory and supports revocation by parent. Existing task progress/completion dispatch resolves task ownership from that connection through TaskEngine. Borrow this seam for scoped Ops proposal capabilities; it is not an existing Ops authorization endpoint. `CODEG_TOKEN` belongs to the operator boundary and must not be handed to pi tool configuration. The inherited single-tenant, same-user filesystem model is not an OS sandbox against a malicious local process.
+
+The current default-agent resolver respects folder defaults, active-conversation inheritance, the user-sorted agent list, then `AGENT_DISPLAY_ORDER`. A later default-to-pi change must preserve explicit saved user choices. Existing Pi configuration APIs merge native settings/auth/model files; do not overwrite unrelated global configuration to implement project defaults.

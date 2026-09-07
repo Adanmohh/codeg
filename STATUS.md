@@ -1,4 +1,4 @@
-# Status — 2026-09-07
+# Status — 2026-09-08
 
 Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 transport, integration and UI work continues autonomously. Browser baseline passes; new Ops flow checks and final Design Studio loops remain.
 
@@ -97,3 +97,31 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - Rebrand worker now implements `feat/step2-intake-github` in its existing worktree/pane: read-only MCP intake, evidence validator, direct GitHub App client and filing receipts. Deliverable `reports/intake-github.md`. UI and email workers continue separately.
 - Reserved migrations: UI/drafts `000003_ops_ui`, email `000004_ops_email` if needed, intake/filing `000005_ops_intake`. Shared registration edits must preserve every entry.
 - Verified source gaps: in-app feedback read and diagnostic download routes are absent in Hafidh; existing TestFlight reads use bounded offset scans. SDK v2.0.1 uses MCPServer, not FastMCP. Configuration/evidence gaps remain explicit; no live App install or issue filing.
+
+## Email transport acceptance in progress
+
+- First 15 worker transport tests pass; implementation checkpoint `37f205bf` integrated accepted main as `2555fff2`. Final gates are running.
+- Orchestrator found a P2 Reply-To loss in normalization, verified the pinned Chatwoot preference through gh api, and requested a worker fix/regression tests before merge. See [review](reports/review-email-transport.md). Transport is not yet accepted.
+- Real desktop sidecar release build is running in the root checkout; no app packaging/distribution result is claimed yet.
+
+## Native foundation bundle validated
+
+- Real sidecar preparation and unsigned debug macOS app bundling both pass. Bundle is `src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app`; isolated native startup applied both foundation migrations and remained alive, then the owned process was stopped. [Evidence and limits](reports/native-foundation-build.md).
+- This artifact contains merged Step 1, not unmerged Step 2. Rebuild after integration; Playwright CLI checks remain the browser evidence and final Design Studio loops are still pending.
+
+## Direct Resend transport accepted and merged
+
+- PR #6 accepted at `80b0cb0e6fe26695801b1d661054f1c8155cd99c`, merged as `2fecb1cfdce57cba451520ce192bc404fe081051`. Reply-To review finding fixed. Orchestrator independently reran all 18 transport tests successfully and reviewed source mapping, validation, scope/receipt boundaries and dependency changes. [Review](reports/review-email-transport.md), [implementation report](reports/email-transport.md).
+- Worker final gates pass: 18 transport and 18 ticket tests in each runtime, desktop/server checks, both Clippy gates and frontend typecheck. Only mail-parser 0.11.1 and hashify 0.2.9 are added; existing dependency versions and frontend lock remain unchanged.
+- UI worker is authorized to wire the merged client through durable attempts/receipts and existing credential storage. No direct send endpoint or mutable-draft bypass. The now-free email worker is reassigned to pi integration next.
+
+## Pi bridge dispatched; email UI integration continues
+
+- `tickets` worker now owns `feat/step2-pi-desk`, same worktree/pane `wR:p4`, tab Pi · agent bridge. Deliverable `reports/pi-desk.md`: pinned pi extension/adapter, per-launch scoped proposal/read bridge and default-agent wiring. No operator token in agent tools, no silent model downgrade.
+- `approvals` worker continues `feat/step2-ops-ui`, pane `wR:p3`, tab Email · approvals UI, now authorized to connect the merged Resend client to per-inbox credentials/pulls and durable approved-send attempts/receipts. It owns reserved 000004 delivery storage as transport left it unused.
+- `rebrand` worker continues GitHub/Hafidh implementation on `feat/step2-intake-github`, pane `wR:p2`. All three remain GPT-6 Astra max with docs-first, gh api research, isolated branches and report deliverables.
+
+## Continued validation — 2026-09-08
+
+- Orchestrator independently ran the intake Python suite: 14 passed with bytecode/cache writes disabled. Production Python matches `a4f9f316`; added scan/configuration regressions were present in the worker test file (SHA-256 `19fbaa337a16fde21c5f09bfcd8c25c524de1afad1db379f6f6780c949b2650f`). GitHub/Rust portion and final report still await acceptance.
+- UI worker has pushed `26a4bc8d` and integrated accepted main as `53349671`; continues email transport wiring and browser tests. Pi worker researches/implements its scoped bridge independently. Final Design Studio audit/fix/recheck remains pending.
