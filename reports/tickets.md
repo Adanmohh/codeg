@@ -67,3 +67,71 @@ Original raw source and tree responses are local under ignored
 ## Delivery
 
 Implementation SHA: pending. Draft PR URL: pending. Required gates: pending.
+
+## Orchestrator checkpoint — stopped for docs-first hook reload
+
+Owner requested a safe checkpoint and STOP before further product edits. This
+is an incomplete implementation checkpoint, not a completion claim.
+
+Current files:
+
+- `src-tauri/src/db/migration/m20260907_000002_ops_tickets.rs`: one registered
+  migration with five tables (four requested models plus their contact/inbox
+  join), composite ownership foreign keys, assignment exclusivity, privacy and
+  scoped source-id constraints, and queue/thread lookup indexes.
+- `src-tauri/src/db/entities/ops_ticket.rs`: five nested SeaORM entity modules.
+- `src-tauri/src/db/service/ticket_service/threading.rs`: ordered finder,
+  receiver and both header patterns, source-id lookup, original-header fallback;
+  account/inbox scope on every branch.
+- `src-tauri/src/db/service/ticket_service/mod.rs`: shared store interface for
+  inbox creation/listing, conversations/contact/messages, atomic deduplicated
+  ingestion, assignment, status and private notes. Public message filtering
+  follows Message.chat. No outbound transport or approval side effects.
+- `NOTICE`: original Chatwoot copyright and licence text with exact source paths
+  and immutable SHA; original codeg Apache LICENSE untouched.
+- Shared registries changed by only four lines total.
+
+Resumption checklist (do not treat any item as already validated):
+
+1. Reload the configured docs-first hook as orchestrator requested. Continue as
+   sole writer on this same branch/worktree; no workers, model changes or scope
+   changes. Latest documentation uses `gh api`; pinned source remains v4.17.1.
+2. Review and format the new Rust files. They have NOT been compiled or rustfmt'd.
+   `ticket_service/mod.rs` declares `#[cfg(test)] mod tests;` but **tests.rs has
+   not yet been created**, so test compilation is knowingly incomplete.
+3. Add meaningful focused tests ported from the listed Chatwoot specs: competing
+   strategy precedence, ordered headers, message-specific and fallback patterns,
+   receiver validity, skipped foreign inbox references, all-strategy account/
+   inbox isolation, no subject/sender-only merge, stored original-header fallback,
+   contact reuse, duplicate ingestion, rollback of first-message failure, private
+   versus public views, assignment reset, lifecycle, and on-disk close/reopen.
+4. Audit the store's narrow schema transcription and record omissions clearly:
+   no Rails account/user/team/channel implementations, no enterprise behavior,
+   no CRM-only fields, no attachments, no mail parser, no UI. Account ids are
+   explicit caller scopes; user/bot/team ids are opaque strings for future identity
+   integration. Inbox auto-assignment defaults off because no scheduler is ported.
+   Private notes cannot have source_id. Public outgoing rows are representable
+   by the entity/schema; the approved-send integration remains Step 2.
+5. Create the ignored local `out/index.html` placeholder from CI if needed.
+   Build in THIS worktree's own target directory, never another worktree's output.
+   Run default desktop `cargo check --locked`, server
+   `cargo check --locked --no-default-features --bin codeg-server`, focused Rust
+   tests, and `pnpm exec tsc --noEmit`. Record commands/exits and any failures.
+6. Recheck both lockfiles remain unchanged, attribution, minimal registry edits,
+   `git diff --check`; finish commits/push with lowercase prefixes. Open small
+   DRAFT PR to main after required checks, using gh help already read and a body
+   file. Do not merge or deploy. Add PR URL and validated implementation SHA here.
+
+Checkpoint evidence:
+
+- Initial docs commit `10225544554351d0bd96948d2a53cb952998e9a5` pushed to origin,
+  exit 0.
+- `git diff --check` at checkpoint: exit 0 (tracked edits); newly added source
+  still requires formatting/review and compilation.
+- No default desktop/server compile, typecheck or focused test has been run yet.
+- No draft PR exists yet; owner requested checkpoint before continuing.
+- Source downloads remain preserved in ignored `reports/tickets-source.log/`.
+- No edits to FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md or lockfiles.
+- Staged `git diff --cached --check`: exit 2, extra blank line at EOF in
+  `src-tauri/src/db/entities/ops_ticket.rs:135`. Preserved unchanged for this
+  requested stop; remove with formatting when resumed.
