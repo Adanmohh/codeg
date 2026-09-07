@@ -133,3 +133,8 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - PR #5 accepted at `493df48ca92699c5818fde39d5819596712b9fdb`, merged as `4988f46bf20e7c22a83ea9a231c8073fd5d0b391`. Both evidence/policy findings and canonical operator labels are fixed. Root independently ran all 22 Rust intake tests successfully, in addition to the earlier 14 Python tests. [Review](reports/review-intake-github.md).
 - Worker desktop/server checks, both Clippy gates, selected Ops suites, 18 ticket and 18 Resend regressions and frontend typecheck pass. This accepts the read-only intake and approved filing modules; host/UI wiring and external configuration remain.
 - Prepared the [Design Studio acceptance checklist](reports/design-acceptance-checklist.md). Its 18 checks are requirements, not completed audit results. Email UI and pi bridge work continue in their existing panes.
+
+## P1 operator workflow dispatched
+
+- Reused `rebrand`, `wR:p2`, for `feat/step2-bug-workflow` from accepted main: trusted intake/configuration and evidence attachment, exact GitHub issue review/receipt UI, and linkage to existing fix tasks. Deliverable `reports/bug-workflow.md`; separate host/frontend modules, reserved migration 000006, shared auth/navigation integration coordinated after email UI acceptance.
+- Email owner continues PR #7; pi owner continues PR #8 and coordinates typed P1 proposal access with the host owner. All retain Astra max, docs-first and gh api research. Isolated browser ports: root 4318, email 4320, bug workflow 4322. No live external actions are part of fixture validation.
