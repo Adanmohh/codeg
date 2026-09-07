@@ -90,3 +90,10 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - Email worker owns direct Resend transport; GitHub/Hafidh worker owns intake contracts and subsequent implementation. Product writes remain worker-only. Human review and exact-payload dispatch are required at the UI/API seam; unavailable external configuration must be shown honestly.
 
 - Combined-foundation browser server upgrade passed: existing ticket-only test database applied approvals, retained both migration records and ten Ops tables; Playwright CLI reload recovered at desktop width. Evidence: [browser report](reports/browser-step1.md).
+
+## Intake contracts accepted; implementation dispatched
+
+- Report-only PR #4 accepted at `c5452682534a08981c131290488890e3777aa8fd`, merged as `bb9134d3966c6904cc5dddfda6e067878d03d307`. Orchestrator reviewed the source/API/evidence contracts and independently verified the pinned SDK import and quickstart through gh api. No product behavior or runtime test is claimed by this report.
+- Rebrand worker now implements `feat/step2-intake-github` in its existing worktree/pane: read-only MCP intake, evidence validator, direct GitHub App client and filing receipts. Deliverable `reports/intake-github.md`. UI and email workers continue separately.
+- Reserved migrations: UI/drafts `000003_ops_ui`, email `000004_ops_email` if needed, intake/filing `000005_ops_intake`. Shared registration edits must preserve every entry.
+- Verified source gaps: in-app feedback read and diagnostic download routes are absent in Hafidh; existing TestFlight reads use bounded offset scans. SDK v2.0.1 uses MCPServer, not FastMCP. Configuration/evidence gaps remain explicit; no live App install or issue filing.
