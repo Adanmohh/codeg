@@ -108,3 +108,9 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 
 - Real sidecar preparation and unsigned debug macOS app bundling both pass. Bundle is `src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app`; isolated native startup applied both foundation migrations and remained alive, then the owned process was stopped. [Evidence and limits](reports/native-foundation-build.md).
 - This artifact contains merged Step 1, not unmerged Step 2. Rebuild after integration; Playwright CLI checks remain the browser evidence and final Design Studio loops are still pending.
+
+## Direct Resend transport accepted and merged
+
+- PR #6 accepted at `80b0cb0e6fe26695801b1d661054f1c8155cd99c`, merged as `2fecb1cfdce57cba451520ce192bc404fe081051`. Reply-To review finding fixed. Orchestrator independently reran all 18 transport tests successfully and reviewed source mapping, validation, scope/receipt boundaries and dependency changes. [Review](reports/review-email-transport.md), [implementation report](reports/email-transport.md).
+- Worker final gates pass: 18 transport and 18 ticket tests in each runtime, desktop/server checks, both Clippy gates and frontend typecheck. Only mail-parser 0.11.1 and hashify 0.2.9 are added; existing dependency versions and frontend lock remain unchanged.
+- UI worker is authorized to wire the merged client through durable attempts/receipts and existing credential storage. No direct send endpoint or mutable-draft bypass. The now-free email worker is reassigned to pi integration next.
