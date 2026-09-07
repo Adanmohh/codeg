@@ -1,0 +1,17 @@
+[project]
+name = "hafidh-intake"
+version = "0.1.0"
+description = "Read-only Hafidh TestFlight MCP intake for Ops Desk"
+requires-python = ">=3.12"
+dependencies = ["mcp==2.0.1", "httpx==0.28.1", "pydantic==2.12.5"]
+
+[project.scripts]
+hafidh-intake = "hafidh_intake.server:main"
+
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["src"]

@@ -202,3 +202,86 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+
+Ops Desk Hafidh intake and GitHub filing
+=======================================
+Owner-authorized Hafidh source a83794708193a18611c8e6eb8e88637b8136e471:
+  backend/app/modules/testflight/{models.py,schemas.py,admin_router.py,triage.py}
+  backend/app/modules/feedback/{models.py,feedback_schemas.py,feedback_router.py}
+  backend/app/common/utils/operation_result.py
+Port: integrations/hafidh-intake/src/hafidh_intake/{schemas.py,client.py,triage.py}.
+Triage copied with only the Severity import changed; normalized DTO/GET glue
+adds privacy and evidence-gap boundaries. No source application is imported.
+
+Owner-authorized IntroInnovation/intromail source
+0bd24dfe284b888aa9f602fa1fd00e337ea38874:
+  backend/app/services/github/client.py (App JWT, token cache, REST headers)
+  backend/app/services/github/actions.py (Comment destructive floor/resource)
+  backend/tests/test_github_pack.py (mock client/action test pattern)
+Port: src-tauri/src/ops_intake/{github.rs,mod.rs} and focused tests.
+No upstream create-issue helper exists; that call and durable evidence/receipt
+binding are minimal glue against the official frozen REST contract in the report.
+No third-party license is claimed for these owner-authorized repositories.
+
+codeg v0.30.4 6f6bd648b206412644842a98d9ffeebf57292bed, Apache-2.0:
+  src-tauri/src/db/service/work_task_service.rs
+  src-tauri/src/models/work_task.rs
+  src-tauri/src/db/migration/m20260801_000003_work_task_template.rs
+Adaptation: template snapshots and SQLite transaction/CAS patterns in
+src-tauri/src/ops_intake/ and db/migration/m20260907_000005_ops_intake.rs.
+Original LICENSE and previous NOTICE entries retained.
+
+MCP Python SDK v2.0.1 8b191a433634d64b1306d7d51be8b16e14cc0893:
+  examples/mcpserver/readme-quickstart.py
+  examples/mcpserver/weather_structured.py
+  src/mcp/server/mcpserver/server.py (sanitized public call_tool boundary)
+Port: integrations/hafidh-intake/src/hafidh_intake/server.py and stdio tests.
+Original license:
+
+MIT License
+
+Copyright (c) 2024 Anthropic, PBC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Pinned runtime signing dependency jsonwebtoken 9.3.1,
+Keats/jsonwebtoken 87bbe49004de17ac1c64bf25d7751c0e43cff5dc.
+No custom signing implementation. Original dependency license:
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Vincent Prouillet
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
