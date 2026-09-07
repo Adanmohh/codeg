@@ -14,6 +14,7 @@ Reviewed main product at merge `d5a7127187cd107d2bdd6d00e7c7900e542b3903`; later
 - [Desktop workspace](browser-step1/workspace-desktop.png)
 - [Mobile task view](browser-step1/tasks-mobile.png)
 - [Mobile dark workspace](browser-step1/workspace-mobile-dark.png)
+- [Dark system settings](browser-step1/system-dark.png)
 - Local raw snapshots/console entries are in ignored `.playwright-cli/`; build logs `/tmp/ops-desk-browser-build.log` and `/tmp/ops-desk-server-build.log`.
 
 ## Limits and follow-up
@@ -21,3 +22,5 @@ Reviewed main product at merge `d5a7127187cd107d2bdd6d00e7c7900e542b3903`; later
 The only console errors observed were the intentional invalid-token 401 and an `acp_describe_agent_options` 500 when the unconfigured default Claude ACP adapter was inspected by New task. The UI explains that the adapter is missing. No agent was launched, task executed, email sent or issue filed. Pi default/adapter wiring is still planned. No Ops email/approval UI exists yet, so these checks establish the inherited shell baseline, not end-to-end P1/P2 acceptance.
 
 Accessibility snapshots show unnamed icon controls and some appearance selectors without explicit accessible labels; login uses a placeholder and renders its error as an ordinary paragraph. These are concrete review candidates for the final Design Studio loop, not a claim that all accessibility checks passed. Full measured/specialist audit and the new Ops flows remain pending. Native Tauri/WKWebView and a packaged binary were not tested.
+
+The real System settings page shows “Internal build · updates disabled” and a disabled Check for updates button. Its inherited explanatory sentence still describes installing releases; include that contradictory copy in the final UI cleanup. No update check was triggered.
