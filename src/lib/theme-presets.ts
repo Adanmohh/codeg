@@ -62,8 +62,7 @@ export function normalizeFolderThemeColor(
 }
 
 /**
- * 默认主题色。选用 "neutral" 是因为它对应当前 globals.css 的现存 :root 值
- * （所有 chroma=0 的纯灰阶），可保证升级后视觉零差异。
+ * Default palette: retain the stored neutral ID with Hafidh teal accents.
  */
 export const DEFAULT_THEME_COLOR: ThemeColor = "neutral"
 
@@ -76,7 +75,7 @@ export const DEFAULT_THEME_COLOR: ThemeColor = "neutral"
  * 自己对应预设的代表色，不能跟随当前激活的主题色。
  */
 export const THEME_COLOR_PREVIEW: Record<ThemeColor, string> = {
-  neutral: "oklch(0.205 0 0)",
+  neutral: "#245e58",
   zinc: "oklch(0.21 0.006 285.885)",
   slate: "oklch(0.208 0.042 265.755)",
   stone: "oklch(0.216 0.006 56.043)",

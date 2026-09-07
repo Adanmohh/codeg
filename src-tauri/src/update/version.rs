@@ -13,8 +13,10 @@ use serde::Deserialize;
 
 use crate::app_error::AppCommandError;
 
-/// Update manifest URL — mirrors the `endpoints` entry in `tauri.conf.json`
-/// so desktop and server modes consult the same source of truth.
+/// Internal Hafidh build: no application release channel.
+pub const UPDATES_ENABLED: bool = false;
+
+/// Retained upstream channel; unreachable while updates are disabled.
 pub const UPDATE_MANIFEST_URL: &str =
     "https://github.com/xintaofei/codeg/releases/latest/download/latest.json";
 
@@ -70,7 +72,17 @@ pub struct LatestManifest {
     pub pub_date: Option<String>,
 }
 
+pub fn ensure_updates_enabled() -> Result<(), AppCommandError> {
+    if !UPDATES_ENABLED {
+        return Err(AppCommandError::configuration_invalid(
+            "Application updates are disabled in this internal build",
+        ));
+    }
+    Ok(())
+}
+
 pub async fn fetch_latest_manifest() -> Result<LatestManifest, AppCommandError> {
+    ensure_updates_enabled()?;
     let client = manifest_client()?;
     let response = client.get(UPDATE_MANIFEST_URL).send().await.map_err(|e| {
         AppCommandError::network("Failed to fetch update manifest").with_detail(e.to_string())
@@ -111,6 +123,19 @@ pub fn is_newer(latest: &str, current: &str) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[tokio::test]
+    async fn internal_build_refuses_manifest_before_network() {
+        let error = fetch_latest_manifest().await.unwrap_err();
+        assert!(matches!(
+            error.code,
+            crate::app_error::AppErrorCode::ConfigurationInvalid
+        ));
+        assert_eq!(
+            error.message,
+            "Application updates are disabled in this internal build"
+        );
+    }
 
     #[test]
     fn newer_by_semver() {

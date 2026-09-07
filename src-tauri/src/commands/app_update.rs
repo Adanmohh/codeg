@@ -33,6 +33,7 @@ pub async fn perform_app_update(
     app: tauri::AppHandle,
     state: tauri::State<'_, AppUpdateStateHandle>,
 ) -> Result<AppUpdateState, AppCommandError> {
+    crate::update::version::ensure_updates_enabled()?;
     let handle = state.inner().clone();
     let emitter = EventEmitter::Tauri(app.clone());
 
@@ -114,6 +115,7 @@ pub async fn restart_app(
     app: tauri::AppHandle,
     state: tauri::State<'_, AppUpdateStateHandle>,
 ) -> Result<(), AppCommandError> {
+    crate::update::version::ensure_updates_enabled()?;
     let handle = state.inner().clone();
     let emitter = EventEmitter::Tauri(app.clone());
     // Atomically claim the relaunch (flips to `Restarting`) only if an update is

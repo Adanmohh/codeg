@@ -267,7 +267,9 @@ export function BackupSettings() {
     const { open } = await import("@tauri-apps/plugin-dialog")
     const picked = await open({
       multiple: false,
-      filters: [{ name: "Codeg backup", extensions: ["codegbak", "zip"] }],
+      filters: [
+        { name: "Hafidh Ops Desk backup", extensions: ["codegbak", "zip"] },
+      ],
     })
     if (typeof picked !== "string") return
     releasePrepared(restoreSource?.sourceId)
