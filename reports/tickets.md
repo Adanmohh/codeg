@@ -1,13 +1,15 @@
 # Step 1 — tickets (pieces 2 + 2b)
 
-Acceptance revision in progress. Draft PR: https://github.com/Adanmohh/codeg/pull/1
+Acceptance revision complete and pushed. Draft PR: https://github.com/Adanmohh/codeg/pull/1
 
 Initial validated implementation: `427108f87f965073d235089212cba0e34f5197f3`.
+Acceptance fix, committed and pushed: `cf2e629f46909db0e0aa23676f89cfe0785bb335`.
 
 Worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`
 Branch: `feat/step1-tickets`
 Sole writer; no additional workers, model changes, messages to people or deployments.
-Owner-authorized main/rebrand merge: `31f27050` from main `d63f98b9`.
+Owner-authorized main/rebrand merge: `31f27050061d3d9865a9979a4486646cd130d262`
+from main `d63f98b917a49ad63a9caaff95c967db0df75964`.
 All root planning documents are inherited unchanged from that main commit; both
 NOTICE sections are preserved. Both lockfiles remain unchanged. The independent
 approvals review is inherited from main and is not a separate change in this PR.
@@ -20,14 +22,20 @@ reopening must check the primary contact. All three new regressions failed again
 the old guard (exit 101). The fix reads the primary contact in the existing scoped
 writer transaction; message sender attribution remains separate. Incoming
 `waiting_since` updates follow `Message#set_waiting_since_on_incoming_message`
-independently of reopening. All 18 server-mode ticket tests, typecheck, formatting
-and whitespace checks now pass. Desktop/server compile and Clippy gates are pending.
+independently of reopening. Both desktop/server compile checks, all 18 ticket tests
+in each runtime mode, both Clippy gates, typecheck, formatting and whitespace
+checks pass. The single ticket P2 is fixed; orchestrator acceptance is pending.
 
 Three new regression tests cover blocked-primary resolved and snoozed threads,
 plus unblocked-primary controls with both blocked and unblocked secondary senders.
 They verify persisted status, snooze preservation/clearing, primary-contact
 identity, separate sender attribution, incoming waiting time and stored messages.
 The existing same-contact reopen and independent-connection tests remain passing.
+
+Fix location: [ticket_service/mod.rs:359](https://github.com/Adanmohh/codeg/blob/cf2e629f46909db0e0aa23676f89cfe0785bb335/src-tauri/src/db/service/ticket_service/mod.rs#L359).
+Regressions: [resolved](https://github.com/Adanmohh/codeg/blob/cf2e629f46909db0e0aa23676f89cfe0785bb335/src-tauri/src/db/service/ticket_service/tests.rs#L600),
+[snoozed](https://github.com/Adanmohh/codeg/blob/cf2e629f46909db0e0aa23676f89cfe0785bb335/src-tauri/src/db/service/ticket_service/tests.rs#L605),
+and [unblocked-primary controls](https://github.com/Adanmohh/codeg/blob/cf2e629f46909db0e0aa23676f89cfe0785bb335/src-tauri/src/db/service/ticket_service/tests.rs#L610).
 
 Current raw logs: `tickets-review-regression-before.log` (exit 101, all three
 regressions fail against the old guard), `tickets-review-tests-server.log`
@@ -36,11 +44,16 @@ regressions fail against the old guard), `tickets-review-tests-server.log`
 Docs-first on this revision: separate React/Cargo manifest reads exited 0. Audit
 lines 545/546 and 547/548 contain live PreToolUse/PostToolUse pairs for session
 `01a07c1c-d82f-7022-84db-778a438632f1` and this tickets worktree. The offline
-code-context guide exited 0 with generic SQLite-first guidance; task-specific
-corpus coverage is still missing. Read installed SeaORM 1.1.19 select/entity/update
+code-context guide exited 0 with generic SQLite-first guidance. A fresh dependency
+docs query for SeaORM exited 3: `rag-skills/data/code/tickets.db` is absent. Read
+installed SeaORM 1.1.19 select/entity/update
 implementations and the existing scoped contact lookup before the edit. Read the
 cached immutable Chatwoot message source first, then the newly needed mute concern
 through `gh api` at the same required commit. No hook disabled or bypassed.
+
+The completed review was reread from the approvals worktree before delivery
+preparation and matches the main copy byte-for-byte (SHA-256
+`d198953b1329622a0cb969c3f5dd5adbedd04bc108088a5c5b8c722c8a69e3d7`).
 
 ## Outcome
 
@@ -50,6 +63,45 @@ One SeaORM migration registers five related ticket tables, including the
 contact/inbox join, with assignment and private/public message distinctions.
 The shared store supports atomic ingestion, replay deduplication, contact reuse,
 assignment/status, notes, public-reply receipts and scoped reads.
+
+## Acceptance revision validation
+
+The commands below validate product commit
+`cf2e629f46909db0e0aa23676f89cfe0785bb335`, including the accepted rebrand.
+All Rust commands run in this worktree's src-tauri directory with
+`CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/target`;
+the before-fix and server test commands used the equivalent explicit `--target-dir`.
+Frontend commands run at this worktree root. Raw logs are ignored local evidence.
+
+| Command | Exit / result | Local log under reports/ |
+| --- | --- | --- |
+| `cargo test --locked --no-default-features --lib primary_contact` before the fix | 101; all 3 regressions fail at reopening status assertions | tickets-review-regression-before.log |
+| `cargo test --locked --no-default-features --lib db::service::ticket_service` | 0; 18 passed | tickets-review-tests-server.log |
+| `cargo test --locked --lib db::service::ticket_service` | 0; 18 passed with default desktop features | tickets-review-tests-desktop.log |
+| `cargo check --locked` | 0; default desktop features | tickets-review-desktop-check.log |
+| `cargo check --locked --no-default-features --bin codeg-server` | 0 | tickets-review-server-check.log |
+| `cargo clippy --locked --all-targets --features test-utils -- -D warnings` | 0 | tickets-review-clippy-desktop.log |
+| `cargo clippy --locked --no-default-features --bin codeg-server --lib -- -D warnings` | 0 | tickets-review-clippy-server.log |
+| `pnpm exec tsc --noEmit` | 0 | tickets-review-typecheck.log |
+| `rustfmt --edition 2021 --check` on changed Rust module/tests; `git diff --check` | 0 | tool output |
+| Protected docs, both review reports, root LICENSE and lockfiles compared to merged main `d63f98b9` | 0; no diff | tool output |
+| Complete rebrand/ticket NOTICE sections and original MIT license comparison | 0; retained byte-for-byte, plus the new concern attribution | tool output |
+
+The only merge conflict was NOTICE (add/add); retained both complete sections.
+Merge, fix commits and pushes exited 0. Git help exits 129 for `-h` as expected.
+No root planning documents were hand-edited, and the independent approval review
+has no diff from main. This fixes the single ticket P2; approval branch fixes and
+combined backend integration remain with the orchestrator. No transport, real
+email, GUI or packaged application behavior was exercised. Existing sidecar and
+proc-macro-error2 warnings remain as described in the initial validation.
+
+Draft PR #1 was updated through `gh pr edit 1 --repo Adanmohh/codeg --body-file
+reports/tickets-review-pr-body.log` (exit 0), describing the finding, corrected
+primary-contact policy, exact source pin, accepted-main merge and every final
+validation gate. API verification returned OPEN, draft=true, base main and head
+feat/step1-tickets at the validated fix SHA. No PR merge, review request or comment
+was sent. This final report follow-up changes documentation only; product/test
+files remain identical to `cf2e629f46909db0e0aa23676f89cfe0785bb335`.
 
 ## Initial validation
 
