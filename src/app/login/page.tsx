@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { isDesktop } from "@/lib/platform"
+import { afterLoginPath } from "@/lib/ops-telegram/locator"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -40,7 +41,7 @@ export default function LoginPage() {
 
       if (res.ok) {
         localStorage.setItem("codeg_token", token)
-        router.replace("/workspace")
+        router.replace(afterLoginPath(window.location.search))
       } else if (res.status === 401) {
         setError(t("invalidToken"))
       } else {
@@ -63,22 +64,36 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
+            <label htmlFor="operator-token" className="text-sm font-medium">
+              {t("tokenPlaceholder")}
+            </label>
             <input
+              id="operator-token"
               type="password"
               value={token}
               onChange={(e) => setToken(e.target.value)}
               placeholder={t("tokenPlaceholder")}
               autoFocus
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base md:text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              aria-invalid={!!error}
+              aria-describedby={error ? "login-error" : undefined}
+              className="flex min-h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-base md:text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
 
-          {error && <p className="text-sm text-destructive">{error}</p>}
+          {error && (
+            <p
+              id="login-error"
+              role="alert"
+              className="text-sm text-foreground"
+            >
+              {error}
+            </p>
+          )}
 
           <button
             type="submit"
             disabled={!token || loading}
-            className="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
           >
             {loading ? t("connecting") : t("connect")}
           </button>

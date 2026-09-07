@@ -99,3 +99,15 @@ generic aesthetic templates. Provider fixtures must be identified separately.
 
 Screenshot checks supplement, rather than replace, measured contrast and DOM
 accessibility checks, API authorization tests and provider request assertions.
+
+## Preliminary RTL evidence — 2026-09-08
+
+Root selected Arabic through actual Settings → System in Playwright CLI, then
+opened Ops from the mobile drawer at 390×844. HTML lang=ar, dir=rtl and computed
+direction=rtl; document width equals viewport, no horizontal overflow. Drawer
+and populated thread screenshots are in `reports/browser-step2/rtl-*-before-design.png`.
+The still-English Ops content is an acknowledged implementation limit. BC-3
+needs final judge assessment: Back to inbox keeps a left arrow in RTL, and
+English message punctuation is visually reordered by inherited RTL direction.
+Do not count the first post-language screenshot of the chat landing page as an
+Ops pass; root reopened Ops and captured the actual populated thread.

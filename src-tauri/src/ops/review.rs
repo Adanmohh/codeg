@@ -18,6 +18,86 @@ use crate::{
 
 const ACTION: &str = "ops.email.reply";
 
+/// Read-only projection for trusted notification hosts. This is neither a
+/// human identity nor an authorization. It never includes mail/private data.
+pub(crate) struct ReplyNoticeSnapshot {
+    pub proposal_id: i32,
+    pub task_id: i32,
+    pub run_seq: i32,
+    pub sha256: String,
+}
+
+pub(crate) async fn notice_snapshot<C: ConnectionTrait>(
+    db: &C,
+    account_id: i32,
+    id: i32,
+) -> Result<Option<ReplyNoticeSnapshot>, DbError> {
+    use crate::db::service::ticket_service::{self as tickets, Scope};
+    use sha2::{Digest, Sha256};
+    let Some(row) = ops_proposal::Entity::find_by_id(id)
+        .filter(ops_proposal::Column::ActionName.eq(ACTION))
+        .filter(ops_proposal::Column::Status.eq("pending"))
+        .one(db)
+        .await?
+    else {
+        return Ok(None);
+    };
+    let Ok(p) = serde_json::from_str::<ReplyPayload>(&row.payload_json) else {
+        return Ok(None);
+    };
+    let Some(draft) = draft::Entity::find_by_id(p.draft_id)
+        .filter(draft::Column::AccountId.eq(account_id))
+        .filter(draft::Column::Revision.eq(p.draft_revision))
+        .filter(draft::Column::InboxId.eq(p.reply.inbox_id))
+        .filter(draft::Column::ConversationId.eq(p.reply.conversation_id))
+        .one(db)
+        .await?
+    else {
+        return Ok(None);
+    };
+    if serde_json::from_str::<Reply>(&draft.reply_json)
+        .ok()
+        .as_ref()
+        != Some(&p.reply)
+        || store::validate_reply(&p.reply, true).is_err()
+    {
+        return Ok(None);
+    }
+    let Some(task) = work_task::Entity::find_by_id(row.task_id)
+        .filter(work_task::Column::RunSeq.eq(row.run_seq))
+        .filter(work_task::Column::Status.eq(crate::models::WorkTaskStatus::AwaitingInput))
+        .filter(work_task::Column::DeletedAt.is_null())
+        .one(db)
+        .await?
+    else {
+        return Ok(None);
+    };
+    if folder::Entity::find_by_id(task.folder_id)
+        .filter(folder::Column::DeletedAt.is_null())
+        .one(db)
+        .await?
+        .is_none()
+    {
+        return Ok(None);
+    }
+    let scope = Scope {
+        account_id,
+        inbox_id: p.reply.inbox_id,
+    };
+    let inbox = tickets::require_inbox(db, scope).await?;
+    let contact = tickets::get_contact(db, scope, p.reply.conversation_id).await?;
+    if inbox.email_address != p.reply.from || contact.blocked {
+        return Ok(None);
+    }
+    let frozen = serde_json::to_vec(&p).map_err(|_| conflict())?;
+    Ok(Some(ReplyNoticeSnapshot {
+        proposal_id: row.id,
+        task_id: row.task_id,
+        run_seq: row.run_seq,
+        sha256: format!("{:x}", Sha256::digest(frozen)),
+    }))
+}
+
 fn conflict() -> DbError {
     DbError::Conflict("stale proposal or draft".into())
 }

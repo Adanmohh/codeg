@@ -1,0 +1,14 @@
+{
+  "specialist": "aesthetic-judge",
+  "scores": { "visual": 7, "tokens": 7 },
+  "findings": [
+    {
+      "surface": "Pi blocked composer",
+      "element": "src/components/conversations/conversation-detail-panel.tsx:2175,2254 — setup banner foreground",
+      "severity": "med",
+      "check": "BC-9 / CRAP Contrast: 12px destructive text measures 4.42:1 on the actual light tinted background; dark is 6.57:1. This is text carrying the reason sending is disabled, not decoration.",
+      "fix": "Use an existing scoped readable destructive foreground treatment for this banner and verify at least 4.5:1 in both themes; preserve the neutral surfaces, Inter and paired Hafidh accent."
+    }
+  ],
+  "notes": "Operational BRIEF wins over generic Aura marketing rules. Visible light/dark and 390px states retain inherited hierarchy without horizontal overflow. Palette lint false positives do not justify a new token system."
+}

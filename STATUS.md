@@ -1,6 +1,6 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI and delivery are reviewed and merged; pi and bug-workflow integration continue autonomously. Step 3 Telegram is dispatched. Final combined browser and Design Studio loops remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Bug-workflow and Telegram final reviews continue autonomously. P1 bridge/phone integration, final Design Studio fixes and combined native build remain.
 
 ## Current position
 
@@ -10,10 +10,10 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Direct Resend transport | Reviewed and merged, PR #6; UI integration accepted in #7 | Combined beta validation |
 | Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
-| Pi scoped bridge/default | PR #8 in progress; independent 11 extension/discovery tests pass | Accepted Ops helper integration, full launch checks; Astra model configuration remains unavailable |
-| Bug workflow host/UI | Worker implementing `feat/step2-bug-workflow` | Evidence/config/review UI and real fixture browser tests |
-| Telegram and beta validation | Step 3 Telegram dispatched to approvals worker | Typed notifications/review links, local fixtures and beta checks |
-| Final Design Studio loops | Brief, checklist and initial measured findings prepared | Specialist audit, worker fixes, targeted CLI rechecks |
+| Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
+| Bug workflow host/UI | PR #9 independent17 Rust,9 isolated Python,8 frontend tests and protected CLI review/held-task checks pass | Worker resolving additive registration conflicts with accepted Telegram/Pi, then integration gates/exact-head acceptance |
+| Telegram and beta validation | PR #10 reviewed and merged; independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Typed P1 issue extension, final integrated beta/native checks |
+| Final Design Studio loops | Preliminary sequential seven-finding review committed; independent specialist active; shell fixes queued | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
@@ -184,3 +184,110 @@ notifications and mobile review links, no ACP approval bypass, local-only
 provider tests, actual Playwright CLI checks and a committed report/draft PR.
 All workers remain GPT-6 Astra max; no additional worker or live outbound action.
 Final Design Studio review/fix/recheck and integrated native build remain.
+
+## Main upgrade and continuing reviews — 2026-09-08
+
+Root rebuilt accepted main frontend/server and upgraded the isolated Step1
+browser database through Ops UI/email/intake migrations. Actual Playwright CLI
+opens the empty Ops screen successfully: [upgrade evidence](reports/browser-step2-main-upgrade.md).
+Arabic mobile drawer/thread measured at 390px without horizontal overflow;
+remaining back-arrow/bidirectional English copy is recorded for final Design Studio.
+P1 early source review requested a foreign-folder fix-task reuse guard and
+overlapping-awaiting proposal regression; worker owns corrections.
+
+## Design regression found — 2026-09-08
+
+Changing language in the separate settings tab silently loses unsaved Ops
+reply edits because the inherited i18n loading branch unmounts the workspace.
+Root reproduced it through Playwright CLI and reviewed the source cause;
+approvals worker owns the required correction after Telegram handoff.
+[Evidence](reports/design-loop-1/locale-edit-loss.md). Final Design acceptance
+remains open. The previously fixed viewport-remount case still passes.
+
+## Pi email bridge accepted — 2026-09-08
+
+PR #8 reviewed at `44e30733e6a83f9b7e73f65a8487cf1a87075308`, merged as
+`70980fac8f2151a6ba579c45e5fe798aa5a671a7`. Independent 13 Rust bridge tests,
+extracted-assets RPC fixture, 16 extension/process cases and eight setup-error
+tests passed. Actual worker Playwright CLI evidence verifies fresh Pi default,
+readable setup failure and saved explicit choice across reload.
+[Review](reports/review-pi-desk.md). Live Astra/pi-acp setup remains unavailable;
+no successful inference is claimed. P1 helpers follow after bug-host acceptance.
+
+Preliminary sequential Design Studio loop is recorded in
+[review](reports/design-loop-1/review.md): seven findings, including verified
+language-change edit loss, unnamed controls and inherited contrast failures.
+This is not the final integrated design acceptance. Bug and Telegram workers
+continue their browser/gate work in their existing topic tabs.
+
+## Independent design specialist dispatched
+
+Reused tickets worker `wR:p4` on `docs/design-pi-review` from accepted main
+for a report-only Design Studio review of accepted Pi setup/defaults and
+preliminary design evidence. Deliverable `reports/design-pi-specialist.md`
+plus structured findings; no product edits or additional agents. P1 host
+integration follows acceptance. Root continues independent bug UI and Telegram
+source/test review while their owners finish actual browser checks.
+
+## Design fixes queued and Telegram independently checked
+
+Tickets worker will continue from its report-only review into isolated
+`fix/design-shell`: verified shell accessible names and light/dark contrast
+only, deliverable `reports/design-shell-fixes.md`, actual CLI rechecks.
+Locale preservation remains approvals-owned; login is corrected in its PR10.
+No fourth worker, new UI system or root product edits.
+
+Root independently passed13 Telegram Rust tests and checked mobile login,
+stale-link rejection and full pending-review payload through Playwright CLI.
+[Review](reports/review-telegram.md), [browser evidence](reports/browser-phone-independent/).
+Full phone decision/receipt-completion and final PR10 gates remain pending.
+
+## Follow-on ownership reserved
+
+After current feature acceptance, rebrand will own `fix/design-ops`: required
+locale preservation and scoped Ops RTL/copy findings. Approvals has been told
+to reserve those files and focus the typed P1 Telegram extension after PR9/10
+acceptance. Tickets retains shell accessibility fixes, then pi P1 integration.
+These follow-ons are planned, not yet dispatched branches. All retain their
+existing worktrees/topic panes and Astra max; max three workers.
+
+## Design specialist reviewed and merged; fixes dispatched
+
+PR #11 report-only review accepted at `b68de0517b4ccdb63c2ab779537a04684df21429`,
+merged as `625d8ed7266ed4cf49454942f3dbb5c48409bd07`. Root verified the new
+Pi settings-label finding against source/DOM/image and confirmed the measured
+shell findings. [Report](reports/design-pi-specialist.md). This accepts the
+review evidence, not the current design: three high and two medium findings
+require fixes. The worker used the three specialist methods sequentially; it
+also authored the Pi implementation, so this is not independent-person review.
+
+Tickets is dispatched to separate `fix/design-shell`, sameworktree/wR:p4,
+deliverable `reports/design-shell-fixes.md`, expanded to allfive bounded findings:
+shell labels/contrast, Pi field labels, complete mobile setup guidance and
+scoped banner contrast/readiness copy. Preserve model/credential semantics;
+actual CLI rechecks and normal relevant gates required. No automatic
+installation/login/inference, fourth worker or root product changes.
+
+## Telegram email review accepted and merged
+
+PR #10 reviewed at `c7a46acf30296a9e7c41a5a5c57d47afaeaa00e4`, merged as
+`c3cef09a896308b2501947e5aaafa533e36d9053`. Final source/fixture, exact
+borrowing, worker runtime/Clippy/frontend gates and independent full phone
+approval/receipt-only recovery pass. [Review](reports/review-telegram.md).
+Login accessibility correction is now accepted; live external phone access
+and typed P1 issue support are not claimed by this email checkpoint.
+
+Approvals is dispatched to `feat/step3-telegram-issues`, sameworktree/wR:p3,
+report `reports/telegram-issues.md`. Start docs/contract from acceptedmain,
+then integrate PR9 after acceptance before product wiring. Preserve closed
+typed snapshots, opaque authenticated locators, human gate and no-resend
+boundary; actual synthetic CLI issue phone review is required.
+
+## Bug-host final integration correction
+
+After PR10 merge, root read-only merge-tree found five additive registration
+conflicts in PR9: commands, migrations, lib, web handlers and router. Rebrand
+was instructed to commit its report checkpoint, merge acceptedmain in its own
+branch, preserve all host/Pi/Telegram entries and migration order005→006→007,
+then rerun affected integration gates. Root worktree remains unchanged by
+that merge inspection. No product implementation is delegated to root.

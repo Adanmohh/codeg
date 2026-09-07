@@ -1,0 +1,25 @@
+{
+  "checkpoint": "7a3e88d1510134b0010df22a41b617b22bd3a224",
+  "integrated_main": "026fedb1d139ac729499def31b36ce069c69de6c",
+  "registration_union_files": [
+    "src-tauri/src/commands/mod.rs",
+    "src-tauri/src/db/migration/mod.rs",
+    "src-tauri/src/lib.rs",
+    "src-tauri/src/web/handlers/mod.rs",
+    "src-tauri/src/web/router.rs"
+  ],
+  "migration_tail": [
+    "m20260907_000005_ops_intake",
+    "m20260908_000006_ops_intake_host",
+    "m20260908_000007_ops_telegram"
+  ],
+  "total_migrations": 51,
+  "notice_both_parents_preserved": true,
+  "unchanged_license_files": [
+    "LICENSE",
+    "integrations/pi-desk/LICENSE"
+  ],
+  "protected_files_match_main": true,
+  "reviewed_host_unchanged": true,
+  "accepted_pi_telegram_ops_auth_guards_unchanged": true
+}

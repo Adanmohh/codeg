@@ -1,0 +1,256 @@
+- generic:
+  - alert
+  - region "Notifications alt+T"
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - complementary:
+              - generic:
+                - generic:
+                  - button
+                  - button
+                  - button
+              - generic:
+                - button:
+                  - generic: Ops desk
+                - button:
+                  - generic: New chat
+                  - generic: ⌘T
+                - button:
+                  - generic: Automations
+                - button:
+                  - generic: To-dos
+                - button:
+                  - generic: Repository panel
+                - button:
+                  - generic: Infinite Conversations
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - button [expanded]:
+                                    - generic: Folders
+                                  - generic:
+                                    - button
+                                    - button
+                                    - button
+                                    - button
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - button [expanded]:
+                                    - generic: fresh-desk-workspace
+                                  - button
+                                  - button
+                          - generic: No conversations
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - button [expanded]:
+                                    - generic: Chat
+                                  - button
+                          - generic: No chats
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - button [expanded]:
+                                    - generic: Recent
+                                  - button
+                          - generic: No recent conversations
+        - separator
+        - generic:
+          - main:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - tablist:
+                                - generic:
+                                  - tab [selected]:
+                                    - generic: New Conversation
+                                    - button
+                                - generic:
+                                  - button
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - button:
+                                    - generic: fresh-desk-workspace
+                                  - generic: New Conversation
+                                - generic:
+                                  - button
+                              - generic:
+                                - generic:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - generic:
+                                              - generic:
+                                                - generic:
+                                                  - generic:
+                                                    - generic:
+                                                      - generic:
+                                                        - heading [level=1]: What would you like to do today?
+                                                        - generic:
+                                                          - tablist:
+                                                            - tab [selected]: Code Development
+                                                            - tab: Office Work
+                                                            - tab: Scientific Research
+                                                          - tabpanel:
+                                                            - generic:
+                                                              - button:
+                                                                - generic: Brainstorming
+                                                                - generic: Explore intent & requirements before building
+                                                              - button:
+                                                                - generic: Systematic Debugging
+                                                                - generic: Find the root cause before proposing fixes
+                                                              - button:
+                                                                - generic: Writing Skills
+                                                                - generic: Create, edit & verify reusable skills
+                                                            - generic:
+                                                              - button [disabled]
+                                                              - generic:
+                                                                - generic:
+                                                                  - button:
+                                                                    - generic: Writing Plans
+                                                                  - button:
+                                                                    - generic: Executing Plans
+                                                                  - button:
+                                                                    - generic: Subagent-Driven Development
+                                                                  - button:
+                                                                    - generic: Dispatching Parallel Agents
+                                                                  - button:
+                                                                    - generic: Using Git Worktrees
+                                                                  - button:
+                                                                    - generic: Test-Driven Development
+                                                                  - button:
+                                                                    - generic: Verification Before Completion
+                                                                  - button:
+                                                                    - generic: Requesting Code Review
+                                                                  - button:
+                                                                    - generic: Receiving Code Review
+                                                                  - button:
+                                                                    - generic: Finishing a Development Branch
+                                                                  - button:
+                                                                    - generic: Using Superpowers
+                                                              - button
+                                                        - generic:
+                                                          - generic:
+                                                            - generic:
+                                                              - button [pressed]:
+                                                                - generic: Pi
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                              - button
+                                                        - generic:
+                                                          - button: "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted."
+                                                        - generic:
+                                                          - generic:
+                                                            - generic:
+                                                              - generic:
+                                                                - generic:
+                                                                  - generic:
+                                                                    - textbox:
+                                                                      - paragraph: Send a message...
+                                                                - generic:
+                                                                  - generic:
+                                                                    - button [disabled]
+                                                                  - generic:
+                                                                    - button [disabled]
+                                                              - generic:
+                                                                - generic:
+                                                                  - button:
+                                                                    - generic: fresh-desk-workspace
+                                                                  - button:
+                                                                    - generic: feat/step2-pi-desk
+                                                                - generic:
+                                                                  - button
+                                                      - generic:
+                                                        - generic:
+                                                          - generic:
+                                                            - paragraph: Type / in the input to trigger slash commands, or @ to reference a file from the project.
+              - separator
+              - generic:
+                - generic:
+                  - button
+                - button
+    - generic:
+      - generic:
+        - button
+      - generic:
+        - button: Add Command
+        - button
+        - button:
+          - generic: "1"
+    - generic:
+      - generic:
+        - generic:
+          - button
+          - button
+    - generic:
+      - generic:
+        - generic:
+          - button
+          - button
+          - button
+  - menu [ref=f1e519]:
+    - menuitem "New Conversation" [ref=f1e520]
+    - menuitem "Import local sessions" [ref=f1e521]
+    - menuitem "Open in" [ref=f1e522]
+    - separator [ref=f1e523]
+    - menuitem "Manage conversations…" [ref=f1e524]
+    - menuitem "Linked folders" [ref=f1e525]
+    - menuitem "Set default agent" [expanded] [active] [ref=f1e526]
+    - menuitem "Change color" [ref=f1e527]
+    - menuitem "Set alias…" [ref=f1e528]
+    - menuitem "Move to group" [ref=f1e529]
+    - separator [ref=f1e530]
+    - menuitem "Remove from workspace" [ref=f1e531]
+  - menu "Set default agent" [ref=f1e532]:
+    - menuitem "No default (use global)" [ref=f1e533]
+    - separator [ref=f1e535]
+    - menuitem "Pi" [ref=f1e536]
+    - menuitem "Claude Code" [ref=f1e538]
+    - menuitem "Codex" [ref=f1e540]
+    - menuitem "Gemini CLI" [ref=f1e542]
+    - menuitem "OpenClaw" [ref=f1e544]
+    - menuitem "OpenCode" [ref=f1e546]
+    - menuitem "Cline" [ref=f1e548]
+    - menuitem "Hermes Agent" [ref=f1e550]
+    - menuitem "CodeBuddy" [ref=f1e552]
+    - menuitem "Kimi Code" [ref=f1e554]
+    - menuitem "Grok" [ref=f1e556]
+    - menuitem "Cursor" [ref=f1e558]
+    - menuitem "DeepSeek Harness" [ref=f1e560]
+    - menuitem "Qoder" [ref=f1e562]
+    - menuitem "Google Antigravity" [ref=f1e564]

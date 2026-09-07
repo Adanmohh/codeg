@@ -1,0 +1,21 @@
+{
+  "task": "Inspect default Pi selection, missing-catalogue setup and keyboard Settings recovery without inference",
+  "executor": "This worker, sequential actual Playwright CLI 0.1.18; no flow-test LLM executor",
+  "fixture": "Accepted pi_desk_browser_fixture on 127.0.0.1:4324; own temporary DB, empty isolated Pi catalogue, availability-only pi-acp wrapper",
+  "assertions": [
+    { "id": "BC-1", "result": "pass", "evidence": "evidence/02-workspace.yml" },
+    { "id": "BC-2", "result": "pass-prior-evidence", "evidence": "../pi-desk-evidence/08-new-conversation-codex.yml and 09-codex-preserved-after-reload.yml; reviewed, not rerun" },
+    { "id": "BC-3", "result": "fail", "evidence": "evidence/04-mobile-banner.png and contrast-summary.json; 332px versus 1310px text" },
+    { "id": "BC-4", "result": "pass", "evidence": "evidence/04-mobile-banner.yml; Send disabled" },
+    { "id": "BC-5", "result": "pass", "evidence": "evidence/05-keyboard-focus.json, then Enter opened Settings tab; evidence/06-settings.yml" },
+    { "id": "BC-6", "result": "fail", "evidence": "evidence/settings-fields.json and 07-settings-mobile.yml" },
+    { "id": "BC-7", "result": "fail", "evidence": "evidence/06-settings.yml and 07-settings-mobile.png" },
+    { "id": "BC-8", "result": "fail", "evidence": "evidence/02-workspace.yml and 02-desktop-light.json" },
+    { "id": "BC-9", "result": "fail", "evidence": "evidence/contrast-summary.json; root status sample separately attributed" },
+    { "id": "BC-10", "result": "pass", "evidence": "evidence/04-mobile-banner.json and 07-settings-mobile.json; both 390px scrollWidth" },
+    { "id": "BC-11", "result": "pass", "evidence": "evidence/02-desktop-light.png and 10-dark-sidebar.png" },
+    { "id": "BC-12", "result": "pass", "evidence": "evidence/02-workspace.yml,04-mobile-banner.yml,09-desktop-dark.yml" }
+  ],
+  "first_point_of_failure": "BC-3: wrong-state-rendered (complete recovery guidance is visually clipped)",
+  "limits": "6 newly supported checks plus 1 prior-evidence check; no successful setup/save, screen reader, real phone, provider call, Ops edits, login/locale review, P1 or Telegram coverage"
+}

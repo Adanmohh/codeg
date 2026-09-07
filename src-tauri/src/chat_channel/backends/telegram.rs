@@ -8,6 +8,9 @@ use crate::chat_channel::error::ChatChannelError;
 use crate::chat_channel::traits::ChatChannelBackend;
 use crate::chat_channel::types::*;
 
+mod ops;
+pub(crate) use ops::OpsSendError;
+
 pub struct TelegramBackend {
     bot_token: String,
     chat_id: String,
@@ -19,6 +22,8 @@ pub struct TelegramBackend {
     /// Cached canonical numeric chat id, resolved from an `@username`
     /// `chat_id` via `getChat`. Empty for numeric configs (never populated).
     resolved_chat_id: OnceCell<String>,
+    #[cfg(test)]
+    ops_mock: Option<std::net::SocketAddr>,
 }
 
 impl TelegramBackend {
@@ -36,10 +41,16 @@ impl TelegramBackend {
             channel_id,
             shutdown_tx: Arc::new(Mutex::new(None)),
             resolved_chat_id: OnceCell::new(),
+            #[cfg(test)]
+            ops_mock: None,
         }
     }
 
     fn api_url(&self, method: &str) -> String {
+        #[cfg(test)]
+        if let Some(address) = self.ops_mock {
+            return format!("http://{address}/{method}");
+        }
         format!("https://api.telegram.org/bot{}/{}", self.bot_token, method)
     }
 
@@ -912,7 +923,7 @@ mod tests {
     #[test]
     fn chat_filter_matches_configured_username_case_insensitively() {
         let message = serde_json::json!({
-            "chat": { "id": -100123, "username": "Hafidh Ops DeskTopics" }
+            "chat": { "id": -100123, "username": "CodegTopics" }
         });
 
         assert!(telegram_message_chat_matches(&message, "@codegtopics"));

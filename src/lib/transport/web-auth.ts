@@ -5,6 +5,8 @@
 // rules, multi-tenant prefixing, etc.) doesn't have to be remembered at every
 // call site.
 
+import { reviewLoginPath } from "@/lib/ops-telegram/locator"
+
 const TOKEN_KEY = "codeg_token"
 
 export function getCodegToken(): string {
@@ -14,5 +16,8 @@ export function getCodegToken(): string {
 export function redirectToCodegLogin(): void {
   if (window.location.pathname.startsWith("/login")) return
   localStorage.removeItem(TOKEN_KEY)
-  window.location.href = "/login"
+  window.location.href = reviewLoginPath(
+    window.location.pathname,
+    window.location.search
+  )
 }

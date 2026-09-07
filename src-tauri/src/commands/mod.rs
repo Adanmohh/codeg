@@ -26,6 +26,7 @@ pub mod model_provider;
 pub mod office_tools;
 pub mod ops;
 pub mod ops_intake;
+pub mod ops_telegram;
 pub mod open_in;
 #[cfg(feature = "tauri-runtime")]
 pub mod notification;

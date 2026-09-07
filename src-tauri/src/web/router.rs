@@ -1664,6 +1664,7 @@ pub fn build_router(
         // Catch-all
         .merge(handlers::ops::router())
         .merge(handlers::ops_intake::router())
+        .merge(handlers::ops_telegram::router())
         .fallback(api_not_found)
         .layer(middleware::from_fn(move |req, next| {
             auth::require_token(req, next, token.clone())

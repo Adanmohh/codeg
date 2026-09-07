@@ -1,0 +1,28 @@
+{
+  "specialist": "a11y-auditor",
+  "scores": { "accessibility": 5, "states": 7 },
+  "findings": [
+    {
+      "surface": "Pi Agent Settings",
+      "element": "src/components/settings/pi-config-panel.tsx:919,1000,1140,1171 — Provider, Model, Thinking and API Key",
+      "severity": "high",
+      "check": "BC-6 / Input labels and accessible names: actual Settings ARIA exposes unnamed Provider and Thinking comboboxes; DOM labels=[], aria-label=null, aria-labelledby=null on all four fields. Model/API Key get only example placeholders as fallback names.",
+      "fix": "Associate each visible translated label with its control using stable id/htmlFor or aria-labelledby on SelectTrigger. Verify Provider, Model, Thinking and API Key names with empty and populated values; do not use placeholders as labels."
+    },
+    {
+      "surface": "workspace shell",
+      "element": "src/components/terminal/terminal-tab-bar.tsx:160 and src/components/layout/status-bar-alerts.tsx:158 — new terminal and empty alert trigger",
+      "severity": "high",
+      "check": "BC-8 / Button accessible name: fresh actual CLI ARIA has bare unnamed buttons; source icons are aria-hidden, with no label/title/text in the empty state. The disabled-only parent tooltip does not label the enabled terminal action.",
+      "fix": "Reuse translated New terminal and Alerts labels on the actual buttons. Verify names before any alert and with alerts present, and retain keyboard focus."
+    },
+    {
+      "surface": "workspace shell",
+      "element": "src/components/conversations/sidebar-section-header.tsx:161; sidebar-conversation-list.tsx:2806,2854,2872,2882,2892,2987; src/components/layout/status-bar.tsx:21,37",
+      "severity": "high",
+      "check": "BC-9 / Contrast: new actual computed sRGB measurements give section labels 3.71:1 light, No chats/other empty text 2.66:1 light and 4.05:1 dark. Root's existing status text evidence is 4.35:1 light. These are 12–14px normal text, below the checklist 4.5:1 threshold.",
+      "fix": "Remove excessive opacity from inherited sidebar text and use readable existing foreground tokens on the status surface. Remeasure actual light/dark backgrounds; keep user theme choices and the existing design system."
+    }
+  ],
+  "notes": "Sequential specialist method, no additional agent. All three high findings verified against accepted source and actual ARIA/DOM evidence; status value is separately attributed to root's earlier probe. No screen-reader or full WCAG certification claimed."
+}

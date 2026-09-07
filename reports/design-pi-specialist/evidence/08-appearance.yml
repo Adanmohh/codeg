@@ -1,0 +1,145 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - generic [ref=e4]: Settings
+    - generic [ref=e7]:
+      - complementary [ref=e573]:
+        - generic [ref=e574]:
+          - generic [ref=e575]: Preferences
+          - navigation [ref=e578]:
+            - button "Appearance" [ref=e579]
+            - button "General" [ref=e581]
+            - button "MCP" [ref=e583]
+            - button "Skills" [ref=e585]
+            - button "Skill Packs" [ref=e587]
+            - button "Agents" [ref=e589]
+            - button "Model Providers" [ref=e591]
+            - button "Quick Messages" [ref=e593]
+            - button "Shortcuts" [ref=e595]
+            - button "Version Control" [ref=e597]
+            - button "Chat Channels" [ref=e599]
+            - button "Runtime Logs" [ref=e601]
+            - button "System" [ref=e603]
+      - generic [ref=e607]:
+        - generic [ref=e608]:
+          - heading "Theme Appearance" [level=2] [ref=e616]
+          - paragraph [ref=e617]: Choose light, dark, or follow system. Settings are saved automatically.
+          - generic [ref=e618]:
+            - text: Theme mode
+            - combobox [ref=e619]:
+              - generic: Follow system
+            - paragraph [ref=e620]: "Current effective theme: Light"
+        - generic [ref=e621]:
+          - heading "Theme color" [level=2] [ref=e624]
+          - paragraph [ref=e625]: Pick a color palette for accents, buttons, and highlights.
+          - generic [ref=e626]:
+            - button "Hafidh" [pressed] [ref=e627]
+            - button "Zinc" [ref=e630]
+            - button "Slate" [ref=e633]
+            - button "Stone" [ref=e636]
+            - button "Gray" [ref=e639]
+            - button "Red" [ref=e642]
+            - button "Rose" [ref=e645]
+            - button "Orange" [ref=e648]
+            - button "Green" [ref=e651]
+            - button "Blue" [ref=e654]
+            - button "Yellow" [ref=e657]
+            - button "Violet" [ref=e660]
+          - paragraph [ref=e663]: "Current color: Hafidh"
+        - heading [level=2] [ref=e665]:
+          - button "Custom Style Preset defaults" [ref=e666] [cursor=pointer]:
+            - generic [ref=e667]: Custom Style
+            - generic [ref=e676]: Preset defaults
+        - generic [ref=e677]:
+          - heading "Window zoom" [level=2] [ref=e681]
+          - paragraph [ref=e682]: Scale the entire interface. Applies immediately and persists per device. ⌘/Ctrl + and - move through the same zoom levels as this menu (⌘/Ctrl 0 resets to 100%).
+          - generic [ref=e683]:
+            - combobox [ref=e684]:
+              - generic: 100% (Default)
+            - paragraph [ref=e685]: "Current zoom: 100%"
+        - generic [ref=e686]:
+          - heading "Fonts" [level=2] [ref=e690]
+          - paragraph [ref=e691]: Choose fonts for the interface, code editor, and terminal. Bundled fonts load on demand; pick “Custom…” to use any font installed on your system.
+          - generic [ref=e692]:
+            - text: Interface
+            - combobox "Interface" [ref=e694]:
+              - generic: Inter
+          - generic [ref=e695]:
+            - text: Editor
+            - generic [ref=e696]:
+              - combobox "Editor" [ref=e698]:
+                - generic: System Monospace
+              - combobox "Font size" [ref=e699]:
+                - generic: 13px
+            - generic [ref=e700]:
+              - switch "This font has no ligatures" [disabled] [ref=e701]
+              - generic [ref=e702]: This font has no ligatures
+            - generic [ref=e703]:
+              - switch "Enable word wrap" [ref=e704]
+              - generic [ref=e705]: Enable word wrap
+          - generic [ref=e706]:
+            - text: Terminal
+            - generic [ref=e707]:
+              - combobox "Terminal" [ref=e709]:
+                - generic: System Monospace
+              - combobox "Font size" [ref=e710]:
+                - generic: 13px
+            - generic [ref=e711]:
+              - switch "This font has no ligatures" [disabled] [ref=e712]
+              - generic [ref=e713]: This font has no ligatures
+            - paragraph [ref=e714]: Terminal ligatures apply only to bundled coding fonts.
+          - generic [ref=e715]:
+            - text: Preview
+            - generic [ref=e716]:
+              - paragraph [ref=e717]: The quick brown fox jumps over the lazy dog — 0123456789
+              - generic [ref=e718]: const sum = (a, b) => a + b // 0 != 1, x >= y if (a === b && c !== d) return a |> filter
+              - generic [ref=e719]: "$ git commit -m \"feat: done\" # => >= <= != ==="
+        - generic [ref=e720]:
+          - heading "Workspace background" [level=2] [ref=e726]
+          - paragraph [ref=e727]: Show a picture behind the whole workspace. Sidebar and panels turn translucent and frosted so the image shows through, and a mask keeps text readable.
+          - generic [ref=e728]:
+            - switch "Enable background image" [ref=e729]
+            - generic [ref=e730]: Enable background image
+          - generic [ref=e731]:
+            - text: Image
+            - generic [ref=e738]:
+              - button "Choose image" [disabled]
+              - button "Wallpaper market" [disabled]
+            - paragraph [ref=e739]: PNG, JPEG, WebP and GIF. Animated images play automatically.
+          - generic [ref=e740]:
+            - text: Fill mode
+            - combobox [disabled] [ref=e741]:
+              - generic: Cover
+          - generic [ref=e742]:
+            - generic [ref=e743]:
+              - generic [ref=e744]: Mask opacity
+              - generic [ref=e745]: 82%
+            - generic "Mask opacity" [ref=e746]:
+              - slider [disabled] [ref=e750]
+            - paragraph [ref=e751]: Higher values fade the image toward the theme background, improving text contrast.
+          - generic [ref=e752]:
+            - generic [ref=e753]:
+              - generic [ref=e754]: Image blur
+              - generic [ref=e755]: 0px
+            - generic "Image blur" [ref=e756]:
+              - slider [disabled] [ref=e759]
+          - generic [ref=e760]:
+            - generic [ref=e761]:
+              - generic [ref=e762]: Panel opacity
+              - generic [ref=e763]: 30%
+            - generic "Panel opacity" [ref=e764]:
+              - slider [disabled] [ref=e768]
+            - paragraph [ref=e769]: How opaque the sidebar, panels and tab bars are. Lower lets more of the image show through.
+        - generic [ref=e770]:
+          - heading "Mode selection area" [level=2] [ref=e777]
+          - paragraph [ref=e778]: The Code Development / Office Work shortcut cards shown above the composer on the new conversation page.
+          - generic [ref=e779]:
+            - switch "Show on the new conversation page" [checked] [ref=e780]
+            - generic [ref=e781]: Show on the new conversation page
+        - button [ref=e783] [cursor=pointer]:
+          - heading "Pets" [level=2] [ref=e790]
+          - generic [ref=e793]:
+            - button "Add pet" [ref=e794]
+            - button "Import from Codex" [disabled]
+            - button "Pet marketplace" [ref=e795]

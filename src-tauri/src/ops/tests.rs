@@ -17,14 +17,14 @@ use serde_json::{json, Value};
 mod agent;
 mod integration;
 
-fn operator(account_id: i32) -> Operator {
+pub(crate) fn operator(account_id: i32) -> Operator {
     Operator {
         account_id,
         actor: "operator:http",
     }
 }
 
-async fn seed(db: &AppDatabase, account: i32) -> (Operator, ThreadKeyFixture) {
+pub(crate) async fn seed(db: &AppDatabase, account: i32) -> (Operator, ThreadKeyFixture) {
     let op = operator(account);
     let inbox = tickets::create_inbox(&db.conn, account, "Support", "support@example.com")
         .await
@@ -53,7 +53,7 @@ async fn seed(db: &AppDatabase, account: i32) -> (Operator, ThreadKeyFixture) {
     )
 }
 type ThreadKeyFixture = ThreadInput;
-async fn saved(db: &AppDatabase, op: &Operator, key: ThreadInput) -> Draft {
+pub(crate) async fn saved(db: &AppDatabase, op: &Operator, key: ThreadInput) -> Draft {
     let mut reply = store::thread(&db.conn, op, key)
         .await
         .unwrap()
@@ -89,7 +89,7 @@ async fn start(db: &AppDatabase) -> (i32, i32) {
     );
     (task.id, seq)
 }
-async fn pending(db: &AppDatabase, op: &Operator, draft: &Draft) -> ops_proposal::Model {
+pub(crate) async fn pending(db: &AppDatabase, op: &Operator, draft: &Draft) -> ops_proposal::Model {
     let (task, seq) = start(db).await;
     match review::propose_reply(
         &db.conn,

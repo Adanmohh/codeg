@@ -32,3 +32,22 @@ Live execution verified after checkpoint/push and resume on GPT-6 Astra with max
 | tickets | `01a07c1c-d82f-7022-84db-778a438632f1` | 12 | 10 |
 
 Counts are a snapshot, not final totals. The current orchestrator session predates registration; its hook loading has not been verified. It writes no product code.
+
+## Continued autonomous work — 2026-09-08
+
+Root independently inspected fresh metadata-only audit pairs after PR7 merged
+and Telegram dispatch. Rebrand lines 4538/4540, tickets 4533/4534, approvals
+4513/4518 have exit 0 in their respective worktrees (timestamps 1788820484–
+1788820485, 1788820409 and 1788820395). Session context had already been emitted,
+so these records correctly have context_emitted=false. This confirms ongoing
+worker hook execution, not universal write-proof enforcement or root-session
+live enforcement. Existing smoke-test and scope limitations still apply.
+
+## Continued independent audit —2026-09-08
+
+Latest metadata inspected by root: rebrand PostToolUse lines6064/6065 at
+1788823961, approvals Post/Pre lines6021/6022 at1788823901, tickets Post/Pre
+6045/6055 at1788823936/1788823943. All exit0 and correct existing session/cwd;
+context_emitted=false after prior reminders. Root session still predates hook
+registration; this is worker observation, not root enforcement or universal
+write interception. No secret values are included in the audit evidence.

@@ -28,6 +28,9 @@ const withNextIntl = createNextIntlPlugin({
 
 const nextConfig: NextConfig = {
   output: "export",
+  // Next 16.1.6 export treats a custom distDir as its export destination.
+  // Isolated fixtures can build without replacing another preview's out/.
+  distDir: process.env.CODEG_EXPORT_DIR || ".next",
   images: {
     unoptimized: true,
   },

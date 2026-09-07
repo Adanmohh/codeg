@@ -142,6 +142,8 @@ pub fn err(id: Value, code: i64, message: impl Into<String>) -> JsonRpcResponse 
 /// `tools/list` and rejected on `tools/call`.
 #[derive(Debug, Clone, Copy)]
 pub struct CompanionFeatures {
+    /// Closed Desk read/draft/proposal tools. No review or execution methods.
+    pub desk: bool,
     pub delegation: bool,
     pub feedback: bool,
     pub ask: bool,
@@ -165,6 +167,7 @@ impl CompanionFeatures {
     pub fn parse(raw: Option<&str>) -> Self {
         let Some(s) = raw else {
             return Self {
+                desk: false,
                 delegation: true,
                 feedback: false,
                 ask: false,
@@ -175,6 +178,7 @@ impl CompanionFeatures {
             };
         };
         let mut f = Self {
+            desk: false,
             delegation: false,
             feedback: false,
             ask: false,
@@ -185,6 +189,7 @@ impl CompanionFeatures {
         };
         for tok in s.split(',').map(str::trim).filter(|t| !t.is_empty()) {
             match tok {
+                "desk" => f.desk = true,
                 "delegation" => f.delegation = true,
                 "feedback" => f.feedback = true,
                 "ask" => f.ask = true,
@@ -200,6 +205,9 @@ impl CompanionFeatures {
 
     /// Whether the named MCP tool is exposed under the enabled feature groups.
     pub fn allows_tool(&self, name: &str) -> bool {
+        if crate::acp::desk::DeskTool::from_name(name).is_some() {
+            return self.desk;
+        }
         match name {
             "check_user_feedback" => self.feedback,
             "ask_user_question" => self.ask,
@@ -409,6 +417,14 @@ pub async fn dispatch_line(
             };
             remove_disabled_agents_from_delegate_enum(&mut tools, &ctx.disabled_agents);
             append_custom_agents_to_delegate_enum(&mut tools, &ctx.custom_agents);
+            if ctx.features.desk {
+                if let (Some(tools), Ok(desk)) = (
+                    tools.as_array_mut(),
+                    serde_json::from_str::<Vec<Value>>(crate::acp::desk::SCHEMA),
+                ) {
+                    tools.extend(desk);
+                }
+            }
             LineAction::Respond(ok(id, json!({ "tools": tools })))
         }
         "tools/call" => build_tools_call_spawn(ctx.clone(), inflight, id, req.params).await,
@@ -498,6 +514,19 @@ async fn build_tools_call_spawn(
     // and matching the legacy unknown-tool rejection shape.
     if !ctx.features.allows_tool(&name) {
         return LineAction::Respond(err(id, -32602, format!("unknown tool: {name}")));
+    }
+    if let Some(tool) = crate::acp::desk::DeskTool::from_name(&name) {
+        if !arguments.is_object() {
+            return LineAction::Respond(err(id, -32602, "Desk arguments must be an object"));
+        }
+        let req = crate::acp::delegation::transport::BrokerDeskRequest {
+            token: ctx.token.clone(),
+            request: crate::acp::desk::DeskCall { tool, input: arguments },
+        };
+        let round_trip = Box::pin(async move {
+            crate::acp::delegation::transport::client_desk_round_trip(&socket, &req).await
+        });
+        return register_and_spawn(inflight, id, None, round_trip, render_desk_result).await;
     }
     match name.as_str() {
         "delegate_to_agent" => {
@@ -1400,6 +1429,13 @@ pub fn render_task_ack(outcome: &Value) -> Value {
     })
 }
 
+fn render_desk_result(outcome: &Value) -> Value {
+    json!({
+        "content": [{ "type": "text", "text": outcome.to_string() }],
+        "isError": outcome.get("ok").and_then(Value::as_bool) != Some(true),
+    })
+}
+
 /// Map a `create_automation` / `create_work_task` round-trip outcome (a
 /// serialized [`crate::acp::chat_authoring::AuthoringOutcome`]) into an MCP
 /// `tools/call` result.
@@ -1576,6 +1612,7 @@ mod tests {
         // Delegation-only by default so the existing delegation-focused tests
         // keep seeing exactly the three delegation tools.
         ctx_with(CompanionFeatures {
+            desk: false,
             delegation: true,
             feedback: false,
             ask: false,
@@ -2167,6 +2204,7 @@ mod tests {
     // -- check_user_feedback feature gating + rendering --------------------
 
     const FEEDBACK_ONLY: CompanionFeatures = CompanionFeatures {
+        desk: false,
         delegation: false,
         feedback: true,
         ask: false,
@@ -2176,6 +2214,7 @@ mod tests {
         taskboard: false,
     };
     const BOTH: CompanionFeatures = CompanionFeatures {
+        desk: false,
         delegation: true,
         feedback: true,
         ask: false,
@@ -2185,6 +2224,7 @@ mod tests {
         taskboard: false,
     };
     const ASK_ONLY: CompanionFeatures = CompanionFeatures {
+        desk: false,
         delegation: false,
         feedback: false,
         ask: true,
@@ -2194,6 +2234,7 @@ mod tests {
         taskboard: false,
     };
     const SESSIONS_ONLY: CompanionFeatures = CompanionFeatures {
+        desk: false,
         delegation: false,
         feedback: false,
         ask: false,
@@ -2532,6 +2573,7 @@ mod tests {
     // -- chat authoring: feature gating + parsing + rendering ---------------
 
     const AUTOMATIONS_ONLY: CompanionFeatures = CompanionFeatures {
+        desk: false,
         delegation: false,
         feedback: false,
         ask: false,
@@ -2541,6 +2583,7 @@ mod tests {
         taskboard: false,
     };
     const TASKBOARD_ONLY: CompanionFeatures = CompanionFeatures {
+        desk: false,
         delegation: false,
         feedback: false,
         ask: false,

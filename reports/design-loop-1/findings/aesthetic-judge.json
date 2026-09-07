@@ -1,0 +1,24 @@
+{
+  "specialist": "aesthetic-judge",
+  "scores": {
+    "visual": 8,
+    "tokens": 8
+  },
+  "findings": [
+    {
+      "surface": "Ops thread in Arabic layout",
+      "element": "Back to inbox arrow and English message text",
+      "severity": "med",
+      "check": "BC-3 / CRAP alignment: back arrow stays left-facing in RTL and inherited direction reorders English punctuation",
+      "fix": "Mirror directional navigation and isolate content direction per message/email identifier; keep the surrounding RTL layout."
+    },
+    {
+      "surface": "Ops header",
+      "element": "Account1 prefix and repeated setup explanation",
+      "severity": "low",
+      "check": "BC-18 / CRAP proximity: mobile header spends extra height on an internal account ID before correspondence",
+      "fix": "Remove the internal account-number prefix; retain only setup guidance that helps the operator choose an action."
+    }
+  ],
+  "notes": "Root sequential specialist pass. Operational neutral surfaces, inherited Inter hierarchy and Hafidh accent pairs fit the brief. No generic marketing restyle or palette change prescribed; raw OKLCH/semantic-color violations rejected."
+}

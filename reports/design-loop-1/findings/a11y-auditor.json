@@ -1,0 +1,31 @@
+{
+  "specialist": "a11y-auditor",
+  "scores": {
+    "accessibility": 6,
+    "states": 8
+  },
+  "findings": [
+    {
+      "surface": "workspace shell",
+      "element": "status bar, sidebar empty/group text",
+      "severity": "high",
+      "check": "BC-2 / WCAG1.4.3: measured text contrast below4.5; status text4.35 light, No chats2.66 light/4.06 dark, group labels3.68 light",
+      "fix": "Remove excessive text opacity and use readable inherited foreground treatment on the actual backgrounds; remeasure both themes."
+    },
+    {
+      "surface": "workspace shell",
+      "element": "terminal new-tab and status alert buttons",
+      "severity": "high",
+      "check": "BC-2 / Button accessible name: actual ARIA tree exposes unnamed icon controls; source lacks labels",
+      "fix": "Reuse the existing translated action names as accessible labels; retain visible keyboard focus and verify the empty alert state."
+    },
+    {
+      "surface": "login",
+      "element": "access token field and invalid-token error",
+      "severity": "med",
+      "check": "BC-1 / Input labels and validation: actual DOM has no persistent label, aria-invalid, describedBy or live error semantics",
+      "fix": "Add a visible associated token label, validation association and announced error while preserving existing login behavior."
+    }
+  ],
+  "notes": "Root applied specialist method sequentially because all three authorized Herdr worker slots were occupied. DOM/probe facts, not an independent additional agent; no final P1/Telegram coverage."
+}

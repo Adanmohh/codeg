@@ -1,0 +1,562 @@
+[
+  {
+    "file": "02-desktop-light",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "light",
+    "documentWidth": 1440,
+    "samples": [
+      {
+        "text": "Folders",
+        "foreground": [
+          129.52941176470588,
+          129.52941176470588,
+          129.52941176470588
+        ],
+        "background": [
+          250,
+          250,
+          250
+        ],
+        "ratio": 3.705495650424711,
+        "sizePx": 14,
+        "box": {
+          "x": 14,
+          "y": 270,
+          "width": 48.890625,
+          "height": 24
+        },
+        "scrollWidth": 49,
+        "clientWidth": 49
+      },
+      {
+        "text": "No conversations",
+        "foreground": [
+          155.23529411764707,
+          155.23529411764707,
+          155.23529411764707
+        ],
+        "background": [
+          250,
+          250,
+          250
+        ],
+        "ratio": 2.6551641581943684,
+        "sizePx": 12,
+        "box": {
+          "x": 34,
+          "y": 334,
+          "width": 99.125,
+          "height": 24
+        },
+        "scrollWidth": 99,
+        "clientWidth": 99
+      },
+      {
+        "text": "Chat",
+        "foreground": [
+          129.52941176470588,
+          129.52941176470588,
+          129.52941176470588
+        ],
+        "background": [
+          250,
+          250,
+          250
+        ],
+        "ratio": 3.705495650424711,
+        "sizePx": 14,
+        "box": {
+          "x": 14,
+          "y": 378,
+          "width": 30.953125,
+          "height": 24
+        },
+        "scrollWidth": 31,
+        "clientWidth": 31
+      },
+      {
+        "text": "No chats",
+        "foreground": [
+          155.23529411764707,
+          155.23529411764707,
+          155.23529411764707
+        ],
+        "background": [
+          250,
+          250,
+          250
+        ],
+        "ratio": 2.6551641581943684,
+        "sizePx": 12,
+        "box": {
+          "x": 6,
+          "y": 406,
+          "width": 307.4609375,
+          "height": 36
+        },
+        "scrollWidth": 307,
+        "clientWidth": 307
+      },
+      {
+        "text": "Recent",
+        "foreground": [
+          129.52941176470588,
+          129.52941176470588,
+          129.52941176470588
+        ],
+        "background": [
+          250,
+          250,
+          250
+        ],
+        "ratio": 3.705495650424711,
+        "sizePx": 14,
+        "box": {
+          "x": 14,
+          "y": 458,
+          "width": 45.984375,
+          "height": 24
+        },
+        "scrollWidth": 46,
+        "clientWidth": 46
+      },
+      {
+        "text": "No recent conversations",
+        "foreground": [
+          155.23529411764707,
+          155.23529411764707,
+          155.23529411764707
+        ],
+        "background": [
+          250,
+          250,
+          250
+        ],
+        "ratio": 2.6551641581943684,
+        "sizePx": 12,
+        "box": {
+          "x": 6,
+          "y": 486,
+          "width": 307.4609375,
+          "height": 36
+        },
+        "scrollWidth": 307,
+        "clientWidth": 307
+      },
+      {
+        "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+        "foreground": [
+          223,
+          34,
+          37
+        ],
+        "background": [
+          253.01176470588234,
+          243.98823529411766,
+          243.98823529411766
+        ],
+        "ratio": 4.421007084973598,
+        "sizePx": 12,
+        "box": {
+          "x": 525.2265625,
+          "y": 563.25,
+          "width": 710,
+          "height": 16
+        },
+        "scrollWidth": 1310,
+        "clientWidth": 710
+      }
+    ]
+  },
+  {
+    "file": "03-mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "documentWidth": 390,
+    "samples": [
+      {
+        "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+        "foreground": [
+          223,
+          34,
+          37
+        ],
+        "background": [
+          253.01176470588234,
+          243.98823529411766,
+          243.98823529411766
+        ],
+        "ratio": 4.421007084973598,
+        "sizePx": 12,
+        "box": {
+          "x": 29,
+          "y": 495.25,
+          "width": 332,
+          "height": 16
+        },
+        "scrollWidth": 1310,
+        "clientWidth": 332
+      },
+      {
+        "text": "Folders",
+        "foreground": [
+          132.01960784313727,
+          132.01960784313727,
+          132.01960784313727
+        ],
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 3.7391242885866114,
+        "sizePx": 14,
+        "box": {
+          "x": 22,
+          "y": 280,
+          "width": 48.890625,
+          "height": 20
+        },
+        "scrollWidth": 49,
+        "clientWidth": 49
+      },
+      {
+        "text": "No conversations",
+        "foreground": [
+          156.72549019607845,
+          156.72549019607845,
+          156.72549019607845
+        ],
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 2.7211501370262625,
+        "sizePx": 12,
+        "box": {
+          "x": 42,
+          "y": 345.4296875,
+          "width": 99.125,
+          "height": 17.140625
+        },
+        "scrollWidth": 99,
+        "clientWidth": 99
+      },
+      {
+        "text": "Chat",
+        "foreground": [
+          132.01960784313727,
+          132.01960784313727,
+          132.01960784313727
+        ],
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 3.7391242885866114,
+        "sizePx": 14,
+        "box": {
+          "x": 22,
+          "y": 388,
+          "width": 30.953125,
+          "height": 20
+        },
+        "scrollWidth": 31,
+        "clientWidth": 31
+      },
+      {
+        "text": "No chats",
+        "foreground": [
+          156.72549019607845,
+          156.72549019607845,
+          156.72549019607845
+        ],
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 2.7211501370262625,
+        "sizePx": 12,
+        "box": {
+          "x": 14,
+          "y": 414,
+          "width": 319.5,
+          "height": 29.140625
+        },
+        "scrollWidth": 320,
+        "clientWidth": 320
+      },
+      {
+        "text": "Recent",
+        "foreground": [
+          132.01960784313727,
+          132.01960784313727,
+          132.01960784313727
+        ],
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 3.7391242885866114,
+        "sizePx": 14,
+        "box": {
+          "x": 22,
+          "y": 461.140625,
+          "width": 45.984375,
+          "height": 20
+        },
+        "scrollWidth": 46,
+        "clientWidth": 46
+      },
+      {
+        "text": "No recent conversations",
+        "foreground": [
+          156.72549019607845,
+          156.72549019607845,
+          156.72549019607845
+        ],
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 2.7211501370262625,
+        "sizePx": 12,
+        "box": {
+          "x": 14,
+          "y": 487.140625,
+          "width": 319.5,
+          "height": 29.140625
+        },
+        "scrollWidth": 320,
+        "clientWidth": 320
+      }
+    ]
+  },
+  {
+    "file": "04-mobile-banner",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "documentWidth": 390,
+    "samples": [
+      {
+        "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+        "foreground": [
+          223,
+          34,
+          37
+        ],
+        "background": [
+          253.01176470588234,
+          243.98823529411766,
+          243.98823529411766
+        ],
+        "ratio": 4.421007084973598,
+        "sizePx": 12,
+        "box": {
+          "x": 29,
+          "y": 495.25,
+          "width": 332,
+          "height": 16
+        },
+        "scrollWidth": 1310,
+        "clientWidth": 332
+      }
+    ]
+  },
+  {
+    "file": "07-settings-mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "theme": "light",
+    "documentWidth": 390,
+    "samples": []
+  },
+  {
+    "file": "10-dark-sidebar",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "theme": "dark",
+    "documentWidth": 1440,
+    "samples": [
+      {
+        "text": "Folders",
+        "foreground": [
+          136.44313725490196,
+          136.44313725490196,
+          136.44313725490196
+        ],
+        "background": [
+          23,
+          23,
+          23
+        ],
+        "ratio": 5.087242565173811,
+        "sizePx": 14,
+        "box": {
+          "x": 14,
+          "y": 270,
+          "width": 48.890625,
+          "height": 24
+        },
+        "scrollWidth": 49,
+        "clientWidth": 49
+      },
+      {
+        "text": "No conversations",
+        "foreground": [
+          119.87058823529411,
+          119.87058823529411,
+          119.87058823529411
+        ],
+        "background": [
+          23,
+          23,
+          23
+        ],
+        "ratio": 4.053157069855395,
+        "sizePx": 12,
+        "box": {
+          "x": 34,
+          "y": 334,
+          "width": 99.125,
+          "height": 24
+        },
+        "scrollWidth": 99,
+        "clientWidth": 99
+      },
+      {
+        "text": "Chat",
+        "foreground": [
+          136.44313725490196,
+          136.44313725490196,
+          136.44313725490196
+        ],
+        "background": [
+          23,
+          23,
+          23
+        ],
+        "ratio": 5.087242565173811,
+        "sizePx": 14,
+        "box": {
+          "x": 14,
+          "y": 378,
+          "width": 30.953125,
+          "height": 24
+        },
+        "scrollWidth": 31,
+        "clientWidth": 31
+      },
+      {
+        "text": "No chats",
+        "foreground": [
+          119.87058823529411,
+          119.87058823529411,
+          119.87058823529411
+        ],
+        "background": [
+          23,
+          23,
+          23
+        ],
+        "ratio": 4.053157069855395,
+        "sizePx": 12,
+        "box": {
+          "x": 6,
+          "y": 406,
+          "width": 307.4609375,
+          "height": 36
+        },
+        "scrollWidth": 307,
+        "clientWidth": 307
+      },
+      {
+        "text": "Recent",
+        "foreground": [
+          136.44313725490196,
+          136.44313725490196,
+          136.44313725490196
+        ],
+        "background": [
+          23,
+          23,
+          23
+        ],
+        "ratio": 5.087242565173811,
+        "sizePx": 14,
+        "box": {
+          "x": 14,
+          "y": 458,
+          "width": 45.984375,
+          "height": 24
+        },
+        "scrollWidth": 46,
+        "clientWidth": 46
+      },
+      {
+        "text": "No recent conversations",
+        "foreground": [
+          119.87058823529411,
+          119.87058823529411,
+          119.87058823529411
+        ],
+        "background": [
+          23,
+          23,
+          23
+        ],
+        "ratio": 4.053157069855395,
+        "sizePx": 12,
+        "box": {
+          "x": 6,
+          "y": 486,
+          "width": 307.4609375,
+          "height": 36
+        },
+        "scrollWidth": 307,
+        "clientWidth": 307
+      },
+      {
+        "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+        "foreground": [
+          255,
+          100,
+          103
+        ],
+        "background": [
+          22.490196078431374,
+          14.486274509803922,
+          14.486274509803922
+        ],
+        "ratio": 6.566109113787622,
+        "sizePx": 12,
+        "box": {
+          "x": 525.2265625,
+          "y": 563.25,
+          "width": 710,
+          "height": 16
+        },
+        "scrollWidth": 1310,
+        "clientWidth": 710
+      }
+    ]
+  }
+]

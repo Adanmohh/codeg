@@ -226,6 +226,20 @@ pub struct BrokerTaskCompleteRequest {
     pub summary: Option<String>,
 }
 
+// No Debug: token and draft contents must not appear in diagnostics.
+#[derive(Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct BrokerDeskRequest {
+    pub token: String,
+    pub request: crate::acp::desk::DeskCall,
+}
+
+impl std::fmt::Debug for BrokerDeskRequest {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("BrokerDeskRequest").finish_non_exhaustive()
+    }
+}
+
 /// Create an automation (scheduled or manual) from the chat the caller is in.
 /// Backs the `create_automation` MCP tool. Authenticated by the per-launch
 /// `token`; the listener resolves the caller's conversation + working directory
@@ -261,6 +275,7 @@ pub enum BrokerMessage {
     SessionInfo(BrokerSessionRequest),
     TaskProgress(BrokerTaskProgressRequest),
     TaskComplete(BrokerTaskCompleteRequest),
+    Desk(BrokerDeskRequest),
     CreateAutomation(BrokerCreateAutomationRequest),
     CreateWorkTask(BrokerCreateWorkTaskRequest),
     /// Liveness probe. Unlike every other variant this one is NOT sent by a
@@ -357,6 +372,13 @@ pub async fn client_round_trip(
     req: &BrokerRequest,
 ) -> io::Result<BrokerResponse> {
     message_round_trip(socket_path, &BrokerMessage::Call(req.clone())).await
+}
+
+pub async fn client_desk_round_trip(
+    socket_path: &str,
+    req: &BrokerDeskRequest,
+) -> io::Result<BrokerResponse> {
+    message_round_trip(socket_path, &BrokerMessage::Desk(req.clone())).await
 }
 
 /// Dispatch a `get_delegation_status` query and read back the

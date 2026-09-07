@@ -1,0 +1,22 @@
+{
+  "id": "responsive-editing",
+  "task": "Preserve unsaved reply/private-note/review edits across mobile layout and cancel a discard choice.",
+  "assertions": [
+    {
+      "id": "BC-9",
+      "result": "passed",
+      "evidence": "reports/browser-step2/preserved-review-mobile.png; reports/ops-ui-evidence/mobile-draft-preserved.yml",
+      "observation": "Root repeated reply1280→390, note390→1280, review1280→390 and dismiss/accept discard at0e375c97."
+    },
+    {
+      "id": "BC-3",
+      "result": "needs_review",
+      "evidence": "reports/browser-step2/rtl-drawer-before-design.png; reports/browser-step2/rtl-thread-before-design.png",
+      "observation": "Actual Arabic selection, dir=rtl, width390/scroll390; final judge assess unmirrored Back to inbox arrow and reordered English punctuation."
+    }
+  ],
+  "executor": "root / Playwright CLI 0.1.18",
+  "fixture": "Only isolated local servers4318/4320, synthetic provider; no live sends",
+  "first_point_of_failure": "none for executed acceptance assertions; listed unassessed checks remain pending",
+  "result": "partial_evidence_for_final_judges"
+}

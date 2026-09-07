@@ -1,0 +1,10 @@
+- generic [ref=e1]:
+  - alert [ref=e7]: Login - Hafidh Ops Desk
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - heading "Hafidh Ops Desk" [level=1] [ref=e11]
+      - paragraph [ref=e12]: Enter your access token to connect to the desktop app
+    - generic [ref=e13]:
+      - textbox "Access Token" [active] [ref=e15]
+      - button "Connect" [disabled]
+    - paragraph [ref=e16]: Find your token in the desktop app under Settings → Web Service

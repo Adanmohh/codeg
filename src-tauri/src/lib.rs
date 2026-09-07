@@ -34,6 +34,7 @@ pub mod office_watch;
 pub mod ops;
 pub mod ops_intake;
 pub mod ops_intake_host;
+pub mod ops_telegram;
 pub mod parsers;
 pub mod paths;
 pub mod pet_sessions;
@@ -1589,6 +1590,11 @@ mod tauri_app {
             crate::commands::ops_intake::ops_intake_deny,
             crate::commands::ops_intake::ops_intake_reconcile,
             crate::commands::ops_intake::ops_intake_fix,
+            crate::commands::ops_telegram::ops_telegram_status,
+            crate::commands::ops_telegram::ops_telegram_configure,
+            crate::commands::ops_telegram::ops_telegram_disable,
+            crate::commands::ops_telegram::ops_telegram_notify,
+            crate::commands::ops_telegram::ops_telegram_resolve,
                 work_task_commands::work_task_get,
                 work_task_commands::work_task_events,
                 work_task_commands::work_task_attention_count,

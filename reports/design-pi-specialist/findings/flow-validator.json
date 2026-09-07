@@ -1,0 +1,14 @@
+{
+  "specialist": "flow-validator",
+  "scores": { "functional": 6 },
+  "findings": [
+    {
+      "surface": "Pi blocked composer to Agent Settings",
+      "element": "src/components/conversations/conversation-detail-panel.tsx:2178,2257; src/components/settings/pi-config-panel.tsx:1006,1144; src-tauri/src/acp/pi_desk.rs:92",
+      "severity": "med",
+      "check": "assertions BC-3 and BC-7 | first-point-of-failure: wrong-state-rendered (recovery guidance). At 390px the 1310px full setup string occupies a 332px one-line clipped button. Shift+Tab then Enter correctly opens /settings/agents?agent=pi, where the configuration offers a claude-sonnet-5 placeholder and Thinking Off, with no visible Desk-specific Astra/max or adapter-catalogue readiness guidance.",
+      "fix": "Expose the complete setup reason without hover and label the action Open Pi settings. Show the required Astra/max catalogue setup and separate adapter availability from Desk readiness at the destination; preserve the fail-closed model guard and existing credentials. Do not initiate login, install or inference automatically."
+    }
+  ],
+  "notes": "Bounded manual CLI flow record: 7 of 12 local brief checks supported (BC-2 uses accepted prior evidence), 5 fail design criteria. First issue is clipped guidance, not failure to open Settings. No paid flow executor, no attempted successful provider setup."
+}

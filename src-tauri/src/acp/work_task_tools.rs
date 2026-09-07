@@ -36,6 +36,16 @@ impl TaskReportAck {
 
 #[async_trait]
 pub trait WorkTaskToolAccess: Send + Sync {
+    /// Additive Desk capability. A process without the integrated task bridge
+    /// refuses it; no operator bearer or fallback handler is used.
+    async fn desk_call(
+        &self,
+        _parent_connection_id: &str,
+        _request: crate::acp::desk::DeskCall,
+    ) -> crate::acp::desk::DeskResponse {
+        crate::acp::desk::DeskResponse::rejected(crate::acp::desk::DeskError::Unavailable)
+    }
+
     /// Record a progress milestone for the task driven by
     /// `parent_connection_id`.
     async fn report_progress(&self, parent_connection_id: &str, message: &str) -> TaskReportAck;

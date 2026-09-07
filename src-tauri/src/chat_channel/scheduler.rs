@@ -98,6 +98,19 @@ pub fn spawn_daily_report_scheduler(
 
                 sent_today.insert(key);
             }
+
+            // Run after the existing scheduled channel work. Explicit Ops
+            // opt-in only; the complete scan has an 8s budget plus at most 1s
+            // of claim cleanup. No channel connect or polling is performed.
+            if crate::ops_telegram::tick(
+                &db_conn,
+                &crate::ops_telegram::TelegramRuntime::production(),
+            )
+            .await
+            .is_err()
+            {
+                tracing::warn!("[OpsTelegram] notification scan unavailable");
+            }
         }
     })
 }

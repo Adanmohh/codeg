@@ -1,9 +1,8 @@
 # Pi Desk integration review
 
-In progress, 2026-09-08. PR #8 is not accepted. Reviewed the extension,
+Accepted, 2026-09-08. PR #8 reviewed at `44e30733e6a83f9b7e73f65a8487cf1a87075308` and merged as `70980fac8f2151a6ba579c45e5fe798aa5a671a7`. The entries below retain review history. Reviewed the extension,
 closed tool schemas, snapshot validation, one-shot IPC transport, synchronous
-adapter broker and launch wrapper at `c0d2542a`. Backend/default integration
-and shared Ops helpers are still being connected.
+adapter broker and launch wrapper at `c0d2542a`. Backend/default integration and shared Ops helpers are connected at7d376edb; final gates and browser default review remain.
 
 Independent `pnpm exec vitest run --config integrations/pi-desk/vitest.config.ts`
 passed: exit 0, 11 tests, including actual installed pi 0.85.1 RPC discovery of
@@ -31,5 +30,61 @@ Root independently read IntroMail's `identity.py` at the founding immutable
 revision through gh api and Codeg's existing `as_wire` implementation: the
 borrowed policy identity is persistent, not newly minted per request. No gate
 default or permission-order change is needed. Final bridge integration must
-prove a persisted `pi` deny applies across two launch UUIDs; this regression
-is still pending while the accepted Ops helper integration is unavailable.
+prove a persisted `pi` deny applies across two launch UUIDs; this regression now passes through the production listener/engine/Ops path (below).
+
+## Integrated bridge independent check
+
+At `7d376edb` root read the live ancestry resolver, accepted Ops dispatch,
+framed token listener/cancellation lease, default-agent changes and all four
+new full-path regression tests. No separate operator principal or duplicated
+draft SQL/validation was introduced. The shared Ops and destructive gate remain
+authoritative. P1 tools intentionally await the host acceptance follow-on.
+
+`CARGO_TARGET_DIR=/Users/mohamedadan/projects/ops-desk/src-tauri/target
+CARGO_BUILD_JOBS=4 cargo test --locked --no-default-features --bin codeg-server
+--lib desk_` passed:13 tests, one explicitly ignored external-client fixture,
+0.42s, exit0. Log `/tmp/ops-pi-independent-rust-bridge.log`. This independently
+proves stable pi deny across two launch UUIDs, human floor after deny removal,
+closed inputs/public-only projections, exact draft CAS, canceled writer refusal
+and peer-abort cleanup. No model inference or real outbound request.
+
+Final extension/process suite had15 passes and one `spawn ENOEXEC` failure when
+the worker desktop check replaced its own companion with the documented
+compile-only placeholder. Root requested a stable rebuilt executable window
+and will rerun the affected process suite. This is an outstanding artifact
+validation gate, not a passing result. Log `/tmp/ops-pi-independent-final-vitest.log`.
+
+The opt-in extracted per-launch asset fixture also passed independently:
+`cargo test --locked --no-default-features --lib
+pi_desk_extracted_assets_real_rpc_discovery -- --ignored`, same root-owned target,
+exit0, one pass in0.79s. It loads the actual installed pinned pi/adapter from
+extracted assets, discovers both commands and verifies model/session guard
+refusals with isolated synthetic catalogue metadata, zero model messages and
+zero provider connections. Log `/tmp/ops-pi-independent-extracted-assets.log`.
+
+Restored artifact gate passed: after desktop checks, the worker rebuilt its own
+real companion (SHA256 `58211aff505f32828595239370be3d3890ea59e862d8b0351b12c05f7d891972`).
+Root reran only `integrations/pi-desk/process.test.ts`:2 passes, exit0, including
+actual closed MCP tool discovery and aborting a parked native request. Log
+`/tmp/ops-pi-independent-process-restored.log`. Together with the earlier14 Desk
+unit passes, all16 extension/process cases have now passed at7d376edb. The initial
+placeholder failure remains recorded above; final browser/default/report review
+is still pending.
+
+## Final acceptance
+
+Reviewed final product correction eb6f7113 and report/evidence head44e30733.
+Both error paths reuse the existing shared formatter; root independently passed
+eight setup/send-failure tests (`/tmp/ops-pi-independent-setup-message.log`).
+Final report records 125 frontend regressions, build/typechecks, desktop/server
+Clippy gates and the test-only protected browser fixture. Root reviewed actual
+CLI snapshots/screenshots: fresh Pi default, readable setup error, explicit saved
+Codex choice for a new conversation and preservation after reload. The banner
+opens agent Settings; its screenshot does not show expanded guidance.
+
+The browser uses a version-only pi-acp fixture and blocks prompts; it does not
+prove live inference. Real installed pi lacks Astra configuration and pi-acp
+is absent from the resolved path. No fallback or paid request was made.
+Exact pinned source/license mapping and final report are accepted. P1 cached
+reads/issue proposals remain a required separate host-integration follow-on.
+Final integrated browser, native build and Design Studio loops remain open.
