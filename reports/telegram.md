@@ -1,13 +1,14 @@
 # Step 3 — Telegram Ops review notifications
 
-Active implementation, 2026-09-08. Sole writer in
+Email Telegram checkpoint ready for independent acceptance, 2026-09-08. Sole writer in
 `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`, branch
 `feat/step3-telegram`, created clean from accepted origin/main
 **f76503792e18445c867e565534c1f0a11f6aa786** after PR7 merge
 **f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6**. No extra workers.
 Draft PR: **https://github.com/Adanmohh/codeg/pull/10**. Initial contract checkpoint
-**84c44414** was pushed before source implementation. This is an active source
-checkpoint, not final design acceptance.
+**84c44414** was pushed before source implementation. Product source is frozen at
+**932419e5b47cc1f84440baa05797c7a1212fe782**; the final fixture/test/report commit
+is recorded below. This handoff is email-only, not final Phase 1/design acceptance.
 
 ## Ownership and fixture coordination
 
@@ -30,8 +31,8 @@ will be coordinated with the separate host rather than copying uncommitted code.
 Root's fixture **PID 30815 / port 4320 remains running and unchanged** for final
 design. Its static `out/` must also remain unchanged while in use. New Telegram
 fixture port is **4323**, with a distinct temporary DB, synthetic credentials,
-loopback provider and Playwright CLI session. Isolated build/export setup will be
-documented before running it. Root's 4318 and bug host's 4322 are also untouched.
+loopback provider and Playwright CLI session. Isolated build/export setup is
+documented below. Root's 4318 and bug host's 4322 are also untouched.
 
 Include the requested **BC-14 receipt_recorded** fixture: a controlled provider
 receipt already stored with local recording pending. The real UI's Finish
@@ -94,7 +95,11 @@ PreToolUse **4568 / 1788820633 / exit 0**, PostToolUse
 **4550 / 1788820542 / exit 0**. These read commands recorded context_emitted=false;
 the source-write hook subsequently emitted at **1788820989**, PreToolUse exit 0,
 same session/worktree, before implementation. Further apply_patch calls emitted
-live framework reminders. Hooks remain enabled and were not bypassed.
+live framework reminders, including the final ES2020 test correction. Separate
+React package and Cargo manifest reads were repeated before that correction;
+the audit still contains live PreToolUse and PostToolUse records at
+**1788824206**, same session/worktree, exit 0. Hooks remain enabled and were not
+bypassed.
 
 Borrowed Codeg source remains **v0.30.4**, Apache-2.0, immutable commit
 **6f6bd648b206412644842a98d9ffeebf57292bed**. Local source reads preceded gh api
@@ -190,39 +195,164 @@ copy its uncommitted source. Phase 1 P1 Telegram and final design remain follow-
 
 Root also reproduced locale-change unsaved-edit loss on its unchanged 4320 fixture.
 Read full i18n-provider.tsx: appReady replaces the mounted subtree while locale
-messages load. Required **final Design P2 follow-on after Telegram handoff**:
-preserve the mounted subtree after initial readiness, retain initial boot guard,
-and test reply/note/review across language changes from a separate settings tab.
-No private persistent storage. Root owns that finding's design report.
+messages load. Root has reassigned this required P2 fix, Ops RTL and internal-copy
+design fixes to the freed rebrand worker after PR9 handoff. No locale product
+edits belong on this Telegram branch. That follow-on must preserve initial boot
+semantics and in-memory edits, with reply/note/review regression checks across
+language changes from a separate settings tab. Root owns the integrated Design
+rechecks. After PR10/PR9 acceptance, this worker's next priority is typed P1 issue
+phone review; it is not implemented or claimed here.
 
-## Planned validation and progress
+## Completed validation and limits
 
 Meaningful cases: wrong private recipient/channel/topic/sender; no actor spoofing;
 stale/denied/canceled/edited/run-changed snapshots; account scope; concurrent claims
 and restart dedupe; ambiguous outcome/no retry; sanitized notifications/errors;
-configured-disabled/missing-key states; and ACP standing approval cannot resolve
-Ops. Actual CLI mobile link → login → full payload review, desktop/mobile light/
-dark, and BC-14 database-only receipt completion. No real provider or paid inference.
+configured-disabled/missing-key states; and absence of an Ops command approval
+route. Actual CLI mobile link → login → full payload review, desktop/mobile light/
+dark, and BC-14 recovery-state visibility are verified by the worker. Root then
+completed the reserved full approval and BC-14 recovery against the same protected
+API/provider-loopback fixture, as recorded below. No real provider or paid inference.
 
-Required gates: own-target locked desktop/server checks, both Clippy gates,
-focused backend/frontend tests, typecheck and isolated production build. Root
-owns final Design Studio acceptance, inherited shell contrast/unnamed controls
-and final integration. Current early gates: server `cargo check --locked
---no-default-features --bin codeg-server` exit 0; frontend `pnpm exec tsc
---noEmit` exit 0; **13 focused ops_telegram Rust tests passed**. The first run
-was 12/13: an assertion assumed 404, while the actual inherited missing-API
-fallback is 501. Read that source, corrected the assertion, reran exit 0.
-This was a test expectation error, not a missing approval path. The latest
-credential offload/displayed-snapshot changes also passed all 13 tests, exit 0.
-Isolated `CODEG_EXPORT_DIR=out-telegram pnpm build` passed, exit 0. Root fixture
-PID 30815 was confirmed still listening on 4320 after the isolated build.
-Complete runtime/Clippy/frontend/browser gates and BC-14 fixture remain in progress.
+Rust commands ran from `src-tauri/` with **CARGO_TARGET_DIR=target-approvals**;
+frontend commands ran from this worktree root. No other target/output was used.
+
+| Command | Result | Local ignored log |
+| --- | --- | --- |
+| `cargo check --locked` | exit 0, default desktop | `reports/telegram-desktop-check.log` |
+| `cargo check --locked --no-default-features --bin codeg-server` | exit 0 | `reports/telegram-server-check.log` |
+| `cargo clippy --locked --all-targets --features test-utils -- -D warnings` | exit 0 | `reports/telegram-desktop-clippy.log` |
+| `cargo clippy --locked --no-default-features --bin codeg-server --lib -- -D warnings` | exit 0 | `reports/telegram-server-clippy.log` |
+| `cargo test --locked --no-default-features --lib ops_telegram -- --nocapture` | 13 passed, exit 0, 0.77s | `reports/telegram-tests.log` |
+| `cargo test --locked --no-default-features --lib chat_channel::backends::telegram::tests -- --nocapture` | 12 passed, exit 0, 0.02s | `reports/telegram-channel-tests.log` |
+| `pnpm exec vitest run src/lib/ops-telegram/locator.test.ts src/components/ops-telegram/settings.test.tsx src/components/ops/ops-flows.test.tsx src/components/ops/session.test.tsx` | 11 passed, exit 0 | `reports/telegram-frontend-tests.log` |
+| `pnpm exec vitest run src/lib/ops-telegram/locator.test.ts` | 2 passed after ES2020 test correction, exit 0 | `reports/telegram-locator-recheck.log` |
+| `pnpm exec tsc --noEmit` | exit 0 after final test correction | `reports/telegram-typecheck.log` |
+| `CODEG_EXPORT_DIR=out-telegram pnpm build` | exit 0; static review page exported; root `out/` untouched | `reports/telegram-build.log` |
+
+Root independently reports **13 passed, 1 manual fixture ignored, exit 0, 0.86s**
+in `/tmp/ops-telegram-independent-rust.log`, plus **11 frontend tests passed** and
+an independent Playwright CLI verification of the login correction. That is
+root-provided evidence, separate from the worker runs above. The unchanged Rust
+suite was not repeated just for root. Runtime/Clippy gates include the new manual
+fixture; the subsequent Rust change only restores an inherited fixture username
+to its original upstream value. No production frontend change occurred after the
+isolated build.
+
+The first Rust run was 12/13: an assertion assumed 404, while the inherited
+missing-API fallback is 501. Read the fallback and corrected the assertion;
+all 13 then passed. This did not add an approval route. Inherited Telegram tests
+initially passed 11/12 because rebranding had replaced the synthetic username
+`CodegTopics` with `Hafidh Ops DeskTopics`, while assertions still required
+`@codegtopics`. Verified Codeg v0.30.4's exact original fixture and restored only
+that test literal; all 12 pass. The initial frontend test had a missing `const`
+loop declaration (10/11); fixed and reran. Typecheck subsequently caught a new
+test's ES2021 `replaceAll` against this repo's ES2020 target. Read tsconfig and
+installed TypeScript `lib.es5.d.ts` String.replace overload, used the supported
+global RegExp form, and reran the locator tests and full typecheck successfully.
+
+Frontend component tests explicitly mock the facade; they are not claimed as
+provider E2E. Actual browser checks below use the protected API and injected
+loopback providers without request interception. Missing/disabled configuration,
+retryable preflight failures and unconfirmed sends are covered by backend and
+component tests; the shared browser fixture stays configured to preserve root's
+stored notification links. No real Telegram account/device or remote phone
+connectivity was tested. The inherited single-tenant operator boundary is not an
+OS sandbox against a malicious same-user process.
+
+Build-only limitations: existing proc-macro-error2 future-incompatibility notice,
+large macOS test-link unwind warning, and the inherited development sidecar
+placeholder are not release-package validation. The isolated fixture's synthetic
+workspace path produces inherited get_git_head/start_workspace_state_stream 404
+console entries; no Telegram review API error was hidden. Wrong-login 401 is
+intentional validation. Root owns final Design Studio acceptance and inherited
+shell contrast/unnamed controls, plus the separately assigned locale/RTL/copy work.
 
 Commands so far: clean status, fetch, branch creation, planning/source reads and
 immutable gh api lookups exited 0; code-context exits are above. Two exploratory
 searches used absent auth filenames/globs, then actual web-auth.ts was discovered.
 One additional exploratory read used an absent ops/auth.rs filename before
 reading the actual Operator boundary in ops/mod.rs. All product source writes
-are confined to this worktree. No live configuration reads, sends or polling
-have occurred. Test provider calls are loopback-only. Source checkpoint SHA will
-be recorded after the commit; see branch/PR head for that immutable checkpoint.
+are confined to this worktree. No real channel configuration/credential reads,
+sends or polling have occurred. Test provider calls are loopback-only.
+
+## Live isolated fixture — released for root mutations
+
+Source checkpoint **932419e5b47cc1f84440baa05797c7a1212fe782** is pushed to PR10.
+The fixture is now listening at **http://127.0.0.1:4323/__telegram_fixture**,
+owned **PID 51913**, log `reports/telegram-browser-server.log` (ignored).
+Worker browser session **ops-telegram-check is closed**. Synthetic operator token:
+**ops-telegram-synthetic-operator**. This is fixture-only and authenticates no
+real server. Credentials and all provider implementations are injected locally.
+
+Reproduce from this worktree (both commands use only owned outputs):
+
+```sh
+CODEG_EXPORT_DIR=out-telegram pnpm build
+cd src-tauri
+CARGO_TARGET_DIR=target-approvals cargo test --locked --no-default-features --lib ops_telegram_browser_fixture -- --ignored --nocapture
+```
+
+The ignored test creates a new temporary DB and loopback Telegram/Resend servers;
+it never reads real channel tokens, connects/polls a bot or starts the scheduler.
+The fixture landing page has real stored notice links for pending/stale/denied/
+canceled proposals. Opening pending while signed out goes to the existing login
+with only `opsNotice=<UUID>` and returns to the protected full review after login.
+Actual CLI at 390×844 reached this login with its locator intact.
+
+BC-14 **proposal #2** has a real synthetic Resend receipt and `receipt_recorded`
+state, produced through the actual approve/client path with a temporary SQLite
+trigger blocking only local public-message recording. The trigger is removed
+before serving. Open Ops → Approvals → Reply review #2 → Finish recording receipt.
+Protected GET **/api/ops_telegram_fixture_stats** reports scalar synthetic provider
+request counts and receiptProposalId; initial emailProviderRequests is **1** and
+telegramSendRequests is **4**. Finishing the stored receipt must leave the email
+request count unchanged. The stats/landing routes are compiled only in this test.
+
+**Worker released the fixture before root's successful mutation pass below.**
+Pending proposal **#1** at notice **a4c39cdf-5586-40db-9c31-9fd12639ed66** and BC-14
+receipt proposal **#2** were untouched after seeding. Final worker browser stats were **emailProviderRequests=1**,
+**telegramSendRequests=4**, receiptProposalId=2. The worker performed no save/
+approve/deny/configure/notify/finish calls after seed; its unsaved field edits and
+theme choice were browser-local. PID 51913 remains listening unchanged. No reseed
+is needed. After root finishes its session, it may stop/reseed only this fixture
+with the command above (new locators appear on its landing page). Never stop root
+PID 30815 / 4320, whose listener/static out remain unchanged.
+Remote phone access is untested and requires an operator-configured reachable
+protected HTTPS origin; 4323's loopback link is synthetic browser validation only.
+
+Actual Playwright CLI **0.1.18** worker evidence (no MCP, no package upgrade):
+
+- At 390×844, pending link while signed out preserved `opsNotice` through login.
+  Wrong synthetic token showed the associated invalid-token error. Correct token
+  plus keyboard Enter opened the actual protected complete review.
+- Full From/To/Cc/Bcc/subject/body/thread-header fields were available. Client-only
+  Cc/Bcc/body sentinels survived 390→1280→390 and selecting Appearance → Dark in
+  another settings tab. The native leave confirmation appeared; dismiss retained
+  the unsaved payload. This theme check does not claim the known locale bug fixed.
+- Stale, denied, canceled and invalid links rendered the unavailable heading with
+  no editable payload. Configured Telegram settings showed the explicit recipient,
+  origin guidance and notification history without initiating a queue check.
+- BC-14's actual queue entry opened to `Provider accepted · recording pending`
+  with the enabled Finish recording receipt control. Left it unclicked for root.
+  Final mobile document width was exactly 390px for the 390px viewport.
+
+Committed screenshots: [mobile light](telegram-mobile-light.png),
+[desktop light](telegram-desktop-light.png), [mobile dark](telegram-mobile-dark.png),
+[desktop dark](telegram-desktop-dark.png), [stale mobile](telegram-stale-mobile.png),
+[scoped settings mobile](telegram-settings-mobile.png),
+[BC-14 reserved recovery](telegram-bc14-reserved.png). CLI snapshots and console
+logs remain local in ignored `.playwright-cli/`. These are synthetic browser
+validation artifacts, not final Design acceptance or real-phone screenshots.
+
+**Root independent mutation pass completed after worker handoff:** root reports
+proposal #1's Bcc/body edited and approved through the real `/ops-review` card.
+Email provider requests went **1→2**, Telegram remained **4**, a sent receipt was
+shown and exactly one public outgoing copy was recorded. For proposal #2, Finish
+recording changed **receipt_recorded→sent**, removed the recovery button and
+recorded exactly one public copy while counts stayed **email 2 / Telegram 4**.
+No second provider request occurred for BC-14. Root reports no new backend finding;
+its artifacts are in root's `reports/browser-phone-independent`. These are
+root-provided independent results, not worker assertions of having repeated them.
+The generic no-receipt terminal copy remains the known Design follow-on. The live
+fixture now contains those completed decisions; no reseed/repeat is needed.

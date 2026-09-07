@@ -565,4 +565,4 @@ pub async fn resolve(
 }
 
 #[cfg(test)]
-mod tests;
+pub(crate) mod tests;

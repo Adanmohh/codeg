@@ -10,7 +10,7 @@ use crate::{
 use axum::http::StatusCode;
 use sea_orm_migration::{MigratorTrait, SchemaManager};
 use serde_json::json;
-mod provider;
+pub(crate) mod provider;
 use provider::Provider;
 
 async fn settings(
