@@ -7,8 +7,9 @@ Email Telegram checkpoint ready for independent acceptance, 2026-09-08. Sole wri
 **f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6**. No extra workers.
 Draft PR: **https://github.com/Adanmohh/codeg/pull/10**. Initial contract checkpoint
 **84c44414** was pushed before source implementation. Product source is frozen at
-**932419e5b47cc1f84440baa05797c7a1212fe782**; the final fixture/test/report commit
-is recorded below. This handoff is email-only, not final Phase 1/design acceptance.
+**932419e5b47cc1f84440baa05797c7a1212fe782**; final code/test/fixture head is
+**c7a46acf30296a9e7c41a5a5c57d47afaeaa00e4**, committed and pushed. This handoff
+is email-only, not final Phase 1/design acceptance.
 
 ## Ownership and fixture coordination
 
@@ -300,8 +301,8 @@ canceled proposals. Opening pending while signed out goes to the existing login
 with only `opsNotice=<UUID>` and returns to the protected full review after login.
 Actual CLI at 390×844 reached this login with its locator intact.
 
-BC-14 **proposal #2** has a real synthetic Resend receipt and `receipt_recorded`
-state, produced through the actual approve/client path with a temporary SQLite
+On fresh seed, BC-14 **proposal #2** has a real synthetic Resend receipt and
+`receipt_recorded` state, produced through the actual approve/client path with a temporary SQLite
 trigger blocking only local public-message recording. The trigger is removed
 before serving. Open Ops → Approvals → Reply review #2 → Finish recording receipt.
 Protected GET **/api/ops_telegram_fixture_stats** reports scalar synthetic provider
@@ -311,7 +312,8 @@ request count unchanged. The stats/landing routes are compiled only in this test
 
 **Worker released the fixture before root's successful mutation pass below.**
 Pending proposal **#1** at notice **a4c39cdf-5586-40db-9c31-9fd12639ed66** and BC-14
-receipt proposal **#2** were untouched after seeding. Final worker browser stats were **emailProviderRequests=1**,
+receipt proposal **#2** were untouched after seeding. Final worker browser stats
+were **emailProviderRequests=1**,
 **telegramSendRequests=4**, receiptProposalId=2. The worker performed no save/
 approve/deny/configure/notify/finish calls after seed; its unsaved field edits and
 theme choice were browser-local. PID 51913 remains listening unchanged. No reseed
@@ -356,3 +358,22 @@ its artifacts are in root's `reports/browser-phone-independent`. These are
 root-provided independent results, not worker assertions of having repeated them.
 The generic no-receipt terminal copy remains the known Design follow-on. The live
 fixture now contains those completed decisions; no reseed/repeat is needed.
+
+## Final commit and PR handoff
+
+- Initial contract: **84c44414**, pushed before implementation.
+- Production implementation: **932419e5b47cc1f84440baa05797c7a1212fe782**,
+  `feat: add bounded private Telegram review notifications`.
+- Final code/test/fixture head: **c7a46acf30296a9e7c41a5a5c57d47afaeaa00e4**,
+  `chore: add isolated Telegram review validation`. Commit/push exited 0.
+- `git diff --check` and staged diff check exited 0. Only named owned files were
+  staged; NOTICE and accepted migrations are preserved. Lockfiles and root
+  planning documents were not changed. Later Pi/bug-host integration is outside
+  this frozen validation tree rooted at **f7650379**.
+- Draft **PR10** to `Adanmohh/codeg:main` has its final title and validation body;
+  `gh pr edit 10 --repo Adanmohh/codeg --body-file ...` exited 0 after installed
+  help was read. No merge, deployment or messages/comments to people.
+
+This report-only finalization follows the validated code/test head. The fixture
+listener remains available to root; no more worker browser/provider mutations
+or broad tests are pending for this email Telegram checkpoint.
