@@ -26,3 +26,5 @@ All three workers are running through Herdr, each in its own worktree and branch
 - Every prompt requires complete founding/orchestration document reads, docs-first pinned-source reads, exact-source borrowing, licence/NOTICE attribution, no AGPL or enterprise source, early commits/pushes, draft PRs to main, and committed file reports.
 - Review gates: default desktop `cargo check --locked`, frontend typecheck, focused behavioral tests and server compilation for Rust changes; inspect source citations and licence provenance before accepting.
 - The orchestrator writes no product code. Update this file after each review and merge. Step 2 has not started.
+
+- Owner docs-research update relayed to every worker: use `gh api` for latest documentation research and record exact refs; retain mandated borrowed-source pins.

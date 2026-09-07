@@ -40,3 +40,5 @@ Dependency versions above were read from the installed packages and Cargo.lock, 
 - Reserve distinct migration names: approvals `m20260907_000001_ops_approvals`, tickets `m20260907_000002_ops_tickets`, adapted to verified repository conventions. Workers keep shared registry and NOTICE edits minimal.
 - Intromail has no source tag specified: approvals must resolve and record one immutable commit before reading the named private source files via gh api. Chatwoot remains pinned to v4.17.1, MIT files outside enterprise only.
 - Owner requires best/latest models throughout. All project agents verified as GPT-6 Astra, the installed catalogue flagship; official model guidance confirms it is OpenAI's most capable model: https://developers.openai.com/api/docs/models/gpt-6-astra. This is worker-runtime selection; FOUNDING's product agent choices remain in force.
+
+- Owner clarification: always use `gh api` for researching latest docs, against official source repositories and recorded refs. Local pinned dependency source remains the implementation authority; newest docs do not authorize changing FOUNDING source pins. This rule was relayed to all three workers.
