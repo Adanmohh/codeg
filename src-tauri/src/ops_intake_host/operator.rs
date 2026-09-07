@@ -37,6 +37,7 @@ pub async fn configure(
     input: ConfigureInput,
 ) -> Result<Status, HostError> {
     let mut guard = runtime.guard(&input.binding.product_id).await?;
+    input.binding.validate()?;
     if !identifier(&input.binding.product_id) || input.origin.len() > 2048 {
         return Err(HostError::InvalidInput);
     }
@@ -308,8 +309,8 @@ pub async fn save(
     if draft.revision != input.expected_revision {
         return Err(HostError::Conflict);
     }
-    if input.title.len() > 800
-        || input.summary.len() > 8192
+    if !ops_intake::reviewable_text(&input.title, 800)
+        || !ops_intake::reviewable_text(&input.summary, 8000)
         || input.labels.len() > 20
         || input.labels.iter().any(|s| s.len() > 50)
     {

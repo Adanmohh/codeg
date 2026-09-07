@@ -183,3 +183,33 @@ for tests/test-utils, rejects non-loopback addresses and otherwise uses the
 accepted client. Production has no API-origin override. Dedicated random
 `ops-intake-<uuid>` references reuse the existing credential client; no Git PAT
 slot, credential value or global setting is read during fixture validation.
+
+UI source checkpoint before accepted-main merge: source list/detail, content-only
+four-proof attachment, explicit severity confirmation, saved draft/prepared exact
+title/body/repository/labels, human review, failed/unknown/created receipts and
+settings are written in the owned frontend directories. Shared Ops session hooks
+preserve edit lifetimes on shell remount; secret-entry forms are not persisted.
+These files are not registered or browser-validated yet. Read React 19.2.4 package
+and installed @types/react useState/effect/ref/useId/context/external-store types,
+inherited UI primitives and transport call/timeout types; Prettier exit 0.
+
+Resolved the held-fix gap within the owned host module by a narrow port of
+Codeg's existing insertion/source dedup/event pattern. `fix_task.rs` creates the
+real linked work_task in initial Canceled state in the same transaction as its
+link and audit events; the existing auto scheduler cannot claim it. Existing Tasks
+review/edit/manual requeue resumes it. First deliverable is a report/fix plan,
+writeback is false, and no engine/scheduler file is modified. Its App provenance
+identity is not a Git PAT account; future forge delivery requires separate
+configuration and review. Focused creation/duplicate/scheduler tests remain.
+
+gh api immutable Codeg source proof: work_task_service.rs blob
+`8042ecea7d083a6246fe3726cad2ad9b5223449d`, keyring_store.rs
+`d3e9041b95ebf2b36db66f5d15ba15df2ec494cd`, forge/envelope.rs
+`a6cd4cac6418b2148ede03836147261a863a2ad1`, ui/button.tsx
+`652d5d3d00aff9a1c917711b8d148f9f711f96fe`, all at the pinned v0.30.4 commit.
+NOTICE records source-to-destination mapping, preserving all prior licenses.
+
+Owner has now accepted PR7 at `756d064f1cc391ed1da32ba90429adef225f080d`, merged
+`f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`. Commit the owned checkpoint, then
+fetch/merge accepted main before shared auth/navigation registration and final
+integrated gates. No live provider mutation has occurred.

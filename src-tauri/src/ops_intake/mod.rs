@@ -18,6 +18,10 @@ use sea_orm::DatabaseConnection;
 use serde_json::Value;
 
 pub struct GithubIssueAction;
+/// Reuse the same bounded secret/privacy rejection before a host saves text.
+pub(crate) fn reviewable_text(value: &str, max: usize) -> bool {
+    types::public_text(value, max)
+}
 fn prepared(payload: &Value) -> Result<PreparedIssue, IntakeError> {
     let value: PreparedIssue =
         serde_json::from_value(payload.clone()).map_err(|_| IntakeError::InvalidPayload)?;

@@ -144,7 +144,7 @@ pub struct RepositoryBinding {
     pub enabled: bool,
 }
 impl RepositoryBinding {
-    pub(super) fn validate(&self) -> Result<(), IntakeError> {
+    pub(crate) fn validate(&self) -> Result<(), IntakeError> {
         let parts: Vec<_> = self.full_name.split('/').collect();
         if !identifier(&self.product_id)
             || !identifier(&self.app_id)

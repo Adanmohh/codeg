@@ -231,6 +231,25 @@ Adaptation: template snapshots and SQLite transaction/CAS patterns in
 src-tauri/src/ops_intake/ and db/migration/m20260907_000005_ops_intake.rs.
 Original LICENSE and previous NOTICE entries retained.
 
+P1 operator intake host and UI
+-----------------------------
+codeg v0.30.4 6f6bd648b206412644842a98d9ffeebf57292bed, Apache-2.0:
+  src-tauri/src/db/service/work_task_service.rs
+    (create_from_forge, insert_todo_row, record_event, source dedup)
+  src-tauri/src/forge/{mod.rs,envelope.rs}
+  src-tauri/src/keyring_store.rs
+  src-tauri/src/web/handlers/forge.rs
+  src/lib/transport/{index.ts,types.ts}
+  src/components/ui/{button.tsx,input.tsx,textarea.tsx}
+  src/components/workbench/workbench-content.tsx
+Adaptation/reuse: ops_intake_host/, its separate command/HTTP adapters,
+m20260908_000006_ops_intake_host, components/ops-intake/ and lib/ops-intake/.
+Held fix insertion adapts the existing task row/CAS/provenance pattern with an
+initial Canceled state, requiring existing manual requeue before any launch.
+No new scheduler or approvals engine. Original Apache LICENSE retained.
+The closed Python host entry point delegates to the already attributed/pinned
+Hafidh adapter above; it does not copy another triage or add an upstream route.
+
 MCP Python SDK v2.0.1 8b191a433634d64b1306d7d51be8b16e14cc0893:
   examples/mcpserver/readme-quickstart.py
   examples/mcpserver/weather_structured.py
