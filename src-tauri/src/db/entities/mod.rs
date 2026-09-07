@@ -24,3 +24,7 @@ pub mod work_task;
 pub mod work_task_event;
 pub mod work_task_settings;
 pub mod work_task_template;
+pub mod ops_proposal;
+pub mod ops_audit_log;
+pub mod ops_agent_rule;
+pub mod ops_agent_scope;

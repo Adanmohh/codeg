@@ -1,0 +1,21 @@
+Codeg
+Copyright its contributors. Based on xintaofei/codeg v0.30.4,
+commit 6f6bd648b206412644842a98d9ffeebf57292bed.
+Licensed under Apache-2.0; the original license remains in LICENSE.
+The approvals task CAS glue adapts src-tauri/src/db/service/work_task_service.rs
+and the existing SeaORM migration/entity patterns from that commit.
+
+Ops Desk approvals port
+Source: IntroInnovation/intromail (owner-authorized private source)
+Commit: 0bd24dfe284b888aa9f602fa1fd00e337ea38874
+Original files:
+  backend/app/services/agent/gating.py
+  backend/app/services/agent/proposals.py
+  backend/app/services/agent/redaction.py
+  backend/app/services/agent/actions.py (Action/Decision interface only)
+  backend/app/audit.py
+  backend/app/models.py (Proposal, AuditLog, AgentRule, AgentScope only)
+Port: src-tauri/src/db/service/ops_approvals/, entities/ops_*.rs,
+  migration/m20260907_000001_ops_approvals.rs (under src-tauri/src/db/).
+Owner's source; no third-party license terms per FOUNDING.md section 3.
+No Plane, Twenty, Postiz, restricted Chatwoot enterprise or Kun source imported.

@@ -22,3 +22,29 @@ Read all named source via gh api at the immutable SHA. Local pinned SeaORM 1.1.1
 - Core service only: trusted action implementations validate and classify payloads; no network executor. Successful resolution returns the exact validated approved payload once, after CAS commit. Step 2 adapters must dispatch that payload, never re-read a mutable draft. No automatic replay after a crash.
 - Preserve work_task run_seq and review-before-done. Proposal wait/resume only uses running ⇄ awaiting_input.
 - Validation and final commit/PR pending.
+
+## Orchestrator reload checkpoint
+
+Stopped on owner request to reload the newly trusted Codex docs-first hook. Implementation is INCOMPLETE; do not merge this checkpoint. No further product edits made after that request.
+
+Current files: four SeaORM entities (ops_proposal, ops_audit_log, ops_agent_rule, ops_agent_scope), reserved migration plus minimal registries, ops_approvals/{mod,gating,redaction}.rs core, and new NOTICE (there was no existing NOTICE in this worktree). Exact source mapping remains above and in NOTICE.
+
+Commands/results:
+- `gh api` immutable commit resolution, recursive tree verification, and named source reads: exit 0.
+- code-context `guide`: exit 0; dependency `docs`: exit 3, missing approvals.db (documented above).
+- `pnpm install --frozen-lockfile`: exit 0, pnpm 11.9.0; lockfiles unchanged.
+- `cargo check --locked --manifest-path src-tauri/Cargo.toml --target-dir src-tauri/target-approvals`: exit 0, desktop default features, 2m06s. Local log reports/approvals-desktop.log. Used this worktree's out/index.html placeholder per CI. Known upstream zero-byte sidecar and proc-macro-error2 warnings only.
+- Installed gh api/pr create, git add/commit/push, cargo check/test, pnpm/install, TypeScript help read. `git ... -h` returns its standard help exit 129.
+
+Resume work:
+1. Reload and obey the newly activated docs-first hook before further work. Reuse the immutable source SHA, never switch to current HEAD for the port.
+2. Review the unformatted core implementation. The `#[cfg(test)] mod tests;` declaration is present but tests.rs has NOT yet been created, so test compilation is currently incomplete.
+3. Fix task_cas live-folder check to reject soft-deleted folders (currently only checks row existence). Review fail-closed policy exceptions and approval-denied audit transaction handling.
+4. Add meaningful gate precedence matrix, scope specificity, exact edited-payload handoff, invalid payload, credential/private redaction, stale run/task/review/deletion, competing approve/deny and audit-write rollback tests. Use upstream work_task create/claim_for_run/begin_setup/mark_running/settle_review helpers already read. No tests have run yet; earlier progress commentary described intended tests, not completed validation.
+5. Consider recording an immutable approved-payload digest in audit for after-resolution binding evidence; read local sha2 usage/source before using it. Current exact binding is a non-Clone AuthorizedAction carrying the approved Value, original-payload comparison, and transactional pending/run_seq CAS.
+6. Run formatting on only owned files, focused tests, default desktop cargo check --locked again after changes, server cargo check --locked --no-default-features --bin codeg-server, pnpm exec tsc --noEmit. Server/typecheck remain unrun.
+7. Finish source mapping/limitations, push and open small draft PR to main using the already-read gh pr create help. Draft PR URL: pending; checkpoint is not review-ready.
+
+Build output is isolated in this worktree at src-tauri/target-approvals (untracked, deliberately not committed); preserve for resumed checks. Local logs are ignored. Do not stage that build directory. No other worktree or main outputs were written. No transport/API/UI adapter, external sender or domain action has been introduced; Step 2 will consume the trusted Rust service boundary. Scope unchanged.
+
+Initial report commit: 9ed749d1. Product checkpoint SHA is recorded below after its commit; report-only follow-up will reference it.
