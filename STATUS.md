@@ -11,7 +11,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
-| Bug workflow host/UI | PR #9 independent17 Rust,9 isolated Python,8 frontend tests and protected CLI review/held-task checks pass | Final committed report/gates and exact-head acceptance |
+| Bug workflow host/UI | PR #9 independent17 Rust,9 isolated Python,8 frontend tests and protected CLI review/held-task checks pass | Worker resolving additive registration conflicts with accepted Telegram/Pi, then integration gates/exact-head acceptance |
 | Telegram and beta validation | PR #10 reviewed and merged; independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Typed P1 issue extension, final integrated beta/native checks |
 | Final Design Studio loops | Preliminary sequential seven-finding review committed; independent specialist active; shell fixes queued | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
 
@@ -282,3 +282,12 @@ report `reports/telegram-issues.md`. Start docs/contract from acceptedmain,
 then integrate PR9 after acceptance before product wiring. Preserve closed
 typed snapshots, opaque authenticated locators, human gate and no-resend
 boundary; actual synthetic CLI issue phone review is required.
+
+## Bug-host final integration correction
+
+After PR10 merge, root read-only merge-tree found five additive registration
+conflicts in PR9: commands, migrations, lib, web handlers and router. Rebrand
+was instructed to commit its report checkpoint, merge acceptedmain in its own
+branch, preserve all host/Pi/Telegram entries and migration order005→006→007,
+then rerun affected integration gates. Root worktree remains unchanged by
+that merge inspection. No product implementation is delegated to root.
