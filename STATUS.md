@@ -1,6 +1,6 @@
 # Status — 2026-09-07
 
-Step 0 complete. Step 1: rebrand and tickets reviewed and merged; approvals is fixing two review findings. Step 2 source-contract research is starting under the owner’s autonomous-continuation instruction.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 transport, integration and UI work continues autonomously. Browser baseline passes; new Ops flow checks and final Design Studio loops remain.
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
@@ -18,14 +18,14 @@ All three workers were dispatched through Herdr, each in its own worktree and br
 | Worker | Tab / pane | Branch | Worktree | Report | Review / merge |
 | --- | --- | --- | --- | --- | --- |
 | rebrand | `wR:t2` / `wR:p2` | `feat/step1-rebrand` | `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand` | `reports/rebrand.md` | Reviewed and merged, PR #2 |
-| approvals | `wR:t3` / `wR:p3` | `feat/step1-approvals` | `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals` | `reports/approvals.md` in worktree | PR #3, two P2 fixes in progress |
+| approvals | `wR:t3` / `wR:p3` | `feat/step1-approvals` | `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals` | `reports/approvals.md` in worktree | Reviewed and merged, PR #3 |
 | tickets | `wR:t4` / `wR:p4` | `feat/step1-tickets` | `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets` | `reports/tickets.md` in worktree | Reviewed and merged, PR #1 |
 
 - Verified all four active project agents use `gpt-6-astra`, the most capable model in the installed Codex model catalogue. Owner requires the best current models for all project workers; no cheaper-model delegation.
 - Worker launch arguments explicitly set `-a never -s danger-full-access`.
 - Every prompt requires complete founding/orchestration document reads, docs-first pinned-source reads, exact-source borrowing, licence/NOTICE attribution, no AGPL or enterprise source, early commits/pushes, draft PRs to main, and committed file reports.
 - Review gates: default desktop `cargo check --locked`, frontend typecheck, focused behavioral tests and server compilation for Rust changes; inspect source citations and licence provenance before accepting.
-- The orchestrator writes no product code. Update this file after each review and merge. Step 2 has not started.
+- The orchestrator writes no product code. Update this file after each review and merge. Step 2 is now active (see latest dispatch below).
 
 - Owner docs-research update relayed to every worker: use `gh api` for latest documentation research and record exact refs; retain mandated borrowed-source pins.
 
@@ -77,3 +77,9 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - `wR:t3` / `wR:p3`, tab Approvals · audit: finishes the two Step 1 findings and combined migration/engine checks.
 - All tasks retain exact borrowing pins, gh api research, docs-first hooks, GPT-6 Astra max and isolated worktrees.
 - Playwright CLI and Design Studio skills read. Production frontend build for merged rebrand/tickets passes. Real local server build and isolated browser check are in preparation. [Design brief](docs/design/BRIEF.html) generated through Design Studio after narrowing and curating the scanner output; its scenarios are acceptance requirements, not completed flow results.
+
+## Approvals accepted and merged — 2026-09-07
+
+- PR #3 accepted at `85e5f665c59ce040cb412fa95de36c396d9a1ff9`, merged as `65aca88916b4af398a568c09ece431440d660e3b`. Both review findings are fixed: transactional ACP/Ops wait ownership preserves concurrent requests, and migration tests target approvals by name with later migrations present.
+- Orchestrator reviewed the fix and concurrency/cleanup regressions, verified the final commit changes only the report, and independently reran all 21 approval tests successfully. Worker combined evidence: 18 ticket, 39 work-task and 128 engine tests; desktop/server checks, both Clippy gates and frontend typecheck pass. See [approvals report](reports/approvals.md). No CI or packaged-app pass claimed.
+- All Step 1 PRs are merged. These are foundation services; approval routes, trusted action execution and Ops UI are Step 2 work. The isolated browser server will be upgraded on its existing ticket database to verify migration compatibility.
