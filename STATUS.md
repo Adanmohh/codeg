@@ -140,3 +140,8 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - Email owner continues PR #7; pi owner continues PR #8 and coordinates typed P1 proposal access with the host owner. All retain Astra max, docs-first and gh api research. Isolated browser ports: root 4318, email 4320, bug workflow 4322. No live external actions are part of fixture validation.
 
 - Root independently passed 11 pi extension tests, including real installed RPC discovery without inference; [review in progress](reports/review-pi-desk.md). No Astra catalogue entry is available in installed pi, so live model setup remains explicit. Fresh hook records at timestamps 1788817374–1788817397 confirm PreToolUse/PostToolUse execution for all three worker sessions; this does not claim root-session enforcement or universal write interception.
+
+## Email UI browser review — correction required
+
+- Independent combined Rust Ops suite passes (22 tests, one ignored manual fixture), as do five frontend component tests. Real Playwright CLI login/inbox/thread checks are running against the protected API with a test-only loopback provider.
+- Found P2 unsaved-edit loss when resizing from desktop to mobile: the layout resets selection and discards edited reply text without confirmation. Sent the reproduction to the UI owner; PR #7 remains unaccepted until fixed and rechecked. [Review and evidence](reports/review-ops-ui.md).
