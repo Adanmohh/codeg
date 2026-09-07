@@ -1,6 +1,9 @@
 # Step 2 intake / GitHub implementation
 
-Status: implementation and final validation underway. Branch `feat/step2-intake-github`, created after
+Status: independent implementation complete; required local gates passed.
+Awaiting root acceptance. PR #5 stays draft; host/UI integration awaits a
+separate assignment after merge. Source remains at the reviewed `140b66b3`.
+Branch `feat/step2-intake-github`, created after
 a clean check and fetch from `dc7ce45d97ce5df3ad33a40fb80923c6467406b9`.
 Accepted contract: `reports/step2-intake-contracts.md` (PR #4, merged bb9134d3).
 No other worktree, Hafidh source/environment, protected planning document or
@@ -45,7 +48,7 @@ Functions exercised by the compiled integration tests (all fallible results use
 | `PreparedIssue::payload_digest` | borrowed prepared issue | canonical SHA-256 string |
 | `dispatch` (async) | connection, borrowed App client, owned `AuthorizedAction` | `FilingReceipt`, consumes capability |
 | `filing_status` (async) | connection, borrowed `SourceRef`, repository ID (`i64`) | optional `FilingReceipt`, no network |
-| `reconcile_filing` (async) | connection, borrowed App client, attempt ID (`i64`) | `FilingReceipt`, GitHub GETs only |
+| `reconcile_filing` (async) | connection, borrowed App client, attempt ID (`i64`) | `FilingReceipt`, issue GETs and installation-token exchange if needed; no issue write |
 | `GithubAppClient::new` | optional `GithubAppConfig` | `GithubAppClient` |
 | `GithubAppClient::is_configured` | borrowed App client | `bool`, no network |
 
@@ -69,6 +72,10 @@ attachment glue. Convert the Python source ref to this subset (its optional
 are rejected at every draft/prepared boundary. All four proofs are mandatory.
 Labels are explicit, human-reviewed, existing repo label names; this module
 does not create labels. Source triage remains a suggestion until that review.
+V1 accepts at most 20 unique label names of at most 50 bytes, using ASCII
+letters/digits or `_:-`. Other label spellings are `invalid_payload`. Titles
+are a single line of at most 200 characters/800 bytes; summaries and proof
+bytes are at most 8192 bytes each, and the rendered body is at most 16 KiB.
 
 `PreparedIssue` freezes `{draft,repository_id,repository,binding_digest,outgoing}`;
 `outgoing` is the exact `{title,body,labels}` posted. Receipt fields are
@@ -132,7 +139,9 @@ Live hook evidence in `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.json
 session `01a07c1c-cf2e-73e1-bbe3-e758c8363042`, this worktree, PreToolUse line
 1584 and PostToolUse line 1585, timestamp 1788813122. Separate React/Cargo
 reads on continuation also produced live PreToolUse line 2640 and PostToolUse
-line 2633 for this same session/worktree. Hooks remain enabled.
+line 2633 for this same session/worktree. Final audit inspection found
+PreToolUse line 2929 and PostToolUse line 2908 with the same session/worktree.
+Hooks remained enabled through implementation, validation and report edits.
 
 ## Exact source mapping (implementation ledger)
 
@@ -140,80 +149,170 @@ The accepted contract contains the full immutable research ledger. Port inputs:
 
 | Source / immutable revision | Exact files | Destination / adaptation |
 | --- | --- | --- |
-| codeg v0.30.4 `6f6bd648b206412644842a98d9ffeebf57292bed`, Apache-2.0 | `src-tauri/src/db/service/work_task_service.rs`, `src-tauri/src/models/work_task.rs`, `src-tauri/src/db/migration/m20260801_000003_work_task_template.rs` | Existing template snapshot, SQLite transaction/CAS and migration patterns; strict evidence validation is new boundary glue. |
-| intromail `0bd24dfe284b888aa9f602fa1fd00e337ea38874`, owner-authorized source without repository license | `backend/app/services/github/client.py`, `backend/app/services/github/actions.py`, `backend/tests/test_github_pack.py` | Rust App JWT/install-token cache and destructive action patterns. No create-issue helper exists; narrow REST call is glue. |
-| python-sdk v2.0.1 `8b191a433634d64b1306d7d51be8b16e14cc0893`, MIT | `src/mcp/server/mcpserver/server.py`, `examples/mcpserver/readme-quickstart.py`, `examples/mcpserver/weather_structured.py` | `MCPServer` stdio tools and strict structured results. v2 FastMCP path intentionally unavailable. |
-| Hafidh `a83794708193a18611c8e6eb8e88637b8136e471`, owner's read-only source | `backend/app/modules/testflight/{models.py,schemas.py,admin_router.py,triage.py}`, `backend/app/modules/feedback/{models.py,feedback_schemas.py,feedback_router.py}`, `backend/app/common/utils/operation_result.py` | Read-only TestFlight adapter, normalized DTOs and exact triage port. No invented in-app read API. |
-| github/docs `831337b0fed60b90a72e2711a41dfcad72b5f288` and github/rest-api-description `3cef12e8a02d612ad032473d4fb87266f2befeae` | Exact paths in accepted contract | Issue creation / installation token HTTP contracts, API `2022-11-28`, not a source-version upgrade. |
+| codeg v0.30.4 `6f6bd648b206412644842a98d9ffeebf57292bed`, Apache-2.0 | `src-tauri/src/db/service/work_task_service.rs`, `src-tauri/src/models/work_task.rs`, `src-tauri/src/db/migration/m20260801_000003_work_task_template.rs` | Snapshot/render and SQLite transaction/CAS patterns in `src-tauri/src/ops_intake/{types,store}.rs` and `src-tauri/src/db/migration/m20260907_000005_ops_intake.rs`; evidence validation is boundary glue. |
+| intromail `0bd24dfe284b888aa9f602fa1fd00e337ea38874`, owner-authorized source without repository license | `backend/app/services/github/client.py`, `backend/app/services/github/actions.py`, `backend/tests/test_github_pack.py` | `src-tauri/src/ops_intake/{github,mod}.rs`, `tests.rs`, `github/tests.rs`: App JWT/install-token cache and destructive action patterns. No create-issue helper exists; narrow REST call is glue. |
+| python-sdk v2.0.1 `8b191a433634d64b1306d7d51be8b16e14cc0893`, MIT | `src/mcp/server/mcpserver/server.py`, `examples/mcpserver/readme-quickstart.py`, `examples/mcpserver/weather_structured.py`; installed client API `src/mcp/client/{stdio,client}.py` | `integrations/hafidh-intake/src/hafidh_intake/server.py` and `integrations/hafidh-intake/tests/test_stdio.py`: `MCPServer` tools, strict structured results, sanitized public `call_tool` boundary and real stdio discovery/read. v2 FastMCP path intentionally unavailable. |
+| Hafidh `a83794708193a18611c8e6eb8e88637b8136e471`, owner's read-only source | `backend/app/modules/testflight/{models.py,schemas.py,admin_router.py,triage.py}`, `backend/app/modules/feedback/{models.py,feedback_schemas.py,feedback_router.py}`, `backend/app/common/utils/operation_result.py` | `integrations/hafidh-intake/src/hafidh_intake/{schemas,client,triage}.py`: read-only TestFlight adapter, strict DTO projection and exact classifier port (only import/header adapted). No invented in-app read API. |
+| Accepted approvals merge `65aca88916b4af398a568c09ece431440d660e3b`, retained in integrated main | `src-tauri/src/db/service/ops_approvals/{mod,gating,redaction,tests}.rs` | Existing Action/Review/AuthorizedAction used by `src-tauri/src/ops_intake/mod.rs`; live source/resource reads use its transaction. Core is unchanged. |
+| Keats/jsonwebtoken v9.3.1 `87bbe49004de17ac1c64bf25d7751c0e43cff5dc`, MIT | `README.md`, `Cargo.toml`, `src/encoding.rs`; installed header/validation APIs and LICENSE | Exact `jsonwebtoken = "=9.3.1"` dependency used by `src-tauri/src/ops_intake/github.rs`; established RS256 signing, no handwritten crypto. |
 
-## Validation and limits
+Official HTTP contract evidence, fetched through `gh api` at immutable refs:
 
-Pending: isolated Python dependency pins and stdio/GET/privacy tests; synthetic
-Rust RSA/HTTP/SQLite gate/cache/lost-response tests; desktop/server locked
-checks, focused Clippy and TypeScript check. No live credentials or external
-sends will be used. Missing installation, repository IDs and intake credential
-remain real configuration gaps, not blockers to independent fixture validation.
+- `github/docs@831337b0fed60b90a72e2711a41dfcad72b5f288`:
+  `content/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-json-web-token-jwt-for-a-github-app.md`,
+  `data/reusables/apps/generate-installation-access-token.md`,
+  `src/github-apps/data/fpt-2022-11-28/server-to-server-permissions.json`,
+  `content/rest/using-the-rest-api/best-practices-for-using-the-rest-api.md`.
+- `github/rest-api-description@3cef12e8a02d612ad032473d4fb87266f2befeae`:
+  `descriptions/api.github.com/api.github.com.2022-11-28.json`, operations
+  `apps/create-installation-access-token`, `issues/create`, `issues/list-for-repo`,
+  `issues/list-labels-for-repo` and referenced schemas. The adapter retains
+  intromail's API version `2022-11-28`.
 
-Initial interface checkpoint: `39d00445`, pushed. Draft PR:
-https://github.com/Adanmohh/codeg/pull/5 (main base, no merge).
+NOTICE appends the owner-authorized port ledger and the original SDK and JWT
+MIT notices/license texts. The Apache LICENSE and all accepted-main NOTICE
+entries remain intact. No AGPL, restricted enterprise or PolyForm source used.
 
-Python checkpoint: isolated Python 3.13.14 environment; exact `mcp==2.0.1`,
-`httpx==0.28.1`, `pydantic==2.12.5` and all resolved transitive/test pins recorded
-in `integrations/hafidh-intake/requirements.lock`. No existing env changed.
-Installed SDK client stdio, MCPServer tool/call handler, HTTPX streaming and
-Pydantic validation primitives read before implementation. A guessed SDK
-`client/transports/stdio.py` lookup failed; actual installed `client/stdio.py`
-was discovered and read. SDK-generated nested validation echoed bad input;
-the public `call_tool` boundary now emits a fixed sanitized error instead.
+## Transport and durability
 
-Commands/exits: initial pytest collection RED (2, module absent); unit tests
-10 passed (0); real stdio privacy test RED (1, input echo); fixed suite 11 passed
-(0), including actual SDK stdio discovery/list/read against synthetic HTTP.
-GET-only auth failures, unavailable in-app, strict source shapes, filtered
-counts, duplicate rows, cursor binding and stale-cache access covered. HTTPX
-query logging suppressed. Free-text redaction remains bounded, human outward
-review mandatory.
+The fixed GitHub API origin, 30-second timeout, `reqwest::retry::never()`,
+disabled redirects/proxies and bounded 2 MiB JSON reader apply to this client.
+Reqwest 0.12.28 installed source was read: its default protocol retries are
+explicitly disabled. Only App configuration can authenticate runtime filing.
+RS256 uses `iat=now-60`, `exp=now+540`, App ID issuer and the established signer.
+Installation tokens request exactly one configured repository and
+`issues:write` / `metadata:read`; returned repository, permissions and expiry
+must match. The in-memory single-flight cache has at most 16 entries, keyed
+by App/key generation, installation and repository; expiry refresh is 60 seconds
+early. Replacing the immutable client rotates the key without reusing old tokens.
 
-Rust signing choice: established `jsonwebtoken = "=9.3.1"`, tag commit
-`87bbe49004de17ac1c64bf25d7751c0e43cff5dc`; local registry had none before
-selection. Read README, Cargo.toml and `src/encoding.rs` via immutable `gh api`;
-retained dependency MIT license. Reqwest 0.12.28 source shows default protocol
-retries, so the new client must use `reqwest::retry::never()` and no redirects.
-Bootstrap server `cargo check --no-default-features --bin codeg-server` passed
-(0) while resolving the new lock entries; focused implementation checks remain.
+Existing labels are checked through bounded GETs before reservation. After
+preflight, a SQLite write transaction revalidates source/evidence/repository,
+task/run, persisted approval, current scope and deny rules. It commits an
+`unknown` receipt and audit before the one issue POST. No network occurs inside
+that transaction. Unique source/repository active filing and proposal IDs stop
+concurrent duplicate sends. Exact approved JSON and its digest remain in the
+local receipt for recovery; no execution capability is persisted/reconstructed.
 
-Rust implementation checkpoint: locked server check passed (0); first focused
-server library suite passed 15/15 (0). Coverage includes real RS256 verification,
-narrow single-flight token cache, repo/installation separation, early expiry,
-malformed token grants, strict proofs, edited payload handoff, read scopes and
-destructive floor, stale review/run, evidence tamper/revocation, concurrent
-filing reservation, lost response, read reconciliation, label mismatch, known
-rejection and migration round trip. Latest follow-up persists/observes retry
-deadlines across new client instances; final rerun remains pending.
+A valid 201 records actual issue ID/number/URL/labels. Missing requested labels
+is a created issue with `labels_match=false`, never a resend or label mutation.
+Known 400/401/403/404/410/422/429 non-creation failures retain failed attempts;
+retry requires a new human-approved proposal and observes persisted rate
+deadlines. Timeout, response loss, redirects, 5xx, malformed success or a crash
+after reservation stay unknown. Failed receipt persistence also leaves the
+durable unknown reservation. Reconciliation lists closed/open issues, skips PRs
+and requires one exact title/body/marker match; it never retries an issue POST.
+It uses up to ten trusted numbered GET pages of 100, not arbitrary Link URLs.
+No match, multiple matches or an incomplete bounded scan remains unknown.
+This is local duplicate prevention, not cross-machine exactly-once delivery.
 
-Owner independently reran the current isolated Python suite with bytecode/cache
-disabled: 14/14 pass. This worker also observed 14/14 pass (exit 0) after adding
-bounded-scan, malformed/oversize response and origin-boundary tests. Python
-production code is unchanged from `a4f9f316`; no Python rerun is needed for
-documentation/main-only integration. TypeScript `pnpm exec tsc --noEmit` passed
-(0). Initial strict server Clippy `--locked --no-default-features --bin
-codeg-server --lib -- -D warnings` passed (0).
+## Validation
 
-Owner authorized accepted-main integration after the stable Rust checkpoint
-`3a04f14d`; pre-integration focused Rust suite passed 19/19 (0), including disk
-SQLite reopen/recovery, auth failures, label preflight and persisted rate
-deadlines. Merged accepted `origin/main` at
-`ebee0cc8b67b51192db2d6a6f3fd506f1c6e2510` (including Resend `2fecb1cf`)
-in `516e6da4`. The only conflict was append-only NOTICE: retained the complete
-main contents then appended this worker's entries. Preserved mail-parser
-0.11.1, hashify 0.2.9, registry and all migrations. Approval-engine and email
-transport paths have no diff from the integrated main.
+Rust commands ran in this worktree's `src-tauri/` with `CARGO_TARGET_DIR` set
+to its own absolute `src-tauri/target`. TypeScript ran at the worktree root.
+The package's Python 3.13.14 `.venv` is isolated; no Hafidh/RAG env was modified.
+The Python command below is relative to `integrations/hafidh-intake/`.
+All runtime HTTP/RSA/SQLite fixtures are synthetic. The committed RSA keys in
+`src-tauri/src/ops_intake/fixtures/` are generated test fixtures, not App keys.
 
-Owner-review fixes: live bound evidence is checked in `Action::resource`
-before the accepted ask-rule shortcut, missing scope uses the accepted
-`propose` default, and host-only evidence accepts `operator:http` and
-`operator:desktop` unchanged. Regression tests failed first (two gate cases,
-exit 101; actor case, exit 101), then passed after the fixes. Integrated
-`cargo test --locked --no-default-features --bin codeg-server --lib ops_`
-passed 109 tests (exit 0), including 22 intake tests and 21 core approval
-tests. Desktop/server checks and final Clippy remain in progress.
+| Command / check | Result |
+| --- | --- |
+| Isolated `.venv/bin/python -m pytest -q` intake suite | Worker 14/14 passed, exit 0; owner independently confirmed 14/14 with bytecode/cache disabled. Includes actual SDK stdio discovery/read against loopback HTTP. |
+| `cargo check --locked` | Exit 0, default desktop. |
+| `cargo check --locked --no-default-features --bin codeg-server` | Exit 0, final integrated server check. |
+| `cargo test --locked --no-default-features --bin codeg-server --lib ops_` | Exit 0, 109 passed; includes 22 intake, 21 core approvals and selected engine/parser regressions. |
+| `cargo test --locked --features test-utils --lib ops_` | Exit 0, 110 passed in desktop mode. |
+| `cargo clippy --locked --all-targets --features test-utils -- -D warnings` | Exit 0, default desktop including test targets. |
+| `cargo clippy --locked --no-default-features --bin codeg-server --lib -- -D warnings` | Exit 0, final integrated server run. |
+| `cargo test --locked --no-default-features --bin codeg-server --lib ticket_service` | Exit 0, 18 passed; integrated migration/threading regressions. |
+| `cargo test --locked --no-default-features --bin codeg-server --lib email_transport` | Exit 0, 18 passed; accepted Resend integration regressions. |
+| `pnpm exec tsc --noEmit` | Exit 0 before and after accepted-main integration. |
+| `git diff --check` | Exit 0. |
+| Protected docs, `pnpm-lock.yaml`, approvals core and email transport diff against integrated `ebee0cc8` | Exit 0, unchanged. Accepted-main NOTICE remains an exact prefix of this branch's NOTICE. |
+
+Meaningful failures before fixes: initial Python collection exit 2 (module not
+yet present); real stdio validation privacy test exit 1 (SDK echoed invalid
+input); fixed suite progressed 11/11 to 14/14. Installed v2's public `call_tool`
+boundary now returns a fixed sanitized error. Rust review regressions failed
+first with exit 101 for ask-rule stale evidence, missing-scope default and
+canonical actor labels, then passed on the final implementation. A guessed
+SDK `client/transports/stdio.py` lookup was corrected by discovering and reading
+the actual installed `client/stdio.py`; no nonexistent API was implemented.
+
+Coverage includes mandatory proof omissions/placeholders, byte tampering,
+expiry/revocation/revision/product changes, explicit session/build provenance,
+edited approved payload equality, stale review/run, read scope and deny rules,
+destructive floor, ask-rule pre-proposal checks, canonical backend actors,
+real RS256 verification, token scope/expiry/cache isolation, auth failures,
+label preflight/mismatch, rate deadlines across client instances, concurrent
+filing, disk reopen, response-lost reconciliation and migration round trip.
+Python covers strict projections, auth errors, privacy, bounded/malformed
+responses, origin restrictions, filtered counts, duplicate rows, cursor binding,
+failed revalidation and unavailable in-app. No full repository test-suite or
+browser/runtime deployment result is claimed.
+
+Python production bytes still match `a4f9f316`; no Python rerun was made merely
+for docs/main integration. `tests/test_intake.py` SHA-256 is
+`19fbaa337a16fde21c5f09bfcd8c25c524de1afad1db379f6f6780c949b2650f`, matching the
+owner's review. Exact direct pins are MCP 2.0.1, HTTPX 0.28.1 and Pydantic 2.12.5;
+all 37 resolved dependency/test pins are in `integrations/hafidh-intake/requirements.lock`.
+The justified Cargo change adds jsonwebtoken 9.3.1, pem 3.0.6 and simple_asn1
+0.6.4 plus existing getrandom JS feature edges; no existing package version was
+upgraded. Accepted mail-parser 0.11.1 and hashify 0.2.9 remain present.
+
+Build output retains the inherited proc-macro-error2 2.0.1 future-compatibility
+warning and missing codeg-mcp sidecar placeholder warning. Checks/tests compile
+the app; no distributable bundle, working sidecar or running desktop is claimed.
+
+## Real gaps and integration limits
+
+- Trusted host wiring remains with the Ops UI owner: registry, authenticated
+  actor derivation, product/folder access checks, credential storage/launcher
+  and review routing. This module does not authenticate a caller by accepting
+  an actor string over JSON. Native/server adapters must keep setup, evidence
+  attachment, approval and dispatch out of agent-facing MCP tools.
+- Live App ID/key, installation, enabled repository ID/name, label inventory
+  and Hafidh read credential/origin are not configured or verified by this
+  worker. Missing runtime config returns `not_configured`; no App install,
+  keyring/PAT overwrite, gh runtime fallback or live login was attempted.
+  Python trusted launcher names are `HAFIDH_INTAKE_ORIGIN`,
+  `HAFIDH_INTAKE_PRODUCT_ID`, `HAFIDH_INTAKE_BEARER`. The last is an upstream
+  admin bearer: the adapter's GET-only API does not reduce that credential's
+  backend permissions. Keep it in the trusted intake process only.
+- Existing TestFlight GET list/sync-status are the only source calls. There
+  is no GET-by-ULID or in-app read route. List continuations use process-local
+  five-minute cursors and at most five pages; get revalidates a listed ID
+  through at most 500 current records. Offset paging is not lossless; capped
+  scans and failed revalidation never claim complete/fresh success.
+- Source models lack report-bound screen/reciter/log proof and diagnostic
+  bytes. Human-imported sanitized local proof supports this implementation;
+  no guessed joins, screenshot-as-log, arbitrary URL/path fetch or Hafidh
+  backend change fills those gaps. Heuristic triage remains unconfirmed.
+- Text sanitization is bounded and cannot prove universal PII removal.
+  Outgoing text still requires human review. The local SQLite receipt/evidence
+  store retains approved sanitized content; audit/errors omit credentials and
+  raw HTTP/private source data. No new UI was authored, so Playwright/Design
+  Studio validation belongs to the UI integration task.
+
+## Commits and delivery
+
+Initial interface `39d00445`, isolated MCP `a4f9f316`, signer pin `606c5266`,
+Rust evidence/filing `51509f9f`, and recovery/tests `3a04f14d` were staged in
+small commits. After the stable checkpoint, the owner authorized merging
+accepted main `ebee0cc8b67b51192db2d6a6f3fd506f1c6e2510` (including Resend
+`2fecb1cf`) in `516e6da4`. Only NOTICE conflicted: retained its complete main
+contents, then appended this worker's entries. No protected document or other
+worker's product source was edited to resolve integration.
+
+Implementation commit: `140b66b3e1bfd2d429da37dcf7c134df86e0eed9`, pushed.
+This includes the owner's live resource/missing-scope fixes and canonical
+`operator:http` / `operator:desktop` support. The closing report is a later
+documentation-only commit; its exact head is available on the draft PR.
+Root reviewed all three fixes at this source commit. Its independent 22-test
+Rust run was still compiling at the last owner update; no result is presumed.
+
+Draft [PR #5](https://github.com/Adanmohh/codeg/pull/5),
+`feat/step2-intake-github` to `main`; never merged by this worker. Installed
+gh create/view/edit help was read before using those operations. No worker
+was started; no live issue/comment/email/App installation, backend mutation,
+production data write, message to a person or deployment was performed.
