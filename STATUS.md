@@ -9,7 +9,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Foundation: brand, tickets, approvals | Reviewed and merged, PRs #1–3 | Retain combined regressions |
 | Direct Resend transport | Reviewed and merged, PR #6 | Email UI/approved-send integration |
 | Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
-| Email UI, drafts, morning, approved delivery | PR #7 under review; independent 22 Rust + 5 component tests pass | Fix browser-proven unsaved-edit loss across desktop/mobile; recheck contrast and E2E |
+| Email UI, drafts, morning, approved delivery | PR #7 under review; independent 22 Rust + 7 component tests pass; responsive edit loss fixed and CLI rechecked | Final gates, dark contrast and complete E2E |
 | Pi scoped bridge/default | PR #8 in progress; independent 11 extension/discovery tests pass | Accepted Ops helper integration, full launch checks; Astra model configuration remains unavailable |
 | Bug workflow host/UI | Worker implementing `feat/step2-bug-workflow` | Evidence/config/review UI and real fixture browser tests |
 | Telegram and beta validation | Planned Step 3, not implemented/validated | Reuse channel after the typed Ops workflows are integrated |
@@ -163,3 +163,5 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 
 - Independent combined Rust Ops suite passes (22 tests, one ignored manual fixture), as do five frontend component tests. Real Playwright CLI login/inbox/thread checks are running against the protected API with a test-only loopback provider.
 - Found P2 unsaved-edit loss when resizing from desktop to mobile: the layout resets selection and discards edited reply text without confirmation. Sent the reproduction to the UI owner; PR #7 remains unaccepted until fixed and rechecked. [Review and evidence](reports/review-ops-ui.md).
+
+- Fix `0e375c97` now verified independently: reply, private note and review edits/selection survive responsive remounts; discard dismissal preserves content; seven component tests pass, including backend isolation. Light Deny contrast recheck passes. PR #7 still awaits final combined gates and remaining browser scenarios before acceptance.

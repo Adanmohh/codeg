@@ -1,8 +1,18 @@
 # Ops UI acceptance review
 
-Changes requested, 2026-09-08. PR #7 is not accepted. Reviewed Ops source at
+Fixes verified, final gates pending, 2026-09-08. PR #7 is not accepted. Reviewed Ops source at
 `85a5dd18`, integrated with accepted GitHub/main at `c6066921` (no Ops source
 change during integration).
+
+The findings below are fixed at `0e375c9770505ac708ca97d12d07163c81a03f15`.
+Root reviewed the per-backend memory provider and preserved draft/review
+bindings, then independently repeated actual CLI reply/note/review resize cases
+and discard dismissal successfully. Seven independent component tests pass,
+including full subtree remount and colliding IDs after a backend switch.
+Log `/tmp/ops-ui-independent-fixed-vitest.log`. No implicit server or browser
+storage writes were introduced. Light Deny contrast no longer fails the probe;
+dark and final end-to-end checks remain. After-fix screenshot/probe are in
+[`browser-step2/`](browser-step2/).
 
 ## P2 — responsive transition silently discards unsaved edits
 
