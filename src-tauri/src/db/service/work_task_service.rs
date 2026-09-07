@@ -1675,6 +1675,22 @@ pub async fn flip_awaiting(
         txn.rollback().await?;
         return Ok(false);
     }
+    // An Ops proposal owns this wait until its audited approval/denial CAS.
+    // A generic ACP resume must not clear that wait and later let a stale
+    // approval attach to an unrelated awaiting_input cycle in the same run.
+    if !awaiting {
+        use crate::db::entities::ops_proposal;
+        let pending = ops_proposal::Entity::find()
+            .filter(ops_proposal::Column::TaskId.eq(id))
+            .filter(ops_proposal::Column::RunSeq.eq(run_seq))
+            .filter(ops_proposal::Column::Status.eq("pending"))
+            .one(&txn)
+            .await?;
+        if pending.is_some() {
+            txn.rollback().await?;
+            return Ok(false);
+        }
+    }
     status_changed_event(&txn, id, "engine", Some(from), to, None).await?;
     txn.commit().await?;
     Ok(true)

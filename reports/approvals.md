@@ -1,52 +1,74 @@
-# Step 1 approvals
+# Step 1 — approvals
 
-Branch: feat/step1-approvals. Sole writer in assigned approvals worktree.
-Read FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md, AGENTS.md and reports/step0.md completely before implementation. No workers, external sends or deployment.
+Implemented piece 1 on `feat/step1-approvals`, solely in `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`. Implementation complete; all requested local validation gates passed. Draft PR publication is the remaining delivery step. No workers, merge, deployment, external sends or main integration.
 
-## Sources and grounding
+## Behavior delivered
 
-Immutable IntroInnovation/intromail source: `0bd24dfe284b888aa9f602fa1fd00e337ea38874` (resolved via `gh api repos/IntroInnovation/intromail/commits/HEAD` before source reads).
+- IntroMail gate order: **deny → ask → payload-aware check → destructive floor → allow → mode**. Both explicit action allow and standing allow remain below the destructive floor. Missing scope defaults to propose; resource scopes override domain defaults; rule specificity and oldest-ID tie-breaking match the source.
+- SeaORM Proposal, AuditLog, AgentRule and AgentScope equivalents use separate `ops_*` tables. Reserved migration is `m20260907_000001_ops_approvals`. It applies atomically on SQLite, enforces one pending proposal per task generation, prevents duplicate NULL-resource default scopes, validates modes/behaviors/statuses, and rejects audit UPDATE/DELETE.
+- `propose` validates and gates a complete payload. Gate denial creates only an audit decision. Pending proposals move the existing task from running to awaiting_input; auto authorization returns an owned payload after commit.
+- `approve` takes a `Review` containing the original snapshot and complete approved payload, allowing edits without filling fields from a newer draft. It checks proposal ID/action/task/run_seq/status, original payload, live task/folder, human identity boundary, and current policy for the edited resource. Successful CAS resumes running; it does not finish the task. An ask rule cannot conceal a payload deny when a human resolves it.
+- Trusted async Action callbacks receive the same transaction and principal for live resource/permission reads. New action packs default to destructive=true. Callback/schema errors fail closed with non-payload error messages.
+- `AuthorizedAction` has private fields, no Clone/Serialize/Debug, and contains the exact validated approved Value. It is returned only after proposal, audit and task timeline commit. A sorted-key compact JSON SHA-256 records the complete unredacted command, including recipients/attachment descriptors/text; audit contains no raw payload.
+- Credential-shaped values are scrubbed recursively from previews/audit; payloads that would be changed by that sweep are rejected before execution binding. Declared private fields remain reviewable while pending and are overwritten on approval, denial or auto authorization, including original, edited and preview columns.
+- The existing `flip_awaiting` CAS now refuses a generic ACP resume while an Ops proposal owns that task/run wait. This avoids stale cards attaching to another wait in the same generation. Ordinary ACP waits still resume after proposal resolution. Cancellation/new generations and review reject late approvals. Existing review-before-done transitions remain intact.
 
-- backend/app/services/agent/gating.py → ordered Rust gate and scope/rule matching.
-- backend/app/services/agent/proposals.py → proposal creation, edit-before-approve validation, resolution and redaction.
-- backend/app/audit.py and backend/app/models.py Proposal/AuditLog/AgentScope/AgentRule → SeaORM records.
-- backend/app/services/agent/redaction.py and actions.py → recursive credential/private-field scrubbing and trusted action interface.
-- codeg v0.30.4 `6f6bd648b206412644842a98d9ffeebf57292bed`, src-tauri/src/db/service/work_task_service.rs → transactional CAS + timeline events; existing migration/entity conventions.
+## Immutable source-to-port mapping
 
-Read all named source via gh api at the immutable SHA. Local pinned SeaORM 1.1.19 query/update.rs and database/transaction.rs read before implementation. code-context guide exited 0: relevant principle “Human-in-the-loop: nothing is filed/sent to authorities without explicit human approval”; retrieved rules are from other projects, no ops-desk-specific rules. Dependency docs query exited 3: approvals.db is absent. Direct installed source is the fallback; no fabricated corpus coverage. Owner's latest-doc update accepted: use gh api for official GitHub docs, pinned borrows stay pinned.
+Resolved **one** IntroInnovation/intromail commit via `gh api repos/IntroInnovation/intromail/commits/HEAD` before reading any source: **`0bd24dfe284b888aa9f602fa1fd00e337ea38874`**. Verified paths through the recursive Git tree, then read each source with `gh api .../contents/PATH?ref=SHA`. All remote research used gh api; mandated borrows were never upgraded.
 
-## Decisions / progress
+| Exact source at that commit | Port / use |
+| --- | --- |
+| `backend/app/services/agent/gating.py` | `src-tauri/src/db/service/ops_approvals/gating.rs`: precedence, mode selection, rule matching |
+| `backend/app/services/agent/proposals.py` | `src-tauri/src/db/service/ops_approvals/mod.rs`: propose/approve/deny, revalidation, edit-before-approve, resolved history redaction |
+| `backend/app/services/agent/redaction.py` | `src-tauri/src/db/service/ops_approvals/redaction.rs`: exact case-insensitive credential-key expression and recursive two-tier scrub |
+| `backend/app/services/agent/actions.py`, Action/ActionContext/Decision only | Trusted Rust Action and transaction/principal context; domain actions were not imported |
+| `backend/app/audit.py` | Structured audit writer; upgraded best-effort behavior to transaction-required/fail-closed |
+| `backend/app/models.py`, Proposal/AuditLog/AgentRule/AgentScope only | `src-tauri/src/db/entities/ops_{proposal,audit_log,agent_rule,agent_scope}.rs` and reserved migration |
 
-- Reserve migration `m20260907_000001_ops_approvals`, following local dated module naming. Separate ops tables; ticket tables untouched.
-- Keep source gate order verbatim. Tighten source best-effort auditing to transaction-required, fail-closed writes.
-- Core service only: trusted action implementations validate and classify payloads; no network executor. Successful resolution returns the exact validated approved payload once, after CAS commit. Step 2 adapters must dispatch that payload, never re-read a mutable draft. No automatic replay after a crash.
-- Preserve work_task run_seq and review-before-done. Proposal wait/resume only uses running ⇄ awaiting_input.
-- Validation and final commit/PR pending.
+Base codeg source is `xintaofei/codeg@v0.30.4`, **`6f6bd648b206412644842a98d9ffeebf57292bed`**. CAS/timeline glue adapts `src-tauri/src/db/service/work_task_service.rs` (`flip_awaiting`, `record_event`, `status_str`). Entity/migration conventions come from `db/entities/work_task.rs`, `work_task_event.rs`, and `db/migration/m20260801_000003_work_task_template.rs`. The only existing state-machine edit is the 16-line proposal-wait guard; shared entity/service/migration registries have additive module entries. Tickets' tables are untouched.
 
-## Orchestrator reload checkpoint
+`NOTICE` records exact files and immutable source SHAs, owner-authorized private source, and codeg Apache-2.0 attribution. There was no NOTICE at this branch's baseline, so none was overwritten. Original LICENSE is unchanged. No Plane/Twenty/Postiz, restricted Chatwoot enterprise, or Kun source was imported.
 
-Stopped on owner request to reload the newly trusted Codex docs-first hook. Implementation is INCOMPLETE; do not merge this checkpoint. No further product edits made after that request.
+## Docs-first / hook evidence
 
-Current files: four SeaORM entities (ops_proposal, ops_audit_log, ops_agent_rule, ops_agent_scope), reserved migration plus minimal registries, ops_approvals/{mod,gating,redaction}.rs core, and new NOTICE (there was no existing NOTICE in this worktree). Exact source mapping remains above and in NOTICE.
+Read FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md, AGENTS.md and reports/step0.md completely before implementation; the four protected planning documents remain unchanged.
 
-Commands/results:
-- `gh api` immutable commit resolution, recursive tree verification, and named source reads: exit 0.
-- code-context `guide`: exit 0; dependency `docs`: exit 3, missing approvals.db (documented above).
-- `pnpm install --frozen-lockfile`: exit 0, pnpm 11.9.0; lockfiles unchanged.
-- `cargo check --locked --manifest-path src-tauri/Cargo.toml --target-dir src-tauri/target-approvals`: exit 0, desktop default features, 2m06s. Local log reports/approvals-desktop.log. Used this worktree's out/index.html placeholder per CI. Known upstream zero-byte sidecar and proc-macro-error2 warnings only.
-- Installed gh api/pr create, git add/commit/push, cargo check/test, pnpm/install, TypeScript help read. `git ... -h` returns its standard help exit 129.
+The resumed session's first two commands were **separate** `cat node_modules/react/package.json` (React 19.2.4) and `cat src-tauri/Cargo.toml`, both exit 0. Immediately inspected live `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl`. It contains paired PreToolUse/PostToolUse records at timestamps **1788789370** and **1788789374**, session **`01a07c1c-d3a3-7c22-a5b6-cedce2970d8d`**, cwd **`/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`**, tool Bash, exit 0, context_emitted false. These are this worker's live reads, not another worktree's smoke test. Subsequent library edits also received the live docs-first reminder. Hooks were not disabled or bypassed.
 
-Resume work:
-1. Reload and obey the newly activated docs-first hook before further work. Reuse the immutable source SHA, never switch to current HEAD for the port.
-2. Review the unformatted core implementation. The `#[cfg(test)] mod tests;` declaration is present but tests.rs has NOT yet been created, so test compilation is currently incomplete.
-3. Fix task_cas live-folder check to reject soft-deleted folders (currently only checks row existence). Review fail-closed policy exceptions and approval-denied audit transaction handling.
-4. Add meaningful gate precedence matrix, scope specificity, exact edited-payload handoff, invalid payload, credential/private redaction, stale run/task/review/deletion, competing approve/deny and audit-write rollback tests. Use upstream work_task create/claim_for_run/begin_setup/mark_running/settle_review helpers already read. No tests have run yet; earlier progress commentary described intended tests, not completed validation.
-5. Consider recording an immutable approved-payload digest in audit for after-resolution binding evidence; read local sha2 usage/source before using it. Current exact binding is a non-Clone AuthorizedAction carrying the approved Value, original-payload comparison, and transactional pending/run_seq CAS.
-6. Run formatting on only owned files, focused tests, default desktop cargo check --locked again after changes, server cargo check --locked --no-default-features --bin codeg-server, pnpm exec tsc --noEmit. Server/typecheck remain unrun.
-7. Finish source mapping/limitations, push and open small draft PR to main using the already-read gh pr create help. Draft PR URL: pending; checkpoint is not review-ready.
+Applied code-context using the existing `/Users/mohamedadan/projects/rag-skills/.venv/bin/python` with `HF_HUB_OFFLINE=1`. `guide 'Rust SeaORM approval CAS transactions audit redaction' --project ops-desk` exited 0. Relevant retrieved principle: **“Human-in-the-loop: nothing is filed/sent to authorities without explicit human approval”**; retrieved guidance came from other projects, not ops-desk-specific coverage. `docs 'SeaORM transaction conditional update' --repo <this worktree>` exited **3** because `data/code/approvals.db` is absent. No dependency-corpus coverage is claimed and no shared corpus was mutated.
 
-Build output is isolated in this worktree at src-tauri/target-approvals (untracked, deliberately not committed); preserve for resumed checks. Local logs are ignored. Do not stage that build directory. No other worktree or main outputs were written. No transport/API/UI adapter, external sender or domain action has been introduced; Step 2 will consume the trusted Rust service boundary. Scope unchanged.
+Used installed source as the fallback: **SeaORM/sea-orm-migration 1.1.19** query/update.rs, database/transaction.rs, database/mod.rs, migration connection.rs and migrator.rs; **sha2 0.10.9** lib.rs; **serde_json 1.0.149** map.rs and Value::sort_all_objects; **async-trait 0.1.89** lib.rs; **Tokio 1.49.0** join macro docs; **regex 1.12.3** Regex construction/matching source. Pinned versions were read from Cargo.lock. Installed gh api/pr-create/pr-edit, git add/commit/push, cargo check/test/clippy, pnpm/install/TypeScript, and rustfmt help were read. No latest remote dependency documentation or dependency upgrades were needed.
 
-Initial report commit: 9ed749d1. Product checkpoint SHA is recorded below after its commit; report-only follow-up will reference it.
+## Validation
 
-Product checkpoint committed and pushed: `29fe00c85160ccb0de35787a515d060c021e6b32` (`feat: checkpoint approvals core for docs hook reload`). Desktop check and frozen install processes both confirmed exit 0 via their completed sessions. Awaiting orchestrator resume; no workers started.
+All Cargo commands run from this worktree with `--locked --manifest-path src-tauri/Cargo.toml --target-dir src-tauri/target-approvals`. This is an isolated local output directory (locally ignored inside itself), not another worktree/main's target. `out/index.html` is this worktree's ignored CI placeholder from `.github/workflows/test.yml` / reports/step0.md.
+
+| Command (common Cargo arguments above) | Result | Local ignored log |
+| --- | --- | --- |
+| `pnpm install --frozen-lockfile` | Exit 0; pnpm 11.9.0 | reports/approvals-install.log |
+| `cargo test --lib ops_approvals` | Exit 0; **19 passed**, 0 failed | reports/approvals-tests.log |
+| `cargo test --lib work_task_service` | Exit 0; **39 passed**, 0 failed | reports/approvals-work-task-tests.log |
+| `cargo check` (default desktop features) | Exit 0 | reports/approvals-desktop.log |
+| `cargo check --no-default-features --bin codeg-server` | Exit 0 | reports/approvals-server.log |
+| `cargo clippy --no-default-features --bin codeg-server --lib -- -D warnings` | Exit 0 | reports/approvals-clippy.log |
+| `pnpm exec tsc --noEmit` | Exit 0 | reports/approvals-typecheck.log |
+| `rustfmt --edition 2021 --check` on owned module/entity/migration files | Exit 0 | reports/approvals-format.log |
+| `git diff --check` | Exit 0 | Tool result |
+| Both lockfiles and protected planning documents compared with checkpoint baseline | No diff | Tool result |
+
+The first runnable test suite exited **101** with two real failures: deleted-folder approval was allowed and the approval digest was missing (11 passed/2 failed). Both were fixed; subsequent 17/18/19-test suites passed as transaction-context, atomic migration and generic-resume coverage was added. The first server clippy run exited 101 on cmp_owned in the audit edited flag; changed it to parsed-JSON equality, added unchanged-payload coverage, and reran the approval suite, both builds and clippy successfully. Initial test scaffolding had two incorrect upstream helper argument lists (compile exit 101), corrected after reading their full signatures; that compile error is not counted as behavioral RED evidence.
+
+Focused coverage includes the gate precedence matrix in all three modes, destructive/action/standing allow combinations, scope defaults/overrides, rule specificity/oldest ID, exact edited payload and digest, private/credential scrubbing, wrong snapshot/action/task/ID, malformed/invalid payload, actor rejection, current resource/principal reads, policy changes and ask-hidden deny, canceled/restarted/deleted/review generations, real racing approvals and approve-vs-deny on separate file-backed SQLite connections, rollback after late audit failures, append-only audit enforcement, migration uniqueness/up/down/failure rollback, and proposal-owned vs ordinary ACP waits. The existing work-task suite covers generation CAS and reviewed completion alongside the integration change.
+
+## Limits and Step 2 contract
+
+- This is the shared backend approval core. Transport routes, queue UI, trusted action registry/domain packs, ACP/pi wiring and human authentication are subsequent adapters, not shipped by this piece. Actor strings must come from authenticated human identity; the service rejects empty/self-agent identities but is not itself an authentication system. Action implementations must be trusted, validate complete schemas, read through ActionContext, and never perform sends in callbacks.
+- `approved`/`auto` mean **authorization committed**, not “sent” or “task done.” The exact owned handoff is the only dispatch input; never read a mutable draft or replay a resolved row. No executor/network call is provided. Crash after authorization yields no automatic replay. External delivery/idempotency/recovery remains an adapter responsibility; no exactly-once delivery claim.
+- Source-specific user/thread/event/chat foreign keys, notifications, free-text feedback, HTTP IP attribution and one-click standing-rule creation were not transplanted into unrelated codeg schemas. Agent IDs are canonical strings; task_id/run_seq are mandatory. Rule/scope tables support the source gate; policy-management UI is later work.
+- Canceled/retired pending rows cannot authorize another generation and remain pending with review content; retention/expiry cleanup is not implemented here. Private-field redaction is declaration-based and credential matching intentionally preserves the source's exact key-name regex, not arbitrary secrets embedded in prose or every spelling variation. Domain packs must keep credentials in credential stores and declare content fields.
+- Known upstream desktop warnings: zero-byte MCP sidecar placeholder and proc-macro-error2 2.0.1 future compatibility. No packaged/running desktop, real sidecar, frontend production build, browser flow or end-to-end external process was validated by this Rust-only piece.
+
+## Checkpoint and delivery
+
+Initial source report pushed as `9ed749d1`. Owner-requested hook-reload product checkpoint: **`29fe00c85160ccb0de35787a515d060c021e6b32`**, report follow-up `c8f86674`. Stopped exactly for reload and resumed only when instructed. All local gates passed. Final implementation SHA and draft PR URL are recorded in the delivery follow-up below.

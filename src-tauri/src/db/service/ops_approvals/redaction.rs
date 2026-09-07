@@ -10,13 +10,22 @@ static CREDENTIAL_KEY: LazyLock<Regex> = LazyLock::new(|| {
 
 pub fn scrub(value: &Value, private_fields: &[&str]) -> Value {
     match value {
-        Value::Object(map) => Value::Object(map.iter().map(|(key, value)| {
-            let value = if CREDENTIAL_KEY.is_match(key) || private_fields.contains(&key.as_str()) {
-                Value::String("[redacted]".into())
-            } else { scrub(value, private_fields) };
-            (key.clone(), value)
-        }).collect()),
-        Value::Array(items) => Value::Array(items.iter().map(|v| scrub(v, private_fields)).collect()),
+        Value::Object(map) => Value::Object(
+            map.iter()
+                .map(|(key, value)| {
+                    let value =
+                        if CREDENTIAL_KEY.is_match(key) || private_fields.contains(&key.as_str()) {
+                            Value::String("[redacted]".into())
+                        } else {
+                            scrub(value, private_fields)
+                        };
+                    (key.clone(), value)
+                })
+                .collect(),
+        ),
+        Value::Array(items) => {
+            Value::Array(items.iter().map(|v| scrub(v, private_fields)).collect())
+        }
         _ => value.clone(),
     }
 }

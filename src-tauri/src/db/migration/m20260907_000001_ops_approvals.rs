@@ -1,5 +1,5 @@
 //! IntroMail Proposal/AuditLog/AgentRule/AgentScope port; see NOTICE.
-use sea_orm_migration::prelude::*;
+use sea_orm_migration::{prelude::*, sea_orm::TransactionTrait};
 
 #[derive(DeriveMigrationName)]
 pub struct Migration;
@@ -9,7 +9,10 @@ impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         // SQLite is the shared desktop/server store. Partial indexes close the
         // NULL-domain-default uniqueness hole in the original scope schema.
-        manager.get_connection().execute_unprepared(r#"
+        // SeaORM does not wrap SQLite migrations in a transaction. Keep all
+        // four related tables/indexes/triggers atomic on failure.
+        let txn = manager.get_connection().begin().await?;
+        txn.execute_unprepared(r#"
             CREATE TABLE ops_proposal (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 task_id INTEGER NOT NULL REFERENCES work_task(id),
@@ -56,11 +59,12 @@ impl MigrationTrait for Migration {
             CREATE UNIQUE INDEX ops_scope_resource ON ops_agent_scope(agent_id, domain, resource) WHERE resource IS NOT NULL;
             CREATE UNIQUE INDEX ops_scope_default ON ops_agent_scope(agent_id, domain) WHERE resource IS NULL;
         "#).await?;
-        Ok(())
+        txn.commit().await
     }
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-        manager.get_connection().execute_unprepared("DROP TABLE ops_proposal; DROP TABLE ops_audit_log; DROP TABLE ops_agent_rule; DROP TABLE ops_agent_scope;").await?;
-        Ok(())
+        let txn = manager.get_connection().begin().await?;
+        txn.execute_unprepared("DROP TABLE ops_proposal; DROP TABLE ops_audit_log; DROP TABLE ops_agent_rule; DROP TABLE ops_agent_scope;").await?;
+        txn.commit().await
     }
 }
