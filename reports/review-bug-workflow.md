@@ -61,3 +61,18 @@ independent run. No gate semantics were relaxed. Tests cover real protected
 router inputs, four-proof requirements, tampered/stale/denied reviews, unknown
 issue reconciliation and held-task scheduler/manual-requeue behavior.
 No live GitHub issue, Hafidh mutation, model call or actual fix is claimed.
+
+## Independent frontend and browser checkpoint
+
+Reviewed full BugWorkflowPage lifecycle and final UI correction: existing pending
+payload remains visible after preparation invalidation, approval reflects stale
+state, and proof edits lock during pending/unknown/created states. Root passed
+all8 frontend tests,exit0, `/tmp/ops-bug-independent-frontend.log`.
+Isolated production-aligned Python9-test rerun also passed,exit0,.76s:
+`/tmp/ops-bug-host-independent-isolated-python.log`.
+
+Actual protected CLI4322 login/missing config/mobile labels, source invalidation
+and refresh, exact human-approved fixture rejection and created-issue-to-held-
+Tasks navigation passed. [Evidence](browser-bug-independent/README.md).
+No live outbound request/model/task launch. Final committed report/gates and
+exact-head review remain before acceptance; cached pi reads follow separately.
