@@ -27,3 +27,20 @@ actual mobile Playwright login/review fixtures are complete.
 
 The owner also holds the independently reproduced locale-change edit-loss
 correction for the final design loop: `design-loop-1/locale-edit-loss.md`.
+
+## Independent source and Rust check
+
+At pushed932419e5 with only test-module visibility additions, root reviewed
+the full notification module, scoped Telegram adapter, review resolver/page,
+closed locator parser and login/scheduler changes. Whole scan8s plus cleanup1s
+now bounds scheduler impact. Preflight failure is retryable; replacement claim
+IDs prevent a resumed checker sending after its lease was replaced. Sending
+and unknown are never reclaimed. Secret lookup is off-executor and bounded.
+Scoped client has no proxy, redirect, protocol retry or rich-send fallback.
+
+Root own-target `cargo test --locked --no-default-features --bin codeg-server
+--lib ops_telegram` passed13 tests,1manual ignored,0.86s,exit0.
+Log `/tmp/ops-telegram-independent-rust.log`. Tested mod.rs SHA256
+`2e4f4bd43a12d375c149dfd7204b74113e5af9c15e5a37294d3d5a40d82351c9`;
+tests.rs `cab528bc9fc67e9bf938e5f093ceee9c4aaebbc1cb75904ac958fde1762d13a4`.
+Final worker gates/report, browser decisions and exact-head acceptance remain.
