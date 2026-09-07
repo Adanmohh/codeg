@@ -75,7 +75,7 @@
       "sectionDescription": "Pick a color palette for accents, buttons, and highlights.",
       "current": "Current color: {color}",
       "options": {
-        "neutral": "Neutral",
+        "neutral": "Hafidh",
         "zinc": "Zinc",
         "slate": "Slate",
         "stone": "Stone",
@@ -131,7 +131,7 @@
       },
       "css": {
         "dialogTitle": "Custom CSS",
-        "dialogDescription": "Applies to every codeg window. Changes preview live; press Apply to save.",
+        "dialogDescription": "Applies to every Hafidh Ops Desk window. Changes preview live; press Apply to save.",
         "size": "{used} KB / {max} KB",
         "ruleCount": "{count} rules",
         "errorTooLarge": "Too large to save. Trim it below the limit.",
@@ -226,7 +226,7 @@
     }
   },
   "SystemSettings": {
-    "internalBuild": "Hafidh Ops Desk · internal build · updates disabled",
+    "internalBuild": "Internal build · updates disabled",
     "loading": "Loading...",
     "sectionTitle": "System Management",
     "sectionDescription": "Manage app updates, launch at login, network proxy and language preferences.",
@@ -715,14 +715,14 @@
     "envVars": "Environment Variables",
     "adapterChannel": {
       "label": "Adapter version",
-      "description": "Install and Upgrade use the version codeg has reviewed and pinned. Latest switches them to the package's newest npm release at that moment; if installing it fails, codeg falls back to the pinned version and notes it in the install log.",
+      "description": "Install and Upgrade use the version Hafidh Ops Desk has reviewed and pinned. Latest switches them to the package's newest npm release at that moment; if installing it fails, Hafidh Ops Desk falls back to the pinned version and notes it in the install log.",
       "pinned": "Pinned (recommended)",
       "latest": "Latest (unreviewed)",
-      "latestWarning": "Newest releases are unreviewed and can break this agent in codeg, and occasionally a release is known broken. Version Status shows what is actually installed."
+      "latestWarning": "Newest releases are unreviewed and can break this agent in Hafidh Ops Desk, and occasionally a release is known broken. Version Status shows what is actually installed."
     },
     "hostTools": {
       "label": "Let the agent handle files and commands",
-      "description": "codeg stops serving file access and terminal commands, so the agent runs them in its own process — where its own sandbox and permission rules apply. Delegating to other agents is also turned off, since that would route the same work back through codeg. codeg adds no sandbox itself, so turn this on only if the agent has one configured."
+      "description": "Hafidh Ops Desk stops serving file access and terminal commands, so the agent runs them in its own process — where its own sandbox and permission rules apply. Delegating to other agents is also turned off, since that would route the same work back through codeg. Hafidh Ops Desk adds no sandbox itself, so turn this on only if the agent has one configured."
     },
     "nativeJsonConfig": "Native JSON Config",
     "modelHintDefault": "Leave empty to use system default model.",
@@ -835,7 +835,7 @@
       "configTomlHint": "Saved verbatim as the whole ~/.grok/config.toml. Invalid TOML is rejected so a typo never truncates your file.",
       "configTomlPlaceholder": "# Keys other than the controls above, e.g.\n# [mcp_servers.*], [cli], [permission] rules.",
       "customModelTitle": "Custom model (BYO endpoint)",
-      "customModelHint": "Point Grok at a custom or self-hosted endpoint. codeg writes a per-model `[model.*]` block and makes it the default. Leave the Model ID empty to remove it.",
+      "customModelHint": "Point Grok at a custom or self-hosted endpoint. Hafidh Ops Desk writes a per-model `[model.*]` block and makes it the default. Leave the Model ID empty to remove it.",
       "customModelIdLabel": "Model ID",
       "customModelIdPlaceholder": "grok-4.5",
       "customModelIdHint": "Registered as a `[model.*]` block and sent to the API as the model name; also set as `[models].default`.",
@@ -853,7 +853,7 @@
       "autoCompactHint": "Compact the conversation when context usage reaches this percent (Grok default 85). Written to `[session]`."
     },
     "cursor": {
-      "configDescription": "Configure Cursor here. Choose an authentication method — official subscription (browser sign-in) or a Cursor API key for headless/server machines — then pick a model and edit the CLI's permission rules and sandbox. codeg writes them into ~/.cursor/cli-config.json, shared with the cursor-agent CLI.",
+      "configDescription": "Configure Cursor here. Choose an authentication method — official subscription (browser sign-in) or a Cursor API key for headless/server machines — then pick a model and edit the CLI's permission rules and sandbox. Hafidh Ops Desk writes them into ~/.cursor/cli-config.json, shared with the cursor-agent CLI.",
       "authTitle": "Authentication",
       "authChecking": "Checking…",
       "authNotInstalled": "cursor-agent is not installed",
@@ -944,11 +944,11 @@
       "missingAgentPlatformConfig": "Enter an API key, or both a project and a location — sessions will fail to start without one of the two.",
       "missingEnterpriseConfig": "Gemini Enterprise needs both a project and a location.",
       "settingsFileHint": "Saved to auth.type in this file. Any other keys you put there are preserved.",
-      "syncSkipped": "Your choice was saved, but codeg could not write it to the ACP server's settings.json, so Antigravity will keep authenticating the way that file says. Set auth.type in it yourself, or move it aside and save again.",
+      "syncSkipped": "Your choice was saved, but Hafidh Ops Desk could not write it to the ACP server's settings.json, so Antigravity will keep authenticating the way that file says. Set auth.type in it yourself, or move it aside and save again.",
       "save": "Save",
       "headless": {
         "title": "Sign in without a browser on this machine",
-        "description": "Antigravity runs the Google sign-in itself, on the machine the agent runs on. When there is no browser there — codeg on a server with no desktop — the first session waits five minutes and then fails. Start the sign-in here instead: open the link on any device, then paste back the address you land on.",
+        "description": "Antigravity runs the Google sign-in itself, on the machine the agent runs on. When there is no browser there — Hafidh Ops Desk on a server with no desktop — the first session waits five minutes and then fails. Start the sign-in here instead: open the link on any device, then paste back the address you land on.",
         "start": "Get sign-in link",
         "saveFirst": "Save first — the sign-in uses the stored settings, not what is typed above.",
         "step1": "1. Open this link and sign in to Google.",
@@ -1000,7 +1000,7 @@
       "approvalPolicy_untrusted": "Untrusted — only known-safe read-only commands run unattended",
       "approvalPolicy_never": "Never — no approval prompts at all",
       "approvalPolicy_granular": "Granular — choose per prompt type",
-      "approvalPolicyUntrustedAcpWarning": "Untrusted has no equivalent in the ACP adapter's three approval presets, so codeg sessions fall back to \"on request\" — the model then decides when to ask, and commands the sandbox already allows stop prompting. Tighten the sandbox mode below instead.",
+      "approvalPolicyUntrustedAcpWarning": "Untrusted has no equivalent in the ACP adapter's three approval presets, so Hafidh Ops Desk sessions fall back to \"on request\" — the model then decides when to ask, and commands the sandbox already allows stop prompting. Tighten the sandbox mode below instead.",
       "granularHint": "Off means requests of that kind are auto-rejected instead of shown to you.",
       "granular_sandbox_approval": "Shell command escalations",
       "granular_rules": "Execpolicy rule prompts",
@@ -1012,9 +1012,9 @@
       "sandboxMode_read-only": "Read-only",
       "sandboxMode_workspace-write": "Workspace write",
       "sandboxMode_danger-full-access": "Full access (no sandbox)",
-      "sandboxModeReadOnlyAcpWarning": "The ACP adapter no longer ships a read-only sandbox, so codeg sessions run workspace-writable whatever this says. codeg picks the strictest preset it can — every escalation comes to you for approval — but edits inside the workspace no longer need one. codex CLI and IDE sessions still honor read-only.",
+      "sandboxModeReadOnlyAcpWarning": "The ACP adapter no longer ships a read-only sandbox, so Hafidh Ops Desk sessions run workspace-writable whatever this says. Hafidh Ops Desk picks the strictest preset it can — every escalation comes to you for approval — but edits inside the workspace no longer need one. codex CLI and IDE sessions still honor read-only.",
       "sandboxModeHint": "On Windows, workspace write is downgraded to read-only unless codex's experimental Windows sandbox is enabled.",
-      "sandboxModeSeedsPresetHint": "codeg also maps this onto the session's starting approval preset, so unlike approval policy it does reach ordinary prompts. Note that the adapter's default preset now has a model pre-screen escalations and forward only what it judges unsafe; pick \"Ask for approval\" in the composer to review every one yourself. The composer's preset always overrides this.",
+      "sandboxModeSeedsPresetHint": "Hafidh Ops Desk also maps this onto the session's starting approval preset, so unlike approval policy it does reach ordinary prompts. Note that the adapter's default preset now has a model pre-screen escalations and forward only what it judges unsafe; pick \"Ask for approval\" in the composer to review every one yourself. The composer's preset always overrides this.",
       "writableRootsLabel": "Extra writable folders",
       "writableRootsHint": "One absolute path per line, in addition to the working directory.",
       "sandboxRootsRelativeError": "Must be an absolute path — codex resolves relative entries against ~/.codex: {path}",
@@ -1127,7 +1127,7 @@
         "description": "Decide which actions run on their own, prompt you first, or are blocked. Written to the permission block of opencode.json and applied once you save below.",
         "docsLink": "Permissions docs",
         "unparsableConfig": "The native JSON below is not valid, so the visual editor is paused. Fix the JSON to resume.",
-        "invalidBlock": "The permission block has a shape codeg does not recognize. Edit it in the native JSON below, or use Reset to start over.",
+        "invalidBlock": "The permission block has a shape Hafidh Ops Desk does not recognize. Edit it in the native JSON below, or use Reset to start over.",
         "orderingUnsafe": "A wildcard rule is written after specific tools, so OpenCode applies it to them as well — the rows below are not what is in force. Fix order moves every wildcard back to the front of its scope without changing a single value.",
         "orderingUnsafeManual": "One rule is shadowed by a later, more general pattern, so OpenCode never applies it — the rows below are not what is in force. Two overlapping patterns have no single right order; reorder them in the native JSON so the general one comes first.",
         "fixOrder": "Fix order",
@@ -1183,7 +1183,7 @@
     },
     "hermes": {
       "configManagement": "Hermes Configuration",
-      "configDescription": "Hermes manages its own credentials in ~/.hermes/.env and settings in ~/.hermes/config.yaml. Pick a provider, then set the API key and model — codeg writes both files for you.",
+      "configDescription": "Hermes manages its own credentials in ~/.hermes/.env and settings in ~/.hermes/config.yaml. Pick a provider, then set the API key and model — Hafidh Ops Desk writes both files for you.",
       "providerLabel": "Provider",
       "providerHint": "The provider selects which API key variable and model.provider Hermes uses. OAuth providers are configured through the terminal setup below.",
       "groupApiKey": "API key providers",
@@ -1225,7 +1225,7 @@
     },
     "kimiCode": {
       "configManagement": "Kimi Code Configuration",
-      "configDescription": "`kimi acp` only accepts a stored login token, so codeg writes a managed provider into ~/.kimi-code/config.toml and seeds a local gate token — inference still runs on your own key.",
+      "configDescription": "`kimi acp` only accepts a stored login token, so Hafidh Ops Desk writes a managed provider into ~/.kimi-code/config.toml and seeds a local gate token — inference still runs on your own key.",
       "statusUnconfigured": "Not configured yet",
       "statusDirty": "Unsaved changes",
       "summaryLabel": "In effect",
@@ -1236,8 +1236,8 @@
       "authModeLabel": "Authentication method",
       "authModeApiKey": "API key",
       "authModeLogin": "Kimi account login (subscription)",
-      "authModeApiKeyHint": "Writes a codeg-managed provider into config.toml and seeds the gate token so sessions can open.",
-      "loginHint": "Run `kimi login` in a terminal to sign in with a Kimi subscription account — on Kimi 0.39.0+ add `--region global` for a kimi.ai account, since the default signs in to kimi.com. codeg stores nothing and reuses Kimi's own login. Saving here removes codeg's API-key gate token.",
+      "authModeApiKeyHint": "Writes a Hafidh Ops Desk-managed provider into config.toml and seeds the gate token so sessions can open.",
+      "loginHint": "Run `kimi login` in a terminal to sign in with a Kimi subscription account — on Kimi 0.39.0+ add `--region global` for a kimi.ai account, since the default signs in to kimi.com. Hafidh Ops Desk stores nothing and reuses Kimi's own login. Saving here removes Hafidh Ops Desk's API-key gate token.",
       "credentialTitle": "Credential",
       "interfaceTypeLabel": "Provider type",
       "interfaceTypeHint": "The provider protocol Kimi speaks (config.toml `type`). Use Kimi / Moonshot for a Moonshot / platform.kimi.com key.",
@@ -1266,7 +1266,7 @@
       "modelNotInList": "This model is not in the list your key can access — Kimi will fail with “model not found”.",
       "reasoningTitle": "Reasoning",
       "reasoningEnableLabel": "Enable",
-      "reasoningDescription": "Kimi only shows a Thinking picker in the composer when the model declares a reasoning capability, so codeg writes one here. Takes effect on new sessions.",
+      "reasoningDescription": "Kimi only shows a Thinking picker in the composer when the model declares a reasoning capability, so Hafidh Ops Desk writes one here. Takes effect on new sessions.",
       "effortsLabel": "Levels offered",
       "effortsHint": "These become the rows of the composer's Thinking picker. Kimi forwards the level to the provider verbatim, so pick ones your model accepts.",
       "effortsEmptyHint": "With no levels chosen the composer falls back to a plain Off / On toggle.",
@@ -1556,7 +1556,7 @@
     "customAgentEditNotFound": "Custom agent {id} was not found",
     "customAgentSaved": "Saved {name}",
     "customAgentVersionProbeLabel": "Version probe command (optional)",
-    "customAgentVersionProbeHint": "Command that prints the locally installed version. Left empty, codeg runs the agent command with --version.",
+    "customAgentVersionProbeHint": "Command that prints the locally installed version. Left empty, Hafidh Ops Desk runs the agent command with --version.",
     "customAgentRemove": "Remove agent",
     "customAgentRemoveHint": "Deletes the agent definition. Existing conversations keep their history; the agent just can no longer be launched.",
     "customAgentIconLabel": "Icon (optional)",
@@ -1569,7 +1569,7 @@
     "customAgentSkillsDirLabel": "Dedicated skills directory",
     "customAgentSkillsDirHint": "Absolute path of a directory this agent loads skills from — its own store, in addition to (or instead of) the shared one. ~ expands to your home directory; linked skills are placed here first.",
     "customAgentMcpLabel": "MCP support",
-    "customAgentMcpHint": "Sends codeg's built-in MCP companion to this agent when a session starts — the channel behind delegation, live feedback and task tools. Turn it off for an agent that rejects MCP servers and fails to connect; the change applies to the next connection.",
+    "customAgentMcpHint": "Sends Hafidh Ops Desk's built-in MCP companion to this agent when a session starts — the channel behind delegation, live feedback and task tools. Turn it off for an agent that rejects MCP servers and fails to connect; the change applies to the next connection.",
     "customAgentIconNotAnImage": "Pick an image file.",
     "customAgentIconTooLarge": "The icon must be smaller than {limit} KB.",
     "customAgentIconReadFailed": "Could not read that image.",
@@ -1588,7 +1588,7 @@
     "sectionTitle": "General",
     "sectionDescription": "Centralized preferences for the default terminal, rendering acceleration, notifications, and multi-agent delegation.",
     "terminalTitle": "Default Terminal",
-    "terminalDescription": "Choose the shell used when opening new terminal tabs from the terminal bar or file tree. Agents also use it when they ask codeg to run a whole command line for them.",
+    "terminalDescription": "Choose the shell used when opening new terminal tabs from the terminal bar or file tree. Agents also use it when they ask Hafidh Ops Desk to run a whole command line for them.",
     "terminalSystemDefault": "System default",
     "terminalPowerShell7": "PowerShell 7 (pwsh)",
     "terminalWindowsPowerShell": "Windows PowerShell",
@@ -1668,7 +1668,7 @@
     "onlyImportable": "Importable only",
     "includeDeleted": "Include deleted",
     "includeDeletedWithCount": "Include deleted ({count})",
-    "includeDeletedHint": "Deleting a session in codeg only hides it — the conversation and its history are still here. Turn this on to select deleted sessions and restore them in place.",
+    "includeDeletedHint": "Deleting a session in Hafidh Ops Desk only hides it — the conversation and its history are still here. Turn this on to select deleted sessions and restore them in place.",
     "selectAll": "Select all",
     "clearSelection": "Clear",
     "expandAll": "Expand all",
@@ -2053,7 +2053,7 @@
           "unknown": "Unknown"
         },
         "hint": {
-          "running": "Agents launched here can use codeg's own tools.",
+          "running": "Agents launched here can use Hafidh Ops Desk's own tools.",
           "stopped": "The broker socket is not answering.",
           "disabled": "Every tool group is off — nothing is injected.",
           "unavailable": "The codeg-mcp binary is not on disk.",
@@ -2882,7 +2882,7 @@
         },
         "backendErrors": {
           "initializeTimeout": "{agent} connection handshake timed out after 60 seconds. Please open Settings to check Agent configuration and network settings.",
-          "mcpRejectedByAgent": "{agent} refused the session while codeg’s MCP companion was attached: {message} If this agent does not support MCP, turn off “MCP support” for it in Settings and connect again.",
+          "mcpRejectedByAgent": "{agent} refused the session while Hafidh Ops Desk’s MCP companion was attached: {message} If this agent does not support MCP, turn off “MCP support” for it in Settings and connect again.",
           "processExited": "{agent} process exited unexpectedly.",
           "spawnFailed": "Failed to start {agent}: {message}",
           "downloadFailed": "{agent} download failed: {message}",
@@ -2897,7 +2897,7 @@
           "turnFailedAuthRequired": "{agent} needs you to sign in again before it can run this turn. Sign in from Settings, then send the message again.",
           "grokModelSwitchIncompatibleAgent": "{agent} can't switch to that model in an existing conversation. Start a new session to use it.",
           "turnFailedEmpty": "{agent} ended the turn without producing any response.",
-          "turnFailedEmptyProtocol": "{agent} produced output that codeg could not parse — the agent version may not match the protocol.",
+          "turnFailedEmptyProtocol": "{agent} produced output that Hafidh Ops Desk could not parse — the agent version may not match the protocol.",
           "turnFailedEmptyMetadata": "{agent} sent only status updates this turn (plan / mode / usage) and no reply.",
           "detailsInAlerts": "Open Alerts in the status bar and expand the details to see the agent's output."
         },
@@ -3045,7 +3045,7 @@
           "shortcutsAuxPanel": "<shortcut>{toggleAuxPanel}</shortcut> toggles the right panel to view this session's touched files and Git changes.",
           "shortcutsTerminalSidebar": "<shortcut>{toggleTerminal}</shortcut> opens the built-in terminal, <shortcut>{toggleSidebar}</shortcut> toggles the sidebar.",
           "customShortcuts": "Every shortcut is fully remappable under Settings → Shortcuts.",
-          "webService": "Enable Settings → Web Service so teammates can reach the same codeg from a browser.",
+          "webService": "Enable Settings → Web Service so teammates can reach the same Hafidh Ops Desk from a browser.",
           "fusionMode": "Open a file or diff to automatically show it alongside the conversation.",
           "quickMessages": "Open the + button next to the input and pick Quick Messages to insert a saved snippet (manage them under Settings → Quick Messages).",
           "experts": "The + button has an Expert Skills menu — preload roles like Debug or Planning with one click.",
@@ -3652,7 +3652,7 @@
         "grantDescription": "pi loads this repository's own .pi files. Review what that allows.",
         "grantInheritedDescription": "A parent folder is trusted, so pi loads this repository's own .pi files. Review what that allows.",
         "grantDialogTitle": "This project's pi resources are trusted",
-        "grantDialogDescription": "pi is allowed to load this repository's own .pi files. Earlier codeg versions granted this automatically when you opened a folder, so you may not have been asked.",
+        "grantDialogDescription": "pi is allowed to load this repository's own .pi files. Earlier Hafidh Ops Desk versions granted this automatically when you opened a folder, so you may not have been asked.",
         "grantExecutionWarning": "Extensions are code. The repository runs them at pi startup with your permissions, before you send any message.",
         "inheritedFrom": "Trusted via",
         "revoke": "Revoke trust",
@@ -4137,7 +4137,7 @@
     },
     "confirm": {
       "disableTitle": "Disable these links?",
-      "disableBody": "This removes {count} codeg-managed skill link(s). Skills occupying a custom directory are left untouched. You can re-enable them anytime.",
+      "disableBody": "This removes {count} Hafidh Ops Desk-managed skill link(s). Skills occupying a custom directory are left untouched. You can re-enable them anytime.",
       "cancel": "Cancel",
       "confirm": "Disable"
     },
@@ -4158,7 +4158,7 @@
   },
   "ExpertsSettings": {
     "title": "Expert Skills",
-    "description": "Enable curated, battle-tested skill workflows for your AI coding agents. Each expert is a standalone skill from the superpowers project — codeg manages the central copy and links it into the agents you choose.",
+    "description": "Enable curated, battle-tested skill workflows for your AI coding agents. Each expert is a standalone skill from the superpowers project — Hafidh Ops Desk manages the central copy and links it into the agents you choose.",
     "loading": "Loading experts…",
     "loadingContent": "Loading content…",
     "emptyExperts": "No experts available. Check the application logs.",
@@ -4167,7 +4167,7 @@
     "searchPlaceholder": "Search experts by name, id, or description",
     "enableForAgents": "Enable for agents",
     "noAgents": "No ACP agents detected.",
-    "copyModeWarning": "Copied (not linked). Re-enable after codeg updates to get the latest version.",
+    "copyModeWarning": "Copied (not linked). Re-enable after Hafidh Ops Desk updates to get the latest version.",
     "previewTitle": "SKILL.md preview",
     "categories": {
       "discovery": "Discovery & Design",
@@ -4203,7 +4203,7 @@
   },
   "ScienceSettings": {
     "title": "Scientific Research Skills",
-    "description": "Enable curated scientific-research skills for your AI coding agents — hypothesis generation, experimental design, statistics, visualization, critical appraisal, and literature search. codeg manages a central copy and links each skill into the agents you choose.",
+    "description": "Enable curated scientific-research skills for your AI coding agents — hypothesis generation, experimental design, statistics, visualization, critical appraisal, and literature search. Hafidh Ops Desk manages a central copy and links each skill into the agents you choose.",
     "loading": "Loading science skills…",
     "emptySkills": "No science skills available. Check the application logs.",
     "searchPlaceholder": "Search science skills by name, id, or description",
@@ -4297,7 +4297,7 @@
   },
   "SkillPacksSettings": {
     "title": "Skill Packs",
-    "description": "Curated skill bundles that codeg manages centrally and links into your AI agents — coding experts, scientific research, and office document tools. Enable them per agent below.",
+    "description": "Curated skill bundles that Hafidh Ops Desk manages centrally and links into your AI agents — coding experts, scientific research, and office document tools. Enable them per agent below.",
     "tabs": {
       "experts": "Experts",
       "science": "Science",
@@ -4512,7 +4512,7 @@
   },
   "BackupSettings": {
     "title": "Backup & Restore",
-    "description": "Export a portable backup of your codeg data, or restore from one.",
+    "description": "Export a portable backup of your Hafidh Ops Desk data, or restore from one.",
     "tabs": {
       "backup": "Backup",
       "restore": "Restore"
@@ -4550,9 +4550,9 @@
         "incompatible": "Incompatible",
         "createdAt": "Created: {value}",
         "appVersion": "App version: {value}",
-        "incompatibleHint": "This backup was created by a newer version of codeg and cannot be restored."
+        "incompatibleHint": "This backup was created by a newer version of Hafidh Ops Desk and cannot be restored."
       },
-      "replaceWarning": "Restoring replaces all current codeg data (database and uploads). Your current data is snapshotted first so it can be recovered.",
+      "replaceWarning": "Restoring replaces all current Hafidh Ops Desk data (database and uploads). Your current data is snapshotted first so it can be recovered.",
       "keyringNote": "Desktop GitHub/chat tokens live in your OS keychain and are not included; re-enter them after restoring.",
       "button": "Restore",
       "staging": "Preparing restore…",
@@ -4561,7 +4561,7 @@
       "restartTimeout": "The server did not come back in time. Reload the page once it is up.",
       "externalSideLocation": "Conversation transcripts were restored to {path}",
       "confirmTitle": "Replace all data?",
-      "confirmBody": "This will replace your current codeg database and uploads with the backup, then restart. Your current data is snapshotted first.",
+      "confirmBody": "This will replace your current Hafidh Ops Desk database and uploads with the backup, then restart. Your current data is snapshotted first.",
       "cancel": "Cancel",
       "confirmAction": "Replace & restart",
       "external": {
@@ -4612,8 +4612,8 @@
       "error": {
         "badPassphrase": "Incorrect passphrase or corrupted backup.",
         "corrupted": "The backup archive is corrupted.",
-        "unknownFormat": "This file is not a recognized codeg backup.",
-        "newerVersion": "This backup was created by codeg {backupVersion}, newer than this version ({appVersion}).",
+        "unknownFormat": "This file is not a recognized Hafidh Ops Desk backup.",
+        "newerVersion": "This backup was created by Hafidh Ops Desk {backupVersion}, newer than this version ({appVersion}).",
         "alreadyPending": "A restore is already staged. Restart to apply it before staging another."
       }
     },
@@ -4651,7 +4651,7 @@
   },
   "AgentToolsSettings": {
     "title": "In-conversation tools",
-    "description": "Extra tools codeg gives an agent inside a conversation. Each is injected when the agent starts, so a change applies to agents started afterwards.",
+    "description": "Extra tools Hafidh Ops Desk gives an agent inside a conversation. Each is injected when the agent starts, so a change applies to agents started afterwards.",
     "feedbackLabel": "Live Feedback",
     "feedbackHint": "Send notes and corrections to an agent while it's working. When the agent supports instant steering, your note is inserted into the running turn immediately; otherwise the agent gets a tool to check for your feedback — those agents typically only check when you mention it in your prompt, for example add \"check my live feedback regularly\" to your message.",
     "questionLabel": "Ask user question",
@@ -5280,7 +5280,7 @@
     }
   },
   "CodexModelEditor": {
-    "customizedNotice": "You've customized the model list, so codeg now manages codex's full model table. Official models codex ships later won't appear automatically — click the refresh button below and save again to sync them. Clear your customizations to let codex update automatically.",
+    "customizedNotice": "You've customized the model list, so Hafidh Ops Desk now manages codex's full model table. Official models codex ships later won't appear automatically — click the refresh button below and save again to sync them. Clear your customizations to let codex update automatically.",
     "officialsTitle": "Official models",
     "officialsHint": "Auto-included from the codex you launch; remove any you don't want.",
     "officialsEmpty": "No official models available.",
@@ -5496,7 +5496,7 @@
     "errors": {
       "noAccount": "No {provider} account is configured for {host}. Add one under Settings → Version Control to load this repository.",
       "unsupportedHost": "The repository panel supports GitHub, GitLab and Gitea only, and {host} is not recognized as any of them. If it is a self-hosted GitHub Enterprise, GitLab, Gitea or Forgejo instance, add an account for it under Settings → Version Control.",
-      "wrongForge": "{host} is a {provider}, not the forge codeg had it classified as. The detection has been corrected — reload to retry."
+      "wrongForge": "{host} is a {provider}, not the forge Hafidh Ops Desk had it classified as. The detection has been corrected — reload to retry."
     },
     "addAccount": "Add an account",
     "empty": "Nothing here",
@@ -5644,7 +5644,7 @@
     "dialogDescriptionMr": "Creates a to-do task in {repo}'s folder, with its worktree checked out at this merge request's head — the agent's commits go on top of it and are pushed back to the same merge request once you accept.",
     "instructionPlaceholder": "Optional extra instruction for the agent…",
     "writebackLabel": "Comment the outcome back on this item",
-    "writebackHint": "When the task finishes, codeg posts one comment on this item: the outcome, the link and the diff counters.",
+    "writebackHint": "When the task finishes, Hafidh Ops Desk posts one comment on this item: the outcome, the link and the diff counters.",
     "previewToggle": "Preview the issue content the task will carry",
     "previewEmpty": "(no description)",
     "duplicateBody": "An active task already handles this item: {title} ({status}). Create another one anyway?",

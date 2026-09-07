@@ -154,6 +154,7 @@ export function SystemNetworkSettings() {
   // the status (the default is a placeholder `idle`); older servers don't
   // hydrate, so they're allowed through on their reported availability.
   const canRollback =
+    APP_UPDATES_ENABLED &&
     serverSelfUpdate &&
     serverRollbackAvailable &&
     !usesTauriUpdater() &&

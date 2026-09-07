@@ -15,6 +15,8 @@ concurrency:
 
 jobs:
   create-draft-release:
+    # Public signing/publishing belongs to upstream; this fork is internal only.
+    if: github.repository == 'xintaofei/codeg'
     runs-on: ubuntu-22.04
     permissions:
       contents: write

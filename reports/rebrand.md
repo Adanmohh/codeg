@@ -1,88 +1,48 @@
 # Step 1: rebrand
 
-Worktree: /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
-Branch: feat/step1-rebrand. One writer; no workers started.
+Hafidh Ops Desk branding is implemented. Final Rust policy validation is in progress; draft PR pending. No integration or merge performed.
 
-## Progress
+Worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`
+Branch: `feat/step1-rebrand`
+Assigned baseline: `2f74992e6b133a3ae3ffe3c1e4d0c14444b29137`
+Upstream product baseline: `xintaofei/codeg@v0.30.4`, immutable SHA `6f6bd648b206412644842a98d9ffeebf57292bed` (Apache-2.0).
 
-Read FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md, AGENTS.md and reports/step0.md completely. Implementing piece 8 only. Internal unsigned build; preserve codeg binary/module/storage names and dependency lockfiles.
+## Delivered behaviour
 
-## Sources and decisions
+- Hafidh Ops Desk product name, `app.hafidh.opsdesk` desktop bundle identifier, window/tray/loading titles, notifications, exports, metadata and branding prose in all ten locales.
+- Original code-native H vector with deep teal `#123c3a`, warm white `#f5f1e7` and gold `#dbb66b`. Reused Tauri icon generation for existing PNG/ICO/ICNS/web assets; retained upstream macOS safe-area generator. Tray H uses the same CLI pipeline, requiring no Pillow or new dependency.
+- Existing default theme uses teal `#245e58` in light mode and mint `#9bd4c5` in dark mode, including pre-hydration fallbacks. The persisted neutral ID stays compatible; its picker label is Hafidh. Other themes and the existing UI system remain available.
+- Sponsor promotions removed from all ten README files. Tagged runtime provider source had no sponsor presets to remove; no user provider data was changed.
+- Internal application updates disabled: updater config/key/registration/capability removed, no updater artifacts; frontend rejects check/install/restart/rollback actions and ignores cached upstream offers. Rust refuses before plugin access, network or state mutation; server status advertises no self-update/rollback. Retained dormant upstream lifecycle code is not a distribution channel.
+- Root release job restricted to `xintaofei/codeg`, so dependent signing, packaging and publishing jobs skip in this fork. No workflow triggered, signing, notarization, deployment, store release, merge or external message performed.
+- Apache LICENSE unchanged; NOTICE added without replacing any vendored notices. Future workers can append their entries. No AGPL, Chatwoot enterprise, Kun or other third-party source imported.
 
-- Base: xintaofei/codeg v0.30.4, immutable SHA 6f6bd648b206412644842a98d9ffeebf57292bed, Apache-2.0.
-- Existing paths read: src/components/app-icon.tsx; src/app/layout.tsx; src/app/globals.css; src/lib/theme-presets.ts; src/lib/appearance-script.ts; src-tauri/tauri.conf.json; src-tauri/icons/{icon.svg,macos-icon.gen.py,tray-icon-template.gen.py}; src-tauri/tests/macos_icon_geometry.rs; provider dialog/service; updater library/provider and Rust update entry points.
-- Original code-native H icon, deep teal with warm gold; reuse existing Tauri raster/ICNS pipeline and theme tokens. No additional third-party port or AGPL source.
-- Sponsor search found no presets in tagged runtime provider code; README sponsor promotions will be removed. User provider configurations remain intact.
-- Code-context guide exit 0: no project-specific coverage. Applicable rule: “This is not the framework you remember — heed deprecations and breaking changes.” Docs retrieval exit 3: no rebrand.db corpus. Used installed Tauri CLI schema/help instead; no fabricated retrieval claims. Unrelated project-specific theme rules not applied.
-- Owner latest-doc instruction acknowledged: any latest documentation research uses gh api at a recorded immutable ref. Installed pinned source remains first; borrowed versions do not change.
+## Docs-first and live hook evidence
 
-## Commands
+FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md, AGENTS.md and reports/step0.md were read completely before initial work. No workers spawned. No main changes pulled; protected documents and lockfiles are unchanged against the assigned baseline.
 
-- pnpm install --frozen-lockfile: exit 0, worktree-local node_modules, pnpm 11.9.0.
-- Read gh help and gh pr create --help; pnpm install help; pnpm tauri icon --help.
-- Validation, implementation commit SHA and draft PR URL: see checkpoint below.
+First two resumed commands were separate `cat node_modules/react/package.json` and `cat src-tauri/Cargo.toml` reads. Live audit file `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl` recorded PreToolUse **and** PostToolUse for session `01a07c1c-cf2e-73e1-bbe3-e758c8363042`, cwd `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`, at Unix timestamps `1788789287` and `1788789291`. Each recorded exit is 0. These are live worktree records, distinct from docs-first-test fixtures. Hooks stayed enabled; edit reminders were followed.
 
-## Limitations
+Code-context skill ran through `/Users/mohamedadan/projects/rag-skills/.venv/bin/python` with `HF_HUB_OFFLINE=1`: guide exit 0, no project-specific coverage; docs exit 3 because `data/code/rebrand.db` does not exist. Relevant retrieved rule: **“This is not the framework you remember — heed deprecations and breaking changes.”** No corpus or API coverage fabricated. Local pinned source/types supplied the missing grounding:
 
-Work in progress. No signing, deployment, store distribution, or external messages.
+- React 19.2.4 manifest and installed `@types/react/index.d.ts`.
+- Next 16.1.6 manifest, current static-export layout/config and CLI build help; TypeScript 5.8.3.
+- Tauri Rust 2.10.2 / CLI 2.10.0, local config schema and `tauri icon --help`; existing generators and build.rs. `tauri-plugin-updater@2.10.0/src/lib.rs` shows managed UpdaterState access, motivating the guard before removed-plugin access.
+- Vitest 2.1.9 `dist/index.d.ts` (`mock`, `hoisted`) and installed @vitest/runner 2.1.9 types (`TestEachFunction`); @testing-library/react 16.3.2 types and existing repository test fixtures. No new test framework.
+- Cargo.lock Tokio 1.49.0 and existing `#[tokio::test]` tests/error primitives; existing command/state update entry points read before adding the policy guard.
+- Installed gh, pnpm, Cargo, Tauri icon, TypeScript, Vitest, ESLint, Prettier, Next build, Python HTTP server and Playwright CLI help read before use. Playwright CLI 0.1.18, isolated session `ops-desk-rebrand`, no MCP installation or package upgrade.
 
-## Orchestrator checkpoint — paused for Codex docs-first hook reload
+Remote research used **gh api only**. `repos/xintaofei/codeg/commits/v0.30.4` reconfirmed the immutable upstream SHA (exit 0). Official GitHub workflow condition documentation was resolved to `github/docs@a9c2c024565ab884aaf86e7353e11b9e4244a943` then read at `data/reusables/actions/jobs/section-using-conditions-to-control-job-execution.md`; it documents the exact repository guard used in release.yml. No latest-doc research upgraded any FOUNDING source pin.
 
-Owner explicitly requested a checkpoint and STOP before any more product edits.
-Implementation is incomplete and not ready for review/merge. Resume only after
-an explicit new instruction, with the reloaded Codex adapter. No workers spawned.
+## Source-to-port mapping
 
-Completed so far:
+Piece 8 requires config/assets and minimal glue, not an outside code port. Every inherited path listed below maps to the **same path** in `xintaofei/codeg@6f6bd648b206412644842a98d9ffeebf57292bed`, Apache-2.0. Existing source is edited in place. The only cross-file adaptation is `src-tauri/icons/macos-icon.gen.py`'s existing Tauri CLI/subprocess pattern into `src-tauri/icons/tray-icon-template.gen.py`; its exact source and license are retained in the script and NOTICE. The H geometry is original.
 
-- ProductName Hafidh Ops Desk, bundle identifier app.hafidh.opsdesk; Cargo description updated; internal package/binary/module/storage identifiers retained.
-- Original code-native H vector replaces AppIcon and web/native SVG; Tauri CLI regenerated the tracked desktop PNG/ICO/ICNS files and browser icons. Existing macOS generator preserves safe-area inset.
-- Tray generator now reuses the Tauri CLI subprocess pattern from the existing macOS generator instead of requiring Pillow; generated H alpha-template image retained.
-- Default neutral theme ID retained with teal light/dark accents, so stored preference shape stays compatible; icon carries warm gold.
-- Visible name substitutions in translation values, workspace/settings titles, notification titles, exports, desktop/tray labels.
-- README sponsor blocks removed in all ten languages. No sponsor presets were found in src/ or src-tauri/ provider configuration at this baseline.
-- NOTICE added with upstream Apache attribution; LICENSE and existing vendored notices unchanged. Append-only approach for future workers' entries.
-- Internal update policy glue: no updater artifacts/config/plugin/capability; UI availability checks and install entry disabled; server manifest fetch rejects before networking. Existing updater tests opt into retained upstream lifecycle behaviour via mocked brand flag.
+New files: `NOTICE`, `src/lib/brand.ts` (one build-policy flag), `src/lib/internal-build.test.ts` (disabled-mode coverage using the existing updater test patterns), this report and the three review screenshots. No other source repository was ported.
 
-Exact source-to-change mapping: all inherited sources below are from
-xintaofei/codeg v0.30.4 at 6f6bd648b206412644842a98d9ffeebf57292bed.
-There are no outside-source ports or borrowed latest-version upgrades.
+Exact inherited paths changed:
 
-| Source | Change/port |
-| --- | --- |
-| src-tauri/tauri.conf.json; src-tauri/Cargo.toml; src-tauri/capabilities/default.json | Existing config adjusted for own branding and unsigned internal build |
-| src/components/app-icon.tsx; public/icon.svg; src-tauri/icons/icon.svg | Original H vector replacing upstream art; no borrowed icon source |
-| src-tauri/icons/macos-icon.gen.py | Existing Apache generator reused unchanged for ICNS |
-| src-tauri/icons/tray-icon-template.gen.py + macos-icon.gen.py | Existing Tauri subprocess generation pattern adapted to original transparent H template |
-| src/app/globals.css; src/lib/theme-presets.ts | Existing token/preset mechanism, teal accents |
-| src/lib/updater.ts; src/components/providers/update-provider.tsx; src/components/settings/system-network-settings.tsx; src-tauri/src/update/version.rs; src-tauri/src/lib.rs | Minimal internal-build update disable glue; no new update system |
-| README.md; docs/readme/README.*.md | Sponsor promotion removal and explicit upstream attribution |
-| src/i18n/messages/*.json and source files listed below | Display text only; internal codeg protocol/module names retained |
-
-Commands/results so far:
-
-- code-context guide: 0; docs: 3 (missing rebrand.db), as recorded above.
-- pnpm install --frozen-lockfile: 0. Installed Tauri CLI 2.10.0 schema/help consulted; TypeScript 5.8.3, Next 16.1.6, React 19.2.4 remain pinned.
-- pnpm tauri icon src-tauri/icons/icon.svg -o reports/rebrand-generated-icons: 0. Scratch generated mobile variants moved to ignored out/rebrand-generated-icons; only previously tracked desktop assets copied into product paths.
-- python3 src-tauri/icons/macos-icon.gen.py: 0.
-- Initial tray generator via rag-skills Python: 1, Pillow unavailable. Replaced with existing Tauri generation pattern; python3 src-tauri/icons/tray-icon-template.gen.py: 0.
-- pnpm exec prettier --write [edited TS/TSX/config files]: failed on missing closing JSX brace in system-network-settings.tsx. The active safe edit corrected that brace at checkpoint; formatter not rerun yet.
-- pnpm exec tsc --noEmit: failed on the same JSX syntax error (TS1005). Not rerun after correction; no passing typecheck claim.
-- Default desktop cargo check --locked: stopped intentionally with Ctrl-C, exit 130, for checkpoint. Was still compiling dependencies; no final gate result. Own src-tauri/target output only.
-- git diff --check: 0. Dependency lockfile comparison: 0 (unchanged).
-- Early report commit 6dc835f5 pushed to origin/feat/step1-rebrand.
-- Draft PR: not yet opened; deferred by checkpoint. gh help and gh pr create --help already read.
-
-Resume checklist:
-
-1. Review current diff, rerun formatting and tsc; review neutral fallback CSS consistency before/after hydration. No new UI system needed.
-2. Finish remaining user-facing lowercase codeg references, especially app-boot-loading.tsx and auxiliary page document titles (commit/import/merge/pet/project-boot/push/stash). Read files before editing. Do not blindly replace internal provider IDs, protocol URLs, cache paths or code snippets. Translation values still have some lowercase prose branding; new internalBuild notice currently English across locales and needs localisation.
-3. Verify update disable behaviour and add meaningful focused tests for real disabled mode (existing upstream tests deliberately mock enabled mode); confirm Rust error guard compiles and no update endpoint is reachable through the internal UI. Review desktop plugin removal against runtime registration.
-4. Run default desktop cargo check --locked, pnpm exec tsc --noEmit, focused Vitest coverage for changed branding/notification/updater/theme behaviour; Rust server cargo check --locked --no-default-features --bin codeg-server; meaningful Rust disabled-manifest test and existing macos_icon_geometry tests. No tests beyond initial failed typecheck have run yet.
-5. Inspect generated icon visually, verify tracked assets and sponsor searches, preserve both lockfiles and existing notices. Runtime UI/browser verification not performed yet. Browser automation must use Playwright CLI.
-6. Commit/push completed work, open small draft PR to main (never merge), record exact commit/PR and successful gate commands here. No deployment, signing or store release.
-
-Current modified inherited files (all based on immutable upstream SHA above):
-
+- `.github/workflows/release.yml`
 - `README.md`
 - `docs/readme/README.ar.md`
 - `docs/readme/README.de.md`
@@ -118,15 +78,26 @@ Current modified inherited files (all based on immutable upstream SHA above):
 - `src-tauri/icons/icon.svg`
 - `src-tauri/icons/tray-icon-template.gen.py`
 - `src-tauri/icons/tray-icon-template.png`
+- `src-tauri/src/commands/app_update.rs`
 - `src-tauri/src/commands/windows.rs`
 - `src-tauri/src/lib.rs`
 - `src-tauri/src/update/version.rs`
+- `src-tauri/src/web/handlers/app_update.rs`
+- `src-tauri/src/web/handlers/web_server.rs`
 - `src-tauri/tauri.conf.json`
+- `src/app/commit/page.tsx`
 - `src/app/favicon.ico`
 - `src/app/globals.css`
+- `src/app/import-sessions/page.tsx`
 - `src/app/layout.tsx`
+- `src/app/merge/page.tsx`
+- `src/app/pet/_components/PetWindow.tsx`
+- `src/app/project-boot/page.tsx`
+- `src/app/push/page.tsx`
+- `src/app/stash/page.tsx`
 - `src/app/workspace/layout.tsx`
 - `src/components/app-icon.tsx`
+- `src/components/layout/app-boot-loading.tsx`
 - `src/components/providers/update-provider.test.tsx`
 - `src/components/providers/update-provider.tsx`
 - `src/components/settings/acp-agent-settings.tsx`
@@ -134,6 +105,7 @@ Current modified inherited files (all based on immutable upstream SHA above):
 - `src/components/settings/channel-events-tab.tsx`
 - `src/components/settings/desktop-notification-settings.test.tsx`
 - `src/components/settings/settings-shell.tsx`
+- `src/components/settings/system-network-settings.test.tsx`
 - `src/components/settings/system-network-settings.tsx`
 - `src/contexts/acp-connections-context.tsx`
 - `src/contexts/tasks-view-context.test.tsx`
@@ -148,11 +120,51 @@ Current modified inherited files (all based on immutable upstream SHA above):
 - `src/i18n/messages/pt.json`
 - `src/i18n/messages/zh-CN.json`
 - `src/i18n/messages/zh-TW.json`
+- `src/lib/api.ts`
 - `src/lib/export-conversation.ts`
 - `src/lib/theme-presets.ts`
 - `src/lib/updater.test.ts`
 - `src/lib/updater.ts`
 
-New product files: `NOTICE`, `src/lib/brand.ts`.
+## Commands and validation
 
-Checkpoint implementation commit: `a743e99fd88350ffc262b27d9849a7b57625e1c3` (pushed). This report-only follow-up records that immutable checkpoint. Draft PR remains pending until resume.
+Raw logs are local ignored `reports/*.log`; this committed report is the durable evidence summary.
+
+| Command / check | Result |
+| --- | --- |
+| `pnpm install --frozen-lockfile` | PASS, exit 0, worktree-local node_modules; pnpm 11.9.0 |
+| `pnpm tauri icon src-tauri/icons/icon.svg -o reports/rebrand-generated-icons` | PASS, exit 0; copied only existing tracked desktop outputs plus web favicon assets |
+| `python3 src-tauri/icons/macos-icon.gen.py` | PASS, exit 0, retained 824/1024 body inset |
+| `python3 src-tauri/icons/tray-icon-template.gen.py` | PASS, exit 0, original H alpha template |
+| `cargo check --locked` (src-tauri) | PASS, exit 0; final repeat pending after last policy guard |
+| `cargo check --locked --no-default-features --bin codeg-server` | PASS, exit 0 |
+| `pnpm exec tsc --noEmit` | PASS, exit 0, including final update guards |
+| `pnpm build` | PASS, exit 0, 32 static pages; final repeat in progress |
+| `pnpm eslint .` | PASS, exit 0; one unchanged upstream `_dropped` warning in status-bar-mcp.tsx |
+| Focused Vitest, 10 suites | PASS, exit 0; 129/129 tests |
+| Final affected update suites, 3 suites | PASS, exit 0; 47/47 tests |
+| `cargo test --locked --features test-utils --test macos_icon_geometry` | PASS, exit 0; 3/3 tests: safe area, 1024 master geometry, legacy ICNS masks |
+| `cargo test --locked --no-default-features --lib update::version::tests` | In progress |
+| Rust server update handler tests | Pending |
+| Locale keys/interpolation/inline-code comparison with upstream | PASS; all existing keys, placeholders and inline code unchanged |
+| `git diff --check` | PASS, exit 0 |
+| Protected docs, LICENSE and both lockfiles against assigned baseline | PASS, unchanged |
+
+Focused Vitest files: `src/lib/{internal-build,updater,theme-presets,export-conversation,desktop-notification}.test.ts`, `src/components/providers/update-provider.test.tsx`, `src/components/settings/{system-network-settings,desktop-notification-settings}.test.tsx`, `src/components/appearance-provider.test.tsx`, `src/contexts/tasks-view-context.test.tsx`. Disabled-mode coverage verifies no release-source call for local desktop, server or remote desktop; install/restart/rollback refusal; ignored cached release offers and hidden rollback even if a remote server advertises it. Existing future-distribution lifecycle tests explicitly opt in via a mocked policy flag.
+
+Browser: production static export served only on 127.0.0.1:4318. Playwright confirmed `Login - Hafidh Ops Desk`, heading `Hafidh Ops Desk`, light/dark accent values and no horizontal overflow at 390×844. Initial static-only language-settings POST returned 501; the later visual check mocked only that read. No authentication submitted or real backend flow exercised. Browser and temporary server closed. Original 128×128 icon and screenshots visually inspected:
+
+- [Desktop login](rebrand-login.png)
+- [Mobile light login](rebrand-login-mobile.png)
+- [Mobile dark login](rebrand-login-dark.png)
+
+## Limitations and checkpoint history
+
+No running Tauri app or installable bundle was produced. Compile checks use the upstream ignored out/ placeholder until the real frontend export exists; build.rs stages an ignored zero-byte MCP sidecar. A later local packaged app still needs the existing `pnpm tauri:prepare-sidecars` pipeline. No claim of native launch or P1/P2 end-to-end validation. Upstream codeg binary/module/protocol/cache/backup identifiers and inherited reference documentation/screenshots remain where renaming would expand scope. This is branding and internal distribution policy, not a new UI or engine.
+
+Known upstream warnings: proc-macro-error2 2.0.1 future compatibility, zero-byte check-only MCP sidecar, and ESLint `_dropped` warning. Initial resumed test failure was only an assertion's capitalization; fixed against the existing translation. Initial checkpoint typecheck/formatter failure was a missing JSX brace, corrected before stopping. Initial Pillow absence was resolved by reusing the Tauri pipeline. None is hidden as a passed check.
+
+Initial report pushed as `6dc835f5`; owner-requested reload checkpoint implementation `a743e99fd88350ffc262b27d9849a7b57625e1c3`, report follow-up `7558eb16`. Work stopped at that checkpoint and resumed only on explicit instruction. Earlier detailed progress is preserved in those report commits.
+
+Final implementation commit: pending.
+Draft PR URL: pending. Orchestrator reviews and merges; this worker does not merge.

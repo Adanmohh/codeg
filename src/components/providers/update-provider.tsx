@@ -220,6 +220,7 @@ export function UpdateProvider({ children }: { children: React.ReactNode }) {
    * recorded while we sat idle. */
   const adoptCached = useCallback(
     (cached: CachedUpdateCheck) => {
+      if (!APP_UPDATES_ENABLED) return
       // Ahead of the freshness guard on purpose. A sibling window's "Later"
       // leaves `cached.at` untouched, so gating this read on a newer cache
       // would strand every window that already holds the same answer: they'd
@@ -407,6 +408,7 @@ export function UpdateProvider({ children }: { children: React.ReactNode }) {
 
   const runCheck = useCallback(
     async (silent: boolean) => {
+      if (!APP_UPDATES_ENABLED) return
       setChecking(true)
       try {
         const result = await checkAppUpdateInfo()

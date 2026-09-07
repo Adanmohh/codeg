@@ -145,7 +145,9 @@ fn server_self_update_supported() -> bool {
     // .exe and the standalone re-exec port rebind have not been validated on a
     // real Windows host. Only Linux/macOS are supported for now. (The desktop
     // Windows app is unaffected — it updates via tauri-plugin-updater.)
-    !cfg!(target_os = "windows") && crate::update::install::asset_basename().is_some()
+    crate::update::version::UPDATES_ENABLED
+        && !cfg!(target_os = "windows")
+        && crate::update::install::asset_basename().is_some()
 }
 
 #[cfg(feature = "tauri-runtime")]
@@ -155,7 +157,7 @@ fn server_rollback_available() -> bool {
 
 #[cfg(not(feature = "tauri-runtime"))]
 fn server_rollback_available() -> bool {
-    crate::update::install::rollback_available()
+    crate::update::version::UPDATES_ENABLED && crate::update::install::rollback_available()
 }
 
 pub async fn check_app_update() -> Result<Json<AppUpdateCheckResult>, AppCommandError> {

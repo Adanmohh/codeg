@@ -130,6 +130,11 @@ export function startAppUpdate(): Promise<AppUpdateState> {
  * server triggers the supervised/re-exec restart (the caller then drives the
  * countdown + health poll using the `ReadyToRestart` snapshot's metadata). */
 export function restartApp(): Promise<void> {
+  if (!APP_UPDATES_ENABLED) {
+    return Promise.reject(
+      new Error("Application updates are disabled in this internal build")
+    )
+  }
   return getTransport().call("restart_app")
 }
 
@@ -303,6 +308,9 @@ export async function relaunchApp(): Promise<void> {
 
 /** Revert to the previously-installed bundle (kept as `.bak`). */
 export async function rollbackServer(): Promise<ServerUpdateActionResult> {
+  if (!APP_UPDATES_ENABLED) {
+    throw new Error("Application updates are disabled in this internal build")
+  }
   return getTransport().call<ServerUpdateActionResult>("rollback_app")
 }
 

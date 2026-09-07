@@ -97,7 +97,9 @@ function WorkspaceDocumentTitle() {
   const { activeFolder } = useActiveFolder()
 
   useEffect(() => {
-    document.title = activeFolder ? `${activeFolder.name} - Hafidh Ops Desk` : "Hafidh Ops Desk"
+    document.title = activeFolder
+      ? `${activeFolder.name} - Hafidh Ops Desk`
+      : "Hafidh Ops Desk"
   }, [activeFolder])
 
   return null
