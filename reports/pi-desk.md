@@ -371,3 +371,56 @@ UI PR #7 is now accepted at `f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`
 `ops/{agent,review,types,mod}.rs` completely via git show before integration.
 The next commit wires only those shared helpers; ACP will not construct an
 operator or copy draft validation/SQL.
+
+## Accepted Ops bridge integration
+
+Merged UI acceptance `f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6` into this
+branch. Preserved shared module/migration registrations and the UI owner's
+CODEG_TOKEN stripping; no Ops product file is changed by this worker.
+`work_task/desk.rs` now dispatches every allowed email tool through
+`ops::agent::{context,tickets,thread,save_draft}` and
+`ops::review::propose_reply`; the valid-scope Unavailable stub is removed.
+Context contains trusted account/task/run, the stored root connection and the
+actual token parent's stable agent wire key. The full connection ancestry is
+checked by the engine while its existing request lock holds the binding;
+Ops independently checks current run/folder under its transactions. Existing
+Ops audit attribution remains stable agent + task/run; no caller-supplied
+identity or second policy registry is introduced.
+
+Wire results: context is `{taskId,runSeq,accountId,inboxes}`; ticket/thread/draft
+results use the accepted public DTOs. Proposal success is only
+`{proposalId,status:"pending",draftId,revision}`. Gate denial is the closed
+`denied` error; the trusted core retains matched-rule evidence in its audit.
+No AuthorizedAction or provider capability is serialized or executed. Errors
+are reduced from the existing sanitized Ops error categories; raw SQL/provider
+errors and payload strings are not returned.
+
+New full-path tests use the real framed token listener, actual TaskEngine,
+real migrated SQLite and accepted Ops services; only unused companion features
+are stubs. They cover a persisted pi deny/act_low_risk scope across two random
+launch UUIDs, deny precedence and destructive floor, public-note exclusion,
+foreign scope and injected identity, exact edited draft revisions, a held
+cancellation writer, and peer abort/revocation before a queued draft commit.
+First compile exited 101 because the engine's path override changed Rust's
+nested test-module lookup; the explicit `desk/tests.rs` path fixes the fixture
+layout. Final test results will be recorded below after execution.
+
+P1 coordination after the email bridge: the host's published
+`prepare_and_propose(db, &ops::agent::RunContext, draft_id: &str,
+expected_revision: i32)` accepts exactly the same trusted context. Proposed
+native wire tool `desk_propose_issue` needs only `{draftId:string,
+expectedRevision:positive integer}`. The host derives product/folder/repository
+and loads human-attached reviewed proof; the bridge does not accept issue
+payloads, proof imports, provenance, freshness/configuration or approval inputs.
+Add the actual tool only after that host seam is accepted on main. The requested
+three cached read projections remain host-owned too; no Hafidh credential is
+sent to the generic Pi environment.
+
+Accepted-helper bridge regressions: `cargo test --locked --no-default-features
+--lib desk_bridge` **4/4 passed, exit 0** on the integrated UI/intake product.
+The matched persisted deny ID and act_low_risk scope appear in two `agent.gate`
+audit rows with actor `pi` and different run sequences. Removing only the deny
+returns pending review, never an execution handoff. Both real database writer
+races preserve the original draft. The linker reported a large debug unwind
+section warning; no test failure or runtime corruption was observed. Final
+strict compile/Clippy gates below will not suppress diagnostics.

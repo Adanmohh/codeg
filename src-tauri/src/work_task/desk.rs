@@ -1,10 +1,46 @@
 //! Desk identity resolution through Codeg's existing private task/run index.
 //! No operator principal, caller identity, or second Ops validator is created.
 use super::{TaskEngine, MAX_DELEGATION_CHAIN_HOPS};
-use crate::acp::desk::{DeskCall, DeskError, DeskResponse};
+use crate::acp::desk::{DeskCall, DeskError, DeskResponse, DeskTool};
 use crate::acp::types::ConnectionStatus;
+use crate::app_error::AppErrorCode;
 use crate::db::entities::work_task::{Model, WorkTaskStatus};
-use crate::db::service::work_task_service;
+use crate::db::error::DbError;
+use crate::db::service::{ops_approvals::ProposalOutcome, work_task_service};
+use crate::ops::{agent, review};
+use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use serde_json::{json, Value};
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct ContextInput {}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct ProposeReplyInput {
+    draft_id: i32,
+    expected_revision: i32,
+}
+
+fn input<T: DeserializeOwned>(value: Value) -> Result<T, DeskError> {
+    serde_json::from_value(value).map_err(|_| DeskError::InvalidInput)
+}
+
+fn value<T: Serialize>(dto: T) -> Result<Value, DeskError> {
+    serde_json::to_value(dto).map_err(|_| DeskError::Storage)
+}
+
+fn ops_error(error: DbError) -> DeskError {
+    // Reuse the accepted domain projection, then reduce it to the closed IPC
+    // categories. No SQL, provider error or input-derived message is returned.
+    match agent::command_error(error).code {
+        AppErrorCode::InvalidInput => DeskError::InvalidInput,
+        AppErrorCode::NotFound | AppErrorCode::PermissionDenied => DeskError::Denied,
+        AppErrorCode::TurnInProgress => DeskError::Stale,
+        AppErrorCode::DatabaseError => DeskError::Storage,
+        _ => DeskError::Unavailable,
+    }
+}
 
 impl TaskEngine {
     /// Caller holds request_lock through the eventual Ops transaction, so
@@ -72,13 +108,81 @@ impl TaskEngine {
         Err(DeskError::Denied)
     }
 
-    pub(super) async fn desk_call(&self, connection: &str, _request: DeskCall) -> DeskResponse {
+    pub(super) async fn desk_call(&self, connection: &str, request: DeskCall) -> DeskResponse {
         let _binding = self.request_lock.lock().await;
-        match self.desk_scope(connection).await {
-            // Accepted ops::agent helpers are the only domain implementation.
-            // Until integrated, even a valid binding cannot read or mutate Ops.
-            Ok(_) => DeskResponse::rejected(DeskError::Unavailable),
+        match self.desk_operation(connection, request).await {
+            Ok(value) => DeskResponse::success(value),
             Err(error) => DeskResponse::rejected(error),
         }
     }
+
+    async fn desk_operation(
+        &self,
+        connection: &str,
+        request: DeskCall,
+    ) -> Result<Value, DeskError> {
+        let (task, agent_id) = self.desk_scope(connection).await?;
+        let ctx = agent::RunContext {
+            account_id: agent::account_id().map_err(|_| DeskError::Unavailable)?,
+            task_id: task.id,
+            run_seq: task.run_seq,
+            connection_id: task.connection_id.ok_or(DeskError::Stale)?,
+            agent_id,
+        };
+        let db = &self.db.conn;
+        match request.tool {
+            DeskTool::DeskContext => {
+                let _: ContextInput = input(request.input)?;
+                let context = agent::context(db, &ctx).await.map_err(ops_error)?;
+                Ok(json!({
+                    "taskId": ctx.task_id, "runSeq": ctx.run_seq,
+                    "accountId": context.account_id, "inboxes": context.inboxes,
+                }))
+            }
+            DeskTool::DeskTickets => value(
+                agent::tickets(db, &ctx, input(request.input)?)
+                    .await
+                    .map_err(ops_error)?,
+            ),
+            DeskTool::DeskThread => value(
+                agent::thread(db, &ctx, input(request.input)?)
+                    .await
+                    .map_err(ops_error)?,
+            ),
+            DeskTool::DeskSaveReply => value(
+                agent::save_draft(db, &ctx, input(request.input)?)
+                    .await
+                    .map_err(ops_error)?,
+            ),
+            DeskTool::DeskProposeReply => {
+                let draft: ProposeReplyInput = input(request.input)?;
+                match review::propose_reply(
+                    db,
+                    ctx.task_id,
+                    ctx.run_seq,
+                    &ctx.agent_id,
+                    ctx.account_id,
+                    draft.draft_id,
+                    draft.expected_revision,
+                )
+                .await
+                .map_err(ops_error)?
+                {
+                    ProposalOutcome::Denied(_) => Err(DeskError::Denied),
+                    ProposalOutcome::Pending(row) => Ok(json!({
+                        "proposalId": row.id, "status": "pending",
+                        "draftId": draft.draft_id, "revision": draft.expected_revision,
+                    })),
+                    // The accepted email pack is always destructive. Even if a
+                    // future pack violates that contract, no capability crosses
+                    // this boundary and no dispatcher is invoked here.
+                    ProposalOutcome::Authorized(_) => Err(DeskError::Denied),
+                }
+            }
+        }
+    }
 }
+
+#[cfg(test)]
+#[path = "desk/tests.rs"]
+mod tests;

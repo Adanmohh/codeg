@@ -1041,7 +1041,7 @@ pub fn default_socket_path(_temp_dir: &Path) -> PathBuf {
 }
 
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
     use crate::acp::delegation::broker::{ConversationDepthLookup, DelegationConfig};
     use crate::acp::delegation::spawner::{
@@ -1215,7 +1215,7 @@ mod tests {
         }
     }
 
-    fn desk_listener(tokens: Arc<TokenRegistry>, desk: Arc<DeskAccess>) -> Arc<DelegationListener> {
+    pub(crate) fn desk_listener(tokens: Arc<TokenRegistry>, desk: Arc<dyn WorkTaskToolAccess>) -> Arc<DelegationListener> {
         let broker = Arc::new(DelegationBroker::new(
             Arc::new(MockSpawner::new()) as Arc<dyn ConnectionSpawner>,
             Arc::new(AlwaysRootLookup) as Arc<dyn ConversationDepthLookup>,

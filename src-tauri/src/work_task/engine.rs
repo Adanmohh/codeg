@@ -8435,15 +8435,17 @@ mod tests {
 
     // -- blocking prompts raised by a delegation sub-agent (#447) -----------
 
-    const PARENT_CONN: &str = "conn-task";
+    pub(super) const PARENT_CONN: &str = "conn-task";
     const CHILD_CONN: &str = "conn-child";
 
     /// A task driven to `running` on `PARENT_CONN`, with the engine's live
     /// index seeded as the launch path would. Returns `(engine, task_id)`.
-    async fn running_task() -> (Arc<TaskEngine>, i32) {
-        use crate::db::test_helpers::{fresh_in_memory_db, seed_folder};
+    pub(super) async fn running_task() -> (Arc<TaskEngine>, i32) {
+        running_task_in(crate::db::test_helpers::fresh_in_memory_db().await).await
+    }
 
-        let db = fresh_in_memory_db().await;
+    pub(super) async fn running_task_in(db: AppDatabase) -> (Arc<TaskEngine>, i32) {
+        use crate::db::test_helpers::seed_folder;
         let folder_id = seed_folder(&db, "/tmp/task-deleg").await;
         let conv =
             conversation_service::create(&db.conn, folder_id, AgentType::ClaudeCode, None, None)
@@ -8612,7 +8614,7 @@ mod tests {
     /// Walk the row on to a fresh generation running on `conn_id`, WITHOUT
     /// retiring the previous one's `index` entry — the state a delayed
     /// `TurnComplete` from the old connection lands in. Returns the new run_seq.
-    async fn relaunch_on(engine: &TaskEngine, task_id: i32, conn_id: &str) -> i32 {
+    pub(super) async fn relaunch_on(engine: &TaskEngine, task_id: i32, conn_id: &str) -> i32 {
         let row = work_task_service::get_model(&engine.db.conn, task_id)
             .await
             .expect("task row");
