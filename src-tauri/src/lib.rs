@@ -20,6 +20,7 @@ pub mod backgrounds;
 pub mod chat_channel;
 pub mod commands;
 pub mod db;
+pub mod email_transport;
 pub mod folder_links;
 pub mod forge;
 pub mod git_credential;

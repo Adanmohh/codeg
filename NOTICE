@@ -90,3 +90,115 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+
+Direct Resend email transport
+============================
+The ticket reply contact and auto_reply field also adapt Chatwoot v4.17.1, commit
+b354a9550e1fb59fa537a9c384232cb076213e72:
+  app/presenters/mail_presenter.rb (from, sender_name, auto_reply?,
+    auto_submitted?, x_auto_reply?)
+  spec/presenters/mail_presenter_spec.rb (auto_reply? and malformed sender cases)
+The original Chatwoot copyright and MIT license reproduced above apply.
+
+Owner-authorized reuse of IntroInnovation/intromail, commit
+0bd24dfe284b888aa9f602fa1fd00e337ea38874:
+  backend/app/services/resend_client.py
+  backend/app/services/ingest.py (header/envelope normalization only)
+  backend/app/services/mailboxes.py (recipient ownership pattern)
+  backend/app/routers/mail.py (SendIn and _resolve_sender_mailbox/send_mail patterns)
+  backend/tests/test_send_authorization.py
+  backend/tests/test_mail_privacy.py (mailbox visibility regression principles)
+  backend/tests/test_task_reply_email.py (mock headers and ordinary reply cases)
+Ported as internal Rust REST/normalization glue in src-tauri/src/email_transport/.
+This is the owner's private source, not represented as MIT-licensed. The owner
+explicitly authorized reuse in FOUNDING.md; no third-party license was published
+in that source tree. No AGPL/PolyForm modules, hosted webhook, route, scheduler,
+work-task/approval behavior or transports through CLI/MCP are ported.
+
+Official Resend API contract and fixture adaptations
+--------------------------------------------------
+resend/resend-node v6.26.0, commit
+c61cccae2999d50d2aca9ce5fd1064f3bb855219:
+  src/emails/emails.ts (create/send)
+  src/emails/receiving/receiving.ts (get/list only)
+  src/emails/receiving/receiving.spec.ts (get/list fixtures and cursor tests)
+  src/emails/receiving/interfaces/get-receiving-email.interface.ts
+  src/emails/receiving/interfaces/list-receiving-emails.interface.ts
+  src/common/interfaces/pagination-options.interface.ts
+  src/common/utils/build-pagination-query.ts
+  src/common/utils/get-pagination-query-properties.ts
+Original license:
+MIT License
+
+Copyright (c) 2023 Plus Five Five, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+resend/resend-openapi, commit 8dca27c284bd377e48a6db131b52f6689d53195e:
+  resend.json (POST /emails; GET /emails/receiving;
+               GET /emails/receiving/{email_id}; their referenced schemas)
+Original license:
+Copyright 2026 Plus Five Five, Inc
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+RFC mail parsing and plain text normalization
+---------------------------------------------
+stalwartlabs/mail-parser v0.11.1, commit
+6c5d33028530e0ec957f3440ec2ffe65722ecc8c (MIT alternative selected):
+  src/parsers/fields/address.rs (nested comment/escape transitions adapted into
+    email_transport/normalize.rs; address parser used through installed crate)
+  src/parsers/fields/id.rs (installed parser plus strict adapter validation)
+  src/parsers/fields/unstructured.rs (installed encoded-header parser)
+  src/decoders/html.rs (installed html_to_text; not an HTML rendering sanitizer)
+  src/core/address.rs, src/core/header.rs, src/parsers/mod.rs (installed APIs)
+SPDX-FileCopyrightText: 2020 Stalwart Labs LLC <hello@stalw.art>
+Transitive hashify 0.2.9, MIT alternative selected:
+SPDX-FileCopyrightText: 2025 Stalwart Labs LLC <hello@stalw.art>
+Both original MIT license texts are identical and reproduced here:
+Permission is hereby granted, free of charge, to any
+person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the
+Software without restriction, including without
+limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software
+is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice
+shall be included in all copies or substantial portions
+of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
