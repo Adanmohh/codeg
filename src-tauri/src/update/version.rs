@@ -15,6 +15,9 @@ use crate::app_error::AppCommandError;
 
 /// Update manifest URL — mirrors the `endpoints` entry in `tauri.conf.json`
 /// so desktop and server modes consult the same source of truth.
+// Internal Hafidh build: no application release channel.
+pub const UPDATES_ENABLED: bool = false;
+
 pub const UPDATE_MANIFEST_URL: &str =
     "https://github.com/xintaofei/codeg/releases/latest/download/latest.json";
 
@@ -71,6 +74,11 @@ pub struct LatestManifest {
 }
 
 pub async fn fetch_latest_manifest() -> Result<LatestManifest, AppCommandError> {
+    if !UPDATES_ENABLED {
+        return Err(AppCommandError::configuration_invalid(
+            "Application updates are disabled in this internal build",
+        ));
+    }
     let client = manifest_client()?;
     let response = client.get(UPDATE_MANIFEST_URL).send().await.map_err(|e| {
         AppCommandError::network("Failed to fetch update manifest").with_detail(e.to_string())

@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react"
+import { APP_UPDATES_ENABLED } from "@/lib/brand"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 import {
@@ -874,7 +875,8 @@ export function UpdateProvider({ children }: { children: React.ReactNode }) {
   // detached live-progress protocol (older ones would block on the legacy
   // endpoint), so anything else falls back to a "view release" link.
   const canInstallInPlace =
-    usesTauriUpdater() || (selfUpdateSupported && liveProgress)
+    APP_UPDATES_ENABLED &&
+    (usesTauriUpdater() || (selfUpdateSupported && liveProgress))
 
   const value = useMemo<UpdateContextValue>(
     () => ({
