@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
+vi.mock("@/lib/brand", () => ({ APP_UPDATES_ENABLED: true }))
+
 const call = vi.fn()
 // Flipped per-test so the desktop (Tauri plugin) branch of the updater can be
 // exercised alongside the server one.

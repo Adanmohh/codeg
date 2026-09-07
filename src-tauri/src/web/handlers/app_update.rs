@@ -113,6 +113,7 @@ fn trial_seconds_value() -> u64 {
 
 #[cfg(not(feature = "tauri-runtime"))]
 fn ensure_supported() -> Result<(), AppCommandError> {
+    crate::update::version::ensure_updates_enabled()?;
     if cfg!(target_os = "windows") {
         return Err(AppCommandError::invalid_input(
             "In-place server self-update is not supported on Windows yet",
@@ -301,16 +302,14 @@ async fn rollback_impl(state: Arc<AppState>) -> Result<UpdateActionResult, AppCo
     })
 }
 
-// `ensure_supported` rejects Windows, and the desktop build's `perform_impl` is
-// the not-supported stub — so this concurrency test only applies to a server
-// build on a supported platform.
+// Internal-build policy applies before lifecycle mutation in the server path.
 #[cfg(all(test, not(feature = "tauri-runtime"), not(target_os = "windows")))]
 mod tests {
     use super::*;
     use crate::update::state as update_state;
 
     #[tokio::test]
-    async fn perform_attaches_to_an_in_flight_download_without_busy() {
+    async fn internal_build_refuses_even_an_in_flight_update() {
         let db = crate::db::test_helpers::fresh_in_memory_db().await;
         let dir = tempfile::tempdir().unwrap();
         let state = Arc::new(AppState::new_for_test(db, dir.path().to_path_buf()));
@@ -320,16 +319,14 @@ mod tests {
         let (started, _) = update_state::try_begin(&state.update_state, &state.emitter);
         assert!(started);
 
-        // A second concurrent perform must return the live snapshot and attach —
-        // never a `busy` error, and without driving a second download. `try_begin`
-        // short-circuits before the op-lock or any network is touched.
-        let result = perform_impl(state.clone())
-            .await
-            .expect("second perform attaches instead of erroring");
-        assert_eq!(result.status, update_state::AppUpdateLifecycle::Downloading);
+        let error = perform_impl(state.clone()).await.unwrap_err();
+        assert!(error.message.contains("updates are disabled"));
+        assert_eq!(
+            update_state::snapshot(&state.update_state).status,
+            update_state::AppUpdateLifecycle::Downloading
+        );
 
-        // The op-lock was never taken on the attach path, so a follow-up restart
-        // could still acquire it.
+        // The refused call never takes the system operation lock.
         assert!(state.system_op_lock.try_lock().is_ok());
     }
 
@@ -362,7 +359,7 @@ mod tests {
         // Fresh state is Idle — nothing is staged, so a (stale) restart click
         // must be rejected rather than rebooting into whatever is on disk.
         let err = restart_impl(state.clone()).unwrap_err();
-        assert!(err.message.contains("No staged update"));
+        assert!(err.message.contains("updates are disabled"));
         // State untouched and the lock is free for a later legitimate op.
         assert_eq!(
             update_state::snapshot(&state.update_state).status,
@@ -389,7 +386,7 @@ mod tests {
             None,
         );
         let err = rollback_impl(state.clone()).await.unwrap_err();
-        assert!(err.message.contains("Cannot roll back"));
+        assert!(err.message.contains("updates are disabled"));
         assert_eq!(
             update_state::snapshot(&state.update_state).status,
             update_state::AppUpdateLifecycle::ReadyToRestart

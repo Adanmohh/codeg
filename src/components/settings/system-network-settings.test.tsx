@@ -2,6 +2,10 @@ import { render, screen, act, fireEvent, waitFor } from "@testing-library/react"
 import { NextIntlClientProvider } from "next-intl"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
+// Retained upstream lifecycle tests opt into the future distribution mode.
+const buildPolicy = vi.hoisted(() => ({ APP_UPDATES_ENABLED: true }))
+vi.mock("@/lib/brand", () => buildPolicy)
+
 const call = vi.fn()
 // Capture the provider's app_update_state handler so tests can push live
 // lifecycle transitions.
@@ -108,6 +112,7 @@ function renderWithIntl() {
 }
 
 beforeEach(() => {
+  buildPolicy.APP_UPDATES_ENABLED = true
   call.mockReset()
   subscribe.mockClear()
   mockGetProxy.mockReset()
@@ -155,6 +160,36 @@ function liveServerCalls(snapshot: unknown) {
     throw new Error(`unexpected endpoint: ${endpoint}`)
   }
 }
+
+describe("SystemNetworkSettings — internal build", () => {
+  it("disables updates even when a connected server advertises rollback", async () => {
+    buildPolicy.APP_UPDATES_ENABLED = false
+    mockGetProxy.mockResolvedValue({ enabled: false, proxy_url: null })
+    call.mockImplementation(liveServerCalls({ seq: 1, status: "idle" }))
+    localStorage.setItem(
+      "codeg.updateCheck.last",
+      JSON.stringify({
+        at: Date.now(),
+        currentVersion: "0.16.0",
+        info: { version: "9.9.9", body: "Old upstream offer", date: null },
+      })
+    )
+
+    renderWithIntl()
+
+    expect(
+      await screen.findByText("Internal build · updates disabled")
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole("button", { name: "Check for updates" })
+    ).toBeDisabled()
+    expect(screen.queryByText(/9\.9\.9/)).toBeNull()
+    expect(screen.queryByRole("button", { name: "Roll back" })).toBeNull()
+    expect(
+      call.mock.calls.some(([endpoint]) => endpoint === "check_app_update")
+    ).toBe(false)
+  })
+})
 
 describe("SystemNetworkSettings — update source outage", () => {
   it("loads proxy settings and exposes rollback when the manifest is unreachable", async () => {

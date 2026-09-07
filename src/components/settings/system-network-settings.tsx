@@ -11,6 +11,7 @@ import {
   RotateCcw,
   Wifi,
 } from "lucide-react"
+import { APP_UPDATES_ENABLED } from "@/lib/brand"
 import { useLocale, useTranslations } from "next-intl"
 import { toast } from "sonner"
 import { useAppI18n } from "@/components/i18n-provider"
@@ -153,6 +154,7 @@ export function SystemNetworkSettings() {
   // the status (the default is a placeholder `idle`); older servers don't
   // hydrate, so they're allowed through on their reported availability.
   const canRollback =
+    APP_UPDATES_ENABLED &&
     serverSelfUpdate &&
     serverRollbackAvailable &&
     !usesTauriUpdater() &&
@@ -413,7 +415,7 @@ export function SystemNetworkSettings() {
             <Button
               variant="ghost"
               className="size-5 rounded-full"
-              onClick={() => openUrl("https://github.com/xintaofei/codeg")}
+              onClick={() => openUrl("https://github.com/Adanmohh/codeg")}
             >
               <GithubMarkIcon className="size-5" />
             </Button>
@@ -435,6 +437,11 @@ export function SystemNetworkSettings() {
               <RefreshCw className="h-4 w-4 text-muted-foreground" />
             )}
             <h2 className="text-sm font-semibold">{t("versionTitle")}</h2>
+            {!APP_UPDATES_ENABLED && (
+              <span className="text-xs text-muted-foreground">
+                {t("internalBuild")}
+              </span>
+            )}
           </div>
 
           <p className="text-xs text-muted-foreground leading-5">
@@ -493,7 +500,7 @@ export function SystemNetworkSettings() {
                     size="sm"
                     onClick={() =>
                       openUrl(
-                        "https://github.com/xintaofei/codeg/releases/latest"
+                        "https://github.com/Adanmohh/codeg/releases/latest"
                       )
                     }
                   >
@@ -506,7 +513,7 @@ export function SystemNetworkSettings() {
                   key="check-update"
                   size="sm"
                   onClick={checkForUpdates}
-                  disabled={isBusy}
+                  disabled={!APP_UPDATES_ENABLED || isBusy}
                   className="w-[9.5rem] justify-center transition-none"
                 >
                   <RefreshCw className="h-3.5 w-3.5" />

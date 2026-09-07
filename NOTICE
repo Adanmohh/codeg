@@ -19,3 +19,16 @@ Port: src-tauri/src/db/service/ops_approvals/, entities/ops_*.rs,
   migration/m20260907_000001_ops_approvals.rs (under src-tauri/src/db/).
 Owner's source; no third-party license terms per FOUNDING.md section 3.
 No Plane, Twenty, Postiz, restricted Chatwoot enterprise or Kun source imported.
+
+Hafidh Ops Desk
+
+This product is derived from codeg (Code Generation), by xintaofei and
+codeg contributors, licensed under the Apache License, Version 2.0.
+Upstream: https://github.com/xintaofei/codeg
+Baseline: v0.30.4, commit 6f6bd648b206412644842a98d9ffeebf57292bed.
+The original Apache-2.0 LICENSE and existing vendored notices are retained.
+
+Hafidh modifications (2026): product branding, original H vector mark,
+colour tokens, removal of sponsor promotions, and internal-build update policy.
+The upstream application and asset-generation pipeline are reused under
+Apache-2.0; no additional third-party source is ported for the rebrand.

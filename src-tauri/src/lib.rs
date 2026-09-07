@@ -112,8 +112,12 @@ mod tauri_app {
             summarize_web_auto_start_error(err)
         );
         tauri::async_runtime::spawn(async move {
-            let _ =
-                notification::send_notification(app, "Codeg Web service".to_string(), body).await;
+            let _ = notification::send_notification(
+                app,
+                "Hafidh Ops Desk Web service".to_string(),
+                body,
+            )
+            .await;
         });
     }
 
@@ -352,7 +356,6 @@ mod tauri_app {
             )
             .plugin(tauri_plugin_opener::init())
             .plugin(tauri_plugin_dialog::init())
-            .plugin(tauri_plugin_updater::Builder::new().build())
             .plugin(tauri_plugin_process::init())
             .plugin(tauri_plugin_notification::init())
             // "Launch at login". LaunchAgent rather than AppleScript on macOS:
@@ -978,7 +981,7 @@ mod tauri_app {
                 if app.get_webview_window("main").is_none() {
                     let url = tauri::WebviewUrl::App("workspace".into());
                     let builder = tauri::WebviewWindowBuilder::new(app, "main", url)
-                        .title("Codeg")
+                        .title("Hafidh Ops Desk")
                         .inner_size(1260.0, 860.0)
                         .min_inner_size(400.0, 600.0);
                     let builder = windows::apply_platform_window_style(builder);

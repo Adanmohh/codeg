@@ -28,55 +28,6 @@ Codeg bündelt die Sitzungen aller unterstützten Agenten-CLIs in einem durchsuc
 
 **Die vollständige Dokumentation liegt unter [docs.codeg.app](https://docs.codeg.app)** — [Erste Schritte](https://docs.codeg.app/getting-started/) · [Guide](https://docs.codeg.app/guide/) · [Referenz](https://docs.codeg.app/reference/)
 
-## 💖 Sponsoren
-
-<table>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://www.compshare.cn/?ytag=GPU_YY_git_codeg" target="_blank"><img src="../images/compshare.png" alt="Compshare" width="160" /></a><br/>
-      <strong><a href="https://www.compshare.cn/?ytag=GPU_YY_git_codeg">Compshare (UCloud)</a></strong>
-    </td>
-    <td>Vielen Dank an Compshare für die Unterstützung dieses Projekts! Compshare ist die KI-Cloud-Plattform von UCloud und bietet preiswerte monatliche und nutzungsbasierte Plan-Tarife für inländische Modell-Agents ab 49 ¥/Monat. Zusätzlich bietet sie stabilen, offiziell weitergeleiteten Zugriff auf Modelle aus Übersee. Unterstützt Claude Code, Codex und API-Aufrufe. Enterprise-tauglich: hohe Parallelität, 24/7-Support, Self-Service-Rechnungsstellung. Wer sich über <a href="https://www.compshare.cn/?ytag=GPU_YY_git_codeg">diesen Link</a> registriert, erhält 5 ¥ Plattformguthaben gratis!</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://sui-xiang.com/register?aff=JPFCRHHBE8HE" target="_blank"><img src="../images/sui-xiang.jpg" alt="随想AI中转站" width="200" /></a><br/>
-      <strong><a href="https://sui-xiang.com/register?aff=JPFCRHHBE8HE">随想AI中转站</a></strong>
-    </td>
-    <td>Vielen Dank an 随想AI中转站 für die Unterstützung dieses Projekts! 随想AI中转站 ist ein zuverlässiger und effizienter API-Relay-Anbieter mit Relay-Diensten für Claude, Codex, Gemini und mehr. Neue Konten erhalten nach der <a href="https://sui-xiang.com/register?aff=JPFCRHHBE8HE">Registrierung</a> für jedes tägliche Einchecken 0,5 ¥ Testguthaben; Aufladungen werden 1:1 gutgeschrieben – ohne Abo, Bezahlung nach Verbrauch. Mehrfach redundante Leitungen, regionsübergreifende Notfallwiederherstellung und automatisches Failover halten langlebige SSE-Verbindungen unterbrechungsfrei.</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://hezu.ink/sign-up?aff=0wVz" target="_blank"><img src="../images/hezu-ink.jpg" alt="合租巴士" width="200" /></a><br/>
-      <strong><a href="https://hezu.ink/sign-up?aff=0wVz">合租巴士</a></strong>
-    </td>
-    <td>Vielen Dank an 合租巴士 für die Unterstützung dieses Projekts! 合租巴士 ist eine zuverlässige und effiziente KI-Relay-Plattform, die hochstabiles Relay für gängige Modelle wie Codex und Claude Code bietet. Das Aufladeverhältnis ist transparent (1:1), mit Codex-Ratenzuschüssen ab nur 0,08. <a href="https://hezu.ink/sign-up?aff=0wVz">Treten Sie der Gruppe über die offizielle Website bei und erhalten Sie 5 USD Testguthaben</a>.</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://onehop.ai/platform/login?ref=CODEG&utm_source=github&utm_medium=readme_sponsor&utm_campaign=codeg&utm_content=sponsor_cta" target="_blank"><img src="../images/onehop.jpg" alt="OneHop" width="120" /></a><br/>
-      <strong><a href="https://onehop.ai/platform/login?ref=CODEG&utm_source=github&utm_medium=readme_sponsor&utm_campaign=codeg&utm_content=sponsor_cta">OneHop</a></strong>
-    </td>
-    <td>Vielen Dank an OneHop für die Unterstützung dieses Projekts! OneHop bietet Codeg-Nutzern einen einzigen OpenAI-kompatiblen API-Schlüssel für Hunderte führender Modelle, darunter GPT, Claude, Gemini, DeepSeek, Kimi und Qwen. Wechseln Sie zwischen Modellen, ohne mehrere Anbieterkonten zu verwalten oder Ihren Code immer wieder zu ändern, und zahlen Sie nur für das, was Sie nutzen. <a href="https://onehop.ai/platform/login?ref=CODEG&utm_source=github&utm_medium=readme_sponsor&utm_campaign=codeg&utm_content=sponsor_cta">Registrieren Sie sich über Codeg</a>, um 1 USD Guthaben zu erhalten, und treten Sie zusätzlich der OneHop-Community bei und nehmen Sie an der Willkommensaktion teil, um weitere 5 USD zu erhalten – insgesamt bis zu 6 USD Testguthaben.</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://console.lqapi.xyz/sign-up?aff=KPy9" target="_blank"><img src="../images/lq-router.png" alt="LQ router" width="160" /></a><br/>
-      <strong><a href="https://console.lqapi.xyz/sign-up?aff=KPy9">LQ router</a></strong>
-    </td>
-    <td>Vielen Dank an den Relay-Dienst LQ router für die Unterstützung dieses Projekts! LQ router ist ein API-Aggregationsgateway auf Enterprise-Niveau für unabhängige Entwickler und technische Teams. Es bindet führende Modelle wie GPT, Claude, Grok und Gemini an, ist mit bestehenden Clients und dem OpenAI SDK kompatibel und nutzt einen dynamischen Kontenpool für intelligentes Routing – ein einziger Einstiegspunkt für alle Modellaufrufe. <a href="https://console.lqapi.xyz/sign-up?aff=KPy9">Über die offizielle Website der Gruppe beitreten und 1 USD Testguthaben erhalten</a>.</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://go.apimart.ai/gh-codeg" target="_blank"><img src="../images/apimart-ai.png" alt="APIMart" width="200" /></a><br/>
-      <strong><a href="https://go.apimart.ai/gh-codeg">APIMart</a></strong>
-    </td>
-    <td>Vielen Dank an APIMart für die Unterstützung dieses Projekts! APIMart ist eine günstige API-Plattform für KI-Bild- und Videogenerierung – GPT-Image-2 ab 0,006 USD pro Bild, über 160 Bilder pro Dollar. Eine einzige asynchrone API deckt Bild und Video ab: Aufgabe einreichen, ID erhalten, Ergebnisse per Polling oder Callback abholen. Zehntausende Bilder im Batch verarbeiten, ohne dass es zu Timeouts kommt, und Modelle wechseln, ohne den Code zu ändern. Nutzungsbasierte Abrechnung ohne Monatsgebühr – <a href="https://go.apimart.ai/gh-codeg">hier registrieren</a> und direkt loslegen.</td>
-  </tr>
-</table>
-
-> Möchten Sie Codeg-Sponsor werden? [Schreiben Sie uns gerne eine E-Mail.](mailto:itpkcn@gmail.com)
-
 ## 🤖 Unterstützte Agenten
 
 Claude Code · Codex · Gemini · OpenClaw · OpenCode · Cline · Hermes · CodeBuddy · Kimi Code · Pi · Grok · Cursor · DeepSeek Harness · Qoder · Google Antigravity

@@ -28,55 +28,6 @@ Codeg（Code Generation）はマルチエージェント・コーディングワ
 
 **完全なドキュメントは [docs.codeg.app](https://docs.codeg.app)** — [はじめに](https://docs.codeg.app/getting-started/) · [ガイド](https://docs.codeg.app/guide/) · [リファレンス](https://docs.codeg.app/reference/)
 
-## 💖 スポンサー
-
-<table>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://www.compshare.cn/?ytag=GPU_YY_git_codeg" target="_blank"><img src="../images/compshare.png" alt="Compshare" width="160" /></a><br/>
-      <strong><a href="https://www.compshare.cn/?ytag=GPU_YY_git_codeg">Compshare（UCloud）</a></strong>
-    </td>
-    <td>本プロジェクトをスポンサードしてくださった Compshare に感謝します！Compshare は UCloud 傘下の AI クラウドプラットフォームで、月額制・従量制のコストパフォーマンスに優れた国内モデル agent Plan プランを提供しており、月額 49 元から利用可能です。安定した公式リダイレクトによる海外モデルへのアクセスも提供しています。Claude Code、Codex、API 連携に対応。企業向けの高並列対応、7×24 テクニカルサポート、セルフ請求書発行をサポートしています。<a href="https://www.compshare.cn/?ytag=GPU_YY_git_codeg">こちらのリンク</a>から登録された方には、5 元分の無料プラットフォームクレジットが進呈されます！</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://sui-xiang.com/register?aff=JPFCRHHBE8HE" target="_blank"><img src="../images/sui-xiang.jpg" alt="随想AI中转站" width="200" /></a><br/>
-      <strong><a href="https://sui-xiang.com/register?aff=JPFCRHHBE8HE">随想AI中转站</a></strong>
-    </td>
-    <td>本プロジェクトをスポンサードしてくださった随想AI中转站に感謝します！随想AI中转站は、Claude、Codex、Gemini などの中継サービスを提供する、信頼性が高く効率的な API 中継サービスプロバイダーです。新規アカウントは<a href="https://sui-xiang.com/register?aff=JPFCRHHBE8HE">登録</a>後、毎日のチェックインで 0.5 元のテストクレジットがもらえます。チャージは 1:1 で反映され、サブスクリプション不要の従量課金制です。複数回線の冗長化、リージョン間ディザスタリカバリ、自動フェイルオーバーにより、長時間の SSE 接続も途切れません。</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://hezu.ink/sign-up?aff=0wVz" target="_blank"><img src="../images/hezu-ink.jpg" alt="合租巴士" width="200" /></a><br/>
-      <strong><a href="https://hezu.ink/sign-up?aff=0wVz">合租巴士</a></strong>
-    </td>
-    <td>本プロジェクトをスポンサードしてくださった合租巴士に感謝します！合租巴士は、Codex や Claude Code などの主流モデルに高い安定性の中継機能を提供する、信頼性が高く効率的な AI 中継サービスプラットフォームです。チャージ比率は透明（1:1）で、Codex のレート補助は 0.08 から利用可能です。<a href="https://hezu.ink/sign-up?aff=0wVz">公式サイトからグループに参加すると $5 分の体験クレジットがもらえます</a>。</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://onehop.ai/platform/login?ref=CODEG&utm_source=github&utm_medium=readme_sponsor&utm_campaign=codeg&utm_content=sponsor_cta" target="_blank"><img src="../images/onehop.jpg" alt="OneHop" width="120" /></a><br/>
-      <strong><a href="https://onehop.ai/platform/login?ref=CODEG&utm_source=github&utm_medium=readme_sponsor&utm_campaign=codeg&utm_content=sponsor_cta">OneHop</a></strong>
-    </td>
-    <td>本プロジェクトをスポンサードしてくださった OneHop に感謝します！OneHop を使えば、Codeg ユーザーは OpenAI 互換の API キー 1 つで、GPT、Claude、Gemini、DeepSeek、Kimi、Qwen など数百もの主要モデルを利用できます。複数のプロバイダーアカウントを管理したり、コードを何度も書き換えたりすることなくモデルを切り替えられ、使った分だけの従量課金です。<a href="https://onehop.ai/platform/login?ref=CODEG&utm_source=github&utm_medium=readme_sponsor&utm_campaign=codeg&utm_content=sponsor_cta">Codeg 経由でサインアップ</a>すると $1 分のクレジットが付与され、さらに OneHop コミュニティに参加してウェルカムアクティビティに参加すると追加で $5 分——合計で最大 $6 分のテストクレジットを獲得できます。</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://console.lqapi.xyz/sign-up?aff=KPy9" target="_blank"><img src="../images/lq-router.png" alt="LQ router" width="160" /></a><br/>
-      <strong><a href="https://console.lqapi.xyz/sign-up?aff=KPy9">LQ router</a></strong>
-    </td>
-    <td>本プロジェクトをスポンサードしてくださった LQ router 中継サービスに感謝します！LQ router は、個人開発者と技術チーム向けのエンタープライズ級 API 統合ゲートウェイです。GPT、Claude、Grok、Gemini などの主要モデルに接続し、既存のクライアントや OpenAI SDK と互換性があります。動的アカウントプールによるインテリジェントルーティングで、1 つのエンドポイントから複数モデルを呼び出せます。<a href="https://console.lqapi.xyz/sign-up?aff=KPy9">公式サイトからグループに参加すると $1 分の体験クレジットがもらえます</a>。</td>
-  </tr>
-  <tr>
-    <td align="center" width="220">
-      <a href="https://go.apimart.ai/gh-codeg" target="_blank"><img src="../images/apimart-ai.png" alt="APIMart" width="200" /></a><br/>
-      <strong><a href="https://go.apimart.ai/gh-codeg">APIMart</a></strong>
-    </td>
-    <td>本プロジェクトをスポンサードしてくださった APIMart に感謝します！APIMart は AI 画像・動画生成に特化した低価格 API プラットフォームです。GPT-Image-2 は 1 枚 $0.006 から、1 ドルで 160 枚以上を生成できます。画像も動画も 1 つの非同期 API でカバー：タスクを送信して ID を受け取り、ポーリングまたはコールバックで結果を取得します。数万枚のバッチ処理でもタイムアウトせず、モデルを切り替えてもコードの変更は不要です。従量課金で月額費用は不要——<a href="https://go.apimart.ai/gh-codeg">こちらから登録</a>すればすぐに使い始められます。</td>
-  </tr>
-</table>
-
-> Codeg のスポンサーになりませんか？[メールでお問い合わせください。](mailto:itpkcn@gmail.com)
-
 ## 🤖 対応エージェント
 
 Claude Code · Codex · Gemini · OpenClaw · OpenCode · Cline · Hermes · CodeBuddy · Kimi Code · Pi · Grok · Cursor · DeepSeek Harness · Qoder · Google Antigravity
