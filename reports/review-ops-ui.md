@@ -1,6 +1,8 @@
 # Ops UI acceptance review
 
-Fixes verified, final gates pending, 2026-09-08. PR #7 is not accepted. Reviewed Ops source at
+Accepted and merged, 2026-09-08. PR #7 reviewed at
+`756d064f1cc391ed1da32ba90429adef225f080d`, merged as
+`f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`. Final handoff changed only report/evidence after the verified product fix. Reviewed Ops source at
 `85a5dd18`, integrated with accepted GitHub/main at `c6066921` (no Ops source
 change during integration).
 
@@ -11,7 +13,7 @@ and discard dismissal successfully. Seven independent component tests pass,
 including full subtree remount and colliding IDs after a backend switch.
 Log `/tmp/ops-ui-independent-fixed-vitest.log`. No implicit server or browser
 storage writes were introduced. Light Deny contrast no longer fails the probe;
-dark and final end-to-end checks remain. After-fix screenshot/probe are in
+dark and final synthetic end-to-end checks also passed (below). After-fix screenshot/probe are in
 [`browser-step2/`](browser-step2/).
 
 ## P2 — responsive transition silently discards unsaved edits
@@ -56,7 +58,7 @@ remains 390px at the 390px viewport.
 - Actual fixture login, Inbox navigation, populated thread/private-note
   distinction and read-only desktop/mobile inspection work. Fixture uses the
   actual router/store/gate/HTTP client and test-only loopback provider, with no
-  live Resend key. Root has not yet independently exercised provider mutations.
+  live Resend key. Root subsequently completed independent provider fixture mutations (below).
 
 ## Design evidence in preparation
 
@@ -74,4 +76,33 @@ Selected before-fix screenshots and measured JSON are preserved in
 
 Browser console errors are fixture Git-head/state-stream 404s for its synthetic
 folder, plus inherited input/form advisory messages. No zero-console claim.
-Final browser scenarios, review fix, complete gates and Design Studio loops remain.
+Feature acceptance gates passed. Final combined Design Studio loops remain separate project work.
+
+## Final independent browser acceptance
+
+Playwright CLI session `ops-ui-independent`, fresh real protected router/store/gate
+fixture at 127.0.0.1:4320, with only credentials/provider replaced by local
+synthetic fixtures: configured connection; first pull imported one message and
+repeat imported zero with one duplicate; script content rendered as literal text;
+saved draft and private note separately; approved edited To/Cc/Bcc/body and saw
+provider receipt plus exactly one public reply in the original thread. Unknown
+outcome showed no resend action; definite rejection showed not sent; stale send
+was disabled and denial redacted the proposal. Morning showed zero pending and
+four running fixture tasks. No live provider requests or real messages.
+
+Actual Appearance → Dark selection synchronized to the workspace. The 99-text
+probe had no Ops contrast failures; inherited “No chats” at 4.06 remains for the
+final design loop. Screenshots/probe are committed in `reports/browser-step2/`
+(`sent-fixture`, `unknown-fixture`, `morning-fixture`, `inbox-dark-fixture`,
+`inbox-dark-probe.json`). Earlier independent resize/discard regressions also pass.
+
+Reviewed final worker gates in `reports/ops-ui.md`: desktop/server checks and
+Clippy, 135 combined server Ops tests, 22 desktop Ops tests, seven keyring,
+128 engine, 39 work-task, 18 ticket and 18 transport tests; frontend typecheck,
+build, nine focused tests and focused lint/format pass. Root independently ran
+22 Rust and seven component tests as recorded above. No remote CI claim.
+
+Known limits remain explicit: unknown provider outcomes cannot be blindly retried;
+the recovery UI finishes only already-durable verified receipts. No attachment or
+outgoing Reply-To editor, scheduler, live account validation or agent-run E2E is
+claimed. Pi and P1 host integration proceed in their own worker branches.
