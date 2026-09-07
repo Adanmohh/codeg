@@ -1,6 +1,6 @@
 # Step 1 — approvals
 
-Implemented piece 1 on `feat/step1-approvals`, solely in `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`. Implementation complete; all requested local validation gates passed. Draft PR publication is the remaining delivery step. No workers, merge, deployment, external sends or main integration.
+Implemented piece 1 on `feat/step1-approvals`, solely in `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`. Complete and pushed; all requested local validation gates passed. Draft PR: [#3](https://github.com/Adanmohh/codeg/pull/3), targeting main for orchestrator review. No workers, merge, deployment, external sends or main integration.
 
 ## Behavior delivered
 
@@ -72,3 +72,6 @@ Focused coverage includes the gate precedence matrix in all three modes, destruc
 ## Checkpoint and delivery
 
 Initial source report pushed as `9ed749d1`. Owner-requested hook-reload product checkpoint: **`29fe00c85160ccb0de35787a515d060c021e6b32`**, report follow-up `c8f86674`. Stopped exactly for reload and resumed only when instructed. All local gates passed. Final implementation SHA and draft PR URL are recorded in the delivery follow-up below.
+
+
+Final implementation commit: **`f1cebd64ba84a69463d28e17b664cbd282cd7f96`** (`feat: bind approvals to reviewed payloads and task generations`), pushed to origin. Draft PR: **https://github.com/Adanmohh/codeg/pull/3**, created with `gh pr create --repo Adanmohh/codeg --base main --head feat/step1-approvals --draft --body-file reports/approvals-pr-body.log` (explicit title supplied), exit 0. Verified through gh api: open, draft=true, base main, head feat/step1-approvals. This final report is delivered in a subsequent docs-only commit; product validation above applies to the implementation SHA. No merge, deployment, people messages, external action execution, other worktree writes, lockfile changes or protected-document edits. Orchestrator owns review/integration.
