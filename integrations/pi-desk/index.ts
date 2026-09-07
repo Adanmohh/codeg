@@ -3,7 +3,6 @@ import type { ExtensionAPI } from "@earendil-works/pi-coding-agent"
 import {
   APPROVAL_EVENT,
   claimApproval,
-  HAFIDH_READ_TOOLS,
   type ApprovalRequest,
 } from "./broker.ts"
 import {
@@ -156,20 +155,11 @@ export default async function deskExtension(pi: ExtensionAPI): Promise<void> {
   const adapterPath = process.env.CODEG_DESK_ADAPTER
   if (!adapterPath) return
   const adapter = await import(adapterPath)
-  const command = process.env.CODEG_DESK_HAFIDH_COMMAND
-  const args = process.env.CODEG_DESK_HAFIDH_ARGS
   const config = {
-    mcpServers: command
-      ? {
-          hafidh: {
-            command,
-            args: args ? JSON.parse(args) : [],
-            approveTools: true,
-            includeTools: [...HAFIDH_READ_TOOLS],
-            directTools: false,
-          },
-        }
-      : {},
+    // The accepted host's scoped companion read facade will be the only
+    // server added here. Never accept a Hafidh command, key or args from the
+    // generic agent environment; the host owns the provider process/credentials.
+    mcpServers: {},
     settings: { approveTools: true, directTools: false },
   }
   await adapter.createMcpAdapter({ config })(pi)

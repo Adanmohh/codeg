@@ -65,9 +65,9 @@ downloaded Git blobs verified against SHA-1 object IDs. Ignored source cache:
 | --- | --- | --- |
 | badlogic/pi-mono, MIT, Mario Zechner | v0.85.1, `d981de1229ef899957bbe968bc8dcda02a21f477` | `packages/coding-agent/examples/extensions/{confirm-destructive,bash-spawn-hook,commands,permission-gate}.ts`; `src/core/extensions/{types,runner}.ts`; `docs/{extensions,models}.md`; `LICENSE`. Lifecycle, typed tools and block contract into isolated extension glue. |
 | nicobailon/pi-mcp-adapter, MIT, Nico Bailon | v2.32.1, `10a45367e033a32026987a75d6f401e37340c86f` | `tool-approval.ts`, `types.ts`, `__tests__/tool-approval.test.ts`, `index.ts`, `config.ts`, `README.md`, `package.json`, `LICENSE`. Exact synchronous-claim/abort/deny contract and regression patterns. |
-| xintaofei/codeg, Apache-2.0 | v0.30.4, `6f6bd648b206412644842a98d9ffeebf57292bed` | Existing `acp/delegation/{listener,transport,companion}.rs`, `acp/work_task_tools.rs`, `work_task/engine.rs`, `acp/connection.rs`, `bin/codeg_mcp.rs`, default resolver. Reuse token, framing, cancellation and private task map; minimal additive glue. Remote source verification continuing. |
+| xintaofei/codeg, Apache-2.0 | v0.30.4, `6f6bd648b206412644842a98d9ffeebf57292bed` | Existing `acp/delegation/{listener,transport,companion}.rs`, `acp/work_task_tools.rs`, `work_task/engine.rs`, `acp/connection.rs`, `bin/codeg_mcp.rs`, default resolver. Verified remote source and reused token, framing, cancellation and private task map with additive glue. |
 
-Full original MIT notices will be reproduced in NOTICE before port delivery.
+Full original MIT notices are reproduced in NOTICE and the extension LICENSE.
 No AGPL or restricted source. No lockfile changes so far.
 
 ## Commands and results
@@ -309,3 +309,51 @@ Root and extension typechecks and focused ESLint all exit 0.
 Read the full latest UI report through its responsive-state correction. Its
 context/account/error helpers resolve the previous missing API requests.
 Published source remains unaccepted at this read; no Ops helper was copied.
+
+## Host read facade coordination
+
+The adapter currently loads with an empty explicit server configuration. Its
+three-tool allowlist/broker is tested, but no live Hafidh MCP access is claimed.
+Removed the unused generic `CODEG_DESK_HAFIDH_COMMAND/ARGS` configuration path:
+future intake credentials must be resolved only inside the trusted host.
+The intended per-launch server is the existing codeg-mcp companion exposing
+exactly `hafidh_feedback_list`, `hafidh_feedback_get`, `hafidh_intake_status`,
+backed by host-owned bounded reads with backend task/run/account/folder/product
+scope. It should return only already authorized public intake projections;
+agent reads cannot import, refresh trusted evidence/freshness, attach proofs,
+configure a provider or mint provenance. The host owns those checks and the
+real Python IntakeClient process. This worker owns only token/IPC/adapter glue.
+
+Requested minimal host helpers alongside prepare_and_propose: public cached
+feedback list/get and sanitized intake status for a backend-created run context.
+Their exact DTO names can follow the host's accepted schemas. No raw provider
+credential, command, arbitrary path/URL or caller product/account identity
+belongs in MCP inputs. The stable agent policy key is `pi`; root connection
+ancestry and current task/run are resolved separately as above.
+
+## Pushed identity checkpoint and independent launch gates
+
+Stable-identity implementation is pushed at
+`2166686b33bf7cec149053e5fe30ef8c1e9170b1` in draft PR #8. Desktop
+`cargo check --locked`, desktop `cargo clippy --locked --all-targets
+--features test-utils -- -D warnings`, and server/companion
+`cargo clippy --locked --no-default-features --bin codeg-server --bin codeg-mcp
+--lib -- -D warnings` all exited 0 at that checkpoint. Existing
+proc-macro-error2 2.0.1 future-compatibility and compile-only sidecar warnings
+remain; this does not claim a packaged app test.
+
+After the unused generic Hafidh command configuration was removed, extension
+typecheck exited 0. The first process-suite rerun had 15 passing tests and one
+`spawn ENOEXEC` failure: this worktree's desktop check had copied its documented
+zero-byte sidecar placeholder over `target/debug/codeg-mcp`. Rebuilt the owned
+binary with `cargo build --locked --no-default-features --bin codeg-mcp`
+(exit 0), then reran the complete Pi suite: **16/16 passed, exit 0**. Run this
+build after desktop checks before process fixtures. No root sidecar/output was
+read or changed.
+
+Refreshed live hook evidence: this session/worktree PreToolUse/PostToolUse
+records 4120/4121 (and subsequent pairs) after separate React/Cargo reads.
+Latest fetched main is `58fbbf6f`: UI PR #7 and the host seam are still
+unaccepted, so their product sources have not been copied. The remaining
+configured-deny-through-Ops regression is explicitly pending those accepted
+helpers; the stable scope and low-level token/abort tests above are complete.
