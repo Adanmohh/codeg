@@ -1,0 +1,186 @@
+- generic [active]:
+  - alert [ref=f2e1]
+  - region "Notifications alt+T"
+  - generic [ref=f2e2]:
+    - generic [ref=f2e1131]:
+      - separator
+      - main [ref=f2e1133]:
+        - generic [ref=f2e1134]:
+          - generic [ref=f2e1137]:
+            - generic [ref=f2e1138]: Bug intake
+            - generic [ref=f2e1143]:
+              - generic [ref=f2e1144]:
+                - generic [ref=f2e1145]:
+                  - heading "Bug intake" [level=1] [ref=f2e1146]
+                  - paragraph [ref=f2e1147]: TestFlight report → reviewed evidence → GitHub issue
+                - button "Product settings" [ref=f2e1148]
+              - generic [ref=f2e1149]:
+                - generic [ref=f2e1150]:
+                  - generic [ref=f2e1152]:
+                    - text: Product
+                    - combobox "Product" [ref=f2e1153]:
+                      - option "synthetic-hafidh · owner/repo" [selected]
+                      - option "synthetic-unconfigured · owner/repo"
+                  - button "Read TestFlight" [ref=f2e1154]
+                - paragraph [ref=f2e1155]: Read-only TestFlight intake. In-app feedback is unavailable. A list read does not confirm evidence freshness.
+                - generic [ref=f2e1156]:
+                  - region "TestFlight reports" [ref=f2e1157]:
+                    - heading "Source reports" [level=2] [ref=f2e1158]
+                    - 'button "TestFlight draft: Synthetic audio stops at verse four pending · Build 42" [ref=f2e1159]':
+                      - generic [ref=f2e1160]: "TestFlight draft: Synthetic audio stops at verse four"
+                      - generic [ref=f2e1161]: pending · Build 42
+                    - 'button "TestFlight draft: Synthetic unknown response example pending · Build 42" [pressed] [ref=f2e1162]':
+                      - generic [ref=f2e1163]: "TestFlight draft: Synthetic unknown response example"
+                      - generic [ref=f2e1164]: pending · Build 42
+                    - 'button "TestFlight draft: Synthetic rejected label example pending · Build 42" [ref=f2e1165]':
+                      - generic [ref=f2e1166]: "TestFlight draft: Synthetic rejected label example"
+                      - generic [ref=f2e1167]: pending · Build 42
+                  - generic [ref=f2e1168]:
+                    - button "Reload status" [ref=f2e1170]
+                    - generic [ref=f2e1171]:
+                      - heading "Source report" [level=2] [ref=f2e1172]
+                      - paragraph [ref=f2e1173]: Synthetic unknown response example
+                      - generic [ref=f2e1174]:
+                        - generic [ref=f2e1175]:
+                          - term [ref=f2e1176]: Device
+                          - definition [ref=f2e1177]: iPhone 16
+                        - generic [ref=f2e1178]:
+                          - term [ref=f2e1179]: OS version
+                          - definition [ref=f2e1180]: "18.2"
+                        - generic [ref=f2e1181]:
+                          - term [ref=f2e1182]: App version
+                          - definition [ref=f2e1183]: Not provided
+                        - generic [ref=f2e1184]:
+                          - term [ref=f2e1185]: Build
+                          - definition [ref=f2e1186]: "42"
+                        - generic [ref=f2e1187]:
+                          - term [ref=f2e1188]: Platform
+                          - definition [ref=f2e1189]: IOS
+                        - generic [ref=f2e1190]:
+                          - term [ref=f2e1191]: Submitted
+                          - definition [ref=f2e1192]: 7.9.2026 klo 13.00.00
+                      - paragraph [ref=f2e1193]: TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAW
+                      - generic [ref=f2e1194]:
+                        - paragraph [ref=f2e1195]: Revalidated 2.27.07
+                        - button "Refresh source" [ref=f2e1196]
+                      - paragraph [ref=f2e1197]: A changed source revision resets its evidence and severity confirmation. Saved edits remain available for comparison until you choose the current draft.
+                    - generic [ref=f2e1198]:
+                      - heading "Required evidence" [level=2] [ref=f2e1199]
+                      - list "Evidence checklist" [ref=f2e1200]:
+                        - listitem [ref=f2e1201]:
+                          - text: build
+                          - generic [ref=f2e1202]: Attached
+                        - listitem [ref=f2e1203]:
+                          - text: screen
+                          - generic [ref=f2e1204]: Attached
+                        - listitem [ref=f2e1205]:
+                          - text: reciter
+                          - generic [ref=f2e1206]: Attached
+                        - listitem [ref=f2e1207]:
+                          - text: log
+                          - generic [ref=f2e1208]: Attached
+                      - group [ref=f2e1210]:
+                        - generic [ref=f2e1211]:
+                          - text: Evidence type
+                          - combobox "Evidence type" [disabled] [ref=f2e1212]:
+                            - option "Build" [disabled]
+                            - option "Screen" [disabled]
+                            - option "Reciter" [disabled]
+                            - option "Log" [disabled] [selected]
+                        - generic [ref=f2e1213]:
+                          - generic [ref=f2e1214]: Log evidence summary
+                          - textbox "Log evidence summary" [disabled]: audio stopped at verse four
+                        - generic [ref=f2e1215]:
+                          - generic [ref=f2e1216]: Sanitized proof content
+                          - textbox "Sanitized proof content" [disabled] [ref=f2e1217]
+                          - generic [ref=f2e1218]: Paste reviewed UTF-8 text, up to 8 KiB, including the exact summary above. Remove names, contact details, credentials and private paths. A URL, screenshot or session ID alone is not a diagnostic log.
+                        - generic [ref=f2e1219]:
+                          - generic [ref=f2e1220]: Captured at (optional)
+                          - textbox "Captured at (optional)" [disabled]
+                          - generic [ref=f2e1221]: An actual ISO timestamp, including timezone, when known. Leave blank otherwise.
+                        - generic [ref=f2e1222]:
+                          - generic [ref=f2e1223]: Recitation session ID (if applicable)
+                          - textbox "Recitation session ID (if applicable)" [disabled]
+                          - generic [ref=f2e1224]: The actual session ULID for a session diagnostic. Leave blank for a local diagnostic.
+                        - button "Replace reviewed proof" [disabled]
+                      - generic [ref=f2e1225]:
+                        - generic [ref=f2e1226]:
+                          - term [ref=f2e1227]: build
+                          - definition [ref=f2e1228]: "42"
+                          - definition [ref=f2e1229]: SHA-256 52d0d58b2222b06183f1aa73cbef85c02f614ccaf34dbf30fa50735911488aac
+                        - generic [ref=f2e1230]:
+                          - term [ref=f2e1231]: screen
+                          - definition [ref=f2e1232]: Mushaf reader
+                          - definition [ref=f2e1233]: SHA-256 b189706f95a166e81bac2d35e17960a0e4125b7b3aeca632eaff16bf66be89a8
+                        - generic [ref=f2e1234]:
+                          - term [ref=f2e1235]: reciter
+                          - definition [ref=f2e1236]: Abdul Basit
+                          - definition [ref=f2e1237]: SHA-256 1013e38a5ef1162a8152aa08610b6107d28f208c8f007bf4fbe50c88ca0211d7
+                        - generic [ref=f2e1238]:
+                          - term [ref=f2e1239]: log
+                          - definition [ref=f2e1240]: audio stopped at verse four
+                          - definition [ref=f2e1241]: SHA-256 9411bdbb6bb18b6ff3805f57dcb89d63b1d553e4df941e7d340b3640537d8b1c
+                    - generic [ref=f2e1242]:
+                      - heading "Issue draft" [level=2] [ref=f2e1243]
+                      - paragraph [ref=f2e1244]:
+                        - text: "Suggestion:"
+                        - strong [ref=f2e1245]: low
+                        - text: severity; other. These are triage guesses. Confirm or change severity below.
+                      - group [ref=f2e1247]:
+                        - generic [ref=f2e1248]:
+                          - generic [ref=f2e1249]: Issue title
+                          - textbox "Issue title" [disabled]: "TestFlight draft: Synthetic unknown response example"
+                        - generic [ref=f2e1250]:
+                          - generic [ref=f2e1251]: Reproduction and expected behavior
+                          - textbox "Reproduction and expected behavior" [disabled] [ref=f2e1252]: "Synthetic reproduction: start playback on verse four. Expected: playback continues. Observed: audio stops."
+                          - generic [ref=f2e1253]: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions.
+                        - generic [ref=f2e1254]:
+                          - generic [ref=f2e1255]: Repository labels
+                          - textbox "Repository labels" [disabled]: audio
+                          - generic [ref=f2e1256]: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing.
+                        - generic [ref=f2e1257]:
+                          - text: Human-confirmed severity
+                          - combobox "Human-confirmed severity" [disabled] [ref=f2e1258]:
+                            - option "Not confirmed" [disabled]
+                            - option "High" [disabled]
+                            - option "Medium" [disabled] [selected]
+                            - option "Low" [disabled]
+                        - generic [ref=f2e1259]:
+                          - button "Save issue draft" [disabled]
+                          - generic [ref=f2e1260]: Draft saved locally
+                    - generic [ref=f2e1261]:
+                      - heading "Exact GitHub issue" [level=2] [ref=f2e1262]
+                      - generic [ref=f2e1263]:
+                        - generic [ref=f2e1264]:
+                          - term [ref=f2e1265]: Repository
+                          - definition [ref=f2e1266]: owner/repo
+                        - generic [ref=f2e1267]:
+                          - term [ref=f2e1268]: Title
+                          - definition [ref=f2e1269]: "TestFlight draft: Synthetic unknown response example"
+                        - generic [ref=f2e1270]:
+                          - term [ref=f2e1271]: Labels
+                          - definition [ref=f2e1272]: audio
+                      - group [ref=f2e1273]:
+                        - generic "Complete issue body" [ref=f2e1274] [cursor=pointer]
+                        - generic "Exact issue body" [ref=f2e1275]: "Synthetic reproduction: start playback on verse four. Expected: playback continues. Observed: audio stops. Severity: medium (human-confirmed) Source: synthetic-hafidh / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAW Revision: 52bf6f15ab361d0853fcdb8f034136d9929f82d29789cb9b283dad3dc71fcea9 Template: hafidh-issue-v1 ## build 42 Evidence: a4a0cccb-86db-48ae-ac8b-08d7551161c2 SHA-256: 52d0d58b2222b06183f1aa73cbef85c02f614ccaf34dbf30fa50735911488aac ## screen Mushaf reader Evidence: 18f282d0-31a1-4176-8d34-9ea87e4dc1a7 SHA-256: b189706f95a166e81bac2d35e17960a0e4125b7b3aeca632eaff16bf66be89a8 ## reciter Abdul Basit Evidence: 463c4b66-0ae0-409f-a7fd-189c12757f89 SHA-256: 1013e38a5ef1162a8152aa08610b6107d28f208c8f007bf4fbe50c88ca0211d7 ## log audio stopped at verse four Evidence: 285b2c42-954f-4f85-9206-5e445a4defc9 SHA-256: 9411bdbb6bb18b6ff3805f57dcb89d63b1d553e4df941e7d340b3640537d8b1c <!-- hafidh-ops:fe146548a5c9ec8d94439cf7614c70a486d4a84d59ed55adb2fb8475908bd2fb -->"
+                    - generic [ref=f2e1276]:
+                      - heading "Filing receipt" [level=2] [ref=f2e1277]
+                      - status [ref=f2e1278]: Outcome unknown. GitHub may already have created the issue. Filing again is blocked. Check the existing issue using a read-only reconciliation.
+                      - button "Check existing issue" [ref=f2e1279]
+          - separator
+          - generic [ref=f2e1280]:
+            - button [ref=f2e1282]
+            - button "Hide Terminal (⌘J)" [ref=f2e1283]
+      - separator
+    - generic [ref=f2e24]:
+      - generic [ref=f2e25]:
+        - button "Quick actions" [ref=f2e26]
+        - button "1 conversations" [ref=f2e537]
+      - generic [ref=f2e27]:
+        - button "Add Command" [ref=f2e1284]
+        - button "codeg-mcp service" [ref=f2e1285]
+        - button [ref=f2e1293]
+    - generic [ref=f2e1298]:
+      - button "Show Sidebar (⌘B)" [ref=f2e1299]
+      - button "Search" [ref=f2e1300]
+    - button "Open Settings (⌘,)" [ref=f2e1306]

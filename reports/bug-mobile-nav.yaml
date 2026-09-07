@@ -1,0 +1,149 @@
+- generic:
+  - alert [ref=f1e2]: Hafidh Ops Desk
+  - region "Notifications alt+T"
+  - generic [ref=f1e14]:
+    - generic [ref=f1e15]:
+      - generic [ref=f1e16]:
+        - button "Hide Sidebar" [ref=f1e310]
+        - button "Search" [ref=f1e18]
+        - button "New Conversation" [ref=f1e19]
+      - generic [ref=f1e21]:
+        - button "Toggle Terminal" [ref=f1e22]
+        - button "Toggle Auxiliary Panel" [ref=f1e23]
+        - button "Open Settings" [ref=f1e24]
+    - generic [ref=f1e25]:
+      - dialog [active] [ref=f1e312]:
+        - generic [ref=f1e313]:
+          - heading "Sidebar" [level=2] [ref=f1e314]
+          - complementary [ref=f1e315]:
+            - generic [ref=f1e316]:
+              - heading "Conversations" [level=2] [ref=f1e318]
+              - generic [ref=f1e320]:
+                - button "Locate Active Conversation" [ref=f1e321]
+                - button "Collapse All Groups" [ref=f1e322]
+                - button "View options" [ref=f1e323]
+            - generic [ref=f1e324]:
+              - button "Ops desk" [ref=f1e325]
+              - button "Bug intake" [ref=f1e330]
+              - button "New chat ⌘T" [ref=f1e341]:
+                - generic [ref=f1e345]: New chat
+                - generic [ref=f1e346]: ⌘T
+              - button "Automations" [ref=f1e347]
+              - button "To-dos" [ref=f1e351]
+              - button "Repository panel" [ref=f1e356]
+              - button "Infinite Conversations" [ref=f1e362]
+            - generic [ref=f1e371]:
+              - generic [ref=f1e375]:
+                - button "Folders" [expanded] [ref=f1e376]
+                - generic [ref=f1e380]:
+                  - button "New group" [ref=f1e381] [cursor=pointer]
+                  - button "Import local sessions" [ref=f1e386] [cursor=pointer]
+                  - button "Clone Repository" [ref=f1e390] [cursor=pointer]
+                  - button "Open Folder" [ref=f1e396] [cursor=pointer]
+              - generic [ref=f1e403]:
+                - button "synthetic-project 1 session running" [expanded] [ref=f1e404]:
+                  - generic [ref=f1e405]:
+                    - generic [ref=f1e406]: synthetic-project
+                    - generic "1 session running" [ref=f1e407]: "1"
+                - button "More options" [ref=f1e412] [cursor=pointer]
+                - button "New Conversation" [ref=f1e417] [cursor=pointer]
+              - generic [ref=f1e424]:
+                - button "Untitled conversation" [ref=f1e425]
+                - generic "Running" [ref=f1e429]
+              - generic [ref=f1e436]:
+                - button "Chat" [expanded] [ref=f1e437]
+                - button "New chat" [ref=f1e441] [cursor=pointer]
+              - generic [ref=f1e445]: No chats
+              - generic [ref=f1e451]:
+                - button "Recent" [expanded] [ref=f1e452]
+                - button "New Conversation" [ref=f1e456] [cursor=pointer]
+              - generic [ref=f1e463]:
+                - button "Untitled conversation" [ref=f1e464]
+                - generic "Running" [ref=f1e468]
+      - main [ref=f1e26]:
+        - generic [ref=f1e31]:
+          - generic [ref=f1e32]:
+            - generic [ref=f1e33]:
+              - button "synthetic-project" [ref=f1e34]
+              - generic "New Conversation" [ref=f1e38]
+            - button "More actions" [ref=f1e40]
+          - generic [ref=f1e56]:
+            - generic [ref=f1e58]:
+              - heading "What would you like to do today?" [level=1] [ref=f1e59]
+              - generic [ref=f1e60]:
+                - tablist [ref=f1e61]:
+                  - tab "Code Development" [selected] [ref=f1e62]
+                  - tab "Office Work" [ref=f1e63]
+                  - tab "Scientific Research" [ref=f1e64]
+                - tabpanel "Code Development" [ref=f1e65]:
+                  - generic [ref=f1e66]:
+                    - button "Brainstorming Explore intent & requirements before building" [ref=f1e67]:
+                      - generic [ref=f1e73]: Brainstorming
+                      - generic [ref=f1e74]: Explore intent & requirements before building
+                    - button "Systematic Debugging Find the root cause before proposing fixes" [ref=f1e75]:
+                      - generic [ref=f1e88]: Systematic Debugging
+                      - generic [ref=f1e89]: Find the root cause before proposing fixes
+                    - button "Writing Skills Create, edit & verify reusable skills" [ref=f1e90]:
+                      - generic [ref=f1e99]: Writing Skills
+                      - generic [ref=f1e100]: Create, edit & verify reusable skills
+                  - generic [ref=f1e101]:
+                    - button "Show previous skills" [disabled]
+                    - generic [ref=f1e103]:
+                      - button "Writing Plans" [ref=f1e104]
+                      - button "Executing Plans" [ref=f1e112]
+                      - button "Subagent-Driven Development" [ref=f1e120]
+                      - button "Dispatching Parallel Agents" [ref=f1e128]
+                      - button "Using Git Worktrees" [ref=f1e138]
+                      - button "Test-Driven Development" [ref=f1e147]
+                      - button "Verification Before Completion" [ref=f1e154]
+                      - button "Requesting Code Review" [ref=f1e162]
+                      - button "Receiving Code Review" [ref=f1e171]
+                      - button "Finishing a Development Branch" [ref=f1e180]
+                      - button "Using Superpowers" [ref=f1e189]
+                    - button "Show more skills" [ref=f1e197]
+              - generic [ref=f1e202]:
+                - button "Claude Code Claude Code" [pressed] [ref=f1e204] [cursor=pointer]:
+                  - img "Claude Code" [ref=f1e207]
+                  - generic [ref=f1e210]: Claude Code
+                - button [ref=f1e212] [cursor=pointer]:
+                  - img "Codex" [ref=f1e215]
+                  - generic: Codex
+                - button [ref=f1e220] [cursor=pointer]:
+                  - img "Gemini CLI" [ref=f1e223]
+                  - generic: Gemini CLI
+                - button [ref=f1e227] [cursor=pointer]:
+                  - img "OpenClaw" [ref=f1e230]
+                  - generic: OpenClaw
+                - button [ref=f1e238] [cursor=pointer]:
+                  - img "OpenCode" [ref=f1e241]
+                  - generic: OpenCode
+                - button [ref=f1e244] [cursor=pointer]:
+                  - img "Cline" [ref=f1e247]
+                  - generic: Cline
+                - button "More agents (9)" [ref=f1e251] [cursor=pointer]
+              - generic [ref=f1e256]:
+                - button "Claude Code's ACP adapter is not installed (separate from your own CLI) · open Agents settings to install it" [ref=f1e257] [cursor=pointer]
+                - button "Diagnose" [ref=f1e258]
+              - generic [ref=f1e261]:
+                - generic [ref=f1e262]:
+                  - textbox "Send a message..." [ref=f1e265]:
+                    - paragraph [ref=f1e266]: Send a message...
+                  - generic [ref=f1e267]:
+                    - generic [ref=f1e268]:
+                      - button "Add" [disabled]
+                    - generic [ref=f1e269]:
+                      - button "Send" [disabled]
+                - generic [ref=f1e270]:
+                  - generic [ref=f1e271]:
+                    - button "synthetic-project" [ref=f1e272]
+                    - button "feat/step2-bug-workflow" [ref=f1e274]
+                  - 'button "Agent connection: Disconnected" [ref=f1e277]'
+            - paragraph [ref=f1e289]: Open the + button next to the input and pick Quick Messages to insert a saved snippet (manage them under Settings → Quick Messages).
+    - generic [ref=f1e290]:
+      - generic [ref=f1e291]:
+        - button "Quick actions" [ref=f1e292]
+        - button "1 conversations" [ref=f1e294]
+      - generic [ref=f1e297]:
+        - button "Add Command" [ref=f1e298]
+        - button "codeg-mcp service" [ref=f1e299]
+        - button [ref=f1e307]

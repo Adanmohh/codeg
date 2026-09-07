@@ -1,4 +1,4 @@
-//! Closed child-process glue. Tokio 1.53.1 kill-on-drop/timeout/bounded IO.
+//! Closed child-process glue. Locked Tokio 1.49.0 kill-on-drop/timeout/bounded IO.
 use super::types::HostError;
 use serde::de::DeserializeOwned;
 use serde::Deserialize;

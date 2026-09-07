@@ -1,0 +1,174 @@
+- generic [active]:
+  - alert [ref=f2e1]
+  - region "Notifications alt+T"
+  - generic [ref=f2e2]:
+    - generic [ref=f2e831]:
+      - generic [ref=f2e832]:
+        - button "Show Sidebar" [ref=f2e833]
+        - button "Search" [ref=f2e834]
+        - button "New Conversation" [ref=f2e835]
+      - button "Open Settings" [ref=f2e838]
+    - main [ref=f2e840]:
+      - generic [ref=f2e842]:
+        - generic [ref=f2e843]: Bug intake
+        - generic [ref=f2e847]:
+          - generic [ref=f2e848]:
+            - generic [ref=f2e849]:
+              - heading "Bug intake" [level=1] [ref=f2e850]
+              - paragraph [ref=f2e851]: TestFlight report → reviewed evidence → GitHub issue
+            - button "Product settings" [ref=f2e852]
+          - generic [ref=f2e853]:
+            - generic [ref=f2e854]:
+              - generic [ref=f2e856]:
+                - text: Product
+                - combobox "Product" [ref=f2e857]:
+                  - option "synthetic-hafidh · owner/repo" [selected]
+                  - option "synthetic-unconfigured · owner/repo"
+              - button "Read TestFlight" [ref=f2e858]
+            - paragraph [ref=f2e859]: Read-only TestFlight intake. In-app feedback is unavailable. A list read does not confirm evidence freshness.
+            - generic [ref=f2e861]:
+              - generic [ref=f2e862]:
+                - button "Back to reports" [ref=f2e863]
+                - button "Reload status" [ref=f2e864]
+              - alert [ref=f2e865]: Access is unavailable. Check that this product is enabled and its Hafidh credential has permission. Refresh after correcting access.
+              - generic [ref=f2e866]:
+                - heading "Source report" [level=2] [ref=f2e867]
+                - paragraph [ref=f2e868]: Synthetic audio stops at verse four
+                - generic [ref=f2e869]:
+                  - generic [ref=f2e870]:
+                    - term [ref=f2e871]: Device
+                    - definition [ref=f2e872]: iPhone 16
+                  - generic [ref=f2e873]:
+                    - term [ref=f2e874]: OS version
+                    - definition [ref=f2e875]: "18.2"
+                  - generic [ref=f2e876]:
+                    - term [ref=f2e877]: App version
+                    - definition [ref=f2e878]: Not provided
+                  - generic [ref=f2e879]:
+                    - term [ref=f2e880]: Build
+                    - definition [ref=f2e881]: "42"
+                  - generic [ref=f2e882]:
+                    - term [ref=f2e883]: Platform
+                    - definition [ref=f2e884]: IOS
+                  - generic [ref=f2e885]:
+                    - term [ref=f2e886]: Submitted
+                    - definition [ref=f2e887]: 7.9.2026 klo 13.00.00
+                - paragraph [ref=f2e888]: TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAV
+                - generic [ref=f2e889]:
+                  - paragraph [ref=f2e890]: Source refresh required
+                  - button "Refresh source" [ref=f2e891]
+                - paragraph [ref=f2e892]: A changed source revision resets its evidence and severity confirmation. Saved edits remain available for comparison until you choose the current draft.
+              - generic [ref=f2e893]:
+                - heading "Required evidence" [level=2] [ref=f2e894]
+                - list "Evidence checklist" [ref=f2e895]:
+                  - listitem [ref=f2e896]:
+                    - text: build
+                    - generic [ref=f2e897]: Attached
+                  - listitem [ref=f2e898]:
+                    - text: screen
+                    - generic [ref=f2e899]: Attached
+                  - listitem [ref=f2e900]:
+                    - text: reciter
+                    - generic [ref=f2e901]: Attached
+                  - listitem [ref=f2e902]:
+                    - text: log
+                    - generic [ref=f2e903]: Attached
+                - status [ref=f2e904]: Refresh this report before attaching proof. The host must verify its current source revision.
+                - group [ref=f2e906]:
+                  - generic [ref=f2e907]:
+                    - text: Evidence type
+                    - combobox "Evidence type" [disabled] [ref=f2e908]:
+                      - option "Build" [disabled]
+                      - option "Screen" [disabled]
+                      - option "Reciter" [disabled]
+                      - option "Log" [disabled] [selected]
+                  - generic [ref=f2e909]:
+                    - generic [ref=f2e910]: Log evidence summary
+                    - textbox "Log evidence summary" [disabled]: audio stopped at verse four
+                  - generic [ref=f2e911]:
+                    - generic [ref=f2e912]: Sanitized proof content
+                    - textbox "Sanitized proof content" [disabled] [ref=f2e913]
+                    - generic [ref=f2e914]: Paste reviewed UTF-8 text, up to 8 KiB, including the exact summary above. Remove names, contact details, credentials and private paths. A URL, screenshot or session ID alone is not a diagnostic log.
+                  - generic [ref=f2e915]:
+                    - generic [ref=f2e916]: Captured at (optional)
+                    - textbox "Captured at (optional)" [disabled]
+                    - generic [ref=f2e917]: An actual ISO timestamp, including timezone, when known. Leave blank otherwise.
+                  - generic [ref=f2e918]:
+                    - generic [ref=f2e919]: Recitation session ID (if applicable)
+                    - textbox "Recitation session ID (if applicable)" [disabled]
+                    - generic [ref=f2e920]: The actual session ULID for a session diagnostic. Leave blank for a local diagnostic.
+                  - button "Replace reviewed proof" [disabled]
+                - generic [ref=f2e921]:
+                  - generic [ref=f2e922]:
+                    - term [ref=f2e923]: build
+                    - definition [ref=f2e924]: "42"
+                    - definition [ref=f2e925]: SHA-256 52d0d58b2222b06183f1aa73cbef85c02f614ccaf34dbf30fa50735911488aac
+                  - generic [ref=f2e926]:
+                    - term [ref=f2e927]: screen
+                    - definition [ref=f2e928]: Mushaf reader
+                    - definition [ref=f2e929]: SHA-256 b189706f95a166e81bac2d35e17960a0e4125b7b3aeca632eaff16bf66be89a8
+                  - generic [ref=f2e930]:
+                    - term [ref=f2e931]: reciter
+                    - definition [ref=f2e932]: Abdul Basit
+                    - definition [ref=f2e933]: SHA-256 1013e38a5ef1162a8152aa08610b6107d28f208c8f007bf4fbe50c88ca0211d7
+                  - generic [ref=f2e934]:
+                    - term [ref=f2e935]: log
+                    - definition [ref=f2e936]: audio stopped at verse four
+                    - definition [ref=f2e937]: SHA-256 9411bdbb6bb18b6ff3805f57dcb89d63b1d553e4df941e7d340b3640537d8b1c
+              - generic [ref=f2e938]:
+                - heading "Issue draft" [level=2] [ref=f2e939]
+                - paragraph [ref=f2e940]:
+                  - text: "Suggestion:"
+                  - strong [ref=f2e941]: low
+                  - text: severity; audio. These are triage guesses. Confirm or change severity below.
+                - group [ref=f2e943]:
+                  - generic [ref=f2e944]:
+                    - generic [ref=f2e945]: Issue title
+                    - textbox "Issue title" [disabled]: "TestFlight draft: Synthetic audio stops at verse four"
+                  - generic [ref=f2e946]:
+                    - generic [ref=f2e947]: Reproduction and expected behavior
+                    - textbox "Reproduction and expected behavior" [disabled] [ref=f2e948]: "Synthetic reproduction: start playback on verse four. Expected: playback continues. Observed: audio stops."
+                    - generic [ref=f2e949]: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions.
+                  - generic [ref=f2e950]:
+                    - generic [ref=f2e951]: Repository labels
+                    - textbox "Repository labels" [disabled]: audio
+                    - generic [ref=f2e952]: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing.
+                  - generic [ref=f2e953]:
+                    - text: Human-confirmed severity
+                    - combobox "Human-confirmed severity" [disabled] [ref=f2e954]:
+                      - option "Not confirmed" [disabled]
+                      - option "High" [disabled]
+                      - option "Medium" [disabled] [selected]
+                      - option "Low" [disabled]
+                  - generic [ref=f2e955]:
+                    - button "Save issue draft" [disabled]
+                    - generic [ref=f2e956]: Draft saved locally
+                - status [ref=f2e957]: A proposal is waiting for review. Deny it before changing the draft, then request a new proposal.
+              - generic [ref=f2e958]:
+                - heading "Exact GitHub issue" [level=2] [ref=f2e959]
+                - generic [ref=f2e960]:
+                  - generic [ref=f2e961]:
+                    - term [ref=f2e962]: Repository
+                    - definition [ref=f2e963]: owner/repo
+                  - generic [ref=f2e964]:
+                    - term [ref=f2e965]: Title
+                    - definition [ref=f2e966]: "TestFlight draft: Synthetic audio stops at verse four"
+                  - generic [ref=f2e967]:
+                    - term [ref=f2e968]: Labels
+                    - definition [ref=f2e969]: audio
+                - group [ref=f2e970]:
+                  - generic "Complete issue body" [ref=f2e971] [cursor=pointer]
+                  - generic "Exact issue body" [ref=f2e972]: "Synthetic reproduction: start playback on verse four. Expected: playback continues. Observed: audio stops. Severity: medium (human-confirmed) Source: synthetic-hafidh / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAV Revision: 831fd48927deb0d18b301d831deb38781f281f19294b9c76c9c3b9b34b40ace6 Template: hafidh-issue-v1 ## build 42 Evidence: 24266c99-2995-443f-8952-33762e5668eb SHA-256: 52d0d58b2222b06183f1aa73cbef85c02f614ccaf34dbf30fa50735911488aac ## screen Mushaf reader Evidence: 559996bf-1d69-426f-888b-fa3c68e9660b SHA-256: b189706f95a166e81bac2d35e17960a0e4125b7b3aeca632eaff16bf66be89a8 ## reciter Abdul Basit Evidence: 0e47c5f3-262f-4c24-8588-6d9ae90a2215 SHA-256: 1013e38a5ef1162a8152aa08610b6107d28f208c8f007bf4fbe50c88ca0211d7 ## log audio stopped at verse four Evidence: bc3061c9-b788-4e48-abed-dd86279dbb9b SHA-256: 9411bdbb6bb18b6ff3805f57dcb89d63b1d553e4df941e7d340b3640537d8b1c <!-- hafidh-ops:6c632369ace420ca8f6f4254e66f42c39236d9e22d08946e9b544e936f40fcbc -->"
+                - generic [ref=f2e973]:
+                  - status [ref=f2e974]: This proposal is stale. Refresh the source and deny the old proposal before requesting a new one.
+                  - generic [ref=f2e975]:
+                    - button "Approve and file issue" [disabled]
+                    - button "Deny proposal" [ref=f2e976]
+    - generic [ref=f2e24]:
+      - generic [ref=f2e25]:
+        - button "Quick actions" [ref=f2e26]
+        - button "1 conversations" [ref=f2e537]
+      - generic [ref=f2e27]:
+        - button "Add Command" [ref=f2e977]
+        - button "codeg-mcp service" [ref=f2e978]
+        - button [ref=f2e986]

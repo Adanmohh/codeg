@@ -1,0 +1,105 @@
+// CLI function input, not an application JavaScript module.
+// Playwright CLI run-code function. Synthetic fixture 4322 only; select a
+// source report with no pending proposal first. Never use on a live provider.
+async (page) => {
+  if (!page.url().startsWith("http://127.0.0.1:4322/"))
+    throw Error("Fixture only")
+  await page
+    .getByRole("button", { name: "Refresh source", exact: true })
+    .click()
+  const currentDraft = page.getByRole("button", {
+    name: "Use current saved draft",
+    exact: true,
+  })
+  if (await currentDraft.count()) await currentDraft.click()
+  for (const [field, value] of [
+    ["build", "42"],
+    ["screen", "Mushaf reader"],
+    ["reciter", "Abdul Basit"],
+    ["log", "audio stopped at verse four"],
+  ]) {
+    await page
+      .getByRole("combobox", { name: "Evidence type", exact: true })
+      .selectOption(field)
+    await page
+      .getByRole("textbox", {
+        name: `${field[0].toUpperCase() + field.slice(1)} evidence summary`,
+        exact: true,
+      })
+      .fill(value)
+    await page
+      .getByRole("textbox", { name: "Sanitized proof content", exact: true })
+      .fill(`Synthetic reviewed proof: ${value}`)
+    await page
+      .getByRole("button", { name: /^(Attach|Replace) reviewed proof$/ })
+      .click()
+    await page.waitForFunction(
+      () => document.querySelector("textarea[aria-describedby]")?.value === ""
+    )
+  }
+  const title = await page
+    .getByRole("textbox", { name: "Issue title", exact: true })
+    .inputValue()
+  await page
+    .getByRole("textbox", {
+      name: "Reproduction and expected behavior",
+      exact: true,
+    })
+    .fill(
+      "Synthetic reproduction: start playback on verse four. Expected: playback continues. Observed: audio stops."
+    )
+  await page
+    .getByRole("textbox", { name: "Repository labels", exact: true })
+    .fill("audio")
+  await page
+    .getByRole("combobox", { name: "Human-confirmed severity", exact: true })
+    .selectOption("medium")
+  await page
+    .getByRole("button", { name: "Save issue draft", exact: true })
+    .click()
+  const task = await page
+    .getByRole("combobox", { name: "Active triage task", exact: true })
+    .locator("option")
+    .last()
+    .getAttribute("value")
+  await page
+    .getByRole("combobox", { name: "Active triage task", exact: true })
+    .selectOption(task)
+  await page
+    .getByRole("button", { name: "Prepare exact issue", exact: true })
+    .click()
+  for (let i = 0; i < 5; i++) {
+    if (
+      await page
+        .getByRole("button", { name: "Approve and file issue", exact: true })
+        .count()
+    )
+      break
+    await page
+      .getByRole("button", { name: "Reload proposal status", exact: true })
+      .click()
+    await page.waitForTimeout(600)
+  }
+  const approve = page.getByRole("button", {
+    name: "Approve and file issue",
+    exact: true,
+  })
+  if (!(await approve.isDisabled())) throw Error("Human confirmation missing")
+  const body = await page.getByLabel("Exact issue body").textContent()
+  for (const fragment of [
+    "## build",
+    "## screen",
+    "## reciter",
+    "## log",
+    "Severity: medium (human-confirmed)",
+  ]) {
+    if (!body.includes(fragment))
+      throw Error(`Missing review field: ${fragment}`)
+  }
+  return {
+    title,
+    repository: "owner/repo",
+    pending: true,
+    humanConfirmationRequired: true,
+  }
+}

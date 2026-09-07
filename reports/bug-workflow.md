@@ -1,287 +1,203 @@
-# P1 bug workflow — host and operator UI
+# P1 bug workflow — final host/UI handoff
 
-Implementation in progress. Draft PR #9:
-https://github.com/Adanmohh/codeg/pull/9 (main base, do not merge).
-Current integration checkpoint: accepted main `f7650379` (including PR7 merge
-`f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`) is merged at
-`506dcc305bb11999eba495634088f0d394d34bc5`. Reuses the accepted Operator
-accessors, authenticated marker and memory-only Ops session boundary. Separate
-12-command desktop/HTTP registrations and Bug intake navigation are now wired.
-Earlier chronological checkpoints below describe their state at that time.
+Implemented and locally validated within this assignment. **Draft PR [#9](https://github.com/Adanmohh/codeg/pull/9)** targets `main`; the worker has not merged it.
 
-Scope/rebind/pending corrections committed and pushed at
-`fd7bcdce92716c8eb2874b6c7acac51b3ca708f1`. Next checkpoint includes only
-`invalidate_product` plus its pre-list call as additional Rust production logic:
-new scans clear old freshness before awaiting an upstream read, including failed
-or canceled scans. Root has reported independently checking that exact diff.
-Full owned host tests: **17 passed / 1 ignored manual fixture**, exit 0; focused
-frontend tests: **7 passed**, exit 0. Real missing/invalid auth routes, forbidden
-actor/path/credential/freshness fields, secret projection, absent App key keeping
-pending, omitted/private/stale evidence, changed source, edited/stale approval,
-explicit read scope/deny and response-lost reconciliation are covered. A test
-fixture initially used `read_only` instead of schema mode `read`; corrected
-after reading accepted entities/store, no product policy change. The previous
-invalid rule-column fixture was also corrected to accepted action_name/resource/
-behavior before its next run. Initial frontend lint found a bare external anchor;
-read and reused BrowserLink for the desktop opener. Hook dependency warnings fixed.
-Static Next export and typecheck currently pass; final lint/Clippy/desktop/server
-and browser flow verification remain in progress.
+- Behavioral product head: **`1e8dbc904c8fadf3ddabcb011fd7d3febbb6571f`**, committed and pushed. Final handoff adds reports/artifacts and corrects one non-executable Tokio version comment.
+- Rust behavior checkpoint: **`4fd9e3a1457cf46db834aef98d4669f23a8b6f5b`**. This contains root-reviewed `fd7bcdce92716c8eb2874b6c7acac51b3ca708f1` plus the reviewed pre-list freshness invalidation. No Rust behavior changed during final review; only `process.rs`'s first documentation line now correctly names locked Tokio 1.49.0.
+- Accepted main `f7650379`, including PR7 merge `f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`, was integrated at `506dcc305bb11999eba495634088f0d394d34bc5`. Later pi/main changes have not been pulled into this reviewed checkpoint.
+- Sole worktree `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`, branch `feat/step2-bug-workflow`. No other worktree or Hafidh/RAG environment writes, new agents, credential disclosure, live provider mutations, messages, deployment or paid inference.
 
-Runnable manual fixture (no production credentials; this target is test-only):
-from `src-tauri`, run
-`CODEG_OPS_ACCOUNT_ID=1 CARGO_TARGET_DIR=../.build/intake-host cargo test --locked --no-default-features --lib intake_host_browser_fixture -- --ignored --nocapture`.
-Serves the owned `out/` on **http://127.0.0.1:4322**. Ordinary login token:
-**ops-intake-synthetic-operator**. Unique local SQLite/state directory under
-`.build/intake-host/browser-<uuid>/`; dedicated synthetic project subdirectory.
-Provider only binds a random loopback port; private-key fixture is synthetic RSA
-and credentials live in test memory. Default products: `synthetic-hafidh` ready
-for a read, `synthetic-unconfigured` missing credentials. Optional process env
-`OPS_INTAKE_FIXTURE_EMPTY=1` starts without any host product. It does not start
-the task engine or inference: a synthetic parent run only calls the real bounded
-prepare/propose seam after a human-prepared draft exists, never evidence/config/
-approval/filing. Browser must Reload proposal status to read that real queue row.
-Test-only authenticated `POST /_fixture/source` accepts `{mode: denied|ok|changed}`
-for upstream error/revision scenarios. No production route contains that control.
+This delivers the operator intake/evidence/issue/held-task portion of P1. The real pi tool registration and its three cached read helpers remain the explicitly assigned **pi-owned follow-on after PR9 acceptance**. Live external configuration, build-note/tester-email bridges and root's final integrated Design Studio loop remain separate gates; no complete live P1 claim is made.
 
-Root review fixes are implemented and the integrated host suite passes **10/10**
-(`reports/bug-host-rust-regressions.log`, exit 0). Existing fix links and global
-source duplicates are checked against the authorized product/account, live bound
-folder, exact source metadata and a created receipt whose immutable payload
-matches the current repository/App/installation/folder binding. A changed binding
-returns `fix_task_conflict: true` with no task ID in detail; creation conflicts.
-Same-folder valid reuse remains supported. Tests cover foreign-folder duplicates,
-folder/repo/installation rebinding, moved source identity, receipt change and
-account change. New held tasks are atomically Canceled, excluded from pending
-scheduler folders, and successfully resume through existing manual requeue.
-Review in Tasks now refreshes its real task data, shows canceled/archived tasks
-and clears list status filters before navigating. Browser discovery remains to
-be checked; no browser success is claimed yet.
+## Delivered behavior
 
-Repeated pi proposals now return the matching pending review without revising
-its draft. The live connection check accepts running/awaiting_input, with exact
-task/run/connection and current evidence still required. Regression verifies an
-overlapping ACP wait survives denial, and cancellation, run change, connection
-change, deletion and revoked evidence reject reuse. An unrelated wait rejects
-before draft CAS; no approval engine was changed.
+**Bug intake is reachable in the existing Desk navigation** on desktop and mobile. It reuses PR7's authenticated operator boundary and memory-only Ops session state. Product selection, source selection, ordinary draft edits and unsaved evidence content survive responsive shell remounts. Secret entry is write-only and is intentionally not persisted as UI draft state.
 
-Production-aligned Python subprocess tests now include `-I -m hafidh_intake.host`:
-**9/9**, exit 0 in `reports/bug-host-python-isolated.log`. Root independently
-reported the earlier 9-test host suite passed at 506dcc30. Integrated Rust first
-compile exposed a local Vec inference error (exit 101), fixed with explicit
-`Vec<String>`; subsequent compilation and focused tests pass. The synthetic
-loopback fixture now exercises the actual isolated Python bridge and real
-approved Rust client/receipt flow with a memory-only test credential store.
-No live credentials or upstream mutations are involved. Typecheck passed before
-the latest additive conflict projection; final full gates and Design/CLI remain.
+Product settings store the authenticated account's product, existing project folder, enabled repository/App/installation binding and Hafidh origin. Dedicated random `ops-intake-<uuid>` references use the existing credential store. Projection returns presence booleans, never stored references or secret values. Configuration changes invalidate source freshness and reset the cached process/client configuration. No Git PAT slot is selected or replaced; runtime issue filing never uses `gh auth`.
 
-Initial contract commit `dc5ed96e` is pushed. Sole writer in
-`/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`, branch
-`feat/step2-bug-workflow`, created after a clean check and fetch from accepted
-main `b15ba2d40e1fafe7d272ec5910a5b690164fff9b`. Intake PR #5 is accepted at
-`493df48ca92699c5818fde39d5819596712b9fdb`, merged `4988f46b`; root's independent
-22 Rust and 14 Python tests passed. This task adds the host/UI layer only.
+The owned Rust process bridge launches the isolated Python package as `python -I -m hafidh_intake.host`. It delegates to the **accepted** `IntakeClient`; there is no second triage implementation or invented Hafidh route. Only existing TestFlight GET list and GET sync/status contracts are used. In-app feedback remains unavailable. Private identity fields, raw attachment data and signed URLs are omitted from the strict normalized projection; arbitrary adapter messages never reach the operator API.
 
-## Ownership and immediate coordination needs
+A list read clears the product's previous freshness **before** awaiting upstream access. A refresh clears the selected record's old freshness before reading. Only successful upstream revalidation records the revision and verified time. Failed/canceled reads cannot reuse an earlier success. The freshness gate is 900 seconds. A changed source revision clears proofs, severity confirmation and preparation; old unsaved edits remain available for comparison. A stale pending proposal retains its exact old payload and can be denied, while filing stays disabled.
 
-Owned additions: `src-tauri/src/ops_intake_host/`,
-`src-tauri/src/commands/ops_intake.rs`,
-`src-tauri/src/web/handlers/ops_intake.rs`,
-`src/components/ops-intake/`, `src/lib/ops-intake/`, plus minimal registrations.
-Reserve `m20260908_000006_ops_intake_host` for product configuration references,
-normalized snapshots, revisioned drafts/evidence associations and fix-task links
-if persistence needs it. Preserve every other migration and NOTICE entry.
-No changes to the core approvals engine or the email owner's live `ops/` files.
+Humans attach **all four build/screen/reciter/log proofs by content**, through the authenticated UI. Each is bounded sanitized UTF-8 up to 8 KiB, with a matching summary, content hash and explicit provenance. Optional capture time/session ULID is accepted only when actually known. The build is checked against the reported TestFlight build when present. No agent can mint evidence, import freshness, choose a server path/URL, configure a product or act as the human. Proof editing is locked while a proposal is pending or a filing is unknown/created.
 
-Read PR #7's report and source at
-`dce45beb59a09be5285cf3b26eb22f97c4d4bf30` as interface guidance only. It remains
-unmerged at this checkpoint. Shared auth/navigation edits will use accepted
-main after that PR is accepted, not copies of its work in progress.
+The source panel shows actual device, OS, build, platform and submission metadata. Missing app version is shown as **Not provided**; session metadata is shown only when supplied with real proof. Severity/tag suggestions remain labelled triage guesses. The operator confirms severity and saves title, reproduction/expected behavior and repository labels before preparation. Review presents the **exact repository, title, complete body and labels**, followed by an explicit human confirmation and **Approve and file issue**.
 
-Exact small seam needed from the Ops owner:
+The host wraps accepted `GithubIssueAction` and the accepted approvals API, including the always-human destructive floor. Its resource hook validates current bound source/evidence before an ask rule can queue the action. Approval revalidates the exact current draft/binding/evidence and passes the frozen approved payload to the accepted owned dispatcher. A durable host handoff records unknown before consumption; ambiguous outcomes never expose blind retry. Provider `created`, `failed`, `unknown` and human `denied` states remain distinct. Unknown permits only read reconciliation when a filing receipt exists.
 
-- Reuse `web::auth::AuthenticatedOperator`, which its authenticated middleware
-  inserts, and `ops::Operator::server()` / `desktop()`. Current `Operator`
-  fields are private and there are no accessors. Need crate-visible read-only
-  `account_id() -> i32` and `actor() -> &'static str` accessors. Keep fields and
-  construction private to the existing boundaries; no JSON actor or second alias.
-- P1 handlers use the same marker and canonical `operator:http` /
-  `operator:desktop`. They remain separate from email routes and registry.
-- After accepted-main integration, add a Bug intake navigation destination
-  using existing sidebar/workbench routing. Do not modify the live Ops page.
-- Existing credential-store operations will hold dedicated random intake
-  references; no Git account token is selected, replaced or used for runtime
-  GitHub filing. Read the accepted store changes before adding any shared seam.
+A created receipt can create a **real linked fix-plan task**, atomically in existing **Canceled** state with run sequence zero. The existing scheduler cannot claim it until manual Requeue. Its first deliverable is a report/fix plan; writeback is false. **Review in Tasks** refreshes real task data, includes canceled/archived rows, clears the list status filter and opens the existing Tasks list. Browser review verified task #2 and its detail/Requeue control without starting an engine or agent. No release engine was added.
 
-Proposed narrow bridge contract for the pi owner (names will be updated here
-when implemented): `ops_intake_host::agent::prepare_and_propose` takes a
-backend-created run context and a revisioned local bug draft ID, not a raw
-`IssueDraftV1` or arbitrary action name. Context contains the authenticated
-account/task/run/connection/agent attribution; product/folder/repository come
-from the stored host binding and the live task. The helper rechecks that chain
-and loads only previously human-attached proof IDs, then calls accepted
-`prepare` and `ops_approvals::propose`. Result is pending/denied metadata plus
-the frozen review projection, never a capability or token. No agent evidence
-minting, config, approve/deny/dispatch or receipt-forging method will exist.
+## Interfaces and ownership
 
-The accepted gate requires a real live task/run. The host will not manufacture
-a running task to simulate an agent proposal. Missing eligible task context
-must be visible, with an action to the existing task machinery. Local fixtures
-can establish synthetic tasks through the existing service transitions.
+Owned modules are `src-tauri/src/ops_intake_host/`, separate `commands/ops_intake.rs` and `web/handlers/ops_intake.rs`, `src/components/ops-intake/`, and `src/lib/ops-intake/`. Shared edits are minimal command/router/migration/navigation registrations. No `ops/`, email transport or approvals-engine product file is changed relative to the accepted integration base.
 
-## Intended implemented flow
+Migration **`m20260908_000006_ops_intake_host`** adds five local tables: account/product configuration references, normalized snapshots, revisioned drafts, durable handoffs and fix-task links. Existing evidence/filing tables from 000005 and the accepted approval tables remain authoritative. All other migration registrations and NOTICE entries are preserved. Cargo/package manifests, both project lockfiles and Apache LICENSE match the accepted integration base.
 
-1. Operator connects Hafidh intake and a repository using stored nonsecret
-   product/folder/App/installation/repository configuration and credential-store
-   references. Secret entry is write-only. Missing adapter, credential, binding
-   or permission remains an actionable unavailable state.
-2. A closed owned Python process bridge calls the accepted `IntakeClient`
-   read operations; no duplicated triage, invented Hafidh endpoint or direct
-   Rust backend HTTP adapter. Keep its list/get state within the owned process.
-   Only successful authorized upstream revalidation can update source revision
-   and freshness. Agent/UI JSON cannot assert either value.
-3. Operator attaches sanitized bounded UTF-8 build/screen/reciter/log proof by
-   content, with explicit source/session/provenance association. No arbitrary
-   server path, URL, bucket read or screenshot-as-log. All four fields remain
-   mandatory. Revision changes and stale sources require refresh/review.
-4. Show exact repository, title, body and labels from accepted preparation.
-   Show suggested severity as unconfirmed until the operator confirms it;
-   retain actual available device/app/session metadata without guesses. Edited
-   content is prepared and validated again before existing human approval.
-5. Consume the existing committed handoff through `ops_intake::dispatch`.
-   Created/failed/unknown receipts stay distinct; unknown permits read
-   reconciliation only. No mutable draft reload or blind retry.
-6. A created issue can seed a linked proposed fix in existing work-task
-   creation/review machinery. No auto-launch, fix merge or release engine.
-   Build-note and tester-email bridge gaps will be recorded explicitly.
+The existing transport maps the following command suffixes to Tauri `ops_intake_<suffix>` and protected local HTTP `POST /api/ops_intake_<suffix>`. HTTP accepts only `{input: ...}`, rejects unknown fields with fixed errors and has a 128 KiB body limit. Account and actor derive from `AuthenticatedOperator` / `Operator::server()` or `Operator::desktop()`; canonical human labels are `operator:http` and `operator:desktop`, never JSON inputs.
 
-## Source and design grounding
+| Command | Input / result | Boundary |
+| --- | --- | --- |
+| `status` | `{}` → products, existing folders, adapter availability | Nonsecret operator projection; in-app false |
+| `configure` | binding, origin, optional write-only bearer/private key → status | Stored account scope; existing credential client; no App registration/install |
+| `list` | product ID, optional process cursor → normalized records/cursor | Upstream GET; revokes old freshness; max 100/page, five-page adapter window |
+| `detail` | product ID + source ULID → snapshot/draft/tasks/proposals/receipt/fix link | Local operator read; never grants freshness |
+| `refresh` | same source → detail | Successful authorized adapter revalidation alone grants freshness |
+| `save` | source, expected revision, title/summary/labels/confirmed severity → draft | CAS; bounded outward text; no raw private fields |
+| `attach` | source, expected revision, field/value/content, optional capture/session → draft | Human content-only proof; no arbitrary path/URL or JSON provenance |
+| `prepare` | source, expected revision, selected task ID → draft | Backend resolves live run/folder/product; all four proofs and human severity required |
+| `approve` | source, proposal ID, expected payload, complete approved payload → detail | Exact stale/tamper recheck, accepted human gate and owned dispatch |
+| `deny` | source, proposal ID, expected payload → detail | Accepted gate; stale original payload remains deniable |
+| `reconcile` | source → detail | Accepted read-only issue reconciliation; never sends again |
+| `fix` | source → detail | Current created receipt and live binding required; held task or explicit conflict |
 
-Read complete FOUNDING, ORCHESTRATOR, STATUS, DECISIONS and AGENTS from the
-branch base, the accepted intake report, `docs/design/BRIEF.html` and
-`reports/design-acceptance-checklist.md`. Read code-context, frontend-design,
-Playwright CLI, Design Studio checklist/audit source instructions and relevant
-input/form/error checklists. The brief overrides generic marketing/motion
-suggestions. No additional worker or paid inference is authorized/used.
+Implemented pi seam:
 
-Offline code-context guide exit 0: end-to-end Playwright verification, human
-approval and actual sibling source reuse apply. Owner local-first / gh-api /
-no-worker instructions override generic context7/delegation advice. Dependency
-docs query exit 3: `data/code/rebrand.db` is absent. Use actual pinned installed
-source; no corpus hit or new global index is claimed.
+```rust
+ops_intake_host::agent::prepare_and_propose(
+    db: &DatabaseConnection,
+    ctx: &ops::agent::RunContext,
+    draft_id: &str,
+    expected_revision: i32,
+) -> Result<Proposed, HostError>
+// Proposed { status, proposal_id, prepared }
+```
 
-Separate React 19.2.4 metadata and Cargo reads succeeded. Live docs-first audit
-at `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl` records this
-worktree/session `01a07c1c-cf2e-73e1-bbe3-e758c8363042`: PreToolUse line 3085,
-PostToolUse line 3067. Hooks remain enabled.
+The trusted parent supplies account/task/run/agent/connection context. The host derives product/folder/repository from stored bindings and loads existing human proof. Repeated calls return an identical matching pending proposal without another draft revision. `running` and `awaiting_input` are accepted for that live connection; canceled/deleted tasks, changed runs/connections and unrelated waits fail. An overlapping ACP permission wait remains owned by ACP when the Ops proposal is denied.
 
-Borrowing remains codeg v0.30.4 `6f6bd648b206412644842a98d9ffeebf57292bed`
-(Apache-2.0), accepted intake modules and the exact SDK/Hafidh/intromail pins in
-`reports/intake-github.md`. Initial local source reads include
-`src-tauri/src/keyring_store.rs`, `web/auth.rs`,
-`db/service/work_task_service.rs` create/forge-source/CAS paths, and accepted
-`integrations/hafidh-intake/src/hafidh_intake/{server,schemas}.py`. Exact
-source-to-destination mapping and added NOTICE entries will follow the ports.
-All remote research uses `gh api` at recorded immutable refs; latest docs do
-not change the founding source versions.
+**Not implemented in PR9:** public cached agent list/get/status helpers, companion registration, or native `desk_propose_issue`. The three existing Python MCP tools (`hafidh_feedback_list`, `hafidh_feedback_get`, `hafidh_intake_status`) are not a claim that the pi host cache bridge exists. The agreed follow-on exposes scoped cached reads only; no agent refresh/import/configuration/approval/dispatch/evidence capability. Root explicitly assigns this to tickets after host acceptance, with its checklist on main `04635c3b`. Do not delay or broaden PR9 for it.
 
-Design plan: retain inherited Inter/user typography, light primary #245e58,
-dark primary #9bd4c5, neutral backgrounds, existing radii/spacing. The actual
-source report, proof checklist and rendered issue are the main content.
-Desktop uses a compact source list beside evidence/review; mobile shows one
-readable pane with Back. Forms keep visible labels, focus and saved/error
-feedback. Synthetic fixture records are explicitly labelled. No decorative
-metrics, new UI system or production sample data.
+## Review findings closed
 
-## Validation and delivery plan
+- Global source dedup cannot link a task from another folder/product/account. Same-folder authorized reuse still works. Existing saved links are rechecked against the live task's folder and canonical GitHub source, current created receipt and immutable repository/App/installation binding. Rebinding or moved/changed source returns `fix_task_conflict: true` and **no unrelated task ID**, and creation conflicts.
+- Repeated pending proposals preserve their draft and an overlapping ACP wait; cancellation, connection/run changes, revoked proof and unrelated waits reject reuse.
+- Pre-list invalidation prevents old freshness surviving a failed/canceled new scan.
+- Actual-host subprocess tests now use the production `-I` flag.
+- Frontend refresh invalidation retains a deniable pending payload. Proof controls lock in pending/unknown/created states. Visible labels are separate from descriptive help for accessible names.
+- Preliminary measured selected-row metadata contrast was 4.07:1 in light mode. Reusing the existing foreground token fixes it; final P1 measurements have zero contrast failures. No unrelated design system changes were made.
 
-Own browser fixture port **4322**; do not touch root 4318 or email 4320. Publish
-the owned process command, isolated data/output paths and a nonsecret fixture
-token for root reproduction. Runtime provider traffic must be test-only loopback;
-no real issue/email/message, App install, backend write or deployment.
+Root independently reported **17 Rust tests + 1 ignored**, **9 isolated Python host tests**, and **8 frontend tests** passing. Its real protected-route/loopback and browser review also verified missing configuration, source-list invalidation, same-revision refresh, human confirmation plus rejected filing, and actual held task discovery. Root evidence: `/tmp/ops-bug-host-independent-rust.log`, `/tmp/ops-bug-host-independent-python.log`, `/tmp/ops-bug-independent-frontend.log` and root-owned `reports/browser-bug-independent/`. These are independent review results, not worker CI claims.
 
-Required gates: locked default desktop/server checks, strict Clippy, typecheck,
-focused host evidence/auth/privacy/stale/receipt tests, Python bridge tests,
-and actual Playwright CLI desktop/mobile light/dark missing/populated/error/
-success flows with screenshots. Apply Design Studio measured checks and audit
-fix/recheck loops against BC-1/2/3/11/12/16/17/18 as applicable. Existing email
-flow checks remain its owner's responsibility. No implementation gate has run
-for this new task at this checkpoint.
+## Exact source-to-port ledger
 
-Commands so far: clean `git status`, `git fetch origin`, and new branch switch
-all exit 0; installed git usage help exits 129 normally; document/source reads
-and immutable PR metadata resolution exit 0; code-context exits recorded above.
-Closed Python host bridge added at `integrations/hafidh-intake/src/hafidh_intake/host.py`,
-delegating only to the accepted `IntakeClient` list/get/status. Fixed 16 KiB
-request / 2 MiB response limits, strict operation/DTO allowlist, persistent
-list state, no argument/exception echo or credentials in the wire protocol.
-`tests/test_host.py` adds real subprocess + synthetic loopback GET fixtures,
-unknown operations/fields/credentials, oversized frame closure, failed fresh
-GET after successful list and explicit missing configuration. First focused
-run exit 2 confirmed missing host module; full isolated pytest then exit 0,
-**23 passed**. Existing actual MCP stdio discovery/read test also passes.
+All product borrowing remains within FOUNDING §3. Original Apache LICENSE and MIT license texts in NOTICE remain. No Plane/Twenty/Postiz AGPL, Chatwoot enterprise or Kun PolyForm source was used. No dependency version was upgraded for documentation research.
 
-Task-service integration need: existing `create_from_forge` inserts Todo and
-an `auto_process` folder can immediately claim that row. A linked proposed fix
-must be held before commit; a later cancel is racy. The bounded host therefore
-needs a creation seam that reuses that service's source dedup/validation but
-creates a held task (existing Canceled state with explicit manual requeue), or
-must leave the fix as an uncreated review draft. No scheduler/approvals changes
-have been made. This remains an explicit final-integration item.
+| Authority / immutable revision | Exact source files | Destination / adaptation |
+| --- | --- | --- |
+| codeg v0.30.4, Apache-2.0, `6f6bd648b206412644842a98d9ffeebf57292bed` | `src-tauri/src/db/service/work_task_service.rs`: `create_from_forge`, `insert_todo_row`, `record_event`, source dedup; `src-tauri/src/forge/{mod.rs,envelope.rs}` | `ops_intake_host/fix_task.rs`: bounded task-row/provenance/event port, initial Canceled insertion, canonical source validation; existing task service used for discovery/manual requeue |
+| Same codeg pin | `src-tauri/src/keyring_store.rs`; `src-tauri/src/web/handlers/forge.rs`; existing SQLite transaction/CAS patterns in `work_task_service.rs` | `ops_intake_host/{runtime,store,operator,review}.rs`, separate command/handler adapters and migration 000006: credential references, bounded state and boundary glue |
+| Same codeg pin | `src/lib/transport/{index.ts,types.ts}`; `src/components/ui/{button.tsx,input.tsx,textarea.tsx,browser-link.tsx}`; `src/components/workbench/workbench-content.tsx` | `src/lib/ops-intake/{api,types}.ts`, `src/components/ops-intake/{ui,settings,bug-workflow-page,evidence,issue-review}.tsx`; existing primitives/transport/opener and small navigation registrations |
+| Accepted intake PR5 `493df48ca92699c5818fde39d5819596712b9fdb` | `integrations/hafidh-intake/src/hafidh_intake/{client,schemas,triage,server}.py`; `src-tauri/src/ops_intake/{mod,types,store,github}.rs` | New `host.py` delegates only to accepted client; Rust host uses existing prepare/action/evidence/dispatch/receipt code. Only small crate-visible validation/binding helpers and test-only loopback client constructor added to accepted pack |
+| Accepted Ops PR7 `756d064f1cc391ed1da32ba90429adef225f080d`, merge `f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6` | `src-tauri/src/web/auth.rs`, `src-tauri/src/ops/{mod,agent}.rs`; `src/components/ops/session.tsx` | Existing authenticated marker, Operator accessors, trusted RunContext and session lifetime reused unchanged |
+| Accepted approvals merge `65aca88916b4af398a568c09ece431440d660e3b` | `src-tauri/src/db/service/ops_approvals/{mod,gating,redaction}.rs` | `ops_intake_host/review.rs`: existing Action/propose/review/authorized handoff; no forked approval policy |
+| Hafidh read-only source `a83794708193a18611c8e6eb8e88637b8136e471`, owner-authorized | `backend/app/modules/testflight/{models.py,schemas.py,admin_router.py,triage.py}`, `backend/app/modules/feedback/{models.py,feedback_schemas.py,feedback_router.py}`, `backend/app/common/utils/operation_result.py` | Already attributed strict accepted Python DTO/GET/triage adapter reused by `host.py`; no Hafidh source import or environment change |
+| intromail `0bd24dfe284b888aa9f602fa1fd00e337ea38874`, owner-authorized | `backend/app/services/github/{client.py,actions.py}`, `backend/tests/test_github_pack.py`, `docs/GITHUB-INTEGRATION.md` | Accepted GitHub App JWT/cache/action client reused; issue creation is an explicit upstream source gap filled by the reviewed narrow REST glue |
+| MCP Python SDK v2.0.1, MIT, `8b191a433634d64b1306d7d51be8b16e14cc0893` | `examples/mcpserver/{readme-quickstart.py,weather_structured.py}`, `src/mcp/server/mcpserver/server.py`, `src/mcp/client/{stdio,client}.py` | Accepted `MCPServer` tool scaffold and actual stdio discovery/read tests retained; no obsolete FastMCP import |
+| jsonwebtoken 9.3.1, MIT, `87bbe49004de17ac1c64bf25d7751c0e43cff5dc` | `README.md`, `Cargo.toml`, `src/encoding.rs`, LICENSE | Accepted established RS256 signer reused unchanged; no custom cryptography |
 
-This is resumable progress, not a finished workflow claim.
+Immutable Codeg blobs read through `gh api`: `work_task_service.rs` **8042ecea7d083a6246fe3726cad2ad9b5223449d**; `keyring_store.rs` **d3e9041b95ebf2b36db66f5d15ba15df2ec494cd**; `forge/envelope.rs` **a6cd4cac6418b2148ede03836147261a863a2ad1**; `ui/button.tsx` **652d5d3d00aff9a1c917711b8d148f9f711f96fe**. `browser-link.tsx` was also read from the local exact Codeg commit before adding its reuse to NOTICE.
 
-Host checkpoint: initial scoped snapshot/draft storage tests **4/4 pass**, command
-`CARGO_TARGET_DIR=../.build/intake-host cargo test --locked --no-default-features --lib ops_intake_host`
-exit 0. This is the owned target; the initial compile took 96 seconds. Expected
-unused-code warnings remain until host route registration. New operator/review
-and pi bridge source is written but not registered/compiled against Ops yet,
-because PR7 is not accepted main. Do not treat this as final Rust acceptance.
+The accepted official issue/auth contract remains `github/docs@831337b0fed60b90a72e2711a41dfcad72b5f288` and `github/rest-api-description@3cef12e8a02d612ad032473d4fb87266f2befeae`, exact paths/operations in [the accepted intake report](intake-github.md#exact-source-mapping-implementation-ledger). REST version remains `2022-11-28`. All remote research used `gh api`, never a silently newer borrowing version.
 
-PR7 at `0e375c9770505ac708ca97d12d07163c81a03f15` now includes the requested
-Operator accessors. It is still open/unmerged. Read its report and lifted session
-state implementation; P1 will reuse that accepted memory-only lifetime so screen
-size changes cannot discard evidence or draft edits. No live Ops file is edited.
+## Docs-first evidence
 
-Current concrete pi signature in `ops_intake_host/agent.rs`:
-`prepare_and_propose(db, &ops::agent::RunContext, draft_id: &str, expected_revision: i32)`
-returns `Proposed { status, proposal_id, prepared }` or a fixed HostError. It derives
-product/folder from the owned draft/config and rechecks account, live task/run and
-connection inside the existing gate transaction, including its resource hook.
-Human proof attachment and severity confirmation remain separate operator-only
-mutations. There is no HTTP agent-proposal endpoint or generic executor.
+Read complete current FOUNDING, ORCHESTRATOR, STATUS, DECISIONS and AGENTS, the merged intake/contract reports, `docs/design/BRIEF.html` and the stable [BC-1–18 checklist](design-acceptance-checklist.md). Applied code-context, frontend/UI, mobile, Playwright CLI and Design Studio audit/checklist skills. Owner no-worker/no-paid-inference instructions override generic specialist fan-out; no subagent was started.
 
-Added client test seam only: `GithubAppClient::loopback_fixture` is compiled only
-for tests/test-utils, rejects non-loopback addresses and otherwise uses the
-accepted client. Production has no API-origin override. Dedicated random
-`ops-intake-<uuid>` references reuse the existing credential client; no Git PAT
-slot, credential value or global setting is read during fixture validation.
+Offline guide used `/Users/mohamedadan/projects/rag-skills/.venv/bin/python` with `HF_HUB_OFFLINE=1`, exit 0. Applied sibling reuse, human review and end-to-end verification guidance. Dependency corpus query exited **3** because `data/code/rebrand.db` is absent. This is missing corpus coverage, not a successful retrieval; no global ingestion/environment change was made.
 
-UI source checkpoint before accepted-main merge: source list/detail, content-only
-four-proof attachment, explicit severity confirmation, saved draft/prepared exact
-title/body/repository/labels, human review, failed/unknown/created receipts and
-settings are written in the owned frontend directories. Shared Ops session hooks
-preserve edit lifetimes on shell remount; secret-entry forms are not persisted.
-These files are not registered or browser-validated yet. Read React 19.2.4 package
-and installed @types/react useState/effect/ref/useId/context/external-store types,
-inherited UI primitives and transport call/timeout types; Prettier exit 0.
+Installed/local authority read: React **19.2.4** and installed React hooks/useId types; Next **16.1.6**; TypeScript **5.8.3** DOM types; Tailwind **4.1.18** and existing component/theme source; Vitest **2.1.9**, Testing Library React **16.3.2**; SeaORM **1.1.19** transactions/queries; Axum **0.8.8** extraction/JSON rejection/body limits; axum-test **17.3.0** fixture APIs; url **2.5.8**; existing transport/error and credential APIs. Audit formatter reads local Node fs types (`@types/node` **25.2.2**; installed Node **24.19.0**). Installed CLI help/types were read; Playwright CLI **0.1.18** bundles Playwright **1.63.0-alpha-2026-08-05**. Update banners were not acted on.
 
-Resolved the held-fix gap within the owned host module by a narrow port of
-Codeg's existing insertion/source dedup/event pattern. `fix_task.rs` creates the
-real linked work_task in initial Canceled state in the same transaction as its
-link and audit events; the existing auto scheduler cannot claim it. Existing Tasks
-review/edit/manual requeue resumes it. First deliverable is a report/fix plan,
-writeback is false, and no engine/scheduler file is modified. Its App provenance
-identity is not a Git PAT account; future forge delivery requires separate
-configuration and review. Focused creation/duplicate/scheduler tests remain.
+**Tokio grounding correction:** the earlier 1.53.1 registry-cache read/citation was not the locked dependency's authority. Root caught this documentation error. `src-tauri/Cargo.lock:7537` pins **1.49.0**, checksum `72a2903cd7736441aac9df9d7688bd0ce48edccaadf181c3b90be801e81d3d86`; all locked builds/tests already used that version. Before handoff, re-read its actual installed `Cargo.toml`, `src/process/mod.rs` (args/env/env_clear/stdio/spawn/kill_on_drop/kill), `src/time/timeout.rs`, and `src/io/util/{async_buf_read_ext,async_read_ext,async_write_ext}.rs` (read_until/take/write_all/flush), under `/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.49.0/`. They confirm the used APIs and cancellation semantics. `write_all` may leave partial bytes on cancellation: existing runtime code takes ownership before await, discards that child on cancellation/error, and caches only successful protocol sessions. Explicit kill is awaited; destructor-only cleanup/reaping remains Tokio's documented best effort. The earlier version grounding was a limitation, corrected by pinned source review without any dependency upgrade or behavior change. The one incorrect source documentation line is corrected too.
 
-gh api immutable Codeg source proof: work_task_service.rs blob
-`8042ecea7d083a6246fe3726cad2ad9b5223449d`, keyring_store.rs
-`d3e9041b95ebf2b36db66f5d15ba15df2ec494cd`, forge/envelope.rs
-`a6cd4cac6418b2148ede03836147261a863a2ad1`, ui/button.tsx
-`652d5d3d00aff9a1c917711b8d148f9f711f96fe`, all at the pinned v0.30.4 commit.
-NOTICE records source-to-destination mapping, preserving all prior licenses.
+Separate `cat node_modules/react/package.json` and `cat src-tauri/Cargo.toml` reads succeeded. Live `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl` contains this worktree/session **`01a07c1c-cf2e-73e1-bbe3-e758c8363042`**, with final observed **PreToolUse line 6279 / PostToolUse line 6278** (earlier checkpoint 3085/3067). Hooks were neither disabled nor bypassed. These are observed session records, not a claim of universal interception outside the hook's scope.
 
-Owner has now accepted PR7 at `756d064f1cc391ed1da32ba90429adef225f080d`, merged
-`f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`. Commit the owned checkpoint, then
-fetch/merge accepted main before shared auth/navigation registration and final
-integrated gates. No live provider mutation has occurred.
+## Commands and results
+
+Every Rust command used `CARGO_TARGET_DIR=../.build/intake-host` from this worktree's `src-tauri/`; frontend output is this worktree's `.next/` and `out/`. Python uses only `integrations/hafidh-intake/.venv`. Logs below are local ignored build logs; committed screenshots/probes and this table preserve the handoff evidence.
+
+| Command | Result / evidence |
+| --- | --- |
+| `cargo check --locked` | **Exit 0**, default desktop; `reports/bug-host-desktop-check.log` |
+| `cargo check --locked --no-default-features --bin codeg-server` | **Exit 0**; `reports/bug-host-server-check.log` |
+| `cargo clippy --locked --all-targets --features test-utils -- -D warnings` | **Exit 0**; `reports/bug-host-desktop-clippy.log` |
+| `cargo clippy --locked --no-default-features --bin codeg-server --lib -- -D warnings` | **Exit 0**; `reports/bug-host-server-clippy.log` |
+| `cargo test --locked --no-default-features --lib ops_intake_host` | **17 passed, 1 ignored manual fixture, exit 0**; `reports/bug-host-rust-full.log` |
+| `cargo test --locked --no-default-features --bin codeg-server --lib ops` | **152 passed, 2 ignored, 0 failed, exit 0**; 5.86 s test execution; `reports/bug-host-integrated-ops-tests.log`. Includes email facade, approvals, intake and host, plus inherited names matching the filter; standalone ticket/transport suites below |
+| `cargo test --locked --no-default-features --bin codeg-server --lib ticket_service` | **18 passed, exit 0**, 0.73 s; `reports/bug-host-ticket-regressions.log` |
+| `cargo test --locked --no-default-features --bin codeg-server --lib email_transport` | **18 passed, exit 0**, 0.41 s; `reports/bug-host-email-regressions.log` |
+| `PYTHONDONTWRITEBYTECODE=1 integrations/hafidh-intake/.venv/bin/python -m pytest -p no:cacheprovider integrations/hafidh-intake/tests/test_host.py -q` | **9 passed, exit 0**, actual `-I` subprocess; `reports/bug-host-python-isolated.log` |
+| Initial full isolated adapter + host pytest | **23 passed, exit 0** at the Python host checkpoint, including actual MCP stdio discovery/read. After aligning subprocess flags, reran the changed 9-test host suite; accepted production MCP/client/triage remained unchanged |
+| `pnpm exec vitest run src/components/ops-intake src/components/ops/session.test.tsx src/components/ops/ops-flows.test.tsx` | **15 passed, exit 0** (8 P1 + 7 existing Ops); `reports/bug-host-frontend-final.log`. Root independently reran the 8 P1 tests. Final later product change was one foreground class, checked by export/probe |
+| `pnpm exec tsc --noEmit` | **Exit 0** after final product changes; `reports/bug-host-typecheck-final.log` |
+| `pnpm exec eslint src/components/ops-intake src/lib/ops-intake reports/bug-probe-report.mjs` | **Exit 0, no warnings**; `reports/bug-host-eslint-final.log` |
+| `pnpm exec next build` | **Exit 0**, real static export after final foreground fix; `reports/bug-host-build-final.log` |
+| `playwright-cli -s=intake4322 …` | Actual protected-host/browser flows below; successful terminal/mutation checks exit 0, loopback provider only |
+| `playwright-cli -s=intake4322 --raw run-code --filename=reports/bug-browser-probe.playwright` then `node reports/bug-probe-report.mjs` | **Exit 0**; four final viewport/theme probes, zero contrast/unnamed/overflow/small-target failures |
+| `node …/design-studio/scripts/design-lint.mjs src/components/ops-intake/bug-workflow-page.tsx --brief docs/design/BRIEF.html` | **Exit 0**, zero deterministic state/ARIA gaps; `reports/bug-design-lint-page.json` |
+| `git diff --check`; protected-doc/manifest/lock/LICENSE comparison to `f7650379` | **Exit 0**, no protected/lock/license differences |
+
+Meaningful Rust tests cover real missing/invalid HTTP authentication, forbidden JSON actor/freshness/path/credential fields, secret projection, missing App key preserving pending, omitted/private/expired/stale proof, changed source and approval tamper, explicit read scope/deny, response-lost reconciliation and no second POST, pending/ACP ownership, foreign-folder dedup and live fix-link rebinding/receipt/source/account checks. New scans and GET failures never mint freshness. All provider requests use synthetic loopback HTTP/RSA/SQLite fixtures.
+
+Resolved intermediate failures are retained honestly: initial Rust inference needed `Vec<String>` (exit 101); fixture policy mode/column names were corrected after reading the actual accepted schema (`read`, and `action_name/resource/behavior`), not by changing policy. Initial frontend lint found a bare external link, replaced with the inherited BrowserLink, plus fixed hook dependencies. CLI retries corrected an accessible-label selector, a pending-status polling race, and a drawer left open by desktop-to-mobile resize; Escape preserved the edit. Probe theme sampling now waits for color transitions. Prettier's leading semicolon was invalid CLI function input; standalone snippets are now `.playwright` inputs with validated function syntax. These were not claimed as passing commands before correction.
+
+Existing build limits: default desktop check created the documented zero-byte codeg-mcp sidecar placeholder; no native packaged-app pass is claimed. Rust reports the inherited proc-macro-error2 2.0.1 future-compatibility notice; macOS libtest linking also reports its large `__eh_frame` warning. No CI result, production provider access, distribution/signing or live model success is claimed.
+
+## Browser evidence and preliminary Design Studio check
+
+Actual CLI session `intake4322` used **390×844** and **1280×900**, paired light/dark tokens, the real exported frontend, protected Rust routes, actual isolated Python GET process and accepted GitHub client against a loopback provider. Source records/proofs/credentials were synthetic and labelled. The browser did not substitute mocked frontend responses.
+
+| Scenario | Committed evidence |
+| --- | --- |
+| Invalid token; mobile navigation | [Rejected login](bug-mobile-login-rejected.png), [drawer](bug-mobile-nav.png) |
+| Missing credentials, read disabled, actionable settings | `bug-{desktop,mobile}-missing-{light,dark}.png` |
+| All four mandatory proofs missing; source not yet fresh | [Missing proof gate](bug-desktop-evidence-missing-light.png), [unsaved proof survives resize](bug-mobile-proof-edit-light.png) |
+| Exact body/repository/title/labels; human-confirmation floor | `bug-{desktop,mobile}-review-{light,dark}.png`, [review snapshot](bug-flow-current.yaml) |
+| Access failure revokes freshness, no private upstream message | `bug-{desktop,mobile}-error-{light,dark}.png`, [error snapshot](bug-current-error.yaml) |
+| Source revision changed; old payload remains visible, approval disabled; explicit denial | `bug-{desktop,mobile}-stale-{light,dark}.png`, [denial snapshot](bug-denied.yaml) |
+| Successful approved synthetic issue + held fix | `bug-{desktop,mobile}-success-{light,dark}.png`, [real Tasks row](bug-tasks-discovery.yaml), [held detail](bug-held-task-detail.yaml), [mobile task](bug-mobile-held-task-detail-dark.png) |
+| Response lost after provider creation → unknown, no retry → read-reconciled same issue | `bug-{desktop,mobile}-unknown-{light,dark}.png`, [unknown snapshot](bug-unknown.yaml), [reconciled issue](bug-desktop-reconciled-dark.png) |
+| Explicit provider rejection, no confirmed created issue | `bug-{desktop,mobile}-rejected-{light,dark}.png` |
+| Final foreground correction, responsive source view and keyboard focus | `bug-{desktop,mobile}-populated-final-{light,dark}.png`, [mobile focus](bug-mobile-keyboard-focus-dark.png), [measured probe](bug-design-probe.json) |
+
+Applied the Design Studio aesthetic/a11y/flow review methods inline to this P1 evidence against the existing brief (schema 1, scan mode) and BC-1/2/3/11/12/16/17/18 where applicable. This is **preliminary worker evidence**, not root's final combined specialist acceptance. Used local Design Studio `55c8614dcfff33b4caa5a544b4f1f91877214878`, its deterministic linter and pure `lab/tools/probe.mjs` `buildReport` / ARIA helpers. Browser extraction ran through CLI only; no direct browser SDK launcher or paid flow-test agent was run.
+
+Final sampled P1 surface: **65 mobile / 71 desktop text samples per theme, zero contrast failures, zero unnamed interactive nodes, no heading-order breaks, no horizontal overflow, no effective touch target under 44 px and no text input under 16 px**. Disabled fields are excluded from text-contrast grading. RGB measurements composite actual browser backgrounds, including Tailwind OKLCH/alpha colors. Keyboard focus on the product select was visible with a 44 px control. All four mandatory evidence fields and full preview remain available on mobile.
+
+Limits for root's overall loop: inherited button micro-transitions still remain under reduced-motion emulation; no animation/jank or real iOS keyboard/notch test is claimed. The literal brief comparator flags RGB resolutions of existing OKLCH/alpha tokens, the installed Inter Variable family name and the inherited 6 px button gap; these are preserved as review data, not a claim that token conformance is automatically green. Arabic/i18n, internal IDs and terminal-state copy are reserved for the separately assigned design follow-on after acceptance. Long evidence hashes and the desktop empty space beside a deeply scrolled detail remain reviewable copy/layout tradeoffs; they were not replaced with a new UI system. No claim of complete BC-3 Arabic coverage or whole-Desk audit completion.
+
+## Stable fixture for root
+
+**Keep the current listener alive during root review.** URL `http://127.0.0.1:4322`; nonsecret login **`ops-intake-synthetic-operator`**. Observed owned listener PID **22775**. Current SQLite/state directory:
+
+`/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/.build/intake-host/browser-a0c200ac-05bf-4a7e-a6e9-ad36dfd53993`
+
+Implementation: `src-tauri/src/ops_intake_host/tests/browser.rs`, provider/router in `tests/fixture.rs`. Launch from this worktree's `src-tauri`:
+
+```sh
+CODEG_OPS_ACCOUNT_ID=1 CARGO_TARGET_DIR=../.build/intake-host cargo test --locked --no-default-features --lib intake_host_browser_fixture -- --ignored --nocapture
+```
+
+It serves this worktree's real `out/`; build it with `pnpm exec next build`. If the isolated Python environment is missing, follow the existing `integrations/hafidh-intake/README.md` against its committed `requirements.lock`, using only that package's own `.venv`. No Hafidh/RAG environment or global configuration is involved. Set an absolute `CODEG_INTAKE_PYTHON` only for an alternative owned installed environment. The fixture's private key is the committed synthetic RSA test key in memory; it never contacts a real provider or the real credential store.
+
+The fixture does not start the task engine or inference. A labelled synthetic parent run polls prepared local drafts and calls the **real** narrow propose seam; it never attaches proof, configures, approves or files. Failed attempts may therefore acquire another pending synthetic proposal, still requiring a fresh explicit human review. This test automation is not a claim that production pi registration is complete.
+
+| Record suffix (prefix `01ARZ3NDEKTSV4RRFFQ69G5`) | Current fixture outcome |
+| --- | --- |
+| `FAV` | Synthetic successful issue **#1**, held linked task **#2**, inspectable in actual Tasks |
+| `FAW` | Synthetic response-lost creation, then read-reconciled issue **#2**; no unresolved unknown remains |
+| `FAX` | Earlier stale proposal denied, later explicit rejected attempt; available for an independent new rejected review |
+
+Products: `synthetic-hafidh` configured; `synthetic-unconfigured` lacks credentials. Optional startup `OPS_INTAKE_FIXTURE_EMPTY=1` creates an empty product configuration; that optional fresh-start variant was not used for final browser evidence. Each start creates a new owned database. Do not start a second listener while 4322 is occupied, or touch 4318/4320.
+
+Authenticated test-only `POST /_fixture/source` accepts `{mode:"denied"|"ok"|"changed"}` with the nonsecret fixture bearer above. It is absent from shipped binaries. Current reads are enabled and the source is in the **changed** revision state. The switch affects all three source records. **Read TestFlight invalidates freshness for the whole product**, so coordinate it with another review session. All worker mutations are finished and all records are released for root use. No reseed was performed for root.
+
+Reusable CLI function inputs are [proof preparation](bug-browser-proof.playwright) and [read-only probe](bug-browser-probe.playwright). The proof function is for a selected synthetic record with no pending/created/unknown filing; it attaches four proofs, saves human-confirmed severity, prepares and reloads the real pending proposal, but does not approve it. The probe never calls a provider mutation.
+
+## Remaining real configuration and integration gaps
+
+- No live Hafidh origin/admin bearer, GitHub App private key/App/installation/repository IDs or authorized repository labels were provisioned or verified. Missing values remain actionable not-configured states. The upstream Hafidh bearer is an existing admin credential; the closed GET-only adapter does not reduce its upstream permissions.
+- In-app feedback has no accepted read endpoint; diagnostic/bucket download APIs are absent. Human content attachment is the available evidence path. Redaction is bounded pattern matching, not a universal personal-data detector, so outward text always requires human review.
+- The adapter's offset scan is bounded at five 100-record pages with process-local cursors; it is not a lossless change stream. Older records can require another overlapping scan. Only the trusted host can refresh source state.
+- Production adapter status checks the configured Python executable's presence; actual import/GET execution can still fail and is reported unavailable. This is an installed internal development package, not a bundled Python runtime.
+- The public pi cached read helpers and `desk_propose_issue` registration belong to the accepted next pi task. Runtime missing model/ACP configuration is not worked around. No engine/model launch was needed or attempted here.
+- A held fix task must be reviewed and manually requeued; its App provenance identity is not a Git PAT account for future forge delivery. Worktree execution, reviewed diff/merge, a build, build-note draft and tester-email draft/send bridge remain separately configured/reviewed workflow steps. Creating the issue or held task performs none of them.
+- Root's final combined Design Studio/locale/copy loop and integrated native bundle are pending. No new assignment is started by this report.
