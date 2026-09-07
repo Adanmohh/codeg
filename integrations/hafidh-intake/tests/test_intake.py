@@ -1,5 +1,3 @@
-import json
-
 import httpx
 import pytest
 from pydantic import ValidationError
@@ -122,3 +120,41 @@ def test_strict_input_and_exact_triage_port():
     assert classify(None).tags == ["other"]
     assert classify("the audio has to be fixed").severity.value == "medium"
     assert classify("wrong verse").severity.value == "high"
+
+
+async def test_bounded_scan_and_get_missing_record_do_not_claim_complete():
+    requested = []
+    def handler(r):
+        requested.append(int(r.url.params["offset"]))
+        return httpx.Response(200, json=response([row()]))
+    c = client(handler)
+    cursor = None
+    for _ in range(5):
+        page = await c.list_feedback(ListRequest(source="testflight", limit=1, cursor=cursor))
+        assert page.status == "ok" and not page.value.scan_complete
+        cursor = page.value.next_cursor
+    assert cursor is None and requested == [0, 1, 2, 3, 4]
+    source_ref = SourceRef(product_id="hafidh", source="testflight", ulid=ULID, external_id="asc-1")
+    c.transport = httpx.MockTransport(lambda r: httpx.Response(200, json=response([])))
+    assert (await c.get_feedback(source_ref)).error.code == "stale_source"
+
+
+async def test_malformed_json_oversize_and_redirect_never_return_source_details():
+    for reply in (httpx.Response(200, content=b"PRIVATE invalid json"),
+                  httpx.Response(200, content=b"x" * (2 * 1024 * 1024 + 1)),
+                  httpx.Response(302, headers={"Location": "https://private.invalid/steal"})):
+        requests = []
+        def handler(r):
+            requests.append(r)
+            return reply
+        c = client(handler)
+        result = await c.list_feedback(ListRequest(source="testflight"))
+        assert result.status == "error" and len(requests) == 1
+        assert "PRIVATE" not in result.model_dump_json()
+
+
+def test_configuration_cannot_smuggle_paths_auth_or_plain_http():
+    for origin in ("http://remote.invalid", "https://user:pass@host.invalid",
+                   "https://host.invalid/path", "https://host.invalid?token=private"):
+        assert not Settings(origin, "hafidh", "synthetic").configured
+    assert "synthetic" not in repr(Settings("https://host.invalid", "hafidh", "synthetic"))

@@ -35,21 +35,19 @@ Implemented public interface (`src-tauri/src/ops_intake/mod.rs` re-exports types
   only by trusted host code. Missing config is `not_configured`. No PAT or gh
   auth fallback. Tests inject synthetic local HTTP/RSA fixtures only.
 
-Exact functions for UI registry/review integration:
+Functions exercised by the compiled integration tests (all fallible results use
+`IntakeError`; this table is an API reference, not a runnable Rust example):
 
-```rust
-prepare(&DatabaseConnection, IssueDraftV1) -> Result<PreparedIssue, IntakeError> // async
-PreparedIssue::payload(&self) -> Result<serde_json::Value, IntakeError>
-PreparedIssue::payload_digest(&self) -> Result<String, IntakeError>
-dispatch(&DatabaseConnection, &GithubAppClient, AuthorizedAction)
-    -> Result<FilingReceipt, IntakeError> // async
-filing_status(&DatabaseConnection, &SourceRef, repository_id: i64)
-    -> Result<Option<FilingReceipt>, IntakeError> // async, no network
-reconcile_filing(&DatabaseConnection, &GithubAppClient, attempt_id: i64)
-    -> Result<FilingReceipt, IntakeError> // async, GitHub reads only
-GithubAppClient::new(Option<GithubAppConfig>) -> Result<GithubAppClient, IntakeError>
-GithubAppClient::is_configured(&self) -> bool
-```
+| Function | Inputs | Successful result / effect |
+| --- | --- | --- |
+| `prepare` (async) | database connection, complete `IssueDraftV1` | `PreparedIssue`, local validation only |
+| `PreparedIssue::payload` | borrowed prepared issue | complete `serde_json::Value` |
+| `PreparedIssue::payload_digest` | borrowed prepared issue | canonical SHA-256 string |
+| `dispatch` (async) | connection, borrowed App client, owned `AuthorizedAction` | `FilingReceipt`, consumes capability |
+| `filing_status` (async) | connection, borrowed `SourceRef`, repository ID (`i64`) | optional `FilingReceipt`, no network |
+| `reconcile_filing` (async) | connection, borrowed App client, attempt ID (`i64`) | `FilingReceipt`, GitHub GETs only |
+| `GithubAppClient::new` | optional `GithubAppConfig` | `GithubAppClient` |
+| `GithubAppClient::is_configured` | borrowed App client | `bool`, no network |
 
 `GithubIssueAction` is a unit struct implementing the **existing** `Action`.
 For propose, pass `prepared.payload()` to existing `ops_approvals::propose`
@@ -182,3 +180,17 @@ destructive floor, stale review/run, evidence tamper/revocation, concurrent
 filing reservation, lost response, read reconciliation, label mismatch, known
 rejection and migration round trip. Latest follow-up persists/observes retry
 deadlines across new client instances; final rerun remains pending.
+
+Owner independently reran the current isolated Python suite with bytecode/cache
+disabled: 14/14 pass. This worker also observed 14/14 pass (exit 0) after adding
+bounded-scan, malformed/oversize response and origin-boundary tests. Python
+production code is unchanged from `a4f9f316`; no Python rerun is needed for
+documentation/main-only integration. TypeScript `pnpm exec tsc --noEmit` passed
+(0). Initial strict server Clippy `--locked --no-default-features --bin
+codeg-server --lib -- -D warnings` passed (0).
+
+Owner authorized accepted-main integration after the stable Rust checkpoint;
+pre-integration focused Rust suite passed 19/19 (0), including disk SQLite
+reopen/recovery, auth failures, label preflight and persisted rate deadlines.
+Merge/final post-integration gates are next. Preserve Resend mail-parser,
+registry and appended notices. No email transport or approval-engine edits.

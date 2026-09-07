@@ -13,7 +13,10 @@ use sea_orm_migration::{MigratorTrait, SchemaManager};
 use serde_json::json;
 
 async fn seeded() -> (AppDatabase, IssueDraftV1, RepositoryBinding) {
-    let db = fresh_in_memory_db().await;
+    seeded_with(fresh_in_memory_db().await).await
+}
+
+async fn seeded_with(db: AppDatabase) -> (AppDatabase, IssueDraftV1, RepositoryBinding) {
     let folder = seed_folder(&db, "/synthetic/intake-project").await;
     let conversation = seed_conversation(&db, folder, AgentType::Codex).await;
     let task = tasks::create(&db.conn, WorkTaskDraft { folder_id: folder, title:"triage".into(),
@@ -549,4 +552,129 @@ async fn reserved_migration_round_trip_preserves_other_modules() {
         .await
         .unwrap()
         .is_some());
+}
+
+#[tokio::test]
+async fn evidence_requires_actual_bytes_explicit_session_and_build_provenance() {
+    let (db, draft, _) = seeded().await;
+    for case in ["empty", "uri", "session", "marketing", "private", "non_log"] {
+        let mut a = EvidenceAttachment {
+            source_ref: draft.source_ref.clone(),
+            source_revision: draft.source_revision.clone(),
+            field: EvidenceField::Log,
+            value: "audio stopped".into(),
+            content: b"audio stopped".to_vec(),
+            captured_at: None,
+            session_ulid: None,
+            provenance: EvidenceProvenance::LocalDiagnostic,
+            expires_at: None,
+        };
+        match case {
+            "empty" => a.content.clear(),
+            "uri" => {
+                a.value = "https://private.invalid/log".into();
+                a.content = a.value.as_bytes().to_vec();
+            }
+            "session" => a.provenance = EvidenceProvenance::SessionDiagnostic,
+            "marketing" => {
+                a.field = EvidenceField::Build;
+                a.provenance = EvidenceProvenance::HumanReport;
+                a.value = "1.2.3".into();
+                a.content = a.value.as_bytes().to_vec();
+            }
+            "private" => a.content = b"audio stopped Bearer PRIVATE".to_vec(),
+            _ => a.provenance = EvidenceProvenance::HumanReport,
+        }
+        assert_eq!(
+            attach_evidence(&db.conn, a, "human-1").await.unwrap_err(),
+            IntakeError::InvalidEvidence,
+            "{case}"
+        );
+    }
+}
+
+#[tokio::test]
+async fn reservation_survives_database_reopen_without_capability_replay() {
+    // Test output belongs to this worktree's target directory.
+    let dir = tempfile::tempdir_in("target").unwrap();
+    let (db, draft, _) =
+        seeded_with(crate::db::test_helpers::fresh_disk_db(dir.path()).await).await;
+    let p = prepare(&db.conn, draft).await.unwrap();
+    let auth = authorized(&db.conn, &p).await;
+    let proposal_id = auth.proposal_id();
+    let exact = prepared(&auth.into_payload()).unwrap();
+    let id = store::reserve(&db.conn, proposal_id, &exact).await.unwrap();
+    db.conn.close().await.unwrap(); // Simulate process loss after reservation.
+    let reopened = sea_orm::Database::connect(format!(
+        "sqlite:{}?mode=rw",
+        dir.path().join("source.db").display()
+    ))
+    .await
+    .unwrap();
+    let receipt = filing_status(&reopened, &p.draft.source_ref, p.repository_id)
+        .await
+        .unwrap()
+        .unwrap();
+    assert_eq!(receipt.attempt_id, id);
+    assert_eq!(receipt.state, FilingState::Unknown);
+    assert_eq!(
+        store::reserve(&reopened, proposal_id, &p)
+            .await
+            .unwrap_err(),
+        IntakeError::Conflict
+    );
+    reopened.close().await.unwrap();
+}
+
+#[tokio::test]
+async fn missing_label_and_policy_change_after_approval_do_not_send() {
+    let (db, mut draft, _) = seeded().await;
+    draft.labels = vec!["not-an-existing-label".into()];
+    let p = prepare(&db.conn, draft).await.unwrap();
+    let fixture = Fixture::new(Mode::Success).await;
+    let auth = authorized(&db.conn, &p).await;
+    assert_eq!(
+        dispatch(&db.conn, &fixture.client, auth).await.unwrap_err(),
+        IntakeError::InvalidPayload
+    );
+    assert_eq!(fixture.observed.lock().unwrap().issue_posts, 0);
+    let mut draft = p.draft.clone();
+    draft.labels.clear();
+    let p = prepare(&db.conn, draft).await.unwrap();
+    let auth = authorized(&db.conn, &p).await;
+    db.conn.execute(store::sql("INSERT INTO ops_agent_rule(agent_id,domain,behavior) VALUES('intake-agent','github','deny')",vec![])).await.unwrap();
+    assert_eq!(
+        dispatch(&db.conn, &fixture.client, auth).await.unwrap_err(),
+        IntakeError::AccessDenied
+    );
+    assert_eq!(fixture.observed.lock().unwrap().issue_posts, 0);
+}
+
+#[tokio::test]
+async fn authentication_failures_and_durable_rate_deadline_are_safe() {
+    for mode in [Mode::TokenDenied, Mode::WriteDenied, Mode::RateLimit] {
+        let (db, draft, _) = seeded().await;
+        let p = prepare(&db.conn, draft).await.unwrap();
+        let fixture = Fixture::new(mode).await;
+        let auth = authorized(&db.conn, &p).await;
+        let result = dispatch(&db.conn, &fixture.client, auth).await;
+        if mode == Mode::TokenDenied {
+            assert_eq!(result.unwrap_err(), IntakeError::AccessDenied);
+            assert_eq!(fixture.observed.lock().unwrap().issue_posts, 0);
+        } else {
+            let receipt = result.unwrap();
+            assert_eq!(receipt.state, FilingState::Failed);
+            assert_eq!(fixture.observed.lock().unwrap().issue_posts, 1);
+            if mode == Mode::RateLimit {
+                assert!(receipt.retry_after.unwrap() > Utc::now().timestamp());
+                let fresh = Fixture::new(Mode::Success).await;
+                let auth = authorized(&db.conn, &p).await;
+                assert_eq!(
+                    dispatch(&db.conn, &fresh.client, auth).await.unwrap_err(),
+                    IntakeError::UpstreamUnavailable
+                );
+                assert!(fresh.observed.lock().unwrap().requests.is_empty());
+            }
+        }
+    }
 }

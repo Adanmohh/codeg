@@ -24,6 +24,9 @@ pub(crate) enum Mode {
     BadExpiry,
     BroadPermission,
     WrongRepo,
+    TokenDenied,
+    WriteDenied,
+    RateLimit,
 }
 pub(crate) struct Observed {
     pub token_requests: usize,
@@ -78,7 +81,7 @@ impl Fixture {
                         assert_eq!(body["permissions"], json!({"issues":"write","metadata":"read"}));
                         assert_eq!(body["repository_ids"].as_array().unwrap().len(), 1);
                         let repo = body["repository_ids"][0].as_i64().unwrap();
-                        (201, json!({"token":format!("synthetic-opaque-installation-token-{}", s.token_requests),
+                        (if mode == Mode::TokenDenied {403} else {201}, json!({"token":format!("synthetic-opaque-installation-token-{}", s.token_requests),
                             "expires_at":if mode == Mode::BadExpiry { "bad".into() } else { (Utc::now() + chrono::Duration::hours(1)).to_rfc3339() },
                             "permissions":if mode == Mode::BroadPermission { json!({"issues":"write","metadata":"read","contents":"write"}) } else { body["permissions"].clone() },
                             "repositories":[{"id":if mode == Mode::WrongRepo { repo + 1 } else { repo },"full_name":"owner/repo"}]}))
@@ -91,7 +94,7 @@ impl Fixture {
                         s.bodies.push(body.clone());
                         let issue = json!({"id":1000 + s.issue_posts,"number":s.issue_posts,"html_url":format!("https://github.com/owner/repo/issues/{}",s.issue_posts),
                             "title":body["title"],"body":body["body"],"labels":if mode == Mode::LabelsDropped { json!([]) } else { body["labels"].clone() }});
-                        if mode != Mode::Reject { s.issues.push(issue.clone()); }
+                        if !matches!(mode, Mode::Reject | Mode::WriteDenied | Mode::RateLimit) { s.issues.push(issue.clone()); }
                         match mode { Mode::Reject => (422,json!({"message":"PRIVATE UPSTREAM DETAIL"})),
                             Mode::ServerError => (503,json!({"message":"PRIVATE"})),
                             Mode::Malformed => (201,json!({"message":"PRIVATE"})),
@@ -107,7 +110,12 @@ impl Fixture {
                     // fixture-only client deadline. GET reconciliation still sees it.
                     tokio::time::sleep(Duration::from_secs(2)).await;
                 }
-                (axum::http::StatusCode::from_u16(status).unwrap(), axum::Json(result)).into_response()
+                let status = if method == Method::POST && uri.path().ends_with("/issues") {
+                    match mode { Mode::WriteDenied => 401, Mode::RateLimit => 429, _ => status }
+                } else { status };
+                let mut response = (axum::http::StatusCode::from_u16(status).unwrap(), axum::Json(result)).into_response();
+                if status == 429 { response.headers_mut().insert("retry-after", "120".parse().unwrap()); }
+                response
             }
         });
         let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await.unwrap();
