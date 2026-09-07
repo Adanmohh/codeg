@@ -20,3 +20,16 @@ and no fallback remain required. Agent draft operations must use accepted
 Ops validation and transactional live-run checks; trusted intake credentials
 must remain inside the intake host process. Final Rust, integration, provenance
 and browser/default-agent review remain pending.
+
+## Policy identity alignment
+
+Early review found that the in-progress `agent_type:connection_id` identity
+would miss a standing rule after every new launch UUID. The worker replaced
+it with the trusted parent's existing `AgentType::as_wire()` key (`pi`, not
+display label `Pi`), preserving separate task/run/ancestry liveness checks.
+Root independently read IntroMail's `identity.py` at the founding immutable
+revision through gh api and Codeg's existing `as_wire` implementation: the
+borrowed policy identity is persistent, not newly minted per request. No gate
+default or permission-order change is needed. Final bridge integration must
+prove a persisted `pi` deny applies across two launch UUIDs; this regression
+is still pending while the accepted Ops helper integration is unavailable.
