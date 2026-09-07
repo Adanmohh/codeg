@@ -139,7 +139,7 @@ pub async fn record_event<C: ConnectionTrait>(
     Ok(())
 }
 
-async fn status_changed_event<C: ConnectionTrait>(
+pub(super) async fn status_changed_event<C: ConnectionTrait>(
     conn: &C,
     task_id: i32,
     actor: &str,
@@ -900,6 +900,13 @@ async fn claim_inner(
         }
     }
     let run_seq = claimed.run_seq;
+    // Old connections cannot acquire waits for this generation. Purge their
+    // persisted keys while the fresh-run CAS still owns SQLite's writer.
+    crate::db::entities::ops_acp_wait::Entity::delete_many()
+        .filter(crate::db::entities::ops_acp_wait::Column::TaskId.eq(id))
+        .filter(crate::db::entities::ops_acp_wait::Column::RunSeq.ne(run_seq))
+        .exec(&txn)
+        .await?;
     // The instruction lands before the status change, so a newest-first scan
     // that stops at the first user action never has to reason about ordering
     // within this transaction.
@@ -1504,6 +1511,7 @@ pub async fn cancel_running_generation(
         None,
     )
     .await
+    .map(|generation| generation.is_some())
 }
 
 /// running/awaiting_input → review for the given generation. Captures the
@@ -1648,52 +1656,23 @@ pub async fn settle_review(
     Ok(true)
 }
 
-/// running ⇄ awaiting_input for the given generation.
+/// Aggregate ACP wait compatibility entry point. The engine uses per-request
+/// ownership; even this aggregate owner cannot release a pending Ops proposal.
 pub async fn flip_awaiting(
     conn: &DatabaseConnection,
     id: i32,
     run_seq: i32,
     awaiting: bool,
 ) -> Result<bool, DbError> {
-    let (from, to) = if awaiting {
-        (WorkTaskStatus::Running, WorkTaskStatus::AwaitingInput)
-    } else {
-        (WorkTaskStatus::AwaitingInput, WorkTaskStatus::Running)
-    };
-    let now = Utc::now();
-    let txn = conn.begin().await?;
-    let res = work_task::Entity::update_many()
-        .col_expr(work_task::Column::Status, Expr::value(status_str(to)))
-        .col_expr(work_task::Column::UpdatedAt, Expr::value(now))
-        .filter(work_task::Column::Id.eq(id))
-        .filter(work_task::Column::Status.eq(from))
-        .filter(work_task::Column::RunSeq.eq(run_seq))
-        .filter(work_task::Column::DeletedAt.is_null())
-        .exec(&txn)
-        .await?;
-    if res.rows_affected != 1 {
-        txn.rollback().await?;
-        return Ok(false);
-    }
-    // An Ops proposal owns this wait until its audited approval/denial CAS.
-    // A generic ACP resume must not clear that wait and later let a stale
-    // approval attach to an unrelated awaiting_input cycle in the same run.
-    if !awaiting {
-        use crate::db::entities::ops_proposal;
-        let pending = ops_proposal::Entity::find()
-            .filter(ops_proposal::Column::TaskId.eq(id))
-            .filter(ops_proposal::Column::RunSeq.eq(run_seq))
-            .filter(ops_proposal::Column::Status.eq("pending"))
-            .one(&txn)
-            .await?;
-        if pending.is_some() {
-            txn.rollback().await?;
-            return Ok(false);
-        }
-    }
-    status_changed_event(&txn, id, "engine", Some(from), to, None).await?;
-    txn.commit().await?;
-    Ok(true)
+    super::work_task_wait_service::track_request(
+        conn,
+        id,
+        run_seq,
+        "aggregate-acp",
+        "aggregate",
+        awaiting,
+    )
+    .await
 }
 
 /// review → merging, persisting the merge intent in the same transaction (the
@@ -2351,6 +2330,18 @@ pub async fn cancel(
     id: i32,
     reason: Option<&str>,
 ) -> Result<bool, DbError> {
+    cancel_with_generation(conn, id, reason)
+        .await
+        .map(|generation| generation.is_some())
+}
+
+/// Return the generation captured by the winning cancellation transaction.
+/// Teardown must not reread a later generation and clear that run's requests.
+pub async fn cancel_with_generation(
+    conn: &DatabaseConnection,
+    id: i32,
+    reason: Option<&str>,
+) -> Result<Option<i32>, DbError> {
     cancel_inner(
         conn,
         id,
@@ -2381,7 +2372,7 @@ async fn cancel_inner(
     run_seq: Option<i32>,
     actor: &str,
     reason: Option<&str>,
-) -> Result<bool, DbError> {
+) -> Result<Option<i32>, DbError> {
     let now = Utc::now();
     let txn = conn.begin().await?;
     let mut update = work_task::Entity::update_many()
@@ -2413,15 +2404,26 @@ async fn cancel_inner(
     let res = update.exec(&txn).await?;
     if res.rows_affected != 1 {
         txn.rollback().await?;
-        return Ok(false);
+        return Ok(None);
     }
+    let canceled_seq = work_task::Entity::find_by_id(id)
+        .one(&txn)
+        .await?
+        .ok_or_else(|| DbError::NotFound(format!("work task {id}")))?
+        .run_seq;
     let extra = reason
         .map(str::trim)
         .filter(|r| !r.is_empty())
         .map(|r| serde_json::json!({ "reason": r }));
+    // Same transaction as cancellation: teardown may arrive later or have no
+    // indexed connection, but canceled requests must not survive as wait owners.
+    crate::db::entities::ops_acp_wait::Entity::delete_many()
+        .filter(crate::db::entities::ops_acp_wait::Column::TaskId.eq(id))
+        .exec(&txn)
+        .await?;
     status_changed_event(&txn, id, actor, None, WorkTaskStatus::Canceled, extra).await?;
     txn.commit().await?;
-    Ok(true)
+    Ok(Some(canceled_seq))
 }
 
 /// Flag / clear the worktree-cleanup outcome. Never touches `status` — a done

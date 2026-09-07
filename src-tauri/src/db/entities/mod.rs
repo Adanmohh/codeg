@@ -28,3 +28,4 @@ pub mod ops_proposal;
 pub mod ops_audit_log;
 pub mod ops_agent_rule;
 pub mod ops_agent_scope;
+pub mod ops_acp_wait;

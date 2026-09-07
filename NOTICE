@@ -4,6 +4,9 @@ commit 6f6bd648b206412644842a98d9ffeebf57292bed.
 Licensed under Apache-2.0; the original license remains in LICENSE.
 The approvals task CAS glue adapts src-tauri/src/db/service/work_task_service.rs
 and the existing SeaORM migration/entity patterns from that commit.
+ACP/Ops wait coordination also adapts src-tauri/src/work_task/engine.rs
+(track_request, retirement, delegation cleanup and cancellation), moving the
+request set into ops_acp_wait through db/service/work_task_wait_service.rs.
 
 Ops Desk approvals port
 Source: IntroInnovation/intromail (owner-authorized private source)

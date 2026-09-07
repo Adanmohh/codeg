@@ -340,14 +340,6 @@ pub async fn approve(
         txn.commit().await?;
         return Err(DbError::Validation("approval blocked by policy".into()));
     }
-    task_cas(
-        &txn,
-        task_id,
-        run_seq,
-        WorkTaskStatus::AwaitingInput,
-        WorkTaskStatus::Running,
-    )
-    .await?;
     resolve(
         &txn,
         &row,
@@ -358,6 +350,7 @@ pub async fn approve(
         Some(&gate),
     )
     .await?;
+    super::work_task_wait_service::reconcile(&txn, task_id, run_seq).await?;
     txn.commit().await?;
     Ok(AuthorizedAction {
         proposal_id,
@@ -380,11 +373,12 @@ pub async fn deny(
         task_id,
         run_seq,
         WorkTaskStatus::AwaitingInput,
-        WorkTaskStatus::Running,
+        WorkTaskStatus::AwaitingInput,
     )
     .await?;
     let row = pending(&txn, task_id, run_seq, proposal_id, actor, action).await?;
     resolve(&txn, &row, actor, action, "denied", None, None).await?;
+    super::work_task_wait_service::reconcile(&txn, task_id, run_seq).await?;
     txn.commit().await?;
     Ok(())
 }

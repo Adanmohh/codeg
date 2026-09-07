@@ -7,7 +7,64 @@ use crate::db::{
 };
 use crate::models::{agent::AgentType, WorkTaskDraft};
 use sea_orm::{ConnectOptions, Database, QueryOrder};
+use sea_orm_migration::{MigrationName, MigrationTrait, MigratorTrait, SchemaManager};
 use sha2::{Digest, Sha256};
+
+const APPROVALS_MIGRATION: &str = "m20260907_000001_ops_approvals";
+
+// A real later migration exposes accidental last-entry rollback even before
+// tickets is merged. The full application list includes tickets once integrated.
+struct AfterApprovals;
+impl MigrationName for AfterApprovals {
+    fn name(&self) -> &str {
+        "m20991231_000001_approvals_test_follower"
+    }
+}
+#[async_trait::async_trait]
+impl MigrationTrait for AfterApprovals {
+    async fn up(&self, manager: &SchemaManager) -> Result<(), sea_orm::DbErr> {
+        manager.get_connection().execute_unprepared(
+            "CREATE TABLE approvals_test_follower (marker TEXT NOT NULL); INSERT INTO approvals_test_follower VALUES ('preserved');"
+        ).await?;
+        Ok(())
+    }
+    async fn down(&self, manager: &SchemaManager) -> Result<(), sea_orm::DbErr> {
+        manager
+            .get_connection()
+            .execute_unprepared("DROP TABLE approvals_test_follower")
+            .await?;
+        Ok(())
+    }
+}
+struct WithFollower;
+#[async_trait::async_trait]
+impl MigratorTrait for WithFollower {
+    fn migrations() -> Vec<Box<dyn MigrationTrait>> {
+        let mut migrations = crate::db::migration::Migrator::migrations();
+        migrations.push(Box::new(AfterApprovals));
+        migrations
+    }
+}
+async fn target_migration(conn: &DatabaseConnection) -> Box<dyn MigrationTrait> {
+    WithFollower::up(conn, None).await.unwrap();
+    let migrations = WithFollower::migrations();
+    assert_ne!(migrations.last().unwrap().name(), APPROVALS_MIGRATION);
+    migrations
+        .into_iter()
+        .find(|migration| migration.name() == APPROVALS_MIGRATION)
+        .unwrap()
+}
+async fn assert_follower_survives(conn: &DatabaseConnection) {
+    let result = conn
+        .query_one(sea_orm::Statement::from_string(
+            conn.get_database_backend(),
+            "SELECT marker FROM approvals_test_follower",
+        ))
+        .await
+        .unwrap()
+        .unwrap();
+    assert_eq!(result.try_get::<String>("", "marker").unwrap(), "preserved");
+}
 
 struct DraftAction {
     decision: Decision,
@@ -904,9 +961,9 @@ async fn mismatched_identity_corrupt_payload_and_credential_edits_fail_closed() 
 
 #[tokio::test]
 async fn migration_enforces_scope_uniqueness_and_roundtrips_without_touching_tasks() {
-    use crate::db::migration::Migrator;
-    use sea_orm_migration::MigratorTrait;
     let db = fresh_in_memory_db().await;
+    let migration = target_migration(&db.conn).await;
+    let manager = SchemaManager::new(&db.conn);
     let (task, _) = start(&db).await;
     let before = tasks::get(&db.conn, task).await.unwrap();
     add_scope(&db.conn, "read", None).await;
@@ -923,8 +980,10 @@ async fn migration_enforces_scope_uniqueness_and_roundtrips_without_touching_tas
         .execute_unprepared("UPDATE ops_agent_scope SET mode = 'bypass'")
         .await
         .is_err());
-    Migrator::down(&db.conn, Some(1)).await.unwrap();
-    Migrator::up(&db.conn, None).await.unwrap();
+    migration.down(&manager).await.unwrap();
+    assert_follower_survives(&db.conn).await;
+    migration.up(&manager).await.unwrap();
+    assert_follower_survives(&db.conn).await;
     assert!(scope::Entity::find()
         .all(&db.conn)
         .await
@@ -964,24 +1023,27 @@ async fn auto_audit_failure_cannot_release_a_payload() {
 
 #[tokio::test]
 async fn migration_failure_does_not_leave_half_an_approval_store() {
-    use crate::db::migration::Migrator;
-    use sea_orm_migration::MigratorTrait;
     let db = fresh_in_memory_db().await;
-    Migrator::down(&db.conn, Some(1)).await.unwrap();
+    let migration = target_migration(&db.conn).await;
+    let manager = SchemaManager::new(&db.conn);
+    migration.down(&manager).await.unwrap();
     // Force a collision partway through the new migration. Earlier CREATEs
     // must roll back, otherwise a retry can never finish cleanly.
     db.conn
         .execute_unprepared("CREATE TABLE ops_agent_rule (id INTEGER PRIMARY KEY)")
         .await
         .unwrap();
-    assert!(Migrator::up(&db.conn, None).await.is_err());
+    assert!(migration.up(&manager).await.is_err());
     assert!(proposal::Entity::find().all(&db.conn).await.is_err());
     assert!(audit::Entity::find().all(&db.conn).await.is_err());
+    assert!(!manager.has_table("ops_acp_wait").await.unwrap());
+    assert_follower_survives(&db.conn).await;
     db.conn
         .execute_unprepared("DROP TABLE ops_agent_rule")
         .await
         .unwrap();
-    Migrator::up(&db.conn, None).await.unwrap();
+    migration.up(&manager).await.unwrap();
+    assert_follower_survives(&db.conn).await;
     assert!(proposal::Entity::find()
         .all(&db.conn)
         .await
@@ -1019,4 +1081,126 @@ async fn generic_engine_resume_cannot_clear_a_proposal_owned_wait() {
     assert!(approve_as(&db.conn, &row, "human", payload("replay"))
         .await
         .is_err());
+}
+
+#[tokio::test]
+async fn concurrent_acp_arrival_on_a_separate_connection_survives_both_ops_decisions() {
+    use crate::db::service::work_task_wait_service as waits;
+    for approve in [true, false] {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("waits.db");
+        let db = disk_db(&path).await;
+        let peer = disk_db(&path).await;
+        let (task, seq) = start(&db).await;
+        let row = draft(&db, task, seq).await;
+        let decision = async {
+            if approve {
+                approve_as(&db.conn, &row, "human", payload("edited"))
+                    .await
+                    .map(|_| ())
+            } else {
+                deny(
+                    &db.conn,
+                    task,
+                    seq,
+                    row.id,
+                    "human",
+                    &DraftAction::default(),
+                )
+                .await
+            }
+        };
+        let (resolved, arrived) = tokio::join!(
+            decision,
+            waits::track_request(&peer.conn, task, seq, "connection", "p:request", true),
+        );
+        resolved.unwrap();
+        arrived.unwrap();
+        assert_eq!(
+            tasks::get(&db.conn, task).await.unwrap().status,
+            WorkTaskStatus::AwaitingInput
+        );
+        assert_eq!(
+            stored(&db.conn, row.id).await.status,
+            if approve { "approved" } else { "denied" }
+        );
+        assert!(
+            !tasks::flip_awaiting(&db.conn, task, seq, false)
+                .await
+                .unwrap(),
+            "an unrelated resume cannot release the request"
+        );
+        assert!(
+            waits::track_request(&peer.conn, task, seq, "connection", "p:request", false)
+                .await
+                .unwrap()
+        );
+        assert_eq!(
+            tasks::get(&db.conn, task).await.unwrap().status,
+            WorkTaskStatus::Running
+        );
+    }
+}
+
+#[tokio::test]
+async fn acp_wait_ownership_and_status_event_roll_back_together() {
+    use crate::db::{entities::ops_acp_wait, service::work_task_wait_service as waits};
+    let db = fresh_in_memory_db().await;
+    let (task, seq) = start(&db).await;
+    db.conn.execute_unprepared("CREATE TRIGGER fail_wait_event BEFORE INSERT ON work_task_event WHEN NEW.kind = 'status_changed' BEGIN SELECT RAISE(ABORT, 'test event failure'); END").await.unwrap();
+    assert!(
+        waits::track_request(&db.conn, task, seq, "connection", "p:request", true)
+            .await
+            .is_err()
+    );
+    assert_eq!(
+        tasks::get(&db.conn, task).await.unwrap().status,
+        WorkTaskStatus::Running
+    );
+    assert!(ops_acp_wait::Entity::find()
+        .all(&db.conn)
+        .await
+        .unwrap()
+        .is_empty());
+    db.conn
+        .execute_unprepared("DROP TRIGGER fail_wait_event")
+        .await
+        .unwrap();
+    let row = draft(&db, task, seq).await;
+    waits::track_request(&db.conn, task, seq, "connection", "p:request", true)
+        .await
+        .unwrap();
+    db.conn.execute_unprepared("CREATE TRIGGER fail_overlap_audit BEFORE INSERT ON ops_audit_log BEGIN SELECT RAISE(ABORT, 'test audit failure'); END").await.unwrap();
+    assert!(approve_as(&db.conn, &row, "human", payload("edited"))
+        .await
+        .is_err());
+    assert_eq!(stored(&db.conn, row.id).await, row);
+    assert_eq!(
+        ops_acp_wait::Entity::find()
+            .all(&db.conn)
+            .await
+            .unwrap()
+            .len(),
+        1
+    );
+    assert!(
+        !waits::track_request(&db.conn, task, seq, "connection", "p:request", false)
+            .await
+            .unwrap()
+    );
+    assert_eq!(
+        tasks::get(&db.conn, task).await.unwrap().status,
+        WorkTaskStatus::AwaitingInput
+    );
+    db.conn
+        .execute_unprepared("DROP TRIGGER fail_overlap_audit")
+        .await
+        .unwrap();
+    approve_as(&db.conn, &row, "human", payload("edited"))
+        .await
+        .unwrap();
+    assert_eq!(
+        tasks::get(&db.conn, task).await.unwrap().status,
+        WorkTaskStatus::Running
+    );
 }
