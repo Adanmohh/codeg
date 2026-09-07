@@ -114,3 +114,9 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - PR #6 accepted at `80b0cb0e6fe26695801b1d661054f1c8155cd99c`, merged as `2fecb1cfdce57cba451520ce192bc404fe081051`. Reply-To review finding fixed. Orchestrator independently reran all 18 transport tests successfully and reviewed source mapping, validation, scope/receipt boundaries and dependency changes. [Review](reports/review-email-transport.md), [implementation report](reports/email-transport.md).
 - Worker final gates pass: 18 transport and 18 ticket tests in each runtime, desktop/server checks, both Clippy gates and frontend typecheck. Only mail-parser 0.11.1 and hashify 0.2.9 are added; existing dependency versions and frontend lock remain unchanged.
 - UI worker is authorized to wire the merged client through durable attempts/receipts and existing credential storage. No direct send endpoint or mutable-draft bypass. The now-free email worker is reassigned to pi integration next.
+
+## Pi bridge dispatched; email UI integration continues
+
+- `tickets` worker now owns `feat/step2-pi-desk`, same worktree/pane `wR:p4`, tab Pi · agent bridge. Deliverable `reports/pi-desk.md`: pinned pi extension/adapter, per-launch scoped proposal/read bridge and default-agent wiring. No operator token in agent tools, no silent model downgrade.
+- `approvals` worker continues `feat/step2-ops-ui`, pane `wR:p3`, tab Email · approvals UI, now authorized to connect the merged Resend client to per-inbox credentials/pulls and durable approved-send attempts/receipts. It owns reserved 000004 delivery storage as transport left it unused.
+- `rebrand` worker continues GitHub/Hafidh implementation on `feat/step2-intake-github`, pane `wR:p2`. All three remain GPT-6 Astra max with docs-first, gh api research, isolated branches and report deliverables.
