@@ -80,4 +80,30 @@ checks, focused Clippy and TypeScript check. No live credentials or external
 sends will be used. Missing installation, repository IDs and intake credential
 remain real configuration gaps, not blockers to independent fixture validation.
 
-Commit / draft PR: initial interface checkpoint pending publication.
+Initial interface checkpoint: `39d00445`, pushed. Draft PR:
+https://github.com/Adanmohh/codeg/pull/5 (main base, no merge).
+
+Python checkpoint: isolated Python 3.13.14 environment; exact `mcp==2.0.1`,
+`httpx==0.28.1`, `pydantic==2.12.5` and all resolved transitive/test pins recorded
+in `integrations/hafidh-intake/requirements.lock`. No existing env changed.
+Installed SDK client stdio, MCPServer tool/call handler, HTTPX streaming and
+Pydantic validation primitives read before implementation. A guessed SDK
+`client/transports/stdio.py` lookup failed; actual installed `client/stdio.py`
+was discovered and read. SDK-generated nested validation echoed bad input;
+the public `call_tool` boundary now emits a fixed sanitized error instead.
+
+Commands/exits: initial pytest collection RED (2, module absent); unit tests
+10 passed (0); real stdio privacy test RED (1, input echo); fixed suite 11 passed
+(0), including actual SDK stdio discovery/list/read against synthetic HTTP.
+GET-only auth failures, unavailable in-app, strict source shapes, filtered
+counts, duplicate rows, cursor binding and stale-cache access covered. HTTPX
+query logging suppressed. Free-text redaction remains bounded, human outward
+review mandatory.
+
+Rust signing choice: established `jsonwebtoken = "=9.3.1"`, tag commit
+`87bbe49004de17ac1c64bf25d7751c0e43cff5dc`; local registry had none before
+selection. Read README, Cargo.toml and `src/encoding.rs` via immutable `gh api`;
+retained dependency MIT license. Reqwest 0.12.28 source shows default protocol
+retries, so the new client must use `reqwest::retry::never()` and no redirects.
+Bootstrap server `cargo check --no-default-features --bin codeg-server` passed
+(0) while resolving the new lock entries; focused implementation checks remain.
