@@ -78,7 +78,7 @@ def test_actual_host_process_reads_and_revalidates_without_private_output():
         ref = {"product_id": "hafidh", "source": "testflight", "ulid": ULID, "external_id": "asc-1"}
         commands = b"\n".join([request("list", {"source": "testflight"}), request("get", ref, 2)]) + b"\n"
         try:
-            process = subprocess.Popen([sys.executable, "-m", "hafidh_intake.host"],
+            process = subprocess.Popen([sys.executable, "-I", "-m", "hafidh_intake.host"],
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 env={"HAFIDH_INTAKE_ORIGIN": f"http://127.0.0.1:{http.server_port}",
                      "HAFIDH_INTAKE_PRODUCT_ID": "hafidh", "HAFIDH_INTAKE_BEARER": "synthetic-host-only"})
@@ -99,7 +99,7 @@ def test_actual_host_process_reads_and_revalidates_without_private_output():
 
 
 def test_actual_host_process_missing_config_is_explicit():
-    process = subprocess.Popen([sys.executable, "-m", "hafidh_intake.host"],
+    process = subprocess.Popen([sys.executable, "-I", "-m", "hafidh_intake.host"],
         stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env={})
     stdout, stderr = process.communicate(request("status", {}) + b"\n", timeout=10)
     assert process.returncode == 0 and stderr == b""

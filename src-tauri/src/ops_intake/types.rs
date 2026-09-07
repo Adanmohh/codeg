@@ -304,6 +304,12 @@ pub struct PreparedIssue {
     pub outgoing: OutgoingIssue,
 }
 impl PreparedIssue {
+    /// Host links must remain bound to the exact configuration used for filing.
+    pub(crate) fn matches_binding(&self, binding: &RepositoryBinding) -> Result<bool, IntakeError> {
+        Ok(self.repository_id == binding.repository_id
+            && self.repository == binding.full_name
+            && self.binding_digest == json_digest(binding)?)
+    }
     pub fn payload(&self) -> Result<serde_json::Value, IntakeError> {
         serde_json::to_value(self).map_err(|_| IntakeError::InvalidPayload)
     }

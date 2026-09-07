@@ -10,7 +10,7 @@ use crate::{
     ops::Operator,
     ops_intake::{self, EvidenceSet, GithubIssueAction, IssueDraftV1, PreparedIssue},
 };
-use sea_orm::{ConnectionTrait, DatabaseConnection};
+use sea_orm::{ConnectionTrait, DatabaseConnection, TransactionTrait};
 use serde_json::Value;
 
 fn gate_error(_: HostError) -> DbError {
@@ -45,7 +45,7 @@ impl HostIssueAction {
             return Err(gate_error(HostError::Conflict));
         }
         if let Some(connection) = &self.connection {
-            let found=ctx.db.query_one(sql("SELECT id FROM work_task WHERE id=? AND run_seq=? AND connection_id=? AND deleted_at IS NULL AND status='running'",vec![self.prepared.draft.task_id.into(),self.prepared.draft.run_seq.into(),connection.clone().into()])).await?;
+            let found=ctx.db.query_one(sql("SELECT id FROM work_task WHERE id=? AND run_seq=? AND connection_id=? AND deleted_at IS NULL AND status IN ('running','awaiting_input')",vec![self.prepared.draft.task_id.into(),self.prepared.draft.run_seq.into(),connection.clone().into()])).await?;
             if found.is_none() {
                 return Err(gate_error(HostError::TaskRequired));
             }
@@ -148,7 +148,11 @@ pub(super) async fn prepare_for(
             log: proof("log")?,
         },
     };
-    d.prepared = Some(ops_intake::prepare(db, issue).await?);
+    let prepared = ops_intake::prepare(db, issue).await?;
+    if d.prepared.as_ref() == Some(&prepared) {
+        return Ok(d);
+    }
+    d.prepared = Some(prepared);
     cas(db, &mut d, expected).await?;
     Ok(d)
 }
@@ -369,6 +373,33 @@ pub(super) async fn propose(
     };
     let _guard = runtime.guard(&source.product_id).await?;
     crate::ops::agent::context(db, ctx).await?;
+    let current = draft(db, &source).await?;
+    if current.revision != expected_revision {
+        return Err(HostError::Conflict);
+    }
+    // Core owns one pending proposal per run. A repeated bridge read returns
+    // that exact live review without revising its draft or acquiring another wait.
+    let txn = db.begin().await?;
+    if let Some(row) = txn.query_one(sql(
+        "SELECT id,payload_json FROM ops_proposal WHERE task_id=? AND run_seq=? AND agent_id=? AND action_name='github.create_issue' AND status='pending'",
+        vec![ctx.task_id.into(), ctx.run_seq.into(), ctx.agent_id.clone().into()],
+    )).await? {
+        let prepared: PreparedIssue = decode(&row.try_get::<String>("", "payload_json")?)?;
+        let action = HostIssueAction { account: ctx.account_id, source: source.clone(),
+            draft_id: current.id, revision: current.revision, prepared: prepared.clone(),
+            connection: Some(ctx.connection_id.clone()) };
+        action.resource(&prepared.payload()?, &ActionContext { db: &txn, agent: &ctx.agent_id, actor: None }).await?;
+        let id = row.try_get("", "id")?;
+        txn.commit().await?;
+        return Ok(super::agent::Proposed { status: "pending", proposal_id: Some(id), prepared });
+    }
+    // An unrelated ACP/proposal wait cannot be cleared or replaced by this tool.
+    // Reject before prepare's CAS so an existing human review stays unchanged.
+    if txn.query_one(sql("SELECT id FROM work_task WHERE id=? AND run_seq=? AND connection_id=? AND status='running' AND deleted_at IS NULL",
+        vec![ctx.task_id.into(),ctx.run_seq.into(),ctx.connection_id.clone().into()])).await?.is_none() {
+        return Err(HostError::TaskRequired);
+    }
+    txn.commit().await?;
     let d = prepare_for(
         db,
         ctx.account_id,

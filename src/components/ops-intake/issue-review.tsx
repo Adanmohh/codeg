@@ -2,6 +2,11 @@
 
 import { useOpsSessionState } from "@/components/ops/session"
 import { useOptionalWorkbenchRoute } from "@/contexts/workbench-route-context"
+import { useTasksView } from "@/contexts/tasks-view-context"
+import {
+  saveTasksBoardFilter,
+  saveTasksStatusFilter,
+} from "@/lib/tasks-board-filter-storage"
 import { intake } from "@/lib/ops-intake/api"
 import type {
   Detail,
@@ -33,6 +38,7 @@ export function IssueReview({
   replace: (detail: Detail) => void
 }) {
   const route = useOptionalWorkbenchRoute()
+  const tasksView = useTasksView()
   const d = detail.draft
   const [edit, setEdit] = useOpsSessionState(`intake:edit:${d.id}`, {
     revision: d.revision,
@@ -415,15 +421,29 @@ export function IssueReview({
               </p>
               {detail.fix_task_id ? (
                 <Notice>
-                  Linked fix task #{detail.fix_task_id}.{" "}
+                  Linked fix task #{detail.fix_task_id}. New fix plans are held
+                  in Canceled state. Review the task, then choose Requeue when
+                  you are ready to make it eligible for processing.{" "}
                   <Action
                     variant="outline"
-                    onClick={() => route?.setRoute("tasks")}
+                    disabled={busy}
+                    onClick={() =>
+                      run(async () => {
+                        await tasksView.refetch()
+                        saveTasksBoardFilter({
+                          showCanceled: true,
+                          showArchived: true,
+                        })
+                        saveTasksStatusFilter(null)
+                        tasksView.setViewMode("list")
+                        route?.setRoute("tasks")
+                      })
+                    }
                   >
                     Review in Tasks
                   </Action>
                 </Notice>
-              ) : (
+              ) : !detail.fix_task_conflict ? (
                 <div className="grid gap-3">
                   <Action
                     className="justify-self-start"
@@ -440,10 +460,17 @@ export function IssueReview({
                     fix plan for review. No agent starts automatically.
                   </p>
                 </div>
-              )}
+              ) : null}
             </>
           )}
         </Panel>
+      )}
+      {detail.fix_task_conflict && (
+        <Notice>
+          The saved fix link conflicts with the current project, repository or
+          filing receipt. No task is linked here. Restore the original binding
+          or inspect the existing task in Tasks before continuing.
+        </Notice>
       )}
       {detail.proposals.some((p) => p.status === "denied") && (
         <p className="text-muted-foreground text-sm" role="status">

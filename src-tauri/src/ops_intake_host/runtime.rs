@@ -37,6 +37,32 @@ pub struct HostRuntime {
     pub(super) github_fixture: Option<std::net::SocketAddr>,
 }
 impl HostRuntime {
+    #[cfg(test)]
+    pub(super) fn synthetic(address: Option<std::net::SocketAddr>) -> Arc<Self> {
+        #[derive(Default)]
+        struct MemorySecrets(Mutex<HashMap<String, String>>);
+        impl Secrets for MemorySecrets {
+            fn get(&self, reference: &str) -> Option<String> {
+                self.0.lock().unwrap().get(reference).cloned()
+            }
+            fn set(&self, reference: &str, value: &str) -> Result<(), HostError> {
+                self.0
+                    .lock()
+                    .unwrap()
+                    .insert(reference.into(), value.into());
+                Ok(())
+            }
+            fn delete(&self, reference: &str) -> Result<(), HostError> {
+                self.0.lock().unwrap().remove(reference);
+                Ok(())
+            }
+        }
+        Arc::new(Self {
+            secrets: Box::<MemorySecrets>::default(),
+            products: Mutex::default(),
+            github_fixture: address,
+        })
+    }
     pub fn production() -> Arc<Self> {
         static INSTANCE: OnceLock<Arc<HostRuntime>> = OnceLock::new();
         INSTANCE

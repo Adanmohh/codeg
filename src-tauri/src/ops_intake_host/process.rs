@@ -34,7 +34,8 @@ struct AdapterResult<T> {
 #[serde(deny_unknown_fields)]
 struct AdapterError {
     code: String,
-    message: String,
+    #[serde(rename = "message")]
+    _message: String,
 }
 
 pub(super) fn python() -> PathBuf {

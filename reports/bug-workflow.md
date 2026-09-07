@@ -2,6 +2,44 @@
 
 Implementation in progress. Draft PR #9:
 https://github.com/Adanmohh/codeg/pull/9 (main base, do not merge).
+Current integration checkpoint: accepted main `f7650379` (including PR7 merge
+`f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6`) is merged at
+`506dcc305bb11999eba495634088f0d394d34bc5`. Reuses the accepted Operator
+accessors, authenticated marker and memory-only Ops session boundary. Separate
+12-command desktop/HTTP registrations and Bug intake navigation are now wired.
+Earlier chronological checkpoints below describe their state at that time.
+
+Root review fixes are implemented and the integrated host suite passes **10/10**
+(`reports/bug-host-rust-regressions.log`, exit 0). Existing fix links and global
+source duplicates are checked against the authorized product/account, live bound
+folder, exact source metadata and a created receipt whose immutable payload
+matches the current repository/App/installation/folder binding. A changed binding
+returns `fix_task_conflict: true` with no task ID in detail; creation conflicts.
+Same-folder valid reuse remains supported. Tests cover foreign-folder duplicates,
+folder/repo/installation rebinding, moved source identity, receipt change and
+account change. New held tasks are atomically Canceled, excluded from pending
+scheduler folders, and successfully resume through existing manual requeue.
+Review in Tasks now refreshes its real task data, shows canceled/archived tasks
+and clears list status filters before navigating. Browser discovery remains to
+be checked; no browser success is claimed yet.
+
+Repeated pi proposals now return the matching pending review without revising
+its draft. The live connection check accepts running/awaiting_input, with exact
+task/run/connection and current evidence still required. Regression verifies an
+overlapping ACP wait survives denial, and cancellation, run change, connection
+change, deletion and revoked evidence reject reuse. An unrelated wait rejects
+before draft CAS; no approval engine was changed.
+
+Production-aligned Python subprocess tests now include `-I -m hafidh_intake.host`:
+**9/9**, exit 0 in `reports/bug-host-python-isolated.log`. Root independently
+reported the earlier 9-test host suite passed at 506dcc30. Integrated Rust first
+compile exposed a local Vec inference error (exit 101), fixed with explicit
+`Vec<String>`; subsequent compilation and focused tests pass. The synthetic
+loopback fixture now exercises the actual isolated Python bridge and real
+approved Rust client/receipt flow with a memory-only test credential store.
+No live credentials or upstream mutations are involved. Typecheck passed before
+the latest additive conflict projection; final full gates and Design/CLI remain.
+
 Initial contract commit `dc5ed96e` is pushed. Sole writer in
 `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`, branch
 `feat/step2-bug-workflow`, created after a clean check and fetch from accepted

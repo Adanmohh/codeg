@@ -42,12 +42,10 @@ pub async fn configure(
         return Err(HostError::InvalidInput);
     }
     let url = reqwest::Url::parse(&input.origin).map_err(|_| HostError::InvalidInput)?;
-    let mut scheme_ok = url.scheme() == "https";
-    #[cfg(any(test, feature = "test-utils"))]
-    {
-        scheme_ok |=
-            url.scheme() == "http" && matches!(url.host_str(), Some("127.0.0.1" | "[::1]"));
-    }
+    let scheme_ok = url.scheme() == "https"
+        || (cfg!(any(test, feature = "test-utils"))
+            && url.scheme() == "http"
+            && matches!(url.host_str(), Some("127.0.0.1" | "[::1]")));
     if !scheme_ok
         || url.host_str().is_none()
         || !url.username().is_empty()
@@ -105,7 +103,7 @@ pub async fn configure(
         bearer_ref: old.as_ref().and_then(|p| p.bearer_ref.clone()),
         key_ref: old.as_ref().and_then(|p| p.key_ref.clone()),
     };
-    let mut created = vec![];
+    let mut created: Vec<String> = vec![];
     for (value, slot) in [
         (input.intake_bearer, &mut p.bearer_ref),
         (input.app_private_key, &mut p.key_ref),
@@ -198,7 +196,7 @@ pub async fn refresh(
     // A canceled request cannot leave an earlier successful read looking fresh.
     invalidate(db, &source, HostError::SourceUnavailable).await?;
     guard.match_config(&p)?;
-    let read = async {
+    let read = tokio::time::timeout(std::time::Duration::from_secs(50), async {
         if guard.bridge.is_none() {
             let mut cursor = None;
             let mut found = false;
@@ -240,8 +238,9 @@ pub async fn refresh(
             return Err(HostError::SourceUnavailable);
         }
         Ok(r)
-    }
-    .await;
+    })
+    .await
+    .unwrap_or(Err(HostError::SourceUnavailable));
     let r = match read {
         Ok(r) => r,
         Err(e) => {
@@ -278,14 +277,12 @@ pub async fn detail(
     )
     .await?;
     let handoff_unknown=db.query_one(sql("SELECT proposal_id FROM ops_intake_host_handoff WHERE product_id=? AND ulid=? AND state='unknown' LIMIT 1",vec![source.product_id.clone().into(),source.ulid.clone().into()])).await?.is_some();
-    let fix_task_id = db
-        .query_one(sql(
-            "SELECT task_id FROM ops_intake_host_fix WHERE product_id=? AND ulid=?",
-            vec![source.product_id.into(), source.ulid.into()],
-        ))
-        .await?
-        .map(|r| r.try_get("", "task_id"))
-        .transpose()?;
+    let (fix_task_id, fix_task_conflict) =
+        match super::fix_task::linked(db, op.account_id(), &source).await {
+            Ok(id) => (id, false),
+            Err(HostError::Conflict) => (None, true),
+            Err(e) => return Err(e),
+        };
     Ok(Detail {
         snapshot,
         draft,
@@ -294,6 +291,7 @@ pub async fn detail(
         receipt,
         handoff_unknown,
         fix_task_id,
+        fix_task_conflict,
     })
 }
 
@@ -312,7 +310,10 @@ pub async fn save(
     if !ops_intake::reviewable_text(&input.title, 800)
         || !ops_intake::reviewable_text(&input.summary, 8000)
         || input.labels.len() > 20
-        || input.labels.iter().any(|s| s.len() > 50)
+        || input
+            .labels
+            .iter()
+            .any(|s| !ops_intake::reviewable_text(s, 50))
     {
         return Err(HostError::InvalidInput);
     }

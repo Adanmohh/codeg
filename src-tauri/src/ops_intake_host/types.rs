@@ -282,6 +282,7 @@ pub struct Detail {
     pub receipt: Option<FilingReceipt>,
     pub handoff_unknown: bool,
     pub fix_task_id: Option<i32>,
+    pub fix_task_conflict: bool,
 }
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]

@@ -15,6 +15,94 @@ use crate::{
 use sea_orm::{ConnectionTrait, DatabaseConnection, TransactionTrait};
 use serde_json::json;
 
+/// Shared by creation and the detail projection. A stale link is never exposed
+/// after a folder/repository/App rebind, task move, deletion or receipt change.
+pub(super) async fn linked<C: ConnectionTrait>(
+    db: &C,
+    account: i32,
+    source: &SourceInput,
+) -> Result<Option<i32>, HostError> {
+    let p = enabled(db, account, &source.product_id).await?;
+    let Some(row) = db
+        .query_one(sql(
+            "SELECT task_id FROM ops_intake_host_fix WHERE product_id=? AND ulid=?",
+            vec![source.product_id.clone().into(), source.ulid.clone().into()],
+        ))
+        .await?
+    else {
+        return Ok(None);
+    };
+    let (_, issue, _) = created(db, &p, source).await?;
+    let id = row.try_get("", "task_id")?;
+    validate_task(db, account, &p, id, &issue).await?;
+    Ok(Some(id))
+}
+
+async fn created<C: ConnectionTrait>(
+    db: &C,
+    p: &StoredProduct,
+    source: &SourceInput,
+) -> Result<(ops_intake::PreparedIssue, ops_intake::CreatedIssue, i64), HostError> {
+    let row = db.query_one(sql(
+        "SELECT id,state,payload_json,payload_digest,issue_json FROM ops_intake_filing WHERE source_key=? AND repository_id=? ORDER BY id DESC LIMIT 1",
+        vec![source_key(source).into(), p.binding.repository_id.into()],
+    )).await?.ok_or(HostError::Conflict)?;
+    if row.try_get::<String>("", "state")? != "created" {
+        return Err(HostError::Conflict);
+    }
+    let approved: ops_intake::PreparedIssue = decode(&row.try_get::<String>("", "payload_json")?)?;
+    if !approved.matches_binding(&p.binding)?
+        || approved.draft.source_ref.product_id != source.product_id
+        || approved.draft.source_ref.ulid != source.ulid
+        || approved.payload_digest()? != row.try_get::<String>("", "payload_digest")?
+    {
+        return Err(HostError::Conflict);
+    }
+    Ok((
+        approved,
+        decode(&row.try_get::<String>("", "issue_json")?)?,
+        row.try_get("", "id")?,
+    ))
+}
+
+async fn validate_task<C: ConnectionTrait>(
+    db: &C,
+    account: i32,
+    p: &StoredProduct,
+    id: i32,
+    issue: &ops_intake::CreatedIssue,
+) -> Result<(), HostError> {
+    let key = forge::source_key(
+        "github",
+        "github.com",
+        &p.binding.full_name,
+        "issue",
+        issue.number,
+    )
+    .map_err(|_| HostError::Conflict)?;
+    let row = db.query_one(sql(
+        "SELECT source_meta FROM work_task WHERE id=? AND folder_id=? AND source_kind='forge_issue' AND source_key=? AND deleted_at IS NULL",
+        vec![id.into(), p.binding.folder_id.into(), key.into()],
+    )).await?.ok_or(HostError::Conflict)?;
+    let meta: ForgeSourceMeta =
+        decode(&row.try_get::<String>("", "source_meta")?).map_err(|_| HostError::Conflict)?;
+    if meta.provider != ForgeProvider::GitHub
+        || meta.server_host != "github.com"
+        || !meta.owner_repo.eq_ignore_ascii_case(&p.binding.full_name)
+        || meta.number != issue.number
+        || meta.url != issue.html_url
+    {
+        return Err(HostError::Conflict);
+    }
+    // Tasks themselves are folder-scoped, not account rows. The live bound
+    // folder is the authorization boundary; reject another host product's link.
+    if db.query_one(sql(
+        "SELECT f.task_id FROM ops_intake_host_fix f JOIN ops_intake_host_product p ON p.product_id=f.product_id WHERE f.task_id=? AND (p.account_id<>? OR f.product_id<>?) LIMIT 1",
+        vec![id.into(), account.into(), p.binding.product_id.clone().into()],
+    )).await?.is_some() { return Err(HostError::Conflict); }
+    Ok(())
+}
+
 pub async fn create(
     db: &DatabaseConnection,
     op: &Operator,
@@ -23,16 +111,6 @@ pub async fn create(
 ) -> Result<Detail, HostError> {
     let _guard = runtime.guard(&source.product_id).await?;
     let p = enabled(db, op.account_id(), &source.product_id).await?;
-    let snap = snapshot(db, &source).await?;
-    let receipt = ops_intake::filing_status(
-        db,
-        &snap.record.source_ref.source(),
-        p.binding.repository_id,
-    )
-    .await?
-    .filter(|r| r.state == ops_intake::FilingState::Created)
-    .ok_or(HostError::Conflict)?;
-    let issue = receipt.issue.ok_or(HostError::Conflict)?;
     let txn = db.begin().await?;
     // Writer first, then verify live account/folder/binding and the actual receipt.
     txn.execute(sql(
@@ -44,26 +122,11 @@ pub async fn create(
     if current.binding != p.binding {
         return Err(HostError::Conflict);
     }
-    if txn.query_one(sql("SELECT id FROM ops_intake_filing WHERE id=? AND state='created' AND source_key=? AND repository_id=?",vec![receipt.attempt_id.into(),source_key(&source).into(),p.binding.repository_id.into()])).await?.is_none() {return Err(HostError::Conflict);}
-    if txn
-        .query_one(sql(
-            "SELECT task_id FROM ops_intake_host_fix WHERE product_id=? AND ulid=?",
-            vec![source.product_id.clone().into(), source.ulid.clone().into()],
-        ))
-        .await?
-        .is_some()
-    {
+    let (approved, issue, attempt_id) = created(&txn, &current, &source).await?;
+    if linked(&txn, op.account_id(), &source).await?.is_some() {
         txn.rollback().await?;
         return super::operator::detail(db, op, source).await;
     }
-    let row = txn
-        .query_one(sql(
-            "SELECT payload_json FROM ops_intake_filing WHERE id=?",
-            vec![receipt.attempt_id.into()],
-        ))
-        .await?
-        .ok_or(HostError::Conflict)?;
-    let approved: ops_intake::PreparedIssue = decode(&row.try_get::<String>("", "payload_json")?)?;
     let key = forge::source_key(
         "github",
         "github.com",
@@ -74,6 +137,7 @@ pub async fn create(
     .map_err(|_| HostError::InvalidInput)?;
     let existing = tasks::other_active_with_same_source(&txn, 0, &key).await?;
     let task_id = if let Some(existing) = existing {
+        validate_task(&txn, op.account_id(), &current, existing.id, &issue).await?;
         existing.id
     } else {
         let envelope = forge_untrusted_envelope(
@@ -127,7 +191,7 @@ pub async fn create(
             Some(json!({"source_key":key,"kind":"forge_issue"})),
         )
         .await?;
-        tasks::record_event(&txn,id,"user_action",op.actor(),Some(json!({"action":"intake_fix_held","reason":"Proposed fix plan; explicit review and manual requeue required","attempt_id":receipt.attempt_id}))).await?;
+        tasks::record_event(&txn,id,"user_action",op.actor(),Some(json!({"action":"intake_fix_held","reason":"Proposed fix plan; explicit review and manual requeue required","attempt_id":attempt_id}))).await?;
         id
     };
     txn.execute(sql(

@@ -134,6 +134,7 @@ export interface Detail {
   receipt: Receipt | null
   handoff_unknown: boolean
   fix_task_id: number | null
+  fix_task_conflict: boolean
 }
 // Write-only operator credential input, never included in a response or tool.
 export interface ConfigureInput {
