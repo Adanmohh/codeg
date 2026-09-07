@@ -15,6 +15,7 @@ pub mod folder_group;
 pub mod folder_link;
 pub mod model_provider;
 pub mod opened_tab;
+pub mod ops_ticket;
 pub mod prelude;
 pub mod quick_message;
 pub mod remote_workspace_connection;
