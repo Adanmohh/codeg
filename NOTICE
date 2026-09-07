@@ -31,6 +31,22 @@ Upstream: https://github.com/xintaofei/codeg
 Baseline: v0.30.4, commit 6f6bd648b206412644842a98d9ffeebf57292bed.
 The original Apache-2.0 LICENSE and existing vendored notices are retained.
 
+Ops UI/API glue (2026), codeg v0.30.4, Apache-2.0, same commit above:
+  src/components/ai-elements/message.tsx (Message/MessageContent reuse)
+  src/components/chat/plan-approval-card.tsx (in-flight review/error pattern)
+  src/components/tasks/board-columns.ts and task-row.tsx (queue grouping/rows)
+  src/components/tasks/task-card.tsx (status chips)
+  src/components/workbench/workbench-content.tsx and layout/sidebar.tsx (entry)
+  src/lib/transport/{index,web-transport,tauri-transport}.ts (shared API calls)
+  src-tauri/src/web/{auth.rs,handlers/canvas.rs,handlers/work_task.rs}
+  src-tauri/src/commands/canvas.rs (dual-runtime command wrappers)
+  src-tauri/src/db/service/canvas_service.rs (writer-first SQLite transaction)
+  src-tauri/src/acp/connection.rs (merge_agent_env credential removal pattern)
+  src-tauri/src/terminal/manager.rs (child environment boundary)
+Adapted/reused in src/components/ops/, src/lib/ops/, src-tauri/src/ops/,
+commands/ops.rs, web/handlers/ops.rs and migration/m20260907_000003_ops_ui.rs.
+Existing IntroMail gate and MIT ticket ports are reused, not repinned.
+
 Hafidh modifications (2026): product branding, original H vector mark,
 colour tokens, removal of sponsor promotions, and internal-build update policy.
 The upstream application and asset-generation pipeline are reused under

@@ -30,6 +30,7 @@ pub mod logging;
 pub mod models;
 mod network;
 pub mod office_watch;
+pub mod ops;
 pub mod parsers;
 pub mod paths;
 pub mod pet_sessions;
@@ -1556,7 +1557,18 @@ mod tauri_app {
                 token_usage_commands::token_usage_facets,
                 token_usage_commands::token_usage_status,
                 token_usage_commands::token_usage_sync,
-                work_task_commands::work_task_list,
+            work_task_commands::work_task_list,
+            crate::commands::ops::ops_context,
+            crate::commands::ops::ops_inbox_create,
+            crate::commands::ops::ops_tickets,
+            crate::commands::ops::ops_thread,
+            crate::commands::ops::ops_note_add,
+            crate::commands::ops::ops_draft_save,
+            crate::commands::ops::ops_proposals,
+            crate::commands::ops::ops_proposal_get,
+            crate::commands::ops::ops_proposal_approve,
+            crate::commands::ops::ops_proposal_deny,
+            crate::commands::ops::ops_morning,
                 work_task_commands::work_task_get,
                 work_task_commands::work_task_events,
                 work_task_commands::work_task_attention_count,

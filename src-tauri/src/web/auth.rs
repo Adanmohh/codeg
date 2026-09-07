@@ -9,6 +9,11 @@ use base64::{engine::general_purpose::URL_SAFE_NO_PAD, Engine as _};
 pub const WS_EVENT_PROTOCOL: &str = "codeg-events";
 const WS_TOKEN_PROTOCOL_PREFIX: &str = "codeg-token.";
 
+/// Inserted only after the existing operator token is authenticated. Ops uses
+/// this transport fact to derive identity; JSON can never supply this marker.
+#[derive(Clone)]
+pub(crate) struct AuthenticatedOperator;
+
 fn token_from_ws_protocols(value: &str) -> Option<String> {
     value
         .split(',')
@@ -18,7 +23,7 @@ fn token_from_ws_protocols(value: &str) -> Option<String> {
         .and_then(|bytes| String::from_utf8(bytes).ok())
 }
 
-pub async fn require_token(request: Request, next: Next, token: String) -> Response {
+pub async fn require_token(mut request: Request, next: Next, token: String) -> Response {
     // Fail closed on a misconfigured empty token: otherwise `Bearer ` (an empty
     // bearer value) would match it and silently disable authentication.
     if token.is_empty() {
@@ -28,6 +33,7 @@ pub async fn require_token(request: Request, next: Next, token: String) -> Respo
     if let Some(auth_header) = request.headers().get("authorization") {
         if let Ok(auth_str) = auth_header.to_str() {
             if auth_str.strip_prefix("Bearer ").is_some_and(|t| t == token) {
+                request.extensions_mut().insert(AuthenticatedOperator);
                 return next.run(request).await;
             }
         }
@@ -36,6 +42,7 @@ pub async fn require_token(request: Request, next: Next, token: String) -> Respo
     if let Some(protocol_header) = request.headers().get("sec-websocket-protocol") {
         if let Ok(protocols) = protocol_header.to_str() {
             if token_from_ws_protocols(protocols).is_some_and(|t| t == token) {
+                request.extensions_mut().insert(AuthenticatedOperator);
                 return next.run(request).await;
             }
         }

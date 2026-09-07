@@ -1,6 +1,6 @@
 # Step 2 — Ops API, email, approvals and morning UI
 
-Early coordination contract, 2026-09-07. Implementation and validation are pending.
+Coordination contract and implementation progress, 2026-09-07. Final validation is in progress.
 Sole writer in `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`, new branch
 `feat/step2-ops-ui` from accepted main **`56f874a9dcef0faa46aa012c0967a42d31ebdd4b`**.
 The prior approvals branch/worktree was clean before switching. No other worker,
@@ -135,3 +135,75 @@ Read the email worker's current report for alignment; its direct Resend client
 and parser remain its responsibility. No transport-worker source was edited.
 Implementation checks, screenshots, commit SHA and draft PR URL follow as work
 lands. This early report is a contract/progress checkpoint, not a completion claim.
+
+## Usable UI/API checkpoint
+
+Early contract **10f2fa9f** was committed and pushed before product edits.
+Implemented scoped context/inbox creation/tickets/thread/private notes, revisioned
+draft persistence, proposal queue/detail/deny and morning queues in both transports.
+New Ops desk sidebar route reuses the workbench's in-memory navigation convention
+(no dynamic Next route). The UI renders only escaped plain text, never email HTML.
+Drafts and review envelopes include visible To/Cc/Bcc and editable thread headers.
+The sender is visible but fixed to the selected inbox identity.
+
+Closed `ops.email.reply` pack reuses the Step 1 gate and run CAS. It rechecks draft
+revision and full account/inbox/thread membership inside the approval transaction,
+including in `resource` before an ask rule can short-circuit. Review cannot change
+the bound draft/thread. Default approval returns `configuration_missing` before
+consuming authorization. Denial remains available for a changed draft on a live
+pending task. Terminal proposal reply content is redacted.
+
+Owner seam review addressed: `AuthorizedReply` has private fields, read-only
+accessors and consuming `into_parts`; no Clone/Serialize or struct-literal
+construction outside its module. It consumes the Step 1 AuthorizedAction and
+never rereads draft content. It is a future dispatcher handoff, not an executor.
+
+Read tickets `reports/email-transport.md` at checkpoint **7a3c2fd5**. Future
+Resend integration MUST persist a delivery attempt, RFC message ID and idempotency
+key bound to the exact approved payload, then bind a verified provider receipt
+before recording a public reply. None of that transport is wired or copied here.
+No migration 000004 is needed by that worker. Our reserved 000003 contains only
+draft storage. Agent ingress and durable transport dispatch remain explicit
+integration gaps; no agent-facing endpoint gets the instance operator credential.
+
+Audited inherited environments. Minimal existing launch-point changes remove
+CODEG_TOKEN from merged ACP environments (including caller-configured overrides)
+and terminal children. No unrelated auth rewrite. Existing single-tenant agents
+have full filesystem access as the same OS user; this is not malicious same-user
+process isolation. Delegation TokenRegistry is only a reference for future
+per-run Ops capability binding, not current Ops authorization.
+
+Source proof via gh api: Codeg commit above resolves tree
+`06d0da02a774af27fa4d1cba5f15debcc82c62e4`. Verified blobs after installed/local reads:
+
+| Exact upstream file | Blob SHA | Use |
+| --- | --- | --- |
+| src/components/ai-elements/message.tsx | 2db4c106c1ac32268b0a7c49a5dc7fa4d6836192 | Message/MessageContent in local ticket thread |
+| src/components/chat/plan-approval-card.tsx | ba3bc3f4de7cd3937da0904d1bdb3f0cd8b19451 | In-flight ref, failure/retry and review controls |
+| src/components/tasks/board-columns.ts | df044661034c28291c024a23c16996fd42047eb1 | Morning grouping over real work tasks |
+| src/components/tasks/task-row.tsx | 50ab1e72ac33b7ef5cd5f160031292c9bfa76cd6 | Existing row geometry |
+| src/components/tasks/task-card.tsx | b346fc689f1dbf08dddb63295ec0edff62c681d6 | StatusChip reuse |
+| src/components/workbench/workbench-content.tsx | e481d04b25c4fdc33fe35b03b8c1630d0089cd65 | Ops route entry |
+| src/lib/transport/web-transport.ts | 828572b9fc665c986259f05c20193feaa0152635 | Existing protected POST transport |
+| src-tauri/src/web/handlers/canvas.rs | 001091c40c6d7ba66e75a78d78e1bd3e58ab0e87 | HTTP/command glue |
+| src-tauri/src/db/service/canvas_service.rs | bbb67591739afe7c36457cbe044dffd91c597587 | Writer-first SQLite transaction |
+| src-tauri/src/acp/connection.rs | 3beb7c1b69ea4e422829d29dc0e0a12ee0b71ec5 | Credential removal at merged launch environment |
+| src-tauri/src/terminal/manager.rs | 0754d09e243079a519eeb37ded88c17ae4267be6 | PTY child environment removal |
+| LICENSE | 261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64 | Original Apache-2.0 retained; NOTICE appended |
+
+Pinned primitives read: React 19.2.4 package plus installed @types/react hooks,
+effect cleanup/useId/state/ref contracts; Axum 0.8.8 Extension/from_fn;
+SeaORM/sea-orm-migration 1.1.19 transaction/query limit/offset/raw SQL; axum-test
+17.3.0 request/response/header source; portable-pty 0.8.1 env_remove/get_env;
+vendored sacp-tokio spawn_process blank-to-env_remove convention. CLI help read
+before gh api, gh pr create, Prettier and rustfmt. No dependency/lockfile changes.
+
+Checkpoint checks (not final validation): server cargo check --locked with
+--no-default-features --bin codeg-server **0**, pnpm exec tsc --noEmit **0**,
+focused Ops/workbench ESLint **0**, Prettier and rustfmt **0**. Rust output uses
+this worktree's `src-tauri/target-approvals`. An initial uncached own-worktree
+target check was canceled (130); corrected to the cached own target. Initial
+server compile found WorkTaskStatus/string mismatch (101), fixed and rerun 0.
+Focused test compile found a private ThreadHeaders import, corrected to its
+discovered public threading module; test run is pending. Full checks, frontend
+tests and Playwright screenshots remain to be completed after this early push.

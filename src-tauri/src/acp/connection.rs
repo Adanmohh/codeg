@@ -88,6 +88,11 @@ fn merge_agent_env(
     // Windows self-managed dir, or `~/.local/bin` under a GUI launch.
     prepend_officecli_path(&mut merged);
 
+    // The instance operator credential is not an agent capability. The spawn
+    // layer interprets a blank override as env_remove, including inherited env.
+    merged.retain(|key, _| !key.eq_ignore_ascii_case("CODEG_TOKEN"));
+    merged.insert("CODEG_TOKEN".into(), String::new());
+
     merged.into_iter().collect()
 }
 
@@ -13438,6 +13443,18 @@ async fn emit_conversation_update(
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn ops_operator_token_is_removed_even_when_runtime_env_injects_it() {
+        let runtime = std::collections::BTreeMap::from([
+            ("CODEG_TOKEN".into(), "fixture-operator-credential".into()),
+            ("UNRELATED_SETTING".into(), "preserved".into()),
+        ]);
+        let merged = super::merge_agent_env(&[], &runtime);
+        assert_eq!(merged.iter().find(|(k, _)| k == "CODEG_TOKEN").unwrap().1, "");
+        assert!(!merged.iter().any(|(_, v)| v == "fixture-operator-credential"));
+        assert_eq!(merged.iter().find(|(k, _)| k == "UNRELATED_SETTING").unwrap().1, "preserved");
+    }
+
     use super::*;
     use sacp::schema::{Diff, SessionConfigId};
 
