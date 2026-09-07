@@ -1,6 +1,6 @@
 # Status — 2026-09-07
 
-Step 0 complete. Step 1: rebrand reviewed and merged; approvals and tickets are undergoing independent acceptance review. Step 2 has not started.
+Step 0 complete. Step 1: rebrand reviewed and merged; approvals and tickets reviewed with changes requested; owning workers are fixing three P2 findings. Step 2 has not started.
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
@@ -18,8 +18,8 @@ All three workers were dispatched through Herdr, each in its own worktree and br
 | Worker | Tab / pane | Branch | Worktree | Report | Review / merge |
 | --- | --- | --- | --- | --- | --- |
 | rebrand | `wR:t2` / `wR:p2` | `feat/step1-rebrand` | `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand` | `reports/rebrand.md` | Reviewed and merged, PR #2 |
-| approvals | `wR:t3` / `wR:p3` | `feat/step1-approvals` | `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals` | `reports/approvals.md` in worktree | PR #3, independent review running |
-| tickets | `wR:t4` / `wR:p4` | `feat/step1-tickets` | `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets` | `reports/tickets.md` in worktree | PR #1, independent review running |
+| approvals | `wR:t3` / `wR:p3` | `feat/step1-approvals` | `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals` | `reports/approvals.md` in worktree | PR #3, two P2 fixes in progress |
+| tickets | `wR:t4` / `wR:p4` | `feat/step1-tickets` | `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets` | `reports/tickets.md` in worktree | PR #1, one P2 fix in progress |
 
 - Verified all four active project agents use `gpt-6-astra`, the most capable model in the installed Codex model catalogue. Owner requires the best current models for all project workers; no cheaper-model delegation.
 - Worker launch arguments explicitly set `-a never -s danger-full-access`.
@@ -50,3 +50,10 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - Approvals [PR #3](https://github.com/Adanmohh/codeg/pull/3), head `a4b418837d0b28e5ead6e57de1a8dbddc96ec1ba`: worker reports desktop/server compile, typecheck, Clippy, 19 approval tests and 39 work-task tests passing. Independent reviewer: tickets worker; deliverable `reports/review-approvals.md` in tickets worktree.
 - Both PRs remain draft/unmerged. Rebrand introduced a shared NOTICE conflict; preserve all attribution when integrating. Review findings must be fixed by the owning worker, then checked before merge. GitHub has no attached status checks; worker local passes are not CI passes.
 - Step 1 is the foundation, not the complete support/bug workflow. Step 2 supplies email transport/UI, Hafidh intake, evidence-bound GitHub App issue filing, pi integration and the morning view. Step 3 supplies Telegram and end-to-end P1/P2 validation. No real email send, GitHub App installation, deployment or packaged app has been performed.
+
+## Backend review findings — changes requested, 2026-09-07
+
+- Independent [approvals review](reports/review-approvals.md): two P2 findings. Resolving an Ops proposal can clear the displayed awaiting state while an overlapping ACP permission request remains unanswered; migration tests incorrectly roll back the last migration instead of targeting approvals. Both sent to the approvals owner for fixes and regression tests. No ACP permission bypass was claimed.
+- Independent [tickets review](reports/review-tickets.md): one P2 finding. A reply from another unblocked participant can reopen a conversation whose primary contact is blocked. Sent to the tickets owner to restore the pinned Chatwoot conversation-contact guard and add resolved/snoozed/control regressions.
+- Orchestrator independently reran the existing ticket suite (15/15) and approval suite (19/19): passing, but these uncovered cases were missing. Passing existing tests does not waive these findings.
+- Both workers are authorized to integrate accepted main/rebrand into their own branches, preserving all attribution, and rerun checks before pushing updated reports/PRs. Orchestrator writes no product fixes. Neither backend PR is accepted or merged.
