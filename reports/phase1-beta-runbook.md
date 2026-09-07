@@ -70,3 +70,14 @@ audit/fix/recheck, and a rebuilt unsigned dev app. Live Hafidh beta data, real
 provider receipt and actual phone delivery are separate evidence. Configuration
 gaps or absent upstream endpoints must remain explicit; synthetic fixtures do
 not turn them into live passes.
+
+## Root runtime preparation — 2026-09-08
+
+Root created its own ignored `integrations/hafidh-intake/.venv` using CPython
+3.13.14, installed the accepted 37 exact requirements.lock pins and editable
+hafidh-intake0.1.0. All three README installation commands exited0. An
+`env -i .venv/bin/python -I` import check passed for MCPServer, Settings and
+package metadata (mcp2.0.1/httpx0.28.1/pydantic2.12.5). No tracked manifest/lock
+changed, no other environment was modified and no live credential was used.
+The host module will become importable here once its accepted source merges;
+this does not yet validate a native bundle or live backend.
