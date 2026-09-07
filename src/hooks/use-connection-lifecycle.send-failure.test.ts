@@ -36,6 +36,8 @@ vi.mock("next-intl", () => ({
 }))
 
 const sendPrompt = vi.fn()
+const connect = vi.fn()
+let connectionStatus = "connected"
 
 vi.mock("@/contexts/acp-connections-context", () => ({
   useAcpActions: () => ({ setActiveKey: vi.fn(), touchActivity: vi.fn() }),
@@ -51,9 +53,9 @@ vi.mock("@/contexts/task-context", () => ({
 
 vi.mock("@/hooks/use-connection", () => ({
   useConnection: () => ({
-    status: "connected",
+    status: connectionStatus,
     selectorsReady: true,
-    connect: vi.fn().mockResolvedValue(undefined),
+    connect,
     disconnect: vi.fn().mockResolvedValue(undefined),
     sendPrompt,
     setMode: vi.fn().mockResolvedValue(undefined),
@@ -95,6 +97,8 @@ async function flush() {
 describe("useConnectionLifecycle send-failure surfacing", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    connectionStatus = "connected"
+    connect.mockResolvedValue(undefined)
   })
 
   it("toasts a structured backend error with its message", async () => {
@@ -189,4 +193,40 @@ describe("useConnectionLifecycle send-failure surfacing", () => {
     expect(sendPrompt).toHaveBeenCalledTimes(1)
     expect(toastError).not.toHaveBeenCalled()
   })
+})
+
+describe("Pi Desk setup failure without a prompt", () => {
+  it.each(["web", "tauri", "error"])(
+    "keeps the actual setup message visible for %s errors",
+    async (transport) => {
+      vi.clearAllMocks()
+      connectionStatus = "disconnected"
+      const message =
+        "Pi Desk is not installed or configured: a configured gpt-6-astra catalogue entry with max reasoning is required."
+      const structured = { code: "task_execution_failed", message }
+      const error =
+        transport === "web"
+          ? structured
+          : new Error(
+              transport === "tauri" ? JSON.stringify(structured) : message
+            )
+      connect.mockRejectedValue(error)
+      const consoleError = vi
+        .spyOn(console, "error")
+        .mockImplementation(() => {})
+      const { result } = renderHook(() =>
+        useConnectionLifecycle({
+          contextKey: "pi-setup",
+          agentType: "pi",
+          isActive: true,
+          workingDir: "/synthetic/pi-setup",
+        })
+      )
+      await act(flush)
+      expect(result.current.autoConnectError).toBe(message)
+      expect(connect).toHaveBeenCalledTimes(1)
+      expect(sendPrompt).not.toHaveBeenCalled()
+      consoleError.mockRestore()
+    }
+  )
 })

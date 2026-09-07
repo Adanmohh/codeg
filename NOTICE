@@ -309,3 +309,103 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+Pi Desk extension and scoped companion bridge (Phase 1 piece 6)
+Source: badlogic/pi-mono v0.85.1, commit d981de1229ef899957bbe968bc8dcda02a21f477
+Files: packages/coding-agent/examples/extensions/{confirm-destructive,bash-spawn-hook,commands,permission-gate}.ts; packages/coding-agent/src/core/extensions/{types,runner,loader}.ts; packages/coding-agent/docs/{extensions,models,rpc}.md.
+Additional pinned contracts: packages/coding-agent/src/modes/rpc/rpc-mode.ts and packages/coding-agent/src/core/agent-session.ts (RPC model/session controls, input handling and compaction cancellation).
+Port: integrations/pi-desk/{index,protocol}.ts (lifecycle, registered tools, final argument validation and blocking); launcher discovery glue.
+
+MIT License
+
+Copyright (c) 2025 Mario Zechner
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Source: nicobailon/pi-mcp-adapter v2.32.1, commit 10a45367e033a32026987a75d6f401e37340c86f
+Files: types.ts, tool-approval.ts, __tests__/tool-approval.test.ts, index.ts, config.ts, README.md.
+Port: integrations/pi-desk/broker.ts and tests (synchronous first claim, abort, allow_once/deny, isolated adapter config).
+
+MIT License
+
+Copyright (c) 2026 Nico Bailon
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+Source: svkozak/pi-acp v0.0.33, commit 1bfcb394088ed879db8fd936b570bb626017f878
+Files: src/pi-rpc/{command,process}.ts, test/unit/pi-command.test.ts, README.md.
+Port: integrations/pi-desk launcher IPC/process glue; existing pi-acp executable remains unchanged.
+
+MIT License
+
+Copyright (c) 2025 Sergii Kozak
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+The bridge extends existing xintaofei/codeg v0.30.4 (6f6bd648b206412644842a98d9ffeebf57292bed) files src-tauri/src/acp/delegation/{listener,transport,companion}.rs, acp/work_task_tools.rs, acp/connection.rs, work_task/engine.rs and bin/codeg_mcp.rs. The original Apache-2.0 LICENSE remains unchanged. New wire and extension code is integration glue; it creates no alternate task or approval engine.
+The scoped work_task/desk.rs glue also reuses src-tauri/src/models/agent.rs::AgentType::as_wire (blob bc38571361cc3cea3770970f7251cd29811e0bda) for stable policy identity. Identity semantics were checked against owner-owned IntroInnovation/intromail at 0bd24dfe284b888aa9f602fa1fd00e337ea38874: backend/app/services/agent/{identity,gating,proposals}.py and backend/app/models.py. Existing accepted gating defaults and order are unchanged; no third-party terms apply to the owner's IntroMail source per FOUNDING.md.
+
+The Pi bridge's work_task/desk.rs and work_task/desk/tests.rs call the accepted
+Ops agent/review helpers from Adanmohh/codeg UI head
+756d064f1cc391ed1da32ba90429adef225f080d (merged f9ae7f1ec91fb0a9569f06fa9dddbde2884db1c6).
+Tests adapt src-tauri/src/ops/tests/{agent.rs,integration.rs} public-view and
+writer-race fixtures and the original Codeg listener/task transition fixtures.
+The manual Pi browser fixture also reuses src-tauri/src/ops/tests/integration/browser.rs
+at that accepted UI head for its isolated AppState/protected-router setup.
+Original Apache-2.0 license and all notices above remain in force.
+
+Pi setup-error display reuses src/lib/app-error.ts::toErrorMessage from Codeg
+v0.30.4 (6f6bd648b206412644842a98d9ffeebf57292bed), verified blob
+9ddaab9e53c9c9c6971f8ad1a32938f364722457. The connection lifecycle and ACP
+context call that existing helper; no new error parser is introduced.

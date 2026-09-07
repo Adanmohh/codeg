@@ -228,6 +228,7 @@ pub fn current_platform() -> &'static str {
 /// [`all_acp_agents`] for the live set.
 pub fn builtin_acp_agents() -> Vec<AgentType> {
     vec![
+        AgentType::Pi,
         AgentType::ClaudeCode,
         AgentType::Codex,
         AgentType::Gemini,
@@ -237,7 +238,6 @@ pub fn builtin_acp_agents() -> Vec<AgentType> {
         AgentType::Hermes,
         AgentType::CodeBuddy,
         AgentType::KimiCode,
-        AgentType::Pi,
         AgentType::Grok,
         AgentType::Cursor,
         AgentType::DeepSeek,

@@ -6,7 +6,10 @@ import { toast } from "sonner"
 import { useAcpActions } from "@/contexts/acp-connections-context"
 import { useTaskContext } from "@/contexts/task-context"
 import { useConnection, type UseConnectionReturn } from "@/hooks/use-connection"
-import { extractAppCommandError } from "@/lib/app-error"
+import {
+  extractAppCommandError,
+  toErrorMessage as normalizeErrorMessage,
+} from "@/lib/app-error"
 import { isConnectionBusy } from "@/lib/connection-teardown"
 import { TurnBusyError } from "@/lib/turn-busy"
 import { type AgentType, type PromptDraft } from "@/lib/types"
@@ -96,11 +99,6 @@ export function shouldDisconnectOnUnmount(args: {
   if (args.transientUnmount) return false
   if (args.isViewer) return true
   return !isConnectionBusy(args)
-}
-
-function normalizeErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message
-  return String(error)
 }
 
 function isExpectedConnectError(error: unknown): boolean {

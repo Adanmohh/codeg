@@ -130,7 +130,7 @@ fn parse_args() -> Result<Args, String> {
             }
             "--help" | "-h" => {
                 println!(
-                    "codeg-mcp --parent-connection-id <uuid> --socket-path <path> --token <secret> [--parent-pid <pid>] [--features delegation,feedback,ask,sessions,tasks] [--custom-agents custom:<id>,...] [--disabled-agents <agent>,...]"
+                    "codeg-mcp --parent-connection-id <uuid> --socket-path <path> --token <secret> [--parent-pid <pid>] [--features delegation,feedback,ask,sessions,tasks,desk] [--custom-agents custom:<id>,...] [--disabled-agents <agent>,...]"
                 );
                 std::process::exit(0);
             }
@@ -179,6 +179,9 @@ async fn write_response(
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> ExitCode {
+    if std::env::var("CODEG_PI_DESK_LAUNCH").as_deref() == Ok("1") {
+        return codeg_lib::acp::pi_desk::launch_from_companion();
+    }
     // Stderr-only subscriber: stdout is the JSON-RPC protocol channel, and
     // concurrent mcp processes share no log file. No hub/buffer/emitter.
     let _log_guard = codeg_lib::logging::init::init_mcp();

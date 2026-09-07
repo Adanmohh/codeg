@@ -21,6 +21,9 @@ use std::path::{Path, PathBuf};
 use std::sync::{Arc, OnceLock};
 use std::time::Duration;
 
+#[path = "desk.rs"]
+mod desk;
+
 use sea_orm::{ActiveModelTrait, EntityTrait, IntoActiveModel, Set};
 use tokio::sync::broadcast::error::RecvError;
 use tokio::sync::{Mutex, Notify};
@@ -5889,7 +5892,7 @@ fn launch_mode_for(task: &crate::db::entities::work_task::Model) -> LaunchMode {
 }
 
 /// Layered agent config: task override wins wholesale; else the folder's task
-/// settings; else the folder's default agent with no extra options.
+/// settings; else the folder's default agent; finally Pi for an unsaved choice.
 fn effective_agent_config(
     cfg: &WorkTaskConfig,
     settings: &WorkTaskFolderSettings,
@@ -5915,7 +5918,7 @@ fn effective_agent_config(
         .and_then(|a| serde_json::to_value(a).ok())
         .and_then(|v| v.as_str().map(String::from));
     (
-        folder_default,
+        folder_default.or_else(|| Some("pi".into())),
         settings.mode_id.clone(),
         settings.config_values.clone(),
     )
@@ -6808,6 +6811,13 @@ pub struct EngineWorkTaskTools;
 
 #[async_trait::async_trait]
 impl WorkTaskToolAccess for EngineWorkTaskTools {
+    async fn desk_call(&self, parent_connection_id: &str, request: crate::acp::desk::DeskCall) -> crate::acp::desk::DeskResponse {
+        match engine() {
+            Some(engine) => engine.desk_call(parent_connection_id, request).await,
+            None => crate::acp::desk::DeskResponse::rejected(crate::acp::desk::DeskError::Unavailable),
+        }
+    }
+
     async fn report_progress(&self, parent_connection_id: &str, message: &str) -> TaskReportAck {
         let Some(engine) = engine() else {
             return TaskReportAck::rejected("no task engine running in this process");
@@ -6833,6 +6843,23 @@ impl WorkTaskToolAccess for EngineWorkTaskTools {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[tokio::test]
+    async fn pi_desk_task_default_preserves_explicit_task_and_folder_choices() {
+        let db = crate::db::test_helpers::fresh_in_memory_db().await;
+        let folder_id = crate::db::test_helpers::seed_folder(&db, "/tmp/pi-default").await;
+        let mut folder = crate::db::service::folder_service::get_folder_by_id(&db.conn, folder_id)
+            .await.unwrap().expect("seeded folder");
+        let mut cfg: WorkTaskConfig = serde_json::from_value(serde_json::json!({})).unwrap();
+        let mut settings: WorkTaskFolderSettings = serde_json::from_value(serde_json::json!({})).unwrap();
+        assert_eq!(effective_agent_config(&cfg, &settings, &folder).0.as_deref(), Some("pi"));
+        folder.default_agent_type = Some(AgentType::Codex);
+        assert_eq!(effective_agent_config(&cfg, &settings, &folder).0.as_deref(), Some("codex"));
+        settings.default_agent_type = Some("claude_code".into());
+        assert_eq!(effective_agent_config(&cfg, &settings, &folder).0.as_deref(), Some("claude_code"));
+        cfg.agent_type = Some("open_code".into());
+        assert_eq!(effective_agent_config(&cfg, &settings, &folder).0.as_deref(), Some("open_code"));
+    }
 
     /// Windows has no absolute path without a drive, and the resolver branches
     /// on `is_absolute` — so the fixtures need a prefix that makes them count
@@ -8408,15 +8435,17 @@ mod tests {
 
     // -- blocking prompts raised by a delegation sub-agent (#447) -----------
 
-    const PARENT_CONN: &str = "conn-task";
+    pub(super) const PARENT_CONN: &str = "conn-task";
     const CHILD_CONN: &str = "conn-child";
 
     /// A task driven to `running` on `PARENT_CONN`, with the engine's live
     /// index seeded as the launch path would. Returns `(engine, task_id)`.
-    async fn running_task() -> (Arc<TaskEngine>, i32) {
-        use crate::db::test_helpers::{fresh_in_memory_db, seed_folder};
+    pub(super) async fn running_task() -> (Arc<TaskEngine>, i32) {
+        running_task_in(crate::db::test_helpers::fresh_in_memory_db().await).await
+    }
 
-        let db = fresh_in_memory_db().await;
+    pub(super) async fn running_task_in(db: AppDatabase) -> (Arc<TaskEngine>, i32) {
+        use crate::db::test_helpers::seed_folder;
         let folder_id = seed_folder(&db, "/tmp/task-deleg").await;
         let conv =
             conversation_service::create(&db.conn, folder_id, AgentType::ClaudeCode, None, None)
@@ -8469,6 +8498,37 @@ mod tests {
             .await
             .expect("task row")
             .status
+    }
+
+    #[tokio::test]
+    async fn desk_scope_derives_root_run_and_actual_delegated_agent() {
+        let (engine, task_id) = running_task().await;
+        assert!(engine.desk_scope(PARENT_CONN).await.is_err(), "index alone is insufficient");
+        for (conn, agent) in [(PARENT_CONN, AgentType::Pi), (CHILD_CONN, AgentType::Codex), ("grandchild", AgentType::Pi)] {
+            engine.manager.insert_test_connection(conn, agent, None, EventEmitter::Noop).await;
+        }
+        engine.delegation_parents.lock().await.insert(CHILD_CONN.into(), PARENT_CONN.into());
+        engine.delegation_parents.lock().await.insert("grandchild".into(), CHILD_CONN.into());
+        let (task, agent) = engine.desk_scope("grandchild").await.unwrap();
+        assert_eq!(task.id, task_id);
+        assert_eq!(task.connection_id.as_deref(), Some(PARENT_CONN));
+        assert_eq!(agent, "pi");
+        engine.manager.get_state(CHILD_CONN).await.unwrap().write().await.status = ConnectionStatus::Disconnected;
+        assert!(engine.desk_scope("grandchild").await.is_err(), "disconnected intermediate ancestry rejects");
+    }
+
+    #[tokio::test]
+    async fn desk_scope_rejects_cancelled_runs_and_late_previous_generations() {
+        let (engine, task_id) = running_task().await;
+        engine.manager.insert_test_connection(PARENT_CONN, AgentType::Pi, None, EventEmitter::Noop).await;
+        let (_, prior_agent) = engine.desk_scope(PARENT_CONN).await.unwrap();
+        relaunch_on(&engine, task_id, "conn-new").await;
+        engine.manager.insert_test_connection("conn-new", AgentType::Pi, None, EventEmitter::Noop).await;
+        assert!(engine.desk_scope(PARENT_CONN).await.is_err());
+        let (task, current_agent) = engine.desk_scope("conn-new").await.unwrap();
+        assert_eq!(current_agent, prior_agent, "policy identity survives a new launch UUID");
+        assert!(work_task_service::cancel_running_generation(&engine.db.conn, task_id, task.run_seq).await.unwrap());
+        assert!(engine.desk_scope("conn-new").await.is_err());
     }
 
     #[tokio::test]
@@ -8554,7 +8614,7 @@ mod tests {
     /// Walk the row on to a fresh generation running on `conn_id`, WITHOUT
     /// retiring the previous one's `index` entry — the state a delayed
     /// `TurnComplete` from the old connection lands in. Returns the new run_seq.
-    async fn relaunch_on(engine: &TaskEngine, task_id: i32, conn_id: &str) -> i32 {
+    pub(super) async fn relaunch_on(engine: &TaskEngine, task_id: i32, conn_id: &str) -> i32 {
         let row = work_task_service::get_model(&engine.db.conn, task_id)
             .await
             .expect("task row");
