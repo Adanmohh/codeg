@@ -23,6 +23,16 @@ Require a regression and actual CLI repeat. Evidence:
 `/tmp/ops-ui-viewport-draft.yml`, `/tmp/ops-ui-root-draft-lost-mobile.png`.
 Root changed only browser-local unsaved state; no provider/DB mutation.
 
+## Design correction — enabled destructive action contrast
+
+On the light mobile stale-review surface, the enabled `Deny proposal` button
+renders at 14px, opacity 1, foreground sRGB `#df2225` on effective `#fce8e9`:
+4.07 contrast, below the 4.5 text requirement. Root verified enabled state and
+browser-computed colors; this is not an exempt disabled control. Requested a
+worker correction preserving the existing theme pairs, followed by light/dark
+measurement. The stale send action is correctly disabled, and document width
+remains 390px at the 390px viewport.
+
 ## Independent validation already passed
 
 - `cargo test --locked --no-default-features --bin codeg-server --lib ops::tests`:
@@ -48,6 +58,9 @@ status colors, so raw linter warnings are not accepted as palette defects.
 Files: `/tmp/ops-ui-design-probe.json`, `/tmp/ops-ui-design-lint.txt`,
 `/tmp/ops-ui-root-thread-desktop.png`. The first mobile screenshot captured the
 open responsive drawer; it is not evidence of a clipped thread layout.
+
+Selected before-fix screenshots and measured JSON are preserved in
+[`browser-step2/`](browser-step2/) for the final Design Studio reviewers.
 
 Browser console errors are fixture Git-head/state-stream 404s for its synthetic
 folder, plus inherited input/form advisory messages. No zero-console claim.
