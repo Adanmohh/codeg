@@ -35,3 +35,58 @@ Hafidh modifications (2026): product branding, original H vector mark,
 colour tokens, removal of sponsor promotions, and internal-build update policy.
 The upstream application and asset-generation pipeline are reused under
 Apache-2.0; no additional third-party source is ported for the rebrand.
+
+Codeg
+Copyright its original contributors.
+Licensed under the Apache License, Version 2.0; see LICENSE.
+
+Ticket threading and schema port
+===============================
+Derived from chatwoot/chatwoot v4.17.1, commit
+b354a9550e1fb59fa537a9c384232cb076213e72:
+  app/models/contact.rb
+  app/models/contact_inbox.rb
+  app/models/conversation.rb
+  app/models/concerns/conversation_mute_helpers.rb (muted? only)
+  app/models/inbox.rb
+  app/models/message.rb
+  app/services/mailbox/conversation_finder.rb
+  app/services/mailbox/conversation_finder_strategies/base_strategy.rb
+  app/services/mailbox/conversation_finder_strategies/in_reply_to_strategy.rb
+  app/services/mailbox/conversation_finder_strategies/new_conversation_strategy.rb
+  app/services/mailbox/conversation_finder_strategies/receiver_uuid_strategy.rb
+  app/services/mailbox/conversation_finder_strategies/references_strategy.rb
+  spec/services/mailbox/conversation_finder_spec.rb
+  spec/services/mailbox/conversation_finder_strategies/in_reply_to_strategy_spec.rb
+  spec/services/mailbox/conversation_finder_strategies/new_conversation_strategy_spec.rb
+  spec/services/mailbox/conversation_finder_strategies/receiver_uuid_strategy_spec.rb
+  spec/services/mailbox/conversation_finder_strategies/references_strategy_spec.rb
+
+Ported to Rust/SeaORM with explicit account/inbox isolation and atomic ingestion.
+No enterprise/ content is included. Original licence follows:
+
+Copyright (c) 2017-2026 Chatwoot Inc.
+
+Portions of this software are licensed as follows:
+
+* All content that resides under the "enterprise/" directory of this repository, if that directory exists, is licensed under the license defined in "enterprise/LICENSE".
+* All third party components incorporated into the Chatwoot Software are licensed under the original license provided by the owner of the applicable component.
+* Content outside of the above mentioned directories or restrictions above is available under the "MIT Expat" license as defined below.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

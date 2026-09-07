@@ -1,6 +1,6 @@
 # Status — 2026-09-07
 
-Step 0 complete. Step 1: rebrand reviewed and merged; approvals and tickets reviewed with changes requested; owning workers are fixing three P2 findings. Step 2 has not started.
+Step 0 complete. Step 1: rebrand and tickets reviewed and merged; approvals is fixing two review findings. Step 2 source-contract research is starting under the owner’s autonomous-continuation instruction.
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
@@ -19,7 +19,7 @@ All three workers were dispatched through Herdr, each in its own worktree and br
 | --- | --- | --- | --- | --- | --- |
 | rebrand | `wR:t2` / `wR:p2` | `feat/step1-rebrand` | `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand` | `reports/rebrand.md` | Reviewed and merged, PR #2 |
 | approvals | `wR:t3` / `wR:p3` | `feat/step1-approvals` | `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals` | `reports/approvals.md` in worktree | PR #3, two P2 fixes in progress |
-| tickets | `wR:t4` / `wR:p4` | `feat/step1-tickets` | `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets` | `reports/tickets.md` in worktree | PR #1, one P2 fix in progress |
+| tickets | `wR:t4` / `wR:p4` | `feat/step1-tickets` | `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets` | `reports/tickets.md` in worktree | Reviewed and merged, PR #1 |
 
 - Verified all four active project agents use `gpt-6-astra`, the most capable model in the installed Codex model catalogue. Owner requires the best current models for all project workers; no cheaper-model delegation.
 - Worker launch arguments explicitly set `-a never -s danger-full-access`.
@@ -57,3 +57,23 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - Independent [tickets review](reports/review-tickets.md): one P2 finding. A reply from another unblocked participant can reopen a conversation whose primary contact is blocked. Sent to the tickets owner to restore the pinned Chatwoot conversation-contact guard and add resolved/snoozed/control regressions.
 - Orchestrator independently reran the existing ticket suite (15/15) and approval suite (19/19): passing, but these uncovered cases were missing. Passing existing tests does not waive these findings.
 - Both workers are authorized to integrate accepted main/rebrand into their own branches, preserving all attribution, and rerun checks before pushing updated reports/PRs. Orchestrator writes no product fixes. Neither backend PR is accepted or merged.
+
+## Tickets accepted and merged — 2026-09-07
+
+- PR #1 accepted at `f03c11e030d2bd5d972c0867f0990bf797d184a4`, merged as `d5a7127187cd107d2bdd6d00e7c7900e542b3903`. The fix checks the conversation primary contact in the scoped transaction; source attribution includes the pinned Chatwoot mute concern.
+- Orchestrator reviewed the fix, tests, NOTICE and final report; re-read the exact upstream concern and message reopening code through gh api; independently reran all 18 ticket tests successfully. Worker reports both runtime checks/test suites, both Clippy gates and typecheck passing.
+- Approval findings remain open. Its worker must integrate the accepted tickets migration and pass combined checks before acceptance.
+
+## Autonomous continuation — owner instruction, 2026-09-07
+
+- Continue through the planned Phase 1 work without stopping at status milestones. Retain orchestrator-only product authorship rules and three Herdr workers maximum, each on its own branch/worktree.
+- Use Playwright CLI for actual browser checks during integration. Finish with Design Studio measured audits, worker fixes and repeated checks on affected flows; record evidence and remaining limitations honestly.
+- Rebrand worker reassigned to a report-only Step 2 GitHub App/Hafidh intake contract task on a new docs branch in its own worktree. Resend transport work is next in the tickets worker worktree. No live sends or external publication are authorized by test automation alone.
+
+## Active Step 2 dispatch and browser preparation
+
+- `wR:t2` / `wR:p2`, tab GitHub · Hafidh intake, worker `rebrand`: report-only source contracts on `docs/step2-intake-contracts` in its original rebrand worktree. Deliverable `reports/step2-intake-contracts.md`.
+- `wR:t4` / `wR:p4`, tab Email · tickets, worker `tickets`: direct Resend internal transport on `feat/step2-email-transport`, original tickets worktree. Deliverable `reports/email-transport.md`; no public send routes or live sends in this task.
+- `wR:t3` / `wR:p3`, tab Approvals · audit: finishes the two Step 1 findings and combined migration/engine checks.
+- All tasks retain exact borrowing pins, gh api research, docs-first hooks, GPT-6 Astra max and isolated worktrees.
+- Playwright CLI and Design Studio skills read. Production frontend build for merged rebrand/tickets passes. Real local server build and isolated browser check are in preparation. [Design brief](docs/design/BRIEF.html) generated through Design Studio after narrowing and curating the scanner output; its scenarios are acceptance requirements, not completed flow results.
