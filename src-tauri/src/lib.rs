@@ -32,6 +32,7 @@ pub mod models;
 mod network;
 pub mod office_watch;
 pub mod ops;
+pub mod ops_intake;
 pub mod parsers;
 pub mod paths;
 pub mod pet_sessions;

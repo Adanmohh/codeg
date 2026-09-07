@@ -137,6 +137,8 @@ qrcode = "0.14"
 image = { version = "0.25", default-features = false, features = ["png", "webp", "jpeg", "gif"] }
 include_dir = "0.7"
 sha2 = "0.10"
+# Intromail's RS256 App JWT exchange; pinned established signer, no custom crypto.
+jsonwebtoken = "=9.3.1"
 aes-gcm = { version = "0.10", features = ["stream"] }
 argon2 = "0.5"
 tempfile = "3"

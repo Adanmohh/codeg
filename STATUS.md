@@ -1,4 +1,4 @@
-# Status — 2026-09-07
+# Status — 2026-09-08
 
 Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 transport, integration and UI work continues autonomously. Browser baseline passes; new Ops flow checks and final Design Studio loops remain.
 
@@ -120,3 +120,23 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - `tickets` worker now owns `feat/step2-pi-desk`, same worktree/pane `wR:p4`, tab Pi · agent bridge. Deliverable `reports/pi-desk.md`: pinned pi extension/adapter, per-launch scoped proposal/read bridge and default-agent wiring. No operator token in agent tools, no silent model downgrade.
 - `approvals` worker continues `feat/step2-ops-ui`, pane `wR:p3`, tab Email · approvals UI, now authorized to connect the merged Resend client to per-inbox credentials/pulls and durable approved-send attempts/receipts. It owns reserved 000004 delivery storage as transport left it unused.
 - `rebrand` worker continues GitHub/Hafidh implementation on `feat/step2-intake-github`, pane `wR:p2`. All three remain GPT-6 Astra max with docs-first, gh api research, isolated branches and report deliverables.
+
+## Continued validation — 2026-09-08
+
+- Orchestrator independently ran the intake Python suite: 14 passed with bytecode/cache writes disabled. Production Python matches `a4f9f316`; added scan/configuration regressions were present in the worker test file (SHA-256 `19fbaa337a16fde21c5f09bfcd8c25c524de1afad1db379f6f6780c949b2650f`). GitHub/Rust portion and final report still await acceptance.
+- UI worker has pushed `26a4bc8d` and integrated accepted main as `53349671`; continues email transport wiring and browser tests. Pi worker researches/implements its scoped bridge independently. Final Design Studio audit/fix/recheck remains pending.
+
+- Early GitHub-pack review requested two corrections: live evidence validation before ask-rule queueing, and preservation of the accepted missing-scope propose default. [Review](reports/review-intake-github.md). Neither is claimed as a live filing bypass; PR #5 remains unaccepted while the worker fixes/tests the boundaries.
+
+## Intake and GitHub module accepted and merged
+
+- PR #5 accepted at `493df48ca92699c5818fde39d5819596712b9fdb`, merged as `4988f46bf20e7c22a83ea9a231c8073fd5d0b391`. Both evidence/policy findings and canonical operator labels are fixed. Root independently ran all 22 Rust intake tests successfully, in addition to the earlier 14 Python tests. [Review](reports/review-intake-github.md).
+- Worker desktop/server checks, both Clippy gates, selected Ops suites, 18 ticket and 18 Resend regressions and frontend typecheck pass. This accepts the read-only intake and approved filing modules; host/UI wiring and external configuration remain.
+- Prepared the [Design Studio acceptance checklist](reports/design-acceptance-checklist.md). Its 18 checks are requirements, not completed audit results. Email UI and pi bridge work continue in their existing panes.
+
+## P1 operator workflow dispatched
+
+- Reused `rebrand`, `wR:p2`, for `feat/step2-bug-workflow` from accepted main: trusted intake/configuration and evidence attachment, exact GitHub issue review/receipt UI, and linkage to existing fix tasks. Deliverable `reports/bug-workflow.md`; separate host/frontend modules, reserved migration 000006, shared auth/navigation integration coordinated after email UI acceptance.
+- Email owner continues PR #7; pi owner continues PR #8 and coordinates typed P1 proposal access with the host owner. All retain Astra max, docs-first and gh api research. Isolated browser ports: root 4318, email 4320, bug workflow 4322. No live external actions are part of fixture validation.
+
+- Root independently passed 11 pi extension tests, including real installed RPC discovery without inference; [review in progress](reports/review-pi-desk.md). No Astra catalogue entry is available in installed pi, so live model setup remains explicit. Fresh hook records at timestamps 1788817374–1788817397 confirm PreToolUse/PostToolUse execution for all three worker sessions; this does not claim root-session enforcement or universal write interception.
