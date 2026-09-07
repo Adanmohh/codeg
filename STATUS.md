@@ -10,7 +10,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Direct Resend transport | Reviewed and merged, PR #6; UI integration accepted in #7 | Combined beta validation |
 | Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
-| Pi scoped bridge/default | PR #8 in progress; independent 11 extension/discovery tests pass | Accepted Ops helper integration, full launch checks; Astra model configuration remains unavailable |
+| Pi scoped bridge/default | PR #8 integrated with accepted Ops; independent 13 Rust bridge tests pass | Final process artifact/browser-default checks; Astra model configuration unavailable |
 | Bug workflow host/UI | Worker implementing `feat/step2-bug-workflow` | Evidence/config/review UI and real fixture browser tests |
 | Telegram and beta validation | Step 3 Telegram dispatched to approvals worker | Typed notifications/review links, local fixtures and beta checks |
 | Final Design Studio loops | Brief, checklist and initial measured findings prepared | Specialist audit, worker fixes, targeted CLI rechecks |
