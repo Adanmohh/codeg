@@ -103,3 +103,8 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - First 15 worker transport tests pass; implementation checkpoint `37f205bf` integrated accepted main as `2555fff2`. Final gates are running.
 - Orchestrator found a P2 Reply-To loss in normalization, verified the pinned Chatwoot preference through gh api, and requested a worker fix/regression tests before merge. See [review](reports/review-email-transport.md). Transport is not yet accepted.
 - Real desktop sidecar release build is running in the root checkout; no app packaging/distribution result is claimed yet.
+
+## Native foundation bundle validated
+
+- Real sidecar preparation and unsigned debug macOS app bundling both pass. Bundle is `src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app`; isolated native startup applied both foundation migrations and remained alive, then the owned process was stopped. [Evidence and limits](reports/native-foundation-build.md).
+- This artifact contains merged Step 1, not unmerged Step 2. Rebuild after integration; Playwright CLI checks remain the browser evidence and final Design Studio loops are still pending.
