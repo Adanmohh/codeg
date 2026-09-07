@@ -1,7 +1,8 @@
 # Step 1 — tickets (pieces 2 + 2b)
 
-Implementation and local validation complete. Final commit/push and draft PR
-record will be added below immediately after publication.
+Complete and pushed. Draft PR: https://github.com/Adanmohh/codeg/pull/1
+
+Validated implementation: `427108f87f965073d235089212cba0e34f5197f3`.
 
 Worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`
 Branch: `feat/step1-tickets`
@@ -238,4 +239,19 @@ Additional implementation decisions:
 
 ## Delivery
 
-Validated implementation SHA: pending final commit. Draft PR URL: pending creation.
+Validated implementation SHA: `427108f87f965073d235089212cba0e34f5197f3`.
+Commit `feat: complete scoped ticket persistence and threading tests` and push to
+`origin/feat/step1-tickets` exited 0.
+
+Draft PR: https://github.com/Adanmohh/codeg/pull/1
+`gh pr create --repo Adanmohh/codeg --base main --head feat/step1-tickets --draft
+--title 'feat: add scoped ticket store and email threading'
+--body-file reports/tickets-pr-body.log` exited 0. Verified via `gh pr view`:
+OPEN, isDraft=true, base main, head feat/step1-tickets, head SHA matches the
+validated implementation. No merge or deployment. CI completion has not been
+awaited; all requested local gates passed.
+
+This final report-only follow-up records the published PR and validated code SHA;
+its commit comes after the implementation SHA without changing product/test files.
+A report-only trailing-space finding during final staging was corrected before
+commit; the staged whitespace check then exited 0.
