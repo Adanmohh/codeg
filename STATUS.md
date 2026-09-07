@@ -2,6 +2,24 @@
 
 Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 transport, integration and UI work continues autonomously. Browser baseline passes; new Ops flow checks and final Design Studio loops remain.
 
+## Current position
+
+| Area | Current result | Next gate |
+| --- | --- | --- |
+| Foundation: brand, tickets, approvals | Reviewed and merged, PRs #1–3 | Retain combined regressions |
+| Direct Resend transport | Reviewed and merged, PR #6 | Email UI/approved-send integration |
+| Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
+| Email UI, drafts, morning, approved delivery | PR #7 under review; independent 22 Rust + 5 component tests pass | Fix browser-proven unsaved-edit loss across desktop/mobile; recheck contrast and E2E |
+| Pi scoped bridge/default | PR #8 in progress; independent 11 extension/discovery tests pass | Accepted Ops helper integration, full launch checks; Astra model configuration remains unavailable |
+| Bug workflow host/UI | Worker implementing `feat/step2-bug-workflow` | Evidence/config/review UI and real fixture browser tests |
+| Telegram and beta validation | Planned Step 3, not implemented/validated | Reuse channel after the typed Ops workflows are integrated |
+| Final Design Studio loops | Brief, checklist and initial measured findings prepared | Specialist audit, worker fixes, targeted CLI rechecks |
+
+The macOS debug app bundle currently contains Step 1 only. No live email,
+GitHub issue, Telegram message, App installation or deployment has been performed.
+Historical dispatch/review entries below describe their state at that time;
+the table above is the latest status.
+
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
 - Branch: `main`, based on `v0.30.4` (`6f6bd648b206412644842a98d9ffeebf57292bed`).
