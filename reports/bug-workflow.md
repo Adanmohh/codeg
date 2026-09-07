@@ -1,6 +1,8 @@
 # P1 bug workflow — host and operator UI
 
-Implementation in progress. Sole writer in
+Implementation in progress. Draft PR #9:
+https://github.com/Adanmohh/codeg/pull/9 (main base, do not merge).
+Initial contract commit `dc5ed96e` is pushed. Sole writer in
 `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`, branch
 `feat/step2-bug-workflow`, created after a clean check and fetch from accepted
 main `b15ba2d40e1fafe7d272ec5910a5b690164fff9b`. Intake PR #5 is accepted at
@@ -136,5 +138,22 @@ for this new task at this checkpoint.
 Commands so far: clean `git status`, `git fetch origin`, and new branch switch
 all exit 0; installed git usage help exits 129 normally; document/source reads
 and immutable PR metadata resolution exit 0; code-context exits recorded above.
-Early commit/push and draft PR are next. This is resumable progress, not a
-finished workflow claim.
+Closed Python host bridge added at `integrations/hafidh-intake/src/hafidh_intake/host.py`,
+delegating only to the accepted `IntakeClient` list/get/status. Fixed 16 KiB
+request / 2 MiB response limits, strict operation/DTO allowlist, persistent
+list state, no argument/exception echo or credentials in the wire protocol.
+`tests/test_host.py` adds real subprocess + synthetic loopback GET fixtures,
+unknown operations/fields/credentials, oversized frame closure, failed fresh
+GET after successful list and explicit missing configuration. First focused
+run exit 2 confirmed missing host module; full isolated pytest then exit 0,
+**23 passed**. Existing actual MCP stdio discovery/read test also passes.
+
+Task-service integration need: existing `create_from_forge` inserts Todo and
+an `auto_process` folder can immediately claim that row. A linked proposed fix
+must be held before commit; a later cancel is racy. The bounded host therefore
+needs a creation seam that reuses that service's source dedup/validation but
+creates a held task (existing Canceled state with explicit manual requeue), or
+must leave the fix as an uncreated review draft. No scheduler/approvals changes
+have been made. This remains an explicit final-integration item.
+
+This is resumable progress, not a finished workflow claim.
