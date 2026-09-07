@@ -28,3 +28,5 @@ All three workers are running through Herdr, each in its own worktree and branch
 - The orchestrator writes no product code. Update this file after each review and merge. Step 2 has not started.
 
 - Owner docs-research update relayed to every worker: use `gh api` for latest documentation research and record exact refs; retain mandated borrowed-source pins.
+
+- Docs-first hook audit found Claude-only registration. Added and trusted a scoped Codex adapter; five smoke tests passed. Workers are checkpointing before session reload; live activation verification pending. Details: [reports/docs-first-hook.md](reports/docs-first-hook.md).
