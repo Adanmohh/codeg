@@ -120,7 +120,7 @@ TypeBox 1.3.7 `build/type/types/*.d.mts`, `value/check/check.d.mts`; vitest 2.1.
 installed `@types/node@25.2.2` net/child_process/fs/readline/crypto declarations.
 Original MIT notices are now in NOTICE and the extension LICENSE.
 
-Checkpoint commit: `5a5561ff` (pushed). Draft PR:
+Independent implementation checkpoint: `c0d2542a` (pushed). Draft PR:
 https://github.com/Adanmohh/codeg/pull/8
 
 ## UI helper needs (2026-09-08 coordination)
@@ -154,3 +154,40 @@ revision occur in their input schemas. These are backend-native tools; the
 adapter broker only permits `hafidh_feedback_list`, `hafidh_feedback_get`,
 `hafidh_intake_status` on its trusted `hafidh` server. Public URL or path input
 is never an MCP configuration channel.
+
+## Published helper alignment and follow-on
+
+Read the complete updated UI report read-only on 2026-09-08. Its published
+`ops::agent::RunContext` is backend-only (no Deserialize): `account_id: i32`,
+`task_id: i32`, `run_seq: i32`, `connection_id: String`, `agent_id: String`.
+`agent::{thread,tickets,save_draft}` take `&DatabaseConnection`, `&RunContext`
+and the respective existing `ThreadInput`, `TicketsInput`, `SaveDraftInput`.
+The existing `review::propose_reply` signature is unchanged.
+
+For delegated connections, RunContext.connection_id must be the current root
+work-task connection stored in the task row, while agent_id identifies the
+actual token-parent connection. The backend's private generation/parent index
+must resolve both, rejecting disconnected parents and stale generations.
+ACP will not construct an Operator or duplicate the UI's CAS SQL/validators.
+Still needed for `desk_context`: a public-only live-run inbox projection and
+the shared trusted configured-account getter; the operator context includes
+fields inappropriate for the agent bridge.
+
+The UI report records 20 passing Ops tests, including public-note exclusion,
+account/connection/run checks, competing draft CAS, and a held cancellation
+writer before draft save. These are the UI owner's results, not an independent
+run by this worker. Integration and independent tests follow accepted main.
+Root independently observed the 11 Pi tests passing at the published extension
+checkpoint; this does not establish that the still-unwired Ops bridge works.
+
+After email bridge/default completion, the minimal GitHub follow-on is a closed
+native prepare/propose operation backed by the host owner's published contract
+(`ops_intake_host`, rebrand worktree `reports/bug-workflow.md`). The bridge must
+derive task, run, product and folder from existing backend state and accept only
+existing human-reviewed evidence references plus the narrow issue draft fields.
+It must not mint evidence, import data, refresh freshness, choose configuration,
+approve or execute. The host owns source/evidence validation; no duplicate
+validators or copied unaccepted implementation. PR #5 is accepted at `4988f46b`;
+the reported main head is `d38c690e`. Follow-on integration waits for the accepted
+host seam. Any future Hafidh credential belongs only to the trusted intake
+process, never the generic agent runtime environment.
