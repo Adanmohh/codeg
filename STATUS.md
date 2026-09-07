@@ -1,6 +1,6 @@
 # Status — 2026-09-07
 
-Step 0 complete. All three Step 1 workers finished and pushed draft PRs; orchestrator acceptance review and merges remain.
+Step 0 complete. Step 1: rebrand reviewed and merged; approvals and tickets are undergoing independent acceptance review. Step 2 has not started.
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
@@ -13,11 +13,11 @@ Step 0 complete. All three Step 1 workers finished and pushed draft PRs; orchest
 
 ## Step 1 — dispatched 2026-09-07
 
-All three workers are running through Herdr, each in its own worktree and branch from `2f74992e`. Each topic has a separate tab in the Ops Desk workspace (`wR`), with its worker pane inside. Orchestrator: `wR:t1`, pane `wR:p1`.
+All three workers were dispatched through Herdr, each in its own worktree and branch from `2f74992e`. Each topic has a separate tab in the Ops Desk workspace (`wR`), with its worker pane inside. Orchestrator: `wR:t1`, pane `wR:p1`.
 
 | Worker | Tab / pane | Branch | Worktree | Report | Review / merge |
 | --- | --- | --- | --- | --- | --- |
-| rebrand | `wR:t2` / `wR:p2` | `feat/step1-rebrand` | `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand` | `reports/rebrand.md` in worktree | Awaiting orchestrator review |
+| rebrand | `wR:t2` / `wR:p2` | `feat/step1-rebrand` | `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand` | `reports/rebrand.md` | Reviewed and merged, PR #2 |
 | approvals | `wR:t3` / `wR:p3` | `feat/step1-approvals` | `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals` | `reports/approvals.md` in worktree | Awaiting orchestrator review |
 | tickets | `wR:t4` / `wR:p4` | `feat/step1-tickets` | `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets` | `reports/tickets.md` in worktree | Awaiting orchestrator review |
 
@@ -56,3 +56,10 @@ All three Herdr workers are done. Their reports and implementation are committed
 | Approvals | [#3](https://github.com/Adanmohh/codeg/pull/3) | Desktop/server compile, typecheck, Clippy, 19 approval tests and 39 work-task tests |
 
 Each PR is currently mergeable. GitHub reports no attached status checks, so no CI-pass claim is made. Final orchestrator acceptance review and integration checks have not been completed; none has merged. Next: review each final report/diff and source provenance, verify gates, resolve shared NOTICE/registry integration through workers where needed, merge, and update STATUS after each acceptance. Step 2 has not started.
+
+## Acceptance review — rebrand merged, 2026-09-07
+
+- Rebrand [PR #2](https://github.com/Adanmohh/codeg/pull/2) reviewed at `9d036d47ab7a7cebecfac78204aa915eb5ffe8ba` and merged as `079fbf64bcfd8116e83499b5b2e818f95ab84535`.
+- Orchestrator inspected the report, attribution, update-disable boundaries, display changes and mobile screenshot. Independently reran desktop/server `cargo check --locked`, frontend typecheck and four focused frontend suites: 71 tests passed. No blocking findings. Worker build/lint/native test evidence remains in [reports/rebrand.md](reports/rebrand.md).
+- Existing sidecar-placeholder and Rust future-compatibility warnings remain; no native packaged-app validation or CI-pass claim.
+- Approvals worker is independently reviewing tickets; tickets worker is independently reviewing approvals. Each must deliver a review file with findings and exact reviewed commit. Neither implementation is accepted or merged yet. Shared NOTICE/registry integration and combined checks remain.
