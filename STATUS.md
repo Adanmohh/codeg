@@ -219,3 +219,12 @@ Preliminary sequential Design Studio loop is recorded in
 language-change edit loss, unnamed controls and inherited contrast failures.
 This is not the final integrated design acceptance. Bug and Telegram workers
 continue their browser/gate work in their existing topic tabs.
+
+## Independent design specialist dispatched
+
+Reused tickets worker `wR:p4` on `docs/design-pi-review` from accepted main
+for a report-only Design Studio review of accepted Pi setup/defaults and
+preliminary design evidence. Deliverable `reports/design-pi-specialist.md`
+plus structured findings; no product edits or additional agents. P1 host
+integration follows acceptance. Root continues independent bug UI and Telegram
+source/test review while their owners finish actual browser checks.
