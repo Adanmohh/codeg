@@ -88,3 +88,5 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 
 - Reused approvals worker/pane on new `feat/step2-ops-ui` from accepted main for shared Ops API, real ticket/thread/private-note/draft and approval screens, plus the morning list. Deliverable `reports/ops-ui.md`; actual Playwright CLI checks required in its own isolated instance.
 - Email worker owns direct Resend transport; GitHub/Hafidh worker owns intake contracts and subsequent implementation. Product writes remain worker-only. Human review and exact-payload dispatch are required at the UI/API seam; unavailable external configuration must be shown honestly.
+
+- Combined-foundation browser server upgrade passed: existing ticket-only test database applied approvals, retained both migration records and ten Ops tables; Playwright CLI reload recovered at desktop width. Evidence: [browser report](reports/browser-step1.md).
