@@ -1,0 +1,34 @@
+{
+  "id": "email-review-delivery",
+  "task": "Review an edited synthetic reply and distinguish accepted, unknown, rejected and denied outcomes.",
+  "assertions": [
+    {
+      "id": "BC-10",
+      "result": "passed",
+      "evidence": "reports/ops-ui-evidence/queue.yml; reports/ops-ui-evidence/mobile-receipt.png",
+      "observation": "Full recipients/body reviewed; action explicitly approves and sends."
+    },
+    {
+      "id": "BC-12",
+      "result": "passed",
+      "evidence": "reports/browser-step2/sent-fixture.png; reports/browser-step2/unknown-fixture.png; reports/ops-ui-evidence/rejected.yml; reports/ops-ui-evidence/denied.yml",
+      "observation": "Independent root fixture pass verified receipt and exactly one public copy; unknown has no resend, rejection not sent, denial redacts."
+    },
+    {
+      "id": "BC-11",
+      "result": "passed",
+      "evidence": "reports/ops-ui-evidence/stale-dark.png",
+      "observation": "Stale send disabled; root independently denied the stale proposal."
+    },
+    {
+      "id": "BC-14",
+      "result": "not_assessed",
+      "evidence": "reports/review-ops-ui.md",
+      "observation": "DB-only recovery covered in Rust; actual browser recovery state requested for Step3 fixture."
+    }
+  ],
+  "executor": "root / Playwright CLI 0.1.18",
+  "fixture": "Only isolated local servers4318/4320, synthetic provider; no live sends",
+  "first_point_of_failure": "none for executed acceptance assertions; listed unassessed checks remain pending",
+  "result": "partial_evidence_for_final_judges"
+}

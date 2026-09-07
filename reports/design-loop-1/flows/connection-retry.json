@@ -1,0 +1,16 @@
+{
+  "id": "connection-retry",
+  "task": "Recover an inbox load after losing network access.",
+  "assertions": [
+    {
+      "id": "BC-6",
+      "result": "passed",
+      "evidence": "reports/browser-step2/main-offline.png; reports/browser-step2/main-offline-recovered.png",
+      "observation": "Actual Playwright context offline then Refresh produced alert Failed to fetch and Try again; restore network and click Try again returned Inbox name form, online=true. No fabricated response or request interception."
+    }
+  ],
+  "executor": "root / Playwright CLI 0.1.18",
+  "fixture": "Only isolated local servers4318/4320, synthetic provider; no live sends",
+  "first_point_of_failure": "none for executed acceptance assertions; listed unassessed checks remain pending",
+  "result": "partial_evidence_for_final_judges"
+}
