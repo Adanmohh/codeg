@@ -48,3 +48,5 @@ Resume work:
 Build output is isolated in this worktree at src-tauri/target-approvals (untracked, deliberately not committed); preserve for resumed checks. Local logs are ignored. Do not stage that build directory. No other worktree or main outputs were written. No transport/API/UI adapter, external sender or domain action has been introduced; Step 2 will consume the trusted Rust service boundary. Scope unchanged.
 
 Initial report commit: 9ed749d1. Product checkpoint SHA is recorded below after its commit; report-only follow-up will reference it.
+
+Product checkpoint committed and pushed: `29fe00c85160ccb0de35787a515d060c021e6b32` (`feat: checkpoint approvals core for docs hook reload`). Desktop check and frozen install processes both confirmed exit 0 via their completed sessions. Awaiting orchestrator resume; no workers started.
