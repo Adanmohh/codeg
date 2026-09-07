@@ -14,6 +14,14 @@ Read FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md and AGENTS.md
 completely from that base. The owner's integration amendment supersedes the
 original GitHub MCP choice: use intromail's GitHub App client.
 
+Owner closeout update: approvals is accepted and merged at `65aca889`
+(owner-supplied revision). The next implementation may use that accepted base;
+this docs branch was not rebased or integrated. Reserve
+`m20260907_000005_ops_intake` for the future GitHub/evidence receipt migration.
+Approvals/UI owns `000003`; email owns `000004` if needed. The owner accepted
+the corrected SDK import and explicit source gaps in principle; this report
+does not start implementation or change external configuration.
+
 **Verified source authority**
 
 | Source | Immutable revision | Findings |
@@ -71,7 +79,7 @@ the recorded HEAD; the untracked root AGENTS.md is local workflow guidance.
 | intromail SHA: `backend/app/services/github/actions.py` (`Comment`, resource/install lookup), `backend/app/models.py` (`GithubInstallation`, `GithubRepo`), `backend/app/routers/github.py` | Same GitHub module's `github.create_issue` action and minimal repository binding | Retain `domain=github`, repository resource and destructive floor. Add explicit enabled-repo/write checks: source `_installation_id()` only checks row presence; the source enabled flag chiefly controls webhook ingestion. No webhook/connect UI is copied. |
 | intromail SHA: `backend/tests/test_github_pack.py` | New GitHub adapter focused tests | Borrow mocked-client/destructive-floor/admin-boundary cases. This source suite does not verify a create-issue call or the complete token-cache contract; those tests are new glue tests. |
 | codeg pin: `src-tauri/src/db/entities/work_task_template.rs`, `src-tauri/src/db/migration/m20260801_000003_work_task_template.rs`, `src-tauri/src/models/work_task.rs`, `src-tauri/src/db/service/work_task_service.rs`; current `src-tauri/src/commands/work_task.rs` | Existing template save/list and task composer; new `ops_intake` validator only | Save a named Hafidh bug-report prompt through the existing composer snapshot. Do not put evidence authorization in editable prompt text, invent schema support in `config`, or misuse `config_values` as form fields. |
-| Pending approvals PR SHA `e1585541014e2bd55ee882335b6ee0ff032d2af1`: `src-tauri/src/db/service/ops_approvals/{mod,gating}.rs` | Reuse accepted `Action`, `propose`, `approve`, `Review`, `AuthorizedAction` service; new `src-tauri/src/commands/ops_intake.rs` and matching `web/handlers/ops_intake.rs` | Trusted registry/authentication supplies identities. `_core` functions serve both runtimes. Register only the bounded new command/handler surfaces after approvals integration is accepted; do not copy another gate. |
+| Approvals PR research SHA `e1585541014e2bd55ee882335b6ee0ff032d2af1`: `src-tauri/src/db/service/ops_approvals/{mod,gating}.rs` | Reuse accepted `Action`, `propose`, `approve`, `Review`, `AuthorizedAction` service; new `src-tauri/src/commands/ops_intake.rs` and matching `web/handlers/ops_intake.rs` | Trusted registry/authentication supplies identities. `_core` functions serve both runtimes. Re-read the accepted `65aca889` integration before implementing; do not copy another gate. |
 
 The four codeg template/model/service files checked against local `v0.30.4`
 were unchanged (exit 0). Templates contain only id/name/title/config/timestamps;
@@ -131,8 +139,9 @@ source is part of this plan.
   proposal creation and again on the approved snapshot before dispatch.
 - Reuse Step 1 approval/destructive-floor/audit behavior for outward filing.
   The branch base does not yet contain approvals. PR #3 was open at
-  `e1585541014e2bd55ee882335b6ee0ff032d2af1` during research; accepted integration
-  and trusted reviewer authentication are prerequisites, not assumed present.
+  `e1585541014e2bd55ee882335b6ee0ff032d2af1` during research. The owner subsequently
+  confirmed acceptance/merge at `65aca889`; its final API must be read in the
+  next task. Trusted reviewer authentication remains an adapter requirement.
 - The existing generic Desk server bearer proves access, not a named human
   reviewer. Never expose approval/execution to the intake MCP tool set or accept
   an agent-supplied actor/approval flag.
@@ -333,8 +342,9 @@ GitHub issue receipt. Use 64-bit database IDs (string-safe wire representation
 where needed). Reuse existing SQLite transaction/CAS and append-only audit
 patterns. Record proposal approval separately from transport outcome; approval
 is not evidence that an issue was created. A new migration/entity for this
-receipt is not currently present; reserve its name with the orchestrator at
-implementation time to avoid other workers' migrations.
+receipt is not currently present. The owner reserved
+`m20260907_000005_ops_intake` at closeout; use that name and preserve the other
+workers' reserved `000003` and `000004` migrations.
 
 GitHub's inspected create endpoint declares no idempotency-key parameter or
 conditional-create mechanism. A stable source marker in the approved body plus
@@ -358,7 +368,7 @@ Only whitelisted status/request-ID/timing/issue-receipt fields leave the client.
 
 **Configuration evidence and limits**
 
-Only names/presence were emitted. No keys, tokens, cookies, database URLs or
+Only names/presence were emitted. No real keys, tokens, cookies, database URLs or
 credential-store values were printed or copied.
 
 - Intromail declares `github_app_id`, `github_app_private_key`,
@@ -415,7 +425,8 @@ in this report:
   entries alone are not a supported JWT API. This report neither adds a
   dependency nor proposes handwritten signing. The HTTP/action contracts above
   remain usable while that routine port detail is resolved.
-- Accepted approval integration and a trusted human review route remain required.
+- Use the owner-confirmed accepted approval integration in the next task;
+  a trusted human review route remains required for this adapter.
   `CODEG_TOKEN` by itself cannot distinguish an agent from a reviewer. Keep the
   review command unavailable to agent-facing adapters; derive a local human
   principal at the UI boundary and validate ownership. Do not claim headless
@@ -500,5 +511,12 @@ against production. No product source, protected founding docs, AGENTS, LICENSE,
 NOTICE, dependency locks, global config, Hafidh source or another worktree was
 changed. No worker was started and no person was messaged.
 
-Final report checks, content commit and draft review URL will be recorded below
-after the report-only diff is verified and pushed.
+Contract content commit: `35c19c665d3d33711b60e8964b1f558959d802e1`, pushed
+(commit and push exit 0). This closing documentation update adds the owner’s
+accepted approvals revision, migration reservation and delivery provenance.
+
+Draft review: [PR #4](https://github.com/Adanmohh/codeg/pull/4),
+`docs/step2-intake-contracts` → `main`. Installed `gh pr create/view --help` was
+read; draft creation with explicit base/head and an own-worktree body file
+exited 0. The PR's head identifies the final report revision including this
+closeout. No merge was performed. Implementation awaits the next dispatch.
