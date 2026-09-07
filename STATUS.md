@@ -1,4 +1,4 @@
-# Status — 2026-09-07
+# Status — 2026-09-08
 
 Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 transport, integration and UI work continues autonomously. Browser baseline passes; new Ops flow checks and final Design Studio loops remain.
 
@@ -120,3 +120,8 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - `tickets` worker now owns `feat/step2-pi-desk`, same worktree/pane `wR:p4`, tab Pi · agent bridge. Deliverable `reports/pi-desk.md`: pinned pi extension/adapter, per-launch scoped proposal/read bridge and default-agent wiring. No operator token in agent tools, no silent model downgrade.
 - `approvals` worker continues `feat/step2-ops-ui`, pane `wR:p3`, tab Email · approvals UI, now authorized to connect the merged Resend client to per-inbox credentials/pulls and durable approved-send attempts/receipts. It owns reserved 000004 delivery storage as transport left it unused.
 - `rebrand` worker continues GitHub/Hafidh implementation on `feat/step2-intake-github`, pane `wR:p2`. All three remain GPT-6 Astra max with docs-first, gh api research, isolated branches and report deliverables.
+
+## Continued validation — 2026-09-08
+
+- Orchestrator independently ran the intake Python suite: 14 passed with bytecode/cache writes disabled. Production Python matches `a4f9f316`; added scan/configuration regressions were present in the worker test file (SHA-256 `19fbaa337a16fde21c5f09bfcd8c25c524de1afad1db379f6f6780c949b2650f`). GitHub/Rust portion and final report still await acceptance.
+- UI worker has pushed `26a4bc8d` and integrated accepted main as `53349671`; continues email transport wiring and browser tests. Pi worker researches/implements its scoped bridge independently. Final Design Studio audit/fix/recheck remains pending.
