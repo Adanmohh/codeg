@@ -55,3 +55,7 @@ Dependency versions above were read from the installed packages and Cargo.lock, 
 ## 2026-09-07 — Autonomous continuation and UI quality gates
 
 Owner requests continuing as far as possible autonomously, beyond the original Step 1 dispatch. Proceed through planned Phase 1 Steps 2 and 3, retaining exact borrowing rules and orchestrator-only role. Use Playwright CLI for browser validation; perform final Design Studio audit/fix/recheck loops. No additional approval is needed for implementation, local testing, reviews or the already-authorized PR merges. Keep actual third-party sends/publication separate from local test fixtures and report external configuration gaps.
+
+## 2026-09-07 — Step 2 verified contracts
+
+Use the actual `MCPServer` API at the mandated MCP Python SDK v2.0.1; its old FastMCP import is a deliberate failure stub, independently verified through gh api. This corrects the founding document’s scaffold name without changing the source pin or scope. Intake stays read-only against existing Hafidh GET routes; missing in-app/diagnostic read APIs are reported unavailable, not simulated as live integration. UI/draft, email and intake migrations reserve suffixes 000003/000004/000005 respectively.
