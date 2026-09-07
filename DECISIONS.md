@@ -31,3 +31,23 @@
 | sacp / ACP schema | 11.0.0 / 0.11.7 |
 
 Dependency versions above were read from the installed packages and Cargo.lock, not inferred from manifest ranges.
+
+## 2026-09-07 — Step 1 dispatch
+
+- Owner authorized three Codex workers via Herdr, command approval `never`, full filesystem access, isolated worktrees/branches, docs-first borrowing and report-file deliverables. All three launched from the pushed Step 0 baseline.
+- One topic per tab in Ops Desk workspace wR, with one worker pane in each. Herdr worktree creation created top-level wrappers despite `--workspace wR`; worker panes were moved into wR tabs before agents started. Empty wrapper shells were left intact to avoid the documented close blast radius.
+- Rebrand uses Hafidh Ops Desk as the product name, config/assets/minimal branding glue; preserve internal binary/module identifiers where renaming expands scope. No signing or distribution.
+- Reserve distinct migration names: approvals `m20260907_000001_ops_approvals`, tickets `m20260907_000002_ops_tickets`, adapted to verified repository conventions. Workers keep shared registry and NOTICE edits minimal.
+- Intromail has no source tag specified: approvals must resolve and record one immutable commit before reading the named private source files via gh api. Chatwoot remains pinned to v4.17.1, MIT files outside enterprise only.
+- Owner requires best/latest models throughout. All project agents verified as GPT-6 Astra, the installed catalogue flagship; official model guidance confirms it is OpenAI's most capable model: https://developers.openai.com/api/docs/models/gpt-6-astra. This is worker-runtime selection; FOUNDING's product agent choices remain in force.
+
+- Owner clarification: always use `gh api` for researching latest docs, against official source repositories and recorded refs. Local pinned dependency source remains the implementation authority; newest docs do not authorize changing FOUNDING source pins. This rule was relayed to all three workers.
+
+- Docs-first repair: Codex initially had no hooks. Added a local Ops Desk-scoped adapter over the existing Claude hook scripts, normalized apply_patch to existing write checks, persisted trust through the documented Codex API, smoke-tested five cases, and verified live pre/post records in all three resumed workers. Workers checkpointed and pushed before restart; same branches/worktrees/panes and session histories retained. No product code written by orchestrator. Worker reasoning explicitly max on GPT-6 Astra.
+
+## 2026-09-07 — Owner integration amendment
+
+- Email transport borrows intromail's direct Resend REST client; no Resend CLI and no Resend MCP transport. GitHub uses a GitHub App instead of GitHub MCP. Owner instruction authorizes this plan change; no additional approval is needed.
+- Verified via gh api at intromail commit `0bd24dfe284b888aa9f602fa1fd00e337ea38874`: `backend/app/services/resend_client.py`, `backend/app/services/github/client.py`, `docs/GITHUB-INTEGRATION.md`. The Resend client uses async HTTP, idempotency keys and explicit threading headers. GitHub client exchanges an App JWT for an installation token and makes installation-scoped REST calls.
+- Source gaps are explicit: this Resend client has receiving-detail fetches but no inbox-list/poll helper; this GitHub client has no create-issue helper. Verify official contracts via gh api and borrow minimal glue during Step 2. Preserve the current pull-first decision unless the owner changes it; do not import intromail's hosted webhook assumption blindly.
+- Chatwoot ticket/threading, evidence validation, human approvals and audit remain. No changes to Step 1 worker scope. No App registration, credential changes, installation on repositories, webhook deployment or live sends performed. Update integration effort estimates during Step 2 source review.

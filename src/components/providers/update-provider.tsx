@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react"
+import { APP_UPDATES_ENABLED } from "@/lib/brand"
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 import {
@@ -219,6 +220,7 @@ export function UpdateProvider({ children }: { children: React.ReactNode }) {
    * recorded while we sat idle. */
   const adoptCached = useCallback(
     (cached: CachedUpdateCheck) => {
+      if (!APP_UPDATES_ENABLED) return
       // Ahead of the freshness guard on purpose. A sibling window's "Later"
       // leaves `cached.at` untouched, so gating this read on a newer cache
       // would strand every window that already holds the same answer: they'd
@@ -406,6 +408,7 @@ export function UpdateProvider({ children }: { children: React.ReactNode }) {
 
   const runCheck = useCallback(
     async (silent: boolean) => {
+      if (!APP_UPDATES_ENABLED) return
       setChecking(true)
       try {
         const result = await checkAppUpdateInfo()
@@ -874,7 +877,8 @@ export function UpdateProvider({ children }: { children: React.ReactNode }) {
   // detached live-progress protocol (older ones would block on the legacy
   // endpoint), so anything else falls back to a "view release" link.
   const canInstallInPlace =
-    usesTauriUpdater() || (selfUpdateSupported && liveProgress)
+    APP_UPDATES_ENABLED &&
+    (usesTauriUpdater() || (selfUpdateSupported && liveProgress))
 
   const value = useMemo<UpdateContextValue>(
     () => ({

@@ -1,7 +1,7 @@
 [package]
 name = "codeg"
 version = "0.30.4"
-description = "Agent Code Generation App"
+description = "Hafidh Ops Desk internal operations workspace"
 authors = ["feitao"]
 edition = "2021"
 default-run = "codeg"

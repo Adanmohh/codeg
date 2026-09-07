@@ -1,4 +1,6 @@
 import { useEffect } from "react"
+
+vi.mock("@/lib/brand", () => ({ APP_UPDATES_ENABLED: true }))
 import { render, screen, act, waitFor } from "@testing-library/react"
 import { NextIntlClientProvider } from "next-intl"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"

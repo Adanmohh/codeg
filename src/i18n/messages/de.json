@@ -75,7 +75,7 @@
       "sectionDescription": "Wähle eine Farbpalette für Akzente, Schaltflächen und Hervorhebungen.",
       "current": "Aktuelle Farbe: {color}",
       "options": {
-        "neutral": "Neutral",
+        "neutral": "Hafidh",
         "zinc": "Zinc",
         "slate": "Slate",
         "stone": "Stone",
@@ -226,6 +226,7 @@
     }
   },
   "SystemSettings": {
+    "internalBuild": "Interne Version · Updates deaktiviert",
     "loading": "Wird geladen...",
     "sectionTitle": "Systemverwaltung",
     "sectionDescription": "Verwalte App-Updates, den Autostart beim Anmelden, den Netzwerk-Proxy und die Spracheinstellungen.",
@@ -714,14 +715,14 @@
     "envVars": "Umgebungsvariablen",
     "adapterChannel": {
       "label": "Adapter-Version",
-      "description": "Installieren und Aktualisieren verwenden die von codeg geprüfte und angepinnte Version. Mit Neueste wird stattdessen die jeweils neueste npm-Version des Pakets installiert; schlägt das fehl, fällt codeg auf die angepinnte Version zurück und vermerkt es im Installationsprotokoll.",
+      "description": "Installieren und Aktualisieren verwenden die von Hafidh Ops Desk geprüfte und angepinnte Version. Mit Neueste wird stattdessen die jeweils neueste npm-Version des Pakets installiert; schlägt das fehl, fällt Hafidh Ops Desk auf die angepinnte Version zurück und vermerkt es im Installationsprotokoll.",
       "pinned": "Angepinnt (empfohlen)",
       "latest": "Neueste (ungeprüft)",
-      "latestWarning": "Die neuesten Versionen sind ungeprüft und können diesen Agenten in codeg beschädigen; gelegentlich ist eine Version sogar bekanntermaßen defekt. Der Versionsstatus zeigt, was tatsächlich installiert ist."
+      "latestWarning": "Die neuesten Versionen sind ungeprüft und können diesen Agenten in Hafidh Ops Desk beschädigen; gelegentlich ist eine Version sogar bekanntermaßen defekt. Der Versionsstatus zeigt, was tatsächlich installiert ist."
     },
     "hostTools": {
       "label": "Dateien und Befehle vom Agenten selbst ausführen lassen",
-      "description": "codeg übernimmt Dateizugriffe und Terminalbefehle nicht mehr, sodass der Agent sie im eigenen Prozess ausführt – nur dort greifen seine eigene Sandbox und seine Berechtigungsregeln. Auch das Delegieren an andere Agenten wird deaktiviert, da dieselbe Arbeit sonst wieder über codeg liefe. codeg fügt selbst keine Sandbox hinzu; aktivieren Sie dies also nur, wenn im Agenten eine konfiguriert ist."
+      "description": "Hafidh Ops Desk übernimmt Dateizugriffe und Terminalbefehle nicht mehr, sodass der Agent sie im eigenen Prozess ausführt – nur dort greifen seine eigene Sandbox und seine Berechtigungsregeln. Auch das Delegieren an andere Agenten wird deaktiviert, da dieselbe Arbeit sonst wieder über Hafidh Ops Desk liefe. Hafidh Ops Desk fügt selbst keine Sandbox hinzu; aktivieren Sie dies also nur, wenn im Agenten eine konfiguriert ist."
     },
     "nativeJsonConfig": "Natives JSON-Config",
     "modelHintDefault": "Leer lassen, um das System-Standardmodell zu verwenden.",
@@ -834,7 +835,7 @@
       "configTomlHint": "Wird wortwörtlich als gesamte ~/.grok/config.toml gespeichert. Ungültiges TOML wird abgelehnt, sodass ein Tippfehler deine Datei nie abschneidet.",
       "configTomlPlaceholder": "# Andere Schlüssel als die Steuerelemente oben, z. B.\n# [mcp_servers.*], [cli], [permission]-Regeln.",
       "customModelTitle": "Benutzerdefiniertes Modell (eigener Endpunkt)",
-      "customModelHint": "Richte Grok auf einen benutzerdefinierten oder selbst gehosteten Endpunkt. codeg schreibt einen `[model.*]`-Block pro Modell und legt es als Standard fest. Lasse die Modell-ID leer, um es zu entfernen.",
+      "customModelHint": "Richte Grok auf einen benutzerdefinierten oder selbst gehosteten Endpunkt. Hafidh Ops Desk schreibt einen `[model.*]`-Block pro Modell und legt es als Standard fest. Lasse die Modell-ID leer, um es zu entfernen.",
       "customModelIdLabel": "Modell-ID",
       "customModelIdPlaceholder": "grok-4.5",
       "customModelIdHint": "Wird als `[model.*]`-Block registriert und als Modellname an die API gesendet; außerdem als `[models].default` gesetzt.",
@@ -852,7 +853,7 @@
       "autoCompactHint": "Verdichtet die Unterhaltung, wenn die Kontextnutzung diesen Prozentsatz erreicht (Grok-Standard 85). Wird in `[session]` geschrieben."
     },
     "cursor": {
-      "configDescription": "Konfiguriere Cursor hier. Wähle eine Authentifizierungsmethode – offizielles Abo (Browser-Anmeldung) oder einen Cursor-API-Schlüssel für Headless-/Servermaschinen – wähle dann ein Modell und bearbeite die Berechtigungsregeln und die Sandbox des CLI. codeg schreibt sie in ~/.cursor/cli-config.json, gemeinsam mit dem cursor-agent-CLI.",
+      "configDescription": "Konfiguriere Cursor hier. Wähle eine Authentifizierungsmethode – offizielles Abo (Browser-Anmeldung) oder einen Cursor-API-Schlüssel für Headless-/Servermaschinen – wähle dann ein Modell und bearbeite die Berechtigungsregeln und die Sandbox des CLI. Hafidh Ops Desk schreibt sie in ~/.cursor/cli-config.json, gemeinsam mit dem cursor-agent-CLI.",
       "authTitle": "Authentifizierung",
       "authChecking": "Prüfe…",
       "authNotInstalled": "cursor-agent ist nicht installiert",
@@ -943,11 +944,11 @@
       "missingAgentPlatformConfig": "Enter an API key, or both a project and a location — sessions will fail to start without one of the two.",
       "missingEnterpriseConfig": "Gemini Enterprise needs both a project and a location.",
       "settingsFileHint": "Saved to auth.type in this file. Any other keys you put there are preserved.",
-      "syncSkipped": "Your choice was saved, but codeg could not write it to the ACP server's settings.json, so Antigravity will keep authenticating the way that file says. Set auth.type in it yourself, or move it aside and save again.",
+      "syncSkipped": "Your choice was saved, but Hafidh Ops Desk could not write it to the ACP server's settings.json, so Antigravity will keep authenticating the way that file says. Set auth.type in it yourself, or move it aside and save again.",
       "save": "Save",
       "headless": {
         "title": "Ohne Browser auf diesem Rechner anmelden",
-        "description": "Antigravity führt die Google-Anmeldung selbst aus – auf dem Rechner, auf dem der Agent läuft. Fehlt dort ein Browser (codeg auf einem Server ohne Desktop), wartet die erste Sitzung fünf Minuten und schlägt dann fehl. Melde dich stattdessen hier an: Link auf einem beliebigen Gerät öffnen und die Zieladresse zurück einfügen.",
+        "description": "Antigravity führt die Google-Anmeldung selbst aus – auf dem Rechner, auf dem der Agent läuft. Fehlt dort ein Browser (Hafidh Ops Desk auf einem Server ohne Desktop), wartet die erste Sitzung fünf Minuten und schlägt dann fehl. Melde dich stattdessen hier an: Link auf einem beliebigen Gerät öffnen und die Zieladresse zurück einfügen.",
         "start": "Anmeldelink holen",
         "saveFirst": "Zuerst speichern – die Anmeldung nutzt die gespeicherten Einstellungen, nicht das oben Eingetippte.",
         "step1": "1. Öffne diesen Link und melde dich bei Google an.",
@@ -1011,9 +1012,9 @@
       "sandboxMode_read-only": "Nur lesen",
       "sandboxMode_workspace-write": "Workspace-Schreibzugriff",
       "sandboxMode_danger-full-access": "Vollzugriff (keine Sandbox)",
-      "sandboxModeReadOnlyAcpWarning": "Der ACP-Adapter liefert keine schreibgeschützte Sandbox mehr, daher laufen codeg-Sitzungen unabhängig von dieser Einstellung mit Schreibrecht im Arbeitsbereich. codeg wählt die strengste verfügbare Voreinstellung – jede Rechteausweitung kommt zu dir zur Freigabe –, doch Änderungen innerhalb des Arbeitsbereichs brauchen keine mehr. codex-CLI- und IDE-Sitzungen beachten „schreibgeschützt“ weiterhin.",
+      "sandboxModeReadOnlyAcpWarning": "Der ACP-Adapter liefert keine schreibgeschützte Sandbox mehr, daher laufen codeg-Sitzungen unabhängig von dieser Einstellung mit Schreibrecht im Arbeitsbereich. Hafidh Ops Desk wählt die strengste verfügbare Voreinstellung – jede Rechteausweitung kommt zu dir zur Freigabe –, doch Änderungen innerhalb des Arbeitsbereichs brauchen keine mehr. codex-CLI- und IDE-Sitzungen beachten „schreibgeschützt“ weiterhin.",
       "sandboxModeHint": "Unter Windows wird Workspace-Schreibzugriff auf Nur-Lesen herabgestuft, sofern die experimentelle Windows-Sandbox von codex nicht aktiviert ist.",
-      "sandboxModeSeedsPresetHint": "codeg bildet dies auch auf die Start-Freigabe-Voreinstellung der Sitzung ab, wirkt sich also – anders als die Freigaberichtlinie – auf gewöhnliche Anfragen aus. Beachte: Bei der Standard-Voreinstellung des Adapters sichtet jetzt ein Modell die Rechteausweitungen vor und leitet nur weiter, was es für unsicher hält; wähle im Eingabefeld „Um Freigabe bitten“, um jede selbst zu prüfen. Die Voreinstellung im Eingabefeld hat immer Vorrang.",
+      "sandboxModeSeedsPresetHint": "Hafidh Ops Desk bildet dies auch auf die Start-Freigabe-Voreinstellung der Sitzung ab, wirkt sich also – anders als die Freigaberichtlinie – auf gewöhnliche Anfragen aus. Beachte: Bei der Standard-Voreinstellung des Adapters sichtet jetzt ein Modell die Rechteausweitungen vor und leitet nur weiter, was es für unsicher hält; wähle im Eingabefeld „Um Freigabe bitten“, um jede selbst zu prüfen. Die Voreinstellung im Eingabefeld hat immer Vorrang.",
       "writableRootsLabel": "Zusätzliche beschreibbare Ordner",
       "writableRootsHint": "Ein absoluter Pfad pro Zeile, zusätzlich zum Arbeitsverzeichnis.",
       "sandboxRootsRelativeError": "Muss ein absoluter Pfad sein – codex löst relative Angaben unter ~/.codex auf: {path}",
@@ -1126,7 +1127,7 @@
         "description": "Legt fest, welche Aktionen einfach laufen, welche vorher nachfragen und welche blockiert werden. Wird in den permission-Block von opencode.json geschrieben und mit dem Speichern unten übernommen.",
         "docsLink": "Dokumentation zu Berechtigungen",
         "unparsableConfig": "Das native JSON unten ist ungültig, deshalb pausiert der visuelle Editor. Korrigiere das JSON, um fortzufahren.",
-        "invalidBlock": "Der permission-Block hat eine Form, die codeg nicht kennt. Bearbeite ihn im nativen JSON unten oder beginne mit Zurücksetzen neu.",
+        "invalidBlock": "Der permission-Block hat eine Form, die Hafidh Ops Desk nicht kennt. Bearbeite ihn im nativen JSON unten oder beginne mit Zurücksetzen neu.",
         "orderingUnsafe": "Eine Wildcard-Regel steht hinter konkreten Tools, deshalb wendet OpenCode sie auch auf diese an – die Zeilen unten sind nicht das, was tatsächlich gilt. Reihenfolge korrigieren schiebt jede Wildcard nur wieder an den Anfang ihres Bereichs, ohne einen Wert zu ändern.",
         "orderingUnsafeManual": "Eine Regel wird von einem späteren, allgemeineren Muster verdeckt, OpenCode wendet sie also nie an – die Zeilen unten sind nicht das, was tatsächlich gilt. Für zwei überlappende Muster gibt es keine eine richtige Reihenfolge; sortiere sie im nativen JSON so, dass das allgemeinere zuerst steht.",
         "fixOrder": "Reihenfolge korrigieren",
@@ -1182,7 +1183,7 @@
     },
     "hermes": {
       "configManagement": "Hermes-Konfiguration",
-      "configDescription": "Hermes verwaltet seine eigenen Anmeldedaten in ~/.hermes/.env und die Einstellungen in ~/.hermes/config.yaml. Wähle einen Anbieter und lege dann den API-Schlüssel und das Modell fest – codeg schreibt beide Dateien für dich.",
+      "configDescription": "Hermes verwaltet seine eigenen Anmeldedaten in ~/.hermes/.env und die Einstellungen in ~/.hermes/config.yaml. Wähle einen Anbieter und lege dann den API-Schlüssel und das Modell fest – Hafidh Ops Desk schreibt beide Dateien für dich.",
       "providerLabel": "Anbieter",
       "providerHint": "Der Anbieter legt fest, welche API-Schlüssel-Variable und welchen model.provider Hermes verwendet. OAuth-Anbieter werden über die Terminal-Einrichtung unten konfiguriert.",
       "groupApiKey": "Anbieter mit API-Schlüssel",
@@ -1224,7 +1225,7 @@
     },
     "kimiCode": {
       "configManagement": "Kimi-Code-Konfiguration",
-      "configDescription": "`kimi acp` akzeptiert nur ein gespeichertes Login-Token, daher schreibt codeg einen verwalteten Provider in ~/.kimi-code/config.toml und legt lokal ein Gate-Token an – die Inferenz läuft weiterhin über deinen eigenen Schlüssel.",
+      "configDescription": "`kimi acp` akzeptiert nur ein gespeichertes Login-Token, daher schreibt Hafidh Ops Desk einen verwalteten Provider in ~/.kimi-code/config.toml und legt lokal ein Gate-Token an – die Inferenz läuft weiterhin über deinen eigenen Schlüssel.",
       "statusUnconfigured": "Noch nicht konfiguriert",
       "statusDirty": "Nicht gespeicherte Änderungen",
       "summaryLabel": "Aktiv",
@@ -1236,7 +1237,7 @@
       "authModeApiKey": "API-Schlüssel",
       "authModeLogin": "Kimi-Konto-Anmeldung (Abo)",
       "authModeApiKeyHint": "Schreibt einen verwalteten Provider in config.toml und legt das Gate-Token an, damit Sitzungen geöffnet werden können.",
-      "loginHint": "Führe `kimi login` im Terminal aus, um dich mit einem Kimi-Abo-Konto anzumelden; ab Kimi 0.39.0 hänge für ein kimi.ai-Konto `--region global` an, denn standardmäßig wird bei kimi.com angemeldet. codeg speichert nichts und nutzt Kimis eigene Anmeldung. Speichern hier entfernt codegs API-Schlüssel-Gate-Token.",
+      "loginHint": "Führe `kimi login` im Terminal aus, um dich mit einem Kimi-Abo-Konto anzumelden; ab Kimi 0.39.0 hänge für ein kimi.ai-Konto `--region global` an, denn standardmäßig wird bei kimi.com angemeldet. Hafidh Ops Desk speichert nichts und nutzt Kimis eigene Anmeldung. Speichern hier entfernt codegs API-Schlüssel-Gate-Token.",
       "credentialTitle": "Zugangsdaten",
       "interfaceTypeLabel": "Provider-Typ",
       "interfaceTypeHint": "Das Provider-Protokoll, das Kimi spricht (`type` in config.toml). Für einen Moonshot-/platform.kimi.com-Schlüssel Kimi / Moonshot wählen.",
@@ -1265,7 +1266,7 @@
       "modelNotInList": "Dieses Modell ist nicht in der Liste, auf die dein Schlüssel zugreifen kann – Kimi scheitert mit „Modell nicht gefunden“.",
       "reasoningTitle": "Reasoning",
       "reasoningEnableLabel": "Aktivieren",
-      "reasoningDescription": "Kimi zeigt den „Thinking“-Auswähler im Eingabefeld nur, wenn das Modell eine Reasoning-Fähigkeit deklariert – codeg schreibt sie hier. Gilt ab neuen Sitzungen.",
+      "reasoningDescription": "Kimi zeigt den „Thinking“-Auswähler im Eingabefeld nur, wenn das Modell eine Reasoning-Fähigkeit deklariert – Hafidh Ops Desk schreibt sie hier. Gilt ab neuen Sitzungen.",
       "effortsLabel": "Angebotene Stufen",
       "effortsHint": "Diese Stufen erscheinen im „Thinking“-Auswähler. Kimi reicht die Stufe unverändert an den Provider weiter – wähle also Werte, die dein Modell akzeptiert.",
       "effortsEmptyHint": "Ohne ausgewählte Stufe bleibt im Eingabefeld nur ein einfacher Off/On-Schalter.",
@@ -1432,12 +1433,12 @@
     "adapter": {
       "label": "ACP-Adapter",
       "badge": "ACP-Adapter",
-      "badgeHint": "Für diesen Agenten installiert Codeg ein ACP-Adapterpaket, nicht die Hersteller-CLI. Beide sind unabhängig und teilen sich dieselbe Konfiguration.",
+      "badgeHint": "Für diesen Agenten installiert Hafidh Ops Desk ein ACP-Adapterpaket, nicht die Hersteller-CLI. Beide sind unabhängig und teilen sich dieselbe Konfiguration.",
       "learnMore": "Mehr erfahren",
-      "missingWithNative": "Deine eigene {nativeLabel} wurde unter {nativePath} gefunden. Codeg spricht mit Agenten über ACP, und diese CLI beherrscht kein ACP — deshalb braucht Codeg ein separates Adapterpaket, {adapterPackage}, gepflegt vom Agent-Client-Protocol-Projekt (ursprünglich Zed). Es bringt seine eigene Laufzeit mit, verändert oder ersetzt deinen Befehl {nativeCmd} nie und liest dasselbe {configDir} — Anmeldung und Einstellungen bleiben erhalten. Unten installieren.",
-      "missing": "Codeg spricht mit Agenten über ACP, und die {nativeLabel} beherrscht kein ACP — deshalb braucht Codeg ein separates Adapterpaket, {adapterPackage}, gepflegt vom Agent-Client-Protocol-Projekt (ursprünglich Zed). Es bringt seine eigene Laufzeit mit, die CLI {nativeCmd} ist also nicht Voraussetzung; hast du sie bereits, koexistieren beide und teilen sich Anmeldung und Einstellungen in {configDir}. Unten installieren.",
-      "readyWithNative": "Der Adapter {adapterCmd} ist installiert — ihn startet Codeg, nicht dein eigenes {nativeCmd} unter {nativePath}. Es sind getrennte Pakete, die koexistieren, und beide lesen {configDir}, Anmeldung und Einstellungen sind also gemeinsam.",
-      "ready": "Der Adapter {adapterCmd} ist installiert — ihn startet Codeg. Er bringt seine eigene Laufzeit mit, die {nativeLabel} wird also nicht benötigt; installierst du sie später, koexistieren beide und teilen sich {configDir}."
+      "missingWithNative": "Deine eigene {nativeLabel} wurde unter {nativePath} gefunden. Hafidh Ops Desk spricht mit Agenten über ACP, und diese CLI beherrscht kein ACP — deshalb braucht Hafidh Ops Desk ein separates Adapterpaket, {adapterPackage}, gepflegt vom Agent-Client-Protocol-Projekt (ursprünglich Zed). Es bringt seine eigene Laufzeit mit, verändert oder ersetzt deinen Befehl {nativeCmd} nie und liest dasselbe {configDir} — Anmeldung und Einstellungen bleiben erhalten. Unten installieren.",
+      "missing": "Hafidh Ops Desk spricht mit Agenten über ACP, und die {nativeLabel} beherrscht kein ACP — deshalb braucht Hafidh Ops Desk ein separates Adapterpaket, {adapterPackage}, gepflegt vom Agent-Client-Protocol-Projekt (ursprünglich Zed). Es bringt seine eigene Laufzeit mit, die CLI {nativeCmd} ist also nicht Voraussetzung; hast du sie bereits, koexistieren beide und teilen sich Anmeldung und Einstellungen in {configDir}. Unten installieren.",
+      "readyWithNative": "Der Adapter {adapterCmd} ist installiert — ihn startet Hafidh Ops Desk, nicht dein eigenes {nativeCmd} unter {nativePath}. Es sind getrennte Pakete, die koexistieren, und beide lesen {configDir}, Anmeldung und Einstellungen sind also gemeinsam.",
+      "ready": "Der Adapter {adapterCmd} ist installiert — ihn startet Hafidh Ops Desk. Er bringt seine eigene Laufzeit mit, die {nativeLabel} wird also nicht benötigt; installierst du sie später, koexistieren beide und teilen sich {configDir}."
     },
     "cline": {
       "configDescription": "Konfigurieren Sie den Cline API-Anbieter und die Anmeldedaten. Einstellungen werden in ~/.cline/data/ gespeichert."
@@ -1555,7 +1556,7 @@
     "customAgentEditNotFound": "Benutzerdefinierter Agent {id} wurde nicht gefunden",
     "customAgentSaved": "{name} gespeichert",
     "customAgentVersionProbeLabel": "Versionsabfrage-Befehl (optional)",
-    "customAgentVersionProbeHint": "Befehl, der die lokal installierte Version ausgibt. Bleibt er leer, führt codeg den Agent-Befehl mit --version aus.",
+    "customAgentVersionProbeHint": "Befehl, der die lokal installierte Version ausgibt. Bleibt er leer, führt Hafidh Ops Desk den Agent-Befehl mit --version aus.",
     "customAgentRemove": "Agent entfernen",
     "customAgentRemoveHint": "Löscht die Agent-Definition. Bestehende Unterhaltungen behalten ihren Verlauf; der Agent lässt sich nur nicht mehr starten.",
     "customAgentIconLabel": "Symbol (optional)",
@@ -1568,7 +1569,7 @@
     "customAgentSkillsDirLabel": "Dediziertes Skills-Verzeichnis",
     "customAgentSkillsDirHint": "Absoluter Pfad des Verzeichnisses, aus dem dieser Agent Skills lädt — sein eigener Speicher, zusätzlich zum geteilten oder an dessen Stelle. ~ wird zum Home-Verzeichnis erweitert; verknüpfte Skills landen zuerst hier.",
     "customAgentMcpLabel": "MCP-Unterstützung",
-    "customAgentMcpHint": "Übergibt den in codeg integrierten MCP-Begleitprozess beim Sitzungsstart an diesen Agenten — der Kanal hinter Delegation, Live-Feedback und Aufgaben-Tools. Für einen Agenten, der MCP-Server ablehnt und deshalb keine Verbindung aufbaut, ausschalten; die Änderung gilt ab der nächsten Verbindung.",
+    "customAgentMcpHint": "Übergibt den in Hafidh Ops Desk integrierten MCP-Begleitprozess beim Sitzungsstart an diesen Agenten — der Kanal hinter Delegation, Live-Feedback und Aufgaben-Tools. Für einen Agenten, der MCP-Server ablehnt und deshalb keine Verbindung aufbaut, ausschalten; die Änderung gilt ab der nächsten Verbindung.",
     "customAgentIconNotAnImage": "Bitte eine Bilddatei auswählen.",
     "customAgentIconTooLarge": "Das Symbol muss kleiner als {limit} KB sein.",
     "customAgentIconReadFailed": "Dieses Bild konnte nicht gelesen werden.",
@@ -1587,7 +1588,7 @@
     "sectionTitle": "Allgemein",
     "sectionDescription": "Zentrale Einstellungen für das Standardterminal, die Rendering-Beschleunigung, Benachrichtigungen und die Multi-Agent-Delegation.",
     "terminalTitle": "Standardterminal",
-    "terminalDescription": "Wählen Sie die Shell, die beim Öffnen neuer Terminal-Tabs über die Terminalleiste oder den Dateibaum verwendet wird. Agenten nutzen sie ebenfalls, wenn sie codeg um die Ausführung einer vollständigen Befehlszeile bitten.",
+    "terminalDescription": "Wählen Sie die Shell, die beim Öffnen neuer Terminal-Tabs über die Terminalleiste oder den Dateibaum verwendet wird. Agenten nutzen sie ebenfalls, wenn sie Hafidh Ops Desk um die Ausführung einer vollständigen Befehlszeile bitten.",
     "terminalSystemDefault": "Systemstandard",
     "terminalPowerShell7": "PowerShell 7 (pwsh)",
     "terminalWindowsPowerShell": "Windows PowerShell",
@@ -1610,8 +1611,8 @@
     "loadFailed": "Laden fehlgeschlagen: {message}"
   },
   "LoginPage": {
-    "documentTitle": "Anmelden - codeg",
-    "brand": "Codeg",
+    "documentTitle": "Anmelden - Hafidh Ops Desk",
+    "brand": "Hafidh Ops Desk",
     "subtitle": "Gib dein Zugriffstoken ein, um dich mit der Desktop-App zu verbinden",
     "tokenPlaceholder": "Zugriffstoken",
     "connect": "Verbinden",
@@ -1667,7 +1668,7 @@
     "onlyImportable": "Nur importierbare",
     "includeDeleted": "Gelöschte einbeziehen",
     "includeDeletedWithCount": "Gelöschte einbeziehen ({count})",
-    "includeDeletedHint": "Das Löschen einer Sitzung in codeg blendet sie nur aus – Unterhaltung und Verlauf bleiben erhalten. Aktiviere dies, um gelöschte Sitzungen auszuwählen und an Ort und Stelle wiederherzustellen.",
+    "includeDeletedHint": "Das Löschen einer Sitzung in Hafidh Ops Desk blendet sie nur aus – Unterhaltung und Verlauf bleiben erhalten. Aktiviere dies, um gelöschte Sitzungen auszuwählen und an Ort und Stelle wiederherzustellen.",
     "selectAll": "Alle auswählen",
     "clearSelection": "Leeren",
     "expandAll": "Alle ausklappen",
@@ -2896,7 +2897,7 @@
           "turnFailedAuthRequired": "{agent} benötigt eine erneute Anmeldung, bevor diese Runde ausgeführt werden kann. Melde dich in den Einstellungen an und sende die Nachricht erneut.",
           "grokModelSwitchIncompatibleAgent": "{agent} kann in einer bestehenden Unterhaltung nicht zu diesem Modell wechseln. Starte eine neue Sitzung, um es zu verwenden.",
           "turnFailedEmpty": "{agent} hat die Runde ohne jegliche Antwort beendet.",
-          "turnFailedEmptyProtocol": "{agent} hat eine Ausgabe erzeugt, die codeg nicht auswerten konnte — die Agent-Version passt möglicherweise nicht zum Protokoll.",
+          "turnFailedEmptyProtocol": "{agent} hat eine Ausgabe erzeugt, die Hafidh Ops Desk nicht auswerten konnte — die Agent-Version passt möglicherweise nicht zum Protokoll.",
           "turnFailedEmptyMetadata": "{agent} hat in dieser Runde nur Statusaktualisierungen gesendet (Plan / Modus / Verbrauch) und keine Antwort.",
           "detailsInAlerts": "Öffnen Sie die Warnungen in der Statusleiste und klappen Sie die Details auf, um die Ausgabe des Agents zu sehen."
         },
@@ -3044,7 +3045,7 @@
           "shortcutsAuxPanel": "<shortcut>{toggleAuxPanel}</shortcut> blendet das rechte Panel ein – mit den geänderten Dateien und Git-Änderungen dieser Sitzung.",
           "shortcutsTerminalSidebar": "<shortcut>{toggleTerminal}</shortcut> öffnet das eingebaute Terminal, <shortcut>{toggleSidebar}</shortcut> schaltet die Seitenleiste um.",
           "customShortcuts": "Alle Tastenkürzel lassen sich unter Einstellungen → Tastenkürzel frei belegen.",
-          "webService": "Aktiviere Einstellungen → Webdienst, damit Teammitglieder dasselbe codeg im Browser nutzen können.",
+          "webService": "Aktiviere Einstellungen → Webdienst, damit Teammitglieder dasselbe Hafidh Ops Desk im Browser nutzen können.",
           "fusionMode": "Öffne eine Datei oder ein Diff, um es automatisch neben der Konversation zu sehen.",
           "quickMessages": "Klicke auf die +-Schaltfläche neben der Eingabe und wähle Schnellnachrichten, um ein gespeichertes Snippet einzufügen (verwaltbar unter Einstellungen → Schnellnachrichten).",
           "experts": "Die +-Schaltfläche hat ein Menü Expertenfähigkeiten – lade Rollen wie Debugging oder Planung mit einem Klick.",
@@ -3054,7 +3055,7 @@
           "mentionTargets": "@ holt mehr als Dateien: Erwähne einen anderen Agenten, um eine Teilaufgabe abzugeben, oder verweise auf eine frühere Sitzung, einen Commit oder einen Skill.",
           "splitGroups": "Rechtsklick auf einen Tab, dann Nach rechts teilen oder Nach unten teilen – so bleiben zwei Konversationen in eigenen Bereichen offen.",
           "worktrees": "Öffne die Branch-Schaltfläche und wähle Neuer Worktree, damit mehrere Agenten dasselbe Repository bearbeiten, ohne sich gegenseitig die Dateien zu überschreiben.",
-          "importSessions": "Schon Sitzungen im Terminal gelaufen? Im Menü eines Ordners holt Lokale Sitzungen importieren diesen Verlauf nach codeg.",
+          "importSessions": "Schon Sitzungen im Terminal gelaufen? Im Menü eines Ordners holt Lokale Sitzungen importieren diesen Verlauf nach Hafidh Ops Desk.",
           "subSessions": "Delegiert ein Agent, erscheint die Untersitzung in der Seitenleiste verschachtelt darunter – klapp die Zeile auf, um jeder einzeln zu folgen.",
           "liveFeedback": "Live-Feedback im +-Menü schiebt eine Notiz in den Zug, den der Agent gerade ausführt – ohne ihn zu unterbrechen.",
           "skillPacks": "Einstellungen → Skill-Pakete bündelt Coding-Experten, wissenschaftliche Recherche und Office-Skills – pro Agent aktivierbar.",
@@ -3861,11 +3862,11 @@
   "WebServiceSettings": {
     "addressSwitchHint": "Das Umschalten ändert nur die hier angezeigte und geöffnete Adresse – der Dienst lauscht auf allen Schnittstellen und bleibt unter jeder Adresse erreichbar.",
     "sectionTitle": "Webdienst",
-    "sectionDescription": "Aktivieren Sie den Fernzugriff auf Codeg über den Browser",
+    "sectionDescription": "Aktivieren Sie den Fernzugriff auf Hafidh Ops Desk über den Browser",
     "port": "Port",
     "status": "Status",
     "autoStart": "Automatisch starten",
-    "autoStartHint": "Webdienst beim Start von Codeg starten",
+    "autoStartHint": "Webdienst beim Start von Hafidh Ops Desk starten",
     "running": "Läuft",
     "stopped": "Gestoppt",
     "processing": "Verarbeitung...",
@@ -3880,7 +3881,7 @@
     "copy": "Kopieren",
     "qrcode": "QR-Code",
     "qrcodeTitle": "Zum Öffnen scannen",
-    "qrcodeHint": "Scanne mit deinem Handy, um Codeg im Browser zu öffnen",
+    "qrcodeHint": "Scanne mit deinem Handy, um Hafidh Ops Desk im Browser zu öffnen",
     "addressLabel": "Zugriffsadresse",
     "tokenLabel": "Zugriffstoken",
     "tokenHint": "Geben Sie dieses Token beim ersten Zugriff auf den Web-Client ein",
@@ -3888,7 +3889,7 @@
     "regenerate": "Neu generieren",
     "stalePortOccupiedTitle": "Port {port} wird von einem anderen Prozess belegt",
     "stalePortUnknownTitle": "Status von Port {port} unklar",
-    "stalePortHint": "Codeg kann sich nicht binden, bis der Port freigegeben ist. Ändere den Port oben oder beende den Prozess, der ihn hält.",
+    "stalePortHint": "Hafidh Ops Desk kann sich nicht binden, bis der Port freigegeben ist. Ändere den Port oben oder beende den Prozess, der ihn hält.",
     "errors": {
       "alreadyRunning": "Der Web-Dienst läuft bereits",
       "invalidAddress": "Host- oder Portformat ungültig",
@@ -3927,7 +3928,7 @@
     "tokenRequired": "Token ist erforderlich.",
     "chatIdRequired": "Chat-ID ist erforderlich.",
     "topicMode": "Themengruppenmodus",
-    "topicModeHint": "Leitet Telegram-Forum-Themen als separate Codeg-Sitzungen weiter. Der Bot muss in einer Forum-Supergruppe sein und Themen verwalten dürfen.",
+    "topicModeHint": "Leitet Telegram-Forum-Themen als separate Hafidh Ops Desk-Sitzungen weiter. Der Bot muss in einer Forum-Supergruppe sein und Themen verwalten dürfen.",
     "loadFailed": "Kanäle konnten nicht geladen werden.",
     "saveFailed": "Änderungen konnten nicht gespeichert werden.",
     "connectSuccess": "Kanal verbunden.",
@@ -4124,7 +4125,7 @@
     },
     "confirm": {
       "disableTitle": "Diese Verknüpfungen deaktivieren?",
-      "disableBody": "Dadurch werden {count} von codeg verwaltete Skill-Verknüpfungen entfernt. Skills, die ein eigenes Verzeichnis belegen, bleiben unberührt. Du kannst sie jederzeit wieder aktivieren.",
+      "disableBody": "Dadurch werden {count} von Hafidh Ops Desk verwaltete Skill-Verknüpfungen entfernt. Skills, die ein eigenes Verzeichnis belegen, bleiben unberührt. Du kannst sie jederzeit wieder aktivieren.",
       "cancel": "Abbrechen",
       "confirm": "Deaktivieren"
     },
@@ -4145,7 +4146,7 @@
   },
   "ExpertsSettings": {
     "title": "Experten-Skills",
-    "description": "Aktivieren Sie kuratierte, praxiserprobte Skill-Workflows für Ihre KI-Coding-Agents. Jeder Experte ist ein eigenständiger Skill aus dem superpowers-Projekt — codeg verwaltet die zentrale Kopie und verknüpft sie mit den von Ihnen ausgewählten Agents.",
+    "description": "Aktivieren Sie kuratierte, praxiserprobte Skill-Workflows für Ihre KI-Coding-Agents. Jeder Experte ist ein eigenständiger Skill aus dem superpowers-Projekt — Hafidh Ops Desk verwaltet die zentrale Kopie und verknüpft sie mit den von Ihnen ausgewählten Agents.",
     "loading": "Experten werden geladen…",
     "loadingContent": "Inhalt wird geladen…",
     "emptyExperts": "Keine Experten verfügbar. Prüfen Sie die Anwendungsprotokolle.",
@@ -4190,7 +4191,7 @@
   },
   "ScienceSettings": {
     "title": "Wissenschaftliche Skills",
-    "description": "Aktiviere kuratierte wissenschaftliche Skills für deine KI-Coding-Agents — Hypothesengenerierung, Versuchsplanung, Statistik, Visualisierung, kritische Bewertung und Literatursuche. codeg verwaltet eine zentrale Kopie und verlinkt jeden Skill in die von dir gewählten Agents.",
+    "description": "Aktiviere kuratierte wissenschaftliche Skills für deine KI-Coding-Agents — Hypothesengenerierung, Versuchsplanung, Statistik, Visualisierung, kritische Bewertung und Literatursuche. Hafidh Ops Desk verwaltet eine zentrale Kopie und verlinkt jeden Skill in die von dir gewählten Agents.",
     "loading": "Wissenschaftliche Skills werden geladen…",
     "emptySkills": "Keine wissenschaftlichen Skills verfügbar. Prüfe die Anwendungsprotokolle.",
     "searchPlaceholder": "Wissenschaftliche Skills nach Name, ID oder Beschreibung suchen",
@@ -4284,7 +4285,7 @@
   },
   "SkillPacksSettings": {
     "title": "Skill-Pakete",
-    "description": "Kuratierte Skill-Pakete, die codeg zentral verwaltet und mit deinen KI-Agenten verknüpft – Programmierexperten, wissenschaftliche Forschung und Office-Dokumenttools. Unten pro Agent aktivierbar.",
+    "description": "Kuratierte Skill-Pakete, die Hafidh Ops Desk zentral verwaltet und mit deinen KI-Agenten verknüpft – Programmierexperten, wissenschaftliche Forschung und Office-Dokumenttools. Unten pro Agent aktivierbar.",
     "tabs": {
       "experts": "Experten",
       "science": "Wissenschaft",
@@ -4549,7 +4550,7 @@
         "incompatible": "Inkompatibel",
         "createdAt": "Erstellt: {value}",
         "appVersion": "App-Version: {value}",
-        "incompatibleHint": "Diese Sicherung wurde mit einer neueren Version von codeg erstellt und kann nicht wiederhergestellt werden."
+        "incompatibleHint": "Diese Sicherung wurde mit einer neueren Version von Hafidh Ops Desk erstellt und kann nicht wiederhergestellt werden."
       },
       "replaceWarning": "Beim Wiederherstellen werden alle aktuellen codeg-Daten (Datenbank und Uploads) ersetzt. Deine aktuellen Daten werden zuvor als Snapshot gesichert.",
       "keyringNote": "GitHub-/Chat-Tokens der Desktop-App liegen im Schlüsselbund des Betriebssystems und sind nicht enthalten; gib sie nach dem Wiederherstellen erneut ein.",
@@ -4592,7 +4593,7 @@
         "later": "Später"
       }
     },
-    "remoteUnsupported": "Sicherung & Wiederherstellung wirken auf die Daten des Rechners, auf dem codeg läuft. Du bist mit einem entfernten Arbeitsbereich verbunden – verwalte dessen Sicherungen direkt auf jenem Server.",
+    "remoteUnsupported": "Sicherung & Wiederherstellung wirken auf die Daten des Rechners, auf dem Hafidh Ops Desk läuft. Du bist mit einem entfernten Arbeitsbereich verbunden – verwalte dessen Sicherungen direkt auf jenem Server.",
     "progress": {
       "cancel": "Abbrechen"
     },
@@ -4612,7 +4613,7 @@
         "badPassphrase": "Falsche Passphrase oder beschädigte Sicherung.",
         "corrupted": "Das Sicherungsarchiv ist beschädigt.",
         "unknownFormat": "Diese Datei ist keine erkannte codeg-Sicherung.",
-        "newerVersion": "Diese Sicherung wurde mit codeg {backupVersion} erstellt, neuer als diese Version ({appVersion}).",
+        "newerVersion": "Diese Sicherung wurde mit Hafidh Ops Desk {backupVersion} erstellt, neuer als diese Version ({appVersion}).",
         "alreadyPending": "Es ist bereits eine Wiederherstellung vorbereitet. Starte neu, um sie anzuwenden, bevor du eine weitere vorbereitest."
       }
     },
@@ -4650,7 +4651,7 @@
   },
   "AgentToolsSettings": {
     "title": "Tools in der Unterhaltung",
-    "description": "Zusätzliche Tools, die codeg einem Agenten innerhalb einer Unterhaltung gibt. Sie werden beim Start des Agenten injiziert – eine Änderung gilt daher für danach gestartete Agenten.",
+    "description": "Zusätzliche Tools, die Hafidh Ops Desk einem Agenten innerhalb einer Unterhaltung gibt. Sie werden beim Start des Agenten injiziert – eine Änderung gilt daher für danach gestartete Agenten.",
     "feedbackLabel": "Live-Feedback",
     "feedbackHint": "Sende einem Agenten Notizen und Korrekturen, während er arbeitet. Unterstützt der Agent sofortiges Einfügen, landet deine Notiz umgehend im laufenden Turn; andernfalls erhält der Agent ein Tool zum Abrufen deines Feedbacks – solche Agenten prüfen es meist nur, wenn du es im Prompt erwähnst, z. B. mit \"prüfe regelmäßig mein Live-Feedback\".",
     "questionLabel": "Benutzer fragen",
@@ -4676,21 +4677,21 @@
     "permissionDefault": "Nicht angefragt",
     "permissionUnsupported": "Nicht verfügbar",
     "permissionManagedByOs": "Vom System verwaltet",
-    "permissionGrantedHint": "Dieser Browser zeigt Benachrichtigungen von Codeg an.",
-    "permissionDeniedHint": "Dieser Browser blockiert Benachrichtigungen von Codeg. Nur die Website-Einstellungen des Browsers können das aufheben — eine Seite kann nicht erneut fragen.",
+    "permissionGrantedHint": "Dieser Browser zeigt Benachrichtigungen von Hafidh Ops Desk an.",
+    "permissionDeniedHint": "Dieser Browser blockiert Benachrichtigungen von Hafidh Ops Desk. Nur die Website-Einstellungen des Browsers können das aufheben — eine Seite kann nicht erneut fragen.",
     "permissionDefaultHint": "Dieser Browser wurde noch nicht gefragt. Bis du zustimmst, bleiben Benachrichtigungen aus.",
     "permissionUnsupportedHint": "Benachrichtigungen brauchen einen sicheren Kontext. Rufe diesen Server über HTTPS oder auf localhost auf.",
-    "permissionManagedByOsHint": "Die Desktop-App sendet über die Mitteilungszentrale des Systems, die nicht zurückmeldet, ob Codeg erlaubt ist. Sende einen Test, um es herauszufinden.",
+    "permissionManagedByOsHint": "Die Desktop-App sendet über die Mitteilungszentrale des Systems, die nicht zurückmeldet, ob Hafidh Ops Desk erlaubt ist. Sende einen Test, um es herauszufinden.",
     "identityTitle": "Zugestellt als",
     "identityHint": "Das System ordnet diese Mitteilungen dieser App zu – es gelten deren eigene Schalter.",
-    "identityDegradedHint": "Codegs eigene Kennung konnte nicht belegt werden, daher stellt das System sie als {bundleId} zu, und die Schalter jener App gelten. Installiere Codeg in den Programme-Ordner, um die eigene Identität wiederherzustellen.",
+    "identityDegradedHint": "Hafidh Ops Desks eigene Kennung konnte nicht belegt werden, daher stellt das System sie als {bundleId} zu, und die Schalter jener App gelten. Installiere Hafidh Ops Desk in den Programme-Ordner, um die eigene Identität wiederherzustellen.",
     "requestPermission": "Benachrichtigungen erlauben",
     "permissionGrantedToast": "Benachrichtigungen erlaubt.",
     "permissionDeniedToast": "Benachrichtigungen wurden blockiert. Aktiviere sie in den Website-Einstellungen deines Browsers erneut.",
     "openSystemSettings": "Systemeinstellungen öffnen",
     "openSystemSettingsFailed": "Die Benachrichtigungseinstellungen des Systems konnten nicht geöffnet werden.",
     "sendTest": "Test senden",
-    "testTitle": "Codeg",
+    "testTitle": "Hafidh Ops Desk",
     "testBody": "Desktop-Benachrichtigungen funktionieren.",
     "testSent": "Testbenachrichtigung gesendet.",
     "testFailed": "Die Testbenachrichtigung konnte nicht gesendet werden.",
@@ -4714,7 +4715,7 @@
     "preview": "Anhören",
     "previewEvent": "Ton für {event} anhören",
     "onlyWhenUnfocused": "Nur wenn das Fenster nicht im Fokus ist",
-    "onlyWhenUnfocusedHint": "Bleibt stumm, solange du Codeg ansiehst.",
+    "onlyWhenUnfocusedHint": "Bleibt stumm, solange du Hafidh Ops Desk ansiehst.",
     "eventsTitle": "Ereignisse",
     "eventsHint": "Wähle pro Ereignis einen Ton oder „Stumm“, um es zu überspringen. Wiederholt sich dasselbe Ereignis innerhalb weniger Sekunden, erklingt es nur einmal.",
     "toneNone": "Stumm",
@@ -5279,7 +5280,7 @@
     }
   },
   "CodexModelEditor": {
-    "customizedNotice": "Du hast die Modellliste angepasst, daher verwaltet codeg jetzt die gesamte Modelltabelle von codex. Offizielle Modelle, die codex später hinzufügt, erscheinen nicht automatisch – klicke unten auf Aktualisieren und speichere erneut, um sie zu übernehmen. Entferne alle Anpassungen, damit codex sich wieder automatisch aktualisiert.",
+    "customizedNotice": "Du hast die Modellliste angepasst, daher verwaltet Hafidh Ops Desk jetzt die gesamte Modelltabelle von codex. Offizielle Modelle, die codex später hinzufügt, erscheinen nicht automatisch – klicke unten auf Aktualisieren und speichere erneut, um sie zu übernehmen. Entferne alle Anpassungen, damit codex sich wieder automatisch aktualisiert.",
     "officialsTitle": "Offizielle Modelle",
     "officialsHint": "Automatisch aus dem gestarteten codex übernommen; nicht benötigte entfernen.",
     "officialsEmpty": "Keine offiziellen Modelle verfügbar.",
@@ -5347,8 +5348,8 @@
       "terminal_only_path": "Der Befehl wird in deinem Terminal aufgelöst, aber nicht in der App – eine GUI-PATH-Lücke. Starte die App aus einem Terminal oder installiere sie in den Agent-Einstellungen neu.",
       "npm_prefix_timeout": "npm prefix -g war zu langsam (über 1,5 s), daher wurde die Ausweicherkennung übersprungen. Starte die App neu und versuche es erneut.",
       "node_too_old": "Dein aktives Node.js ist älter als von diesem Agenten benötigt. Aktualisiere Node.js.",
-      "adapter_missing_native_present": "Deine eigene {agent}-CLI ist installiert, aber Codeg startet ein separates ACP-Adapterpaket — und das fehlt noch. Installiere es in den Agenten-Einstellungen; es rührt deine CLI nicht an und teilt sich dieselbe Anmeldung.",
-      "adapter_missing": "Codeg startet für {agent} ein separates ACP-Adapterpaket, das noch nicht installiert ist. Installiere es in den Agenten-Einstellungen — die Hersteller-CLI allein genügt nicht."
+      "adapter_missing_native_present": "Deine eigene {agent}-CLI ist installiert, aber Hafidh Ops Desk startet ein separates ACP-Adapterpaket — und das fehlt noch. Installiere es in den Agenten-Einstellungen; es rührt deine CLI nicht an und teilt sich dieselbe Anmeldung.",
+      "adapter_missing": "Hafidh Ops Desk startet für {agent} ein separates ACP-Adapterpaket, das noch nicht installiert ist. Installiere es in den Agenten-Einstellungen — die Hersteller-CLI allein genügt nicht."
     }
   },
   "TokenUsage": {
@@ -5382,7 +5383,7 @@
     "resetFilters": "Filter zurücksetzen",
     "refresh": "Aktualisieren",
     "rebuild": "Alles neu aufbauen",
-    "rebuildHint": "Verwirft die gezählten Daten und liest alle Sitzungsprotokolle neu ein. Nützlich, wenn eine Sitzung außerhalb von codeg gewachsen ist.",
+    "rebuildHint": "Verwirft die gezählten Daten und liest alle Sitzungsprotokolle neu ein. Nützlich, wenn eine Sitzung außerhalb von Hafidh Ops Desk gewachsen ist.",
     "syncing": "Sitzungen werden gezählt…",
     "syncProgress": "{done} / {total}",
     "syncDone": "{synced} Sitzungen gezählt",
@@ -5461,7 +5462,7 @@
     "cardHeading": "Meine KI-Coding-Bilanz",
     "cardRangeAll": "Gesamter Zeitraum",
     "cardTotalLabel": "Verbrauchte Tokens",
-    "cardFooter": "Erstellt mit codeg",
+    "cardFooter": "Erstellt mit Hafidh Ops Desk",
     "cardTopModels": "Top-Modelle",
     "cardTopProjects": "Top-Projekte",
     "archetypeNightOwl": "Nachteule",
@@ -5483,7 +5484,7 @@
     "archetypeSteady": "Stetiger Bauer",
     "archetypeSteadyDesc": "{days} Tage geliefert.",
     "emptyTitle": "Noch nichts gezählt",
-    "emptyHint": "Codeg liest die Token-Zahlen direkt aus dem Protokoll jedes Agenten. Aktualisiere, um zu zählen, was schon auf diesem Rechner liegt.",
+    "emptyHint": "Hafidh Ops Desk liest die Token-Zahlen direkt aus dem Protokoll jedes Agenten. Aktualisiere, um zu zählen, was schon auf diesem Rechner liegt.",
     "emptyAction": "Meine Sitzungen zählen",
     "loadFailed": "Verbrauch konnte nicht geladen werden",
     "truncatedNotice": "Dieser Zeitraum ist sehr groß — die Zahlen decken nur seinen jüngsten Abschnitt ab."
@@ -5643,7 +5644,7 @@
     "dialogDescriptionMr": "Legt in {repo}s Ordner eine To-do-Aufgabe an, deren Worktree auf dem Head dieses Merge Requests ausgecheckt ist — die Commits des Agenten kommen obendrauf und werden beim Annehmen in denselben Merge Request gepusht.",
     "instructionPlaceholder": "Optionale Zusatzanweisung für den Agenten…",
     "writebackLabel": "Ergebnis als Kommentar zurückschreiben",
-    "writebackHint": "Wenn die Aufgabe fertig ist, schreibt codeg einen Kommentar zu diesem Eintrag: Ergebnis, Link und Diff-Zahlen.",
+    "writebackHint": "Wenn die Aufgabe fertig ist, schreibt Hafidh Ops Desk einen Kommentar zu diesem Eintrag: Ergebnis, Link und Diff-Zahlen.",
     "previewToggle": "Issue-Inhalt der Aufgabe ansehen",
     "previewEmpty": "(keine Beschreibung)",
     "duplicateBody": "Eine aktive Aufgabe bearbeitet dieses Element bereits: {title} ({status}). Trotzdem eine weitere erstellen?",

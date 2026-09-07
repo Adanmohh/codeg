@@ -4,7 +4,8 @@ Founding document. Research date **2026-09-07**, read-only, every claim linked
 and dated. Sources in order: `gh api` on the owner's repos → official MCP servers
 at their tags → runtimes and starters at their tags → local `herdr api schema
 --json` / `pi --version` → docs → web. Detailed working notes are archived beside
-this file.
+this file. Owner amendments are recorded in DECISIONS.md; the 2026-09-07
+integration amendment replaces the original Resend/GitHub MCP choices below.
 
 **The point is not managing agents.** It is making four company processes run
 smoothly, with agents doing the drafting and triage inside them and a human
@@ -90,15 +91,17 @@ between borrowed parts. Every source below was read via `gh api` at a tag on
 | 1b | Destructive-confirm pattern at the agent seam | `badlogic/pi-mono` `v0.85.1` | `packages/coding-agent/examples/extensions/confirm-destructive.ts` | **MIT** | included in #6 |
 | 2 | **Email threading** (RFC 5322) | `chatwoot/chatwoot` `v4.17.1` | `app/services/mailbox/conversation_finder.rb` + `conversation_finder_strategies/{base,receiver_uuid,in_reply_to,references,new_conversation}_strategy.rb` — an ordered strategy chain, with specs beside it | **MIT** (everything outside `enterprise/`) | **2** (port Ruby → Rust) |
 | 2b | Ticket shape: conversation ↔ contact ↔ inbox, assignment, **private note vs public reply** | `chatwoot/chatwoot` `v4.17.1` | `app/models/{conversation,message,contact,inbox}.rb` | **MIT** | **1** (schema transcription into one SeaORM migration) |
+| 2c | Resend email transport | **`IntroInnovation/intromail`**, commit `0bd24dfe284b888aa9f602fa1fd00e337ea38874` | `backend/app/services/resend_client.py`; read adjacent send/ingest/router/test sources before porting them | ours — no third-party terms | re-estimate during Step 2 source review |
 | 3 | Email panel UI (thread list, message view, composer) | **codeg itself** `v0.30.4` | `src/components/chat/*`, `src/components/message/*`, `src/components/ai-elements/*` | **Apache-2.0** | **2** (re-point existing React components at the ticket store) |
 | 4 | Hafidh intake as an MCP server | `modelcontextprotocol/python-sdk` `v2.0.1` (★24,218) | FastMCP server scaffold; data models are Hafidh's own `modules/feedback`, `modules/testflight` | **MIT** | **2** |
-| 5 | Issue filing | `github/github-mcp-server` `v1.12.0` | `pkg/github/issues.go`, `issues_granular.go` (the issues toolset) | **MIT** | **1** |
+| 5 | Issue filing through a GitHub App | **`IntroInnovation/intromail`**, commit `0bd24dfe284b888aa9f602fa1fd00e337ea38874` | `backend/app/services/github/client.py`; `docs/GITHUB-INTEGRATION.md`; read adjacent action/router/test sources before porting them | ours — no third-party terms | re-estimate during Step 2 source review |
 | 5b | Issue template + required fields | **codeg itself** | `db/entities/work_task_template.rs` | **Apache-2.0** | **1** |
 | 6 | pi desk extension (route approvals into the queue) | `badlogic/pi-mono` examples + `nicobailon/pi-mcp-adapter` `v2.32.1` | `examples/extensions/{confirm-destructive,bash-spawn-hook,commands}.ts` as the skeleton; the adapter's documented `MCP_TOOL_APPROVAL_REQUEST_EVENT` / `pi-mcp-adapter:tool-approval-request` broker contract | **MIT** both | **3** |
 | 7 | Morning view | **codeg itself** | `src/components/tasks/{board-columns.ts,task-card.tsx,task-detail-sheet.tsx}` | **Apache-2.0** | **2** (one new query + filter over existing components) |
 | 8 | Rebrand | — no code | config + assets only (§5) | — | **2** |
 
-**≈19 glue days.** Two entries deserve the caveat the rule asks for:
+**Original estimate: ≈19 glue days; revalidate after the owner’s integration
+amendment.** Two entries deserve the caveat the rule asks for:
 
 - **Piece 1 has no third-party borrowable source.** Chatwoot's audit log lives in
   `enterprise/app/models/enterprise/audit/` — **restricted, not MIT** — so it is
@@ -136,7 +139,7 @@ vocabulary into it.
 
 ## 5. Carried decisions
 
-Unchanged from earlier rounds, each verified at a tag:
+Carried decisions, with owner-approved integration amendments dated 2026-09-07:
 
 - **pi is the default agent** (installed 0.85.1; `badlogic/pi-mono@v0.85.1`, MIT,
   ★102,542). Its `tool_call` hook is **async and can `{block: true}`**, so a
@@ -149,12 +152,24 @@ Unchanged from earlier rounds, each verified at a tag:
   codeg's registry drops ACP-wire `mcpServers` for pi — harmless, because the
   adapter is installed *into* pi, but verify end-to-end in week one.
   **OpenCode** (`anomalyco/opencode@v1.18.29`, MIT) stays one picker change away.
-- **Email is Resend** ([`resend/resend-mcp`](https://github.com/resend/resend-mcp)
-  `v2.19.0`, official, MIT, remote at `mcp.resend.com/mcp` over OAuth). Receive is
-  **pull, not push**: `list-received-emails` (cursor-paginated, ≤100, returns
-  `message_id`), `get-received-email` (full content **plus headers**). Reply
-  in-thread works by setting `In-Reply-To`/`References` yourself via `send-email`'s
-  headers map. Threading, assignment and notes are ours (piece #2).
+- **Email is Resend through the direct REST-client pattern borrowed from our
+  intromail**, not Resend MCP or a Resend CLI. Verified source:
+  `backend/app/services/resend_client.py` at
+  `0bd24dfe284b888aa9f602fa1fd00e337ea38874`: async HTTP, idempotency keys,
+  receiving-detail fetches, and Message-ID/In-Reply-To/References on sends.
+  Keep Chatwoot-derived ticket threading and the approval/audit seam. The
+  existing pull-first receive decision remains; the inspected client does not
+  implement received-email listing, so Step 2 must verify and borrow the missing
+  polling/pagination support before implementing it. Do not claim intromail's
+  webhook deployment can be copied unchanged into an unsigned local desktop.
+- **GitHub integration uses a GitHub App**, borrowing intromail's installation
+  authentication and REST-client pattern from
+  `backend/app/services/github/client.py` at the same commit, with
+  `docs/GITHUB-INTEGRATION.md` as design context. No GitHub MCP Server dependency
+  for issue filing. The required build/screen/reciter/log evidence gate and human
+  approval remain. The inspected client has comments/labels and other actions,
+  but no create-issue helper; Step 2 must verify the issue-creation contract and
+  add the minimal client glue. `gh api` remains the development/research tool.
 - **One team channel, Telegram first** — codeg's backend already exists, so it is
   free. Slack outbound is free too via `webhook.rs`; a full Slack backend means a
   new `ChannelType` variant (the enum is closed) and Socket Mode in Rust, since
@@ -208,8 +223,9 @@ server/Docker deployment. What is missing is small, specific, and
 the destructive floor and the audit log — no third-party terms, a port not a
 design; Chatwoot, **MIT outside `enterprise/`**, supplies the RFC 5322 threading
 strategy chain and the conversation/contact/note schema; codeg itself supplies
-the thread UI and the board components; the MCP Python SDK, GitHub's issues
-toolset and pi's extension examples supply the rest. **≈19 glue days.** Plane and
+the thread UI and the board components; intromail's Resend REST and GitHub App
+clients, the MCP Python SDK and pi's extension examples supply the rest.
+**Original estimate: ≈19 glue days, pending integration re-estimation.** Plane and
 Twenty are AGPL-3.0, so take their vocabulary and object model as *design* and
 keep their source out of an Apache-2.0 tree. Starting fresh would mean rebuilding
 everything the fork already runs to reach the small part that is missing. Ship P1 and P2

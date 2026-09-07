@@ -60,9 +60,11 @@ Step 1 workers (parallel, 3 panes):
 - `tickets`: pieces 2 + 2b — port Chatwoot v4.17.1 conversation_finder strategy
   chain (MIT, outside enterprise/) to Rust and transcribe the
   conversation/message/contact/inbox schema into one migration.
-Step 2 workers: piece 3 (email panel re-pointing codeg's chat components at the
+Step 2 workers: piece 2c (direct Resend REST transport borrowed from intromail;
+no Resend CLI or MCP), piece 3 (email panel re-pointing codeg's chat components at the
 ticket store), piece 4 (Hafidh intake FastMCP server against the Hafidh backend
-at ~/projects/Hafidh), piece 5 + 5b (GitHub issues filing with the
+at ~/projects/Hafidh), piece 5 + 5b (GitHub App integration borrowed from
+intromail, not GitHub MCP, with issue filing and the
 "refuse without build/screen/reciter/log" validation), piece 6 (pi desk
 extension + pi-mcp-adapter), piece 7 (morning view).
 Step 3: Telegram channel wired, P1 and P2 run end-to-end on Hafidh's beta data.

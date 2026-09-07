@@ -1,3 +1,4 @@
+import { APP_UPDATES_ENABLED } from "./brand"
 import { toErrorMessage } from "./app-error"
 import { getTransport, isDesktop, isRemoteDesktopMode } from "./transport"
 
@@ -117,6 +118,11 @@ export function subscribeAppUpdateState(
  * download runs detached in the backend, so it is not bound to this call's
  * lifetime. */
 export function startAppUpdate(): Promise<AppUpdateState> {
+  if (!APP_UPDATES_ENABLED) {
+    return Promise.reject(
+      new Error("Application updates are disabled in this internal build")
+    )
+  }
   return getTransport().call<AppUpdateState>("perform_app_update")
 }
 
@@ -124,6 +130,11 @@ export function startAppUpdate(): Promise<AppUpdateState> {
  * server triggers the supervised/re-exec restart (the caller then drives the
  * countdown + health poll using the `ReadyToRestart` snapshot's metadata). */
 export function restartApp(): Promise<void> {
+  if (!APP_UPDATES_ENABLED) {
+    return Promise.reject(
+      new Error("Application updates are disabled in this internal build")
+    )
+  }
   return getTransport().call("restart_app")
 }
 
@@ -238,6 +249,9 @@ const MANIFEST_TIMEOUT_MS = 15_000
  * Server/remote hits `check_app_update`, which already answers in this shape.
  */
 export async function checkAppUpdateInfo(): Promise<AppUpdateCheckResult> {
+  if (!APP_UPDATES_ENABLED) {
+    return { currentVersion: await getCurrentAppVersion(), update: null }
+  }
   if (!usesTauriUpdater()) {
     return getTransport().call<AppUpdateCheckResult>("check_app_update")
   }
@@ -294,6 +308,9 @@ export async function relaunchApp(): Promise<void> {
 
 /** Revert to the previously-installed bundle (kept as `.bak`). */
 export async function rollbackServer(): Promise<ServerUpdateActionResult> {
+  if (!APP_UPDATES_ENABLED) {
+    throw new Error("Application updates are disabled in this internal build")
+  }
   return getTransport().call<ServerUpdateActionResult>("rollback_app")
 }
 
