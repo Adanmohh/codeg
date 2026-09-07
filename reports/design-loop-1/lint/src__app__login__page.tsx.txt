@@ -1,0 +1,49 @@
+{
+  "file": "src/app/login/page.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": true,
+    "isList": false,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": true,
+    "activeState": false,
+    "aria": false,
+    "role": false,
+    "emptyState": false,
+    "errorState": true,
+    "motion": true,
+    "responsive": true,
+    "altText": false,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [],
+  "probe": null
+}
+
+SUMMARY src/app/login/page.tsx: 0 gap(s) — no obvious state/a11y gaps

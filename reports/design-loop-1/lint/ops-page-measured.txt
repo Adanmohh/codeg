@@ -1,0 +1,105 @@
+{
+  "file": "src/components/ops/ops-page.tsx",
+  "surface": {
+    "isButton": false,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": false,
+    "focusState": false,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": true,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "low",
+      "msg": "No hover affordance on interactive element."
+    },
+    {
+      "sev": "high",
+      "msg": "MEASURED contrast fail: \"4 conversations\" #737373 on #f5f5f5 = 4.35 (needs 4.5) — WCAG 1.4.3."
+    },
+    {
+      "sev": "high",
+      "msg": "MEASURED contrast fail: \"Add Command\" #737373 on #f5f5f5 = 4.35 (needs 4.5) — WCAG 1.4.3."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #ffffff rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #f5f5f5 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #0a0a0a rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #171717 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #737373 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #f3f3f3 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #e5e5e5 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #fafafa rendered but not in brief palette."
+    },
+    {
+      "sev": "low",
+      "msg": "probe: +4 more brief violations in probe.json"
+    },
+    {
+      "sev": "high",
+      "msg": "MEASURED a11y: button with no accessible name (aria snapshot) — screen readers announce nothing."
+    }
+  ],
+  "probe": {
+    "ok": true,
+    "checked": 27
+  }
+}
+
+SUMMARY src/components/ops/ops-page.tsx: 13 gap(s) — [low] No hover affordance on interactive element.  |  [high] MEASURED contrast fail: "4 conversations" #737373 on #f5f5f5 = 4.35 (needs 4.5) — WCAG 1.4.3.  |  [high] MEASURED contrast fail: "Add Command" #737373 on #f5f5f5 = 4.35 (needs 4.5) — WCAG 1.4.3.  |  [med] MEASURED brief violation (off-palette-color): #ffffff rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #f5f5f5 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #0a0a0a rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #171717 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #737373 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #f3f3f3 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #e5e5e5 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #fafafa rendered but not in brief palette.  |  [low] probe: +4 more brief violations in probe.json  |  [high] MEASURED a11y: button with no accessible name (aria snapshot) — screen readers announce nothing.

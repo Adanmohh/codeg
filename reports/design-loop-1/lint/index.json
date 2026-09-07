@@ -1,0 +1,46 @@
+[
+  {
+    "file": "src/components/ops/proposals-view.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/ops/ops-page.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/ops/morning-view.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/ops/session.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/ops/inbox-view.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/ops/reply-editor.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/ops/email-settings.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/ops/ui.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/app/login/page.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/layout/status-bar-alerts.tsx",
+    "exit": 0
+  },
+  {
+    "file": "src/components/terminal/terminal-tab-bar.tsx",
+    "exit": 0
+  }
+]
