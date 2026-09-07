@@ -29,4 +29,6 @@ All three workers are running through Herdr, each in its own worktree and branch
 
 - Owner docs-research update relayed to every worker: use `gh api` for latest documentation research and record exact refs; retain mandated borrowed-source pins.
 
-- Docs-first hook audit found Claude-only registration. Added and trusted a scoped Codex adapter; five smoke tests passed. Workers are checkpointing before session reload; live activation verification pending. Details: [reports/docs-first-hook.md](reports/docs-first-hook.md).
+- Docs-first hook audit found Claude-only registration. Added and trusted a scoped Codex adapter; five smoke tests passed. All three workers pushed checkpoints and resumed; live PreToolUse and PostToolUse records verified for each session. Details: [reports/docs-first-hook.md](reports/docs-first-hook.md).
+
+- All three workers resumed on explicit `gpt-6-astra` with `model_reasoning_effort=max`, keeping `never` approval and full access. Product implementation and acceptance checks are still in progress; no worker branch merged yet.

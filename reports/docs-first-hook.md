@@ -19,6 +19,16 @@ All remote hook research used `gh api` on openai/codex at installed `rust-v0.153
 
 - Codex hooks/list: both hooks enabled and trusted for the root and all three worktrees; no load warnings or errors.
 - Synthetic payload smoke tests (no product writes): framework apply_patch blocked before documentation (exit 2); ordinary git read quiet (exit 0); same patch allowed with reminder after actual local React package metadata read (exit 0); another session remains blocked; unrelated cwd unaffected. All five passed.
-- Live activation pending worker checkpoint/restart. Existing sessions predate registration. The shared daemon proxy socket is absent, so hot reload through that route was unavailable; preserve/push checkpoints and resume sessions to load hooks.
+- Live activation verified for all three resumed worker sessions (counts below). Shared daemon proxy socket was absent, so each worker pushed a checkpoint and resumed in its existing pane to load hooks.
 
 The inherited gate is heuristic: strict framework-import checks, unfamiliar-language blocking, and reminders. It does not prove every API use is correct; source review and tests remain acceptance gates.
+
+Live execution verified after checkpoint/push and resume on GPT-6 Astra with max reasoning:
+
+| Worker | Session | PreToolUse | PostToolUse |
+| --- | --- | --- | --- |
+| rebrand | `01a07c1c-cf2e-73e1-bbe3-e758c8363042` | 9 | 9 |
+| approvals | `01a07c1c-d3a3-7c22-a5b6-cedce2970d8d` | 6 | 6 |
+| tickets | `01a07c1c-d82f-7022-84db-778a438632f1` | 12 | 10 |
+
+Counts are a snapshot, not final totals. The current orchestrator session predates registration; its hook loading has not been verified. It writes no product code.
