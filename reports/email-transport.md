@@ -1,9 +1,10 @@
 # Step 2 — direct Resend transport (piece 2c)
 
-In progress. Sole writer in `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`,
-branch `feat/step2-email-transport`, created directly from accepted main `5bd0b1e1`.
+Implemented; final integrated acceptance gates in progress. Sole writer in
+`/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`, branch
+`feat/step2-email-transport`, created directly from accepted main `5bd0b1e1`.
 No UI/routes, approval/work-task changes, other-worktree writes, additional agents,
-live sends or deployment. Draft PR and implementation validation are pending.
+live sends or deployment. Draft PR: https://github.com/Adanmohh/codeg/pull/6.
 
 Read current FOUNDING, ORCHESTRATOR, STATUS, DECISIONS and AGENTS completely.
 Applied code-context using the existing rag-skills Python and HF_HUB_OFFLINE=1.
@@ -66,6 +67,10 @@ Module `codeg_lib::email_transport` (no route/command registration):
   only exact decoded To/Cc/Bcc inbox recipients pass. `received_for` is excluded
   from authorization because it comes from Received header clauses. Alias-only
   delivery needs explicit future inbox alias configuration.
+  The single reply contact follows Chatwoot MailPresenter: prefer valid Reply-To
+  over From. Agreeing header/metadata values retain the decoded header name;
+  empty Reply-To falls back to From; malformed, conflicting or multiple reply
+  targets return an explicit error. Reply-To never selects the destination inbox.
 - `pull_received(&DatabaseConnection, PullOptions { page_size, max_pages })`
   performs a bounded full-history pass, normalizes before writes, orders ancestors
   before replies, and uses existing per-inbox RFC source-ID deduplication. Returns
@@ -116,7 +121,7 @@ Resend CLI research/transport was used. Installed sources were read before API u
 | resend/resend-node v6.26.0 `c61cccae2999d50d2aca9ce5fd1064f3bb855219` | `src/emails/emails.ts`; `src/emails/receiving/receiving.ts` get/list; `src/emails/receiving/receiving.spec.ts` get/list/cursor fixtures; `src/emails/receiving/interfaces/{get-receiving-email,list-receiving-emails}.interface.ts`; `src/common/interfaces/pagination-options.interface.ts`; `src/common/utils/{build-pagination-query,get-pagination-query-properties}.ts`; `LICENSE` | `mod.rs` DTOs/cursor union; `client.rs` direct list/detail responses, cid option and cursor query; `pull.rs` accepts SDK fixture timestamps; `tests.rs` HTTP shape/nullability/pagination. MIT ©2023 Plus Five Five, Inc., reproduced verbatim. |
 | resend/resend-openapi `8dca27c284bd377e48a6db131b52f6689d53195e` | `resend.json` spec 1.5.1: POST /emails, GET /emails/receiving, GET /emails/receiving/{email_id} and recursively referenced schemas; `LICENSE` | Provider UUIDs, page limit 1–100, Idempotency-Key <=256, recipients/body/response fields. MIT ©2026 Plus Five Five, Inc., reproduced verbatim. |
 | stalwartlabs/mail-parser v0.11.1 `6c5d33028530e0ec957f3440ec2ffe65722ecc8c` | `Cargo.toml`, `LICENSES/MIT.txt`, `src/lib.rs`, `src/core/{header,address}.rs`, `src/parsers/mod.rs`, `src/parsers/fields/{address,id,unstructured}.rs`, `src/decoders/html.rs` | Installed parser primitives and HTML-to-text; `normalize.rs` adapts nested-comment/escape/delimiter transitions. Strict adapter checks reject ignored junk, unfinished delimiters and ambiguous routing headers. MIT alternative, ©2020 Stalwart Labs LLC. Installed `.cargo_vcs_info.json` exactly matches the tag. |
-| chatwoot/chatwoot v4.17.1 `b354a9550e1fb59fa537a9c384232cb076213e72` | `app/presenters/mail_presenter.rb` auto_reply?/auto_submitted?/x_auto_reply?; `spec/presenters/mail_presenter_spec.rb` matching cases | `normalize.rs` auto_reply predicate and tests. Existing Chatwoot copyright/MIT text in NOTICE retained, including enterprise exclusion. No enterprise source. |
+| chatwoot/chatwoot v4.17.1 `b354a9550e1fb59fa537a9c384232cb076213e72` | `app/presenters/mail_presenter.rb` from/sender_name (127–139), auto_reply?/auto_submitted?/x_auto_reply?; `spec/presenters/mail_presenter_spec.rb` auto_reply and malformed sender cases | `normalize.rs` Reply-To preference/name selection, auto_reply predicates and tests. Multiple/malformed reply targets fail explicitly because the ticket schema represents one contact. Existing Chatwoot copyright/MIT text in NOTICE retained, including enterprise exclusion. No enterprise source. |
 
 IntroMail metadata was independently rechecked: private repository, license null,
 complete immutable tree (`truncated:false`), no LICENSE/LICENCE/NOTICE/COPYING files.
@@ -141,5 +146,29 @@ All commands run in this worktree; Rust uses its own `src-tauri/target` output.
 
 Hook audit reconfirmed live at lines 1639/1640 (PreToolUse/PostToolUse), same
 session/worktree as above. Protected root planning docs and AGENTS are byte-identical
-to the immutable branch base. Initial implementation and final validation commits
-and draft PR are recorded below when pushed.
+to the immutable branch base at that checkpoint.
+
+## Accepted-main integration and acceptance finding
+
+- Contract checkpoints pushed: `f395daba`, `7a3c2fd5`. Initial implementation,
+  NOTICE and 15-test evidence pushed at `37f205bf`.
+- On owner instruction, fetched/merged accepted main
+  `d6c7fc55c3e775d171b0a70353604668282a2768` without conflicts. Integrated commit
+  `2555fff2f910a006c55d2b6b2a4025a19357f3e9` is pushed. Re-read the current full
+  planning docs/AGENTS. They and all DB registries match that main exactly;
+  its entire NOTICE is preserved as a contiguous prefix of ours. No other
+  worktree or root build/sidecar/output was touched.
+- Owner review found Reply-To was being discarded at `2555fff2`. Confirmed
+  against the already pinned Chatwoot MailPresenter lines 127–139 (source blob
+  `62cb0ed9a4ff25d693b2736225d99b6c40241338`). Fixed in our normalizer: one valid
+  Reply-To becomes the ticket reply contact; decoded display name comes from
+  its header when available, otherwise metadata. Both representations must agree.
+  Missing/empty uses From. Malformed/multiple/conflicting targets return a
+  specific transport response error and a full pull writes no partial history.
+  The later route must surface this error; no unsafe fallback to noreply is used.
+- Regressions cover distinct From/Reply-To, metadata-only/header-only/agreeing
+  forms, encoded display name, empty fallback, malformed/multiple/conflicting
+  forms, actual persisted contact, and unchanged inbox-recipient isolation.
+  Integrated server-mode transport suite after the fix: 18/18 passed, exit 0.
+- Integrated desktop check and typecheck passed before this finding; final gates
+  are rerun after the fix below. Draft PR #6 stays draft.

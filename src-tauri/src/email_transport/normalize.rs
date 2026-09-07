@@ -198,6 +198,37 @@ fn sender(value: &str) -> Result<(String, Option<String>), Error> {
         .ok_or(Error::Response("sender"))
 }
 
+/// Chatwoot MailPresenter#from and #sender_name prefer Reply-To. Resend exposes
+/// that field twice: decoded metadata and the original header. Keep the header's
+/// display name when addresses agree; ambiguity must not silently fall back to
+/// a no-reply From address. The ticket schema represents one reply contact.
+fn reply_sender(email: &ReceivedEmail) -> Result<(String, Option<String>), Error> {
+    let parse =
+        |value: &str| sender(value).map_err(|_| Error::Response("malformed or multiple Reply-To"));
+    let envelope = match email.envelope.reply_to.as_deref().unwrap_or_default() {
+        [] => None,
+        [value] if value.trim().is_empty() => None,
+        [value] => Some(parse(value)?),
+        _ => return Err(Error::Response("multiple Reply-To recipients")),
+    };
+    let header = email
+        .headers
+        .get("reply-to")
+        .filter(|value| !value.trim().is_empty())
+        .map(parse)
+        .transpose()?;
+    match (header, envelope) {
+        (Some((header_email, header_name)), Some((envelope_email, envelope_name))) => {
+            if header_email != envelope_email {
+                return Err(Error::Response("conflicting Reply-To fields"));
+            }
+            Ok((header_email, header_name.or(envelope_name)))
+        }
+        (Some(reply), None) | (None, Some(reply)) => Ok(reply),
+        (None, None) => sender(&email.envelope.from),
+    }
+}
+
 // Reject unfinished delimiters before the deliberately tolerant address parser.
 // Quote/comment/escape/angle transitions adapt the same pinned address.rs state
 // machine as below; no encoded display name is reparsed as a recipient list.
@@ -338,7 +369,7 @@ impl ReceivedEmail {
         if !receivers.contains(&inbox_email) {
             return Ok(None);
         }
-        let (sender_email, sender_name) = sender(&self.envelope.from)?;
+        let (sender_email, sender_name) = reply_sender(&self)?;
         // IntroMail prioritizes the actual Message-ID header; an opaque provider
         // UUID must never substitute for a missing RFC threading identity.
         let source = self

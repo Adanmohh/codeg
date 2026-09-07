@@ -94,10 +94,11 @@ THE SOFTWARE.
 
 Direct Resend email transport
 ============================
-The ticket auto_reply field also adapts Chatwoot v4.17.1, commit
+The ticket reply contact and auto_reply field also adapt Chatwoot v4.17.1, commit
 b354a9550e1fb59fa537a9c384232cb076213e72:
-  app/presenters/mail_presenter.rb (auto_reply?, auto_submitted?, x_auto_reply?)
-  spec/presenters/mail_presenter_spec.rb (auto_reply? cases)
+  app/presenters/mail_presenter.rb (from, sender_name, auto_reply?,
+    auto_submitted?, x_auto_reply?)
+  spec/presenters/mail_presenter_spec.rb (auto_reply? and malformed sender cases)
 The original Chatwoot copyright and MIT license reproduced above apply.
 
 Owner-authorized reuse of IntroInnovation/intromail, commit

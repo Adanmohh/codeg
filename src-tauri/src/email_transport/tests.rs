@@ -633,6 +633,123 @@ fn auto_reply_matches_pinned_chatwoot_presenter_predicates() {
     }
 }
 
+#[test]
+fn reply_to_precedes_from_and_preserves_encoded_display_name() {
+    for (envelope, header) in [
+        (json!(["Reporter <reporter@example.test>"]), Value::Null),
+        (
+            Value::Null,
+            json!("=?UTF-8?Q?Doe=2C_Jane?= <reporter@example.test>"),
+        ),
+        (
+            json!(["REPORTER@example.test"]),
+            json!("=?UTF-8?Q?Doe=2C_Jane?= <reporter@example.test>"),
+        ),
+        (json!([]), json!("Reporter <reporter@example.test>")),
+    ] {
+        let mut detail = received(A, "reply-target@example.test");
+        detail["from"] = json!("Service Robot <noreply@service.test>");
+        detail["reply_to"] = envelope;
+        if !header.is_null() {
+            detail["headers"]["Reply-To"] = header.clone();
+        }
+        let mail = serde_json::from_value::<ReceivedEmail>(detail)
+            .unwrap()
+            .into_ticket("support@example.com")
+            .unwrap()
+            .unwrap();
+        assert_eq!(mail.sender_email, "reporter@example.test");
+        assert_eq!(
+            mail.sender_name.as_deref(),
+            Some(if header.as_str().is_some_and(|s| s.starts_with("=?")) {
+                "Doe, Jane"
+            } else {
+                "Reporter"
+            })
+        );
+    }
+}
+
+#[test]
+fn absent_or_empty_reply_to_falls_back_to_from_but_ambiguity_fails_closed() {
+    for value in [Value::Null, json!([]), json!([""]), json!([" \t "])] {
+        let mut detail = received(A, "empty@example.test");
+        detail["reply_to"] = value;
+        detail["headers"]["Reply-To"] = json!(" \t ");
+        let mail = serde_json::from_value::<ReceivedEmail>(detail)
+            .unwrap()
+            .into_ticket("support@example.com")
+            .unwrap()
+            .unwrap();
+        assert_eq!(mail.sender_email, "customer@example.com");
+        assert_eq!(mail.sender_name.as_deref(), Some("Customer"));
+    }
+    for (envelope, header) in [
+        (json!(["Reporter <reporter@example.test"]), Value::Null),
+        (json!(["a@example.test", "b@example.test"]), Value::Null),
+        (json!(["a@example.test,b@example.test"]), Value::Null),
+        (Value::Null, json!("a@example.test,b@example.test")),
+        (
+            json!(["reporter@example.test"]),
+            json!("Reporter <reporter@example.test"),
+        ),
+        (
+            json!(["reporter@example.test"]),
+            json!("different@example.test"),
+        ),
+        (
+            json!(["reporter@example.test"]),
+            json!("Group:reporter@example.test;"),
+        ),
+    ] {
+        let mut detail = received(A, "ambiguous@example.test");
+        detail["reply_to"] = envelope;
+        if !header.is_null() {
+            detail["headers"]["Reply-To"] = header;
+        }
+        assert!(serde_json::from_value::<ReceivedEmail>(detail)
+            .unwrap()
+            .into_ticket("support@example.com")
+            .is_err());
+    }
+}
+
+#[tokio::test]
+async fn pulled_reply_to_is_the_persisted_ticket_contact_and_cannot_route_an_inbox() {
+    let db = fresh_in_memory_db().await;
+    let scope = scope(&db.conn, 1, "support@example.com").await;
+    let mock = Mock::start().await;
+    let client = client(&db.conn, scope, &mock).await;
+    let mut detail = received(A, "actual-reporter@example.test");
+    detail["from"] = json!("Service Robot <noreply@service.test>");
+    detail["reply_to"] = json!(["reporter@example.test"]);
+    detail["headers"]["Reply-To"] = json!("=?UTF-8?Q?Doe=2C_Jane?= <reporter@example.test>");
+    mock.json(page(vec![detail.clone()], false));
+    mock.json(detail.clone());
+    let summary = client
+        .pull_received(&db.conn, PullOptions::default())
+        .await
+        .unwrap();
+    assert_eq!(summary.inserted, 1);
+    let conversation = tickets::list_conversations(&db.conn, scope)
+        .await
+        .unwrap()
+        .remove(0);
+    let contact = tickets::get_contact(&db.conn, scope, conversation.id)
+        .await
+        .unwrap();
+    assert_eq!(contact.email, "reporter@example.test");
+    assert_eq!(contact.name, "Doe, Jane");
+    detail["to"] = json!(["another-inbox@example.com"]);
+    detail["reply_to"] = json!(["support@example.com"]);
+    detail["headers"]["Reply-To"] = json!("support@example.com");
+    assert!(serde_json::from_value::<ReceivedEmail>(detail)
+        .unwrap()
+        .into_ticket("support@example.com")
+        .unwrap()
+        .is_none());
+}
+
 #[tokio::test]
 async fn pull_paginates_orders_parent_before_reply_and_replays_without_duplicates() {
     let db = fresh_in_memory_db().await;
