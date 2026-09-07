@@ -1,6 +1,6 @@
 # Step 1: rebrand
 
-Hafidh Ops Desk branding is implemented and the required checks pass. Draft PR is being prepared. No integration or merge performed.
+Hafidh Ops Desk branding is implemented and the required checks pass. Draft PR: [#2](https://github.com/Adanmohh/codeg/pull/2), open against main. No integration or merge performed.
 
 Worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`
 Branch: `feat/step1-rebrand`
@@ -13,7 +13,7 @@ Upstream product baseline: `xintaofei/codeg@v0.30.4`, immutable SHA `6f6bd648b20
 - Original code-native H vector with deep teal `#123c3a`, warm white `#f5f1e7` and gold `#dbb66b`. Reused Tauri icon generation for existing PNG/ICO/ICNS/web assets; retained upstream macOS safe-area generator. Tray H uses the same CLI pipeline, requiring no Pillow or new dependency.
 - Existing default theme uses teal `#245e58` in light mode and mint `#9bd4c5` in dark mode, including pre-hydration fallbacks. The persisted neutral ID stays compatible; its picker label is Hafidh. Other themes and the existing UI system remain available.
 - Sponsor promotions removed from all ten README files. Tagged runtime provider source had no sponsor presets to remove; no user provider data was changed.
-- Internal application updates disabled: updater config/key/registration/capability removed, no updater artifacts; frontend skips release checks, rejects install/restart/rollback actions and ignores cached upstream offers. Rust refuses before plugin access, network or state mutation; server status advertises no self-update/rollback. Retained dormant upstream lifecycle code is not a distribution channel.
+- Internal application updates disabled: desktop updater config/key/registration/capability removed, no updater artifacts; frontend skips release checks, rejects install/restart/rollback actions and ignores cached upstream offers. Rust refuses before plugin access, network or state mutation; server status advertises no self-update/rollback. Retained dormant upstream lifecycle code is not a distribution channel.
 - Root release job restricted to `xintaofei/codeg`, so dependent signing, packaging and publishing jobs skip in this fork. No workflow triggered, signing, notarization, deployment, store release, merge or external message performed.
 - Apache LICENSE unchanged; NOTICE added without replacing any vendored notices. Future workers can append their entries. No AGPL, Chatwoot enterprise, Kun or other third-party source imported.
 
@@ -148,7 +148,7 @@ Raw logs are local ignored `reports/*.log`; this committed report is the durable
 | `pnpm exec tsc --noEmit` | PASS, exit 0, including final update guards |
 | `pnpm build` | PASS, exit 0, 32 static pages; rebrand-build-final.log |
 | `pnpm eslint .` | PASS, exit 0; one unchanged upstream `_dropped` warning in status-bar-mcp.tsx |
-| Focused Vitest, 10 suites | PASS, exit 0; 129/129 tests |
+| Focused Vitest, 10 suites | PASS, exit 0; 129/129 tests on final source (rebrand-vitest-final.log) |
 | Final affected update suites, 3 suites | PASS, exit 0; 47/47 tests |
 | `cargo test --locked --features test-utils --test macos_icon_geometry` | PASS, exit 0; 3/3 tests: safe area, 1024 master geometry, legacy ICNS masks |
 | `cargo test --locked --no-default-features --lib update::version::tests` | PASS, exit 0; 5/5 tests, including manifest refusal before networking |
@@ -173,5 +173,7 @@ Known upstream warnings: proc-macro-error2 2.0.1 future compatibility, zero-byte
 
 Initial report pushed as `6dc835f5`; owner-requested reload checkpoint implementation `a743e99fd88350ffc262b27d9849a7b57625e1c3`, report follow-up `7558eb16`. Work stopped at that checkpoint and resumed only on explicit instruction. Earlier detailed progress is preserved in those report commits.
 
-Final implementation commit: pending.
-Draft PR URL: pending. Orchestrator reviews and merges; this worker does not merge.
+Final implementation commit: `1d432c51ae06c48dae4b62f45eb9a9cb36b6ecd2` (pushed). This final report update is a separate documentation-only commit.
+Draft PR URL: https://github.com/Adanmohh/codeg/pull/2. Verified with `gh pr view`: isDraft=true, base=main, head=feat/step1-rebrand, source head SHA matches the implementation commit, mergeStateStatus=CLEAN at creation. Orchestrator reviews and merges; this worker did not merge.
+
+`gh pr create --draft --base main --head feat/step1-rebrand --body-file reports/rebrand-pr-body.log`: exit 0. Source commits and this report are pushed only to the assigned branch. Worktree clean at handoff; no required work remains within piece 8. CI after PR creation is for the orchestrator to review.
