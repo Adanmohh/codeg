@@ -20,3 +20,5 @@ pub mod thread_binding_service;
 pub mod ticket_service;
 pub mod token_usage_service;
 pub mod work_task_service;
+pub mod work_task_wait_service;
+pub mod ops_approvals;

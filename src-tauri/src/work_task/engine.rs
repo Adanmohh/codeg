@@ -184,13 +184,10 @@ pub struct TaskEngine {
     /// keyed by connection_id map back to a task generation. Lost on restart
     /// (boot reconcile covers that).
     index: Arc<Mutex<HashMap<String, (i32, i32)>>>,
-    /// Outstanding blocking requests per task (`"q:<id>"`, `"p:<id>"`,
-    /// `"a:<id>"` — namespaced so the three id spaces can't collide). Non-empty
-    /// set ⇔ awaiting_input. Requests raised by a delegation sub-agent are
-    /// additionally prefixed with the child's connection id
-    /// (`"<child_conn>#p:<id>"`) so [`TaskEngine::forget_delegation_child`] can
-    /// drop the whole group when that child goes away.
-    awaiting: Arc<Mutex<HashMap<i32, HashSet<String>>>>,
+    /// Serialize request attribution with connection/subtree retirement through
+    /// the database commit. Wait keys themselves live in ops_acp_wait so Ops
+    /// proposal resolution and ACP ownership share one transaction boundary.
+    request_lock: Arc<Mutex<()>>,
     /// `child_connection_id -> parent_connection_id` for delegation children of
     /// a task run. A sub-agent's blocking prompts arrive on the CHILD's
     /// connection, which is not in `index` — without this mapping they are
@@ -302,7 +299,7 @@ pub fn build_task_engine(
         bus,
         data_dir,
         index: Arc::new(Mutex::new(HashMap::new())),
-        awaiting: Arc::new(Mutex::new(HashMap::new())),
+        request_lock: Arc::new(Mutex::new(())),
         delegation_parents: Arc::new(Mutex::new(HashMap::new())),
         launching: Arc::new(Mutex::new(HashMap::new())),
         launch_token: Arc::new(std::sync::atomic::AtomicU64::new(0)),
@@ -363,7 +360,7 @@ fn test_engine_full(
         _engine_lock: tempfile::tempfile().expect("temp file"),
         data_dir: std::env::temp_dir(),
         index: Arc::new(Mutex::new(HashMap::new())),
-        awaiting: Arc::new(Mutex::new(HashMap::new())),
+        request_lock: Arc::new(Mutex::new(())),
         delegation_parents: Arc::new(Mutex::new(HashMap::new())),
         launching: Arc::new(Mutex::new(HashMap::new())),
         launch_token: Arc::new(std::sync::atomic::AtomicU64::new(0)),
@@ -824,24 +821,22 @@ impl TaskEngine {
         task_id: i32,
         reason: Option<String>,
     ) -> Result<(), String> {
-        let won = work_task_service::cancel(&self.db.conn, task_id, reason.as_deref())
-            .await
-            .map_err(|e| e.to_string())?;
-        if !won {
+        let canceled_seq =
+            work_task_service::cancel_with_generation(&self.db.conn, task_id, reason.as_deref())
+                .await
+                .map_err(|e| e.to_string())?;
+        let Some(canceled_seq) = canceled_seq else {
             return Err("task cannot be canceled in its current state".to_string());
-        }
+        };
         self.emit_upsert(task_id);
 
         // Stop a running init command / pre-prompt compaction BEFORE waiting on
         // the task lock: the launch holds that lock for its whole setup, so
         // waiting first would mean waiting out the very `pnpm install` — or the
         // very compaction turn — we are trying to stop. The run_seq we just
-        // canceled scopes both to this generation (cancel does not bump it, so
-        // the row still carries it).
-        if let Ok(task) = work_task_service::get_model(&self.db.conn, task_id).await {
-            self.kill_setup_child(task_id, task.run_seq).await;
-            self.abort_compaction(task_id, task.run_seq).await;
-        }
+        // canceled was captured inside that CAS, before a possible new claim.
+        self.kill_setup_child(task_id, canceled_seq).await;
+        self.abort_compaction(task_id, canceled_seq).await;
 
         // Serialize the teardown with a possibly in-flight launch: the launch
         // holds the task lock across spawn → prompt, and its status gates
@@ -851,24 +846,26 @@ impl TaskEngine {
         let lock = self.task_lock(task_id).await;
         let _guard = lock.lock().await;
 
-        let conn_id = {
+        let conn_ids: Vec<String> = {
             self.index
                 .lock()
                 .await
                 .iter()
-                .find(|(_, (tid, _))| *tid == task_id)
+                .filter(|(_, (tid, seq))| *tid == task_id && *seq == canceled_seq)
                 .map(|(c, _)| c.clone())
+                .collect()
         };
-        if let Some(conn_id) = conn_id {
+        for conn_id in conn_ids {
             let _ = self.manager.cancel(&self.db.conn, &conn_id).await;
-            self.forget_connection(&conn_id).await;
-            self.forget_delegation_children_of(&conn_id).await;
+            self.retire_connection(&conn_id, task_id).await;
             let _ = self.manager.disconnect(&conn_id).await;
         }
-        self.awaiting.lock().await.remove(&task_id);
 
         // Converge a stranded InProgress conversation.
-        let task = work_task_service::get_model(&self.db.conn, task_id).await.ok();
+        let task = work_task_service::get_model(&self.db.conn, task_id)
+            .await
+            .ok()
+            .filter(|task| task.run_seq == canceled_seq);
         if let Some(conv_id) = task.as_ref().and_then(|t| t.conversation_id) {
             if self.conversation_status(conv_id).await == Some(ConversationStatus::InProgress) {
                 self.cancel_conversation(conv_id).await;
@@ -2294,11 +2291,15 @@ impl TaskEngine {
 
     /// Drop the in-memory traces of a connection this engine is done with: its
     /// run binding and its compaction fence. Paired with the `disconnect` calls
-    /// on the launch's teardown paths, which — unlike `retire_connection` —
-    /// unwind a generation that never became live.
+    /// on the launch's teardown paths to unwind a generation that never became
+    /// live, sharing retirement's request and delegation cleanup.
     async fn forget_connection(&self, conn_id: &str) {
-        self.index.lock().await.remove(conn_id);
-        self.compaction_turns.lock().await.remove(conn_id);
+        let entry = { self.index.lock().await.get(conn_id).copied() };
+        if let Some((task_id, _)) = entry {
+            self.retire_connection(conn_id, task_id).await;
+        } else {
+            self.compaction_turns.lock().await.remove(conn_id);
+        }
     }
 
     /// Abort a pre-prompt compaction this task's launch is waiting on. Called
@@ -2491,11 +2492,19 @@ impl TaskEngine {
                 // `task_for_connection` rather than `index` alone so a nested
                 // delegation (a sub-agent delegating further) maps to the same
                 // run — its prompts block the task just as much.
-                if self.task_for_connection(&env.connection_id).await.is_some() {
-                    self.delegation_parents
-                        .lock()
-                        .await
-                        .insert(child_connection_id.clone(), env.connection_id.clone());
+                let mapped = {
+                    let _requests = self.request_lock.lock().await;
+                    if self.task_for_connection(&env.connection_id).await.is_some() {
+                        self.delegation_parents
+                            .lock()
+                            .await
+                            .insert(child_connection_id.clone(), env.connection_id.clone());
+                        true
+                    } else {
+                        false
+                    }
+                };
+                if mapped {
                     // The broker starts the child's turn BEFORE announcing it
                     // (`send_prompt_linked_for_delegation` precedes
                     // `emit_started_if_real`), so a child that blocks
@@ -2613,150 +2622,53 @@ impl TaskEngine {
 
     /// Drop every delegation-child mapping belonging to a retired run, and
     /// return the connection ids that were detached — their outstanding
-    /// requests are now unanswerable, so whoever does not clear the task's set
-    /// wholesale has to retract those keys by hand (see
-    /// [`Self::retire_connection`]).
+    /// requests are now unanswerable. The caller holds request_lock and retracts
+    /// these connections' persisted keys through [`Self::retire_connection`].
     async fn forget_delegation_children_of(&self, parent_conn_id: &str) -> Vec<String> {
         // `parent_conn_id` is a run connection, never a key in this map.
         self.detach_delegation_subtree(parent_conn_id, false).await
     }
 
-    /// Drop every engine-side trace of a run connection: its `index` entry, the
-    /// task's outstanding-request set, and its delegation children.
-    ///
-    /// `index` is what attributes an incoming event to a task, so an entry that
-    /// outlives its connection keeps answering for a row that has moved on —
-    /// and `remove_worktree_locked` reads the same map as "a live agent is
-    /// working in there". Whoever takes over from a settle that will never
-    /// arrive calls this; the entry has no other way out (`reconcile_once`
-    /// only ever looks at `running` / `awaiting_input` rows).
+    /// Retire a run and its delegation subtree under the same attribution lock
+    /// as request arrival. Persistent keys belong to this run/connection only.
     async fn retire_connection(&self, conn_id: &str, task_id: i32) {
-        // A connection that is being retired will never complete another turn,
-        // so an unspent compaction marker on it would linger for the life of
-        // the process. (`claim_compaction_turn` clears every marker whose
-        // connection does complete one.)
+        let _requests = self.request_lock.lock().await;
         self.compaction_turns.lock().await.remove(conn_id);
-
-        // Unmap this run's delegation children FIRST: the purge below needs
-        // their ids, and a child that is already detached can no longer publish
-        // a fresh key (`track_request` resolves a child through
-        // `delegation_parents`, and an unmapped one resolves to nothing).
-        let orphaned: Vec<String> = self
-            .forget_delegation_children_of(conn_id)
-            .await
-            .iter()
-            .map(|child| format!("{child}#"))
-            .collect();
-
-        // The outstanding-request set is keyed by TASK, not by connection, so
-        // clearing it while another generation still owns the row would drop
-        // ITS pending permissions — resolving one of the survivors then empties
-        // an already-empty set and flips the card back to `running` with the
-        // agent still parked. Hence "was this the last connection on the task",
-        // and hence the `index` guard held ACROSS the clear rather than just
-        // the test: a launch registers its generation in `index` before it can
-        // publish any request (and a delegation child's keys only exist while
-        // its parent is indexed), so holding it is what keeps the answer true
-        // until the set is gone. Lock order is index → awaiting; every other
-        // `awaiting` critical section is a leaf, so it cannot invert.
-        let emptied_for = {
-            let mut index = self.index.lock().await;
-            index.remove(conn_id);
-            let survivor = index
-                .values()
-                .find(|(tid, _)| *tid == task_id)
-                .map(|(_, run_seq)| *run_seq);
-            let mut awaiting = self.awaiting.lock().await;
-            match survivor {
-                // Last one out, so the whole set goes — orphans included. A set
-                // inherited by the next generation would never flip the row to
-                // `awaiting_input` again.
-                None => {
-                    awaiting.remove(&task_id);
-                    None
-                }
-                // Someone else still owns the row: keep THEIR requests, but
-                // retract this run's children's. Sparing those is the opposite
-                // error and the worse one — the chain that named them is gone,
-                // so neither `track_request` nor `forget_delegation_child` can
-                // resolve them any more, and one key stuck in a shared set pins
-                // the survivor on the wrong side of the `running` ⇄
-                // `awaiting_input` edge until something clears the set
-                // wholesale. Only a LATER retirement that is the last one out
-                // (or a cancel) does that, so it outlasts every generation the
-                // orphan is actually lying about.
-                Some(run_seq) => Self::retract_keys(&mut awaiting, task_id, &orphaned)
-                    .then_some(run_seq),
-            }
-        };
-
-        // Emptied by the retraction alone: the row is parked on requests that
-        // just became unanswerable, so return it to the survivor's `running`
-        // through the same flip `track_request` would have used.
-        if let Some(run_seq) = emptied_for {
-            let flipped = work_task_service::flip_awaiting(&self.db.conn, task_id, run_seq, false)
-                .await
-                .unwrap_or(false);
-            if flipped {
-                self.emit_upsert(task_id);
-            }
+        let mut connections = self.forget_delegation_children_of(conn_id).await;
+        connections.push(conn_id.to_owned());
+        let entry = self.index.lock().await.remove(conn_id);
+        if let Some((owner_id, run_seq)) = entry {
+            debug_assert_eq!(owner_id, task_id);
+            self.clear_request_connections(owner_id, run_seq, &connections)
+                .await;
         }
     }
 
-    /// Drop every key under `prefixes` from the task's outstanding set,
-    /// reporting whether that is what emptied it (and so owes a flip back to
-    /// `running`). An untouched set never reports `true`, however empty.
-    fn retract_keys(
-        awaiting: &mut HashMap<i32, HashSet<String>>,
-        task_id: i32,
-        prefixes: &[String],
-    ) -> bool {
-        if prefixes.is_empty() {
-            return false;
+    /// Caller holds request_lock across attribution/detachment and this write.
+    async fn clear_request_connections(&self, task_id: i32, run_seq: i32, connections: &[String]) {
+        match crate::db::service::work_task_wait_service::clear_connections(
+            &self.db.conn,
+            task_id,
+            run_seq,
+            connections,
+        )
+        .await
+        {
+            Ok(true) => self.emit_upsert(task_id),
+            Ok(false) => {}
+            Err(error) => tracing::warn!(task_id, run_seq, %error, "[work_task] wait cleanup failed"),
         }
-        let Some(set) = awaiting.get_mut(&task_id) else {
-            return false;
-        };
-        let before = set.len();
-        set.retain(|k| !prefixes.iter().any(|p| k.starts_with(p.as_str())));
-        if set.len() == before {
-            return false; // nothing of this subtree's was outstanding
-        }
-        if set.is_empty() {
-            awaiting.remove(&task_id);
-            return true;
-        }
-        false
     }
 
-    /// Drop a finished delegation child (and anything it delegated in turn) plus
-    /// any blocking requests they left unanswered.
-    ///
-    /// The cleanup is the load-bearing half: a child torn down while a
-    /// permission was still pending (cancel, crash, parent teardown) would
-    /// otherwise leave its key in the task's outstanding set forever, pinning
-    /// the row at `awaiting_input` with nothing left that could ever resolve it.
-    /// Empties the set through the same flip path as `track_request` so the row
-    /// returns to `running`.
+    /// A detached child and its descendants can no longer publish requests.
+    /// Retraction and status reconciliation preserve any remaining Ops/ACP owner.
     async fn forget_delegation_child(&self, child_conn_id: &str) {
-        // Resolve the run BEFORE detaching — afterwards the chain is gone.
+        let _requests = self.request_lock.lock().await;
         let entry = self.task_for_connection(child_conn_id).await;
         let detached = self.detach_delegation_subtree(child_conn_id, true).await;
-        let Some(((task_id, run_seq), _)) = entry else {
-            return;
-        };
-        let prefixes: Vec<String> = detached.iter().map(|c| format!("{c}#")).collect();
-        let emptied = {
-            let mut awaiting = self.awaiting.lock().await;
-            Self::retract_keys(&mut awaiting, task_id, &prefixes)
-        };
-        if emptied {
-            let flipped = work_task_service::flip_awaiting(&self.db.conn, task_id, run_seq, false)
-                .await
-                .unwrap_or(false);
-            if flipped {
-                self.emit_upsert(task_id);
-            }
+        if let Some(((task_id, run_seq), _)) = entry {
+            self.clear_request_connections(task_id, run_seq, &detached)
+                .await;
         }
     }
 
@@ -2864,49 +2776,28 @@ impl TaskEngine {
         }
     }
 
-    /// Track an outstanding blocking request and flip running ⇄ awaiting_input
-    /// on the empty↔non-empty edges of the per-task set.
-    ///
-    /// `conn_id` may be the task's own connection or one of its delegation
-    /// children: a sub-agent parked on a permission blocks the run just as
-    /// surely as the top-level agent does, and is in fact harder to notice
-    /// (#447). A child's keys are prefixed with its connection id so
-    /// [`Self::forget_delegation_child`] can retract them as a group.
+    /// Record an ACP wait even when an Ops proposal already parked the task.
+    /// Holding request_lock through the commit prevents a detached connection
+    /// from publishing a key after cleanup. Database reconciliation handles
+    /// proposal resolution racing this event in either order.
     async fn track_request(&self, conn_id: &str, key: String, outstanding: bool) {
-        let Some(((task_id, run_seq), is_own_connection)) =
-            self.task_for_connection(conn_id).await
-        else {
+        let _requests = self.request_lock.lock().await;
+        let Some(((task_id, run_seq), _)) = self.task_for_connection(conn_id).await else {
             return;
         };
-        let key = if is_own_connection {
-            key
-        } else {
-            format!("{conn_id}#{key}")
-        };
-        let flip = {
-            let mut awaiting = self.awaiting.lock().await;
-            let set = awaiting.entry(task_id).or_default();
-            if outstanding {
-                set.insert(key);
-                set.len() == 1
-            } else {
-                set.remove(&key);
-                if set.is_empty() {
-                    awaiting.remove(&task_id);
-                    true
-                } else {
-                    false
-                }
-            }
-        };
-        if flip {
-            let flipped =
-                work_task_service::flip_awaiting(&self.db.conn, task_id, run_seq, outstanding)
-                    .await
-                    .unwrap_or(false);
-            if flipped {
-                self.emit_upsert(task_id);
-            }
+        match crate::db::service::work_task_wait_service::track_request(
+            &self.db.conn,
+            task_id,
+            run_seq,
+            conn_id,
+            &key,
+            outstanding,
+        )
+        .await
+        {
+            Ok(true) => self.emit_upsert(task_id),
+            Ok(false) => {}
+            Err(error) => tracing::warn!(task_id, run_seq, %error, "[work_task] request tracking failed"),
         }
     }
 
@@ -8767,7 +8658,7 @@ mod tests {
         engine.on_turn_complete(PARENT_CONN, "cancelled").await;
 
         assert!(
-            engine.awaiting.lock().await.get(&task_id).is_none(),
+            acp_waits(&engine, task_id).await.is_empty(),
             "a child's key cannot outlive the delegation chain that named it"
         );
 
@@ -8835,6 +8726,341 @@ mod tests {
                 queued: 0,
             },
         )
+    }
+
+    struct OpsWaitAction;
+
+    async fn acp_waits(
+        engine: &TaskEngine,
+        task_id: i32,
+    ) -> Vec<crate::db::entities::ops_acp_wait::Model> {
+        use crate::db::entities::ops_acp_wait;
+        use sea_orm::{ColumnTrait, QueryFilter};
+        ops_acp_wait::Entity::find()
+            .filter(ops_acp_wait::Column::TaskId.eq(task_id))
+            .all(&engine.db.conn)
+            .await
+            .unwrap()
+    }
+
+    #[async_trait::async_trait]
+    impl crate::db::service::ops_approvals::Action for OpsWaitAction {
+        fn name(&self) -> &'static str {
+            "test.wait"
+        }
+        fn domain(&self) -> &'static str {
+            "test"
+        }
+        fn validate(&self, _: &serde_json::Value) -> Result<(), crate::db::error::DbError> {
+            Ok(())
+        }
+    }
+
+    async fn pending_ops(
+        engine: &TaskEngine,
+        task_id: i32,
+    ) -> crate::db::entities::ops_proposal::Model {
+        use crate::db::service::ops_approvals::{propose, ProposalOutcome};
+        let run_seq = work_task_service::get_model(&engine.db.conn, task_id)
+            .await
+            .unwrap()
+            .run_seq;
+        match propose(
+            &engine.db.conn,
+            task_id,
+            run_seq,
+            "agent",
+            &OpsWaitAction,
+            serde_json::json!({}),
+        )
+        .await
+        .unwrap()
+        {
+            ProposalOutcome::Pending(proposal) => *proposal,
+            _ => panic!("expected human review"),
+        }
+    }
+
+    async fn resolve_ops(
+        engine: &TaskEngine,
+        proposal: &crate::db::entities::ops_proposal::Model,
+        approve: bool,
+    ) {
+        use crate::db::service::ops_approvals::{self as ops, Review};
+        if approve {
+            ops::approve(
+                &engine.db.conn,
+                proposal.task_id,
+                proposal.run_seq,
+                proposal.id,
+                "human",
+                &OpsWaitAction,
+                Review {
+                    expected_payload: &serde_json::json!({}),
+                    approved_payload: serde_json::json!({}),
+                },
+            )
+            .await
+            .unwrap();
+        } else {
+            ops::deny(
+                &engine.db.conn,
+                proposal.task_id,
+                proposal.run_seq,
+                proposal.id,
+                "human",
+                &OpsWaitAction,
+            )
+            .await
+            .unwrap();
+        }
+    }
+
+    async fn ops_resolution_preserves_acp_waits(approve: bool) {
+        let (engine, task_id) = running_task().await;
+        let proposal = pending_ops(&engine, task_id).await;
+        engine
+            .on_event(&delegation_started(PARENT_CONN, CHILD_CONN))
+            .await;
+        engine
+            .on_event(&permission_request(PARENT_CONN, "parent-request"))
+            .await;
+        engine
+            .on_event(&permission_request(CHILD_CONN, "child-request"))
+            .await;
+        resolve_ops(&engine, &proposal, approve).await;
+        assert_eq!(
+            status_of(&engine, task_id).await,
+            WorkTaskStatus::AwaitingInput
+        );
+        assert!(
+            crate::db::service::ops_approvals::propose(
+                &engine.db.conn,
+                task_id,
+                proposal.run_seq,
+                "agent",
+                &OpsWaitAction,
+                serde_json::json!({})
+            )
+            .await
+            .is_err(),
+            "ACP is still blocking this run"
+        );
+        engine
+            .track_request(PARENT_CONN, "p:parent-request".into(), false)
+            .await;
+        assert_eq!(
+            status_of(&engine, task_id).await,
+            WorkTaskStatus::AwaitingInput
+        );
+        engine
+            .track_request(CHILD_CONN, "p:child-request".into(), false)
+            .await;
+        assert_eq!(status_of(&engine, task_id).await, WorkTaskStatus::Running);
+    }
+
+    #[tokio::test]
+    async fn ops_approval_preserves_overlapping_acp_waits() {
+        ops_resolution_preserves_acp_waits(true).await;
+    }
+
+    #[tokio::test]
+    async fn ops_denial_preserves_overlapping_acp_waits() {
+        ops_resolution_preserves_acp_waits(false).await;
+    }
+
+    #[tokio::test]
+    async fn ops_resolution_and_concurrent_acp_arrival_preserve_the_wait() {
+        for approve in [true, false] {
+            for connection in [PARENT_CONN, CHILD_CONN] {
+                let (engine, task_id) = running_task().await;
+                let proposal = pending_ops(&engine, task_id).await;
+                engine
+                    .on_event(&delegation_started(PARENT_CONN, CHILD_CONN))
+                    .await;
+                let request = permission_request(connection, "racing");
+                tokio::join!(
+                    resolve_ops(&engine, &proposal, approve),
+                    engine.on_event(&request)
+                );
+                assert_eq!(
+                    status_of(&engine, task_id).await,
+                    WorkTaskStatus::AwaitingInput
+                );
+                assert_eq!(acp_waits(&engine, task_id).await.len(), 1);
+                engine
+                    .track_request(connection, "p:racing".into(), false)
+                    .await;
+                assert_eq!(status_of(&engine, task_id).await, WorkTaskStatus::Running);
+            }
+        }
+    }
+
+    #[tokio::test]
+    async fn ops_wait_survives_subtree_cleanup_and_concurrent_child_arrival() {
+        let (engine, task_id) = running_task().await;
+        let proposal = pending_ops(&engine, task_id).await;
+        engine
+            .on_event(&delegation_started(PARENT_CONN, CHILD_CONN))
+            .await;
+        engine
+            .on_event(&delegation_started(CHILD_CONN, "grandchild"))
+            .await;
+        engine
+            .on_event(&permission_request(CHILD_CONN, "existing"))
+            .await;
+        tokio::join!(
+            engine.track_request("grandchild", "p:racing".into(), true),
+            engine.forget_delegation_child(CHILD_CONN),
+        );
+        assert!(acp_waits(&engine, task_id).await.is_empty());
+        assert!(engine.delegation_parents.lock().await.is_empty());
+        assert_eq!(
+            status_of(&engine, task_id).await,
+            WorkTaskStatus::AwaitingInput
+        );
+        resolve_ops(&engine, &proposal, true).await;
+        assert_eq!(status_of(&engine, task_id).await, WorkTaskStatus::Running);
+    }
+
+    #[tokio::test]
+    async fn ops_wait_survives_retirement_and_concurrent_parent_arrival() {
+        let (engine, task_id) = running_task().await;
+        let proposal = pending_ops(&engine, task_id).await;
+        engine
+            .on_event(&permission_request(PARENT_CONN, "existing"))
+            .await;
+        tokio::join!(
+            engine.track_request(PARENT_CONN, "p:racing".into(), true),
+            engine.retire_connection(PARENT_CONN, task_id),
+        );
+        assert!(acp_waits(&engine, task_id).await.is_empty());
+        assert_eq!(
+            status_of(&engine, task_id).await,
+            WorkTaskStatus::AwaitingInput
+        );
+        resolve_ops(&engine, &proposal, false).await;
+        assert_eq!(status_of(&engine, task_id).await, WorkTaskStatus::Running);
+    }
+
+    #[tokio::test]
+    async fn ops_overlap_cancel_teardown_clears_acp_owners_and_rejects_late_decision() {
+        let (engine, task_id) = running_task().await;
+        let proposal = pending_ops(&engine, task_id).await;
+        engine
+            .on_event(&delegation_started(PARENT_CONN, CHILD_CONN))
+            .await;
+        engine
+            .on_event(&permission_request(PARENT_CONN, "parent"))
+            .await;
+        engine
+            .on_event(&permission_request(CHILD_CONN, "child"))
+            .await;
+        engine.cancel(task_id, None).await.unwrap();
+        engine
+            .on_event(&permission_request(CHILD_CONN, "late"))
+            .await;
+        assert_eq!(status_of(&engine, task_id).await, WorkTaskStatus::Canceled);
+        assert!(acp_waits(&engine, task_id).await.is_empty());
+        assert!(engine.index.lock().await.is_empty());
+        assert!(engine.delegation_parents.lock().await.is_empty());
+        assert!(crate::db::service::ops_approvals::deny(
+            &engine.db.conn,
+            task_id,
+            proposal.run_seq,
+            proposal.id,
+            "human",
+            &OpsWaitAction,
+        )
+        .await
+        .is_err());
+    }
+
+    #[tokio::test]
+    async fn ops_cancel_teardown_cannot_release_a_restarted_generations_waits() {
+        let (engine, task_id) = running_task().await;
+        let original = work_task_service::get_model(&engine.db.conn, task_id)
+            .await
+            .unwrap();
+        let old_proposal = pending_ops(&engine, task_id).await;
+        engine
+            .on_event(&permission_request(PARENT_CONN, "old"))
+            .await;
+        // Hold the launch/teardown lock: cancellation can win its database CAS,
+        // but a controlled new generation becomes live before teardown resumes.
+        let lock = engine.task_lock(task_id).await;
+        let guard = lock.lock().await;
+        let restart = async {
+            while status_of(&engine, task_id).await != WorkTaskStatus::Canceled {
+                tokio::task::yield_now().await;
+            }
+            let seq = work_task_service::claim_for_run(
+                &engine.db.conn,
+                task_id,
+                WorkTaskStatus::Canceled,
+                "test",
+            )
+            .await
+            .unwrap()
+            .unwrap();
+            assert!(
+                work_task_service::begin_setup(&engine.db.conn, task_id, seq)
+                    .await
+                    .unwrap()
+            );
+            assert!(work_task_service::mark_running(
+                &engine.db.conn,
+                task_id,
+                seq,
+                original.conversation_id.unwrap(),
+                "conn-new",
+            )
+            .await
+            .unwrap());
+            engine
+                .index
+                .lock()
+                .await
+                .insert("conn-new".into(), (task_id, seq));
+            let proposal = pending_ops(&engine, task_id).await;
+            engine.track_request("conn-new", "p:new".into(), true).await;
+            drop(guard);
+            proposal
+        };
+        let (canceled, proposal) = tokio::time::timeout(Duration::from_secs(5), async {
+            tokio::join!(engine.cancel(task_id, None), restart)
+        })
+        .await
+        .expect("cancel/restart must not deadlock");
+        canceled.unwrap();
+        assert!(engine.index.lock().await.contains_key("conn-new"));
+        assert!(!engine.index.lock().await.contains_key(PARENT_CONN));
+        let waits = acp_waits(&engine, task_id).await;
+        assert_eq!(waits.len(), 1);
+        assert_eq!(waits[0].run_seq, proposal.run_seq);
+        assert_eq!(
+            status_of(&engine, task_id).await,
+            WorkTaskStatus::AwaitingInput
+        );
+        assert!(crate::db::service::ops_approvals::deny(
+            &engine.db.conn,
+            task_id,
+            old_proposal.run_seq,
+            old_proposal.id,
+            "human",
+            &OpsWaitAction,
+        )
+        .await
+        .is_err());
+        resolve_ops(&engine, &proposal, true).await;
+        assert_eq!(
+            status_of(&engine, task_id).await,
+            WorkTaskStatus::AwaitingInput
+        );
+        engine
+            .track_request("conn-new", "p:new".into(), false)
+            .await;
+        assert_eq!(status_of(&engine, task_id).await, WorkTaskStatus::Running);
     }
 
     #[tokio::test]
@@ -10233,44 +10459,25 @@ mod tests {
         );
     }
 
-    /// Retiring one generation must not disarm another. The outstanding-request
-    /// set is keyed by task, so a stale pass that reaches a task someone else
-    /// has already relaunched would otherwise drop the live generation's
-    /// pending permissions — and the next resolution would empty a set that is
-    /// already empty and put the card back to `running` while the agent is
-    /// still parked on the request nobody answered.
+    /// Retirement must remove only its run's keys, including delayed events
+    /// that race a new generation's current permissions.
     #[tokio::test]
     async fn retiring_a_connection_spares_the_requests_of_one_still_on_the_task() {
-        let db = crate::db::test_helpers::fresh_in_memory_db().await;
-        let engine = test_engine(db);
-        {
-            let mut index = engine.index.lock().await;
-            index.insert("conn-old".into(), (7, 1));
-            index.insert("conn-new".into(), (7, 2));
-        }
-        engine
-            .awaiting
-            .lock()
-            .await
-            .insert(7, ["p:req-1".to_string()].into_iter().collect());
-
-        engine.retire_connection("conn-old", 7).await;
-
-        {
-            let index = engine.index.lock().await;
-            assert!(!index.contains_key("conn-old"), "the retired one is gone");
-            assert!(index.contains_key("conn-new"), "and only that one");
-        }
-        assert_eq!(
-            engine.awaiting.lock().await.get(&7).map(|s| s.len()),
-            Some(1),
-            "the live generation is still waiting on its permission"
-        );
-
-        // The last one out does clear it — a set inherited by the next
-        // generation would never flip the row to `awaiting_input` again.
-        engine.retire_connection("conn-new", 7).await;
-        assert!(engine.awaiting.lock().await.get(&7).is_none());
+        let (engine, task_id) = running_task().await;
+        engine.track_request(PARENT_CONN, "p:old".into(), true).await;
+        let next_seq = relaunch_on(&engine, task_id, "conn-new").await;
+        engine.track_request("conn-new", "p:req-1".into(), true).await;
+        engine.track_request(PARENT_CONN, "p:late".into(), true).await;
+        engine.retire_connection(PARENT_CONN, task_id).await;
+        assert!(!engine.index.lock().await.contains_key(PARENT_CONN));
+        let waits = acp_waits(&engine, task_id).await;
+        assert_eq!(waits.len(), 1);
+        assert_eq!(waits[0].run_seq, next_seq);
+        assert_eq!(waits[0].connection_id, "conn-new");
+        assert_eq!(status_of(&engine, task_id).await, WorkTaskStatus::AwaitingInput);
+        engine.retire_connection("conn-new", task_id).await;
+        assert!(acp_waits(&engine, task_id).await.is_empty());
+        assert_eq!(status_of(&engine, task_id).await, WorkTaskStatus::Running);
     }
 
     /// `index` is a correlation table, not a liveness one. Whatever leaves an
