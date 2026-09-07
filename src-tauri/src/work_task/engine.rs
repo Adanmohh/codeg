@@ -21,6 +21,9 @@ use std::path::{Path, PathBuf};
 use std::sync::{Arc, OnceLock};
 use std::time::Duration;
 
+#[path = "desk.rs"]
+mod desk;
+
 use sea_orm::{ActiveModelTrait, EntityTrait, IntoActiveModel, Set};
 use tokio::sync::broadcast::error::RecvError;
 use tokio::sync::{Mutex, Notify};
@@ -6808,6 +6811,13 @@ pub struct EngineWorkTaskTools;
 
 #[async_trait::async_trait]
 impl WorkTaskToolAccess for EngineWorkTaskTools {
+    async fn desk_call(&self, parent_connection_id: &str, request: crate::acp::desk::DeskCall) -> crate::acp::desk::DeskResponse {
+        match engine() {
+            Some(engine) => engine.desk_call(parent_connection_id, request).await,
+            None => crate::acp::desk::DeskResponse::rejected(crate::acp::desk::DeskError::Unavailable),
+        }
+    }
+
     async fn report_progress(&self, parent_connection_id: &str, message: &str) -> TaskReportAck {
         let Some(engine) = engine() else {
             return TaskReportAck::rejected("no task engine running in this process");
@@ -8486,6 +8496,37 @@ mod tests {
             .await
             .expect("task row")
             .status
+    }
+
+    #[tokio::test]
+    async fn desk_scope_derives_root_run_and_actual_delegated_agent() {
+        let (engine, task_id) = running_task().await;
+        assert!(engine.desk_scope(PARENT_CONN).await.is_err(), "index alone is insufficient");
+        for (conn, agent) in [(PARENT_CONN, AgentType::Pi), (CHILD_CONN, AgentType::Codex), ("grandchild", AgentType::Pi)] {
+            engine.manager.insert_test_connection(conn, agent, None, EventEmitter::Noop).await;
+        }
+        engine.delegation_parents.lock().await.insert(CHILD_CONN.into(), PARENT_CONN.into());
+        engine.delegation_parents.lock().await.insert("grandchild".into(), CHILD_CONN.into());
+        let (task, agent) = engine.desk_scope("grandchild").await.unwrap();
+        assert_eq!(task.id, task_id);
+        assert_eq!(task.connection_id.as_deref(), Some(PARENT_CONN));
+        assert_eq!(agent, "pi");
+        engine.manager.get_state(CHILD_CONN).await.unwrap().write().await.status = ConnectionStatus::Disconnected;
+        assert!(engine.desk_scope("grandchild").await.is_err(), "disconnected intermediate ancestry rejects");
+    }
+
+    #[tokio::test]
+    async fn desk_scope_rejects_cancelled_runs_and_late_previous_generations() {
+        let (engine, task_id) = running_task().await;
+        engine.manager.insert_test_connection(PARENT_CONN, AgentType::Pi, None, EventEmitter::Noop).await;
+        let (_, prior_agent) = engine.desk_scope(PARENT_CONN).await.unwrap();
+        relaunch_on(&engine, task_id, "conn-new").await;
+        engine.manager.insert_test_connection("conn-new", AgentType::Pi, None, EventEmitter::Noop).await;
+        assert!(engine.desk_scope(PARENT_CONN).await.is_err());
+        let (task, current_agent) = engine.desk_scope("conn-new").await.unwrap();
+        assert_eq!(current_agent, prior_agent, "policy identity survives a new launch UUID");
+        assert!(work_task_service::cancel_running_generation(&engine.db.conn, task_id, task.run_seq).await.unwrap());
+        assert!(engine.desk_scope("conn-new").await.is_err());
     }
 
     #[tokio::test]

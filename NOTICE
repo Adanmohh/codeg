@@ -287,3 +287,4 @@ SOFTWARE.
 
 
 The bridge extends existing xintaofei/codeg v0.30.4 (6f6bd648b206412644842a98d9ffeebf57292bed) files src-tauri/src/acp/delegation/{listener,transport,companion}.rs, acp/work_task_tools.rs, acp/connection.rs, work_task/engine.rs and bin/codeg_mcp.rs. The original Apache-2.0 LICENSE remains unchanged. New wire and extension code is integration glue; it creates no alternate task or approval engine.
+The scoped work_task/desk.rs glue also reuses src-tauri/src/models/agent.rs::AgentType::as_wire (blob bc38571361cc3cea3770970f7251cd29811e0bda) for stable policy identity. Identity semantics were checked against owner-owned IntroInnovation/intromail at 0bd24dfe284b888aa9f602fa1fd00e337ea38874: backend/app/services/agent/{identity,gating,proposals}.py and backend/app/models.py. Existing accepted gating defaults and order are unchanged; no third-party terms apply to the owner's IntroMail source per FOUNDING.md.

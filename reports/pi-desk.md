@@ -140,8 +140,8 @@ or duplicate Ops validation/CAS SQL. Suggested helper module `ops::agent`
 The backend obtains the configured account ID from the same trusted process
 configuration as Ops, preferably a small `ops::agent::account_id()` helper or
 the existing shared account getter. No operator object is needed. It resolves
-task/run via `TaskEngine::task_for_connection`; `agent` is a trusted connection
-identity, not request text. Unknown/disconnected connection, revoked token,
+task/run via `TaskEngine::task_for_connection`; `agent` is the trusted caller's
+stable agent wire/registry key, not request text. Unknown/disconnected connection, revoked token,
 cancelled task or newer generation rejects before public data or mutations.
 Please keep helper error responses sanitized (closed category/message), and
 types public enough for ACP to deserialize the allowed draft fields. Tests in
@@ -165,13 +165,15 @@ and the respective existing `ThreadInput`, `TicketsInput`, `SaveDraftInput`.
 The existing `review::propose_reply` signature is unchanged.
 
 For delegated connections, RunContext.connection_id must be the current root
-work-task connection stored in the task row, while agent_id identifies the
-actual token-parent connection. The backend's private generation/parent index
+work-task connection stored in the task row, while agent_id is the stable
+wire/registry key of the actual token-parent agent. The backend's private generation/parent index
 must resolve both, rejecting disconnected parents and stale generations.
 ACP will not construct an Operator or duplicate the UI's CAS SQL/validators.
-Still needed for `desk_context`: a public-only live-run inbox projection and
-the shared trusted configured-account getter; the operator context includes
-fields inappropriate for the agent bridge.
+The later UI report now publishes `agent::context(db, &RunContext)` for the
+public account/inbox projection, `agent::account_id()` for shared trusted
+configuration and `agent::command_error(DbError)` for sanitized failures.
+All requested email helper contracts are available; integration awaits their
+acceptance on main. The operator context is not used by the agent bridge.
 
 The UI report records 20 passing Ops tests, including public-note exclusion,
 account/connection/run checks, competing draft CAS, and a held cancellation
@@ -206,8 +208,11 @@ Pi is the unsaved frontend and work-task fallback.
 The wrapper requires actual extension/adapter RPC discovery and Astra/max state
 before forwarding queued commands. Model/reasoning cycle commands and in-process
 session replacement are refused; changing those requires a new task launch.
-Prompt and compaction hooks recheck a live Desk context, including in headless
-RPC mode. Pi's `input` handled result and `session_before_compact` cancel result
+Prompt and compaction hooks check Codeg's existing socket Ping, including in
+headless RPC mode. Ping proves availability only; every Ops call still requires
+a token-bound live task/run. This preserves ordinary coding, merge sessions
+and pre-run compaction, where an eligible running Ops task need not exist yet.
+Pi's `input` handled result and `session_before_compact` cancel result
 are verified blocking contracts; exceptions in provider hooks are not used.
 
 Additional exact gh-api-verified Pi blobs at the same pinned commit:
@@ -246,3 +251,61 @@ Read the host owner's initial bug-workflow report: proposed
 revisioned stored bug draft ID, loads only human-attached proof, and returns
 pending/denied review metadata. That is the intended future native seam; no raw
 IssueDraftV1/evidence provenance or credential input is needed in the agent tool.
+
+## Stable policy identity and current bridge work
+
+Owner review identified that `agent_type:connection_id` would miss standing
+rules whenever a launch UUID changes. That uncommitted choice is replaced by
+`AgentType::as_wire()` from the trusted token-parent SessionState: `pi`, `codex`,
+or `custom:<registry-id>`. Display labels are unsuitable too (`Pi` differs from
+the persisted wire key `pi`). Every Pi launch therefore uses policy `agent_id`
+**`pi`**. The task/run/root connection and validated delegation ancestry remain
+separate backend liveness coordinates; no caller can choose either identity.
+The approved Ops audit stays attributed to the stable principal plus task/run.
+No per-connection suffix, newly minted principal, gate default or permissions
+ordering change is introduced.
+
+Grounding, all immutable gh-api reads after accepted local sources:
+
+- IntroMail `0bd24dfe284b888aa9f602fa1fd00e337ea38874`,
+  `backend/app/services/agent/identity.py` blob
+  `297be5540f3409a9599a4f961989456e8ebeedb9`: ensure/reuse the persisted system
+  agent User. `models.py` blob `ed783c0e2520b25b9e72c2c1f7ab439333fd28fc`
+  binds AgentRule/AgentScope to that stable user ID.
+- Same revision `gating.py` blob `4c7c6b88973b48d65d223fce21eb55c3707728cc`
+  and `proposals.py` blob `ee47b9e25f7f93794136e5aa2d94f4f18559cabd`: exact
+  agent equality selects scopes/rules and proposal audit attribution. The
+  accepted Rust gate preserves that equality and deny-first order unchanged.
+- Codeg v0.30.4 `src-tauri/src/models/agent.rs` blob
+  `bc38571361cc3cea3770970f7251cd29811e0bda`: `as_wire()` is the existing stable
+  storage/registry identity; this bridge introduces no second agent registry.
+
+Backend scope glue now verifies the private task/run mapping, the actual stored
+root and every connected ancestor. Unknown, disconnected, cancelled or old-run
+bindings reject; a pending accepted-Ops integration still returns unavailable
+for otherwise valid scopes. The final integration MUST test a persisted deny
+for `pi` through the real bridge across two launch UUIDs. That test has not yet
+run, because the UI seam is not accepted on main; no successful live Ops wiring
+is claimed here.
+
+Latest independent checks: 16 Pi/IPC tests passed, including real codeg-mcp
+tools/list (exactly five Desk tools), unknown approval-tool denial, token-only
+wire identity, stale response and cancellation closing the parked socket.
+Own `cargo build --locked --no-default-features --bin codeg-mcp` exited 0.
+The first scope regression exposed the display/wire label mismatch (8 passed,
+1 failed, 1 explicit external-client fixture ignored); stable identity fix and
+rerun follow. A new Node fixture needed Buffer.from on its declared string-or-
+Buffer socket chunk; corrected after typecheck exit 2.
+
+The extension now has its own strict TypeScript project. Root web typechecking
+excludes this isolated Node package, so normal CI does not require untracked
+global Pi peers. Extension typechecking is a separate explicit final gate with
+the actual pinned peer types. No ambient type stubs, dependency/lock upgrades
+or global changes are used. Launch/default checkpoint `87b3810d` is pushed.
+The corrected scope suite now passes: `cargo test --locked --no-default-features
+--lib desk_`, exit 0, 9 passed and 1 explicit external-client fixture ignored.
+Root and extension typechecks and focused ESLint all exit 0.
+
+Read the full latest UI report through its responsive-state correction. Its
+context/account/error helpers resolve the previous missing API requests.
+Published source remains unaccepted at this read; no Ops helper was copied.
