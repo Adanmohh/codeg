@@ -184,3 +184,13 @@ notifications and mobile review links, no ACP approval bypass, local-only
 provider tests, actual Playwright CLI checks and a committed report/draft PR.
 All workers remain GPT-6 Astra max; no additional worker or live outbound action.
 Final Design Studio review/fix/recheck and integrated native build remain.
+
+## Main upgrade and continuing reviews — 2026-09-08
+
+Root rebuilt accepted main frontend/server and upgraded the isolated Step1
+browser database through Ops UI/email/intake migrations. Actual Playwright CLI
+opens the empty Ops screen successfully: [upgrade evidence](reports/browser-step2-main-upgrade.md).
+Arabic mobile drawer/thread measured at 390px without horizontal overflow;
+remaining back-arrow/bidirectional English copy is recorded for final Design Studio.
+P1 early source review requested a foreign-folder fix-task reuse guard and
+overlapping-awaiting proposal regression; worker owns corrections.
