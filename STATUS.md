@@ -40,3 +40,7 @@ All three workers are running through Herdr, each in its own worktree and branch
 - Tickets: scoped store/threading implementation committed as `427108f8`; final validation reported passing, report/PR completion still running.
 - All three Herdr workers still working at this snapshot. No draft PRs were open and no Step 1 branch has been reviewed/merged. Completion requires report/diff/source review, acceptance gates, and integration.
 - Immediate scope remains Step 1 only. Step 2 adapters/UI and Step 3 Telegram/end-to-end testing have not started.
+
+## Owner integration amendment — 2026-09-07
+
+Step 2 now borrows direct Resend REST email transport and GitHub App integration from intromail. No Resend CLI/MCP or GitHub MCP product integration. Exact sources and missing polling/create-issue glue documented in FOUNDING.md and DECISIONS.md. Step 1 scope remains branding, approvals/audit and ticket store/threading.
