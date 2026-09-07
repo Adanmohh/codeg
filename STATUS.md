@@ -69,3 +69,11 @@ Step 2 now borrows direct Resend REST email transport and GitHub App integration
 - Continue through the planned Phase 1 work without stopping at status milestones. Retain orchestrator-only product authorship rules and three Herdr workers maximum, each on its own branch/worktree.
 - Use Playwright CLI for actual browser checks during integration. Finish with Design Studio measured audits, worker fixes and repeated checks on affected flows; record evidence and remaining limitations honestly.
 - Rebrand worker reassigned to a report-only Step 2 GitHub App/Hafidh intake contract task on a new docs branch in its own worktree. Resend transport work is next in the tickets worker worktree. No live sends or external publication are authorized by test automation alone.
+
+## Active Step 2 dispatch and browser preparation
+
+- `wR:t2` / `wR:p2`, tab GitHub · Hafidh intake, worker `rebrand`: report-only source contracts on `docs/step2-intake-contracts` in its original rebrand worktree. Deliverable `reports/step2-intake-contracts.md`.
+- `wR:t4` / `wR:p4`, tab Email · tickets, worker `tickets`: direct Resend internal transport on `feat/step2-email-transport`, original tickets worktree. Deliverable `reports/email-transport.md`; no public send routes or live sends in this task.
+- `wR:t3` / `wR:p3`, tab Approvals · audit: finishes the two Step 1 findings and combined migration/engine checks.
+- All tasks retain exact borrowing pins, gh api research, docs-first hooks, GPT-6 Astra max and isolated worktrees.
+- Playwright CLI and Design Studio skills read. Production frontend build for merged rebrand/tickets passes. Real local server build and isolated browser check are in preparation. [Design brief](docs/design/BRIEF.html) generated through Design Studio after narrowing and curating the scanner output; its scenarios are acceptance requirements, not completed flow results.
