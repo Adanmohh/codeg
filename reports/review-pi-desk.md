@@ -1,6 +1,6 @@
 # Pi Desk integration review
 
-In progress, 2026-09-08. PR #8 is not accepted. Reviewed the extension,
+Accepted, 2026-09-08. PR #8 reviewed at `44e30733e6a83f9b7e73f65a8487cf1a87075308` and merged as `70980fac8f2151a6ba579c45e5fe798aa5a671a7`. The entries below retain review history. Reviewed the extension,
 closed tool schemas, snapshot validation, one-shot IPC transport, synchronous
 adapter broker and launch wrapper at `c0d2542a`. Backend/default integration and shared Ops helpers are connected at7d376edb; final gates and browser default review remain.
 
@@ -70,3 +70,21 @@ actual closed MCP tool discovery and aborting a parked native request. Log
 unit passes, all16 extension/process cases have now passed at7d376edb. The initial
 placeholder failure remains recorded above; final browser/default/report review
 is still pending.
+
+## Final acceptance
+
+Reviewed final product correction eb6f7113 and report/evidence head44e30733.
+Both error paths reuse the existing shared formatter; root independently passed
+eight setup/send-failure tests (`/tmp/ops-pi-independent-setup-message.log`).
+Final report records 125 frontend regressions, build/typechecks, desktop/server
+Clippy gates and the test-only protected browser fixture. Root reviewed actual
+CLI snapshots/screenshots: fresh Pi default, readable setup error, explicit saved
+Codex choice for a new conversation and preservation after reload. The banner
+opens agent Settings; its screenshot does not show expanded guidance.
+
+The browser uses a version-only pi-acp fixture and blocks prompts; it does not
+prove live inference. Real installed pi lacks Astra configuration and pi-acp
+is absent from the resolved path. No fallback or paid request was made.
+Exact pinned source/license mapping and final report are accepted. P1 cached
+reads/issue proposals remain a required separate host-integration follow-on.
+Final integrated browser, native build and Design Studio loops remain open.

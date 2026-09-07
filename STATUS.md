@@ -203,3 +203,19 @@ Root reproduced it through Playwright CLI and reviewed the source cause;
 approvals worker owns the required correction after Telegram handoff.
 [Evidence](reports/design-loop-1/locale-edit-loss.md). Final Design acceptance
 remains open. The previously fixed viewport-remount case still passes.
+
+## Pi email bridge accepted — 2026-09-08
+
+PR #8 reviewed at `44e30733e6a83f9b7e73f65a8487cf1a87075308`, merged as
+`70980fac8f2151a6ba579c45e5fe798aa5a671a7`. Independent 13 Rust bridge tests,
+extracted-assets RPC fixture, 16 extension/process cases and eight setup-error
+tests passed. Actual worker Playwright CLI evidence verifies fresh Pi default,
+readable setup failure and saved explicit choice across reload.
+[Review](reports/review-pi-desk.md). Live Astra/pi-acp setup remains unavailable;
+no successful inference is claimed. P1 helpers follow after bug-host acceptance.
+
+Preliminary sequential Design Studio loop is recorded in
+[review](reports/design-loop-1/review.md): seven findings, including verified
+language-change edit loss, unnamed controls and inherited contrast failures.
+This is not the final integrated design acceptance. Bug and Telegram workers
+continue their browser/gate work in their existing topic tabs.
