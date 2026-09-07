@@ -91,4 +91,37 @@ The safe catalogue currently has no Astra entry per the root contract;
 verify installed custom-model support without printing credentials or
 modifying global config. Final validation and exact commit/PR evidence follow.
 
-Checkpoint commit and draft PR: pending first push.
+Checkpoint commit: `5a5561ff` (pushed). Draft PR:
+https://github.com/Adanmohh/codeg/pull/8
+
+## UI helper needs (2026-09-08 coordination)
+
+The UI owner supplies Ops helpers; ACP will not construct `Operator::server`
+or duplicate Ops validation/CAS SQL. Suggested helper module `ops::agent`
+(names can follow the UI module's existing conventions):
+
+| Helper | Inputs after `db` | Required result / boundary |
+| --- | --- | --- |
+| context | trusted task_id, run_seq, agent, account_id | Account ID and inbox ID/name/email list; no credentials. Reject non-live run. |
+| tickets | same trusted identity plus inbox_id | Public ticket summaries in that account/inbox, bounded list. Reject non-live run and foreign inbox. |
+| thread | same identity plus inbox_id, conversation_id | Public messages and primary contact/reply target, existing draft revision if appropriate. Omit private notes before serialization, including content/metadata. |
+| save_reply | same identity plus the UI's existing validated draft-input DTO | Save exact text/recipient/threading payload with expected revision CAS and current running/awaiting_input task + run check in the same writer transaction. No actor/task/account in the agent DTO. Return saved draft ID/revision and validated payload. |
+| propose_reply | existing `ops::review::propose_reply(db, task_id, run_seq, agent, account_id, draft_id, expected_revision)` | Reuse exact committed draft revision and live-run guard, returning proposal ID/state/revision. No approval or execution capability. |
+
+The backend obtains the configured account ID from the same trusted process
+configuration as Ops, preferably a small `ops::agent::account_id()` helper or
+the existing shared account getter. No operator object is needed. It resolves
+task/run via `TaskEngine::task_for_connection`; `agent` is a trusted connection
+identity, not request text. Unknown/disconnected connection, revoked token,
+cancelled task or newer generation rejects before public data or mutations.
+Please keep helper error responses sanitized (closed category/message), and
+types public enough for ACP to deserialize the allowed draft fields. Tests in
+the UI helper should cover cancellation/new-generation interleaving at the
+transaction boundary; this worker tests token revocation and connection mapping.
+
+The extension's intended tools are `desk_context`, `desk_tickets`, `desk_thread`,
+`desk_save_reply`, `desk_propose_reply`. Only object IDs and draft content/CAS
+revision occur in their input schemas. These are backend-native tools; the
+adapter broker only permits `hafidh_feedback_list`, `hafidh_feedback_get`,
+`hafidh_intake_status` on its trusted `hafidh` server. Public URL or path input
+is never an MCP configuration channel.
