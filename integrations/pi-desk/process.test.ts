@@ -24,7 +24,7 @@ it("real pi 0.85.1 RPC discovers Desk and the isolated installed adapter without
     "-e", resolve("integrations/pi-desk/index.ts"),
   ], {
     cwd: scratch, stdio: "pipe",
-    env: { PATH: process.env.PATH, PI_CODING_AGENT_DIR: resolve(scratch, "agent"),
+    env: { NODE_ENV: "test", PATH: process.env.PATH, PI_CODING_AGENT_DIR: resolve(scratch, "agent"),
       PI_OFFLINE: "1", CODEG_DESK_ADAPTER: require.resolve("pi-mcp-adapter"),
       // Deliberately no provider credentials, bridge token or MCP server.
     },

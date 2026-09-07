@@ -1999,8 +1999,30 @@ pub async fn spawn_agent_connection(
     // turn is diagnosed as silently empty. Created here so both the spawn side
     // and the conversation loop share the same buffer.
     let stderr_tail = Arc::new(StderrTail::new());
-    let agent = build_agent(agent_type, &runtime_env, &launch_cwd, &stderr_tail)
-        .await?
+    // Pi drops ACP-wire MCP servers. Load the trusted Desk assets through its
+    // actual per-launch executable instead. Preserve the saved runtime config
+    // for fingerprinting; generated credentials never become saved settings.
+    let pi_desk_launch = if agent_type == AgentType::Pi {
+        let injection = delegation_injection.as_ref().ok_or_else(|| {
+            AcpError::SdkNotInstalled("Pi Desk bridge is not installed in this process".into())
+        })?;
+        let companion = locate_codeg_mcp_binary().ok_or_else(|| {
+            AcpError::SdkNotInstalled("Pi Desk companion is not installed; build or install codeg-mcp".into())
+        })?;
+        let mut prepared = crate::acp::pi_desk::prepare(&runtime_env, &companion, &launch_cwd).await?;
+        let token = prepared.bind_token(injection.tokens.clone(), &connection_id,
+            &injection.socket_path, &launch_cwd).await;
+        session_state.write().await.delegation_token = Some(token);
+        Some(prepared)
+    } else { None };
+    let launch_env = pi_desk_launch.as_ref().map(|launch| &launch.env).unwrap_or(&runtime_env);
+    let built = build_agent(agent_type, launch_env, &launch_cwd, &stderr_tail).await;
+    if built.is_err() && pi_desk_launch.is_some() {
+        if let Some(injection) = delegation_injection.as_ref() {
+            injection.tokens.revoke_by_parent(&connection_id).await;
+        }
+    }
+    let agent = built?
         .on_spawn({
             let child_pid = Arc::clone(&child_pid);
             move |pid| child_pid.store(pid, std::sync::atomic::Ordering::SeqCst)
@@ -2103,6 +2125,7 @@ pub async fn spawn_agent_connection(
         .stack_size(ACP_CONNECTION_STACK_SIZE)
         .spawn(move || {
             let _cleanup = cleanup_guard;
+            let _pi_desk_launch = pi_desk_launch;
             connection_rt.block_on(async move {
         let delegation_for_cleanup = delegation_injection.clone();
         let result = run_connection(
@@ -5294,7 +5317,7 @@ async fn run_connection(
                     // — the authoritative gate for submit + UI, fixed at
                     // launch.
                     s.feedback_tool_available = injected.feedback_available;
-                } else {
+                } else if agent_type != AgentType::Pi {
                     // Keep a reused/test state fail-closed if companion
                     // injection was skipped; no stale token or delegation
                     // capability may survive.

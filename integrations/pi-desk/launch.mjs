@@ -37,9 +37,11 @@ function runtime() {
   return { pi, adapter }
 }
 
-export function rpcRefusal(command) {
-  if (command.type === "set_model" && command.modelId !== "gpt-6-astra") return "Desk requires gpt-6-astra; model change refused"
+export function rpcRefusal(command, provider) {
+  if (!command || typeof command !== "object" || typeof command.type !== "string") return "Invalid pi RPC input"
+  if (command.type === "set_model" && (command.modelId !== "gpt-6-astra" || command.provider !== provider)) return "Desk requires its configured gpt-6-astra provider; relaunch to change it"
   if (command.type === "set_thinking_level" && command.level !== "max") return "Desk requires max reasoning; reasoning change refused"
+  if (["cycle_model", "cycle_thinking_level", "new_session", "switch_session", "fork", "clone"].includes(command.type)) return "Desk model and session are bound to this launch; start a new task run to change them"
   return undefined
 }
 
@@ -74,15 +76,29 @@ function main() {
   delete env.CODEG_PI_DESK_LAUNCH
   const child = spawn(pi, args, { stdio: "pipe", env })
   let ready = false
+  let failed = false
+  let inputClosed = false
+  let provider
   const queued = []
   let queuedBytes = 0
   const probe = `desk-discovery-${randomUUID()}`
   const stateProbe = `desk-state-${randomUUID()}`
   const timer = setTimeout(() => fail(SETUP), 10000)
   const emit = data => process.stdout.write(JSON.stringify(data) + "\n")
-  const fail = message => { clearTimeout(timer); process.stderr.write(message + "\n"); child.kill(); process.exitCode = 1 }
+  const fail = message => {
+    if (failed) return
+    failed = true; clearTimeout(timer); process.stderr.write(message + "\n"); child.kill(); process.exitCode = 1
+  }
+  const forward = line => {
+    if (failed) return
+    const message = JSON.parse(line)
+    const refusal = rpcRefusal(message, provider)
+    if (refusal) emit({ type: "response", id: message?.id, command: message?.type, success: false, error: refusal })
+    else child.stdin.write(line + "\n")
+  }
   child.once("error", () => fail(SETUP))
-  child.once("exit", code => { clearTimeout(timer); process.exit(code ?? 1) })
+  child.once("exit", code => { clearTimeout(timer); process.exit(failed ? 1 : (code ?? 1)) })
+  child.stdin.on("error", () => fail("Desk RPC process disconnected"))
   // Third-party diagnostics can contain custom configuration. Only expose our
   // bounded, credential-free setup error; never echo provider config/errors.
   child.stderr.on("data", () => {})
@@ -97,25 +113,25 @@ function main() {
     }
     if (message.id === stateProbe) {
       if (!message.success || message.data?.model?.id !== "gpt-6-astra" || message.data?.thinkingLevel !== "max") { fail(SETUP); return }
+      provider = message.data.model.provider
       clearTimeout(timer); ready = true
-      for (const request of queued.splice(0)) child.stdin.write(request + "\n")
+      for (const request of queued.splice(0)) forward(request)
+      if (inputClosed) child.stdin.end()
       return
     }
     emit(message)
   })
   child.stdin.write(JSON.stringify({ type: "get_commands", id: probe }) + "\n")
   createInterface({ input: process.stdin }).on("line", line => {
-    let message
-    try { message = JSON.parse(line) } catch { fail("Invalid pi RPC input"); return }
-    const refusal = rpcRefusal(message)
-    if (refusal) { emit({ type: "response", id: message.id, command: message.type, success: false, error: refusal }); return }
-    if (ready) child.stdin.write(line + "\n")
+    if (failed) return
+    try { JSON.parse(line) } catch { fail("Invalid pi RPC input"); return }
+    if (ready) forward(line)
     else {
       queuedBytes += Buffer.byteLength(line)
       if (queuedBytes > 1024 * 1024) { fail("Desk startup input exceeded its limit"); return }
       queued.push(line)
     }
-  }).on("close", () => child.stdin.end())
+  }).on("close", () => { inputClosed = true; if (ready) child.stdin.end() })
   for (const signal of ["SIGTERM", "SIGINT"]) process.on(signal, () => { child.kill(signal); process.exit(0) })
 }
 

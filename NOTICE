@@ -207,6 +207,7 @@ DEALINGS IN THE SOFTWARE.
 Pi Desk extension and scoped companion bridge (Phase 1 piece 6)
 Source: badlogic/pi-mono v0.85.1, commit d981de1229ef899957bbe968bc8dcda02a21f477
 Files: packages/coding-agent/examples/extensions/{confirm-destructive,bash-spawn-hook,commands,permission-gate}.ts; packages/coding-agent/src/core/extensions/{types,runner,loader}.ts; packages/coding-agent/docs/{extensions,models,rpc}.md.
+Additional pinned contracts: packages/coding-agent/src/modes/rpc/rpc-mode.ts and packages/coding-agent/src/core/agent-session.ts (RPC model/session controls, input handling and compaction cancellation).
 Port: integrations/pi-desk/{index,protocol}.ts (lifecycle, registered tools, final argument validation and blocking); launcher discovery glue.
 
 MIT License

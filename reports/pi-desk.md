@@ -191,3 +191,58 @@ validators or copied unaccepted implementation. PR #5 is accepted at `4988f46b`;
 the reported main head is `d38c690e`. Follow-on integration waits for the accepted
 host seam. Any future Hafidh credential belongs only to the trusted intake
 process, never the generic agent runtime environment.
+
+## Launcher/default checkpoint
+
+Pi assets are embedded in Rust and extracted into a unique per-launch cache
+directory. `PI_ACP_PI_COMMAND` selects the existing codeg-mcp executable as a
+trampoline into the verified Node/Pi launcher; no project/global extension file,
+login, dependency installation or model catalogue rewrite is performed.
+Generated socket/token values override caller launch plumbing, stay out of
+saved configuration, and are revoked on connection teardown, dropped spawn or
+driver panic. Saved agent ordering/folder/conversation/task overrides remain;
+Pi is the unsaved frontend and work-task fallback.
+
+The wrapper requires actual extension/adapter RPC discovery and Astra/max state
+before forwarding queued commands. Model/reasoning cycle commands and in-process
+session replacement are refused; changing those requires a new task launch.
+Prompt and compaction hooks recheck a live Desk context, including in headless
+RPC mode. Pi's `input` handled result and `session_before_compact` cancel result
+are verified blocking contracts; exceptions in provider hooks are not used.
+
+Additional exact gh-api-verified Pi blobs at the same pinned commit:
+`src/modes/rpc/rpc-mode.ts` = `fc8083bedc67824dd7ff1a5a154f1a08b28c4098`;
+`src/core/agent-session.ts` = `ac2bd4b18dbe4d888e48309ad7bb63f1166179b5`
+(both under `packages/coding-agent`). Original MIT notice retained.
+
+Observed checks, before final accepted-seam integration:
+
+- Pi Vitest: 14/14 passed, exit 0 (previous checkpoint 11/11).
+- Default resolver Vitest: 4/4 passed, exit 0; explicit folder, conversation
+  inheritance and saved ordering are preserved.
+- `cargo test --locked --no-default-features --lib pi_desk_`: exit 0,
+  3 passed and 1 explicitly ignored external-client fixture. First test compile
+  exposed a missing Option unwrap in the new folder fixture (exit 101); read
+  the actual service return type, fixed, then passed.
+- `cargo test --locked --no-default-features --lib
+  pi_desk_extracted_assets_real_rpc_discovery -- --ignored --nocapture`: exit 0,
+  1/1 passed. Runs `prepare_at`/`write_assets` into this worktree's own target,
+  then the real installed Pi CLI through the extracted launch wrapper. Both
+  desk-status and mcp are discovered; EOF terminates wrapper/Pi. A synthetic
+  isolated local Astra catalogue permits startup metadata checks only; the
+  loopback provider receives no connection. Removing that fixture catalogue
+  makes preparation fail closed. This is not a configured owner Astra client.
+- Typecheck after the prior fixture type corrections: exit 0. Final gates
+  remain pending after live Ops integration.
+
+The owner's actual offline installed catalogue probe found no available Astra
+entry. Production launches therefore show a setup error until the existing
+Pi client is configured with Astra/max; no fallback or paid probe was attempted.
+Live hook evidence refreshed: PreToolUse/PostToolUse lines 3406/3405, same session
+and this worktree. No lockfile changes.
+
+Read the host owner's initial bug-workflow report: proposed
+`ops_intake_host::agent::prepare_and_propose` accepts backend run context and a
+revisioned stored bug draft ID, loads only human-attached proof, and returns
+pending/denied review metadata. That is the intended future native seam; no raw
+IssueDraftV1/evidence provenance or credential input is needed in the agent tool.

@@ -5889,7 +5889,7 @@ fn launch_mode_for(task: &crate::db::entities::work_task::Model) -> LaunchMode {
 }
 
 /// Layered agent config: task override wins wholesale; else the folder's task
-/// settings; else the folder's default agent with no extra options.
+/// settings; else the folder's default agent; finally Pi for an unsaved choice.
 fn effective_agent_config(
     cfg: &WorkTaskConfig,
     settings: &WorkTaskFolderSettings,
@@ -5915,7 +5915,7 @@ fn effective_agent_config(
         .and_then(|a| serde_json::to_value(a).ok())
         .and_then(|v| v.as_str().map(String::from));
     (
-        folder_default,
+        folder_default.or_else(|| Some("pi".into())),
         settings.mode_id.clone(),
         settings.config_values.clone(),
     )
@@ -6833,6 +6833,23 @@ impl WorkTaskToolAccess for EngineWorkTaskTools {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[tokio::test]
+    async fn pi_desk_task_default_preserves_explicit_task_and_folder_choices() {
+        let db = crate::db::test_helpers::fresh_in_memory_db().await;
+        let folder_id = crate::db::test_helpers::seed_folder(&db, "/tmp/pi-default").await;
+        let mut folder = crate::db::service::folder_service::get_folder_by_id(&db.conn, folder_id)
+            .await.unwrap().expect("seeded folder");
+        let mut cfg: WorkTaskConfig = serde_json::from_value(serde_json::json!({})).unwrap();
+        let mut settings: WorkTaskFolderSettings = serde_json::from_value(serde_json::json!({})).unwrap();
+        assert_eq!(effective_agent_config(&cfg, &settings, &folder).0.as_deref(), Some("pi"));
+        folder.default_agent_type = Some(AgentType::Codex);
+        assert_eq!(effective_agent_config(&cfg, &settings, &folder).0.as_deref(), Some("codex"));
+        settings.default_agent_type = Some("claude_code".into());
+        assert_eq!(effective_agent_config(&cfg, &settings, &folder).0.as_deref(), Some("claude_code"));
+        cfg.agent_type = Some("open_code".into());
+        assert_eq!(effective_agent_config(&cfg, &settings, &folder).0.as_deref(), Some("open_code"));
+    }
 
     /// Windows has no absolute path without a drive, and the resolver branches
     /// on `is_absolute` — so the fixtures need a prefix that makes them count

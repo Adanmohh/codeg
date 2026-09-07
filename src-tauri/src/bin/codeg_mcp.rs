@@ -179,6 +179,9 @@ async fn write_response(
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> ExitCode {
+    if std::env::var("CODEG_PI_DESK_LAUNCH").as_deref() == Ok("1") {
+        return codeg_lib::acp::pi_desk::launch_from_companion();
+    }
     // Stderr-only subscriber: stdout is the JSON-RPC protocol channel, and
     // concurrent mcp processes share no log file. No hub/buffer/emitter.
     let _log_guard = codeg_lib::logging::init::init_mcp();

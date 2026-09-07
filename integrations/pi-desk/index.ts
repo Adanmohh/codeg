@@ -1,7 +1,7 @@
 // Pi 0.85.1 extension lifecycle, commands and tool-call pattern. See NOTICE.
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent"
 import { APPROVAL_EVENT, claimApproval, HAFIDH_READ_TOOLS, type ApprovalRequest } from "./broker.ts"
-import { DESK_TOOLS, inputSchemas, isDeskTool, snapshotCall } from "./protocol.ts"
+import { DESK_TOOLS, inputSchemas, isDeskContext, isDeskTool, snapshotCall } from "./protocol.ts"
 import { socketTransport, type DeskTransport } from "./transport.ts"
 
 const descriptions = {
@@ -53,12 +53,25 @@ export function installDesk(pi: ExtensionAPI, transport?: DeskTransport): void {
         : "Desk setup required: live task bridge and a configured gpt-6-astra model with max reasoning. No fallback is selected.", ready ? "info" : "warning")
     },
   })
-  pi.on("input", (_event, ctx) => {
-    if (!transport || ctx.model?.id !== "gpt-6-astra" || ctx.thinkingLevel !== "max") {
+  async function liveBridge(): Promise<boolean> {
+    if (!transport || lifetime.signal.aborted) return false
+    const signal = lifetime.signal
+    try {
+      const response = await transport.call(snapshotCall("desk_context", {}), signal)
+      return !signal.aborted && response.ok && isDeskContext(response.value)
+    } catch { return false }
+  }
+  pi.on("input", async (_event, ctx) => {
+    if (ctx.model?.id !== "gpt-6-astra" || ctx.thinkingLevel !== "max" || !await liveBridge()) {
       ctx.ui.notify("Desk setup required: live bridge and gpt-6-astra with max reasoning. Prompt blocked.", "warning")
       return { action: "handled" }
     }
     return { action: "continue" }
+  })
+  // Unlike before_provider_request exceptions (which Pi catches), this pinned
+  // lifecycle result actually cancels manual and automatic compaction.
+  pi.on("session_before_compact", async (_event, ctx) => {
+    if (ctx.model?.id !== "gpt-6-astra" || ctx.thinkingLevel !== "max" || !await liveBridge()) return { cancel: true }
   })
 }
 

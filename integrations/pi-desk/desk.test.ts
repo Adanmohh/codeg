@@ -7,9 +7,53 @@ import { claimApproval, type ApprovalDecision, type ApprovalRequest } from "./br
 import { installDesk } from "./index.ts"
 import { snapshotCall, type DeskCall, type DeskResponse } from "./protocol.ts"
 import { MAX_FRAME_BYTES, socketTransport, type DeskTransport } from "./transport.ts"
+import { rpcRefusal } from "./launch.mjs"
 
 const context: DeskResponse = { ok: true, value: { taskId: 1, runSeq: 2, accountId: 3, inboxes: [] } }
 const ready: DeskTransport = { async call() { return context } }
+
+describe("headless launch and lifecycle", () => {
+  function hooks(transport?: DeskTransport) {
+    const handlers = new Map<string, (...args: unknown[]) => unknown>()
+    const pi = { events: { on() {} }, on(name: string, handler: (...args: unknown[]) => unknown) { handlers.set(name, handler) }, registerCommand() {}, registerTool() {} }
+    installDesk(pi as unknown as ExtensionAPI, transport)
+    return handlers
+  }
+  const ctx = { model: { id: "gpt-6-astra" }, thinkingLevel: "max", hasUI: false, ui: { notify() {} } }
+
+  it("blocks headless prompt and compaction for missing/stale bridge or cheaper settings", async () => {
+    for (const transport of [undefined, { async call() { return { ok: false, code: "stale" } as DeskResponse } }]) {
+      const handler = hooks(transport)
+      expect(await handler.get("input")!({}, ctx)).toEqual({ action: "handled" })
+      expect(await handler.get("session_before_compact")!({}, ctx)).toEqual({ cancel: true })
+    }
+    const handler = hooks(ready)
+    expect(await handler.get("input")!({}, { ...ctx, thinkingLevel: "high" })).toEqual({ action: "handled" })
+    expect(await handler.get("input")!({}, { ...ctx, model: { id: "cheap" } })).toEqual({ action: "handled" })
+    expect(await handler.get("input")!({}, ctx)).toEqual({ action: "continue" })
+  })
+
+  it("aborts a pending prompt preflight when the session generation changes", async () => {
+    let release!: (value: DeskResponse) => void
+    const handler = hooks({ call: () => new Promise(resolve => { release = resolve }) })
+    const pending = handler.get("input")!({}, ctx)
+    handler.get("session_start")!()
+    release(context)
+    expect(await pending).toEqual({ action: "handled" })
+  })
+
+  it("refuses RPC model/reasoning cycling and session replacement while allowing abort", () => {
+    for (const type of ["cycle_model", "cycle_thinking_level", "new_session", "switch_session", "fork", "clone"]) {
+      expect(rpcRefusal({ type }, "configured")).toBeTypeOf("string")
+    }
+    expect(rpcRefusal({ type: "set_model", provider: "unconfigured", modelId: "gpt-6-astra" }, "configured")).toBeTypeOf("string")
+    expect(rpcRefusal({ type: "set_model", provider: "configured", modelId: "gpt-6-astra" }, "configured")).toBeUndefined()
+    expect(rpcRefusal({ type: "set_thinking_level", level: "max" }, "configured")).toBeUndefined()
+    expect(rpcRefusal({ type: "set_thinking_level", level: "high" }, "configured")).toBeTypeOf("string")
+    expect(rpcRefusal({ type: "abort" }, "configured")).toBeUndefined()
+    expect(rpcRefusal(null, "configured")).toBeTypeOf("string")
+  })
+})
 
 function request(overrides: Partial<ApprovalRequest> = {}) {
   let handler: (() => ApprovalDecision | Promise<ApprovalDecision>) | undefined
@@ -103,7 +147,7 @@ describe("typed local IPC", () => {
   it("normalizes fragmented framing and authenticates without caller identity", async () => {
     let seen: unknown
     const path = await serve(socket => socket.once("data", data => {
-      seen = JSON.parse(data.subarray(4).toString())
+      seen = JSON.parse(Buffer.from(data).subarray(4).toString())
       const reply = frame(context)
       socket.write(reply.subarray(0, 2))
       setTimeout(() => socket.write(reply.subarray(2)), 5)

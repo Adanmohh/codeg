@@ -905,6 +905,7 @@ export const STATUS_COLORS: Record<ConversationStatus, string> = {
 }
 
 export const AGENT_DISPLAY_ORDER: BuiltinAgentType[] = [
+  "pi",
   "codex",
   "claude_code",
   "open_code",
@@ -914,7 +915,6 @@ export const AGENT_DISPLAY_ORDER: BuiltinAgentType[] = [
   "hermes",
   "code_buddy",
   "kimi_code",
-  "pi",
   "grok",
   "cursor",
   "deepseek",

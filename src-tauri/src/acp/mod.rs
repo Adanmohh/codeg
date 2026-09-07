@@ -23,6 +23,7 @@ pub mod manager;
 pub mod opencode_catalog;
 pub mod opencode_plugins;
 pub mod plan_approval;
+pub mod pi_desk;
 pub mod preflight;
 pub mod prompt_hydration;
 pub mod question;
