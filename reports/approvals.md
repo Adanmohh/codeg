@@ -1,11 +1,15 @@
 # Step 1 — approvals
 
-Acceptance fixes implemented, 2026-09-07; combined validation remains pending.
+Acceptance fixes complete and pushed, 2026-09-07. All combined local validation gates passed.
 Read the complete independent review at `reports/review-approvals.md`; both P2
 findings were confirmed and addressed below. Accepted main `d63f98b9` was merged
 and pushed as `e1585541`, preserving both NOTICE sections and main's root
-planning documents exactly. The current fix is being committed before fetching
-the newly accepted tickets merge (`5bd0b1e1`), as requested. The tracked ticket
+planning documents exactly. Fix commit **`ae1cfbfc2ed8d89125354c2f67ef969976df8edd`**
+was pushed before fetching main, as requested. Integrated main
+**`0529396eb7d778beb9c8bed8424f292a013370cb`**, which includes the accepted tickets
+merge and `5bd0b1e1`, as **`c6ccd16cb87b0b6443124be52e977f9c4c6b018c`**, now pushed.
+The only conflict was the migration registry; it now registers approvals before
+tickets and retains every prior entry. The tracked ticket
 review comes exclusively from main; the earlier local copy remains an ignored
 log and will not be staged. Draft PR remains [#3](https://github.com/Adanmohh/codeg/pull/3).
 
@@ -15,11 +19,11 @@ Implemented piece 1 on `feat/step1-approvals`, solely in `/Users/mohamedadan/pro
 
 - **P2: overlapping wait owners.** Replaced the engine's task-only in-memory set with `ops_acp_wait`, keyed by task, run_seq, connection and namespaced request ID. SQLite serializes ACP acquisition/retraction and Ops resolution; status remains awaiting_input while either owner exists. Approval/denial resolves only its proposal before reconciling all owners in the same transaction. Generic resume cannot clear another ACP key or an Ops proposal.
 - Engine request attribution and connection/subtree detachment share a mutex through the database commit. Audited `track_request`, delegation registration/backfill, `forget_delegation_child`, `retire_connection`, launch-unwind `forget_connection`, cancellation and stale-run retirement. Cancellation clears ACP rows in its winning transaction and returns that transaction's run_seq; delayed teardown only disconnects that generation. A fresh claim purges older keys; stale event arrivals cannot acquire a wait for the current run.
-- **P2: migration position assumption.** Both migration tests select `m20260907_000001_ops_approvals` explicitly by `MigrationName`, with a real later test migration and preserved marker data. They call that migration's up/down directly and check atomic failure without removing unrelated schema. The test migrator starts with the full application registry, so it will include tickets after integration.
+- **P2: migration position assumption.** Both migration tests select `m20260907_000001_ops_approvals` explicitly by `MigrationName`, with a real later test migration and preserved marker data. They call that migration's up/down directly and check atomic failure without removing unrelated schema. The test migrator starts with the full application registry and now includes the accepted tickets migration.
 - Added seven engine regressions covering approval and denial with parent plus child ACP requests pending, concurrent decision/arrival for both outcomes and both connection kinds, concurrent subtree/parent cleanup, cancellation, and a controlled new generation becoming live before old cancellation teardown. Added two approval tests for separate-connection SQLite races and rollback of wait ownership, status timeline and approval audit. Existing retirement tests now inspect persisted requests, including stale-generation rejection.
 - Borrowed cleanup/source-set patterns remain pinned to Codeg `6f6bd648b206412644842a98d9ffeebf57292bed`, `src-tauri/src/work_task/engine.rs`. `gh api` verified immutable blob `c8674facca32b50cc7e4c5dde04f4f104a8fcba7`, matching the local base file. NOTICE retains the original entries and adds this exact source. No IntroMail gate, redaction or borrowed-source version change.
 
-Pre-integration evidence (common Cargo arguments from Validation below): `cargo test --lib overlapping_acp_waits` exited **101**, reproducing both P2 state failures (Running instead of AwaitingInput). After the fixes, `cargo test --lib ops_` exited **0**, **88 passed**; this broad substring also matches unrelated existing tests, so it is not an approval-only count. `cargo test --lib work_task::engine::tests` exited **0**, **128 passed**, including the existing delegation, retirement, cancel, recovery and compaction gates. Logs: `approvals-overlap-red.log`, `approvals-fixes-second.log`, `approvals-engine-preintegration.log`. One initial helper-signature compile failure was corrected before the behavioral RED run; it is not counted as a regression reproduction. Formatting changes afterward do not alter behavior; the combined suite will be rerun after integration.
+Pre-integration evidence (common Cargo arguments from Validation below): `cargo test --lib overlapping_acp_waits` exited **101**, reproducing the approval and denial overlap failures (Running instead of AwaitingInput). After the fixes, `cargo test --lib ops_` exited **0**, **88 passed**; this broad substring also matches unrelated existing tests, so it is not an approval-only count. `cargo test --lib work_task::engine::tests` exited **0**, **128 passed**, including the existing delegation, retirement, cancel, recovery and compaction gates. Logs: `approvals-overlap-red.log`, `approvals-fixes-second.log`, `approvals-engine-preintegration.log`. One initial helper-signature compile failure was corrected before the behavioral RED run; it is not counted as a regression reproduction. The combined suite was rerun after formatting and integration, with results below.
 
 ## Behavior delivered
 
@@ -51,7 +55,7 @@ Base codeg source is `xintaofei/codeg@v0.30.4`, **`6f6bd648b206412644842a98d9ffe
 
 ## Docs-first / hook evidence
 
-Read FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md, AGENTS.md and reports/step0.md completely before implementation; the four protected planning documents remain unchanged.
+Read FOUNDING.md, ORCHESTRATOR.md, STATUS.md, DECISIONS.md, AGENTS.md and reports/step0.md completely before implementation, and reread the updated root documents after integration. Protected planning documents changed only through the authorized merges and match the integrated main commit exactly.
 
 The resumed session's first two commands were **separate** `cat node_modules/react/package.json` (React 19.2.4) and `cat src-tauri/Cargo.toml`, both exit 0. Immediately inspected live `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl`. It contains paired PreToolUse/PostToolUse records at timestamps **1788789370** and **1788789374**, session **`01a07c1c-d3a3-7c22-a5b6-cedce2970d8d`**, cwd **`/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`**, tool Bash, exit 0, context_emitted false. These are this worker's live reads, not another worktree's smoke test. Subsequent library edits also received the live docs-first reminder. Hooks were not disabled or bypassed.
 
@@ -84,15 +88,43 @@ The acceptance fix also used offline code-context guide `Rust shared wait owners
 
 ## Limits and Step 2 contract
 
-- This is the shared backend approval core. Transport routes, queue UI, trusted action registry/domain packs, ACP/pi wiring and human authentication are subsequent adapters, not shipped by this piece. Actor strings must come from authenticated human identity; the service rejects empty/self-agent identities but is not itself an authentication system. Action implementations must be trusted, validate complete schemas, read through ActionContext, and never perform sends in callbacks.
+- This is the shared backend approval core. Transport routes, queue UI, trusted action registry/domain packs, action dispatch through ACP/pi and human authentication are subsequent adapters, not shipped by this piece. Actor strings must come from authenticated human identity; the service rejects empty/self-agent identities but is not itself an authentication system. Action implementations must be trusted, validate complete schemas, read through ActionContext, and never perform sends in callbacks.
 - `approved`/`auto` mean **authorization committed**, not “sent” or “task done.” The exact owned handoff is the only dispatch input; never read a mutable draft or replay a resolved row. No executor/network call is provided. Crash after authorization yields no automatic replay. External delivery/idempotency/recovery remains an adapter responsibility; no exactly-once delivery claim.
 - Source-specific user/thread/event/chat foreign keys, notifications, free-text feedback, HTTP IP attribution and one-click standing-rule creation were not transplanted into unrelated codeg schemas. Agent IDs are canonical strings; task_id/run_seq are mandatory. Rule/scope tables support the source gate; policy-management UI is later work.
 - Canceled/retired pending rows cannot authorize another generation and remain pending with review content; retention/expiry cleanup is not implemented here. Private-field redaction is declaration-based and credential matching intentionally preserves the source's exact key-name regex, not arbitrary secrets embedded in prose or every spelling variation. Domain packs must keep credentials in credential stores and declare content fields.
+- The reserved, still-unmerged approvals migration was extended with the ACP coordination table. Validation uses fresh test databases and the combined registry; no upgrade from a throwaway database created by the earlier unpublished approvals schema was implemented. No production database was opened or migrated by this worker.
 - Known upstream desktop warnings: zero-byte MCP sidecar placeholder and proc-macro-error2 2.0.1 future compatibility. No packaged/running desktop, real sidecar, frontend production build, browser flow or end-to-end external process was validated by this Rust-only piece.
 
-## Checkpoint and delivery
+## Initial checkpoint and original delivery
 
 Initial source report pushed as `9ed749d1`. Owner-requested hook-reload product checkpoint: **`29fe00c85160ccb0de35787a515d060c021e6b32`**, report follow-up `c8f86674`. Stopped exactly for reload and resumed only when instructed. All local gates passed. Final implementation SHA and draft PR URL are recorded in the delivery follow-up below.
 
 
-Final implementation commit: **`f1cebd64ba84a69463d28e17b664cbd282cd7f96`** (`feat: bind approvals to reviewed payloads and task generations`), pushed to origin. Draft PR: **https://github.com/Adanmohh/codeg/pull/3**, created with `gh pr create --repo Adanmohh/codeg --base main --head feat/step1-approvals --draft --body-file reports/approvals-pr-body.log` (explicit title supplied), exit 0. Verified through gh api: open, draft=true, base main, head feat/step1-approvals. This final report is delivered in a subsequent docs-only commit; product validation above applies to the implementation SHA. No merge, deployment, people messages, external action execution, other worktree writes, lockfile changes or protected-document edits. Orchestrator owns review/integration.
+Original implementation commit: **`f1cebd64ba84a69463d28e17b664cbd282cd7f96`** (`feat: bind approvals to reviewed payloads and task generations`), pushed to origin. Draft PR: **https://github.com/Adanmohh/codeg/pull/3**, created with `gh pr create --repo Adanmohh/codeg --base main --head feat/step1-approvals --draft --body-file reports/approvals-pr-body.log` (explicit title supplied), exit 0. Verified through gh api: open, draft=true, base main, head feat/step1-approvals. Original final report commit: `a4b418837d0b28e5ead6e57de1a8dbddc96ec1ba`; the original validation table applies to that initial delivery, not the later acceptance fixes.
+
+## Combined validation and acceptance-fix delivery
+
+Tests use the real application migration registry, including `m20260907_000001_ops_approvals` followed by `m20260907_000002_ops_tickets`. Both approval migration tests additionally install a later fixture migration, explicitly select approvals by name, and verify the follower's marker survives target rollback/recreation and injected partial-DDL failure. No test assumes approvals is last.
+
+All commands below use the common locked Cargo manifest/target arguments described above. Validation target is integrated product commit **`c6ccd16cb87b0b6443124be52e977f9c4c6b018c`**.
+
+| Command | Result | Local ignored log |
+| --- | --- | --- |
+| `cargo test --lib db::service::ops_approvals` | Exit 0; **21 passed**, 0 failed | reports/approvals-combined-approval-tests.log |
+| `cargo test --lib db::service::ticket_service` | Exit 0; **18 passed**, 0 failed | reports/approvals-combined-ticket-tests.log |
+| `cargo test --lib db::service::work_task_service` | Exit 0; **39 passed**, 0 failed | reports/approvals-combined-work-task-tests.log |
+| `cargo test --lib work_task::engine::tests` | Exit 0; **128 passed**, 0 failed | reports/approvals-combined-engine-tests.log |
+| `cargo check` (default desktop) | Exit 0 | reports/approvals-combined-desktop-check.log |
+| `cargo check --no-default-features --bin codeg-server` | Exit 0 | reports/approvals-combined-server-check.log |
+| `cargo clippy --all-targets --features test-utils -- -D warnings` | Exit 0 | reports/approvals-combined-desktop-clippy.log |
+| `cargo clippy --no-default-features --bin codeg-server --lib -- -D warnings` | Exit 0 | reports/approvals-combined-server-clippy.log |
+| `pnpm exec tsc --noEmit` | Exit 0 | reports/approvals-combined-typecheck.log |
+| `rustfmt --edition 2021 --check` on owned approval/wait entities, modules and migration | Exit 0 | reports/approvals-combined-format.log |
+
+Final hook audit read also verified this same session/worktree's live PreToolUse at line **1231**, timestamp **1788812024**, and PostToolUse at line **1227**, timestamp **1788812004**; both exit 0. No hook was disabled, bypassed or reconfigured.
+
+Preservation checks exited 0: both parents' NOTICE lines remain in order; all entity/service/migration registry entries from both parents remain; protected root documents, both review reports, the ticket report and all ticket implementation files, both lockfiles and LICENSE match integrated main exactly. An earlier comparison against the moving shared `origin/main` ref exited 1 because other worktrees advanced that ref; comparison against the immutable integrated parent passed. No review report was duplicated or edited. `git diff --check` and formatting checks on the changed owned entity/service/migration/test modules passed.
+
+The combined Cargo runner exited 0, with all eight command exits recorded in `reports/approvals-combined-exits.log`. These are local passes, not a CI-pass claim. Default desktop compilation retains the inherited sidecar-placeholder warning; Rust retains the proc-macro-error2 future-compatibility notice.
+
+Updated PR #3 with `gh pr edit 3 --repo Adanmohh/codeg --title <recorded title> --body-file reports/approvals-pr-body.log`, exit 0, after reading installed help. Title: **feat: add audited approvals bound to reviewed payloads**. The description records both P2 fixes and every combined gate. `gh api repos/Adanmohh/codeg/pulls/3` confirmed open, draft=true, base main, head feat/step1-approvals at the validated product SHA. This report follows in a docs-only commit. No PR merge, deployment, external action execution, people messages, other worktree writes or lockfile changes. Only this approvals report is being updated; the orchestrator owns acceptance. Packaged-app/browser/real-agent validation remains outside this backend correction; main's browser report is the orchestrator's separately attributed evidence.
