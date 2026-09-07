@@ -13,7 +13,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Pi scoped bridge/default | PR #8 integrated with accepted Ops; independent 13 Rust bridge tests pass | Final process artifact/browser-default checks; Astra model configuration unavailable |
 | Bug workflow host/UI | Worker implementing `feat/step2-bug-workflow` | Evidence/config/review UI and real fixture browser tests |
 | Telegram and beta validation | Step 3 Telegram dispatched to approvals worker | Typed notifications/review links, local fixtures and beta checks |
-| Final Design Studio loops | Brief, checklist and initial measured findings prepared | Specialist audit, worker fixes, targeted CLI rechecks |
+| Final Design Studio loops | Brief/checklist/measured evidence ready; new P2 locale-change edit loss reproduced | Specialist audit, locale/a11y fixes and targeted CLI rechecks |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
@@ -194,3 +194,12 @@ Arabic mobile drawer/thread measured at 390px without horizontal overflow;
 remaining back-arrow/bidirectional English copy is recorded for final Design Studio.
 P1 early source review requested a foreign-folder fix-task reuse guard and
 overlapping-awaiting proposal regression; worker owns corrections.
+
+## Design regression found — 2026-09-08
+
+Changing language in the separate settings tab silently loses unsaved Ops
+reply edits because the inherited i18n loading branch unmounts the workspace.
+Root reproduced it through Playwright CLI and reviewed the source cause;
+approvals worker owns the required correction after Telegram handoff.
+[Evidence](reports/design-loop-1/locale-edit-loss.md). Final Design acceptance
+remains open. The previously fixed viewport-remount case still passes.
