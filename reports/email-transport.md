@@ -1,10 +1,13 @@
 # Step 2 — direct Resend transport (piece 2c)
 
-Implemented; final integrated acceptance gates in progress. Sole writer in
+Complete for the assigned internal transport scope; all integrated gates pass.
+Validated implementation: `998a733023ac29739cbde40f713128a15dd52298`.
+Draft PR: https://github.com/Adanmohh/codeg/pull/6 (stay draft; no merge).
+Sole writer in
 `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`, branch
 `feat/step2-email-transport`, created directly from accepted main `5bd0b1e1`.
 No UI/routes, approval/work-task changes, other-worktree writes, additional agents,
-live sends or deployment. Draft PR: https://github.com/Adanmohh/codeg/pull/6.
+live sends or deployment. Accepted main is integrated as recorded below.
 
 Read current FOUNDING, ORCHESTRATOR, STATUS, DECISIONS and AGENTS completely.
 Applied code-context using the existing rag-skills Python and HF_HUB_OFFLINE=1.
@@ -22,8 +25,8 @@ Source contracts resolved through `gh api`:
 
 - IntroInnovation/intromail: required commit
   `0bd24dfe284b888aa9f602fa1fd00e337ea38874`; read `backend/app/services/resend_client.py`,
-  adjacent ingestion/mailbox ownership code and send authorization tests; router
-  and further relevant tests are under review. Owner-authorized private source.
+  adjacent ingestion/mailbox ownership code, send router and relevant tests read
+  as mapped below. Owner-authorized private source.
 - Official resend/resend-node release `v6.26.0`:
   `c61cccae2999d50d2aca9ce5fd1064f3bb855219`, MIT. Receiving get/list methods,
   response interfaces, pagination helpers and email send method read.
@@ -43,12 +46,13 @@ Current tickets require decoded envelope addresses and RFC message-ID tokens
 (folding/comments parsed), scope every lookup to account/inbox, and deduplicate
 ingestion by RFC source ID within an inbox. Their inputs are trusted internal
 scope selections, not authentication credentials. No existing RFC mail parser
-dependency was found. Evaluating a minimal pinned parser dependency instead of
-writing one from scratch; additions and licenses will be recorded before delivery.
+dependency was found. Added the minimal pinned parser documented below; no RFC
+parser was written from scratch.
 
 Installed versions read: reqwest 0.12.28 (the direct dependency), http 1.4.0,
 Tokio 1.49.0, Axum 0.8.8, axum-test 17.3.0, SeaORM 1.1.19, serde 1.0.228,
-serde_json 1.0.149, sha2 0.10.9, URL 2.5.8. Current lockfiles are unchanged.
+serde_json 1.0.149, sha2 0.10.9, URL 2.5.8. Final Cargo additions are disclosed
+below; the pnpm lockfile remains unchanged.
 Research responses and verified blob metadata stay in ignored
 `reports/email-transport-source.log/`. No credential values are read or logged.
 
@@ -101,10 +105,9 @@ to the existing ticket contract. Unsupported: quoted/obsolete Message-IDs and
 quoted-local-part/domain-literal/SMTPUTF8 mailbox addresses. HTML-only messages
 become plain text; this is not an HTML sanitization/rendering API.
 
-Implementation is now present with 15 passing local HTTP/normalization tests.
-The final desktop/server checks, desktop tests and Clippy are in progress.
-Initial server check passed. Typecheck passed after the research-cache correction
-described below. Source attribution and full MIT license texts are in NOTICE.
+Implementation has 18 passing local HTTP/normalization tests in each runtime.
+All final checks and existing ticket tests pass (table below). Source attribution
+and full MIT license texts are in NOTICE. Early corrections remain recorded.
 
 ## Source-to-port mapping
 
@@ -138,7 +141,7 @@ All commands run in this worktree; Rust uses its own `src-tauri/target` output.
 | Command | Exit / result |
 | --- | --- |
 | `cargo fetch --target aarch64-apple-darwin` | 0; only mail-parser 0.11.1 and hashify 0.2.9 added. No existing dependency upgrades; pnpm lock untouched. |
-| `cargo check --locked --no-default-features --bin codeg-server` | 0 initial implementation check; final repeat pending parser refinements. |
+| `cargo check --locked --no-default-features --bin codeg-server` | 0 initial implementation check; final integrated repeat also 0 below. |
 | `cargo test --locked --no-default-features --lib email_transport::` | Initial 101: missing `.into()` in one test String literal, corrected. Then 13/13 passed; after malformed-address/auto-reply regressions, 15/15 passed, exit 0. |
 | `pnpm exec tsc --noEmit` | Initial 2: broad tsconfig included downloaded SDK research `.ts` files. Renamed only ignored cache files to `.ts.log`; rerun 0. No tsconfig/product TS changes. |
 | `rustfmt --edition 2021 src/email_transport/{mod,client,normalize,pull,tests}.rs` | 0; only new module files formatted. |
@@ -170,5 +173,59 @@ to the immutable branch base at that checkpoint.
   forms, encoded display name, empty fallback, malformed/multiple/conflicting
   forms, actual persisted contact, and unchanged inbox-recipient isolation.
   Integrated server-mode transport suite after the fix: 18/18 passed, exit 0.
-- Integrated desktop check and typecheck passed before this finding; final gates
-  are rerun after the fix below. Draft PR #6 stays draft.
+- Reply-To fix pushed at `998a733023ac29739cbde40f713128a15dd52298`. All final gates
+  below validate that product tree after the main integration and fix. Final
+  delivery adds only this report to that code tree. Draft PR #6 stays draft.
+
+## Final integrated validation
+
+Main included: `d6c7fc55c3e775d171b0a70353604668282a2768`.
+Product/fix SHA: `998a733023ac29739cbde40f713128a15dd52298`.
+Commands below use this worktree, Rust 1.98.0 and its own `src-tauri/target`.
+
+| Gate | Exit / evidence |
+| --- | --- |
+| `cargo check --locked` | 0, default desktop. |
+| `cargo check --locked --no-default-features --bin codeg-server` | 0. |
+| `cargo test --locked --features test-utils --lib email_transport::` | 0; 18 passed. |
+| `cargo test --locked --no-default-features --lib email_transport::` | 0; 18 passed after Reply-To fix. |
+| `cargo test --locked --features test-utils --lib db::service::ticket_service::` | 0; 18 passed, including migration rollback/recreation, independent SQLite connection replay, disk restart and primary-contact reopening controls. |
+| `cargo test --locked --no-default-features --lib db::service::ticket_service::` | 0; same 18 passed. |
+| `cargo clippy --locked --all-targets --features test-utils -- -D warnings` | 0. |
+| `cargo clippy --locked --no-default-features --bin codeg-server --lib -- -D warnings` | 0. |
+| `pnpm exec tsc --noEmit` | 0 after integration and fix; TypeScript 5.8.3. |
+| `rustfmt --edition 2021 --check src/email_transport/{mod,client,normalize,pull,tests}.rs` | 0. |
+| `git diff --check` | 0. |
+| Protected-file/scope verification against integrated main | 0; planning docs, AGENTS, pnpm lock and DB registries match exactly; complete main NOTICE retained. Authored changes limited to the transport module, one lib registration, two Cargo dependency entries, NOTICE and this report. |
+
+The 18 transport tests cover actual loopback HTTP request shape and nullable SDK
+fixtures; stable send key/payload/header replay; recipient and header injection;
+invalid scope/stale inbox rejection before network; case-insensitive/duplicate
+headers, folding/nested comments/encoded names; malformed identifiers and sender
+fields; Reply-To selection and persisted contact; foreign-recipient isolation;
+HTML-to-text/text preference; exclusive cursor queries, overlaps/stalls/page budget,
+cyclic references and no partial writes on malformed fetch/normalization; HTTP
+401/403/404/409/422/429/500/503 and redirects; redacted errors, timeout, connection
+failure and response-size bounds; chronological/ancestor ordering and replay dedup.
+
+Final batch logs and machine-readable exits are local in
+`reports/email-transport-validation.log/`; raw research is also ignored. The
+server transport regression pass is recorded in this report from its executed
+command output. No result is inferred from another worker or from CI.
+
+Known compile-only warnings are the existing `proc-macro-error2 2.0.1` future
+compatibility notice and this worktree's zero-byte sidecar placeholder. Read
+`reports/step0.md`, `.github/workflows/test.yml` and `src-tauri/build.rs`: these are
+the established compile/test setup, not a packaged app. Root's real sidecar and
+other workers' build outputs were untouched. No live Resend credential was loaded,
+no live email sent, and no hosted webhook, browser/UI, packaged app, deployment or
+end-to-end approval dispatch is claimed.
+
+Remaining integration limits are intentional and explicit: the caller must
+authorize the scope and obtain its credential from the existing store; raw
+provider list/detail is never a user authorization view; a future trusted
+approval dispatcher must persist the exact payload/key before send and handle
+unknown outcomes/retries. Provider idempotency is not a permanent delivery ledger.
+Pull scheduling/checkpoints/quarantine, aliases, attachment/raw downloads, broader
+RFC mailbox syntax, public routes/UI and live-provider validation remain outside
+this task. No verified-source blocker remains for the delivered bounded contract.
