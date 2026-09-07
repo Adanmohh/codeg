@@ -44,3 +44,11 @@ Log `/tmp/ops-telegram-independent-rust.log`. Tested mod.rs SHA256
 `2e4f4bd43a12d375c149dfd7204b74113e5af9c15e5a37294d3d5a40d82351c9`;
 tests.rs `cab528bc9fc67e9bf938e5f093ceee9c4aaebbc1cb75904ac958fde1762d13a4`.
 Final worker gates/report, browser decisions and exact-head acceptance remain.
+
+Independent frontend selector passed11/11,exit0,1.07s: locator/settings and
+accepted Ops flows/session tests. Log `/tmp/ops-telegram-independent-frontend.log`.
+These are facade-mocked component tests; the separate actual CLI evidence
+uses the protected4323 router/provider fixtures. The worker also corrected the
+inherited Telegram test-only CodegTopics string that Step1 rebranding had made
+inconsistent with its unchanged configured username; final test result awaits
+its committed handoff. No production username-matching logic changed.
