@@ -154,3 +154,5 @@ Current modified inherited files (all based on immutable upstream SHA above):
 - `src/lib/updater.ts`
 
 New product files: `NOTICE`, `src/lib/brand.ts`.
+
+Checkpoint implementation commit: `a743e99fd88350ffc262b27d9849a7b57625e1c3` (pushed). This report-only follow-up records that immutable checkpoint. Draft PR remains pending until resume.
