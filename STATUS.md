@@ -1,6 +1,6 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI and delivery are reviewed and merged; pi and bug-workflow integration continue autonomously. Step 3 Telegram is dispatched. Final combined browser and Design Studio loops remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Bug-workflow and Telegram final reviews continue autonomously. P1 bridge/phone integration, final Design Studio fixes and combined native build remain.
 
 ## Current position
 
@@ -10,10 +10,10 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Direct Resend transport | Reviewed and merged, PR #6; UI integration accepted in #7 | Combined beta validation |
 | Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
-| Pi scoped bridge/default | PR #8 integrated with accepted Ops; independent 13 Rust bridge tests pass | Final process artifact/browser-default checks; Astra model configuration unavailable |
-| Bug workflow host/UI | PR #9 backend corrections reviewed; independent17Rust tests pass | Actual P1 browser flow and final gates/report |
-| Telegram and beta validation | Step 3 Telegram dispatched to approvals worker | Typed notifications/review links, local fixtures and beta checks |
-| Final Design Studio loops | Brief/checklist/measured evidence ready; new P2 locale-change edit loss reproduced | Specialist audit, locale/a11y fixes and targeted CLI rechecks |
+| Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
+| Bug workflow host/UI | PR #9 independent17 Rust,9 isolated Python,8 frontend tests and protected CLI review/held-task checks pass | Final committed report/gates and exact-head acceptance |
+| Telegram and beta validation | PR #10 independent13 Rust tests and phone login/stale/payload checks pass | Browser decisions/receipt completion, final report/gates, then typed P1 extension |
+| Final Design Studio loops | Preliminary sequential seven-finding review committed; independent specialist active; shell fixes queued | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
