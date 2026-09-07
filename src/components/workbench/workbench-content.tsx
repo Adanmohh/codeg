@@ -1,6 +1,7 @@
 "use client"
 
 import type { ComponentType } from "react"
+import { OpsPage, OpsPageTitle } from "@/components/ops/ops-page"
 import {
   useWorkbenchRoute,
   type WorkbenchRouteId,
@@ -27,6 +28,7 @@ import {
  * that calls `setRoute("<id>")`.
  */
 const WORKBENCH_ROUTES: Partial<Record<WorkbenchRouteId, ComponentType>> = {
+  ops: OpsPage,
   automations: AutomationsPage,
   tasks: TasksPage,
   forge: ForgePage,
@@ -38,6 +40,7 @@ const WORKBENCH_ROUTES: Partial<Record<WorkbenchRouteId, ComponentType>> = {
  *  (the h-10 band the fixed corner overlays sit on) — e.g. the page title. */
 const WORKBENCH_ROUTE_STRIPS: Partial<Record<WorkbenchRouteId, ComponentType>> =
   {
+    ops: OpsPageTitle,
     automations: AutomationsPageTitle,
     tasks: TasksPageTitle,
     forge: ForgePageTitle,

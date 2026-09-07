@@ -267,6 +267,10 @@ impl TerminalManager {
             }
         }
 
+        // Terminal-launched agents must not inherit the server operator bearer,
+        // even if an extra environment map tries to forward it.
+        cmd.env_remove("CODEG_TOKEN");
+
         let child = pair
             .slave
             .spawn_command(cmd)

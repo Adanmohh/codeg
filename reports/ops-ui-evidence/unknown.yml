@@ -1,0 +1,43 @@
+- generic [active]:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e609]:
+      - generic [ref=f3e610]:
+        - button "Show Sidebar" [ref=f3e611]
+        - button "Search" [ref=f3e612]
+        - button "New Conversation" [ref=f3e613]
+      - button "Open Settings" [ref=f3e616]
+    - main [ref=f3e618]:
+      - generic [ref=f3e620]:
+        - generic [ref=f3e621]: Ops desk
+        - region "Ops desk" [ref=f3e625]:
+          - generic [ref=f3e626]:
+            - navigation "Ops views" [ref=f3e627]:
+              - button "Inbox" [ref=f3e628]
+              - button "Approvals" [ref=f3e629]
+              - button "Morning" [ref=f3e630]
+            - button "Refresh" [ref=f3e631]
+          - generic [ref=f3e633]:
+            - generic [ref=f3e634]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+            - generic [ref=f3e702]:
+              - button "Back to review queue" [ref=f3e704]
+              - article [ref=f3e705]:
+                - generic [ref=f3e706]:
+                  - paragraph [ref=f3e707]: "Proposal #2 · Task #2 · Run 1 · Account 1"
+                  - heading "Delivery unconfirmed · do not resend" [level=1] [ref=f3e708]
+                  - button "Open original thread" [ref=f3e709]
+                - generic [ref=f3e710]:
+                  - alert [ref=f3e711]: Delivery outcome is unknown. Do not resend or create a new delivery key; reconcile with the provider first
+                  - generic [ref=f3e712]:
+                    - term [ref=f3e713]: Message ID
+                    - definition [ref=f3e714]: ops-f43b00cb-ea17-4870-9045-7dff1bd25d66@example.com
+                - status [ref=f3e715]: This record has no editable pending payload. Open the thread for its current draft. No delivery receipt is implied by this decision.
+    - generic [ref=f3e72]:
+      - generic [ref=f3e73]:
+        - button "Quick actions" [ref=f3e74]
+        - button "4 conversations" [ref=f3e347]
+      - generic [ref=f3e75]:
+        - button "Add Command" [ref=f3e668]
+        - button "codeg-mcp service" [ref=f3e669]
+        - button [ref=f3e677]

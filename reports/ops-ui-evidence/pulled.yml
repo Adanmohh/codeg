@@ -1,0 +1,163 @@
+- generic [active]:
+  - alert [ref=f2e2]: Hafidh Ops Desk
+  - region "Notifications alt+T"
+  - generic [ref=f2e12]:
+    - generic [ref=f2e14]:
+      - complementary [ref=f2e17]:
+        - generic [ref=f2e21]:
+          - button "Locate Active Conversation" [ref=f2e22]
+          - button "Collapse All Groups" [ref=f2e23]
+          - button "View options" [ref=f2e24]
+        - generic [ref=f2e25]:
+          - button "Ops desk" [ref=f2e26]
+          - button "New chat ⌘T" [ref=f2e103]:
+            - generic [ref=f2e35]: New chat
+            - generic [ref=f2e36]: ⌘T
+          - button "Automations" [ref=f2e37]
+          - button "To-dos 4" [ref=f2e104]:
+            - generic [ref=f2e45]: To-dos
+            - generic [ref=f2e105]: "4"
+          - button "Repository panel" [ref=f2e46]
+          - button "Infinite Conversations" [ref=f2e52]
+        - generic [ref=f2e109]:
+          - generic [ref=f2e113]:
+            - button "Folders" [expanded] [ref=f2e114]
+            - generic [ref=f2e118]:
+              - button "New group" [ref=f2e119] [cursor=pointer]
+              - button "Import local sessions" [ref=f2e124] [cursor=pointer]
+              - button "Clone Repository" [ref=f2e128] [cursor=pointer]
+              - button "Open Folder" [ref=f2e134] [cursor=pointer]
+          - generic [ref=f2e141]:
+            - button "ops-ui-task-fixture 4 sessions running" [expanded] [ref=f2e142]:
+              - generic [ref=f2e143]:
+                - generic [ref=f2e144]: ops-ui-task-fixture
+                - generic "4 sessions running" [ref=f2e145]: "4"
+            - button "More options" [ref=f2e150] [cursor=pointer]
+            - button "New Conversation" [ref=f2e155] [cursor=pointer]
+          - generic [ref=f2e162]:
+            - button "Untitled conversation" [ref=f2e163]
+            - generic "Running" [ref=f2e167]
+          - generic [ref=f2e174]:
+            - button "Untitled conversation" [ref=f2e175]
+            - generic "Running" [ref=f2e179]
+          - generic [ref=f2e186]:
+            - button "Untitled conversation" [ref=f2e187]
+            - generic "Running" [ref=f2e191]
+          - generic [ref=f2e198]:
+            - button "Untitled conversation" [ref=f2e199]
+            - generic "Running" [ref=f2e203]
+          - generic [ref=f2e210]:
+            - button "Chat" [expanded] [ref=f2e211]
+            - button "New chat" [ref=f2e215] [cursor=pointer]
+          - generic [ref=f2e219]: No chats
+          - generic [ref=f2e225]:
+            - button "Recent" [expanded] [ref=f2e226]
+            - button "New Conversation" [ref=f2e230] [cursor=pointer]
+          - generic [ref=f2e237]:
+            - button "Untitled conversation" [ref=f2e238]
+            - generic "Running" [ref=f2e242]
+          - generic [ref=f2e249]:
+            - button "Untitled conversation" [ref=f2e250]
+            - generic "Running" [ref=f2e254]
+          - generic [ref=f2e261]:
+            - button "Untitled conversation" [ref=f2e262]
+            - generic "Running" [ref=f2e266]
+          - generic [ref=f2e273]:
+            - button "Untitled conversation" [ref=f2e274]
+            - generic "Running" [ref=f2e278]
+      - separator [ref=f2e63]
+      - main [ref=f2e65]:
+        - generic [ref=f2e66]:
+          - generic [ref=f2e634]:
+            - generic [ref=f2e635]: Ops desk
+            - region "Ops desk" [ref=f2e639]:
+              - generic [ref=f2e640]:
+                - navigation "Ops views" [ref=f2e641]:
+                  - button "Inbox" [ref=f2e642]
+                  - button "Approvals" [ref=f2e643]
+                  - button "Morning" [ref=f2e644]
+                - button "Refresh" [ref=f2e645]
+              - generic [ref=f2e647]:
+                - generic [ref=f2e648]: Account 1 · Connect Resend per inbox. Drafts and private notes stay local; every send requires human approval.
+                - generic [ref=f2e758]:
+                  - complementary "Ticket list" [ref=f2e759]:
+                    - generic [ref=f2e760]:
+                      - generic [ref=f2e819]:
+                        - generic [ref=f2e820]:
+                          - generic [ref=f2e821]: Resend key configured
+                          - button "Pull now" [ref=f2e822]
+                        - group [ref=f2e823]:
+                          - generic "Manage email connection" [ref=f2e824] [cursor=pointer]
+                        - paragraph [ref=f2e825]: "Last pull: complete · 8.9.2026 klo 0.49.59"
+                        - status [ref=f2e826]: 1 messages imported · 0 already present.
+                      - generic [ref=f2e766]:
+                        - text: Inbox
+                        - combobox "Inbox" [ref=f2e767]:
+                          - option "Support · support@example.com" [selected]
+                      - generic [ref=f2e768]:
+                        - text: Ticket status
+                        - combobox "Ticket status" [ref=f2e769]:
+                          - option "All statuses" [selected]
+                          - option "Open"
+                          - option "Resolved"
+                          - option "Pending"
+                          - option "Snoozed"
+                    - list [ref=f2e827]:
+                      - listitem [ref=f2e828]:
+                        - button "Reader Open An imported support question 8.9.2026" [ref=f2e829]:
+                          - generic [ref=f2e830]:
+                            - generic [ref=f2e831]: Reader
+                            - generic [ref=f2e832]: Open
+                          - generic [ref=f2e833]: An imported support question
+                          - generic [ref=f2e834]: 8.9.2026
+                      - listitem [ref=f2e835]:
+                        - button "Fixture reader Open An outdated review 8.9.2026" [ref=f2e836]:
+                          - generic [ref=f2e837]:
+                            - generic [ref=f2e838]: Fixture reader
+                            - generic [ref=f2e839]: Open
+                          - generic [ref=f2e840]: An outdated review
+                          - generic [ref=f2e841]: 8.9.2026
+                      - listitem [ref=f2e842]:
+                        - button "Fixture reader Open A rejected delivery 8.9.2026" [ref=f2e843]:
+                          - generic [ref=f2e844]:
+                            - generic [ref=f2e845]: Fixture reader
+                            - generic [ref=f2e846]: Open
+                          - generic [ref=f2e847]: A rejected delivery
+                          - generic [ref=f2e848]: 8.9.2026
+                      - listitem [ref=f2e849]:
+                        - button "Fixture reader Open An uncertain delivery 8.9.2026" [ref=f2e850]:
+                          - generic [ref=f2e851]:
+                            - generic [ref=f2e852]: Fixture reader
+                            - generic [ref=f2e853]: Open
+                          - generic [ref=f2e854]: An uncertain delivery
+                          - generic [ref=f2e855]: 8.9.2026
+                      - listitem [ref=f2e856]:
+                        - button "Reader Open A real local thread 8.9.2026" [ref=f2e857]:
+                          - generic [ref=f2e858]:
+                            - generic [ref=f2e859]: Reader
+                            - generic [ref=f2e860]: Open
+                          - generic [ref=f2e861]: A real local thread
+                          - generic [ref=f2e862]: 8.9.2026
+                    - generic [ref=f2e800]:
+                      - button "Previous" [disabled]
+                      - button "Next" [disabled]
+                  - generic [ref=f2e802]:
+                    - heading "Select a thread" [level=2] [ref=f2e806]
+                    - paragraph [ref=f2e807]: Read the conversation, add a private note or prepare a reply for review.
+          - separator
+          - generic [ref=f2e79]:
+            - button [ref=f2e616]
+            - button "Hide Terminal (⌘J)" [ref=f2e617]
+      - separator
+    - generic [ref=f2e82]:
+      - generic [ref=f2e83]:
+        - button "Quick actions" [ref=f2e84]
+        - button "4 conversations" [ref=f2e619]
+      - generic [ref=f2e85]:
+        - button "Add Command" [ref=f2e622]
+        - button "codeg-mcp service" [ref=f2e86]
+        - button [ref=f2e89]
+    - generic [ref=f2e94]:
+      - button "Hide Sidebar (⌘B)" [ref=f2e630]
+      - button "Search" [ref=f2e96]
+    - button "Open Settings (⌘,)" [ref=f2e633]
