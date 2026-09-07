@@ -96,5 +96,50 @@ to the existing ticket contract. Unsupported: quoted/obsolete Message-IDs and
 quoted-local-part/domain-literal/SMTPUTF8 mailbox addresses. HTML-only messages
 become plain text; this is not an HTML sanitization/rendering API.
 
-Implementation and focused mock tests/validation are in progress. Final source
-mapping, NOTICE, exact command exits, implementation SHA and draft PR follow.
+Implementation is now present with 15 passing local HTTP/normalization tests.
+The final desktop/server checks, desktop tests and Clippy are in progress.
+Initial server check passed. Typecheck passed after the research-cache correction
+described below. Source attribution and full MIT license texts are in NOTICE.
+
+## Source-to-port mapping
+
+All remote source reads used `gh api repos/OWNER/REPO/contents/PATH?ref=SHA`;
+content was base64-decoded and its Git blob SHA verified locally. No web, MCP or
+Resend CLI research/transport was used. Installed sources were read before API use.
+
+| Immutable source | Exact files / reviewed portions | Port or verification |
+| --- | --- | --- |
+| IntroInnovation/intromail `0bd24dfe284b888aa9f602fa1fd00e337ea38874` | `backend/app/services/resend_client.py` (whole) | `client.rs`: shared bearer client, 30s timeout, POST /emails body and threading headers, Idempotency-Key, GET received detail. This source has no list helper. |
+| Same IntroMail pin | `backend/app/services/ingest.py` header normalization/Message-ID priority/RFC dedup/envelope fields; `backend/app/services/mailboxes.py` (whole); `backend/app/routers/mail.py` SendIn and `_resolve_sender_mailbox`/send_mail (lines 1080–1422) | `normalize.rs`: object/array headers, decoded sender/recipients, real RFC header before provider fallback, text-first body; `client.rs`: inbox-bound From. Existing ticket store owns threading and atomic dedup; IntroMail's task routing/webhook/auth models are not ported. |
+| Same IntroMail pin | `backend/tests/test_send_authorization.py` (whole); `backend/tests/test_mail_privacy.py` visibility/multi-recipient/hidden-thread/taint cases; `backend/tests/test_task_reply_email.py` `_ingest`, on-wire header and ordinary reply cases | `tests.rs`: wrong account/changed inbox, From binding, foreign recipient isolation, array headers, normal reply persistence and mock wire assertions. |
+| Same IntroMail pin | `backend/app/services/scheduler.py` dispatch_send | Research only: dispatch forwards persisted message fields but generates a random key each attempt. This adapter instead REQUIRES a caller-persisted key, matching the owner's idempotency requirement. No scheduler code is ported. |
+| resend/resend-node v6.26.0 `c61cccae2999d50d2aca9ce5fd1064f3bb855219` | `src/emails/emails.ts`; `src/emails/receiving/receiving.ts` get/list; `src/emails/receiving/receiving.spec.ts` get/list/cursor fixtures; `src/emails/receiving/interfaces/{get-receiving-email,list-receiving-emails}.interface.ts`; `src/common/interfaces/pagination-options.interface.ts`; `src/common/utils/{build-pagination-query,get-pagination-query-properties}.ts`; `LICENSE` | `mod.rs` DTOs/cursor union; `client.rs` direct list/detail responses, cid option and cursor query; `pull.rs` accepts SDK fixture timestamps; `tests.rs` HTTP shape/nullability/pagination. MIT ©2023 Plus Five Five, Inc., reproduced verbatim. |
+| resend/resend-openapi `8dca27c284bd377e48a6db131b52f6689d53195e` | `resend.json` spec 1.5.1: POST /emails, GET /emails/receiving, GET /emails/receiving/{email_id} and recursively referenced schemas; `LICENSE` | Provider UUIDs, page limit 1–100, Idempotency-Key <=256, recipients/body/response fields. MIT ©2026 Plus Five Five, Inc., reproduced verbatim. |
+| stalwartlabs/mail-parser v0.11.1 `6c5d33028530e0ec957f3440ec2ffe65722ecc8c` | `Cargo.toml`, `LICENSES/MIT.txt`, `src/lib.rs`, `src/core/{header,address}.rs`, `src/parsers/mod.rs`, `src/parsers/fields/{address,id,unstructured}.rs`, `src/decoders/html.rs` | Installed parser primitives and HTML-to-text; `normalize.rs` adapts nested-comment/escape/delimiter transitions. Strict adapter checks reject ignored junk, unfinished delimiters and ambiguous routing headers. MIT alternative, ©2020 Stalwart Labs LLC. Installed `.cargo_vcs_info.json` exactly matches the tag. |
+| chatwoot/chatwoot v4.17.1 `b354a9550e1fb59fa537a9c384232cb076213e72` | `app/presenters/mail_presenter.rb` auto_reply?/auto_submitted?/x_auto_reply?; `spec/presenters/mail_presenter_spec.rb` matching cases | `normalize.rs` auto_reply predicate and tests. Existing Chatwoot copyright/MIT text in NOTICE retained, including enterprise exclusion. No enterprise source. |
+
+IntroMail metadata was independently rechecked: private repository, license null,
+complete immutable tree (`truncated:false`), no LICENSE/LICENCE/NOTICE/COPYING files.
+Its reuse is the owner's explicit authorization in FOUNDING, not an MIT claim.
+Evaluated but did not add/copy `staktrace/mailparse v0.17.0`: its message-ID parser
+explicitly does not strip comments. No restricted source was borrowed.
+`hashify 0.2.9` installed VCS SHA is `74bd8a251dff8a514039e035a6437eabf1b9fd57`;
+MIT alternative and ©2025 Stalwart Labs LLC are included in NOTICE.
+
+## Validation progress and corrections
+
+All commands run in this worktree; Rust uses its own `src-tauri/target` output.
+
+| Command | Exit / result |
+| --- | --- |
+| `cargo fetch --target aarch64-apple-darwin` | 0; only mail-parser 0.11.1 and hashify 0.2.9 added. No existing dependency upgrades; pnpm lock untouched. |
+| `cargo check --locked --no-default-features --bin codeg-server` | 0 initial implementation check; final repeat pending parser refinements. |
+| `cargo test --locked --no-default-features --lib email_transport::` | Initial 101: missing `.into()` in one test String literal, corrected. Then 13/13 passed; after malformed-address/auto-reply regressions, 15/15 passed, exit 0. |
+| `pnpm exec tsc --noEmit` | Initial 2: broad tsconfig included downloaded SDK research `.ts` files. Renamed only ignored cache files to `.ts.log`; rerun 0. No tsconfig/product TS changes. |
+| `rustfmt --edition 2021 src/email_transport/{mod,client,normalize,pull,tests}.rs` | 0; only new module files formatted. |
+| `git diff --check` | 0. |
+
+Hook audit reconfirmed live at lines 1639/1640 (PreToolUse/PostToolUse), same
+session/worktree as above. Protected root planning docs and AGENTS are byte-identical
+to the immutable branch base. Initial implementation and final validation commits
+and draft PR are recorded below when pushed.
