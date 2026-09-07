@@ -18,6 +18,7 @@ import { MorningView } from "./morning-view"
 import { opsError, useOpsResource } from "./use-ops-resource"
 import { LoadError, Loading, Notice, touchButton } from "./ui"
 import { useOpsSession, useOpsSessionState } from "./session"
+import { TelegramSettings } from "@/components/ops-telegram/settings"
 
 export function OpsPageTitle() {
   return <span className="text-sm font-medium">Ops desk</span>
@@ -28,7 +29,7 @@ export function OpsPage() {
   return <OpsWorkspace key={remote?.connection?.id ?? "local"} />
 }
 
-type View = "inbox" | "approvals" | "morning"
+type View = "inbox" | "approvals" | "morning" | "telegram"
 function OpsWorkspace() {
   const { setRoute, registerLeaveGuard } = useWorkbenchRoute()
   const context = useOpsResource("context", ops.context)
@@ -113,6 +114,13 @@ function OpsWorkspace() {
         </nav>
         <Button
           className={touchButton}
+          variant={view === "telegram" ? "secondary" : "ghost"}
+          onClick={() => navigate(() => setView("telegram"))}
+        >
+          Telegram notifications
+        </Button>
+        <Button
+          className={touchButton}
           variant="ghost"
           onClick={() =>
             navigate(() => {
@@ -170,6 +178,7 @@ function OpsWorkspace() {
                 onTasks={() => navigate(() => setRoute("tasks"))}
               />
             )}
+            {view === "telegram" && <TelegramSettings onDirty={setDirty} />}
           </div>
         )
       )}

@@ -86,4 +86,4 @@ pub(crate) fn command_error(err: DbError) -> AppCommandError {
 }
 
 #[cfg(test)]
-mod tests;
+pub(crate) mod tests;
