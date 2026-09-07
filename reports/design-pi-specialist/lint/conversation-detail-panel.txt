@@ -1,0 +1,54 @@
+{
+  "file": "src/components/conversations/conversation-detail-panel.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": false,
+    "activeState": false,
+    "aria": true,
+    "role": true,
+    "emptyState": true,
+    "errorState": true,
+    "motion": true,
+    "responsive": false,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "med",
+      "msg": "No explicit focus state — verify a visible focus ring (a11y)."
+    }
+  ],
+  "probe": null
+}
+
+SUMMARY src/components/conversations/conversation-detail-panel.tsx: 1 gap(s) — [med] No explicit focus state — verify a visible focus ring (a11y).

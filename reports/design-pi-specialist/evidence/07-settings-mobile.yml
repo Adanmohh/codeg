@@ -1,0 +1,246 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - button [ref=e572]
+      - generic: Settings
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - heading "Agent SDK Management" [level=2] [ref=e44]
+          - paragraph [ref=e45]: Manage Agent SDK connection, enabled state, environment variables, config management and version preflight info in one place.
+        - button "Add custom agent" [ref=e46]
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]: Agent List
+          - generic [ref=e50]:
+            - generic [ref=e52] [cursor=pointer]:
+              - generic [ref=e53]:
+                - button "Drag to reorder Pi" [ref=e54]
+                - img "Pi" [ref=e63]
+                - generic [ref=e68]: Pi
+                - generic "Pi enabled" [ref=e69]
+              - generic [ref=e71]:
+                - generic [ref=e72]: PASS
+                - button "Refresh check Pi" [ref=e73]
+            - generic [ref=e80] [cursor=pointer]:
+              - generic [ref=e81]:
+                - button "Drag to reorder Claude Code" [ref=e82]
+                - img "Claude Code" [ref=e91]
+                - generic [ref=e93]: Claude Code
+                - generic "Claude Code enabled" [ref=e94]
+              - generic [ref=e96]:
+                - generic [ref=e97]: FAIL
+                - button "Refresh check Claude Code" [ref=e98]
+            - generic [ref=e105] [cursor=pointer]:
+              - generic [ref=e106]:
+                - button "Drag to reorder Codex CLI" [ref=e107]
+                - img "Codex" [ref=e116]
+                - generic [ref=e118]: Codex CLI
+                - generic "Codex CLI enabled" [ref=e119]
+              - generic [ref=e121]:
+                - generic [ref=e122]: FAIL
+                - button "Refresh check Codex CLI" [ref=e123]
+            - generic [ref=e130] [cursor=pointer]:
+              - generic [ref=e131]:
+                - button "Drag to reorder Gemini CLI" [ref=e132]
+                - img "Gemini CLI" [ref=e141]
+                - generic [ref=e144]: Gemini CLI
+                - generic "Gemini CLI enabled" [ref=e145]
+              - generic [ref=e147]:
+                - generic [ref=e148]: FAIL
+                - button "Refresh check Gemini CLI" [ref=e149]
+            - generic [ref=e156] [cursor=pointer]:
+              - generic [ref=e157]:
+                - button "Drag to reorder OpenClaw" [ref=e158]
+                - img "OpenClaw" [ref=e167]
+                - generic [ref=e174]: OpenClaw
+                - generic "OpenClaw enabled" [ref=e175]
+              - generic [ref=e177]:
+                - generic [ref=e178]: FAIL
+                - button "Refresh check OpenClaw" [ref=e179]
+            - generic [ref=e186] [cursor=pointer]:
+              - generic [ref=e187]:
+                - button "Drag to reorder OpenCode" [ref=e188]
+                - img "OpenCode" [ref=e197]
+                - generic [ref=e199]: OpenCode
+                - generic "OpenCode enabled" [ref=e200]
+              - generic [ref=e202]:
+                - generic [ref=e203]: FAIL
+                - button "Refresh check OpenCode" [ref=e204]
+            - generic [ref=e211] [cursor=pointer]:
+              - generic [ref=e212]:
+                - button "Drag to reorder Cline" [ref=e213]
+                - img "Cline" [ref=e222]
+                - generic [ref=e225]: Cline
+                - generic "Cline enabled" [ref=e226]
+              - generic [ref=e228]:
+                - generic [ref=e229]: FAIL
+                - button "Refresh check Cline" [ref=e230]
+            - generic [ref=e237] [cursor=pointer]:
+              - generic [ref=e238]:
+                - button "Drag to reorder Hermes Agent" [ref=e239]
+                - img "Hermes Agent" [ref=e248]
+                - generic [ref=e252]: Hermes Agent
+                - generic "Hermes Agent enabled" [ref=e253]
+              - generic [ref=e255]:
+                - generic [ref=e256]: FAIL
+                - button "Refresh check Hermes Agent" [ref=e257]
+            - generic [ref=e264] [cursor=pointer]:
+              - generic [ref=e265]:
+                - button "Drag to reorder CodeBuddy" [ref=e266]
+                - img "CodeBuddy" [ref=e275]
+                - generic [ref=e279]: CodeBuddy
+                - generic "CodeBuddy enabled" [ref=e280]
+              - generic [ref=e282]:
+                - generic [ref=e283]: FAIL
+                - button "Refresh check CodeBuddy" [ref=e284]
+            - generic [ref=e291] [cursor=pointer]:
+              - generic [ref=e292]:
+                - button "Drag to reorder Kimi Code" [ref=e293]
+                - img "Kimi Code" [ref=e302]
+                - generic [ref=e306]: Kimi Code
+                - generic "Kimi Code enabled" [ref=e307]
+              - generic [ref=e309]:
+                - generic [ref=e310]: FAIL
+                - button "Refresh check Kimi Code" [ref=e311]
+            - generic [ref=e318] [cursor=pointer]:
+              - generic [ref=e319]:
+                - button "Drag to reorder Grok" [ref=e320]
+                - img "Grok" [ref=e329]
+                - generic [ref=e332]: Grok
+                - generic "Grok enabled" [ref=e333]
+              - generic [ref=e335]:
+                - generic [ref=e336]: FAIL
+                - button "Refresh check Grok" [ref=e337]
+            - generic [ref=e344] [cursor=pointer]:
+              - generic [ref=e345]:
+                - button "Drag to reorder Cursor" [ref=e346]
+                - img "Cursor" [ref=e355]
+                - generic [ref=e357]: Cursor
+                - generic "Cursor enabled" [ref=e358]
+              - generic [ref=e360]:
+                - generic [ref=e361]: FAIL
+                - button "Refresh check Cursor" [ref=e362]
+            - generic [ref=e369] [cursor=pointer]:
+              - generic [ref=e370]:
+                - button "Drag to reorder DeepSeek Harness" [ref=e371]
+                - img "DeepSeek Harness" [ref=e380]
+                - generic [ref=e382]: DeepSeek Harness
+                - generic "DeepSeek Harness enabled" [ref=e383]
+              - generic [ref=e385]:
+                - generic [ref=e386]: FAIL
+                - button "Refresh check DeepSeek Harness" [ref=e387]
+            - generic [ref=e394] [cursor=pointer]:
+              - generic [ref=e395]:
+                - button "Drag to reorder Qoder" [ref=e396]
+                - img "Qoder" [ref=e405]
+                - generic [ref=e407]: Qoder
+                - generic "Qoder enabled" [ref=e408]
+              - generic [ref=e410]:
+                - generic [ref=e411]: FAIL
+                - button "Refresh check Qoder" [ref=e412]
+            - generic [ref=e419] [cursor=pointer]:
+              - generic [ref=e420]:
+                - button "Drag to reorder Google Antigravity" [ref=e421]
+                - img "Google Antigravity" [ref=e430]
+                - generic [ref=e432]: Google Antigravity
+                - generic "Google Antigravity enabled" [ref=e433]
+              - generic [ref=e435]:
+                - generic [ref=e436]: FAIL
+                - button "Refresh check Google Antigravity" [ref=e437]
+        - generic [ref=e444]:
+          - generic [ref=e445]:
+            - generic [ref=e446]:
+              - generic [ref=e447]:
+                - img "Pi" [ref=e449]
+                - heading "Pi" [level=3] [ref=e454]
+                - generic [ref=e455]: npx
+              - switch "Pi enable switch" [checked] [ref=e457]
+            - paragraph [ref=e459]: Self-extensible coding agent (ACP via pi-acp)
+          - generic [ref=e460]:
+            - generic [ref=e461]:
+              - generic [ref=e462]:
+                - generic [ref=e463]: "Preflight items: 4"
+                - button "Diagnose" [ref=e467]
+              - button "Version Status PASS" [ref=e469]:
+                - generic [ref=e470]: Version Status
+                - generic [ref=e474]: PASS
+              - button "Node.js PASS" [ref=e476]:
+                - generic [ref=e477]: Node.js
+                - generic [ref=e481]: PASS
+              - button "npm PASS" [ref=e483]:
+                - generic [ref=e484]: npm
+                - generic [ref=e488]: PASS
+              - button "Node.js version PASS" [ref=e490]:
+                - generic [ref=e491]: Node.js version
+                - generic [ref=e495]: PASS
+            - generic [ref=e496]:
+              - text: Environment Variables
+              - textbox "KEY1=VALUE1 KEY2=VALUE2" [ref=e498]:
+                - /placeholder: "KEY1=VALUE1\nKEY2=VALUE2"
+              - generic [ref=e499]:
+                - generic [ref=e500]:
+                  - text: Let the agent handle files and commands
+                  - paragraph [ref=e501]: Hafidh Ops Desk stops serving file access and terminal commands, so the agent runs them in its own process — where its own sandbox and permission rules apply. Delegating to other agents is also turned off, since that would route the same work back through Hafidh Ops Desk. Hafidh Ops Desk adds no sandbox itself, so turn this on only if the agent has one configured.
+                - switch "Let the agent handle files and commands" [ref=e502]
+              - generic [ref=e503]:
+                - generic [ref=e504]:
+                  - text: Adapter version
+                  - paragraph [ref=e505]: Install and Upgrade use the version Hafidh Ops Desk has reviewed and pinned. Latest switches them to the package's newest npm release at that moment; if installing it fails, Hafidh Ops Desk falls back to the pinned version and notes it in the install log.
+                - combobox "Adapter version" [ref=e506]:
+                  - generic: Pinned (recommended)
+              - button "Save environment variables" [ref=e508]
+            - generic [ref=e509]:
+              - generic [ref=e510]:
+                - generic [ref=e511]:
+                  - generic [ref=e512]: Runtime
+                  - paragraph [ref=e516]: Choose which pi binary runs. Use the default, or point at your own pi build.
+                - radiogroup [ref=e517]:
+                  - generic [ref=e518] [cursor=pointer]:
+                    - 'radio "Default pi Use the bundled pi-acp adapter with the pi on your PATH. Install pi with: npm install -g @earendil-works/pi-coding-agent" [checked] [ref=e519]'
+                    - generic [ref=e522]:
+                      - generic [ref=e523]: Default pi
+                      - generic [ref=e524]: "Use the bundled pi-acp adapter with the pi on your PATH. Install pi with: npm install -g @earendil-works/pi-coding-agent"
+                  - generic [ref=e525] [cursor=pointer]:
+                    - radio "Custom pi Run your own pi build, install, or wrapper." [ref=e526]
+                    - generic [ref=e527]:
+                      - generic [ref=e528]: Custom pi
+                      - generic [ref=e529]: Run your own pi build, install, or wrapper.
+                - generic [ref=e531]:
+                  - generic [ref=e537]:
+                    - text: Installed · 0.85.1
+                    - generic [ref=e538]: /Users/mohamedadan/.local/share/fnm/node-versions/v24.19.0/installation/bin/pi
+                  - generic [ref=e539]:
+                    - button "Recheck" [ref=e540]
+                    - button "Uninstall" [ref=e541]
+                - button "Save Runtime" [ref=e543]
+              - generic [ref=e544]:
+                - generic [ref=e545]:
+                  - generic [ref=e546]: Pi Configuration
+                  - paragraph [ref=e550]: Pi authenticates with your model provider's API key. The key is written to ~/.pi/agent/auth.json and the model selection to settings.json.
+                - generic [ref=e551]:
+                  - text: Provider
+                  - combobox [ref=e552]:
+                    - generic: Select a provider
+                - generic [ref=e553]:
+                  - text: Model
+                  - textbox "claude-sonnet-5" [ref=e554]
+                - generic [ref=e555]:
+                  - text: Thinking
+                  - combobox [ref=e556]:
+                    - generic: "Off"
+                - generic [ref=e557]:
+                  - text: API Key
+                  - generic [ref=e558]:
+                    - textbox "sk-..." [ref=e559]
+                    - button "Show API Key" [ref=e560]
+                  - paragraph [ref=e561]: Stored in ~/.pi/agent/auth.json for the selected provider.
+                - generic [ref=e562]:
+                  - button "Save Pi Config" [disabled]
+              - generic [ref=e563]:
+                - generic [ref=e564]:
+                  - generic [ref=e565]: Project trust
+                  - paragraph [ref=e569]: Folders you allowed pi to load project files from. A trusted folder lets that repository's .pi/extensions run code when pi starts, applies to every folder inside it, and is also used when you run pi in a terminal.
+                - paragraph [ref=e570]: No folders decided yet.
