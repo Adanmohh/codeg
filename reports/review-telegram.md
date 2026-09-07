@@ -52,3 +52,10 @@ uses the protected4323 router/provider fixtures. The worker also corrected the
 inherited Telegram test-only CodegTopics string that Step1 rebranding had made
 inconsistent with its unchanged configured username; final test result awaits
 its committed handoff. No production username-matching logic changed.
+
+Root actual phone decision and BC14 completed successfully after fixture release:
+proposal1 edited Bcc/body → accepted receipt/public reply, email requests1→2;
+proposal2 stored receipt → local completion/public reply, requests remain2.
+Telegram requests remain4 throughout. Exactly one recorded outgoing copy per
+checked thread. [Evidence](browser-phone-independent/README.md). Final worker
+report/head/gates remain before acceptance; no need to repeat unchanged flows.
