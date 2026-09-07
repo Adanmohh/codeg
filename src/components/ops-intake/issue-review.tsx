@@ -67,8 +67,9 @@ export function IssueReview({
       labels: draft.labels.join(", "),
       severity: draft.confirmed_severity ?? "",
     })
-  const p = d.prepared
   const pending = detail.proposals.find((p) => p.status === "pending")
+  const p = d.prepared ?? pending?.payload
+  const pendingStale = pending?.stale || (!!pending && !d.prepared)
   const unknown = detail.handoff_unknown || detail.receipt?.state === "unknown"
   const created = detail.receipt?.state === "created"
   const complete = fields.every((field) => !!d.proofs[field])
@@ -288,7 +289,7 @@ export function IssueReview({
           )}
           {pending?.payload && (
             <div className="grid gap-4">
-              {pending.stale || stale ? (
+              {pendingStale || stale ? (
                 <Notice>
                   This proposal is stale. Refresh the source and deny the old
                   proposal before requesting a new one.
@@ -310,7 +311,7 @@ export function IssueReview({
                   disabled={
                     busy ||
                     stale ||
-                    pending.stale ||
+                    pendingStale ||
                     !confirmed ||
                     !product.app_key_present ||
                     unknown ||

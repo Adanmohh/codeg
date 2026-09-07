@@ -230,7 +230,7 @@ export function BugWorkflowPage() {
                     <span className="line-clamp-2 text-sm font-medium [overflow-wrap:anywhere]">
                       {record.title}
                     </span>
-                    <span className="text-muted-foreground text-xs">
+                    <span className="text-foreground text-xs">
                       {record.source_status} ·{" "}
                       {record.build_number
                         ? `Build ${record.build_number}`

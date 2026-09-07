@@ -30,7 +30,7 @@ In-app intake is unavailable: the existing Hafidh feedback route only accepts
 POST and sends a notification. TestFlight uses GET list and GET sync/status;
 no source writes, sync triggers, ASC polling or attachment fetches are exposed.
 
-The Desk's trusted host can run `python -m hafidh_intake.host` as a closed child
+The Desk's trusted host runs `python -I -m hafidh_intake.host` as a closed child
 process using the same adapter. It accepts bounded NDJSON frames with
 `request_id`, `operation` (`list`, `get`, `status`) and `input`; replies carry
 the same request ID and the strict adapter `result`. It is not a generic MCP

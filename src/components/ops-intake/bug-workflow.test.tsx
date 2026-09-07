@@ -341,3 +341,24 @@ it("conflicted fix links never offer an unrelated task or a replacement creation
     screen.queryByRole("button", { name: "Create held fix plan" })
   ).not.toBeInTheDocument()
 })
+
+it("keeps stale pending review deniable after source refresh clears prepared evidence", async () => {
+  const d = prepared(detail())
+  d.draft.prepared = null
+  d.draft.proofs = {}
+  d.proposals[0].stale = true
+  vi.mocked(intake.detail).mockResolvedValue(d)
+  vi.mocked(intake.deny).mockResolvedValue({ ...d, proposals: [] })
+  render(<Shell />)
+  await select()
+  expect(screen.getByLabelText("Exact issue body")).toHaveTextContent(
+    d.proposals[0].payload!.outgoing.body
+  )
+  expect(
+    screen.getByRole("button", { name: "Approve and file issue" })
+  ).toBeDisabled()
+  fireEvent.click(screen.getByRole("button", { name: "Deny proposal" }))
+  await waitFor(() =>
+    expect(intake.deny).toHaveBeenCalledWith(source, 9, d.proposals[0].payload)
+  )
+})

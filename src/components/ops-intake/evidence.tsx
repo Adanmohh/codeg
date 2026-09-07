@@ -46,6 +46,11 @@ export function EvidenceEditor({
   const [captured, setCaptured] = useOpsSessionState(`${key}:captured`, "")
   const [session, setSession] = useOpsSessionState(`${key}:session`, "")
   const missing = fields.filter((f) => !detail.draft.proofs[f])
+  const locked =
+    detail.proposals.some((p) => p.status === "pending") ||
+    detail.handoff_unknown ||
+    detail.receipt?.state === "unknown" ||
+    detail.receipt?.state === "created"
   return (
     <Panel title="Required evidence">
       <ul
@@ -91,7 +96,10 @@ export function EvidenceEditor({
           })
         }}
       >
-        <fieldset disabled={busy || stale} className="grid min-w-0 gap-4">
+        <fieldset
+          disabled={busy || stale || locked}
+          className="grid min-w-0 gap-4"
+        >
           <Choice
             label="Evidence type"
             value={field}

@@ -16,8 +16,8 @@ export function Field({
 }: ComponentProps<typeof Input> & { label: string; hint?: string }) {
   const id = useId()
   return (
-    <label className="grid min-w-0 gap-2 text-sm font-medium" htmlFor={id}>
-      {label}
+    <div className="grid min-w-0 gap-2 text-sm font-medium">
+      <label htmlFor={id}>{label}</label>
       <Input
         id={id}
         className="h-11 rounded-lg text-base md:text-base"
@@ -32,7 +32,7 @@ export function Field({
           {hint}
         </span>
       )}
-    </label>
+    </div>
   )
 }
 export function TextField({
@@ -42,8 +42,8 @@ export function TextField({
 }: ComponentProps<typeof Textarea> & { label: string; hint?: string }) {
   const id = useId()
   return (
-    <label className="grid min-w-0 gap-2 text-sm font-medium" htmlFor={id}>
-      {label}
+    <div className="grid min-w-0 gap-2 text-sm font-medium">
+      <label htmlFor={id}>{label}</label>
       <Textarea
         id={id}
         className="min-h-28 rounded-lg text-base md:text-base"
@@ -58,7 +58,7 @@ export function TextField({
           {hint}
         </span>
       )}
-    </label>
+    </div>
   )
 }
 export function Choice({
