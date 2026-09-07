@@ -53,3 +53,11 @@ the worker desktop check replaced its own companion with the documented
 compile-only placeholder. Root requested a stable rebuilt executable window
 and will rerun the affected process suite. This is an outstanding artifact
 validation gate, not a passing result. Log `/tmp/ops-pi-independent-final-vitest.log`.
+
+The opt-in extracted per-launch asset fixture also passed independently:
+`cargo test --locked --no-default-features --lib
+pi_desk_extracted_assets_real_rpc_discovery -- --ignored`, same root-owned target,
+exit0, one pass in0.79s. It loads the actual installed pinned pi/adapter from
+extracted assets, discovers both commands and verifies model/session guard
+refusals with isolated synthetic catalogue metadata, zero model messages and
+zero provider connections. Log `/tmp/ops-pi-independent-extracted-assets.log`.
