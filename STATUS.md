@@ -12,7 +12,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 independent17 Rust,9 isolated Python,8 frontend tests and protected CLI review/held-task checks pass | Final committed report/gates and exact-head acceptance |
-| Telegram and beta validation | PR #10 independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Final committed report/gates and acceptance, then typed P1 extension |
+| Telegram and beta validation | PR #10 reviewed and merged; independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Typed P1 issue extension, final integrated beta/native checks |
 | Final Design Studio loops | Preliminary sequential seven-finding review committed; independent specialist active; shell fixes queued | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
@@ -267,3 +267,18 @@ shell labels/contrast, Pi field labels, complete mobile setup guidance and
 scoped banner contrast/readiness copy. Preserve model/credential semantics;
 actual CLI rechecks and normal relevant gates required. No automatic
 installation/login/inference, fourth worker or root product changes.
+
+## Telegram email review accepted and merged
+
+PR #10 reviewed at `c7a46acf30296a9e7c41a5a5c57d47afaeaa00e4`, merged as
+`c3cef09a896308b2501947e5aaafa533e36d9053`. Final source/fixture, exact
+borrowing, worker runtime/Clippy/frontend gates and independent full phone
+approval/receipt-only recovery pass. [Review](reports/review-telegram.md).
+Login accessibility correction is now accepted; live external phone access
+and typed P1 issue support are not claimed by this email checkpoint.
+
+Approvals is dispatched to `feat/step3-telegram-issues`, sameworktree/wR:p3,
+report `reports/telegram-issues.md`. Start docs/contract from acceptedmain,
+then integrate PR9 after acceptance before product wiring. Preserve closed
+typed snapshots, opaque authenticated locators, human gate and no-resend
+boundary; actual synthetic CLI issue phone review is required.

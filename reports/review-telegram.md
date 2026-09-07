@@ -1,3 +1,17 @@
+# Telegram review notification acceptance
+
+Accepted email checkpoint,2026-09-08. Reviewed PR10 at
+`c7a46acf30296a9e7c41a5a5c57d47afaeaa00e4`, merged as
+`c3cef09a896308b2501947e5aaafa533e36d9053`. Final report/source/fixture
+and pinned NOTICE mapping are reviewed. Worker desktop/server checks and
+Clippy,13 scoped+12 inherited Telegram tests,11 frontend tests,typecheck/export
+pass. Root independently verified13 Rust/11 frontend tests, full phone edited
+approval and BC14 receipt-only completion. Earlier review entries follow.
+
+This accepts opt-in email notifications/phone review; typed P1 issue review,
+final Design fixes and combined/native validation remain. No live bot/phone
+connectivity, provider credentials, model inference or deployment is claimed.
+
 # Telegram review — in progress
 
 2026-09-08. Draft PR10, early uncommitted implementation after contract
