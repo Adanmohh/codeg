@@ -144,8 +144,9 @@ deployment. Personal credentials are issued through the actual protected API,
 used only in memory, and never recorded in reports/screenshots/storage exports.
 All six work records and human/agent names explicitly say Synthetic.
 
-Two named CLI sessions remain: **intake-ui-a4350** (browser50564, synthetic
-owner Rania) and **intake-ui-b4350** (browser50617, synthetic member Yusuf).
+Two named CLI sessions remain: **intake-ui-a4350** (Node session daemon50564,
+synthetic owner Rania) and **intake-ui-b4350** (Node session daemon50617,
+synthetic member Yusuf). These PIDs identify the CLI controllers, not Chromium.
 A retains an unsaved contrast-check draft in task
 `479e4d43-8b78-48b9-93cc-bcbb9d9ea928`; its loaded DOM is fb3004dc, whose only
 later product change is selected-navigation styling. B loaded the final export.
