@@ -19,6 +19,7 @@ pub mod automation;
 pub mod backgrounds;
 pub mod business_identity;
 pub mod business_tasks;
+pub mod business_intake;
 pub mod chat_channel;
 pub mod commands;
 pub mod db;

@@ -71,4 +71,26 @@ will be recorded as implementation lands.
   business/Ops regressions, desktop/server/companion checks and Clippy. Guarded
   synthetic fixture/port coordination and actual Playwright CLI follow implementation.
 
-Checkpoint SHA / draft PR: pending first compiling checkpoint.
+First compiling prerequisite SHA: `60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d`.
+Draft PR: https://github.com/Adanmohh/codeg/pull/28 (main; do not merge yet).
+
+## Closed DTO/schema checkpoint
+
+`business_intake/types.rs` transcribes the accepted inputs/results, including
+write-only keys, explicit nullable fields, non-null optional credential replacement,
+page defaults, publication capabilities and restricted decision targets. The module
+and sole migration000011 register additively; endpoints are not exposed yet.
+Migration uses the existing explicit transaction/foreign-key/retained-history pattern.
+Reader/access/claim implementation is in progress separately; no readiness control
+is enabled by a schema checkpoint.
+
+Locked offline server check: exit0,36.87s; six temporary unused-consumer warnings
+remain (task prepare/link, three intake error helpers, write-only secret field).
+`cargo test --locked --offline --no-default-features --lib business_intake::tests`
+with the same new isolated target: exit0,2 passed/0 ignored,0.04s execution.
+These cover closed/spoof/secret-header/null input rejection and fresh migration
+with cross-org member-FK rejection and five retained table registrations; they
+do not establish upgrade of a populated database or complete B authorization.
+
+Root reserved UI4350, own synthetic backend4351/upstream4352. Availability will
+be checked immediately before a coordinated launch. No new listener exists yet.

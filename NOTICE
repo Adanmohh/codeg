@@ -811,3 +811,12 @@ human/agent rule. Opaque source-link activity contains no private source text.
 The earlier approved IntroMail task mapping and all exclusions remain unchanged;
 no additional IntroMail, GPL or AGPL code is copied. Installed SeaORM1.1.19 and
 SQLx SQLite0.8.6 transaction sources are API references only, not code ports.
+
+The intake DTOs and m20260908_000011_business_intake.rs transcribe the accepted
+application contracts670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5 and
+18be55edc276713fc6d46d075baec363245ba285. Migration transaction, composite
+organization foreign keys and retained-history triggers adapt the same accepted
+Codeg src-tauri/src/db/migration/m20260908_000010_business_tasks.rs at086eee48.
+Closed serde inputs and safe AppCommandError projections reuse
+business_identity/{types,mod}.rs and business_tasks/types.rs at that source.
+No third-party schema, source-key framework, dependency or copyleft code is added.
