@@ -305,3 +305,5 @@ that merge inspection. No product implementation is delegated to root.
 - Rebrand dispatched to new `fix/design-ops` from accepted main, same pane/worktree, report `reports/design-ops-fixes.md`, owned port 4326/export. Required locale edit preservation, RTL and accurate Ops receipt/internal copy corrections with actual CLI and Design Studio rechecks. Its previous 4322 fixture is closed; evidence is retained.
 - Approvals unblocked to integrate accepted host into PR #12 and implement the accepted typed issue phone-review contract using its owned 4323 fixture.
 - Tickets continues the five shell/Pi design corrections first; a separate Pi P1 cached-read/issue-proposal branch follows acceptance. Three Herdr workers maximum, all Astra/max and docs-first rules retained. Root writes no product code.
+
+- Accepted-host main rebuild passed: static frontend, real server/companion and isolated Python host import. Existing 4318 test database upgraded through migrations 000006/000007; actual Playwright CLI Ops/intake navigation and inspected screenshots pass. [Upgrade evidence](reports/browser-step2-main-upgrade.md). Final design changes and native bundle are still pending.
