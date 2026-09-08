@@ -21,6 +21,9 @@ use sea_orm::{
 };
 use std::{path::Path, sync::Arc, time::Duration};
 
+#[path = "issues.rs"]
+mod issues;
+
 struct EngineAccess {
     engine: Arc<TaskEngine>,
     entered: tokio::sync::Notify,

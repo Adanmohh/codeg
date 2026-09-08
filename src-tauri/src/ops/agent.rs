@@ -51,7 +51,7 @@ pub async fn context(db: &DatabaseConnection, ctx: &RunContext) -> Result<Contex
     })
 }
 
-pub(super) async fn require_live<C: ConnectionTrait>(
+pub(crate) async fn require_live<C: ConnectionTrait>(
     db: &C,
     ctx: &RunContext,
 ) -> Result<(), DbError> {

@@ -144,6 +144,8 @@ pub fn err(id: Value, code: i64, message: impl Into<String>) -> JsonRpcResponse 
 pub struct CompanionFeatures {
     /// Closed Desk read/draft/proposal tools. No review or execution methods.
     pub desk: bool,
+    /// Fixed Hafidh cached reads only. No Desk mutation or generic tool group.
+    pub intake: bool,
     pub delegation: bool,
     pub feedback: bool,
     pub ask: bool,
@@ -168,6 +170,7 @@ impl CompanionFeatures {
         let Some(s) = raw else {
             return Self {
                 desk: false,
+                intake: false,
                 delegation: true,
                 feedback: false,
                 ask: false,
@@ -179,6 +182,7 @@ impl CompanionFeatures {
         };
         let mut f = Self {
             desk: false,
+            intake: false,
             delegation: false,
             feedback: false,
             ask: false,
@@ -190,6 +194,7 @@ impl CompanionFeatures {
         for tok in s.split(',').map(str::trim).filter(|t| !t.is_empty()) {
             match tok {
                 "desk" => f.desk = true,
+                "intake" => f.intake = true,
                 "delegation" => f.delegation = true,
                 "feedback" => f.feedback = true,
                 "ask" => f.ask = true,
@@ -205,8 +210,8 @@ impl CompanionFeatures {
 
     /// Whether the named MCP tool is exposed under the enabled feature groups.
     pub fn allows_tool(&self, name: &str) -> bool {
-        if crate::acp::desk::DeskTool::from_name(name).is_some() {
-            return self.desk;
+        if let Some(tool) = crate::acp::desk::DeskTool::from_name(name) {
+            return if tool.is_cached_read() { self.intake } else { self.desk };
         }
         match name {
             "check_user_feedback" => self.feedback,
@@ -417,12 +422,14 @@ pub async fn dispatch_line(
             };
             remove_disabled_agents_from_delegate_enum(&mut tools, &ctx.disabled_agents);
             append_custom_agents_to_delegate_enum(&mut tools, &ctx.custom_agents);
-            if ctx.features.desk {
+            if ctx.features.desk || ctx.features.intake {
                 if let (Some(tools), Ok(desk)) = (
                     tools.as_array_mut(),
                     serde_json::from_str::<Vec<Value>>(crate::acp::desk::SCHEMA),
                 ) {
-                    tools.extend(desk);
+                    tools.extend(desk.into_iter().filter(|t| {
+                        t["name"].as_str().is_some_and(|name| ctx.features.allows_tool(name))
+                    }));
                 }
             }
             LineAction::Respond(ok(id, json!({ "tools": tools })))
@@ -1613,6 +1620,7 @@ mod tests {
         // keep seeing exactly the three delegation tools.
         ctx_with(CompanionFeatures {
             desk: false,
+            intake: false,
             delegation: true,
             feedback: false,
             ask: false,
@@ -2205,6 +2213,7 @@ mod tests {
 
     const FEEDBACK_ONLY: CompanionFeatures = CompanionFeatures {
         desk: false,
+        intake: false,
         delegation: false,
         feedback: true,
         ask: false,
@@ -2215,6 +2224,7 @@ mod tests {
     };
     const BOTH: CompanionFeatures = CompanionFeatures {
         desk: false,
+        intake: false,
         delegation: true,
         feedback: true,
         ask: false,
@@ -2225,6 +2235,7 @@ mod tests {
     };
     const ASK_ONLY: CompanionFeatures = CompanionFeatures {
         desk: false,
+        intake: false,
         delegation: false,
         feedback: false,
         ask: true,
@@ -2235,6 +2246,7 @@ mod tests {
     };
     const SESSIONS_ONLY: CompanionFeatures = CompanionFeatures {
         desk: false,
+        intake: false,
         delegation: false,
         feedback: false,
         ask: false,
@@ -2574,6 +2586,7 @@ mod tests {
 
     const AUTOMATIONS_ONLY: CompanionFeatures = CompanionFeatures {
         desk: false,
+        intake: false,
         delegation: false,
         feedback: false,
         ask: false,
@@ -2584,6 +2597,7 @@ mod tests {
     };
     const TASKBOARD_ONLY: CompanionFeatures = CompanionFeatures {
         desk: false,
+        intake: false,
         delegation: false,
         feedback: false,
         ask: false,

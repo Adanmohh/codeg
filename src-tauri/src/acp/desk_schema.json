@@ -212,5 +212,73 @@
       },
       "additionalProperties": false
     }
+  },
+  {
+    "name": "desk_propose_issue",
+    "description": "Propose an existing human-prepared issue draft and positive revision for human review. No approval or execution. Current source freshness and human evidence are required; missing/ambiguous product requires operator configuration and expired sources require operator refresh.",
+    "inputSchema": {
+      "type": "object",
+      "required": [
+        "draftId",
+        "expectedRevision"
+      ],
+      "properties": {
+        "draftId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hafidh_feedback_list",
+    "description": "List up to ten cached public TestFlight records for the live task folder and account. Page is local, not an upstream cursor. This never fetches or mints freshness. Missing/ambiguous product binding requires operator configuration; absent/expired cache requires operator import/refresh in Bug intake.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hafidh_feedback_get",
+    "description": "Read one scoped cached public TestFlight record and human-prepared draft ID/revision. Unlike the upstream Python tool, this does not revalidate upstream or mint freshness. Explicit missing/unverified/expired/unavailable cache requires operator import/refresh; missing/ambiguous product requires operator configuration. No reporter identity, proofs or private fields.",
+    "inputSchema": {
+      "type": "object",
+      "required": [
+        "ulid"
+      ],
+      "properties": {
+        "ulid": {
+          "type": "string",
+          "pattern": "^[0-7][0-9A-HJKMNP-TV-Z]{25}$",
+          "minLength": 26,
+          "maxLength": 26
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "hafidh_intake_status",
+    "description": "Read local cached intake availability/count for the live task folder and account. No upstream status request or freshness update; in-app feedback is unavailable. Missing/ambiguous product requires operator configuration. An operator must import or refresh sources; use cached get for per-source freshness.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
   }
 ]

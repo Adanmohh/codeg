@@ -8,6 +8,7 @@ use crate::db::entities::work_task::{Model, WorkTaskStatus};
 use crate::db::error::DbError;
 use crate::db::service::{ops_approvals::ProposalOutcome, work_task_service};
 use crate::ops::{agent, review};
+use crate::ops_intake_host::{agent as intake, types::HostError};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use serde_json::{json, Value};
 
@@ -20,6 +21,28 @@ struct ContextInput {}
 struct ProposeReplyInput {
     draft_id: i32,
     expected_revision: i32,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+struct ProposeIssueInput {
+    draft_id: String,
+    expected_revision: i32,
+}
+
+fn intake_error(error: HostError) -> DeskError {
+    match error {
+        HostError::NotConfigured => DeskError::ProductMissing,
+        HostError::AmbiguousProduct => DeskError::AmbiguousProduct,
+        HostError::StaleSource => DeskError::CacheExpired,
+        HostError::InvalidEvidence => DeskError::EvidenceRequired,
+        HostError::SeverityRequired => DeskError::SeverityRequired,
+        HostError::InvalidInput => DeskError::InvalidInput,
+        HostError::Conflict | HostError::TaskRequired => DeskError::Stale,
+        HostError::AccessDenied => DeskError::Denied,
+        HostError::StorageUnavailable => DeskError::Storage,
+        HostError::AdapterMissing | HostError::SourceUnavailable => DeskError::Unavailable,
+    }
 }
 
 fn input<T: DeserializeOwned>(value: Value) -> Result<T, DeskError> {
@@ -131,6 +154,22 @@ impl TaskEngine {
         };
         let db = &self.db.conn;
         match request.tool {
+            DeskTool::HafidhIntakeStatus => value(intake::cached_status(db, &ctx, input(request.input)?).await.map_err(intake_error)?),
+            DeskTool::HafidhFeedbackList => value(intake::cached_list(db, &ctx, input(request.input)?).await.map_err(intake_error)?),
+            DeskTool::HafidhFeedbackGet => value(intake::cached_get(db, &ctx, input(request.input)?).await.map_err(intake_error)?),
+            DeskTool::DeskProposeIssue => {
+                let draft: ProposeIssueInput = input(request.input)?;
+                let proposal = intake::prepare_and_propose(db, &ctx, &draft.draft_id, draft.expected_revision).await.map_err(intake_error)?;
+                if proposal.status != "pending" { return Err(DeskError::Denied) }
+                // PreparedIssue contains proof objects and binding digests. Keep
+                // those inside the host, including the rendered body which
+                // carries evidence references. Return only public metadata
+                // and a review locator; never an execution capability.
+                Ok(json!({ "proposalId": proposal.proposal_id, "status": "pending",
+                    "draftId": draft.draft_id, "submittedRevision": draft.expected_revision,
+                    "title": proposal.prepared.outgoing.title,
+                    "labels": proposal.prepared.outgoing.labels }))
+            }
             DeskTool::DeskContext => {
                 let _: ContextInput = input(request.input)?;
                 let context = agent::context(db, &ctx).await.map_err(ops_error)?;

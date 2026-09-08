@@ -538,3 +538,32 @@ The same scoped accessibility follow-up extends Codeg v0.30.4
 src/components/settings/settings-shell.tsx at the immutable commit above,
 using the existing translated Navigation label and AppTitleBar size override.
 Drawer navigation, dismissal and settings persistence are unchanged.
+
+Pi P1 cached intake and issue proposal follow-on
+The existing MIT Pi extension/broker above is extended at the same immutable
+pins: badlogic/pi-mono v0.85.1 d981de1229ef899957bbe968bc8dcda02a21f477,
+packages/coding-agent/examples/extensions/confirm-destructive.ts,
+packages/coding-agent/src/core/extensions/{types,runner,loader}.ts,
+packages/coding-agent/{docs/rpc.md,src/modes/rpc/rpc-mode.ts};
+nicobailon/pi-mcp-adapter v2.32.1 10a45367e033a32026987a75d6f401e37340c86f,
+types.ts, index.ts, config.ts, server-manager.ts, init.ts, metadata-cache.ts,
+tool-approval.ts and __tests__/tool-approval.test.ts. The original Mario Zechner
+and Nico Bailon MIT copyright/permission notices above and the extracted
+integrations/pi-desk/LICENSE remain unchanged. No new third-party code or
+dependency upgrade is introduced; fixed-server configuration and closed DTOs
+are integration glue over those installed contracts.
+
+Companion feature filtering reuses xintaofei/codeg v0.30.4
+6f6bd648b206412644842a98d9ffeebf57292bed,
+src-tauri/src/acp/delegation/{companion,listener,transport}.rs and
+src-tauri/src/bin/codeg_mcp.rs, under the retained Apache-2.0 LICENSE.
+The public cache projection/transaction glue reuses accepted Adanmohh/codeg
+PR9 8703e00fae2e1c92e045936b140b83012cfe0f57,
+src-tauri/src/ops_intake_host/{agent,store,review,types,tests}.rs and
+tests/{fixture,browser}.rs, with accepted PR8
+44e30733e6a83f9b7e73f65a8487cf1a87075308,
+src-tauri/src/{acp/pi_desk,work_task/desk}.rs and work_task/desk/tests.rs.
+Ops' live-run validator and intake's SourceRef validator are reused with
+crate-only visibility. Accepted host validation/gating and human import,
+evidence, review and dispatch remain authoritative. Stable Pi identity retains
+the owner-owned IntroMail identity.py semantics at the immutable pin above.
