@@ -5,26 +5,27 @@ Docs-only worker: rebrand, branch **docs/business-intake-ui**. Root accepted
 **91a69f339e99266b35bb912ae7d1cb155a6acd76**, merged as
 **56c3ad91fcf5398ed2b6746f770fd88bd0f54c4f**. This follow-up starts from accepted
 main **2233cd4366a38f22ca308dcc81191be4489b40e5** and verifies the newly pinned
-contract: **Q2–Q4 fit the UI flow; Q1 remains open**. Implementation still awaits
-root's complete contract acceptance and dispatch. No B endpoint, provider
-connection or passing UI result is claimed by this plan.
+contract: **Q1–Q4 are closed for UI consistency at 670af9ca; no remaining UI
+contract defect was found**. Implementation still awaits root's complete contract
+acceptance and dispatch. No B endpoint, provider connection or passing UI result
+is claimed by this plan.
 Follow-up draft: [PR27](https://github.com/Adanmohh/codeg/pull/27).
 
 Contract authority: tickets' [PR25 draft at
-85f6001f2fa8f9d33748ceddbf7980ce68942ede](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md).
+670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md).
 Read the complete local draft first, then verified identical bytes through
 `gh api` at that immutable commit: SHA256
-**0110c0c7e5ec3b608821deda40ac974d6eb751d359ea1f686873503f3bb64f90**.
-This supersedes the plan's original 79a92294 contract reference. Its operations
-remain proposed implementation contracts, not existing production APIs.
+**6d4be7f3be2c41264ab3bb9c27311e879306a75af0aaae6c0e240f434c874dbd**.
+This supersedes the plan's earlier 79a92294/85f6001f contract references. Its
+operations remain implementation contracts, not existing production APIs.
 
 The serializable draft, passage-only rebase, restricted disclosure, durable
 rediscovery/decision and bounded safe-error contracts are now explicit at this
 pin. The existing authorized task snapshot plus exact target revision/domain
-checks also closes text-free link review without a new preview entity. No UI
-objection remains for Q2–Q4. The protected access seam is now published at
+checks also closes text-free link review without a new preview entity. The
+canonical protected access seam at
 [18be55edc276713fc6d46d075baec363245ba285](https://github.com/Adanmohh/codeg/blob/18be55edc276713fc6d46d075baec363245ba285/docs/contracts/business-intake-access.md),
-but Q1 still awaits its integration with the intake DTOs. Read all 307 lines
+incorporated by the final intake pin, defines setup once. Read all 307 lines
 locally, then verified identical `gh api` bytes: SHA256
 **2d3312aa9b85e3f2af5763785b248a6e55ccc06a71c39be8c5962bb505fd4675**.
 No role, empty list or client guess replaces the protected setup contract.
@@ -121,6 +122,8 @@ source/history retained, identical reimport does not seed it again) from “Disc
 unsaved edits” (leave an editor without saving its local changes). Closing a dirty
 editor offers Keep editing; it never silently calls the terminal discard route.
 Accepted/linked/discarded candidates show history, not another create action.
+Follow the explicit discard capability: a pending candidate with current read+
+triage permission can be discarded without fresh passages or a task destination.
 
 ## Visibility, readiness and recovery
 
@@ -135,14 +138,17 @@ copy. Plain text renders as content, including instruction-like text.
 | State / event | User-facing recovery and required behavior |
 | --- | --- |
 | Missing/disabled binding, no source grants | Honest setup or “No sources available to you”. Do not distinguish hidden-source existence or expose forbidden counts. An actual operator may use the accepted protected setup flow; a member sees a concise administrator handoff, never legacy settings or a credential prompt. |
+| Binding unavailable / owner or resource drift | The allowlisted binding_unavailable reason permits a generic “Review access and setup” action for canManageSetup, or an administrator handoff for members. Status/grant inspection and protected same-owner update are available without exposing the private owner revision. Revalidation changes the epoch and requires fresh source access. |
 | Configured but unverified | “Access has not been checked”; explicit authorized import/refresh, no green connected claim. Provider summary readiness remains independent of connection and passage availability. |
-| Expired access or refresh begins | Hide private passages/returned drafts, disable decisions and clear confirmation. disclosure=metadata_only returns empty passages and null draft/suggestions; hasPreparedDraft distinguishes withheld content from a never-prepared draft. A failed refresh cannot restore freshness. Respect accessValidUntil and server access state; the 300-second ceiling is not a client-issued grant. |
+| Initial list observation | SourceSummary.revision is null before the first validated detail. Show “Not yet read” without a fabricated version or available passages; list discovery does not grant freshness. |
+| Expired access or refresh begins | Hide private passages/returned drafts, block passage editing/publication and clear confirmation; discard follows its separate current capability. disclosure=metadata_only returns empty passages and null draft/suggestions; hasPreparedDraft distinguishes withheld content from a never-prepared draft. Failed refresh cannot restore freshness. Respect accessValidUntil and server access state; the 300-second ceiling is not a client-issued grant. |
+| Fresh source, restricted draft destination | Fresh source access can coexist with hasPreparedDraft=true and draft=null. Label the saved draft unavailable with current access; do not treat it as never prepared or hydrate cached task/member data. Use current action flags and publicationDomains, never a guessed destination. |
 | Successful fresh refresh, same source | Re-read current candidate and capabilities; preserve an authorized local edit deliberately, then save/review again. No automatic acceptance or source-to-task mutation. |
-| Source changed / A→B→A | After fresh access revalidation, label retained passages/draft with candidate.sourceRevision and the current source with source.revision. Load replacement passages from sources/get. Explicit select/edit checks current source and candidate revisions, adopts the current base and clears requiresRebase; clear confirmation and review again. Reading alone never rebases. |
+| Source or access changed / A→B→A | After fresh access revalidation, label retained passages/draft with candidate.sourceRevision and the current source with source.revision. Load replacement passages from sources/get. A changed prepared access epoch requires rebase even if text is unchanged. Explicit select/edit checks current revisions and epoch, adopts the current base and clears requiresRebase; clear confirmation and review again. Reading alone never rebases. |
 | Candidate edit or target task 409 | Lock mutations and retain the local draft. Load current authorized state, show base and current status/revisions, then offer explicit adoption. Do not relabel the stale header as current, overwrite another human or reuse a checked confirmation. |
 | Session 401 / source revoked / hidden 404 | Existing session 401 closes the business client and clears session state. Provider rejection must not become authentication_failed/401. Source-specific denial removes sensitive DOM/state and late responses; never show a cached transcript as an offline fallback. An independently authorized task remains governed by its own task access. |
 | Another import is busy / retry later | Show status and the returned next permitted attempt time. Disable conflicting advance while busy. Do not invent a lease token, steal ownership or run an unconditional retry loop. |
-| Disconnect/restart | Stop local advancement. imports/list requires current read+import grants and returns 50 visible jobs/page. Unfinished means queued/running/waiting; history includes terminal jobs. A currently authorized human resumes as themselves, never as a reconstructed requester. Terminal jobs need an explicit new bounded start, not advance. |
+| Disconnect/restart | Stop local advancement. imports/list requires current read+import grants and returns up to 50 visible jobs/page. ImportView is unfinished/all, default unfinished and page0. Unfinished means queued/running/waiting; history includes terminal jobs. A currently authorized human resumes as themselves, never as a reconstructed requester. Terminal jobs need an explicit new bounded start, not advance. |
 | Mutation response lost | Reconcile CandidateDetail.decision under current source/task authority; restricted target returns no task ID/title/revision. Retain the original operationId/body for permitted replay; never call ordinary create or use a fresh accept key to recover uncertainty. Replaying an advance with a live claim only returns status; after timeout/expiry, an explicit new advance key starts a fenced attempt. |
 | Import cap / invalid provider response | Explain partial coverage or “Window limit reached”, with an explicit narrower/repeated window. HTTP-200 errors, null/malformed/oversized responses are failures, not an empty successful list or full synchronization. |
 
@@ -169,50 +175,53 @@ not a claim that a new intake component/helper already exists.
 
 ## DTO coordination — exact closure status
 
-These are small contract-completion requests, not requests for scope or money.
-Implementation waits for root acceptance; this docs task can finish with explicit
-unresolved dependencies. Backend responses remain the authority.
-Root requires all four to close in the immutable B contract before implementation.
+Rechecked the existing Q1–Q4 checklist against frozen 670af9ca and its canonical
+18be55ed access reference. All four fit the interaction plan; no new survey or
+contract surface is proposed. Backend responses remain the authority.
 
-1. **Q1 — open integration, tickets + approvals: capabilities/setup.** Access
-   pin 18be55ed closes the operator/member binding projections, grant operations,
-   publication ceilings and protected setup authority. Integrate that canonical
-   list/status in the final intake pin alongside exact Candidate.capabilities,
-   publicationDomains and destination-Read disclosure. At 85f6001f, import flags,
-   accessValidUntil and source disclosure are explicit; source revision
-   nullability before validated detail remains an announced correction. A member
-   role or an empty binding list never determines setup authority or a grant.
-2. **Q2 — closed for UI fit at 85f6001f: rebase/disclosure.** The
-   [selection/rebase contract](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md#L230-L262)
-   and [explicit DTOs](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md#L328-L337)
-   close nullable PreparedTask, both revisions, pending/fresh validation and
-   requiresRebase transitions. Freshly authorized old-version content is labelled
-   separately from current replacement passages; metadata-only returns none of
-   that private text. Existing Detail plus exact target CAS closes text-free link
-   without a PreparedTask or another persistent preview. Confirmation resets on
-   every selection/draft/target/source/candidate change. No UI objection.
-3. **Q3 — closed for UI fit at 85f6001f: rediscovery/result.**
-   [Claim recovery](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md#L187-L213)
-   and [result/history DTOs](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md#L337-L351)
-   let a currently granted human rediscover jobs and terminal decisions without
-   cached IDs or an old operationId. Restricted task targets expose no identifier,
-   title or revision. Status replay during a live claim differs explicitly from
-   a new, fenced advance after expiry; neither licenses a fresh uncertain accept.
-   Terminal history cannot be restarted through advance. No UI objection.
-4. **Q4 — closed for UI fit at 85f6001f: deadlines/safe reasons.** The
-   [12-second provider / 15-second core limits](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md#L82-L85)
-   fit the existing 20-second HTTP timer. The
-   [finite reason and recovery contract](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md#L353-L385)
-   preserves generic task/auth behavior and adds only optional intakeReason from
-   exact allowlisted business.intake keys; unknown/server prose is not rendered.
-   Provider rejection never closes a valid member session. The whole backend
-   bound includes final writer work for HTTP and native: the existing HTTP abort
+1. **Q1 — closed at 670af9ca: setup, capabilities and disclosure.**
+   [Binding authority/revalidation](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md#L150-L198)
+   uses the canonical access list/status, actual-operator setup, zero initial
+   grants and explicit retained/current/future scope. The
+   [closed source/candidate DTOs](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md#L419-L460)
+   pin nullable initial source revision, select/edit/accept/link/discard flags and
+   publicationDomains. A fresh source with an unreadable destination returns
+   hasPreparedDraft=true/draft=null. binding_unavailable plus the generic protected
+   “Review access and setup” action closes the owner-drift recovery detail without
+   exposing private revisions or introducing another readiness route.
+2. **Q2 — closed at 670af9ca: rebase and exact review.**
+   [Prepared access epochs](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md#L268-L277)
+   and [selection/decision rules](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md#L328-L365)
+   require current-passage rebase after content or authority changes, preserving
+   null/existing draft and resetting confirmation. Reading never rebases.
+   Normalization does not rewrite title/notes or reinterpret calendar dates.
+   Existing task Detail plus exact taskId/revision/domain checks supports text-free
+   link with no PreparedTask or persistent target preview. Terminal flags are false;
+   discard has its explicit read+triage rule, independent of publication freshness.
+3. **Q3 — closed at 670af9ca: durable rediscovery and results.**
+   [Claim recovery](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md#L288-L314)
+   and [terminal/import DTOs](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md#L461-L476)
+   preserve current-human recovery and task-target redaction. ImportView is the
+   explicit unfinished/all union, default unfinished/page0. Live-claim replay
+   returns status; a new fenced advance after expiry differs from an uncertain
+   accept, which must reconcile its existing decision. Terminal imports cannot
+   restart through advance. The shared source attempt fence prevents an older
+   response from a different import restoring freshness.
+4. **Q4 — closed at 670af9ca: deadlines and safe reasons.**
+   [Provider/core limits](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md#L107-L114)
+   remain 12/15 seconds below the existing 20-second HTTP timer. The
+   [finite error/recovery contract](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md#L479-L516)
+   includes binding_unavailable through existing configuration_invalid, retaining
+   generic task/auth behavior and an intake-only allowlist. Unknown/server prose
+   is not rendered; provider rejection never closes a valid member session.
+   The backend bound includes final writer work for HTTP/native; HTTP abort alone
    cannot cancel Tauri invoke. Precommit expiry rolls back with fenced recovery;
-   a lost committed result is reconciled, never assumed failed. No UI objection.
+   a lost committed result is reconciled, never assumed failed.
 
-These are verified documentation agreements, not implemented or tested guarantees.
-The UI-facing work remaining before dispatch is Q1; root still owns full contract
-review, including the atomic task seam and protected setup prerequisites.
+This closes the UI contract checklist. Implementation of strict credential-store
+reads, owner/source fences, atomic task helpers and the actual protected UI remains
+future work with the existing acceptance gates; root acceptance/dispatch is still
+required. No tested runtime guarantee follows from this documentation agreement.
 
 **Q1 access review at 18be55ed:** canonical bindings/list returns canManageSetup
 and BindingView; status returns the same checked projection. Only the actual
@@ -233,21 +242,11 @@ responses and operation receipts reconcile uncertainty; no guessed new binding.
 Owner revision drift pauses use. The pinned bindings/update operation
 revalidates the same owner and changes the epoch; fresh source access is then
 required. Changing owner/resource needs a new binding, never silent migration.
-One final UI detail remains to reconcile: the 18be55ed status DTO has no explicit
-owner-drift reason, so false use capabilities alone cannot identify that cause.
-Use a safe final reason or document a generic protected revalidation affordance;
-do not infer the cause or expose private authority revisions. No new endpoint is
-needed. The strict existing-store writer read and staged-secret/DB failure bounds
-are implementation prerequisites, not UI guarantees already tested here.
-
-**Still announced pending the integrated intake pin:** nullable SourceSummary
-revision before first validated detail; explicit candidate select/edit/accept/
-link/discard flags and publicationDomains; withholding PreparedTask without
-destination Read despite fresh source access. Render the initial observation
-without a guessed revision or passage decision; distinguish withheld draft from
-unprepared draft using the final disclosure shape. The access pin also requires
-the source-scoped attempt fence across imports. These refinements fit the flow,
-but are not all fields already present at 85f6001f; Q1 stays open until reconciled.
+The 670af9ca binding_unavailable reason and generic “Review access and setup”
+affordance resolve the prior diagnostic gap. The UI never guesses the cause from
+false flags or exposes private authority revisions. The strict existing-store
+writer read and staged-secret/DB failure bounds are implementation prerequisites,
+not UI guarantees already tested here.
 
 Email/Hafidh also need the contract's protected mapping and pure projections
 before capture entry points. Public email message selection must exclude private
@@ -329,12 +328,16 @@ report. IntroMail **0bd24dfe284b888aa9f602fa1fd00e337ea38874** remains an approv
 pattern source only where provenance is checked; no AGPL-inspired source-key,
 dispatcher or authorization path is copied into this plan or future UI seam.
 
-The reconciliation read all 456 contract lines locally before `gh api` at
-85f6001f; both copies have the SHA256 above, exit 0. Compared the accepted client
-timer/error/native branches directly; no dependency API change is proposed.
+The final reconciliation read all 591 contract lines locally before `gh api` at
+670af9ca; both copies have the SHA256 above, exit 0. Compared the accepted client
+timer/error/native branches directly and confirmed ConfigurationInvalid in
+src-tauri/src/app_error.rs before using the new safe reason. An initial filename
+probe exited 2; rg --files located the actual file, then the source read exited 0.
+No dependency API change is proposed.
 The complete 307-line access seam at 18be55ed was likewise read locally and
-matched against exact-commit `gh api` bytes, exit 0; it is reviewed separately
-from the still-pending integrated intake pin.
+matched against exact-commit `gh api` bytes, exit 0; 670af9ca incorporates it.
+Read the full independent report at ca787542 and the final owner-report diff;
+these provide reconciliation context, not separate runtime evidence.
 Read the corresponding source-ledger passages without expanding the provider
 survey. `git fetch origin`, ancestry check and `git merge --ff-only origin/main`
 exited 0: the existing docs branch advances from its merged PR26 to 2233cd43.
@@ -346,9 +349,10 @@ belongs to this branch's change. `git diff --check` passes; no A gates were reru
 PR26's docs-only report/push/PR creation exited 0 and root merged it. This
 follow-up changes only the contract reconciliation in this report; no source,
 NOTICE, lockfile, protected planning document or fixture is edited by the worker.
-Root retains review/merge authority; Q1 completion remains with tickets/approvals.
+Root retains review/merge authority; Q1–Q4 have no remaining UI contract defect
+at the two immutable pins above. Implementation remains paused until dispatch.
 
 Reconciliation checkpoint **57b07ca81257421b9cbb414f7ac456c1bb39ea06** is pushed;
 `git commit`, `git push` and draft PR27 creation exited 0. The follow-up report
-records that checkpoint/PR, the separately pinned access seam and remaining Q1
-integration details; it adds no implementation scope or passing evidence.
+records that checkpoint/PR and the final 670af9ca/18be55ed Q1–Q4 closure; it adds
+no implementation scope or passing evidence.
