@@ -567,3 +567,17 @@ Ops' live-run validator and intake's SourceRef validator are reused with
 crate-only visibility. Accepted host validation/gating and human import,
 evidence, review and dispatch remain authoritative. Stable Pi identity retains
 the owner-owned IntroMail identity.py semantics at the immutable pin above.
+
+Drawer reduced-motion correction (2026)
+========================================
+Reuses xintaofei/codeg v0.30.4, Apache-2.0,
+6f6bd648b206412644842a98d9ffeebf57292bed:
+src/app/globals.css (.browser-tab-hover/.browser-tab-seat reduced-motion
+transition:none pattern), applied through one scoped Tailwind utility in
+src/components/ui/drawer.tsx. Original Apache LICENSE remains unchanged.
+Installed MIT dependencies were read as API/lifecycle references only:
+mui/base-ui v1.7.0, 254f4744f0a241c20697b9eeab33402f4469a081,
+packages/react/src/{drawer/popup/DrawerPopup.tsx,internals/useAnimationsFinished.ts}
+and docs/src/app/(docs)/react/handbook/animation/page.mdx;
+tailwindlabs/tailwindcss v4.1.18, 6db2a6d637ed12489f9fd5a64ca394d934eb14f4.
+No Base UI or Tailwind implementation is copied or ported.
