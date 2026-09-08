@@ -14,5 +14,7 @@ keyboard retry to workspace. Guards are0; owned browser/fixtures closed with
 the manual Rust fixture passing. An exploratory ambiguous alert locator was
 corrected in the probe only and retained as an attempt. No live credentials.
 
-Root final-export login recheck and refreshed native artifact follow; final
-specialist synthesis will close its separately retained low landmark finding.
+Root final-export login recheck at89fef6fd passes390/1280 main/form/error/retry
+and width assertions; invalid-state image inspected. Refreshed unsigned app
+build/startup also passes. Final specialist synthesis will close its separately
+retained low landmark finding, using the accepted code and targeted recheck.

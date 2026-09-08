@@ -1,7 +1,7 @@
 # Root final browser and artifact evidence
 
-Actual Playwright CLI0.1.18, accepted product through a8663104/4611d025.
-Final root export produced by native build at2fb83797; actual protected server
+Actual Playwright CLI0.1.18, accepted product through ff319380.
+Final root export refreshed by native build at89fef6fd; actual protected server
 on127.0.0.1:4318 with existing isolated test data. No live provider actions.
 
 - `drawer-recheck.json` and script: real requestAnimationFrame/getAnimations
@@ -16,6 +16,10 @@ on127.0.0.1:4318 with existing isolated test data. No live provider actions.
   six light/dark/rest/hover/focus samples pass, provider4→4. No group response
   overrides in the root run. Its browser was closed; attribution in the badge review.
 - `bundle-web-verification.json`: final app's1006 web files exactly match out/.
+- `login-recheck.json`: independent390/1280 main/form/error/retry assertions
+  pass on the refreshed export. Public synthetic token only; browser closed.
+  Earlier drawer/empty-state evidence at2fb83797 is unchanged by the two-tag
+  login correction; final binary hashes are in `bundle-binaries.json`.
 
 The initial backend-upgrade screenshot predates the final export and remains
 labelled as that checkpoint. Final screenshots are a bounded browser review,

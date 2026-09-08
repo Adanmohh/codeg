@@ -1,7 +1,7 @@
 # Phase 1 native build — passed
 
-The final unsigned debug app contains accepted Phase1 product through badge
-mergea8663104 and reduced-motion merge4611d025, built from root2fb83797.
+The final unsigned debug app contains accepted Phase1 product through login
+mergeff319380, including badge and reduced-motion corrections, built from root89fef6fd.
 The checkpoints below preserve earlier intermediate results; final evidence
 is recorded at the end. Combined Design Studio report acceptance is separate.
 
@@ -40,7 +40,7 @@ This compiles the real desktop runtime, but does not replace the existing
 bundle or establish a final frontend export. Packaging and isolated native
 startup remain pending the UI corrections.
 
-## Final package and isolated startup
+## First combined package and isolated startup checkpoint
 
 `CARGO_NET_OFFLINE=true CARGO_BUILD_JOBS=4 pnpm tauri build --debug --bundles app --no-sign --ci`
 passed, exit0. Before-build completed Next16.1.6 compilation/type checking,
@@ -76,3 +76,27 @@ tests pass, exit0,1.93s (`/tmp/ops-phase1-final-design-tests.log`), supplementin
 the earlier6158 frontend/178 Ops/13 Desk passes. This is native startup plus
 separate Chromium interaction evidence, not full WKWebView, signing, portability,
 live provider or successful Astra inference certification.
+
+## Final refresh including the login landmark
+
+After PR20 acceptance, repeated the same unsigned offline Tauri app build at
+root89fef6fd. Exit0: all33 static pages/type checking, real companion staging,
+native build33.20s and app packaging. The artifact path and app identity remain
+as above. Final binary sizes/hashes are in
+`reports/browser-phase1-final/bundle-binaries.json`; all1006 bundled web files
+again match the new out/ exactly, with zero missing/extra/different files.
+Log `/tmp/ops-phase1-app-build-final.log`.
+
+Started the refreshed artifact in the same isolated CODEG_HOME/CODEG_DATA_DIR,
+with the explicit root Python adapter path. Owned PID59320 stayed alive over
+30 seconds, reported no pending migrations,0 ERROR lines and no panic. Stopped
+only that process with TERM (expected143). Log
+`/tmp/ops-phase1-native-startup-final.log`. This rechecks the actual refreshed
+artifact; the earlier migration test remains separately recorded above.
+
+Root actual final-export Playwright CLI390/1280 passes one main enclosing the
+login heading/form, invalid-token error association, retry and workspace
+navigation, without horizontal overflow. Synthetic local token only; browser
+closed. Evidence `reports/browser-phase1-final/login-recheck.json` and inspected
+invalid-state images. No broad test rerun was needed for the two semantic tags;
+worker15 existing authentication/locator tests and focused gates pass.

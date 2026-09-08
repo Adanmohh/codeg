@@ -1,0 +1,14 @@
+{
+  "codeg-mcp": {
+    "bytes": 21710248,
+    "sha256": "f172816ea57717dfeab9744982c5dc69fe8ef18025f56285abf41dc28f11cd3f"
+  },
+  "codeg": {
+    "bytes": 305128968,
+    "sha256": "45cc0b09c02a1ef8fa9c89c186c747f6a9a9da6cf9b3b994f2e7aebe957af277"
+  },
+  "codeg-server": {
+    "bytes": 236515680,
+    "sha256": "158e63bbaa92dd5d9b04dee3f941fa15aa6bea252d0ba885a91c2c1e38820e62"
+  }
+}
