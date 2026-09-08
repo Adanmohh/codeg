@@ -1,6 +1,13 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ComponentProps,
+} from "react"
 import { useLocale } from "next-intl"
 import {
   ArrowRight,
@@ -15,6 +22,7 @@ import {
   Plus,
   RefreshCw,
   Search,
+  Settings2,
   Table2,
   Users,
   X,
@@ -27,7 +35,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer"
 import { cn } from "@/lib/utils"
-import type { BusinessClient } from "@/lib/business/client"
+import { BusinessError, type BusinessClient } from "@/lib/business/client"
 import type { BusinessContext, Member } from "@/lib/business/identity"
 import { useBusinessCopy } from "@/lib/business/copy"
 import {
@@ -46,6 +54,7 @@ import {
   Brand,
   controlClass,
   ErrorNotice,
+  Modal,
   Person,
   roleLabel,
 } from "./ui"
@@ -60,8 +69,16 @@ import {
   type SourceEntry,
 } from "@/components/business-intake/workspace"
 import { useIntakeCopy } from "@/lib/business/intake-copy"
+import {
+  isTenantSettingsView,
+  type TenantSettingsView,
+  type UpdateTenantSettings,
+} from "@/lib/business/settings"
+import { useSettingsCopy } from "@/lib/business/settings-copy"
+import { SettingsEditor } from "./settings-editor"
+import { WorkspaceAppearance, useWorkspaceAppearance } from "./appearance"
 
-type View = "mine" | "shared" | "review" | "people" | "sources"
+type View = "mine" | "shared" | "review" | "people" | "sources" | "settings"
 export function BusinessWorkspace({
   client,
   context,
@@ -75,12 +92,26 @@ export function BusinessWorkspace({
 }) {
   const copy = useBusinessCopy()
   const intakeCopy = useIntakeCopy()
+  const settingsCopy = useSettingsCopy()
   const locale = useLocale()
   const actor = context.member!
   const organizationId = context.organization!.id
   const [view, setView] = useState<"mine" | "shared" | "review">("mine")
   const [sourcesVisited, setSourcesVisited] = useState(false)
   const [peopleVisited, setPeopleVisited] = useState(false)
+  const [settingsVisited, setSettingsVisited] = useState(false)
+  const [settings, setSettings] = useState<TenantSettingsView | null>(null)
+  const [settingsError, setSettingsError] = useState<unknown>(null)
+  const [settingsLoading, setSettingsLoading] = useState(true)
+  const [settingsRefresh, setSettingsRefresh] = useState(0)
+  const settingsAccess = useMemo(
+    () => ({
+      get: () => client.identity("settings/get", {}),
+      update: (input: UpdateTenantSettings) =>
+        client.identity("settings/update", input),
+    }),
+    [client]
+  )
   const [activeTab, setActiveTab] = useState("work")
   const [sourceEntry, setSourceEntry] = useState<SourceEntry | null>(null)
   const entryRead = useCallback(() => setSourceEntry(null), [])
@@ -96,6 +127,7 @@ export function BusinessWorkspace({
   const [error, setError] = useState<unknown>(null)
   const [navOpen, setNavOpen] = useState(false)
   const [creating, setCreating] = useState(false)
+  const [leaving, setLeaving] = useState(false)
   const [openTasks, setOpenTasks] = useState<
     {
       id: string
@@ -111,6 +143,28 @@ export function BusinessWorkspace({
   useEffect(() => {
     contextCallback.current = onContext
   }, [onContext])
+  useEffect(() => {
+    let cancelled = false
+    setSettingsLoading(true)
+    setSettingsError(null)
+    void settingsAccess
+      .get()
+      .then((value) => {
+        if (cancelled) return
+        if (!isTenantSettingsView(value, organizationId))
+          throw new BusinessError("forbidden")
+        setSettings(value)
+      })
+      .catch((caught) => {
+        if (!cancelled) setSettingsError(caught)
+      })
+      .finally(() => {
+        if (!cancelled) setSettingsLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [settingsAccess, organizationId, settingsRefresh])
   useEffect(() => {
     const wide = window.matchMedia("(min-width: 1024px)")
     const resize = () => {
@@ -233,6 +287,7 @@ export function BusinessWorkspace({
     { id: "review", title: copy.review, icon: CircleCheck },
     { id: "sources", title: intakeCopy.sources, icon: BookOpen },
     { id: "people", title: copy.team, icon: Users },
+    { id: "settings", title: settingsCopy.title, icon: Settings2 },
   ] as const
   const title = navItems.find((item) => item.id === view)!.title
   const hint =
@@ -244,7 +299,9 @@ export function BusinessWorkspace({
   function navigate(next: View) {
     if (next === "sources") setSourcesVisited(true)
     if (next === "people") setPeopleVisited(true)
-    if (next === "sources" || next === "people") setActiveTab(next)
+    if (next === "settings") setSettingsVisited(true)
+    if (next === "sources" || next === "people" || next === "settings")
+      setActiveTab(next)
     else {
       setActiveTab("work")
       setView(next)
@@ -270,7 +327,7 @@ export function BusinessWorkspace({
     setActiveTab((current) => (current === id ? "work" : current))
   }
   function selectedNav(id: View) {
-    return id === "sources" || id === "people"
+    return id === "sources" || id === "people" || id === "settings"
       ? activeTab === id
       : activeTab === "work" && view === id
   }
@@ -291,7 +348,9 @@ export function BusinessWorkspace({
       <div className="mt-9 mb-3 min-w-0 px-2">
         <p className="text-muted-foreground text-xs">{copy.workspace}</p>
         <p className="mt-1 truncate text-sm font-semibold">
-          <bdi>{context.organization!.name}</bdi>
+          <bdi>
+            {settings?.settings.displayName ?? context.organization!.name}
+          </bdi>
         </p>
       </div>
       <nav className="space-y-1" aria-label={copy.workspace}>
@@ -339,7 +398,7 @@ export function BusinessWorkspace({
           <Action
             variant="ghost"
             className="mt-2 w-full justify-start px-0"
-            onClick={disconnect}
+            onClick={() => setLeaving(true)}
           >
             <LogOut aria-hidden="true" />
             {copy.disconnect}
@@ -634,6 +693,49 @@ export function BusinessWorkspace({
           },
         ]
       : []),
+    ...(settingsVisited
+      ? [
+          {
+            id: "settings",
+            label: settingsCopy.title,
+            icon: Settings2,
+            render: () =>
+              settings ? (
+                <SettingsEditor
+                  key={organizationId}
+                  initial={settings}
+                  access={settingsAccess}
+                  canManage={context.capabilities.manageTenantSettings === true}
+                  onApplied={setSettings}
+                />
+              ) : (
+                <section className="space-y-4 p-5 sm:p-6">
+                  <h1 className="text-2xl font-semibold tracking-tight">
+                    {settingsCopy.title}
+                  </h1>
+                  <p className="text-muted-foreground text-sm">
+                    {settingsCopy.hint}
+                  </p>
+                  {settingsLoading && <p role="status">{copy.loading}</p>}
+                  {settingsError != null && (
+                    <div
+                      role="alert"
+                      className="space-y-4 rounded-xl border p-4"
+                    >
+                      <p className="text-sm">{settingsCopy.failed}</p>
+                      <Action
+                        variant="outline"
+                        onClick={() => setSettingsRefresh((value) => value + 1)}
+                      >
+                        {copy.retry}
+                      </Action>
+                    </div>
+                  )}
+                </section>
+              ),
+          },
+        ]
+      : []),
     ...openTasks.map((task) => ({
       id: task.id,
       label: task.label,
@@ -667,63 +769,97 @@ export function BusinessWorkspace({
     })),
   ]
   return (
-    <div className="bg-background flex h-full min-w-0 overflow-hidden">
-      <aside className="bg-sidebar border-border hidden w-[224px] shrink-0 flex-col overflow-y-auto border-e p-4 lg:flex">
-        {navigation}
-      </aside>
-      <div className="flex min-w-0 flex-1 flex-col">
-        <header className="bg-background border-border flex shrink-0 items-center justify-between gap-3 border-b px-4 py-3 lg:hidden">
-          <Action
-            ref={menuRef}
-            variant="ghost"
-            size="icon"
-            className="size-11 p-0"
-            onClick={() => setNavOpen(true)}
-            aria-label={copy.menu}
-          >
-            <Menu aria-hidden="true" />
-          </Action>
-          <span className="min-w-0 truncate text-sm font-semibold">
-            <bdi>{context.organization!.name}</bdi>
-          </span>
-          <Brand compact />
-        </header>
-        <BusinessWorkbench
-          surfaces={surfaces}
-          activeId={activeTab}
-          onActivate={setActiveTab}
-        />
-      </div>
-      <Drawer
-        open={navOpen}
-        onOpenChange={setNavOpen}
-        modal
-        disablePointerDismissal={false}
-        swipeDirection={locale === "ar" ? "right" : "left"}
-      >
-        <DrawerContent
-          showCloseButton={false}
-          finalFocus={menuRef}
-          className="flex w-[min(320px,calc(100%-1rem))] flex-col overflow-y-auto rounded-2xl bg-sidebar p-5"
-        >
-          <DrawerTitle className="sr-only">{copy.workspace}</DrawerTitle>
-          <DrawerDescription className="sr-only">{copy.menu}</DrawerDescription>
+    <WorkspaceAppearance palette={settings?.settings.palette}>
+      <div className="bg-background flex h-full min-w-0 overflow-hidden">
+        <aside className="bg-sidebar border-border hidden w-[224px] shrink-0 flex-col overflow-y-auto border-e p-4 lg:flex">
           {navigation}
-        </DrawerContent>
-      </Drawer>
-      {creating && (
-        <CreateTask
-          client={client}
-          actor={actor}
-          members={members}
-          onClose={() => setCreating(false)}
-          onCreated={(detail) => {
-            setCreating(false)
-            openTask(detail.task.id, detail)
-            void reload()
-          }}
-        />
-      )}
-    </div>
+        </aside>
+        <div className="flex min-w-0 flex-1 flex-col">
+          <header className="bg-background border-border flex shrink-0 items-center justify-between gap-3 border-b px-4 py-3 lg:hidden">
+            <Action
+              ref={menuRef}
+              variant="ghost"
+              size="icon"
+              className="size-11 p-0"
+              onClick={() => setNavOpen(true)}
+              aria-label={copy.menu}
+            >
+              <Menu aria-hidden="true" />
+            </Action>
+            <span className="min-w-0 truncate text-sm font-semibold">
+              <bdi>
+                {settings?.settings.displayName ?? context.organization!.name}
+              </bdi>
+            </span>
+            <Brand compact />
+          </header>
+          <BusinessWorkbench
+            surfaces={surfaces}
+            activeId={activeTab}
+            onActivate={setActiveTab}
+            preferredLayout={settings?.settings.workspaceLayout}
+          />
+        </div>
+        <Drawer
+          open={navOpen}
+          onOpenChange={setNavOpen}
+          modal
+          disablePointerDismissal={false}
+          swipeDirection={locale === "ar" ? "right" : "left"}
+        >
+          <WorkspaceNavigationDrawer
+            showCloseButton={false}
+            finalFocus={menuRef}
+            className="flex w-[min(320px,calc(100%-1rem))] flex-col overflow-y-auto rounded-2xl bg-sidebar p-5"
+          >
+            <DrawerTitle className="sr-only">{copy.workspace}</DrawerTitle>
+            <DrawerDescription className="sr-only">
+              {copy.menu}
+            </DrawerDescription>
+            {navigation}
+          </WorkspaceNavigationDrawer>
+        </Drawer>
+        {creating && (
+          <CreateTask
+            client={client}
+            actor={actor}
+            members={members}
+            onClose={() => setCreating(false)}
+            onCreated={(detail) => {
+              setCreating(false)
+              openTask(detail.task.id, detail)
+              void reload()
+            }}
+          />
+        )}
+        {leaving && (
+          <Modal
+            title={copy.disconnectTitle}
+            description={copy.disconnectHint}
+            onClose={() => setLeaving(false)}
+          >
+            <div className="flex flex-wrap justify-end gap-3">
+              <Action variant="outline" onClick={() => setLeaving(false)}>
+                {copy.keepWorkspace}
+              </Action>
+              <Action onClick={disconnect}>{copy.disconnect}</Action>
+            </div>
+          </Modal>
+        )}
+      </div>
+    </WorkspaceAppearance>
+  )
+}
+
+function WorkspaceNavigationDrawer(
+  props: ComponentProps<typeof DrawerContent>
+) {
+  const appearance = useWorkspaceAppearance()
+  return (
+    <DrawerContent
+      {...props}
+      data-theme={appearance.palette}
+      className={cn(props.className, appearance.dark && "dark")}
+    />
   )
 }

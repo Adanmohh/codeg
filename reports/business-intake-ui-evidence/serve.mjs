@@ -7,10 +7,15 @@ import { resolve, extname, sep } from "node:path"
 
 const root = resolve(process.argv[2])
 const backend = 4351
+const workspaceBackend =
+  process.argv[5] === "--workspace-backend=4353" ? 4353 : backend
 const port = 4350
 if (
   process.argv[3] !== "--backend=4351" ||
-  process.argv[4] !== "--synthetic-intake-fixture"
+  process.argv[4] !== "--synthetic-intake-fixture" ||
+  (process.argv[5] !== undefined &&
+    process.argv[5] !== "--workspace-backend=4353") ||
+  process.argv.length > 6
 )
   throw Error("Requires the owned guarded synthetic B fixture on loopback4351")
 const operations = new Set([
@@ -23,6 +28,8 @@ const operations = new Set([
   "credentials/issue",
   "credentials/list",
   "credentials/revoke",
+  "settings/get",
+  "settings/update",
   ...[
     "list",
     "get",
@@ -64,6 +71,13 @@ const operations = new Set([
     "tasks/sources",
   ].map((op) => `intake/${op}`),
 ])
+const platformOperations = new Set([
+  "context",
+  "tenants/list",
+  "tenants/create",
+  "tenants/status",
+  "tenants/reissue-owner-credential",
+])
 const calls = []
 const sockets = new Set()
 const mime = {
@@ -94,6 +108,7 @@ const server = createServer(async (req, res) => {
       JSON.stringify({
         synthetic: true,
         backendPort: backend,
+        workspaceBackendPort: workspaceBackend,
         export: process.argv[2],
         calls,
       }),
@@ -105,8 +120,12 @@ const server = createServer(async (req, res) => {
     const allowed =
       req.method === "POST" &&
       !url.search &&
-      path.startsWith("/api/business/") &&
-      operations.has(path.slice(14))
+      ((path.startsWith("/api/business/") && operations.has(path.slice(14))) ||
+        (path.startsWith("/api/platform/business/") &&
+          platformOperations.has(path.slice(23))))
+    const target = path.startsWith("/api/business/intake/")
+      ? backend
+      : workspaceBackend
     const entry = { method: req.method, path, status: null }
     calls.push(entry)
     if (!allowed || !backend) {
@@ -123,7 +142,7 @@ const server = createServer(async (req, res) => {
     const upstream = request(
       {
         hostname: "127.0.0.1",
-        port: backend,
+        port: target,
         path,
         method: "POST",
         headers: {
@@ -156,7 +175,9 @@ const server = createServer(async (req, res) => {
     return
   }
   try {
-    let file = resolve(root, "." + decodeURIComponent(path))
+    const staticPath =
+      path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path
+    let file = resolve(root, "." + decodeURIComponent(staticPath))
     if (file !== root && !file.startsWith(root + sep)) throw Error("path")
     if (file === root) file += "/index.html"
     else if (!extname(file)) file += ".html"
@@ -183,6 +204,7 @@ server.listen(port, "127.0.0.1", () =>
       port,
       pid: process.pid,
       backendPort: backend,
+      workspaceBackendPort: workspaceBackend,
       export: process.argv[2],
       credentialsLogged: false,
     })

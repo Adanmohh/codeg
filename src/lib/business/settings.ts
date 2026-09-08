@@ -1,5 +1,5 @@
 // Closed frontend projection of approvals' settings.rs at
-// f3b408dae5c724f354763961d79a17a7ae5c86f8 / contract75164616.
+// 29774b50aafc29658a2f48fab1f44d366ed2c8a0 / contract75164616.
 // These values describe presentation, never tenant authority or execution.
 export interface TenantSettings {
   displayName: string
@@ -19,4 +19,37 @@ export interface UpdateTenantSettings {
 export interface TenantSettingsAccess {
   get: () => Promise<TenantSettingsView>
   update: (input: UpdateTenantSettings) => Promise<TenantSettingsView>
+}
+export interface SettingsOperations {
+  "settings/get": {
+    input: Record<string, never>
+    result: TenantSettingsView
+  }
+  "settings/update": {
+    input: UpdateTenantSettings
+    result: TenantSettingsView
+  }
+}
+
+// Only closed, same-organization values may reach scoped CSS or visible names.
+// This is response validation, never a substitute for backend authorization.
+export function isTenantSettingsView(
+  value: unknown,
+  organizationId: string
+): value is TenantSettingsView {
+  if (!value || typeof value !== "object") return false
+  const candidate = value as Partial<TenantSettingsView>
+  const settings = candidate.settings
+  return (
+    candidate.organizationId === organizationId &&
+    Number.isSafeInteger(candidate.revision) &&
+    candidate.revision! > 0 &&
+    !!settings &&
+    typeof settings.displayName === "string" &&
+    !!settings.displayName.trim() &&
+    Array.from(settings.displayName.trim()).length <= 120 &&
+    ["neutral", "blue", "violet"].includes(settings.palette) &&
+    ["split", "stacked"].includes(settings.workspaceLayout) &&
+    ["tasks", "conversations"].includes(settings.defaultWorkArea)
+  )
 }

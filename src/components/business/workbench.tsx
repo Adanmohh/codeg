@@ -13,6 +13,7 @@ import { useMediaQuery } from "@/hooks/use-media-query"
 import { computeRects, singleGroupLayout } from "@/lib/tab-group-layout"
 import { useBusinessCopy } from "@/lib/business/copy"
 import { cn } from "@/lib/utils"
+import type { TenantSettings } from "@/lib/business/settings"
 
 export interface WorkSurface {
   id: string
@@ -29,10 +30,12 @@ export function BusinessWorkbench({
   surfaces,
   activeId,
   onActivate,
+  preferredLayout = "split",
 }: {
   surfaces: WorkSurface[]
   activeId: string
   onActivate: (id: string) => void
+  preferredLayout?: TenantSettings["workspaceLayout"]
 }) {
   const copy = useBusinessCopy()
   const locale = useLocale()
@@ -42,6 +45,11 @@ export function BusinessWorkbench({
   const wide = useMediaQuery("(min-width: 1100px)")
   const [referenceId, setReferenceId] = useState<string | null>(null)
   const [sizes, setSizes] = useState([45, 55])
+  const [layoutOverride, setLayoutOverride] = useState<
+    TenantSettings["workspaceLayout"] | null
+  >(null)
+  const arrangement = layoutOverride ?? preferredLayout
+  const orientation = arrangement === "split" ? "horizontal" : "vertical"
   const reference = surfaces.find((surface) => surface.id === referenceId)
   useEffect(() => {
     if (
@@ -58,7 +66,7 @@ export function BusinessWorkbench({
       ? {
           type: "split",
           id: "business-panes",
-          orientation: "horizontal",
+          orientation,
           children: [singleGroupLayout("reference"), singleGroupLayout("work")],
           ratios: sizes,
         }
@@ -155,11 +163,42 @@ export function BusinessWorkbench({
             onClick={split}
             disabled={surfaces.length < 2}
             aria-pressed={!!reference}
-            aria-label={reference ? copy.singlePane : copy.splitView}
-            title={reference ? copy.singlePane : copy.splitView}
+            aria-label={
+              reference
+                ? copy.singlePane
+                : arrangement === "stacked"
+                  ? copy.stackedView
+                  : copy.splitView
+            }
+            title={
+              reference
+                ? copy.singlePane
+                : arrangement === "stacked"
+                  ? copy.stackedView
+                  : copy.splitView
+            }
             className="hover:bg-sidebar-accent focus-visible:ring-ring flex w-12 shrink-0 items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-inset disabled:opacity-40"
           >
             {reference ? (
+              <PanelTop className="size-4" aria-hidden="true" />
+            ) : (
+              <Columns2 className="size-4" aria-hidden="true" />
+            )}
+          </button>
+        )}
+        {paired && (
+          <button
+            type="button"
+            onClick={() =>
+              setLayoutOverride(arrangement === "split" ? "stacked" : "split")
+            }
+            aria-label={
+              arrangement === "split" ? copy.stackPanes : copy.sidePanes
+            }
+            title={arrangement === "split" ? copy.stackPanes : copy.sidePanes}
+            className="hover:bg-sidebar-accent focus-visible:ring-ring flex w-12 shrink-0 items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-inset"
+          >
+            {arrangement === "split" ? (
               <PanelTop className="size-4" aria-hidden="true" />
             ) : (
               <Columns2 className="size-4" aria-hidden="true" />
@@ -170,7 +209,7 @@ export function BusinessWorkbench({
       <div className="relative min-h-0 min-w-0 flex-1 overflow-hidden">
         {paired && (
           <ResizablePanelGroup
-            direction="horizontal"
+            direction={orientation}
             dir={locale === "ar" ? "rtl" : "ltr"}
             onLayout={setSizes}
             keyboardResizeBy={5}

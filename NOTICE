@@ -857,3 +857,26 @@ Installed @tauri-apps/api2.10.1 core.js isTauri/invoke, React19.2.4,
 are source/type references only. No dependency or vendor implementation,
 Edublend proprietary source, or AGPL/GPL source is copied.
 Original Apache-2.0 LICENSE and every preceding attribution remain intact.
+
+Business scoped appearance and tenancy fixture integration (2026):
+Reuses Apache-2.0 Codeg src/app/globals.css paired neutral/blue/violet
+selectors, src/lib/theme-presets.ts, src/components/business/{workspace,
+task-detail,ui}.tsx, src/components/ui/{dialog,drawer,resizable}.tsx and
+src/lib/tab-group-layout.ts at a40b03393a466672060066ae6e0e8c9054a2349d.
+The scoped React appearance context also labels business portals; it never
+writes the platform/global theme. Closed settings/organization fields and
+transport names follow business_identity/{http,types,settings}.rs and
+commands/business_identity.rs at 29774b50aafc29658a2f48fab1f44d366ed2c8a0.
+The test-only fixture patch adapts that commit's
+src-tauri/src/business_tasks/tests/fixture.rs and the unchanged
+src-tauri/src/db/test_helpers.rs fresh_disk_db helper to owned loopback4353
+with a closed task/identity/settings/platform allowlist. Its isolated archive
+retains the same commit's integrations, LICENSE and NOTICE. No engine/provider
+route is enabled or provider source copied. The optional Node4350 split proxy
+reuses the previously attributed synthetic export server.
+Installed React19.2.4/@types-react19.2.13 context/hooks, next-themes0.4.6
+resolvedTheme, react-resizable-panels2.1.9 direction types, Tailwind4.1.18,
+Testing Library16.3.2 and Vitest2.1.9 are API references only. Existing
+locked axum0.8.8, SeaORM1.1.19, Tokio1.49.0 and tempfile3.24.0 fixture
+calls are retained; no dependency, vendor or third-party code is ported.
+Original Apache-2.0 LICENSE and all preceding attribution remain intact.

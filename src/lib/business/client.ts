@@ -83,6 +83,8 @@ const identityCommands = {
   "credentials/issue": "business_credentials_issue",
   "credentials/list": "business_credentials_list",
   "credentials/revoke": "business_credentials_revoke",
+  "settings/get": "business_settings_get",
+  "settings/update": "business_settings_update",
 } as const satisfies Record<keyof IdentityOperations, string>
 
 const commands = {

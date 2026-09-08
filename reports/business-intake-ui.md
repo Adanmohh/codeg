@@ -2,7 +2,8 @@
 
 Status: compiling Sources plus shared-workbench frontend checkpoint on `feat/business-intake-ui`, based on accepted
 `a40b03393a466672060066ae6e0e8c9054a2349d`. No integrated B runtime or browser pass is claimed.
-Current product: **9f16a4292eeec1d81ab376f1f35055beabf85600**, pushed to
+Published workbench: **9f16a4292eeec1d81ab376f1f35055beabf85600**; native host
+restriction/settings preparation: **3a04cfde**. Both are pushed to
 [draft PR29](https://github.com/Adanmohh/codeg/pull/29). Its own 34-route export
 passes and is served on loopback4350, PID21549. Tests41/41, typecheck and scoped
 lint pass. Actual protected B/two-user and settings/native-tenant runtime
@@ -535,3 +536,61 @@ PostToolUse (lines21441 and21440). Local installed @tauri-apps/api2.10.1
 core.js provides the actual isTauri/invoke contract. No build or browser
 acceptance of these new changes is claimed yet; 4350 still serves the preserved
 9f16a429 export/PID21549 and both owned public-entry browser sessions remain.
+
+## Protected settings wiring checkpoint
+
+The exact `29774b50` settings HTTP/native operations are now wired through the
+existing isolated client. `Organization` mirrors its status/revision/epoch and
+Context carries `manageTenantSettings`. Appearance is a real workbench tab with
+loading/read-only/error/retry/CAS-conflict states. Fields are never enabled from
+an inferred owner role: the explicit returned capability controls the editor,
+and the backend remains authority. Unknown palettes or other-organization
+responses cannot be applied. No actor/tenant selector enters a settings request.
+
+The saved name and paired neutral/blue/violet tokens apply only to the business
+subtree and its existing Dialog/Drawer portals. Global theme, personal language,
+light/dark selection and fonts remain untouched. Saved split/stacked layout
+affects the workbench's existing ResizablePanelGroup; an explicit temporary
+layout choice stays local. Palette/layout/locale changes keep task editors and
+their private DOM state mounted. The stored conversations start preference
+does not create an unsupported conversation tool or grant legacy access; tasks
+remain the available start surface until scoped conversation execution exists.
+
+Disconnect now asks before clearing the private workbench; cancellation keeps
+open tabs and drafts. A changed organization, member identity or authorization
+epoch closes/aborts the old client instead of accepting newly authenticated
+context as fresh authority for old work. Member revision still uses the accepted
+private subtree boundary. No host native member login/session workaround.
+
+Validation: **81/81 affected tests exit0**, typecheck exit0, scoped lint exit0.
+An additional settings name regression passes in the **7/7 settings-file run**:
+120 Unicode code points survive rather than being truncated at120 UTF-16 units.
+These totals overlap; they are not88 distinct tests. The tests cover actual
+client operation envelopes, task-draft DOM preservation while saved appearance
+and pane direction change, scoped portalled discard confirmation, cancelled
+disconnect, and session disposal on epoch drift. Logs:
+[scoped-settings-checkpoint.txt](business-intake-ui-evidence/scoped-settings-checkpoint.txt).
+No integrated settings browser result is claimed yet.
+
+Own fixture preparation: no listener was found on4353 before reserving it for
+this worker's new synthetic task/settings API. The isolated archive is
+`.build/business-intake-ui-api-29774b50`, exact backend product29774b50; new
+Cargo output is `.build/business-intake-ui-target`. Only the ignored existing
+manual fixture is adapted with
+[fixture-tenancy-4353.patch](business-intake-ui-evidence/fixture-tenancy-4353.patch):
+owned port, disposable disk SQLite and a closed identity/human-task/settings/
+platform operation guard. It excludes engine/legacy/provider APIs. It supplies
+real production protected APIs, not mocked responses or B acceptance.
+The initial offline locked fixture compile exited101 because the source archive
+omitted six include_str Pi integration assets; the same immutable integrations,
+LICENSE and NOTICE were added; the retry passed exit0 in1m52s. This was
+a fixture archive omission, not a product change.
+
+The owned4350 proxy now optionally uses `--workspace-backend=4353` for task/
+identity/settings/platform while keeping B calls on tickets'4351. It accepts
+only those fixed loopback destinations and logs method/path/status, never
+credentials or payloads. No4351/4352 listener is started or altered here. The
+current4350 process still runs its previously loaded helper and9f export; it
+will be replaced only after a new export and this fixture are ready and their
+metadata is published. No old target/export/browser or preserved paused file
+was modified. Both paused report hashes were rechecked unchanged.

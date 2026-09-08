@@ -1,7 +1,14 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react"
 import { NextIntlClientProvider } from "next-intl"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import type { BusinessClient } from "@/lib/business/client"
+import type { TenantSettingsView } from "@/lib/business/settings"
 import { BusinessWorkspace } from "./workspace"
 import { context, detail, member } from "./test-fixtures"
 
@@ -25,13 +32,13 @@ second.task = {
   dueDate: "2028-02-29",
 }
 const tasks = vi.fn()
+const identity = vi.fn()
+let savedSettings: TenantSettingsView
 const client: BusinessClient = {
   native: false,
   label: "http://127.0.0.1:4350",
   close: vi.fn(),
-  identity: vi.fn(async (operation) =>
-    operation === "context" ? context : [member]
-  ) as BusinessClient["identity"],
+  identity,
   tasks,
   intake: vi.fn(),
 }
@@ -56,6 +63,29 @@ async function openFirst() {
 beforeEach(() => {
   vi.clearAllMocks()
   wide = true
+  savedSettings = {
+    organizationId: member.organizationId,
+    revision: 1,
+    settings: {
+      displayName: context.organization!.name,
+      palette: "neutral",
+      workspaceLayout: "split",
+      defaultWorkArea: "tasks",
+    },
+  }
+  identity.mockImplementation(async (operation, input) => {
+    if (operation === "context") return context
+    if (operation === "settings/get") return savedSettings
+    if (operation === "settings/update") {
+      savedSettings = {
+        ...savedSettings,
+        revision: savedSettings.revision + 1,
+        settings: input.settings,
+      }
+      return savedSettings
+    }
+    return [member]
+  })
   tasks.mockImplementation(async (operation, input) => {
     if (operation === "list")
       return {
@@ -69,6 +99,80 @@ beforeEach(() => {
 })
 
 describe("business workbench uses real task seams without legacy shell providers", () => {
+  it("applies saved tenant appearance and stacked panes without replacing an open task draft or global theme", async () => {
+    const rootTheme = document.documentElement.getAttribute("data-theme")
+    const view = render(workspace())
+    await openFirst()
+    const brief = screen.getByRole("textbox", { name: "Brief" })
+    fireEvent.change(brief, {
+      target: { value: "Synthetic preserved scoped draft" },
+    })
+    fireEvent.click(
+      screen.getByRole("button", { name: "Workspace appearance" })
+    )
+    fireEvent.change(await screen.findByLabelText("Workspace display name"), {
+      target: { value: "Synthetic renamed workspace" },
+    })
+    fireEvent.change(screen.getByLabelText("Workspace colors"), {
+      target: { value: "violet" },
+    })
+    fireEvent.change(screen.getByLabelText("Preferred pane layout"), {
+      target: { value: "stacked" },
+    })
+    fireEvent.click(
+      screen.getByRole("button", { name: "Save workspace defaults" })
+    )
+    await screen.findByText("Workspace defaults saved.")
+    expect(identity).toHaveBeenCalledWith("settings/update", {
+      expectedRevision: 1,
+      settings: {
+        displayName: "Synthetic renamed workspace",
+        palette: "violet",
+        workspaceLayout: "stacked",
+        defaultWorkArea: "tasks",
+      },
+    })
+    expect(
+      view.container.querySelector("[data-business-appearance]")
+    ).toHaveAttribute("data-theme", "violet")
+    expect(document.documentElement.getAttribute("data-theme")).toBe(rootTheme)
+    fireEvent.click(screen.getByRole("tab", { name: first.task.title }))
+    expect(screen.getByRole("textbox", { name: "Brief" })).toBe(brief)
+    fireEvent.click(screen.getByRole("button", { name: "Show stacked panes" }))
+    const pane = screen.getByRole("separator", { name: "Resize work panes" })
+    expect(pane).toHaveAttribute("data-panel-group-direction", "vertical")
+    fireEvent.click(
+      screen.getByRole("button", { name: "Arrange panes side by side" })
+    )
+    expect(screen.getByRole("separator")).toHaveAttribute(
+      "data-panel-group-direction",
+      "horizontal"
+    )
+    expect(brief).toHaveValue("Synthetic preserved scoped draft")
+    fireEvent.click(
+      screen.getByRole("button", { name: `Close tab: ${first.task.title}` })
+    )
+    expect(screen.getByRole("dialog")).toHaveAttribute("data-theme", "violet")
+    fireEvent.click(screen.getByRole("button", { name: "Keep editing" }))
+    expect(brief).toHaveValue("Synthetic preserved scoped draft")
+  })
+
+  it("asks before leaving the private workspace and keeps all drafts when cancelled", async () => {
+    render(workspace())
+    await openFirst()
+    const brief = screen.getByRole("textbox", { name: "Brief" })
+    fireEvent.change(brief, {
+      target: { value: "Synthetic cancelled switch draft" },
+    })
+    fireEvent.click(screen.getByRole("button", { name: "Disconnect" }))
+    const dialog = screen.getByRole("dialog", { name: "Leave this workspace?" })
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: "Stay in this workspace" })
+    )
+    expect(screen.getByRole("textbox", { name: "Brief" })).toBe(brief)
+    expect(brief).toHaveValue("Synthetic cancelled switch draft")
+    expect(client.close).not.toHaveBeenCalled()
+  })
   it("keeps two independent drafts and DOM identity across tabs, split, locale and narrow layout", async () => {
     const view = render(workspace())
     await openFirst()

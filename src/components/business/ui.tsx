@@ -24,6 +24,7 @@ import { BusinessError } from "@/lib/business/client"
 import { useBusinessCopy, type BusinessCopy } from "@/lib/business/copy"
 import type { BusinessStatus, PersonLabel } from "@/lib/business/presentation"
 import type { MemberRole } from "@/lib/business/identity"
+import { useWorkspaceAppearance } from "./appearance"
 
 export function Action({
   className,
@@ -236,6 +237,7 @@ export function Modal({
   const copy = useBusinessCopy()
   const returnFocus = useRef<HTMLElement | null>(null)
   const hidden = useOverlayHostHidden()
+  const appearance = useWorkspaceAppearance()
   return (
     <Dialog
       open={!hidden}
@@ -244,6 +246,7 @@ export function Modal({
       }}
     >
       <DialogContent
+        data-theme={appearance.palette}
         showCloseButton={false}
         onOpenAutoFocus={() => {
           returnFocus.current =
@@ -271,6 +274,7 @@ export function Modal({
         }}
         className={cn(
           "min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7",
+          appearance.dark && "dark",
           wide ? "max-w-3xl" : "max-w-lg"
         )}
       >

@@ -8,6 +8,7 @@ import type {
   TenantSettingsAccess,
   TenantSettingsView,
 } from "@/lib/business/settings"
+import { isTenantSettingsView } from "@/lib/business/settings"
 import { useSettingsCopy } from "@/lib/business/settings-copy"
 import { Action, controlClass, Field } from "./ui"
 
@@ -46,7 +47,7 @@ export function SettingsEditor({
     !!draft.displayName.trim() &&
     Array.from(draft.displayName.trim()).length <= 120
   function verified(value: TenantSettingsView): TenantSettingsView {
-    if (value.organizationId !== initial.organizationId)
+    if (!isTenantSettingsView(value, initial.organizationId))
       throw new BusinessError("forbidden")
     return value
   }

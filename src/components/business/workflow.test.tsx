@@ -442,7 +442,7 @@ describe("visual business task workflow", () => {
             client={client}
             context={{
               ...context,
-              capabilities: { manageMembers: true, legacyOperator },
+              capabilities: { ...context.capabilities, legacyOperator },
             }}
             onContext={vi.fn()}
             disconnect={vi.fn()}

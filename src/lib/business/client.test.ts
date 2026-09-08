@@ -20,6 +20,32 @@ const response = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status })
 
 describe("separate business credential client", () => {
+  it("routes the closed tenant settings operations without an organization or actor selector", async () => {
+    const settings = {
+      displayName: "Synthetic workspace",
+      palette: "blue" as const,
+      workspaceLayout: "stacked" as const,
+      defaultWorkArea: "tasks" as const,
+    }
+    fetcher.mockResolvedValueOnce(
+      response({ organizationId: "synthetic-org", revision: 2, settings })
+    )
+    const client = createBusinessClient(memberConnection)
+    await client.identity("settings/update", { expectedRevision: 1, settings })
+    expect(fetcher).toHaveBeenCalledWith(
+      "http://127.0.0.1:4340/api/business/settings/update",
+      expect.objectContaining({
+        body: JSON.stringify({ input: { expectedRevision: 1, settings } }),
+      })
+    )
+    const desktop = createBusinessClient({ kind: "native" })
+    await desktop.identity("settings/get", {})
+    expect(native.invoke).toHaveBeenCalledWith("business_settings_get", {
+      input: {},
+    })
+    client.close()
+    desktop.close()
+  })
   it("rejects personal HTTP access in an operator native host before any transport call", () => {
     native.isTauri.mockReturnValue(true)
     localStorage.setItem("codeg_token", "synthetic_original_operator")

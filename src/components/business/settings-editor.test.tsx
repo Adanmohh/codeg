@@ -44,6 +44,26 @@ function wrapper(
 }
 
 describe("closed tenant presentation editor", () => {
+  it("accepts a 120-code-point display name rather than truncating it to 120 UTF-16 units", async () => {
+    const name = "🌿".repeat(120)
+    const update = vi.fn(async (input) => ({
+      ...initial,
+      revision: 2,
+      settings: input.settings,
+    }))
+    render(wrapper({ get: vi.fn(), update }))
+    fireEvent.change(screen.getByLabelText("Workspace display name"), {
+      target: { value: name },
+    })
+    fireEvent.click(
+      screen.getByRole("button", { name: "Save workspace defaults" })
+    )
+    await screen.findByText("Workspace defaults saved.")
+    expect(update).toHaveBeenCalledWith({
+      expectedRevision: 1,
+      settings: { ...initial.settings, displayName: name },
+    })
+  })
   it("saves only the exact settings payload with the displayed base revision", async () => {
     const update = vi.fn(async (input) => ({
       ...initial,
