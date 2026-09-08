@@ -90,6 +90,14 @@ continues with explicit Principal/organization. New native registrations await
 reviewed tenant selection. Both reviewer and UI owner received this exact handoff.
 No fixture or accepted preview changed.
 
+Tenant execution prerequisite confirmed by root at accepted `7d546c0e`:
+`acp/delegation/listener.rs` explicitly allows any valid companion token to
+resolve any non-deleted session in the inherited single-tenant model. New tenant
+AI sessions must not inherit that entire tool/token surface. Reviewed operation
+families, resource-scoped session/event/file access and isolated execution profiles
+are required; hiding tools or navigation is insufficient. This is a gap against
+the newly authorized architecture, not a regression claim against accepted A.
+
 PR25 is reviewed and merged at exact handoff `7f4d4dbc66f3b7487ffcb623769d79c9be2ac044`,
 merge `aa16a9b960ee9d59876a119c47165206f46d10d1`. Frozen contract `670af9ca`
 plus access `18be55ed` has no open contract blockers in independent review
