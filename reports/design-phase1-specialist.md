@@ -10,6 +10,9 @@ Sole Astra/max worker, branch **review/design-phase1**, worktree
 **https://github.com/Adanmohh/codeg/pull/16**. No extra agents, product fixes,
 root planning edits, paid flow SDK, live sends or model calls.
 
+Final source/evidence freeze: **5f9ec343e3ee878f949ef1631f10f9ad5a5d1e15**.
+The following handoff commit only records this immutable evidence SHA.
+
 Final accepted main **89fef6fd52e0d6d9ce989c9837fa79ab08dfc4c1**, integrated as
 **fcf4a14f8db7412d595bd3e51d87356bef510bb9**. Its only product change since
 **2fb837977bc8584c5a5ccbe640e2ffe490ab0609** is PR20's two login tags.

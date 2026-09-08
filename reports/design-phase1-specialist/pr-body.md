@@ -10,5 +10,6 @@ This PR delivers the report, selected-method JSON, raw/classified lint and probe
 - Own export, prior both-runtime checks/Clippy/typecheck and scoped fixture formatting passed. No broad gates repeated after the later accepted frontend-only corrections. Root's native/package and independent gates are attributed separately.
 
 Primary handoff: `reports/design-phase1-specialist.md`. Structured verdicts and attribution: `reports/design-phase1-specialist/findings/` and `reports/design-phase1-specialist/NOTICE.md`.
+Source/evidence freeze: `5f9ec343e3ee878f949ef1631f10f9ad5a5d1e15`; following handoff metadata does not change source or measured results.
 
 All fixtures remain running; owned browser sessions are closed. Existing4320/4323/4326 outputs/data were preserved; new4327–4330 fixtures use only `out-design-final`. No live provider, model, engine, deployment or merge action. Chromium emulation and synthetic providers do not certify native WebView, assistive technology or live remote-phone setup.
