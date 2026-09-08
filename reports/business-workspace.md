@@ -7,6 +7,10 @@ Later handoff commits contain documentation/evidence cleanup and accepted main
 status integration only; the tested product and live export stay unchanged.
 Root remains reviewer/merger. The task backend is tested at **1ba73e3c** in an
 owned snapshot and is not yet merged into this branch. No production mock layer.
+Accepted main **ebb553defcc254187aafc1677279d67c56e3d2ad** is integrated as
+**0cdf255eb421d8ca52c4d9258662dd9998e7466a**. Its only incoming change was
+root STATUS.md; product, NOTICE and the exported/tested source are identical to
+33b9cbcb. No redundant product gates were rerun for that status-only integration.
 
 ## Result and boundaries
 
@@ -215,8 +219,8 @@ fixture-static-routing.patch uses zero context; reproduce with git apply
 
 ## Limits and preservation
 
-Task1ba73e3c is a tested dependency snapshot, not an accepted-main merge. Current
-origin/main at inspection is ebb553de. Identity is integrated; root must accept/
+Task1ba73e3c is a tested dependency snapshot, not an accepted-main merge. Main
+ebb553de is integrated. Identity is integrated; root must accept/
 integrate the task backend and review the exact UI head before declaring combined
 Increment A accepted. Entrust success with a real running agent is intentionally
 not exercised: no model launches. Browser guard/static router tests do not claim

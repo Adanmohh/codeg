@@ -1,6 +1,8 @@
 # Business workspace UI contract — implemented Increment A
 
 Owner: rebrand; branch **feat/business-workspace**, draft PR21.
+Final product source33b9cbcb; accepted main ebb553de integrated as0cdf255e
+(STATUS-only; tested product/export unchanged).
 Implementation/evidence: reports/business-workspace.md. Backend owners retain
 identity/task/agent authorization and migrations; this frontend adds no Rust
 product code or parallel authentication system.
