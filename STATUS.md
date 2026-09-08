@@ -76,9 +76,17 @@ capture remains required before claiming the complete B scope.
 Independent review preparation `599aa1e6b74c0841ab2753dd58c806cae0c83dcd`
 is read and imported: 16 concrete contract/BI probes covering credential failure,
 authority, cross-import ordering, atomic decisions, privacy and actual UI.
-These are planned probes; product review awaits the first committed compiling
-backend checkpoint. Tickets and rebrand are reading the existing implementation
-seams on their assigned branches; no B product pass is inferred from preparation.
+These are planned probes. Independent review is now examining compiling backend
+prerequisite `60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d`. Root read its full
+source/test/NOTICE/report diff and owner logs: strict credential mutation reads
+preserve malformed/unreadable stores; task-owned helpers let intake own one outer
+transaction while retaining task policy/CAS/activity. Owner server check passed;
+`intake_` matched 21 passing tests (four new prerequisite tests plus existing host
+coverage), one manual fixture ignored. Root has not independently run these tests.
+Two temporary unused-helper warnings remain before intake consumers are wired;
+this is not final Clippy or end-to-end B acceptance. Product is unmerged.
+New synthetic ports are assigned: rebrand UI4350, tickets backend4351/upstream4352;
+owners must recheck availability before launching. No new fixture is claimed running.
 [Product review](reports/review-business-intake.md).
 
 **UI planning PR26 reviewed and merged** at exact report head
