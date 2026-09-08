@@ -1,48 +1,26 @@
 --- a/src-tauri/src/business_tasks/tests/fixture.rs
 +++ b/src-tauri/src/business_tasks/tests/fixture.rs
-@@ -1,6 +1,6 @@
- //! Ignored manual loopback fixture. Production identity core/router, synthetic
+@@ -2,2 +2,2 @@
 -//! in-memory DB, no engine/scheduler/provider and no old static export mutation.
 -use crate::db::test_helpers::fresh_in_memory_db;
 +//! temporary synthetic disk DB, no engine/scheduler/provider and no old static export mutation.
 +use crate::db::test_helpers::fresh_disk_db;
- use axum::{
-     extract::Request,
-     http::StatusCode,
-@@ -13,30 +13,30 @@
- const OPERATOR: &str = "business-tasks-synthetic-operator";
- 
- #[tokio::test]
+@@ -16 +16 @@
 -#[ignore = "manual guarded task API fixture on loopback4342; no engine or UI claims"]
 +#[ignore = "manual guarded task API fixture on loopback4353; no engine or UI claims"]
- async fn business_tasks_browser_fixture() {
+@@ -18 +17,0 @@
 -    let db = fresh_in_memory_db().await;
-     let directory = tempfile::tempdir().unwrap();
+@@ -19,0 +19 @@
 +    let db = fresh_disk_db(directory.path()).await;
-     let state = Arc::new(crate::app_state::AppState::new_for_test(
-         db,
-         directory.path().into(),
-     ));
-     let router = crate::web::router::build_router(state, OPERATOR.into(), directory.path().into(), Arc::new(crate::web::shutdown::ShutdownSignal::new()))
+@@ -25 +25 @@
 -        .route("/__business_task_fixture", get(|| async { Html("<!doctype html><html lang='en'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Synthetic business task API fixture</title><main><h1>Synthetic business task API fixture</h1><p>Production protected identity endpoints; in-memory data only. This page is test scaffolding, not the business workspace UI.</p><p>Only the business API and harmless health route are reachable. Engineering, configuration, provider and agent operations are blocked.</p></main></html>") }))
 +        .route("/__business_task_fixture", get(|| async { Html("<!doctype html><html lang='en'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Synthetic business task API fixture</title><main><h1>Synthetic business task API fixture</h1><p>Production protected identity endpoints; temporary synthetic data only. This page is test scaffolding, not the business workspace UI.</p><p>Only the business API and harmless health route are reachable. Engineering, configuration, provider and agent operations are blocked.</p></main></html>") }))
-         .layer(middleware::from_fn(|request: Request, next: Next| async move {
-             // Defense in depth around this manual fixture. Legacy member denial
-             // through the unmodified full router is tested separately above.
-             let path = request.uri().path();
+@@ -30 +30 @@
 -            if path.starts_with("/api/business/") || path == "/api/health" || path == "/__business_task_fixture" {
 +            if (request.method() == axum::http::Method::POST && request.uri().query().is_none() && matches!(path, "/api/business/context" | "/api/business/bootstrap" | "/api/business/members/list" | "/api/business/members/create" | "/api/business/members/update" | "/api/business/members/revoke" | "/api/business/credentials/issue" | "/api/business/credentials/list" | "/api/business/credentials/revoke" | "/api/business/settings/get" | "/api/business/settings/update" | "/api/business/tasks/list" | "/api/business/tasks/get" | "/api/business/tasks/create" | "/api/business/tasks/update" | "/api/business/tasks/assign" | "/api/business/tasks/progress" | "/api/business/tasks/note" | "/api/business/tasks/submit" | "/api/business/tasks/review" | "/api/business/tasks/cancel" | "/api/business/tasks/archive" | "/api/platform/business/context" | "/api/platform/business/tenants/list" | "/api/platform/business/tenants/create" | "/api/platform/business/tenants/status" | "/api/platform/business/tenants/reissue-owner-credential")) || (request.method() == axum::http::Method::GET && matches!(path, "/api/health" | "/__business_task_fixture")) {
-                 next.run(request).await
-             } else {
-                 let response: Response = (StatusCode::FORBIDDEN, "Synthetic fixture guard").into_response();
-                 response
-             }
-         }));
+@@ -37 +37 @@
 -    let listener = tokio::net::TcpListener::bind("127.0.0.1:4342")
 +    let listener = tokio::net::TcpListener::bind("127.0.0.1:4353")
-         .await
-         .unwrap();
+@@ -40 +40 @@
 -    println!("Business task fixture: http://127.0.0.1:4342/__business_task_fixture ; PID={} ; SQLite=in-memory ; test-only operator constant in fixture source ; no old export touched", std::process::id());
 +    println!("Business task fixture: http://127.0.0.1:4353/__business_task_fixture ; PID={} ; SQLite=temporary-synthetic-disk ; test-only operator constant in fixture source ; no old export touched", std::process::id());
-     axum::serve(listener, router).await.unwrap();
- }

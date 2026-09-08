@@ -1,14 +1,24 @@
 # Business Sources implementation
 
-Status: compiling Sources plus shared-workbench frontend checkpoint on `feat/business-intake-ui`, based on accepted
-`a40b03393a466672060066ae6e0e8c9054a2349d`. No integrated B runtime or browser pass is claimed.
-Published workbench: **9f16a4292eeec1d81ab376f1f35055beabf85600**; native host
-restriction/settings preparation: **3a04cfde**. Both are pushed to
-[draft PR29](https://github.com/Adanmohh/codeg/pull/29). Its own 34-route export
-passes and is served on loopback4350, PID21549. Tests41/41, typecheck and scoped
-lint pass. Actual protected B/two-user and settings/native-tenant runtime
-validation remains pending backend handoff. This is a source checkpoint,
-not product or design acceptance.
+Status: Sources plus a shared task workbench on `feat/business-intake-ui`, based
+on accepted `a40b03393a466672060066ae6e0e8c9054a2349d`.
+Current product **110c8a2915bf3a539fb689c11efe88b842404c20** is pushed to
+[draft PR29](https://github.com/Adanmohh/codeg/pull/29). It includes scoped
+tenant appearance/native-host restrictions from `a997cfb5` and a measured pane
+layout correction. Latest focused tests **39/39**, typecheck, scoped lint and
+34-route export pass. Two real personal browser sessions passed protected
+human submission, 409 comparison/adoption, and tenant appearance/draft isolation.
+Complete B intake runtime and final responsive/design acceptance remain pending;
+this checkpoint is not product acceptance.
+
+Current owned UI: **http://127.0.0.1:4350/business**, Node PID **41047**,
+export `.build/business-intake-ui-pane-layout`, `business.html` SHA256
+`b5dfee0d4adbdc0a52a4d77a81c6f34d2591c688d968f28acaa05fd7e81dd5ec`.
+Protected task/settings fixture: loopback **4353**, Rust PID **99613**, exact
+backend product `29774b50aafc29658a2f48fab1f44d366ed2c8a0`. Intake operations
+still target tickets' reserved4351; no complete candidate fixture is assumed.
+Existing previews/exports remain unchanged. Runtime details and limitations are
+at the end; earlier checkpoint sections record their state at the named commit.
 
 The accepted A workspace, native chrome, paused visual checkpoint and existing
 fixtures/exports are preserved. This worker owns frontend glue only; tickets
@@ -594,3 +604,94 @@ current4350 process still runs its previously loaded helper and9f export; it
 will be replaced only after a new export and this fixture are ready and their
 metadata is published. No old target/export/browser or preserved paused file
 was modified. Both paused report hashes were rechecked unchanged.
+
+## Current protected browser and measured pane checkpoint
+
+The real guarded fixture is now running; the preceding preparation paragraph is
+historical. Its exact command is:
+
+```text
+node reports/business-intake-ui-evidence/serve.mjs .build/business-intake-ui-pane-layout --backend=4351 --synthetic-intake-fixture --workspace-backend=4353
+```
+
+Node41047 serves only this owned export, with identity/task/settings/platform
+POST calls routed to the real protected backend4353 and intake calls to4351.
+`GET /__business_intake_fixture` reports source/export routing and only
+method/path/status records. No request bodies, headers, private credentials or
+provider content are logged. The backend is an isolated git archive of29774b50
+plus the test-only fixture patch, using its unchanged production router/auth/
+SQLite core. Reproduce the zero-context patch with `git apply --unidiff-zero`;
+the artifact format correction removes trailing spaces from diff context only.
+No production Rust, lockfile, backend registry or provider implementation changed.
+
+The backend's test-only operator token is the public fixture constant
+`business-tasks-synthetic-operator`; it is not an external credential. UI session
+`intake-ui-a4350` (browser50564) is synthetic human owner Rania;
+`intake-ui-b4350` (browser50617) is synthetic human member Yusuf. Their personal
+credentials were issued through the actual protected API and entered into the
+UI without logging, persistence or auth-state export. Both have no legacy
+engineering entry. Six records explicitly labelled Synthetic exercise all six
+work domains; an agent assignee has no execution or model launch.
+
+The author currently reserves task479e4d43-8b78-48b9-93cc-bcbb9d9ea928 and the
+appearance form for preservation measurements. Reviewers may use read-only
+surfaces; coordinate before mutating those records. No existing fixture,
+browser, target or output outside this new fixture was touched.
+
+Actual UI evidence, all commands exit0:
+
+- [scoped-appearance-live.raw](business-intake-ui-evidence/scoped-appearance-live.raw):
+  owner saves Blue with HTTP200; the task draft survives navigation and the
+  scoped palette changes while the root remains neutral. No draft/token enters
+  localStorage and no legacy entry appears.
+- [member-submit-live.raw](business-intake-ui-evidence/member-submit-live.raw)
+  and [conflict-panes-live.raw](business-intake-ui-evidence/conflict-panes-live.raw):
+  Yusuf's real human submission reaches Review revision3. Rania's older draft
+  gets409, is retained/locked, clearly compares base2 against current Review3,
+  and saves exact content at4 only after explicit adoption. Execution stays null.
+- [split-layout-findings.raw](business-intake-ui-evidence/split-layout-findings.raw)
+  found all six titles at width0 in the475px reference pane: the viewport's
+  desktop breakpoint reserved340px of metadata columns inside that narrow pane.
+  [pane-layout-after.raw](business-intake-ui-evidence/pane-layout-after.raw)
+  verifies all six titles at393.1875px width/26px height, no page overflow.
+  Compare [before](business-intake-ui-evidence/workbench-split-1280-light-before.png)
+  and [after](business-intake-ui-evidence/workbench-split-1280-light-after.png).
+- [design-pane-light.json](business-intake-ui-evidence/design-pane-light.json):
+ 117 measured text samples, no contrast failures, no unnamed interactive nodes.
+  The22 brief palette warnings include the authorized scoped Blue preset and
+  the brief parser's hex-only comparison against OKLCH literals; these are
+  retained for manual token review, not called a clean whole-design pass.
+
+The initial empty-state script tested the wrong heading phrase and returned
+`emptyVisible:false`; its screenshot shows the actual heading, “Your work will
+appear here.” This is a probe mismatch, not claimed passing empty-state evidence.
+
+Pane source mapping: accepted Codeg `session-details-content.tsx` at a40b0339
+uses `@container`/`@[20rem]` for narrow auxiliary panels. The same installed
+Tailwind4.1.18 mechanism now controls business list columns, metadata/assignment
+fields, and the Sources grids at their own available width. NOTICE appends the
+exact source and retains every prior section. The Sources layout adaptation has
+no actual populated-provider screenshot yet.
+
+Validation on product110c8a29: `pnpm exec vitest run` for workbench/workflow/
+intake-workflow **39/39 in2.39s, exit0**; `pnpm exec tsc --noEmit --incremental
+false` **0**; scoped ESLint initially1 for a JSX line wrap, corrected retry **0**;
+`CODEG_EXPORT_DIR=.build/business-intake-ui-pane-layout NEXT_TELEMETRY_DISABLED=1
+pnpm build` **0**,34 routes; `git diff --check` **0**. Full commands/logs remain
+in this worktree's evidence directory. Browser source a997cfb5 established the
+two-user/CAS checks; corrected110c8a29 export established the measured pane fix.
+
+Design Studio probe/buildReport source read at55c8614dcfff33b4caa5a544b4f1f91877214878;
+the root-provided `/tmp/ops-design-probe.js` runs read-only through Playwright
+CLI0.1.18, with browser Canvas sRGB/ancestor-background composition. Its full
+raw samples and heuristic warnings are retained. Dark/RTL/narrow, keyboard,
+reduced-motion and final specialist-method synthesis are in progress.
+
+Latest tenancy owner reportd3a176d2287c23b649cd1d266cb1a9187bbcc0bb retains
+product29774b50. Root acceptance/integration is pending. Restricted native
+tenant windows remain explicitly unavailable; there is no tenant creator or
+personal-credential fallback in the native host. Browser tenant HTTP works.
+Scoped appearance is not tenant authority. Tenant provisioning/switching and
+scoped AI execution are not invented by this frontend checkpoint. Complete
+Fireflies/email/Hafidh B acceptance awaits tickets' protected candidate/runtime
+handoff; no fake responses or live provider calls substitute for it.
