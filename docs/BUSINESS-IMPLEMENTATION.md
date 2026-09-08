@@ -103,17 +103,20 @@ draft PRs to Adanmohh/codeg main, per-task report deliverables. Cross-review aft
 handoff, exact-head root acceptance and STATUS update per merge. GPT-6 Astra/max,
 docs-first, gh api immutable refs, no AGPL source and no product code by root.
 
-## Increment B implementation ownership — prepared, not dispatched
+## Increment B implementation ownership — dispatched
 
 Increment A local acceptance is complete at package f4757d8d. B's interaction
-plan is accepted through PR26; PR25 and the protected access seam still require
-final immutable reconciliation/review. The following ownership becomes active
-only when root explicitly dispatches implementation against those accepted pins.
+plan and final UI closure are accepted through PR26/PR27. PR25 is merged at
+`7f4d4dbc` with frozen contract `670af9ca` and access seam `18be55ed`; independent
+review `2a765db2` has no open contract blockers. Root dispatched all three existing
+workers through Herdr against accepted main. This authorizes implementation and
+isolated synthetic validation, not live provider/configuration actions.
 
 - Tickets owns the single `business_intake` backend module, binding/grant and
   import/source/candidate persistence, fixed Fireflies reader, narrow task-owned
   transaction helper extraction, source-safe email/Hafidh projections and shared
-  HTTP/native registration. One new migration will be reserved at dispatch.
+  HTTP/native registration. Sole migration `m20260908_000011_business_intake.rs`
+  is reserved to tickets on `feat/business-intake`.
   Reuse the existing credential adapter with the required strict mutation-read
   seam; do not create a second credential store or identity model. Publish small
   compiling checkpoints and a report with actual gates; no live provider action.

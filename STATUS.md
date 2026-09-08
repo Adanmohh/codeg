@@ -1,7 +1,7 @@
 # Status — 2026-09-08
 
 **Increment A is reviewed, merged and locally accepted. Increment B preparation
-has an accepted contract; backend implementation and independent review are dispatched.** Root remains orchestrator-only.
+implementation and independent review are dispatched across all three workers.** Root remains orchestrator-only.
 The accepted business workspace supports shared human/agent tasks, named
 responsibility, role/domain access, conflict recovery and explicit human review.
 Marketing, channels, ads, website and feedback are work areas; connected platform
@@ -63,10 +63,12 @@ agent. A usable protected source-binding/grant setup is part of contract review.
 | --- | --- |
 | tickets, wR:p4 | Dispatched `feat/business-intake` from accepted main `086eee48`: backend/access/staged credential and strict-store seam, sole migration `000011`, imports/candidates/atomic tasks, fixed Fireflies and safe legacy projections. Deliver `reports/business-intake.md`; early compiling checkpoints and draft PR. |
 | approvals, wR:p3 | Dispatched `review/business-intake` from accepted main: independent committed product/credential/permission/concurrency/atomicity review, later UI/session review. Deliver `reports/review-business-intake.md`; no product edits. |
-| rebrand, wR:p2 | `docs/business-intake-ui`: `reports/business-intake-ui-plan.md`; business source→passage→reviewed task flow, readiness/rebase/access recovery and visual/keyboard acceptance plan. |
+| rebrand, wR:p2 | Dispatched `feat/business-intake-ui` from accepted main: real Sources/setup/import/passage/private draft/accept/link/discard UI, typed client and EN/AR recovery. Deliver `reports/business-intake-ui.md`, actual Playwright CLI and Design Studio evidence. |
 
-Backend and reviewer dispatches were delivered through Herdr. Rebrand is finishing
-the exact-pin UI closure before frontend dispatch. No B runtime gate has run.
+All three dispatches were delivered through Herdr. UI closure PR27 was reviewed
+and merged at exact `1a876afc2ae81c7ea2066a14cdbb268fb363e37c`, merge
+`d57341370af701d26fc35300f88c3f4295149f38`; Q1–Q4 are closed for UI consistency
+against accepted `670af9ca`/`18be55ed`. No B runtime gate has run.
 New fixture ports will be coordinated; accepted A package and existing fixtures
 remain preserved. Fireflies is the first complete vertical slice; email/Hafidh
 capture remains required before claiming the complete B scope.
