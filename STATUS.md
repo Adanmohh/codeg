@@ -95,6 +95,10 @@ write lock without weakening strict failure/byte preservation; exact fix review
 is required before merge. Reviewer separately reports five unchanged prerequisite/
 protected-router tests passing; those do not close this finding. No actual
 credential or existing fixture was accessed by the probes.
+Published review `473b3b316abdac67bacf09d4fef011ba3ec24ff4` is imported with
+the unchanged-test logs, failing probes, test-only patch and 728/728 source
+verification summary. Root read the report/results and verified all six recorded
+evidence digests. R1 remains open pending a committed fix and independent recheck.
 
 DTO/schema checkpoint `9a4c8c882cec938665bc233b4d658d8de019ccfd` is also under
 review. Root read its complete types/migration/error/tests/registration/NOTICE

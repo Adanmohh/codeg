@@ -1,9 +1,11 @@
-# Independent Increment B product review — preparation checkpoint
+# Independent Increment B product review
 
-**Product review is awaiting an immutable implementation checkpoint.** No B
-source, migration, test or UI result has been accepted by this report. The
-accepted contract has no open contract blockers; that verdict does not establish
-correctness of the implementation now assigned to tickets and rebrand.
+**Frozen checkpoint `60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d`: five unchanged
+focused tests pass independently. One P2 remains in the strict credential reader;
+two independent permission probes reproduce it (exit101).** This is a review of
+credential mutation and task transaction prerequisites, not acceptance of the
+unfinished intake backend or UI. No additional blocker was found in the task
+extraction reviewed here.
 
 Reviewer branch **review/business-intake** starts from accepted main
 **0bd50aedc7bdfea0bc392d4feb63b9101b5af92d**. The preceding contract review
@@ -11,7 +13,129 @@ Reviewer branch **review/business-intake** starts from accepted main
 0bd50aed commit records this backend/reviewer dispatch. Tracked files were clean
 before switching; paused `.build/`, `out-design-final/` and
 `reports/visual-refresh-baseline.md` had no tracked collisions and were preserved.
-No fixtures, exports, targets, credential stores or processes were changed.
+The preparation commit **599aa1e6b74c0841ab2753dd58c806cae0c83dcd** was pushed and
+imported by root. Existing fixtures, exports, credential stores, targets and
+processes remain untouched. This review created only its own archives, target,
+synthetic temporary test data and report evidence.
+
+## Current exact-head review
+
+Resolved the immutable owner commit through `gh api`, parent
+**086eee485e6f40a8b02ea77c9dbeefe315c81596**. Read the complete six-file diff,
+owner report, changed task/credential source and tests, relevant existing task
+policy/HTTP tests, and NOTICE. The checkpoint changes only `keyring_store.rs`,
+`business_tasks/{store,types,tests}.rs`, NOTICE and the owner report. It introduces
+no dependency, migration, registry or intake endpoint.
+
+The task helpers retain current `Principal` authorization and active reference
+checks inside the caller's transaction. Preparation fixes the resolved editor's
+owner ID; acceptance recreates authorization rather than trusting PreparedTask.
+Create/get and finish keep their public wrappers. Source linking requires current
+human edit authority, destination domain and revision, changes no task text,
+invalidates review and records only an opaque link ID. The helper tests prove
+outer rollback for task/activity creation and linking, and reject a different
+member's attempt to adopt the editor-owned draft. The actual protected-router
+test exercises the unchanged HTTP handlers with issued credentials, including a
+positive create/note/get and spoof, viewer, domain and revision denials.
+
+These results do not yet prove atomic intake claim/link/receipt publication:
+the intake consumers and their source/grant revalidation do not exist at this
+head. The Rust transaction parameter alone is not an authorization capability.
+
+## R1 — P2: strict mutation reads skip existing credential-file hardening
+
+**Open**, server/Unix. Exact location:
+[`src-tauri/src/keyring_store.rs:103–116`](https://github.com/Adanmohh/codeg/blob/60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d/src-tauri/src/keyring_store.rs#L103-L116),
+called by `change_token_at` at line124. This is separate from the earlier task
+review's R1; the identifier is local to this report.
+
+The former mutation path called `read_tokens_at`, whose lines75–95 deliberately
+tighten an existing legacy 0644 store to 0600 **before** consuming its bytes.
+The new strict reader calls `read_to_string` directly. A failed set/delete on a
+malformed legacy file returns safely without replacing bytes, but also leaves
+any recoverable credential text world-readable. A valid strict read skips the
+same hardening until a later successful atomic replacement; that replacement
+may fail. The new failure-preservation tests check bytes, not the retained mode.
+
+Reproduction: in a temporary directory, seed a 0644 JSON credential map with
+synthetic values; compare the existing reader with the strict reader. Then seed
+a malformed 0644 map containing an unrelated synthetic entry, invoke both set
+and delete, and inspect bytes, directory contents and mode. No real store or
+account is involved. Both reviewer tests fail as expected, exit101: valid strict
+read mode **420 (0644)** versus required **384 (0600)**, and rejected set/delete
+modes **[420,420]** versus **[384,384]**. The existing-reader positive control
+reaches 0600; all byte-preservation and no-residue assertions pass before those
+mode failures. The added probe is isolated from the immutable source archive.
+
+**Required fix:** retain the existing best-effort Unix permission hardening on
+the strict mutation read, under the existing lock, while preserving the new
+fail-closed read/parse behavior. A shared narrow pre-read helper is sufficient.
+Regression tests must cover valid strict reads and rejected set/delete: 0600,
+unchanged malformed bytes and no replacement/temp residue. No credential-store
+rewrite or cross-process/SQLite atomicity claim is needed.
+
+## Independently executed evidence
+
+Unchanged archive:
+`.build/review-business-intake/60daf42e`; separate reviewer probe archive:
+`.build/review-business-intake/60daf42e-probes`. Both are inside this worktree.
+After the unchanged tests, all **728/728** tracked backend, Pi integration,
+LICENSE and NOTICE blobs matched the frozen commit, zero mismatches. The full
+manifest stays in the local evidence directory; the verification summary is
+published with this report.
+
+Every selector below uses cwd `<archive>/src-tauri` and the explicit command:
+
+```sh
+cargo test --locked --offline --no-default-features --lib SELECTOR \
+  --target-dir /Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/target -j 4
+```
+
+| Selector / archive | Independent result |
+| --- | --- |
+| `intake_store_` / unchanged | Exit0; 2 passed, 0 failed, 0 ignored; 0.02s execution |
+| `intake_task_` / unchanged | Exit0; 2 passed, 0 failed, 0 ignored; 0.16s execution |
+| `real_business_router_derives_actor_rejects_spoofs_and_returns_revision_conflicts` / unchanged | Exit0; 1 passed, 0 failed, 0 ignored; 0.07s execution |
+| `independent_intake_` / added tests only | Exit101; 0 passed, 2 failed, 0 ignored; 0.03s execution; both demonstrate R1 |
+
+The HTTP result is the actual protected Axum router through axum-test17.3.0's
+in-process mock HTTP transport, not a browser or listening-server E2E result.
+Installed Router/IntoTransportLayer/TestServer sources were read to verify that
+distinction. No port was allocated. No native keyring API or live provider ran.
+Build logs disclose the linker compact-unwind-size warning and
+proc-macro-error2 2.0.1 future compatibility warning; no waiver was added.
+
+Owner-reported server check exit0 and `intake_` 21 passed/1 manual ignored remain
+**owner evidence**, not independently repeated here. Desktop/server/companion
+checks, Clippy and B integration gates belong to later compiling checkpoints;
+this review does not claim them.
+
+Committed logs, probe patch, source-verification summary and test result metadata:
+[`review-business-intake-evidence/60daf42e`](review-business-intake-evidence/60daf42e/).
+The original failure logs are preserved. The new owner checkpoint
+**9a4c8c882cec938665bc233b4d658d8de019ccfd** will be reviewed separately; its
+reported checks are not covered by this verdict. R1 was relayed to tickets and
+root through authorized internal Herdr prompts, both exit0.
+
+## Source and test-probe provenance
+
+The additive NOTICE block preserves existing entries and cites the accepted
+base086eee48 files. Independently verified base blobs:
+`keyring_store.rs` **29fc3fb38280338aa26939c45f80ef9aefc2a394**,
+task store **d48fdf1e85feb4410dbff51e8a671d6c9d525691**,
+types **6d6c4b8c9555d09ea19d57c9fa329eb548832cc3**, tests
+**4c7e6000a5881f979dd2bd1b0d13c88d9e1bf49a**. The changed hunks extract existing
+approved task logic and the Apache Codeg store; no new third-party adapter port.
+
+Reviewer permission tests adapt the existing Apache Codeg
+`test_read_tokens_tightens_existing_file`, frozen60daf42e keyring source blob
+**efbaba1cb99423dccf6a6fc04d3fdcaee05d93b9**. The published evidence patch includes
+only additional synthetic tests, with attribution in its evidence NOTICE. The
+product archive and reviewer branch's product/NOTICE files are unchanged.
+
+Additional live hook metadata before the isolated probe edit: own session below,
+PreToolUse **1788893536**, line19284; PostToolUse **1788893505**, line19283;
+both exit0 and the approvals cwd. No hook was disabled or bypassed.
 
 ## Authority and frozen baseline
 
@@ -33,7 +157,11 @@ No fixtures, exports, targets, credential stores or processes were changed.
   from stored IDs, launch an agent or authorize external actions. Scope of each
   result below will identify its exact source and whether it was read or executed.
 
-## Concrete regression probes — planned, not run
+## Remaining B probes and original review plan
+
+The preparation table below remains the full plan. P01 and the task-owned part
+of P12 now have the scoped evidence above, including open R1. Other rows are
+planned; no full B or UI pass is implied.
 
 Use the implementation owner's real protected router/core and committed test
 seams, after reading them. These cases are outcomes to test, not names of APIs
@@ -85,7 +213,7 @@ loopback-only synthetic fixture before use; preserve A's package and every older
 fixture/output. Use only Playwright CLI later. The final integrated Design Studio
 and native/artifact gates belong to root; do not repeat broad unchanged A suites.
 
-## Docs-first, borrowing and command evidence
+## Preparation grounding and command history
 
 Read separate installed React package and Cargo manifest first. Applied
 code-context with the existing rag-skills venv and HF_HUB_OFFLINE=1: guide exit0,
@@ -122,6 +250,6 @@ copies no product source and changes no NOTICE entry.
 | Published owner source lookup | origin/feat/business-intake was not yet a valid object, exit128; no implementation head or test was inferred |
 | Product tests/builds/browser/provider/configuration actions | None run at this preparation checkpoint |
 
-Only reports/review-business-intake.md belongs to this new branch's review
-checkpoint. The final product verdict and specific findings will replace the
-awaiting-source status after immutable source and meaningful evidence exist.
+The historical table describes preparation only. Current exact-head findings,
+tests and limits appear first; this branch contains review reports/evidence,
+with no product changes. Further B review waits for committed compiling source.
