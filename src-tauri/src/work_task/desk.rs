@@ -66,6 +66,25 @@ fn ops_error(error: DbError) -> DeskError {
 }
 
 impl TaskEngine {
+    /// Link only an existing generation under the same private ancestry lock
+    /// as agent calls. Business authorization and lineage storage are in core.
+    pub(crate) async fn link_business_execution(
+        &self,
+        ctx: crate::business_tasks::ActorContext,
+        input: crate::business_tasks::types::LinkExecutionInput,
+    ) -> Result<crate::business_tasks::types::Detail, crate::business_identity::IdentityError> {
+        use crate::business_identity::IdentityError as E;
+        let _binding = self.request_lock.lock().await;
+        let row = work_task_service::get_model(&self.db.conn, input.work_task_id).await.map_err(|_| E::NotFound)?;
+        let root = row.connection_id.as_deref().ok_or(E::Conflict)?;
+        let (row, agent_key) = self.desk_scope(root).await.map_err(|_| E::Conflict)?;
+        let live = crate::business_tasks::agent::LiveExecution {
+            work_task_id: row.id, run_seq: row.run_seq,
+            connection_id: row.connection_id.ok_or(E::Conflict)?, agent_key,
+        };
+        crate::business_tasks::store::link(&self.db.conn, &ctx, input, live).await
+    }
+
     /// Caller holds request_lock through the eventual Ops transaction, so
     /// retirement cannot detach/rebind this ancestry between lookup and commit.
     /// Ops must also recheck the live row under its writer lock for cancellation.

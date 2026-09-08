@@ -23,5 +23,10 @@ impl ActorContext {
     }
 }
 
+pub(crate) async fn link_execution(ctx: ActorContext, input: types::LinkExecutionInput) -> Result<types::Detail, crate::business_identity::IdentityError> {
+    crate::work_task::engine().ok_or(crate::business_identity::IdentityError::Invalid("No live executor is available"))?
+        .link_business_execution(ctx, input).await
+}
+
 #[cfg(test)]
 mod tests;
