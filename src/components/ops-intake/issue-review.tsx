@@ -19,16 +19,7 @@ import type {
 import { fields } from "./evidence"
 import { Action, Choice, Field, Notice, Panel, TextField } from "./ui"
 
-export function IssueReview({
-  source,
-  detail,
-  product,
-  stale,
-  busy,
-  run,
-  update,
-  replace,
-}: {
+type ReviewProps = {
   source: Source
   detail: Detail
   product: Product
@@ -37,9 +28,42 @@ export function IssueReview({
   run: (action: () => Promise<void>) => void
   update: (draft: Draft) => void
   replace: (detail: Detail) => void
-}) {
+}
+
+export function IssueReview(props: ReviewProps) {
   const route = useOptionalWorkbenchRoute()
   const tasksView = useTasksView()
+  return (
+    <IssueReviewCard
+      {...props}
+      openTasks={async () => {
+        await tasksView.refetch()
+        saveTasksBoardFilter({ showCanceled: true, showArchived: true })
+        saveTasksStatusFilter(null)
+        tasksView.setViewMode("list")
+        route?.setRoute("tasks")
+      }}
+    />
+  )
+}
+
+// The phone uses this same decision card without mounting a workspace/task
+// controller. Its opaque notice adds a server-checked constraint to decisions.
+export function IssueReviewCard({
+  source,
+  detail,
+  product,
+  stale,
+  busy,
+  run,
+  update,
+  replace,
+  reviewNotice,
+  openTasks,
+}: ReviewProps & {
+  reviewNotice?: string
+  openTasks?: () => Promise<void>
+}) {
   const d = detail.draft
   const [edit, setEdit] = useOpsSessionState(`intake:edit:${d.id}`, {
     revision: d.revision,
@@ -110,7 +134,9 @@ export function IssueReview({
           }}
         >
           <fieldset
-            disabled={busy || !!pending || !!created || unknown}
+            disabled={
+              busy || !!reviewNotice || !!pending || !!created || unknown
+            }
             className="grid min-w-0 gap-4"
           >
             <Field
@@ -194,7 +220,7 @@ export function IssueReview({
             then request a new proposal.
           </Notice>
         )}
-        {!pending && !unknown && !created && (
+        {!reviewNotice && !pending && !unknown && !created && (
           <div className="grid gap-4 border-t pt-4">
             <Choice
               label="Active triage task"
@@ -215,7 +241,7 @@ export function IssueReview({
                 proposal.{" "}
                 <Action
                   variant="outline"
-                  onClick={() => route?.setRoute("tasks")}
+                  onClick={() => openTasks && run(openTasks)}
                 >
                   Open Tasks
                 </Action>
@@ -324,7 +350,8 @@ export function IssueReview({
                           source,
                           pending.id,
                           pending.payload!,
-                          p
+                          p,
+                          ...(reviewNotice ? ([reviewNotice] as [string]) : [])
                         )
                       )
                     )
@@ -338,7 +365,12 @@ export function IssueReview({
                   onClick={() =>
                     run(async () =>
                       replace(
-                        await intake.deny(source, pending.id, pending.payload!)
+                        await intake.deny(
+                          source,
+                          pending.id,
+                          pending.payload!,
+                          ...(reviewNotice ? ([reviewNotice] as [string]) : [])
+                        )
                       )
                     )
                   }
@@ -348,7 +380,7 @@ export function IssueReview({
               </div>
             </div>
           )}
-          {!pending && !unknown && !created && (
+          {!reviewNotice && !pending && !unknown && !created && (
             <Notice>
               Prepared locally. The trusted task bridge must propose this draft
               for human review. No issue has been filed.{" "}
@@ -419,48 +451,38 @@ export function IssueReview({
                 a tester email are separate drafts; filing an issue does not
                 release a build or send a message.
               </p>
-              {detail.fix_task_id ? (
-                <Notice>
-                  Linked fix task #{detail.fix_task_id}. New fix plans are held
-                  in Canceled state. Review the task, then choose Requeue when
-                  you are ready to make it eligible for processing.{" "}
-                  <Action
-                    variant="outline"
-                    disabled={busy}
-                    onClick={() =>
-                      run(async () => {
-                        await tasksView.refetch()
-                        saveTasksBoardFilter({
-                          showCanceled: true,
-                          showArchived: true,
-                        })
-                        saveTasksStatusFilter(null)
-                        tasksView.setViewMode("list")
-                        route?.setRoute("tasks")
-                      })
-                    }
-                  >
-                    Review in Tasks
-                  </Action>
-                </Notice>
-              ) : !detail.fix_task_conflict ? (
-                <div className="grid gap-3">
-                  <Action
-                    className="justify-self-start"
-                    disabled={busy}
-                    onClick={() =>
-                      run(async () => replace(await intake.fix(source)))
-                    }
-                  >
-                    Create held fix plan
-                  </Action>
-                  <p className="text-muted-foreground text-sm">
-                    Creates a linked task in Canceled state, ready to inspect
-                    and manually requeue in Tasks. Its first deliverable is a
-                    fix plan for review. No agent starts automatically.
-                  </p>
-                </div>
-              ) : null}
+              {openTasks &&
+                (detail.fix_task_id ? (
+                  <Notice>
+                    Linked fix task #{detail.fix_task_id}. New fix plans are
+                    held in Canceled state. Review the task, then choose Requeue
+                    when you are ready to make it eligible for processing.{" "}
+                    <Action
+                      variant="outline"
+                      disabled={busy}
+                      onClick={() => run(openTasks)}
+                    >
+                      Review in Tasks
+                    </Action>
+                  </Notice>
+                ) : !detail.fix_task_conflict ? (
+                  <div className="grid gap-3">
+                    <Action
+                      className="justify-self-start"
+                      disabled={busy}
+                      onClick={() =>
+                        run(async () => replace(await intake.fix(source)))
+                      }
+                    >
+                      Create held fix plan
+                    </Action>
+                    <p className="text-muted-foreground text-sm">
+                      Creates a linked task in Canceled state, ready to inspect
+                      and manually requeue in Tasks. Its first deliverable is a
+                      fix plan for review. No agent starts automatically.
+                    </p>
+                  </div>
+                ) : null)}
             </>
           )}
         </Panel>

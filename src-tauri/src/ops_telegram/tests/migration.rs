@@ -30,10 +30,15 @@ async fn seeded() -> (AppDatabase, config::Model, Vec<notice::Model>) {
         .unwrap();
     for state in ["sent", "unknown", "checking", "preflight_failed"] {
         let proposal = pending(&db, &op, &draft).await;
-        let claimed = claim(&db.conn, &cfg, proposal.id, &uuid::Uuid::new_v4().to_string())
-            .await
-            .unwrap()
-            .unwrap();
+        let claimed = claim(
+            &db.conn,
+            &cfg,
+            proposal.id,
+            &uuid::Uuid::new_v4().to_string(),
+        )
+        .await
+        .unwrap()
+        .unwrap();
         let mut stored = claimed.into_active_model();
         stored.status = Set(state.into());
         stored.provider_message_id = Set((state == "sent").then(|| "456".into()));
@@ -63,16 +68,27 @@ async fn issue_upgrade_preserves_email_rows_and_defaults_off() {
             .unwrap(),
         Some(cfg)
     );
-    let row = db.conn.query_one(Statement::from_string(
-        db.conn.get_database_backend(),
-        "SELECT github_issues_enabled FROM ops_telegram_config".to_owned(),
-    )).await.unwrap().unwrap();
+    let row = db
+        .conn
+        .query_one(Statement::from_string(
+            db.conn.get_database_backend(),
+            "SELECT github_issues_enabled FROM ops_telegram_config".to_owned(),
+        ))
+        .await
+        .unwrap()
+        .unwrap();
     assert_eq!(row.try_get::<i32>("", "github_issues_enabled").unwrap(), 0);
-    for table in ["ops_proposal", "ops_reply_draft", "ops_intake_filing", "work_task"] {
+    for table in [
+        "ops_proposal",
+        "ops_reply_draft",
+        "ops_intake_filing",
+        "work_task",
+    ] {
         assert!(manager.has_table(table).await.unwrap());
     }
     // Proposal uniqueness survives the table rebuild.
-    let duplicate = before[0].clone().into_active_model().reset_all();
+    let mut duplicate = before[0].clone().into_active_model().reset_all();
+    duplicate.id = Set(uuid::Uuid::new_v4().to_string());
     assert!(duplicate.insert(&db.conn).await.is_err());
 }
 
@@ -84,11 +100,14 @@ async fn issue_upgrade_mid_ddl_failure_restores_original_rows_and_schema() {
     migration.down(&manager).await.unwrap();
     // Force the last CREATE INDEX to fail AFTER copying, dropping and renaming
     // the notice table. The surrounding transaction must restore every row.
-    db.conn.execute_unprepared(
-        "DROP INDEX idx_ops_telegram_notice_scope;
+    db.conn
+        .execute_unprepared(
+            "DROP INDEX idx_ops_telegram_notice_scope;
          CREATE TABLE ops_telegram_migration_collision (id INTEGER);
-         CREATE INDEX idx_ops_telegram_notice_scope ON ops_telegram_migration_collision(id)"
-    ).await.unwrap();
+         CREATE INDEX idx_ops_telegram_notice_scope ON ops_telegram_migration_collision(id)",
+        )
+        .await
+        .unwrap();
     assert!(migration.up(&manager).await.is_err());
     assert!(!manager
         .has_column("ops_telegram_config", "github_issues_enabled")
@@ -96,7 +115,10 @@ async fn issue_upgrade_mid_ddl_failure_restores_original_rows_and_schema() {
         .unwrap());
     assert_eq!(rows(&db).await, before);
     assert!(!manager.has_table("ops_telegram_notice_next").await.unwrap());
-    db.conn.execute_unprepared("DROP TABLE ops_telegram_migration_collision").await.unwrap();
+    db.conn
+        .execute_unprepared("DROP TABLE ops_telegram_migration_collision")
+        .await
+        .unwrap();
     migration.up(&manager).await.unwrap();
     assert_eq!(rows(&db).await, before);
 }
@@ -106,12 +128,17 @@ async fn issue_schema_is_closed_and_lossy_rollback_is_rejected() {
     let migration = migration();
     let (db, _, _) = seeded().await;
     let manager = SchemaManager::new(&db.conn);
-    assert!(db.conn.execute_unprepared(
-        "UPDATE ops_telegram_notice SET action_kind = 'arbitrary_executor'"
-    ).await.is_err());
-    db.conn.execute_unprepared(
-        "UPDATE ops_telegram_notice SET action_kind = 'github_issue' WHERE status = 'unknown'"
-    ).await.unwrap();
+    assert!(db
+        .conn
+        .execute_unprepared("UPDATE ops_telegram_notice SET action_kind = 'arbitrary_executor'")
+        .await
+        .is_err());
+    db.conn
+        .execute_unprepared(
+            "UPDATE ops_telegram_notice SET action_kind = 'github_issue' WHERE status = 'unknown'",
+        )
+        .await
+        .unwrap();
     let before = rows(&db).await;
     assert!(migration.down(&manager).await.is_err());
     assert_eq!(rows(&db).await, before);

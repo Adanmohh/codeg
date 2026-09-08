@@ -11,6 +11,7 @@ import { ops, type Proposal, type ThreadKey } from "@/lib/ops/api"
 import { telegram, type ReviewResolution } from "@/lib/ops-telegram/api"
 import { getCodegToken, redirectToCodegLogin } from "@/lib/transport/web-auth"
 import { isDesktop } from "@/lib/platform"
+import { IssuePhoneCard } from "./issue-review"
 
 export function ReviewLinkPage({ notice }: { notice: string | null }) {
   const [authenticated, setAuthenticated] = useState(false)
@@ -39,6 +40,7 @@ function ReviewContent({ notice }: { notice: string | null }) {
         : Promise.resolve<ReviewResolution>({
             state: "unavailable",
             proposal: null,
+            issue: null,
           }),
     [notice]
   )
@@ -97,7 +99,7 @@ function ReviewContent({ notice }: { notice: string | null }) {
               })
             }
           >
-            Open Ops workspace
+            Open workspace
           </Button>
         </div>
       </header>
@@ -113,6 +115,8 @@ function ReviewContent({ notice }: { notice: string | null }) {
             })
           }
         />
+      ) : review.data?.issue && notice ? (
+        <IssuePhoneCard notice={notice} review={review.data.issue} />
       ) : context.data && proposal ? (
         <>
           {error && (

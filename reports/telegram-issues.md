@@ -1,11 +1,106 @@
 # Step 3 — typed GitHub issue phone review
 
-Migration-test checkpoint, 2026-09-08. Sole writer in
+Implementation checkpoint, 2026-09-08. Sole writer in
 `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`, new branch
 **feat/step3-telegram-issues**, created clean from accepted origin/main
 **77c88d9c615072a11b6e24224ec954c398b33518**. No additional agents.
 Contract commit **a7e2e2f3eee3be3e34b0f7006bf8d96bc5f004bb** is pushed.
 Draft PR: **https://github.com/Adanmohh/codeg/pull/12**.
+
+**Current delivery is in progress, not final acceptance.** Accepted PR9 is now
+integrated. The forward migration, closed issue snapshot, decision rechecks,
+default-off issue inclusion and shared phone card are implemented. Telegram
+focused Rust tests: **20 passed, exit 0**. Final protected-provider/browser
+scenarios and both-runtime/Clippy gates remain before handoff.
+
+## Implemented checkpoint and exact host contract
+
+Preparation was pushed as **4fefd024** (three expected red migration tests).
+Accepted main **61738519** was merged cleanly as
+**81716c7ab952c4fa655b70c7d7cedae4b01bdc1f** after owner confirmation of PR9.
+NOTICE, all planning documents and migration order 000005→000006→000007 were
+preserved. No other worktree was changed.
+
+- `ops_intake_host::notice` is the closed read-only snapshot/projection seam.
+  It verifies pending `github.create_issue`, account/product/folder, source
+  freshness/revision, host draft/revision/prepared payload, task/run/connection,
+  all stored proof bytes/hashes/revocation and repository/App/installation.
+  It returns only identifiers/hash to scanning; the authenticated resolver gets
+  the host `Detail` projection. No human Operator is constructed for scanning.
+- Forward migration **m20260908_000008_ops_telegram_issues** preserves every
+  existing email notice/claim/receipt and adds `github_issues_enabled=0`. The
+  closed action-kind column accepts only `email_reply` / `github_issue`.
+  A separate `ops_telegram_issue_binding` epoch with local host-config triggers
+  invalidates rebind/restore locators without altering host product columns.
+  Rollback refuses any issue-notice rows; mid-DDL rollback restores original
+  email rows/schema. An upgrade never mints a replacement delivery attempt.
+- Existing `ops_telegram_resolve` returns `proposal` for email, `issue` for the
+  typed `{source,binding,detail}` issue projection, or neither when unavailable.
+  Issue projection reads occur in one local SQLite writer transaction, with no
+  provider or credential call. Both families share the existing 8-second scan
+  and one-second cleanup budget. Keyset progression skips stale candidates;
+  at most 20 notices per account are attempted within the shared deadline.
+- Existing host approve/deny inputs gain optional **`review_notice`**. The
+  phone supplies the opaque notice plus the complete existing expected/approved
+  payload. The host checks the locator again under the approval writer lock;
+  denial uses an extracted internal `deny_in_transaction` over the unchanged
+  core task/proposal CAS, redaction and wait reconciliation. The workspace keeps
+  its ordinary authenticated review contract. No actor/action executor input,
+  Telegram callback, operator token or mutable payload dispatch is added.
+- The phone shares the accepted `IssueReviewCard`; the workspace wrapper keeps
+  Tasks navigation. A phone locator does not offer draft mutation/task creation.
+  Complete issue body, repository, labels and four evidence summaries/hashes
+  remain visible. Its button is now accurately **Open workspace** at `/workspace`.
+  No locale/RTL/global copy or shell design changes are included.
+
+Read complete accepted host source/NOTICE, including store, review, operator,
+types, runtime, process, shared review/evidence/UI/API and host fixture tests.
+Verified via gh api at accepted head **8703e00fae2e1c92e045936b140b83012cfe0f57**:
+
+| Source file | Immutable blob |
+| --- | --- |
+| ops_intake_host/review.rs | 2d37cc41a9df58c5598ce2e5b128a9b01a5fae81 |
+| ops_intake_host/store.rs | bb016b603412ebb22a0f5ef44252b7397b9eb0e0 |
+| ops_intake_host/operator.rs | d2178860743352b9cf5b37d7b5d71ff278af2065 |
+| ops_intake_host/types.rs | 3a4f2514e09b05bc98263087d5aa266d97db9586 |
+| ops_intake_host/runtime.rs | c7057b15ce7c21dc493cd72b6ea21017e0866b79 |
+| ops_intake_host/tests.rs | 86efca2eca48227e8fe5ccbc31ebdab1114f9048 |
+| ops_intake_host/tests/fixture.rs | e449ffa4677b400410e48c126647bf54e82df343 |
+| src/components/ops-intake/issue-review.tsx | 595672b0b85ee659b36f1f510aeca71779963d5d |
+| src/lib/ops-intake/api.ts | d43a4eb3c320d54e6d3c7e8ce9e034b454bc7805 |
+
+Rust paths in that table are under `src-tauri/src/`. NOTICE appends the exact
+source-to-glue mapping; original Apache LICENSE and prior pinned ports remain.
+Live docs-first **apply_patch** PreToolUse records emitted context at
+**1788826785**, **1788827184**, **1788827398**, same session/worktree, exit 0.
+Read installed React **19.2.4** and `@types/react` useState/useRef/useEffect/
+useSyncExternalStore, testing-library/react **16.3.2** render/rerender/query
+types, SQLite **3.46.0** trigger grammar and SeaORM **1.1.19** before using them.
+
+Checkpoint validation: initial three migration tests failed at the missing
+registration (exit101), then all **16** migration/email Telegram tests passed.
+The new host cases initially stopped at `AdapterMissing`, then caught a fixture
+runtime-lock collision between independent test DBs. Installed the accepted
+`requirements.lock` and editable host package **offline** in this worktree's
+`integrations/hafidh-intake/.venv` with CPython **3.13.14**, after installed uv
+help/README reads. The fixture seam now reuses its own HostRuntime, preserving
+the production per-product lock. Latest `CARGO_TARGET_DIR=target-approvals cargo
+test --locked --no-default-features --lib ops_telegram::tests -- --nocapture`:
+**20 passed, 0 failed, exit0, 3.67s** (`telegram-issues-rust-progress.log`).
+Matrix includes 18 changed bindings and loaded approve/deny rejection with
+zero GitHub POSTs. Initial server check found a private re-export; visibility
+was corrected to crate-only. Final server/desktop gates have not yet run.
+Frontend typecheck **exit0**; prior four-file frontend run **17 passed, exit0**,
+and the expanded five-file frontend run is now **21 passed, exit0**, including
+two phone-card tests and the existing two session-preservation regressions.
+These mocked component results are separate from the still-pending real CLI flow.
+
+Additional focused happy-path gate `phone_decisions_use_the_core` passed
+**1 test, exit0, 0.49s**: concurrent phone approvals create exactly one synthetic
+GitHub issue; retry fails, denial creates none, both retain a separately pending
+ACP wait and resolve no payload through the used locator. Log:
+`telegram-issues-decisions-progress.log`. This uses the real loopback provider,
+host and core rather than intercepted frontend responses.
 
 PR10 was accepted at **c7a46acf30296a9e7c41a5a5c57d47afaeaa00e4**, merged as
 **c3cef09a896308b2501947e5aaafa533e36d9053**. Its last report-only commit

@@ -473,3 +473,21 @@ The active-enum pattern is from Codeg v0.30.4, Apache-2.0, commit
 Original Apache LICENSE and every preceding attribution remain in force.
 No unaccepted host implementation or new third-party provider client is ported
 by this independent storage/type checkpoint.
+
+Accepted issue-host integration reuses PR9 head
+8703e00fae2e1c92e045936b140b83012cfe0f57, merged as
+02e3f5d8a15a3fee792cd0625966dee6c500d184:
+  src-tauri/src/ops_intake_host/{store,review,operator,types,runtime}.rs
+  src-tauri/src/ops_intake_host/tests.rs and tests/{fixture,browser}.rs
+  src-tauri/src/ops_intake/{mod,store,types}.rs
+  src/components/ops-intake/{issue-review,evidence,ui}.tsx
+  src/lib/ops-intake/{api,types}.ts
+Adaptation: a host-owned read-only notification snapshot/projection, closed
+Telegram issue locators, shared review UI and loopback-only fixture coverage.
+The original Apache-2.0 LICENSE and the host's pinned owner-authorized intake,
+IntroMail and provider attributions above remain unchanged.
+The host's notice-constrained denial reuses the accepted
+src-tauri/src/db/service/ops_approvals/mod.rs at PR10 merge
+c3cef09a896308b2501947e5aaafa533e36d9053, extracting only its existing
+transaction body for atomic local checks. Shared phone-card component tests reuse
+src/components/ops-intake/bug-workflow.test.tsx at the accepted PR9 head above.

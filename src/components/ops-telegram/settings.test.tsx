@@ -32,7 +32,12 @@ it("defaults off and requires explicit configuration, with no mount-time dispatc
     </OpsSessionProvider>
   )
   await screen.findByText(/Notifications are off/)
-  expect(screen.getByRole("checkbox")).not.toBeChecked()
+  expect(
+    screen.getByRole("checkbox", { name: /Enable email/ })
+  ).not.toBeChecked()
+  expect(
+    screen.getByRole("checkbox", { name: /Include GitHub/ })
+  ).not.toBeChecked()
   expect(telegram.notify).not.toHaveBeenCalled()
   expect(screen.getByRole("button", { name: "Check queue now" })).toBeDisabled()
   fireEvent.change(screen.getByLabelText("Telegram channel"), {
@@ -44,7 +49,7 @@ it("defaults off and requires explicit configuration, with no mount-time dispatc
   fireEvent.change(screen.getByLabelText("Protected review origin"), {
     target: { value: "https://desk.example.com" },
   })
-  fireEvent.click(screen.getByRole("checkbox"))
+  fireEvent.click(screen.getByRole("checkbox", { name: /Enable email/ }))
   expect(telegram.configure).not.toHaveBeenCalled()
   fireEvent.click(
     screen.getByRole("button", { name: "Save Telegram settings" })
@@ -55,6 +60,7 @@ it("defaults off and requires explicit configuration, with no mount-time dispatc
       privateUserId: "123",
       reviewOrigin: "https://desk.example.com",
       enabled: true,
+      githubIssuesEnabled: false,
       expectedRevision: null,
     })
   )
@@ -67,6 +73,7 @@ it("shows retryable preflight distinctly from ambiguous sends and surfaces confi
     notices: [
       {
         proposalId: 1,
+        actionKind: "email_reply",
         taskId: 1,
         runSeq: 1,
         status: "preflight_failed",
@@ -74,6 +81,7 @@ it("shows retryable preflight distinctly from ambiguous sends and surfaces confi
       },
       {
         proposalId: 2,
+        actionKind: "github_issue",
         taskId: 2,
         runSeq: 1,
         status: "unknown",

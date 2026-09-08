@@ -9,13 +9,13 @@ use sea_orm::ConnectionTrait;
 use serde_json::json;
 
 mod browser;
-mod fixture;
+pub(crate) mod fixture;
 mod http;
 fn human() -> crate::ops::Operator {
     crate::ops::Operator::server().unwrap()
 }
 
-async fn start_task(db: &crate::db::AppDatabase, folder: i32) -> RunContext {
+pub(crate) async fn start_task(db: &crate::db::AppDatabase, folder: i32) -> RunContext {
     let conversation = crate::db::test_helpers::seed_conversation(
         db,
         folder,
@@ -43,7 +43,7 @@ async fn start_task(db: &crate::db::AppDatabase, folder: i32) -> RunContext {
     }
 }
 
-async fn ready(
+pub(crate) async fn ready(
     provider: &fixture::Provider,
 ) -> (crate::db::AppDatabase, SourceInput, RunContext, Draft) {
     let (db, source) = seeded().await;
@@ -61,6 +61,28 @@ async fn ready(
     .unwrap();
     assert_eq!(page.records.len(), 3);
     assert!(page.records.iter().all(|r| r.verified_at.is_none()));
+    let (ctx, d) = ready_source(&db, provider, &source).await;
+    (db, source, ctx, d)
+}
+
+// Reuse a fixture-owned runtime so independent databases never contend on the
+// production singleton's per-product lock while testing parallel scenarios.
+pub(crate) async fn propose_notice(
+    db: &crate::db::AppDatabase,
+    ctx: &RunContext,
+    draft: &Draft,
+    runtime: &HostRuntime,
+) -> super::agent::Proposed {
+    review::propose(&db.conn, ctx, &draft.id, draft.revision, runtime)
+        .await
+        .unwrap()
+}
+
+pub(crate) async fn ready_source(
+    db: &crate::db::AppDatabase,
+    provider: &fixture::Provider,
+    source: &SourceInput,
+) -> (RunContext, Draft) {
     let detail = operator::refresh(&db.conn, &human(), &provider.runtime, source.clone())
         .await
         .unwrap();
@@ -120,7 +142,7 @@ async fn ready(
     )
     .await
     .unwrap();
-    (db, source, ctx, d)
+    (ctx, d)
 }
 
 async fn filed(provider: &fixture::Provider) -> (crate::db::AppDatabase, SourceInput, Detail) {
@@ -133,6 +155,7 @@ async fn filed(provider: &fixture::Provider) -> (crate::db::AppDatabase, SourceI
         &human(),
         &provider.runtime,
         ReviewInput {
+            review_notice: None,
             source: source.clone(),
             proposal_id: p.proposal_id.unwrap(),
             expected_payload: p.prepared.clone(),
@@ -319,6 +342,7 @@ async fn pending_proposal_survives_repeated_call_and_overlapping_acp_wait() {
         &human(),
         &provider.runtime,
         DenyInput {
+            review_notice: None,
             source,
             proposal_id: first.proposal_id.unwrap(),
             expected_payload: first.prepared,
