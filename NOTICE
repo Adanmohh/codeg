@@ -780,3 +780,19 @@ at the same immutable source. Installed user-event14.6.3 setup/keyboard/tab type
 and implementation, React19.2.4 and Tailwind4.1.18 are API references only;
 no dependency implementation is ported. Original Apache LICENSE and all
 preceding notices remain intact.
+
+Business native window chrome (2026):
+Composes the unchanged Apache-2.0 Codeg AppTitleBar and WindowControls from
+src/components/layout/{app-title-bar,window-controls}.tsx, with
+src/hooks/{use-platform,use-mobile,use-media-query}.ts, at v0.30.4
+6f6bd648b206412644842a98d9ffeebf57292bed. The scoped business route layout
+adapts the flex titlebar/content structure of src/app/project-boot/page.tsx
+and SSR-safe native detection in src/components/business/connect.tsx at
+Adanmohh/codeg e6eb7b56c76f0f162f5255857c4f8e0ab8f7d804. Existing
+commands/windows.rs and src/lib/window-chrome.ts are geometry references;
+the three business scenes only consume the remaining content height.
+React19.2.4, @types/react19.2.13, Next16.1.6, Tailwind4.1.18 and
+@tauri-apps/api2.10.1 installed source/types are API references. Locked
+tauri2.10.2 drag.js (official06374a902a50d2bd8b8d85593623ad16ac32325a)
+is a drag-contract reference; no dependency implementation is copied.
+Original Apache LICENSE and every preceding attribution remain intact.

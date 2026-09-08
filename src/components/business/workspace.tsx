@@ -302,7 +302,7 @@ export function BusinessWorkspace({
     </>
   )
   return (
-    <div className="bg-background flex h-dvh min-w-0 overflow-hidden">
+    <div className="bg-background flex h-full min-w-0 overflow-hidden">
       <aside className="bg-sidebar border-border hidden w-[248px] shrink-0 flex-col overflow-y-auto border-e p-5 lg:flex">
         {navigation}
       </aside>
