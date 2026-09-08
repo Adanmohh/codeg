@@ -35,3 +35,25 @@ link and contribution tests remain the task worker's responsibility.
 Two-session business UI validation, Playwright CLI and the final Design Studio
 loop remain separate integrated acceptance gates. No browser, provider or native
 application acceptance is inferred from these identity tests.
+
+## Accepted and merged
+
+PR #23 accepted at `c911c406ece02f038b838ef7981c9c8cb88aca03`, merged as
+`ab46c9d9a6406db8314132d4e2678e36fa5138f2`. Root reviewed the final diff:
+production source is unchanged from `861fb0ef`; additions are an ignored guarded
+fixture, browser evidence, attribution and the separately applied task registration
+patch. Worker desktop/server checks, both Clippy gates with `-D warnings` and
+frontend typecheck pass; root inspected the recorded compiler/Clippy logs.
+
+Root independently repeated the reviewed browser scripts on the handed-off
+loopback4341 fixture at 2026-09-08 08:46 UTC. All 21 first-browser assertions and
+5 second-browser assertions passed. Both sessions saw organization
+`c572d07f-cb43-4349-9d63-f83a10190de0`, using distinct new members
+`7d91eb7e-7435-46d0-b25b-0e8d24afeb4e` and
+`87016e34-7b19-4774-9e4e-ba42b4cbbbc0`. No response mocking or external requests;
+credentials stayed inside browser closures. Both root browser sessions were
+closed. The already initialized fixture verifies bootstrap preservation here;
+fresh bootstrap is covered by the independent backend tests.
+
+This accepts the identity foundation only. Shared-task execution fencing, full
+member workspace interaction and final Design Studio/native artifact remain open.
