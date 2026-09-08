@@ -4,7 +4,7 @@
 
 ## Autonomous implementation — resumed
 
-Owner requests best assumptions and delivery; conversation is optional. [Implementation scope and sequence](docs/BUSINESS-IMPLEMENTATION.md): shared member identity/permissions and business tasks first, visual role-based work surfaces, then meeting/feedback ingestion and business adapters. Existing engineering tools remain supporting capabilities. Three fresh worker assignments are being dispatched; previous visual work is preserved.
+Owner requests best assumptions and delivery; conversation is optional. [Implementation scope and sequence](docs/BUSINESS-IMPLEMENTATION.md): shared member identity/permissions and business tasks first, visual role-based work surfaces, then meeting/feedback ingestion and business adapters. Existing engineering tools remain supporting capabilities. All three fresh assignments dispatched from `4ec04d72`: approvals `wR:p3` / `feat/business-identity` (identity/permissions, migration 000009); tickets `wR:p4` / `feat/business-tasks` (shared task core, migration 000010); rebrand `wR:p2` / `feat/business-workspace` (visual member workspace). Previous paused work is preserved. Early docs-only draft PR #21 (`cf404c6e`) and #22 (`cb2e184f`) were reviewed as contracts, not accepted runtime implementations. Identity contract is the next integration dependency. [Root acceptance checklist](reports/business-acceptance-checklist.md).
 
 ## Research during ideation
 
