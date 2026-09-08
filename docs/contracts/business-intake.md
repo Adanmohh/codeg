@@ -23,9 +23,9 @@ by this document.
   selected domain. Accepted tasks remain visible to that domain per Increment A;
   transcript, attendee list and restricted evidence do not enter its notes,
   activity, agent context, search or notifications automatically.
-- Candidate edit/accept/link/discard requires current source permission and
-  current destination task permission, revalidated in the same writer transaction
-  as CAS, task/source linkage, decision and immutable audit. Reimport is durable
+- Candidate mutations require current source permission; publishing or reading
+  a destination also requires its task permission, revalidated in the same writer
+  transaction as CAS, task/source linkage, decision and immutable audit. Reimport is durable
   and idempotent; it must not overwrite human-edited or accepted work.
 - Existing email/Hafidh storage remains under its accepted operator/account
   boundary. An ordinary business member cannot use a business source ID to
@@ -79,8 +79,10 @@ sharing expiry formats are not guessed; ambiguous access makes disclosure stale.
 No source URL is fetched or rendered as an automatically followed link.
 
 Local limits proposed for B1: 50 list rows/page, five pages/window, explicit UTC
-fromDate/toDate no more than 31 days apart, one HTTP read/advance, 30-second
-timeout, 2 MiB response cap and no redirects/ambient proxy credentials. These
+fromDate/toDate no more than 31 days apart, one HTTP read/advance, **12 seconds per
+provider read and 15 seconds for the complete core request**. This supersedes the
+initial draft's 30-second provider timeout. Keep the existing business client's
+20-second timeout, a 2 MiB response cap and no redirects/ambient proxy credentials. These
 are application limits, not a verified provider SLA. Store a frozen date window
 and offset; the source gives no snapshot/order/updated-since guarantee. Show
 `bounded_end` or `capped`, never “fully synchronized”. Revisit overlapping
@@ -192,6 +194,14 @@ original requester as history. This deliberately does not promise unattended
 continuous sync. Any later automatic job resumption needs an identity-owner
 reviewed credential-lineage helper; the agent binding constructor is unsuitable.
 
+`imports/list` rediscovers permitted jobs after reload; never depend on an ID in
+localStorage or on knowing another caller's operationId. Claim and its operation
+receipt commit together before network I/O. Replaying that advance while its
+claim is live returns current import state without a second provider request.
+After timeout/crash the human sees waiting/expired state and explicitly advances
+with a new operationId; the old attempt remains fenced. A response lost after a
+decision is recovered from CandidateDetail.decision, without another create.
+
 Read failures can retry with the same logical step after bounded backoff: at most
 three attempts before actionable `failed`, starting at 5 seconds and capped at
 60 seconds; a valid provider Retry-After is honored up to that cap, otherwise
@@ -217,6 +227,22 @@ null or strict YYYY-MM-DD, with no timezone conversion; suggestion prose never
 sets it. Human/agent assignees require existing Assign and active reference checks.
 No git folder, live agent, chat, external issue or engineering run is required.
 
+`candidates/select` saves only a human's exact current passage selection; it also
+performs explicit rebase when expectedSourceRevision matches the current source.
+It increments candidate revision, adopts the current source revision and clears
+requiresRebase, preserving draft/null and suggestions without changing task text.
+`candidates/edit` performs the same current-passage validation/rebase while
+replacing the prepared task draft. Both require fresh source access, a pending
+candidate and candidate CAS. No extra automatic change is made during get/list.
+
+After fresh revalidation, CandidateDetail may return its retained old-version
+passages and draft, labelled with candidate.sourceRevision; SourceSummary.revision
+is the current source. Selecting replacement passages uses current sources/get.
+Metadata-only disclosure returns no private draft, suggestions or passages and
+uses hasPreparedDraft to distinguish withheld text from an unprepared candidate.
+The UI clears publication confirmation on any selection, draft, target, source
+or candidate revision change; no stale confirmation survives a rebase.
+
 Accept contains no edited task payload: it references the prepared candidate and
 source revisions and explicitly confirms publication to the draft's domain.
 Recheck all create/reference/publication conditions in one writer transaction;
@@ -226,6 +252,13 @@ complete, review, notify externally or launch an assignee. Source linking must
 use a task-owner helper that applies edit capability, CAS and typed activity; a
 link during task review invalidates that review using the existing metadata-edit
 rule. Do not duplicate task SQL/validators or call Operator::server from intake.
+
+A text-free link does not require PreparedTask. The human freezes an existing
+authorized tasks/get Detail for visible review, then sends its taskId, exact
+expectedTaskRevision and publishToDomain with candidate/source revisions. Final
+core validation requires that domain to equal the live target domain and current
+publication grant. It copies no candidate draft text and needs no new persistent
+target-preview record. Changing the target or a 409 clears confirmation.
 
 Identical reimport changes only observation/progress metadata. Changed source
 creates an immutable version and marks pending candidates for explicit rebase;
@@ -266,12 +299,14 @@ up to 256 characters without controls, passed as GraphQL variables only.
 | sources/get | `{sourceId:Id}` | SourceDetail; protected passages only with current fresh read access |
 | imports/start | `{operationId,bindingId,selection}` | Import; selection is `{kind:"window",fromDate,toDate}` for Fireflies or `{kind:"record",sourceId}` for explicit refresh |
 | imports/capture | `{operationId,bindingId,ref:LegacyRef}` | Import for already stored email/Hafidh record; no upstream pull |
-| imports/get | `{importId:Id}` | Import; requester/current import grant required, no hidden counts |
+| imports/list | `{bindingId:Id,view?:"unfinished",page?:0}` | `{items:Import[],page,hasMore}`; view unfinished/all, current read+import grant, 50 visible rows/page |
+| imports/get | `{importId:Id}` | Import; current read+import grant required, original requester identity alone gives no right; no hidden counts |
 | imports/advance | `{operationId,importId,expectedRevision:Rev}` | Import; one due step/current Principal; owned live lease reports busy |
 | imports/cancel | `{operationId,importId,expectedRevision:Rev}` | Import; fences queued/in-flight steps |
 | candidates/list | `{sourceId:Id,state?:"pending",page?:0}` | `{items:Candidate[],page,hasMore}`, 50 visible rows/page; state is one of four candidate states |
 | candidates/get | `{candidateId:Id}` | CandidateDetail and authorized current-source state |
 | candidates/create | `{operationId,sourceId,expectedSourceRevision:Rev,passageIds:Id[]}` | Extra Candidate, no task, for deliberate additional work |
+| candidates/select | `{operationId,candidateId,expectedRevision:Rev,expectedSourceRevision:Rev,passageIds:Id[]}` | CandidateDetail; explicit passage-only selection/rebase, preserving nullable prepared draft |
 | candidates/edit | `{operationId,candidateId,expectedRevision:Rev,expectedSourceRevision:Rev,passageIds:Id[],task:CreateInput,ownerSuggestion?:null,dueSuggestion?:null}` | CandidateDetail with normalized exact draft; full replacement, null suggestions clear |
 | candidates/accept | `{operationId,candidateId,expectedRevision:Rev,expectedSourceRevision:Rev,publishToDomain:Domain}` | `{decision:Decision,task:existing Detail,replayed:boolean}` |
 | candidates/link | `{operationId,candidateId,expectedRevision:Rev,expectedSourceRevision:Rev,taskId:Id,expectedTaskRevision:Rev,publishToDomain:Domain}` | Same Decision result; no task content copied or replaced |
@@ -281,32 +316,73 @@ up to 256 characters without controls, passed as GraphQL variables only.
 `BindingSummary={id,kind,label,domain,readiness,capabilities}`; no origin/key,
 provider principal, account/product configuration or credential reference.
 `SourceSummary={id,bindingId,kind,title,revision,observedAt:null|instant,
-access,content,summary,providerSummaryStatus:null|string,requiresRefresh}`.
-`SourceDetail={source:SourceSummary,passages:Passage[],candidateCount}`; stale
+accessValidUntil:null|instant,access,content,summary,
+providerSummaryStatus:null|string,requiresRefresh}`.
+`SourceDetail={source:SourceSummary,disclosure,passages:Passage[],candidateCount}`; stale
 authorized metadata can be shown with an explicit label, but passages/drafts
 are withheld until refresh. Raw provider JSON/access metadata never serialize.
 `Passage={id,sourceRevision,kind,text,index:null|integer,start:null|number,
 end:null|number}`. Limit selection to 20 same-source/version passages and bounded
 20,000 combined characters; no silent clipping or cross-source IDs.
 
-`Candidate={id,sourceId,revision,sourceRevision,state,requiresRebase,
-draft:null|normalized CreateInput,ownerSuggestion:null|string,
+`PreparedTask={title,notes,domain,priority,dueDate:null|string,ownerId:Id,
+assigneeId:null|Id,reviewerId:null|Id}` is an explicit serialized response and
+stored preview; existing Rust CreateInput is not Serialize. All fields are
+present, normalized with existing task validation and explicit resolved defaults.
+`disclosure` is `fresh | metadata_only`; metadata-only always returns passages=[]
+and draft/ownerSuggestion/dueSuggestion=null, even if text is retained privately.
+`Candidate={id,sourceId,revision,sourceRevision,state,requiresRebase,disclosure,
+hasPreparedDraft:boolean,draft:null|PreparedTask,ownerSuggestion:null|string,
 dueSuggestion:null|string,capabilities}`; suggestion text max240 characters.
-`CandidateDetail={candidate,passages,source:SourceSummary}`.
+`CandidateDetail={candidate,passages,source:SourceSummary,decision:null|Decision}`.
 `Decision={id,candidateId,fromRevision,sourceRevision,kind,actorId,
-taskId:null|Id,taskRevision:null|Rev,createdAt}`; source-authorized audience only.
+task:DecisionTask,createdAt}`; source-authorized audience only. DecisionTask is
+`{state:"none"}` for discard, `{state:"restricted"}` if the destination is now
+inaccessible, or `{state:"accessible",taskId:Id,taskRevision:Rev}` after current
+task read authorization. No hidden task ID/title/revision leaks in a restricted
+result. Terminal disposition remains discoverable without an old operationId.
 `Import={id,bindingId,revision,state,coverage,discovered,completed,failed,
-nextAttemptAt:null|instant,errorCode:null|string}`; states queued/running/waiting/
+nextAttemptAt:null|instant,errorCode:null|IntakeReason,capabilities}`; states queued/running/waiting/
 complete/failed/cancelled, coverage not_started/partial/bounded_end/capped.
+Import capabilities are explicit `{advance:boolean,cancel:boolean}`; no caller
+may treat them as authority. Retain terminal imports for status/history; cancelled
+or complete/failed jobs are never restarted by advance. The unfinished view
+contains queued/running/waiting; history/all also returns terminal imports. A new explicit start is a new
+bounded observation with source/candidate dedupe.
 `SourceLinkView={linkId,accessible,source:null|SourceSummary}`; no provider URL.
 
-Reuse AppCommandError mappings: unauthenticated/revoked401, forbidden action403,
-hidden/foreign404, malformed400 and revision/idempotency conflict409 with
-`business.revisionConflict`. New intake reason keys must be explicit safe codes:
-binding_missing, source_expired, source_denied, unsupported_schema,
-publication_not_allowed, rebase_required, import_busy, retry_later. They are
-proposed additions, not claims that current AppErrorCode already contains them.
-No raw GraphQL/SQL/input/token data in errors or logs.
+Reuse business identity's error boundary: session unauthenticated/revoked401,
+forbidden action403, hidden/foreign404, malformed400 and revision/idempotency
+conflict409 with `business.revisionConflict`. No provider rejection may emit
+authentication_failed or401 and accidentally revoke the member session.
+Existing AppCommandError supplies the envelope; no new global error codes.
+
+`IntakeReason` is the closed set below, encoded only through exact allowlisted
+`i18n_key = "business.intake." + reason`, with no detail/parameter payload. The
+intake client exposes optional `intakeReason` beside its existing generic error
+kind and ignores all unknown keys/messages. Existing auth/task error behavior
+remains unchanged. `Import.errorCode` uses the same finite reasons (or null),
+never raw GraphQL/SQL/input/token/correlation data.
+
+| Reason | Existing AppErrorCode / HTTP when returned as an error |
+| --- | --- |
+| binding_missing, binding_disabled, credential_unavailable | configuration_missing /422 |
+| source_expired, rebase_required, import_busy, retry_later | already_exists /409 |
+| source_denied, publication_not_allowed | permission_denied /403 |
+| unsupported_schema, provider_unavailable, request_timeout | network_error /500 |
+
+These are proposed intake keys, not names already implemented in AppErrorCode
+or the frontend. Current `src/lib/business/client.ts` has only generic kinds;
+the UI owner adds this narrow reason projection without rendering server text.
+
+Deadline/recovery agreement: the core request bound applies to claim, network and
+final writer work for both HTTP and native entry. If the bound expires before
+commit, drop/rollback that transaction and leave the durable claim recoverable
+after expiry; no detached background commit. A commit whose response was lost is
+an uncertain result reconciled through imports/list/get or CandidateDetail,
+never presumed failure followed by another task create. The 20-second HTTP timer
+does not cancel a Tauri invoke today, so the same backend bound is mandatory in
+native mode. Do not increase global client timeouts or change other business APIs.
 
 ## Email/Hafidh integration and preserved floors
 
@@ -341,22 +417,22 @@ no source disclosure to that agent path; Astra/max and stable Pi policy stay int
 
 | Case | Required observable result |
 | --- | --- |
-| B01 Missing/disabled/wrong provider principal | Honest setup state; no source/query fallback or secret output. |
+| B01 Protected setup and wrong provider principal | Actual operator can configure binding/explicit human grants/publication; ordinary owner credential cannot. Missing/disabled setup is honest; store/DB failure and rebind cannot leave usable partial authority or secret output. |
 | B02 Two organizations/hidden source/forged actor | 401/403/404 as appropriate, no content/count/reference disclosure; closed spoof/URL/query inputs400. |
 | B03 Viewer and agent | Granted viewer can read eligible source only; import/edit/accept/link/discard denied. Agent receives no B source API or private context. |
 | B04 Task-domain access without source grant | Can read public task but source link stays restricted; search/activity/notifications contain no transcript/attendee/private data. |
 | B05 HTTP200 errors/null/oversize/ID mismatch | No snapshot/candidate/scan advance; fixed safe failure, no raw provider data in error. |
-| B06 Missing versus empty versus malformed summary | Distinct readiness; valid sentence-only human flow works; prose owner/date remain suggestions with null assignee/date until edited. |
+| B06 Summary, disclosure and null-draft link | Distinct missing/empty/malformed readiness; sentence-only human flow works. Metadata-only withholds retained text; fresh old/current versions labelled. Passage-only rebase permits link with null draft, no fictitious new task. |
 | B07 Duplicate page/detail and response loss | Same source/version/seed candidate; repeated accept with identical operationId produces one task/decision/created activity. |
 | B08 Source edit and A→B→A | Monotonic revisions, pending draft retained and explicit rebase; old acceptance rejected even when hash matches an older version. Terminal decisions/work unchanged. |
 | B09 Offset shifts/cap/resume | Duplicate IDs converge, coverage reports partial/capped honestly; crash after page commit resumes persisted position/detail work. No claimed lossless sync. |
 | B10 Competing claims/expired late worker | At most one accepted step commit; stale attempt cannot persist or advance after reclaim/cancel/expiry. |
 | B11 Revocation during provider await | Old credential/member/grant/binding epoch fails final writer recheck; no committed source/publication; already in-flight read is disclosed as a limit. |
-| B12 Process restart | Owned durable jobs remain resumable; no reconstructed operator/agent Principal or automatic provider action. A current authorized human advances them. |
+| B12 Restart and lost response | imports/list rediscovers jobs only under current grants; CandidateDetail returns terminal decision and redacts inaccessible task target. No reconstructed Principal, browser-stored secret source or automatic provider action. |
 | B13 Accept/edit/source-refresh race | One winning revision; rejected transaction changes zero task/link/decision/activity rows. Crash after commit returns deduplicated receipt. |
 | B14 Human-only task and references | Valid current Create/Assign owner/assignee/reviewer checks; no engine/folder/chat; todo→review→human Done through existing task operations. Revoked/foreign references rejected. |
 | B15 Link and task review race | Existing editable task revision/visibility checked; source link invalidates pending review; archived/terminal/unrelated task link denied, no orphan/history mutation. |
-| B16 Timezone/long/untrusted source | Same dueDate across Helsinki/US/UTC and DST; ambiguous date stays null; long/RTL/prompt-injection text is plain content, never an operation. |
+| B16 Time, long/untrusted source and deadlines | Same calendar dueDate across Helsinki/US/UTC/DST; ambiguous date stays null. Long/RTL/instruction text is plain content. HTTP/native backend bound15s/read12s remains below client20s; safe reason projection, timeout recovery and no detached commit verified. |
 | B17 Email/Hafidh privacy and old floors | Private note/activity/reporter/proof/config excluded; no host freshness change; no email resend/GitHub filing/approval/model request triggered. |
 | B18 Actual shared visual flow | Guarded synthetic Playwright CLI: two sessions, import/readiness, select/edit exact task, accept/link/discard, stale/revoked recovery, accessible full review at390/1280 and light/dark. No mock production response. |
 
@@ -368,6 +444,13 @@ pagination/access behavior and credential setup need separate authorization;
 the public-api-ff GitHub documentation repository currently returns404. The
 contract is implementable against synthetic verified query shapes with explicit
 unsupported states; current hosted service semantics are not fabricated.
+
+Root's [BI-1–BI-10 acceptance plan](https://github.com/Adanmohh/codeg/blob/650be3025c25386649bc906f6bed335abafcb011/reports/business-intake-acceptance-checklist.md)
+was read completely and is complementary: setup→B01; bounded import→B05/09;
+durability→B07/10/12/13; privacy→B02/03/04/11/17; human preparation→B06/14/16;
+atomic decisions→B07/13/15; changes→B08/11; continuity→B14/17;
+actual interface→B18. Integrated/native artifact gates follow implementation,
+not this documentation proposal. No passing evidence is claimed for BI-1–BI-10.
 
 No product code, provider request, dependency/runtime installation or configuration
 change is made by this contract. Root review precedes implementation dispatch.
