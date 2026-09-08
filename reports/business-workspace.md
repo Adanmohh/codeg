@@ -1,10 +1,12 @@
 # Business workspace — active implementation checkpoint
 
 Branch `feat/business-workspace`; draft [PR21](https://github.com/Adanmohh/codeg/pull/21).
-Base `4ec04d7282a50529335d724438d42b99a53385a2`; previous pushed source checkpoint
-`142b600e`. This checkpoint implements the frontend against the published identity
-and task contracts. It is **not runtime UI acceptance**: real guarded task fixture,
-two-session browser evidence and final Design Studio checks are still pending.
+Base `4ec04d7282a50529335d724438d42b99a53385a2`; pushed source checkpoint
+`c1a35955`, plus the scoped long-content correction in this checkpoint.
+Real protected bootstrap/member creation, two personal sessions, task creation,
+409 draft recovery, independent human review and cross-session completion have
+passed. Role/revocation and complete responsive/Design Studio checks are still in
+progress; this is not a final acceptance claim.
 
 ## Implemented behavior
 
@@ -164,13 +166,25 @@ LICENSE/NOTICE), own target `.build/business-fixture-target/`. `cargo test
 --no-default-features --lib --jobs4
 business_tasks::tests::fixture::business_tasks_browser_fixture -- --ignored
 --exact --nocapture` compiled in2m55s and now runs the ignored guarded fixture,
-PID21431 on4342, in-memory SQLite, no engine/provider. Known linker unwind-table
+PID21431 on4342, in-memory SQLite, no engine/provider. This listener belongs to
+this frontend worktree; the task worker's earlier PID794 was stopped before it
+started. Known linker unwind-table
 and proc-macro-error2 future-compatibility warnings remain. This is an owned test
-snapshot, not a product merge or backend edit. Proxy PID8485 on4340 runs
+snapshot, not a product merge or backend edit. Proxy PID36044 on4340 runs
 `node reports/business-workspace-evidence/serve.mjs out-business-workspace
 --backend=4342`, with closed operations and no header/body logging. Browser PIDs
 85074 (`business-owner4340`) and85139 (`business-member4340`) are owned here.
 Initial actual UI sign-in returns a real context needing bootstrap.
+
+The owner created `Hafidh Studio · Synthetic` and four named synthetic human/agent
+members through the actual UI. The protected owner then issued its own personal
+credential through the masked one-time surface, disconnected the original
+operator and signed in as an ordinary owner-role member. The second named browser
+signed in as the separate human member. Both personal sessions have no engineering
+entry, no credential in localStorage and no legacy API calls. The old ambient
+operator token remains unchanged. Evidence: `bootstrap-people.json`,
+`owner-personal-session.json` and `member-connect.json`. Credential strings are
+absent from the saved evidence.
 
 R1 frontend alignment follows the new explicit operator-only entrust endpoint;
 it stays under engineering detail, requires confirmation and never auto-links.
@@ -180,3 +194,31 @@ and scoped lint exit0 (`entrust-*.log`); earlier12 session/workflow tests also
 passed after mobile corrections. Entrust export rebuild exited0. Real task UI,
 source-binding failure display, member flows and measured Design Studio acceptance
 remain in progress. The task backend is not yet accepted/main-integrated here.
+
+## Actual task workflow checkpoint
+
+`create-work.json`: four tasks created by UI, with a distinct human owner,
+human/agent/unassigned execution and explicit/nullable reviewer. Exact calendar
+days `2026-10-01`, `2026-12-31`, `2028-02-29` and null roundtrip without conversion.
+`member-conflict-review.json`: the assigned personal member kept its draft after a
+real409, loaded/compared the owner's revision2, explicitly adopted it and saved
+revision3; progress, note and deliverable reached review revision6 with no accept
+control. A separately signed-in named manager confirmed and accepted the actual
+deliverable, producing done revision7. `manager-review.json` and
+`connect-current-owner.json` prove the result and its visibility in the independent
+owner session. No conversation, engine, provider or outbound action was required.
+
+The settled390px long-content test found3974px content inside a358px dialog.
+The business-only modal now uses a min-zero grid column and inherited anywhere
+wrapping; the shared dialog implementation is unchanged. Actual rebuilt export
+measures358/358, full page390px (`long-detail-{settled-before,after}.json` and
+screens). Tailwind4.1.18 installed `grid-cols` and wrapping utility implementation
+was read before editing. Typecheck, scoped lint and isolated export build exited0
+(`long-content-*.log`).
+
+Two probe mistakes are retained: the reviewer locator omitted the actual word
+“have”, corrected without changing product/assertions; waiting for *all* document
+animations included dormant OverlayScrollbars scroll timelines (`currentTime:null`).
+Review had already succeeded200. The corrected read-only capture waits for the
+dialog's actual opacity1/transformnone and does not repeat the mutation. Failed
+selector/timeline artifacts remain labelled, not counted as successful flows.

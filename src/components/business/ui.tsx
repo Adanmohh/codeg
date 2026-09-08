@@ -241,7 +241,7 @@ export function Modal({
       <DialogContent
         showCloseButton={false}
         className={cn(
-          "gap-5 rounded-2xl p-5 motion-reduce:animate-none sm:p-7",
+          "min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none sm:p-7",
           wide ? "max-w-3xl" : "max-w-lg"
         )}
       >
