@@ -290,3 +290,6 @@ separates tenant-owned provider connections from platform legacy-resource entrus
 and names the companion's legacy unrestricted session-read path as a new-target
 prerequisite. This checkpoint changes none of those platform/tenant/native/CLI
 boundaries. Edublend/Payload source has not been copied into this implementation.
+
+Candidate production checkpoint: `e9c6323760497e7b294282d2746cfe1d9b2774fa`, pushed
+to draft PR28. Earlier import regressions/report: `5de1176beb4778604b26df65f2ec669b0ab7987b`.
