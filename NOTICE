@@ -544,7 +544,7 @@ The existing MIT Pi extension/broker above is extended at the same immutable
 pins: badlogic/pi-mono v0.85.1 d981de1229ef899957bbe968bc8dcda02a21f477,
 packages/coding-agent/examples/extensions/confirm-destructive.ts,
 packages/coding-agent/src/core/extensions/{types,runner,loader}.ts,
-packages/coding-agent/docs/rpc.md and src/modes/rpc/rpc-mode.ts;
+packages/coding-agent/{docs/rpc.md,src/modes/rpc/rpc-mode.ts};
 nicobailon/pi-mcp-adapter v2.32.1 10a45367e033a32026987a75d6f401e37340c86f,
 types.ts, index.ts, config.ts, server-manager.ts, init.ts, metadata-cache.ts,
 tool-approval.ts and __tests__/tool-approval.test.ts. The original Mario Zechner
