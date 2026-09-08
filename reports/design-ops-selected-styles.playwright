@@ -1,0 +1,41 @@
+// Direct real-theme check of the three selected-row labels, without theme injection.
+async (page) => {
+  if (!page.url().startsWith('http://127.0.0.1:4326/')) throw Error('Owned fixture only')
+  const appearance = page.context().pages().find(p => p.url().endsWith('/settings/appearance'))
+  if (!appearance) throw Error('Fixture Appearance tab required')
+  await page.setViewportSize({ width: 1280, height: 900 })
+  const facts = []
+  for (const view of ['review', 'thread']) {
+    await page.getByRole('button', { name: view === 'review' ? 'Approvals' : 'Inbox', exact: true }).click()
+    const selected = page.getByRole('button', { name: view === 'review' ? /Re: Synthetic locale review Task/ : /Reader Open Synthetic locale review/ })
+    await selected.click()
+    await page.locator('article h1').waitFor()
+    for (const theme of ['light', 'dark']) {
+      await appearance.getByRole('combobox').first().click()
+      await appearance.getByRole('option', { name: theme === 'dark' ? 'Dark' : 'Light', exact: true }).click()
+      await page.waitForFunction(t => document.documentElement.classList.contains(t) && document.documentElement.style.colorScheme === t, theme)
+      await page.waitForTimeout(400)
+      await page.locator('article > header').scrollIntoViewIfNeeded()
+      await selected.scrollIntoViewIfNeeded()
+      await page.locator('article h1').hover() // Measure selection independently of hover.
+      await page.waitForTimeout(200)
+      const measured = await selected.evaluate(el => ({
+        theme: document.documentElement.className,
+        colorScheme: document.documentElement.style.colorScheme,
+        preference: localStorage.getItem('theme'),
+        rowBackground: getComputedStyle(el).backgroundColor,
+        rowVisible: el.checkVisibility(),
+        rowBox: el.getBoundingClientRect().toJSON(),
+        labels: [...el.querySelectorAll('.text-xs')].map(n => ({
+          text: n.textContent.trim(), color: getComputedStyle(n).color,
+          background: getComputedStyle(n).backgroundColor,
+          fontSize: getComputedStyle(n).fontSize, visible: n.checkVisibility(),
+          classes: n.className,
+        })),
+      }))
+      facts.push({ view, theme, ...measured })
+      await page.screenshot({ path: `reports/browser-design-ops/final-selected-${view}-${theme}.png` })
+    }
+  }
+  return { syntheticOnly: true, method: 'Actual Appearance Light/Dark, settled computed styles', facts }
+}

@@ -1,3 +1,22 @@
+# Acceptance
+
+PR #14 accepted at `e7f89b611e8a229fb557f03efb9627001fc06372`, merged as
+`b7186ba65b2155bdba695ea6364f3ac267fbc51c`. Read full final report and exact
+selected-only contrast delta; NOTICE/ignore merge preserves both parents.
+Independent22 tests and actual final4326 locale preservation for reply, note
+and all seven editable review fields pass. [Browser](browser-locale-independent/README.md).
+Worker92 integrated frontend tests, typecheck/lint/export, documented runtime
+checks/Clippy/167 Ops tests pass at their stated heads; no repeated unchanged
+Rust run is represented as new evidence. Final merged typecheck passes.
+
+Selected-row8.66 light/9.76 dark contrast and visible threading measurements
+resolve the scoped finding. Original false candidates remain recorded. No
+blocking finding in the bounded correction. Final combined Design Studio
+review will verify the remaining shared-transition candidate and normalize
+OKLCH/composite token comparisons; no whole-app/motion certification here.
+
+Historical checkpoints follow.
+
 # Ops locale, RTL and receipt-copy review
 
 In progress, 2026-09-08. Reviewed product checkpoint

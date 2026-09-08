@@ -61,3 +61,14 @@ expected worktrees and sessions. The tickets source-patch pre-hook emitted
 context; its post-hook did not repeat it. This verifies a live source-patch
 hook event as well as ongoing worker tool hooks, within the heuristic limits
 above. Root's older session remains manually grounded, not live-hook verified.
+
+## Fresh root verification during P1 review
+
+Read metadata-only audit rows after phone acceptance. Live context-emitting
+PreToolUse records remain present for all three current worker sessions:
+rebrand row8851/time1788829809 (Bash), approvals8478/time1788829124
+(apply_patch), tickets8747/time1788829621 (apply_patch), each exit0 and exact
+owned worktree. Later paired Pre/Post records also continue (9024/9025,
+9044/9045,8994/8995 respectively). No command payload or secrets printed.
+Root continues manual docs-first because this session predates hook activation;
+these worker records are not a claim of live root interception.
