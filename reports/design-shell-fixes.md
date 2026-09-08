@@ -2,6 +2,8 @@
 
 Implementation and focused gates complete; final rendered checks in progress.
 Draft PR: https://github.com/Adanmohh/codeg/pull/13.
+Pushed first product checkpoint: `f8ba45973925f5e78331de1d47e913f5a56cb1f5`.
+Root independently reports 9 focused tests passed at this checkpoint.
 Branch `fix/design-shell`, from accepted main
 `ba93e87200b16d9fd15411b885f8c852b92078c0`, including PR11 review merge
 `625d8ed7266ed4cf49454942f3dbb5c48409bd07`. Scope is the five verified findings
@@ -10,6 +12,16 @@ names; shell contrast; full setup reason/settings action and readiness copy;
 scoped setup-banner contrast. No task/Ops/approval/locale-provider changes.
 Owner explicitly included the revealed custom-provider ID/API/base URL and
 reasoning controls. These use the existing labels, state and save contract.
+Root's review of the new evidence found a sixth high issue on this path:
+`settings-shell.tsx:238` mobile menu had no name and measured 32x32.
+After full local/current and Codeg v0.30.4 source reads, the follow-up uses
+the existing translated Navigation label, expanded/dialog semantics and a
+44x44 target in a 48px mobile header. Existing drawer navigation/dismissal
+handlers remain unchanged. Actual 390px CLI menu open, current-page select,
+Escape and outside-press close pass; URL stays `/settings/agents?agent=pi`,
+document width 390, complete readiness guidance retained. Follow-up focused
+ESLint, typecheck and production rebuild all exit 0. Final evidence packaging
+and remaining dark/custom-provider measurements are in progress.
 Only four new guidance keys in each Pi translation namespace are additive;
 locale loading/RTL and unrelated copy remain with their owner.
 

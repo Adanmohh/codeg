@@ -422,3 +422,8 @@ message/actions and reuses the existing Button and translated labels. Form
 associations use the installed React useId and Radix SelectTrigger contracts.
 New code is presentation glue and regression fixtures. The original Codeg
 Apache-2.0 LICENSE and all preceding attribution remain unchanged.
+
+The same scoped accessibility follow-up extends Codeg v0.30.4
+src/components/settings/settings-shell.tsx at the immutable commit above,
+using the existing translated Navigation label and AppTitleBar size override.
+Drawer navigation, dismissal and settings persistence are unchanged.
