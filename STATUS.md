@@ -21,6 +21,15 @@ session/ACL requirements. Settings default to neutral palette, split layout and
 tasks; appearance is scoped to the tenant workspace. P2/P4 received the contract.
 No compiling product or runtime pass is claimed by this documentation checkpoint.
 
+First compiling PR30 source `f3b408dae5c724f354763961d79a17a7ae5c86f8`
+is now verified: original-org mapping, captured Principal/delegation epochs,
+settings core and pinned-connection forward migration. Root read the migration
+and epoch/store diff plus report. Owner locked server check passes; identity tests
+were still compiling at handoff. Platform endpoints/native enforcement remain
+unfinished. Tickets is dispatched to independent exact-head review on separate
+`review/business-tenancy`, deliverable `reports/review-business-tenancy.md`, after
+preserving B. No product merge or native/tenant acceptance is implied.
+
 Owner explicitly wants the engineering workspace's richness for business users:
 chat and terminal AI, tabs and split panes alongside shared tasks, tables, boards,
 data visualization and content calendars. A separate simplified business dashboard
@@ -108,6 +117,14 @@ native preview was reopened as PID80241 with the existing synthetic N2 workspace
 it remains open for viewing. It contains accepted A, not unfinished B changes.
 
 ## Increment B — meeting/feedback to shared tasks
+
+B recovery checkpoint `6513dc1545841af20f4d9d46e8a64ed6aec83cbb` preserves
+production `e9c63237`. Root read the report: four new owner synthetic recovery
+tests pass, covering terminal candidate history/current access, foreign passages,
+late blocking secret writes and cleanup retry, failed activation COMMIT and replay
+after a discarded successful response. Process-crash/ambiguous commit acknowledgement
+remain untested. No independent rerun or full B acceptance; tickets now moves to
+the separately dispatched tenancy review with B preserved.
 
 Candidate product `e9c6323760497e7b294282d2746cfe1d9b2774fa` is now published;
 GitHub PR28 head `3b00daa47f9d0088d6b0a11388dbe73984d89beb` differs only by a
