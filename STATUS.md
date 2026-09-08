@@ -363,3 +363,12 @@ Final combined design review and Pi bridge validation continue.
 
 - PR #15 accepted at `c17ce81fd206f7694691f9d274f38ef3692bba20`, merged as `2e0711d45b0c72114428557f0b8738f8b667e0e3`. Complete final report/source/NOTICE and clean integration reviewed. Root178 Ops/13 Desk tests, worker both runtime checks/Clippy,19 process and actual extracted adapter1/1 pass. Real companion cached reads preserve freshness/provider counts; exact native proposal remains human-gated; actual CLI denial files nothing. [Review](reports/review-pi-issues.md).
 - Remaining local gate: final Design Studio badge/reduced-motion follow-ups and combined native/server artifacts. No live model/provider/configuration claim.
+
+- Final Design Studio movement finding verified from real frames: mobile sidebar
+  still translates341.5px with a450ms transform transition while reduce=true.
+  Tickets dispatched separate `fix/design-reduced-motion`, same worktree/pane,
+  report `reports/design-reduced-motion.md`: scoped drawer correction preserving
+  normal animation, focus and dismissal, plus actual preference/frame rechecks.
+  Rebrand handles badge contrast; approvals continues final audit. Three workers.
+- Root started real release companion preparation from accepted Pi main for the
+  final native build. No signed/distributed artifact or live provider action.
