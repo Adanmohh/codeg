@@ -307,3 +307,8 @@ that merge inspection. No product implementation is delegated to root.
 - Tickets continues the five shell/Pi design corrections first; a separate Pi P1 cached-read/issue-proposal branch follows acceptance. Three Herdr workers maximum, all Astra/max and docs-first rules retained. Root writes no product code.
 
 - Accepted-host main rebuild passed: static frontend, real server/companion and isolated Python host import. Existing 4318 test database upgraded through migrations 000006/000007; actual Playwright CLI Ops/intake navigation and inspected screenshots pass. [Upgrade evidence](reports/browser-step2-main-upgrade.md). Final design changes and native bundle are still pending.
+
+## Shell design correction review in progress
+
+- PR #13 product `f8ba4597` reviewed; root independently passed nine Pi configuration/setup/status accessibility tests. Final browser measurements and exact-head acceptance remain.
+- A new high finding on the same recovery path is assigned to tickets: mobile Settings menu lacks an accessible name and has a 32px target. The worker will fix and recheck drawer navigation before acceptance. [Review](reports/review-design-shell.md).
