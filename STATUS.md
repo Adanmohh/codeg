@@ -1,5 +1,13 @@
 # Status — 2026-09-08
 
+PR30 report closeout `b3dfbcb602314cee6eb0039d92cb997762c02dd8` is imported
+and verified as report-only from `d3a176d2`; product remains `29774b50` and
+validation artifacts are unchanged. Its opening now attributes the independent
+`08dca9dd` result: seven unchanged plus three reviewer probes pass with no new
+finding at that product head. B000011 ordering/persisted epochs and complete
+native channel isolation remain explicit limits. PR30 stays draft; no tests,
+fixtures, exports, targets, credentials or bundle changed in the closeout.
+
 Independent tenancy follow-on `08dca9dd04dcec2106078fe53ff8b9e785bbd512` is
 imported and its result digest `f6b0f8228604cd3fefcc5b6c0a062cc366b13ca3536487a6cf6d587d5c13f970`
 verified. At product `29774b50`, ten focused tests pass independently, including
