@@ -222,3 +222,45 @@ animations included dormant OverlayScrollbars scroll timelines (`currentTime:nul
 Review had already succeeded200. The corrected read-only capture waits for the
 dialog's actual opacity1/transformnone and does not repeat the mutation. Failed
 selector/timeline artifacts remain labelled, not counted as successful flows.
+
+Current pushed product checkpoint is **`45255b86`**. Personal member creation and
+real cross-tab locale/theme retention also passed (`member-own-work.json`,
+`member-draft-locale.json`): owner/creator/executor are the current member, reviewer
+and date are null, unauthorized assignment choices are absent, and private text
+survives390px Arabic/light/dark and English restoration without storage.
+
+Fixture continuity: the first long-running in-memory fixture later returned500
+for context/directory/update. The attempted role downgrade did not pass and no
+claim is made for it. The protected error intentionally exposes no database
+detail; root cause is not directly proven. Local `sea-orm1.1.19` defaults SQLite
+to one connection and retains `sqlx-core0.8.6`'s10-minute idle/30-minute connection
+lifetime defaults, making in-memory lifetime a concrete manual-fixture concern.
+Production `db/mod.rs` uses an on-disk database. Only owned PID21431 was stopped;
+its evidence remains. `fixture-temporary-disk.patch` records the ignored fixture's
+switch to the **existing** `fresh_disk_db(directory.path())` test helper. All
+production backend files remain byte-identical to1ba73e3c; no tracked Rust edit.
+The replacement uses fresh temporary synthetic data and the same protected router
+and guard. It now owns **PID81950 on4342**, manual Cargo session18511; proxy
+PID36044 on4340 and both named browsers are unchanged. Compilation completed in
+42.12s (`task-fixture-disk.log`); the manual test remains serving. This is fixture
+repair, not a backend product finding.
+
+Generation2 evidence is isolated under `business-workspace-evidence/generation2/`.
+Bootstrap, member setup and creation rebuilt synthetic fixture data through the
+same UI. The previous successful workflow evidence is preserved. The owner then
+changed the active member to viewer by UI; the next actual context revalidation
+unmounted the open private edit. Viewer controls are absent, and actual viewer
+credentials receive403 for task creation, elevated identity creation and bootstrap.
+Confirmed member revocation clears the workspace/credential and shows explicit
+sign-in recovery. See `owner-downgrade-member`, `member-downgrade-check`,
+`viewer-forgery`, `owner-revoke-member` and `member-revocation-check` JSON files.
+
+Twelve actual list/board captures cover390/768/1280 in light/dark. The first pass
+found mobile filters shrinking to32.2px despite no page overflow. Scoped
+Tailwind4.1.18 `basis-40` now wraps them into a readable row: both171×44px at390,
+with16px text, no undersized active targets or page overflow. Desktop/tablet
+measurements are preserved. Before files remain in generation2; rebuilt after
+files are under `generation2/after-filters/`. Typecheck, scoped lint and isolated
+export build exited0 (`filters-*.log`). Current full-page light measurement has
+64 text samples, no contrast failures and no unnamed interactive controls;
+complete paired-theme/RTL/focus/Design Studio assessment is still pending.

@@ -672,3 +672,12 @@ The UI's separate source-entrustment operation follows the task owner's fixed
 contract and exact HTTP/native wrappers at
 1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5. No backend implementation is ported
 or edited by this frontend branch. All preceding attribution remains unchanged.
+
+Business workspace manual-fixture continuity (test evidence only):
+reports/business-workspace-evidence/fixture-temporary-disk.patch adapts only
+src-tauri/src/business_tasks/tests/fixture.rs at Adanmohh/codeg
+1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5 to call the existing Apache-2.0
+src-tauri/src/db/test_helpers.rs fresh_disk_db helper from that exact commit.
+The patch is applied only to an ignored, owned test snapshot; all production
+backend source remains unchanged. The protected router and fixture guard remain.
+Original Codeg copyright, Apache-2.0 LICENSE and all earlier notices are retained.

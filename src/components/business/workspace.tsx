@@ -400,7 +400,8 @@ export function BusinessWorkspace({
                   <div className="flex flex-wrap items-center gap-2">
                     <select
                       className={
-                        controlClass + " !w-auto max-w-full flex-1 sm:flex-none"
+                        controlClass +
+                        " !w-auto max-w-full flex-1 basis-40 sm:flex-none sm:basis-auto"
                       }
                       aria-label={copy.domain}
                       value={domain}
@@ -419,7 +420,7 @@ export function BusinessWorkspace({
                       <select
                         className={
                           controlClass +
-                          " !w-auto max-w-full flex-1 sm:flex-none"
+                          " !w-auto max-w-full flex-1 basis-40 sm:flex-none sm:basis-auto"
                         }
                         aria-label={copy.status}
                         value={status}
