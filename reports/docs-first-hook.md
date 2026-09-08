@@ -51,3 +51,13 @@ Latest metadata inspected by root: rebrand PostToolUse lines6064/6065 at
 context_emitted=false after prior reminders. Root session still predates hook
 registration; this is worker observation, not root enforcement or universal
 write interception. No secret values are included in the audit evidence.
+
+## Design and integration checkpoint
+
+Root inspected fresh metadata records: rebrand PostToolUse lines 6813/6814
+(timestamp 1788825704), approvals PostToolUse 6825/6826 (1788825733), and
+tickets apply_patch Pre/Post 6809/6810 (1788825696). All exit 0 in their
+expected worktrees and sessions. The tickets source-patch pre-hook emitted
+context; its post-hook did not repeat it. This verifies a live source-patch
+hook event as well as ongoing worker tool hooks, within the heuristic limits
+above. Root's older session remains manually grounded, not live-hook verified.
