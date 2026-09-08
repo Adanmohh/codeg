@@ -1,12 +1,16 @@
 # Status — 2026-09-08
 
-**Visual refresh active following owner feedback that the app looks basic.** Phase 1 functional implementation and prior local validation are complete. Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
+**Implementation paused for product ideation; source research active.** Phase 1 functional implementation and prior local validation are complete. Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
+
+## Research during ideation
+
+Owner clarified a role-based desktop workspace with shared tasks for humans and agents throughout the organization, and meeting/note sources such as Fireflies feeding task orchestration. Three workers are researching Intromail shared work, meeting ingestion and role/work-platform alternatives using gh api; product work remains paused. [Source research checkpoint](reports/business-workspace-research.md).
 
 ## Expanded business scope — planned, not complete
 
 Owner requests marketing, channels, ads, website and feedback, supported by engineering features, with shared task management for humans and agents across both. [Scope, current gaps and delivery sequence](docs/BUSINESS-WORKSPACE.md). Existing Phase 1 completion does not mean these new domains are implemented. Platform inventory and shared-task schema audit are next alongside the active visual refresh.
 
-## Visual refresh — active
+## Visual refresh — paused for owner ideation
 
 Direction: [Hafidh founder desk](docs/design/VISUAL-DIRECTION.md). Owner steering adds a business-facing founder overview: customers, conversations and decisions, with technical detail subordinate. The earlier functional/design pass is retained as baseline; new visual acceptance remains open. All three workers dispatched from `181ec705`: rebrand `wR:t2/p2`, `feat/visual-workspace`, report `reports/visual-workspace.md`; approvals `wR:t3/p3`, `review/visual-refresh`, report `reports/visual-refresh-baseline.md` plus final audit; tickets `wR:t4/p4`, `feat/visual-correspondence`, report `reports/visual-correspondence.md`. Each uses its existing isolated worktree with GPT-6 Astra/max, docs-first and exact borrowing rules. Root remains orchestrator-only.
 

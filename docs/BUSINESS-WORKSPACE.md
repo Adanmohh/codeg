@@ -68,3 +68,7 @@ without exposing credentials. No platform choice is silently fixed by examples.
 Prior Phase 2/3 dates and scope estimates require revision for these additions.
 No deployment, live post, ad spend/budget change, account installation or external
 message is authorized merely by this implementation scope amendment.
+
+## Role and meeting-source clarification
+
+Owner clarifies each organization member uses the same desktop app according to their role, with suitable MCP/CLI capabilities. Shared tasks belong across humans and agents, business and engineering. Fireflies and comparable meeting/note tools should feed source-backed task proposals and orchestration. Implementation is paused for ideation; source comparison is in reports/business-workspace-research.md. Organization identity/permissions and cross-desktop shared state are required foundations, not merely different dashboard layouts.
