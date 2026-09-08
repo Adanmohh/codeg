@@ -8,6 +8,7 @@ import {
   within,
 } from "@testing-library/react"
 import { NextIntlClientProvider } from "next-intl"
+import userEvent from "@testing-library/user-event"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { BusinessError, type BusinessClient } from "@/lib/business/client"
 import { CreateTask } from "./task-form"
@@ -53,6 +54,42 @@ beforeEach(() => {
 })
 
 describe("visual business task workflow", () => {
+  it.each([
+    ["en", "Find a task", "Refresh"],
+    ["ar", "البحث عن مهمة", "تحديث"],
+  ] as const)(
+    "%s search submits with Enter and tabs to the visible refresh control",
+    async (locale, searchName, refreshName) => {
+      const user = userEvent.setup()
+      render(
+        wrapper(
+          <BusinessWorkspace
+            client={client}
+            context={context}
+            onContext={vi.fn()}
+            disconnect={vi.fn()}
+          />,
+          locale
+        )
+      )
+      await screen.findByText("Synthetic launch brief")
+      const search = screen.getByRole("textbox", { name: searchName })
+      const refresh = screen.getByRole("button", { name: refreshName })
+      await waitFor(() => expect(refresh).not.toBeDisabled())
+      await user.click(search)
+      await user.tab()
+      expect(refresh).toHaveFocus()
+      await user.click(search)
+      await user.type(search, "  welcome  ")
+      await user.keyboard("{Enter}")
+      await waitFor(() =>
+        expect(tasks).toHaveBeenLastCalledWith(
+          "list",
+          expect.objectContaining({ query: "welcome", view: "mine" })
+        )
+      )
+    }
+  )
   it.each([false, true])(
     "source entrustment requires legacyOperator=%s and linking stays a separate revisioned action",
     async (legacyOperator) => {

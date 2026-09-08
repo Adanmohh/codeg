@@ -376,14 +376,14 @@ export function BusinessWorkspace({
                         aria-hidden="true"
                       />
                       <Input
-                        className="min-h-11 rounded-xl ps-10"
+                        className="min-h-11 rounded-xl ps-10 placeholder:text-foreground/80 dark:placeholder:text-muted-foreground"
                         value={search}
                         onChange={(event) => setSearch(event.target.value)}
                         aria-label={copy.search}
                         placeholder={copy.search}
                         maxLength={240}
                       />
-                      <button type="submit" className="sr-only">
+                      <button type="submit" className="sr-only" tabIndex={-1}>
                         {copy.search}
                       </button>
                     </div>

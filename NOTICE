@@ -768,3 +768,15 @@ existing-window focus and explicit engineering navigation. Installed locked
 tauri2.10.2 manager/{webview,mod}.rs and tauri-utils2.8.2 config.rs were read
 as URL/asset-resolution API references; no dependency source is copied or
 upgraded. Original Codeg Apache-2.0 LICENSE and all prior attribution remain.
+
+Business search accessibility clarification (2026):
+Reuses Apache-2.0 Codeg src/components/ui/input.tsx and the foreground/80 token
+in src/components/chat/feedback-notes-display.tsx at Adanmohh/codeg
+3a189d1822f9fd335cc58ecb440f75ab9cbe937e. The business workspace applies a
+scoped placeholder override and removes its redundant hidden submit control
+from sequential keyboard focus, preserving Enter submission and global Input.
+Regression interaction style follows src/components/tasks/task-settings-dialog.test.tsx
+at the same immutable source. Installed user-event14.6.3 setup/keyboard/tab types
+and implementation, React19.2.4 and Tailwind4.1.18 are API references only;
+no dependency implementation is ported. Original Apache LICENSE and all
+preceding notices remain intact.

@@ -30,9 +30,24 @@ comparison omission was reproduced against the real API before this correction.
 Native reviewer N1 is also corrected: a fresh main window now starts at
 WebviewUrl::App("business") instead of bypassing it for "workspace". Existing
 window focus retains its current route, and the explicit legacyOperator-only
-engineering link is unchanged. Native/server checks are in progress; root owns
-the final isolated bundle/startup check. No backend fixture is restarted for
-this Rust source change.
+engineering link is unchanged. Native fix **3a189d1822f9fd335cc58ecb440f75ab9cbe937e**
+is pushed; desktop/server checks and both Clippy gates pass on the owned target.
+Root owns the final isolated bundle/startup check. The local compile uses the
+inherited zero-byte sidecar placeholder, so it does not certify a runnable bundle.
+No backend fixture is restarted for this Rust source change.
+
+Independent search review identified two P2 presentation issues. The light
+placeholder is #737373 over composed #f7f7f7 (4.43:1); the hidden submit is an
+invisible tab stop, with a 1×1 box, clip-path inset(50%), UA auto 1px outline and
+no shadow. Tab can leave it: it is not a keyboard trap. The scoped correction
+uses the existing foreground/80 placeholder token in light mode, retains the
+dark placeholder token, and sets only that redundant submit's tabIndex to -1.
+Global Input, form submission and API logic are unchanged. English/Arabic
+keyboard regressions fail before the focus correction and pass afterward;
+all39 business client/component tests pass. A test initially expected an explicit
+page:0, but the accepted wire contract allows its omission/default0; the corrected
+assertion checks the submitted query/view. Actual measured search recheck and
+the final frontend export are pending in this checkpoint.
 
 ## Result and boundaries
 
