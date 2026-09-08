@@ -1,0 +1,15 @@
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.80s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review-target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 1 test
+test business_identity::tests::tenancy::tenancy_migration_preserves_populated_ids_hashes_history_and_fk_after_failure ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3713 filtered out; finished in 0.15s
+

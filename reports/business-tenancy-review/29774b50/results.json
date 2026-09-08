@@ -1,0 +1,76 @@
+{
+  "review_target": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+  "tree": "af9265e34f37022cd91142a8ef48ef5801846f9b",
+  "parent": "f3b408dae5c724f354763961d79a17a7ae5c86f8",
+  "review_checkpoint": "62080dbdeef5637d34345820aeb3afd1b573fe74",
+  "commands": [
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review-target cargo test --locked --offline --no-default-features --lib business_identity::tests::platform > /Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/evidence/platform-unchanged.log 2>&1",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/source/src-tauri",
+      "exit": 0,
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0,
+      "execution_time": "0.42s",
+      "cargo_profile_elapsed": "2m 14s",
+      "log": "platform-unchanged.log",
+      "reviewer_test_additions": false
+    },
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review-target cargo test --locked --offline --no-default-features --lib business_tasks::agent::tenancy_tests::tenancy_unlinked_source_authority_epoch_cannot_resurrect_after_resume -- --exact > /Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/evidence/epoch-unchanged.log 2>&1",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/source/src-tauri",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "execution_time": "0.18s",
+      "cargo_profile_elapsed": "0.81s",
+      "log": "epoch-unchanged.log",
+      "reviewer_test_additions": false
+    },
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review-target cargo test --locked --offline --no-default-features --lib business_identity::tests::tenancy::tenancy_migration_preserves_populated_ids_hashes_history_and_fk_after_failure -- --exact > /Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/evidence/migration-unchanged.log 2>&1",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/source/src-tauri",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "execution_time": "0.15s",
+      "cargo_profile_elapsed": "0.80s",
+      "log": "migration-unchanged.log",
+      "reviewer_test_additions": false
+    },
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review-target cargo test --locked --offline --no-default-features --lib review_297_ > /Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/evidence/independent-probes.log 2>&1",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/source/src-tauri",
+      "exit": 0,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "execution_time": "0.19s",
+      "cargo_profile_elapsed": "47.77s",
+      "log": "independent-probes.log",
+      "reviewer_test_additions": true
+    }
+  ],
+  "passed_total": 10,
+  "failed_total": 0,
+  "artifacts_sha256": {
+    "epoch-unchanged.log": "51413cb7b2646f93629816485a35dea5b84ae515f78be7e0abd595e011dc7c70",
+    "independent-probes.log": "13280d177d33b22c59be27cf0817cb6f2671a2814d19e0f2e6661e220824feeb",
+    "independent-probes.patch": "6c368c3403e4fbcaa56a8cc2e3d868f1f55d7d0a5d409575f4954268ca202f1c",
+    "independent_platform_review.rs": "edcc2bc309bf84375098f296dd6ea94d78d499cdb9ee2e79f4eabc1ac9602d47",
+    "independent_tenancy.rs": "173e1aa457ad789de6720637947c46490f4e19eea265013461e0553e8b65fa3f",
+    "migration-unchanged.log": "b41c1ec02dc1c4bdc3eeb240086acf9bd3f3f6da95805f43c9809f3a78ab59f9",
+    "platform-unchanged.log": "8e15198a24470a8bf682dcee0097f36edbcf184764b3018d0264702fdd37af86",
+    "source-blobs-before.json": "6dcf01c870a465743639bf2b21ce1c66d533a977e72603d69fee57a963463571",
+    "source-correspondence.json": "170c186860083ad10ca4317554068797f730f3308bb4997a07741394ce7e8dc0"
+  },
+  "limits": [
+    "No product source changes; two test-only module registrations and two new reviewer files in owned archive.",
+    "No independent desktop/native MockRuntime execution or build at this head; native tenant windows unavailable.",
+    "Same-database router fixtures and engine in-memory index are synthetic; no provider/model/engine process or existing fixture launched.",
+    "B migration000011 is absent from this A-only archive; combined retained-data integration remains pending.",
+    "Existing f3 evidence is unchanged; no broad passing suite was repeated."
+  ]
+}

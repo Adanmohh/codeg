@@ -1,5 +1,11 @@
 # Independent business tenancy review
 
+**Final bounded follow-on verdict: no additional blocking findings at29774b50.**
+Ten independent focused tests passed, including the actual indexed-run epoch
+probe. Native tenant isolation and B integration remain outside this acceptance.
+The completed first-head evidence below stays frozen at f3b408da; the
+[separate follow-on review](#follow-on-review-29774b50) records the later result.
+
 Review target: `f3b408dae5c724f354763961d79a17a7ae5c86f8`, PR30, tree
 `d3f4cc354ceb7034c0b685b76289c1d3de4513af`, parent contract
 `7516461633c163c2ac683930487e33231e630b0b`. Source base is
@@ -129,3 +135,104 @@ Early report checkpoint `8d935c88d061ca5179fb74ad7f9f2a337aae7a36` was pushed
 and relayed before these probes completed. Both test processes have exited0.
 The final reviewed implementation remains exactly f3b408da; later owner product
 commits require their own source correlation and focused review.
+
+## Follow-on review: 29774b50
+
+Frozen target `29774b50aafc29658a2f48fab1f44d366ed2c8a0`, tree
+`af9265e34f37022cd91142a8ef48ef5801846f9b`, direct parent f3b408da,
+verified through gh api. Own fresh archive is
+`.docs/business-tenancy-review/29774b50/source`; **739/739** tracked Rust/Pi/
+NOTICE/LICENSE blobs match before testing. No uncommitted owner source copied.
+The same owned isolated review target is reused, not B's target or a fixture.
+
+Read the complete follow-on report, contract, diff and changed core/HTTP/native
+source and tests. **No additional blocking findings in this bounded review.**
+The source authority lookup now requires the immutable sidecar epoch to equal
+the active organization's epoch before initial link and later agent checks.
+Original human DelegationGrant storage remains separate. Platform middleware
+requires the real original operator marker; tenant owner roles cannot construct
+that context. Create/reissue/status take the SQLite writer before receipt replay,
+lineage/current-revision validation and atomic changes. Replays omit tokens.
+Last-owner demotion/revocation checks share the member mutation's writer.
+
+Independent unchanged selectors passed, all exit0: platform **5/5**
+(0.42s,2m14s compile), exact unlinked-source epoch test **1/1** (0.18s), and
+changed populated-migration test **1/1** (0.15s). Commands use the preceding
+locked/offline/no-default-features/lib pattern and own target. Logs are in this
+head's committed evidence directory. The platform suite exercises actual protected router
+creation of two tenants in one DB, cross-tenant denial, owner/member versus
+platform separation, settings race, lost-response replay/reissue and concurrent
+last-owner demotion. Earlier unchanged f3 settings/cancellation tests were not
+repeated without a changed concern.
+
+Three reviewer-only probes also passed **exit0,3 passed/0 failed/0 ignored,
+0.19s execution/47.77s compile**. Same command/target, selector `review_297_`;
+only two test module registrations and two new reviewer files in the archive.
+
+| Reviewer probe | Independently observed result |
+| --- | --- |
+| `review_297_indexed_run_rejects_old_entrustment_and_preserves_exact_human_grant` | Use the real backend CAS to mint a running generation and seed its private live index/connection fixture. Entrust through TaskEngine, suspend/resume through platform core, then authenticate the original human credential afresh: initial link is Forbidden with no task revision/history/authority/sidecar/binding/deliverable mutation. A newly CAS-minted generation can be explicitly entrusted, linked by that human and contribute through the token listener. Its stored grant retains the exact original human credential, member and epoch3, not operator authority. Another lifecycle cycle denies contribution and leaves the grant bytes unchanged even though that credential can authenticate again. |
+| `review_297_sidecar_retains_authority_and_grant_across_receipt_retry_and_owner_fks` | Fail the real SeaORM receipt INSERT after schema COMMIT. Every column of the existing authority and legacy grant is retained; backfill captures epoch1. Insert a new synthetic authority at epoch3 before retry: retry preserves1/3 and writes one migration receipt. Sidecar orphan INSERT/update/delete fail. Actual provisioned tenant credentials cannot be substituted across tenants, nor from another existing member in the same tenant. Original mapping and FK checks remain valid. |
+| `review_297_protected_recovery_receipt_rollback_and_lifecycle_replay` | Actual protected HTTP create/reissue/status/list handlers. Inject reissue receipt failure:500/no-store, identical credential rows, same recorded lineage, old bearer still valid, no receipt. Successful retry rotates once; replay omits secret; stale ancestor conflicts. Suspension rejects member authentication and recovery; resume permits fresh member authentication. Historical status replay returns its original metadata without changing the current epoch or receipt count. List excludes synthetic bearer/hash fields; platform receipts remain immutable and attributed to legacy_operator. |
+
+The previously pending unlinked-run epoch seam is resolved at this head:
+[authority lookup](https://github.com/Adanmohh/codeg/blob/29774b50aafc29658a2f48fab1f44d366ed2c8a0/src-tauri/src/business_tasks/agent.rs#L29),
+[immutable sidecar](https://github.com/Adanmohh/codeg/blob/29774b50aafc29658a2f48fab1f44d366ed2c8a0/src-tauri/src/db/migration/m20260908_000012_business_tenancy.rs#L157).
+Protected [reissue](https://github.com/Adanmohh/codeg/blob/29774b50aafc29658a2f48fab1f44d366ed2c8a0/src-tauri/src/business_identity/platform.rs#L279),
+[last-owner guard](https://github.com/Adanmohh/codeg/blob/29774b50aafc29658a2f48fab1f44d366ed2c8a0/src-tauri/src/business_identity/store.rs#L552)
+and the migration's composite credential FK were read against the accepted contract.
+
+Committed [exact commands/results/hashes](business-tenancy-review/29774b50/results.json),
+[probe log](business-tenancy-review/29774b50/independent-probes.log),
+[test-only patch](business-tenancy-review/29774b50/independent-probes.patch),
+[platform/migration probes](business-tenancy-review/29774b50/independent_platform_review.rs),
+[bridge probe](business-tenancy-review/29774b50/independent_tenancy.rs), and
+[source correspondence](business-tenancy-review/29774b50/source-correspondence.json).
+Baseline739/739 match; after probes737/739 original blobs remain exact. The other
+two are test registrations only; both added files match their report copies.
+All production blobs, NOTICE/LICENSE and lockfiles are unchanged by review.
+Zero-context patch reverse check (`git apply --check --reverse --unidiff-zero`)
+and Rustfmt check exited0. The three original logs and all command exits are in
+results.json; both linker unwind-size and existing proc-macro-error2 notices
+remain. No Clippy or full-suite pass is claimed from this review.
+Report/source diff checks exited0. Full staged artifact diff check exits2 only
+for one final blank line in each of the four preserved raw logs; their bytes and
+hashes are retained. All nine artifact hashes and the seven prior f3 files were
+checked; the paused visual report's hash also remains unchanged.
+
+Result SHA256 `f6b0f8228604cd3fefcc5b6c0a062cc366b13ca3536487a6cf6d587d5c13f970`;
+probe log `13280d177d33b22c59be27cf0817cb6f2671a2814d19e0f2e6661e220824feeb`;
+patch `6c368c3403e4fbcaa56a8cc2e3d868f1f55d7d0a5d409575f4954268ca202f1c`.
+All earlier f3 artifact hashes remain unchanged.
+
+Native preparation is explicitly **unavailable for production tenant windows**:
+`business_window_context` reports `tenantWindowAvailable:false`; no production
+tenant creator is registered. Read the installed Tauri2.10.2 ACL dispatch,
+public channel producer, private callback producer and fetch source. The ACL
+fetch exemption/global queue and non-macOS/non-iOS private producer conditions
+match the reported gap. The prepared MockRuntime tests were read, not independently
+executed by this reviewer at297. They do not prove cross-window channel isolation,
+physical webview behavior or packaged acceptance. No native build was run. B's
+000011 tables are absent from this A-only archive; combined migration retention
+and B persisted authorization epochs still require integration. The actual-run
+probe uses the existing in-process test engine/index/duplex listener, with no
+external execution process. The migration authority fixture is synthetic and
+does not claim liveness. No power-loss fault or real provider was exercised.
+
+All seven additional Codeg NOTICE source blobs match the official immutable
+f3813e3f GitHub tree, including task authority, command/auth glue and000010 test.
+Tauri official06374a9 channel blob0b3eb677 and Apache LICENSE blobf433b1a5 match;
+full licence read. No dependency implementation port or lockfile change by review.
+Live own-session hook audit records PostToolUse21535–21537 and
+PreToolUse21542–21544 in this worktree. No fixture, actual store, provider,
+model, engine process, root artifact or product source was changed.
+
+Early follow-on report pushed at `62080dbdeef5637d34345820aeb3afd1b573fe74`.
+Owner handoff `d3a176d2287c23b649cd1d266cb1a9187bbcc0bb` was verified through
+gh api compare: one later commit, only contract ancestry wording and reports/
+validation artifacts changed; production remains29774b50. The corrected owner
+branch point is `a4cda9d1ab0753b9941e5810f083e20422990395`; reused product source
+is still f3813e3f. Owner desktop/
+server/Clippy results remain separately attributed, not repeated or counted as
+these ten independent passes. Every reviewer test process has exited0. B work,
+paused report, old fixtures/targets and root's accepted bundle remain preserved.

@@ -1,5 +1,21 @@
 # Status — 2026-09-08
 
+Independent tenancy follow-on `08dca9dd04dcec2106078fe53ff8b9e785bbd512` is
+imported and its result digest `f6b0f8228604cd3fefcc5b6c0a062cc366b13ca3536487a6cf6d587d5c13f970`
+verified. At product `29774b50`, ten focused tests pass independently, including
+indexed-run rejection after suspend/resume and newly authorized generation,
+exact human grant lineage, sidecar migration receipt/FK retention and protected
+provisioning recovery rollback/replay. No additional finding remains in that
+bounded tenancy scope. Owner `d3a176d2` is report/evidence-only and its desktop,
+server, Clippy and typecheck results remain separately attributed.
+
+The accepted bounded tenancy core is now independently reviewed. Production
+tenant-native windows remain unavailable due to the unresolved Tauri channel
+window boundary; native mocks are source-reviewed only in this follow-on. B
+000011-before-000012 integration, persisted B epoch fencing and full CLI/event/
+file/child execution isolation remain open acceptance work. No fixture, bundle,
+preview, credential or target changed.
+
 PR30 final tenancy handoff `d3a176d2287c23b649cd1d266cb1a9187bbcc0bb` is
 reviewed and its report/evidence imported. Product source is unchanged from
 `29774b50`; owner reports desktop business46 passed/2 manual ignored, server44

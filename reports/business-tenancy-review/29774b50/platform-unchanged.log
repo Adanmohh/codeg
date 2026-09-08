@@ -1,0 +1,21 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/source/src-tauri)
+   Compiling sacp-tokio v11.0.0 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/source/src-tauri/vendor/sacp-tokio)
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 14s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review-target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 5 tests
+test business_identity::tests::platform::tenancy_last_owner_and_provision_receipt_failure_are_atomic ... ok
+test business_identity::tests::platform::tenancy_provision_replay_loss_reissue_preserves_one_tenant_and_unrelated_credentials ... ok
+test business_identity::tests::platform::tenancy_two_writers_provision_one_secret_and_cannot_demote_both_owners ... ok
+test business_identity::tests::platform::tenancy_two_real_tenants_protected_router_positive_and_negative_resource_controls ... ok
+test business_identity::tests::platform::tenancy_two_writers_settings_cas_and_suspend_fence_captured_authority ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 3709 filtered out; finished in 0.42s
+
