@@ -13,7 +13,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Pi scoped bridge/default | PRs #8 and #15 reviewed and merged; cached reads/native issue proposal, real companion/adapter and protected browser checks pass | Final build; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 host, #12 phone and #15 Pi integration accepted; independent combined178 Ops tests pass | Final beta/native validation |
 | Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
-| Final Design Studio loops | PRs #13/#14/#19 accepted; PR #18 folder/group badges under final integration review | Badge fix, final integrated specialist PR #16 and root recheck |
+| Final Design Studio loops | PRs #13/#14/#18/#19 corrections accepted, including both badges and reduced motion | Final integrated specialist PR #16, root recheck and native bundle |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
@@ -385,3 +385,11 @@ Final combined design review and Pi bridge validation continue.
   evidence and final report. Worker39 tests/lint/typecheck/export pass; reduced
   motion removes automatic travel and normal animation remains. [Review](reports/review-design-reduced-motion.md).
   Final badge integration, combined audit and native packaging remain.
+
+- PR #18 accepted at `6aefaa59c72f3aa5f2d9dd284cea0d365a111e05`, merged as
+  `a8663104f97dd5728fab3a8594bb94841d54533e`. Root verified NOTICE-only integration,
+  both live badge changes, full report and worker43 tests/lint/export/typecheck.
+  Independent actual CLI six-state folder recheck passes: light6.19 rest/focus,
+  5.29 hover; dark9.09/6.94, provider4→4. Group fixture evidence also passes.
+  [Review](reports/review-design-running-badge.md). All known product corrections
+  are accepted; final audit and packaged-app/browser gates continue.

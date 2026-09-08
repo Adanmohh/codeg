@@ -1,0 +1,104 @@
+{
+  "source": "reports/browser-phase1-final/badge-recheck.raw",
+  "phase": "after",
+  "surface": "folder",
+  "method": "Actual Chromium Canvas sRGB pixels, compositing every ancestor background; Design Studio 55c8614 pure contrast and normal-text AA threshold. Canvas uses 8-bit channel rounding.",
+  "scope": "Existing 10px folder running-count badge only; rest, pointer hover, keyboard focus, both themes",
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#973c00",
+      "#faeedc",
+      "#e9ddca",
+      "#ffd230",
+      "#3a2f14",
+      "#4c4125"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      10
+    ],
+    "spacingPx": [],
+    "radiiPx": []
+  },
+  "contrast": {
+    "checked": 6,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": null,
+    "easings": [],
+    "reducedMotionHandled": null,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": null,
+  "briefViolations": null,
+  "measurements": [
+    {
+      "theme": "light",
+      "state": "rest",
+      "fg": "rgb(151, 60, 0)",
+      "bg": "rgb(250, 238, 220)",
+      "ratio": 6.187307209975116,
+      "lightCandidateRatio": 6.187307209975116,
+      "focusVisible": false,
+      "aria": "- button \"ops-ui-task-fixture 6 sessions running\" [expanded]"
+    },
+    {
+      "theme": "light",
+      "state": "hover",
+      "fg": "rgb(151, 60, 0)",
+      "bg": "rgb(233, 221, 202)",
+      "ratio": 5.286656414680524,
+      "lightCandidateRatio": 5.286656414680524,
+      "focusVisible": false,
+      "aria": "- button \"ops-ui-task-fixture 6 sessions running\" [expanded]"
+    },
+    {
+      "theme": "light",
+      "state": "focus",
+      "fg": "rgb(151, 60, 0)",
+      "bg": "rgb(250, 238, 220)",
+      "ratio": 6.187307209975116,
+      "lightCandidateRatio": 6.187307209975116,
+      "focusVisible": true,
+      "aria": "- button \"ops-ui-task-fixture 6 sessions running\" [expanded]"
+    },
+    {
+      "theme": "dark",
+      "state": "rest",
+      "fg": "rgb(255, 210, 48)",
+      "bg": "rgb(58, 47, 20)",
+      "ratio": 9.090051362034052,
+      "lightCandidateRatio": null,
+      "focusVisible": false,
+      "aria": "- button \"ops-ui-task-fixture 6 sessions running\" [expanded]"
+    },
+    {
+      "theme": "dark",
+      "state": "hover",
+      "fg": "rgb(255, 210, 48)",
+      "bg": "rgb(76, 65, 37)",
+      "ratio": 6.94372940934494,
+      "lightCandidateRatio": null,
+      "focusVisible": false,
+      "aria": "- button \"ops-ui-task-fixture 6 sessions running\" [expanded]"
+    },
+    {
+      "theme": "dark",
+      "state": "focus",
+      "fg": "rgb(255, 210, 48)",
+      "bg": "rgb(58, 47, 20)",
+      "ratio": 9.090051362034052,
+      "lightCandidateRatio": null,
+      "focusVisible": true,
+      "aria": "- button \"ops-ui-task-fixture 6 sessions running\" [expanded]"
+    }
+  ],
+  "providerRequestsBefore": 4,
+  "providerRequestsAfter": 4
+}
