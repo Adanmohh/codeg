@@ -11,6 +11,7 @@ import {
   Map as MapIcon,
   Menu,
   Inbox,
+  Bug,
   MessagesSquare,
   SquarePen,
   Zap,
@@ -503,6 +504,15 @@ export function Sidebar() {
           onClick={() => {
             if (isMobile) toggle()
             setRoute("ops")
+          }}
+        />
+        <SidebarNavButton
+          icon={Bug}
+          label="Bug intake"
+          active={routeId === "bugIntake"}
+          onClick={() => {
+            if (isMobile) toggle()
+            setRoute("bugIntake")
           }}
         />
         <SidebarNavButton

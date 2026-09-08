@@ -1,6 +1,10 @@
 "use client"
 
 import type { ComponentType } from "react"
+import {
+  BugWorkflowPage,
+  BugWorkflowPageTitle,
+} from "@/components/ops-intake/bug-workflow-page"
 import { OpsPage, OpsPageTitle } from "@/components/ops/ops-page"
 import {
   useWorkbenchRoute,
@@ -28,6 +32,7 @@ import {
  * that calls `setRoute("<id>")`.
  */
 const WORKBENCH_ROUTES: Partial<Record<WorkbenchRouteId, ComponentType>> = {
+  bugIntake: BugWorkflowPage,
   ops: OpsPage,
   automations: AutomationsPage,
   tasks: TasksPage,
@@ -40,6 +45,7 @@ const WORKBENCH_ROUTES: Partial<Record<WorkbenchRouteId, ComponentType>> = {
  *  (the h-10 band the fixed corner overlays sit on) — e.g. the page title. */
 const WORKBENCH_ROUTE_STRIPS: Partial<Record<WorkbenchRouteId, ComponentType>> =
   {
+    bugIntake: BugWorkflowPageTitle,
     ops: OpsPageTitle,
     automations: AutomationsPageTitle,
     tasks: TasksPageTitle,

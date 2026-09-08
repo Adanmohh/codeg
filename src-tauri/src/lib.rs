@@ -33,6 +33,7 @@ mod network;
 pub mod office_watch;
 pub mod ops;
 pub mod ops_intake;
+pub mod ops_intake_host;
 pub mod ops_telegram;
 pub mod parsers;
 pub mod paths;
@@ -1577,6 +1578,18 @@ mod tauri_app {
             crate::commands::ops::ops_email_disconnect,
             crate::commands::ops::ops_email_pull,
             crate::commands::ops::ops_email_reconcile_receipt,
+            crate::commands::ops_intake::ops_intake_status,
+            crate::commands::ops_intake::ops_intake_configure,
+            crate::commands::ops_intake::ops_intake_list,
+            crate::commands::ops_intake::ops_intake_detail,
+            crate::commands::ops_intake::ops_intake_refresh,
+            crate::commands::ops_intake::ops_intake_save,
+            crate::commands::ops_intake::ops_intake_attach,
+            crate::commands::ops_intake::ops_intake_prepare,
+            crate::commands::ops_intake::ops_intake_approve,
+            crate::commands::ops_intake::ops_intake_deny,
+            crate::commands::ops_intake::ops_intake_reconcile,
+            crate::commands::ops_intake::ops_intake_fix,
             crate::commands::ops_telegram::ops_telegram_status,
             crate::commands::ops_telegram::ops_telegram_configure,
             crate::commands::ops_telegram::ops_telegram_disable,

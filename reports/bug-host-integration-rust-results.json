@@ -1,0 +1,105 @@
+{
+  "head": "11d703c5e5ee51021f6cb59bed27adaf269cafb5",
+  "checks": [
+    {
+      "name": "desktop-check",
+      "command": "cargo check --locked",
+      "exit": 0,
+      "elapsed_seconds": 37.42,
+      "log": "reports/bug-host-integration-desktop-check.log"
+    },
+    {
+      "name": "server-check",
+      "command": "cargo check --locked --no-default-features --bin codeg-server --bin codeg-mcp",
+      "exit": 0,
+      "elapsed_seconds": 25.3,
+      "log": "reports/bug-host-integration-server-check.log"
+    },
+    {
+      "name": "desktop-clippy",
+      "command": "cargo clippy --locked --all-targets --features test-utils -- -D warnings",
+      "exit": 0,
+      "elapsed_seconds": 50.83,
+      "log": "reports/bug-host-integration-desktop-clippy.log"
+    },
+    {
+      "name": "server-clippy",
+      "command": "cargo clippy --locked --no-default-features --bin codeg-server --bin codeg-mcp --lib -- -D warnings",
+      "exit": 0,
+      "elapsed_seconds": 27.49,
+      "log": "reports/bug-host-integration-server-clippy.log"
+    },
+    {
+      "name": "ops-tests",
+      "command": "cargo test --locked --no-default-features --bin codeg-server --lib ops",
+      "exit": 0,
+      "elapsed_seconds": 102.79,
+      "log": "reports/bug-host-integration-ops-tests.log",
+      "test_results": [
+        {
+          "passed": 167,
+          "failed": 0,
+          "ignored": 3,
+          "test_seconds": 6.04
+        },
+        {
+          "passed": 0,
+          "failed": 0,
+          "ignored": 0,
+          "test_seconds": 0.0
+        }
+      ]
+    },
+    {
+      "name": "desk-tests",
+      "command": "cargo test --locked --no-default-features --bin codeg-server --lib desk",
+      "exit": 0,
+      "elapsed_seconds": 0.99,
+      "log": "reports/bug-host-integration-desk-tests.log",
+      "test_results": [
+        {
+          "passed": 13,
+          "failed": 0,
+          "ignored": 2,
+          "test_seconds": 0.37
+        },
+        {
+          "passed": 0,
+          "failed": 0,
+          "ignored": 0,
+          "test_seconds": 0.0
+        }
+      ]
+    },
+    {
+      "name": "ticket-tests",
+      "command": "cargo test --locked --no-default-features --lib ticket_service",
+      "exit": 0,
+      "elapsed_seconds": 0.93,
+      "log": "reports/bug-host-integration-ticket-tests.log",
+      "test_results": [
+        {
+          "passed": 18,
+          "failed": 0,
+          "ignored": 0,
+          "test_seconds": 0.67
+        }
+      ]
+    },
+    {
+      "name": "email-tests",
+      "command": "cargo test --locked --no-default-features --lib email_transport",
+      "exit": 0,
+      "elapsed_seconds": 0.66,
+      "log": "reports/bug-host-integration-email-tests.log",
+      "test_results": [
+        {
+          "passed": 18,
+          "failed": 0,
+          "ignored": 0,
+          "test_seconds": 0.41
+        }
+      ]
+    }
+  ]
+}
