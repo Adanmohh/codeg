@@ -47,3 +47,16 @@ pub async fn business_tasks_link_execution(
         .await
         .map_err(IdentityError::command_error)
 }
+
+#[tauri::command]
+pub async fn business_tasks_entrust_execution(
+    db: tauri::State<'_, AppDatabase>,
+    input: LinkExecutionInput,
+) -> Result<Detail, AppCommandError> {
+    let principal = business_identity::operator_principal(&db.conn)
+        .await
+        .map_err(IdentityError::command_error)?;
+    business_tasks::entrust_execution(ActorContext::authenticated(principal), input)
+        .await
+        .map_err(IdentityError::command_error)
+}

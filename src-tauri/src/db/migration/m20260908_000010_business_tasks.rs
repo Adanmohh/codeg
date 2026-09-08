@@ -55,10 +55,30 @@ CREATE TABLE business_task_activity (
     FOREIGN KEY (organization_id, task_id) REFERENCES business_task(organization_id, id) ON DELETE RESTRICT,
     FOREIGN KEY (organization_id, actor_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT
 );
+CREATE TABLE business_task_execution_authority (
+    id TEXT PRIMARY KEY NOT NULL,
+    organization_id TEXT NOT NULL,
+    task_id TEXT NOT NULL,
+    domain TEXT NOT NULL CHECK (domain IN ('marketing','channels','ads','website','feedback','engineering')),
+    task_revision INTEGER NOT NULL CHECK (task_revision > 0),
+    work_task_id INTEGER NOT NULL CHECK (work_task_id > 0),
+    run_seq INTEGER NOT NULL CHECK (run_seq > 0),
+    connection_id TEXT NOT NULL CHECK (length(connection_id) > 0),
+    agent_member_id TEXT NOT NULL,
+    agent_key TEXT NOT NULL CHECK (length(agent_key) > 0),
+    entrusted_by TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    UNIQUE (organization_id, task_id, id),
+    UNIQUE (work_task_id, run_seq),
+    FOREIGN KEY (organization_id, task_id) REFERENCES business_task(organization_id, id) ON DELETE RESTRICT,
+    FOREIGN KEY (organization_id, agent_member_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT,
+    FOREIGN KEY (organization_id, entrusted_by) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT
+);
 CREATE TABLE business_task_execution (
     id TEXT PRIMARY KEY NOT NULL,
     organization_id TEXT NOT NULL,
     task_id TEXT NOT NULL,
+    authority_id TEXT NOT NULL,
     work_task_id INTEGER NOT NULL CHECK (work_task_id > 0),
     run_seq INTEGER NOT NULL CHECK (run_seq > 0),
     connection_id TEXT NOT NULL CHECK (length(connection_id) > 0),
@@ -70,6 +90,7 @@ CREATE TABLE business_task_execution (
     revoked_at TEXT,
     UNIQUE (organization_id, task_id, id),
     FOREIGN KEY (organization_id, task_id) REFERENCES business_task(organization_id, id) ON DELETE RESTRICT,
+    FOREIGN KEY (organization_id, task_id, authority_id) REFERENCES business_task_execution_authority(organization_id, task_id, id) ON DELETE RESTRICT,
     FOREIGN KEY (organization_id, agent_member_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT,
     FOREIGN KEY (organization_id, linked_by) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT
 );
@@ -105,7 +126,11 @@ CREATE TRIGGER business_task_deliverable_no_update BEFORE UPDATE ON business_tas
 BEGIN SELECT RAISE(ABORT, 'Business task deliverables are immutable'); END;
 CREATE TRIGGER business_task_deliverable_no_delete BEFORE DELETE ON business_task_deliverable
 BEGIN SELECT RAISE(ABORT, 'Business task deliverables are immutable'); END;
-CREATE TRIGGER business_task_execution_identity_immutable BEFORE UPDATE OF id, organization_id, task_id, work_task_id, run_seq, connection_id, agent_member_id, agent_key, delegation_json, linked_by, created_at ON business_task_execution
+CREATE TRIGGER business_task_execution_authority_no_update BEFORE UPDATE ON business_task_execution_authority
+BEGIN SELECT RAISE(ABORT, 'Business source authorization is immutable'); END;
+CREATE TRIGGER business_task_execution_authority_no_delete BEFORE DELETE ON business_task_execution_authority
+BEGIN SELECT RAISE(ABORT, 'Business source authorization is retained'); END;
+CREATE TRIGGER business_task_execution_identity_immutable BEFORE UPDATE OF id, organization_id, task_id, authority_id, work_task_id, run_seq, connection_id, agent_member_id, agent_key, delegation_json, linked_by, created_at ON business_task_execution
 BEGIN SELECT RAISE(ABORT, 'Business execution lineage is immutable'); END;
 CREATE TRIGGER business_task_execution_no_reactivation BEFORE UPDATE OF revoked_at ON business_task_execution
 WHEN OLD.revoked_at IS NOT NULL AND (NEW.revoked_at IS NULL OR NEW.revoked_at != OLD.revoked_at)
@@ -130,7 +155,7 @@ BEGIN SELECT RAISE(ABORT, 'Business execution lineage is retained'); END;
                 "Cannot remove business tasks and retained history".into(),
             ));
         }
-        tx.execute_unprepared("DROP TABLE business_task_deliverable; DROP TABLE business_task_execution; DROP TABLE business_task_activity; DROP TABLE business_task;").await?;
+        tx.execute_unprepared("DROP TABLE business_task_deliverable; DROP TABLE business_task_execution; DROP TABLE business_task_execution_authority; DROP TABLE business_task_activity; DROP TABLE business_task;").await?;
         tx.commit().await
     }
 }

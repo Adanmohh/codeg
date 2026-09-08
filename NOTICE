@@ -630,6 +630,15 @@ types/runner/example patterns already attributed above. The pi-mcp-adapter MIT
 broker and three cached-read restriction remain unchanged. All original
 Mario Zechner/Nico Bailon MIT notices and LICENSE remain intact.
 
+The task-only manual loopback fixture adapts the accepted identity fixture
+src-tauri/src/business_identity/tests/fixture.rs at
+05e1ab7043eeadab753dbb2c6c6922661fff5c42, under this product's Apache-2.0
+LICENSE. It uses its own synthetic database/port and the real protected task
+router, with no engine or provider startup. Source entrustment and exact
+business-agent ownership checks are new authorization glue over the same
+Codeg lifecycle mutex and identity writer transaction; no additional upstream
+task, authorization or workflow implementation is copied.
+
 Business member identity boundary (2026)
 ========================================
 Owner-authorized IntroInnovation/intromail at the unchanged FOUNDING pin

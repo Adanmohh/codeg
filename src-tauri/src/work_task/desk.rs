@@ -66,6 +66,20 @@ fn ops_error(error: DbError) -> DeskError {
 }
 
 impl TaskEngine {
+    /// Actual protected operator transport may explicitly entrust its local
+    /// execution to a business task/agent. A member role or agent type cannot.
+    /// This records source ownership only; it does not start or prompt a run.
+    pub(crate) async fn entrust_business_execution(
+        &self,
+        ctx: crate::business_tasks::ActorContext,
+        input: crate::business_tasks::types::LinkExecutionInput,
+    ) -> Result<crate::business_tasks::types::Detail, crate::business_identity::IdentityError> {
+        crate::business_tasks::require_operator(&ctx)?;
+        let _binding = self.request_lock.lock().await;
+        let live = self.business_execution_source(&ctx, &input).await?;
+        crate::business_tasks::store::entrust(&self.db.conn, &ctx, input, live).await
+    }
+
     /// Link only an existing generation under the same private ancestry lock
     /// as agent calls. Business authorization and lineage storage are in core.
     pub(crate) async fn link_business_execution(
@@ -73,17 +87,27 @@ impl TaskEngine {
         ctx: crate::business_tasks::ActorContext,
         input: crate::business_tasks::types::LinkExecutionInput,
     ) -> Result<crate::business_tasks::types::Detail, crate::business_identity::IdentityError> {
-        use crate::business_identity::IdentityError as E;
         let _binding = self.request_lock.lock().await;
-        crate::business_tasks::store::check_link(&self.db.conn, &ctx, &input).await?;
+        let live = self.business_execution_source(&ctx, &input).await?;
+        crate::business_tasks::store::link(&self.db.conn, &ctx, input, live).await
+    }
+
+    /// Caller holds request_lock until the eventual business writer commits.
+    /// Liveness alone is not authority: store::link requires prior entrustment.
+    async fn business_execution_source(
+        &self,
+        ctx: &crate::business_tasks::ActorContext,
+        input: &crate::business_tasks::types::LinkExecutionInput,
+    ) -> Result<crate::business_tasks::agent::LiveExecution, crate::business_identity::IdentityError> {
+        use crate::business_identity::IdentityError as E;
+        crate::business_tasks::store::check_link(&self.db.conn, ctx, input).await?;
         let row = work_task_service::get_model(&self.db.conn, input.work_task_id).await.map_err(|_| E::NotFound)?;
         let root = row.connection_id.as_deref().ok_or(E::Conflict)?;
         let (row, agent_key) = self.desk_scope(root).await.map_err(|_| E::Conflict)?;
-        let live = crate::business_tasks::agent::LiveExecution {
+        Ok(crate::business_tasks::agent::LiveExecution {
             work_task_id: row.id, run_seq: row.run_seq,
             connection_id: row.connection_id.ok_or(E::Conflict)?, agent_key,
-        };
-        crate::business_tasks::store::link(&self.db.conn, &ctx, input, live).await
+        })
     }
 
     /// Caller holds request_lock through the eventual Ops transaction, so
@@ -166,6 +190,11 @@ impl TaskEngine {
     ) -> Result<Value, DeskError> {
         let (task, agent_id) = self.desk_scope(connection).await?;
         if request.tool.is_business() {
+            // A delegated child (even another Pi) is not the business member
+            // explicitly entrusted to the root. No implicit identity minting.
+            if task.connection_id.as_deref() != Some(connection) {
+                return Err(DeskError::Denied);
+            }
             // Business work needs no mailbox account. Resolve the private
             // generation mapping before entering the common authorized core.
             let live = crate::business_tasks::agent::LiveExecution {

@@ -1,6 +1,6 @@
 //! Backend-only executor binding. No bearer/actor/run can be deserialized here.
 use super::{
-    entity::{execution, task},
+    entity::{execution, execution_authority, task},
     store::{model, statement},
     ActorContext,
 };
@@ -20,6 +20,34 @@ pub(crate) struct LiveExecution {
     pub run_seq: i32,
     pub connection_id: String,
     pub agent_key: String,
+}
+
+/// A live/indexed legacy run has no business owner by default. Only a prior
+/// protected operator entrustment establishes this exact business identity.
+/// The caller also checks the source revision before the initial link. Once
+/// linked, irreversible binding revocation fences assignment/scope changes.
+pub(super) async fn authority<C: ConnectionTrait>(
+    conn: &C,
+    row: &task::Model,
+    live: &LiveExecution,
+) -> Result<execution_authority::Model, E> {
+    let source = execution_authority::Model::find_by_statement(statement(
+        "SELECT * FROM business_task_execution_authority WHERE work_task_id = ? AND run_seq = ?",
+        vec![live.work_task_id.into(), live.run_seq.into()],
+    ))
+    .one(conn)
+    .await?
+    .ok_or(E::Forbidden)?;
+    if source.organization_id != row.organization_id
+        || source.task_id != row.id
+        || source.domain != row.domain
+        || row.assignee_id.as_deref() != Some(source.agent_member_id.as_str())
+        || source.connection_id != live.connection_id
+        || source.agent_key != live.agent_key
+    {
+        return Err(E::Forbidden);
+    }
+    Ok(source)
 }
 
 /// Same current task/folder checks as accepted Ops RunContext, without its
@@ -64,6 +92,7 @@ pub(crate) async fn resolve<C: ConnectionTrait>(
     )).one(conn).await?.ok_or(E::NotFound)?;
     let row = model(conn, &binding.organization_id, &binding.task_id).await?;
     require_binding(&row, &binding, &live)?;
+    require_authority(conn, &row, &binding, &live).await?;
     let principal = identity::agent_principal_from_binding(
         conn,
         &binding.organization_id,
@@ -100,6 +129,18 @@ fn require_binding(
     Ok(())
 }
 
+async fn require_authority<C: ConnectionTrait>(
+    conn: &C,
+    row: &task::Model,
+    binding: &execution::Model,
+    live: &LiveExecution,
+) -> Result<(), E> {
+    if authority(conn, row, live).await?.id != binding.authority_id {
+        return Err(E::Forbidden);
+    }
+    Ok(())
+}
+
 pub(super) async fn active<C: ConnectionTrait>(
     conn: &C,
     row: &task::Model,
@@ -113,6 +154,7 @@ pub(super) async fn active<C: ConnectionTrait>(
             agent_key: binding.agent_key.clone(),
         };
         require_binding(row, binding, &live)?;
+        require_authority(conn, row, binding, &live).await?;
         require_live(conn, &live).await?;
         super::store::references(conn, row).await?;
         let principal = identity::agent_principal_from_binding(
@@ -161,7 +203,8 @@ pub(super) async fn scope<C: ConnectionTrait>(
         "SELECT * FROM business_task_execution WHERE organization_id = ? AND task_id = ? AND id = ? AND agent_member_id = ?",
         vec![row.organization_id.clone().into(), row.id.clone().into(), row.current_execution_id.clone().into(), ctx.principal.member_id().into()],
     )).one(conn).await?.ok_or(E::NotFound)?;
-    require_binding(row, &binding, live)
+    require_binding(row, &binding, live)?;
+    require_authority(conn, row, &binding, live).await
 }
 
 #[derive(Deserialize)]

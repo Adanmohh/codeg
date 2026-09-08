@@ -20,6 +20,33 @@ async fn fixture() -> Fixture {
     fixture_engine(engine, engineering_id).await
 }
 async fn fixture_engine(engine: Arc<TaskEngine>, engineering_id: i32) -> Fixture {
+    let mut f = unlinked_fixture_engine(engine, engineering_id).await;
+    let entrusted = f
+        .engine
+        .entrust_business_execution(
+            ActorContext::authenticated(f.operator.clone()),
+            link_input(&f, 1),
+        )
+        .await
+        .unwrap();
+    f.task = f
+        .engine
+        .link_business_execution(
+            ActorContext::authenticated(f.delegator.clone()),
+            link_input(&f, entrusted.task.revision),
+        )
+        .await
+        .unwrap();
+    f
+}
+fn link_input(f: &Fixture, expected_revision: i64) -> dto::LinkExecutionInput {
+    dto::LinkExecutionInput {
+        task_id: f.task.task.id.clone(),
+        expected_revision,
+        work_task_id: f.engineering_id,
+    }
+}
+async fn unlinked_fixture_engine(engine: Arc<TaskEngine>, engineering_id: i32) -> Fixture {
     let db = &engine.db.conn;
     identities::bootstrap(
         db,
@@ -88,17 +115,6 @@ async fn fixture_engine(engine: Arc<TaskEngine>, engineering_id: i32) -> Fixture
     .await
     .unwrap();
     let (listener, access, token) = bridge(&engine, PARENT_CONN).await;
-    let task = engine
-        .link_business_execution(
-            ActorContext::authenticated(delegator.clone()),
-            dto::LinkExecutionInput {
-                task_id: task.task.id,
-                expected_revision: 1,
-                work_task_id: engineering_id,
-            },
-        )
-        .await
-        .unwrap();
     Fixture {
         engine,
         engineering_id,
@@ -149,7 +165,7 @@ async fn desk_business_writer_rechecks_credential_and_run_after_queued_request_a
             f.listener.clone(),
             &f.token,
             DeskTool::DeskBusinessSubmit,
-            json!({"expectedRevision":2,"body":"Queued contribution must not commit"}),
+            json!({"expectedRevision":3,"body":"Queued contribution must not commit"}),
         )
         .await;
         tokio::time::timeout(Duration::from_secs(2), f.access.entered.notified())
@@ -194,9 +210,9 @@ async fn desk_business_writer_rechecks_credential_and_run_after_queued_request_a
         )
         .await
         .unwrap();
-        assert_eq!(task.task.revision, 2);
+        assert_eq!(task.task.revision, 3);
         assert!(task.deliverables.is_empty());
-        assert_eq!(task.activity.len(), 2);
+        assert_eq!(task.activity.len(), 3);
     }
 }
 fn public(response: DeskResponse) -> Value {
@@ -230,14 +246,14 @@ async fn desk_business_bridge_uses_original_delegator_and_real_run_and_never_sel
             &f.listener,
             &f.token,
             DeskTool::DeskBusinessSubmit,
-            json!({"expectedRevision":2,"body":"Exact agent deliverable"}),
+            json!({"expectedRevision":3,"body":"Exact agent deliverable"}),
         )
         .await,
     );
     assert_eq!(submitted["task"]["status"], "review");
     assert_eq!(submitted["deliverables"][0]["author"]["id"], f.agent_id);
     assert_eq!(
-        submitted["activity"][1]["actor"]["id"],
+        submitted["activity"][2]["actor"]["id"],
         f.delegator.member_id()
     );
     for status in ["done", "cancelled"] {
@@ -246,7 +262,7 @@ async fn desk_business_bridge_uses_original_delegator_and_real_run_and_never_sel
                 &f.listener,
                 &f.token,
                 DeskTool::DeskBusinessProgress,
-                json!({"expectedRevision":3,"status":status})
+                json!({"expectedRevision":4,"status":status})
             )
             .await
             .code,
@@ -285,7 +301,7 @@ async fn desk_business_bridge_uses_original_delegator_and_real_run_and_never_sel
             &agent,
             dto::ReviewInput {
                 task_id: f.task.task.id.clone(),
-                expected_revision: 3,
+                expected_revision: 4,
                 decision: dto::ReviewDecision::Accept,
                 comment: String::new()
             }
@@ -298,7 +314,7 @@ async fn desk_business_bridge_uses_original_delegator_and_real_run_and_never_sel
         &ActorContext::authenticated(f.delegator),
         dto::ReviewInput {
             task_id: f.task.task.id,
-            expected_revision: 3,
+            expected_revision: 4,
             decision: dto::ReviewDecision::Accept,
             comment: "Human reviewed exact deliverable".into(),
         },
@@ -346,7 +362,7 @@ async fn desk_business_original_member_credential_revocation_survives_persisted_
         &f.listener,
         &f.token,
         DeskTool::DeskBusinessSubmit,
-        json!({"expectedRevision":2,"body":"Must not persist"}),
+        json!({"expectedRevision":3,"body":"Must not persist"}),
     )
     .await;
     assert_eq!(rejected.code, Some(DeskError::Denied));
@@ -359,7 +375,7 @@ async fn desk_business_original_member_credential_revocation_survives_persisted_
     )
     .await
     .unwrap();
-    assert_eq!(task.task.revision, 2);
+    assert_eq!(task.task.revision, 3);
     assert!(task.deliverables.is_empty());
     assert!(!task.execution.unwrap().active);
 }
@@ -375,7 +391,7 @@ async fn desk_business_reassignment_cancellation_and_new_generation_fence_old_la
                     &ActorContext::authenticated(f.operator.clone()),
                     dto::AssignInput {
                         task_id: f.task.task.id.clone(),
-                        expected_revision: 2,
+                        expected_revision: 3,
                         owner_id: f.delegator.member_id().into(),
                         assignee_id: Some(f.operator.member_id().into()),
                         reviewer_id: None,
@@ -397,7 +413,7 @@ async fn desk_business_reassignment_cancellation_and_new_generation_fence_old_la
                 &f.listener,
                 &f.token,
                 DeskTool::DeskBusinessNote,
-                json!({"expectedRevision":2,"body":"Delayed old note"})
+                json!({"expectedRevision":3,"body":"Delayed old note"})
             )
             .await
             .ok
@@ -425,7 +441,7 @@ async fn desk_business_revoked_generation_cannot_be_retargeted_and_fresh_run_kee
         &ctx,
         dto::AssignInput {
             task_id: f.task.task.id.clone(),
-            expected_revision: 2,
+            expected_revision: 3,
             owner_id: f.delegator.member_id().into(),
             assignee_id: Some(f.agent_id.clone()),
             reviewer_id: None,
@@ -462,7 +478,7 @@ async fn desk_business_revoked_generation_cannot_be_retargeted_and_fresh_run_kee
                 }
             )
             .await,
-        Err(identity::IdentityError::Conflict)
+        Err(identity::IdentityError::Forbidden)
     ));
     assert!(
         !call(
@@ -477,13 +493,25 @@ async fn desk_business_revoked_generation_cannot_be_retargeted_and_fresh_run_kee
     let new_connection = uuid::Uuid::new_v4().to_string();
     let new_run = relaunch_on(&f.engine, f.engineering_id, &new_connection).await;
     let (listener, _, token) = bridge(&f.engine, &new_connection).await;
+    let entrusted = f
+        .engine
+        .entrust_business_execution(
+            ActorContext::authenticated(f.operator.clone()),
+            dto::LinkExecutionInput {
+                task_id: other.task.id.clone(),
+                expected_revision: 1,
+                work_task_id: f.engineering_id,
+            },
+        )
+        .await
+        .unwrap();
     let linked = f
         .engine
         .link_business_execution(
             ActorContext::authenticated(f.delegator),
             dto::LinkExecutionInput {
                 task_id: other.task.id,
-                expected_revision: 1,
+                expected_revision: entrusted.task.revision,
                 work_task_id: f.engineering_id,
             },
         )
@@ -502,9 +530,12 @@ async fn desk_business_revoked_generation_cannot_be_retargeted_and_fresh_run_kee
     )
     .await
     .unwrap();
-    assert_eq!(old.task.revision, 3);
+    assert_eq!(old.task.revision, 4);
     assert!(old.deliverables.is_empty());
 }
+
+#[path = "business_ownership.rs"]
+mod ownership;
 
 #[tokio::test]
 async fn desk_business_current_delegator_grants_and_agent_revocation_fence_contributions() {
@@ -560,7 +591,7 @@ async fn desk_business_current_delegator_grants_and_agent_revocation_fence_contr
                 &f.listener,
                 &f.token,
                 DeskTool::DeskBusinessNote,
-                json!({"expectedRevision":2,"body":"Old grants must not write"})
+                json!({"expectedRevision":3,"body":"Old grants must not write"})
             )
             .await
             .code,
@@ -576,7 +607,7 @@ async fn desk_business_current_delegator_grants_and_agent_revocation_fence_contr
         .await
         .unwrap();
         assert!(!current.execution.unwrap().active);
-        assert_eq!(current.task.revision, 2);
-        assert_eq!(current.activity.len(), 2);
+        assert_eq!(current.task.revision, 3);
+        assert_eq!(current.activity.len(), 3);
     }
 }

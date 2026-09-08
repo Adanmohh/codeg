@@ -8,6 +8,17 @@ async fn real_business_router_derives_actor_rejects_spoofs_and_returns_revision_
     let (_, issued, _) = human(&db.conn, &op, Role::Member, vec![Domain::Feedback]).await;
     let (_, viewer_issued, _) = human(&db.conn, &op, Role::Viewer, vec![Domain::Feedback]).await;
     let (_, outside_issued, _) = human(&db.conn, &op, Role::Member, vec![Domain::Marketing]).await;
+    let owner_issued = identities::issue_credential(
+        &db.conn,
+        &op,
+        IssueCredentialInput {
+            organization_id: op.organization_id().into(),
+            member_id: op.member_id().into(),
+            label: "Synthetic owner credential".into(),
+        },
+    )
+    .await
+    .unwrap();
     let root = tempfile::tempdir().unwrap();
     let state = Arc::new(crate::app_state::AppState::new_for_test(
         db,
@@ -39,6 +50,16 @@ async fn real_business_router_derives_actor_rejects_spoofs_and_returns_revision_
     );
     assert_eq!(value["task"]["dueDate"], "2028-02-29");
     let id = &value["task"]["id"];
+    for credential in [&issued.token, &owner_issued.token] {
+        // Even the protected owner's member credential is not the actual
+        // operator transport, and must fail before any engine lookup.
+        server
+            .post("/api/business/tasks/entrust-execution")
+            .add_header("authorization", format!("Bearer {credential}"))
+            .json(&json!({"input":{"taskId":id,"expectedRevision":1,"workTaskId":1}}))
+            .await
+            .assert_status_forbidden();
+    }
     for body in [
         json!({"input":{"title":"forged", "domain":"feedback", "actor":"operator"}}),
         json!({"input":{"title":"forged", "domain":"feedback"}, "organizationId":op.organization_id()}),

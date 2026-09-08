@@ -83,6 +83,7 @@ pub(super) mod execution {
         pub id: String,
         pub organization_id: String,
         pub task_id: String,
+        pub authority_id: String,
         pub work_task_id: i32,
         pub run_seq: i32,
         pub connection_id: String,
@@ -93,6 +94,32 @@ pub(super) mod execution {
         pub linked_by: String,
         pub created_at: String,
         pub revoked_at: Option<String>,
+    }
+    #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
+    pub enum Relation {}
+    impl ActiveModelBehavior for ActiveModel {}
+}
+
+/// Protected operator entrustment, never deserialized from or projected to an
+/// agent/member response. A wire agent type is not this business member identity.
+pub(super) mod execution_authority {
+    use sea_orm::entity::prelude::*;
+    #[derive(Clone, Debug, PartialEq, DeriveEntityModel)]
+    #[sea_orm(table_name = "business_task_execution_authority")]
+    pub struct Model {
+        #[sea_orm(primary_key, auto_increment = false)]
+        pub id: String,
+        pub organization_id: String,
+        pub task_id: String,
+        pub domain: String,
+        pub task_revision: i64,
+        pub work_task_id: i32,
+        pub run_seq: i32,
+        pub connection_id: String,
+        pub agent_member_id: String,
+        pub agent_key: String,
+        pub entrusted_by: String,
+        pub created_at: String,
     }
     #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
     pub enum Relation {}

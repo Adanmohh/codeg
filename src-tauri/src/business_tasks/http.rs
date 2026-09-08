@@ -54,6 +54,16 @@ async fn link_execution(
         .map(Json)
 }
 
+async fn entrust_execution(
+    Extension(principal): Extension<Principal>,
+    body: Result<Json<Input<LinkExecutionInput>>, JsonRejection>,
+) -> Result<Json<Detail>, IdentityError> {
+    let Json(body) = body.map_err(|_| IdentityError::Invalid("Invalid task input"))?;
+    super::entrust_execution(ActorContext::authenticated(principal), body.input)
+        .await
+        .map(Json)
+}
+
 pub(crate) fn router() -> Router {
     Router::new().nest(
         "/tasks",
@@ -69,6 +79,7 @@ pub(crate) fn router() -> Router {
             .route("/review", post(review))
             .route("/cancel", post(cancel))
             .route("/archive", post(archive))
-            .route("/link-execution", post(link_execution)),
+            .route("/link-execution", post(link_execution))
+            .route("/entrust-execution", post(entrust_execution)),
     )
 }

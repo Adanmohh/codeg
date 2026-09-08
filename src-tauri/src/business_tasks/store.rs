@@ -671,6 +671,41 @@ pub(crate) async fn check_link(
 
 /// Authorization above is only preflight before looking up an executor. The
 /// actual write repeats all checks below after acquiring SQLite writer ownership.
+pub(crate) async fn entrust(
+    conn: &DatabaseConnection,
+    ctx: &ActorContext,
+    input: LinkExecutionInput,
+    live: agent::LiveExecution,
+) -> Result<Detail, E> {
+    super::require_operator(ctx)?;
+    let (tx, row, actor, caps) =
+        begin_task(conn, ctx, &input.task_id, input.expected_revision).await?;
+    require(caps.link_execution)?;
+    references(&tx, &row).await?;
+    require(input.work_task_id == live.work_task_id)?;
+    agent::require_live(&tx, &live).await?;
+    let agent_id = row.assignee_id.clone().ok_or(E::Forbidden)?;
+    identity::agent_principal(&tx, &ctx.principal, &agent_id).await?;
+    if tx.query_one(statement("SELECT id FROM business_task_execution_authority WHERE work_task_id = ? AND run_seq = ?",
+        vec![live.work_task_id.into(), live.run_seq.into()])).await?.is_some() {
+        return Err(E::Conflict);
+    }
+    // No bearer or delegation grant here. This independently authorizes the
+    // source run; the subsequent human linker retains its own credential lineage.
+    let entrusted_revision = row.revision.checked_add(1).ok_or(E::Conflict)?;
+    tx.execute(statement("INSERT INTO business_task_execution_authority (id,organization_id,task_id,domain,task_revision,work_task_id,run_seq,connection_id,agent_member_id,agent_key,entrusted_by,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+        vec![id().into(), row.organization_id.clone().into(), row.id.clone().into(), row.domain.clone().into(), entrusted_revision.into(), live.work_task_id.into(), live.run_seq.into(), live.connection_id.into(), agent_id.clone().into(), live.agent_key.into(), actor.id.clone().into(), now().into()])).await?;
+    finish(
+        tx,
+        ctx,
+        row,
+        &actor,
+        "execution_entrusted",
+        json!({"workTaskId":live.work_task_id,"runSeq":live.run_seq,"agentMemberId":agent_id}),
+    )
+    .await
+}
+
 pub(crate) async fn link(
     conn: &DatabaseConnection,
     ctx: &ActorContext,
@@ -685,16 +720,26 @@ pub(crate) async fn link(
     agent::require_live(&tx, &live).await?;
     let agent_id = row.assignee_id.clone().ok_or(E::Forbidden)?;
     identity::agent_principal(&tx, &ctx.principal, &agent_id).await?;
-    let occupied = tx.query_one(statement("SELECT id FROM business_task_execution WHERE work_task_id = ? AND run_seq = ?",
-        vec![live.work_task_id.into(), live.run_seq.into()])).await?;
+    let source = agent::authority(&tx, &row, &live).await?;
+    // A change away and back still advances the revision. Never resurrect an
+    // earlier source authorization merely because the final values match.
+    if source.task_revision != row.revision {
+        return Err(E::Conflict);
+    }
+    let occupied = tx
+        .query_one(statement(
+            "SELECT id FROM business_task_execution WHERE work_task_id = ? AND run_seq = ?",
+            vec![live.work_task_id.into(), live.run_seq.into()],
+        ))
+        .await?;
     if occupied.is_some() {
         return Err(E::Conflict);
     }
     let grant = identity::delegation_grant(&ctx.principal)?.to_storage()?;
     revoke(&tx, &row).await?;
     let binding_id = id();
-    tx.execute(statement("INSERT INTO business_task_execution (id,organization_id,task_id,work_task_id,run_seq,connection_id,agent_member_id,agent_key,delegation_json,linked_by,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-        vec![binding_id.clone().into(), row.organization_id.clone().into(), row.id.clone().into(), live.work_task_id.into(), live.run_seq.into(), live.connection_id.into(), agent_id.clone().into(), live.agent_key.into(), grant.into(), actor.id.clone().into(), now().into()])).await?;
+    tx.execute(statement("INSERT INTO business_task_execution (id,organization_id,task_id,authority_id,work_task_id,run_seq,connection_id,agent_member_id,agent_key,delegation_json,linked_by,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+        vec![binding_id.clone().into(), row.organization_id.clone().into(), row.id.clone().into(), source.id.into(), live.work_task_id.into(), live.run_seq.into(), live.connection_id.into(), agent_id.clone().into(), live.agent_key.into(), grant.into(), actor.id.clone().into(), now().into()])).await?;
     row.current_execution_id = Some(binding_id);
     invalidate_review(&mut row);
     finish(

@@ -1576,6 +1576,7 @@ mod tauri_app {
             crate::commands::business_tasks::business_tasks_cancel,
             crate::commands::business_tasks::business_tasks_archive,
             crate::commands::business_tasks::business_tasks_link_execution,
+            crate::commands::business_tasks::business_tasks_entrust_execution,
             crate::commands::ops::ops_context,
             crate::commands::business_identity::business_context,
             crate::commands::business_identity::business_bootstrap,

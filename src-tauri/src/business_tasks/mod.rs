@@ -26,6 +26,28 @@ impl ActorContext {
     }
 }
 
+pub(crate) fn require_operator(
+    ctx: &ActorContext,
+) -> Result<(), crate::business_identity::IdentityError> {
+    if !ctx.principal.is_operator() || ctx.live.is_some() {
+        return Err(crate::business_identity::IdentityError::Forbidden);
+    }
+    Ok(())
+}
+
+pub(crate) async fn entrust_execution(
+    ctx: ActorContext,
+    input: types::LinkExecutionInput,
+) -> Result<types::Detail, crate::business_identity::IdentityError> {
+    require_operator(&ctx)?;
+    crate::work_task::engine()
+        .ok_or(crate::business_identity::IdentityError::Invalid(
+            "No live executor is available",
+        ))?
+        .entrust_business_execution(ctx, input)
+        .await
+}
+
 pub(crate) async fn link_execution(
     ctx: ActorContext,
     input: types::LinkExecutionInput,

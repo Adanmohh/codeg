@@ -7,6 +7,7 @@ use crate::db::{test_helpers::fresh_in_memory_db, AppDatabase};
 use sea_orm::{ConnectionTrait, DatabaseConnection};
 use serde_json::json;
 
+mod fixture;
 mod http;
 mod transactions;
 
