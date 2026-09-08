@@ -156,7 +156,12 @@ export function StatusBarAlerts() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button className="flex items-center gap-1 hover:text-foreground transition-colors">
+        <button
+          type="button"
+          aria-label={t("title")}
+          title={t("title")}
+          className="flex items-center gap-1 rounded-sm hover:text-foreground transition-colors focus-visible:ring-2 focus-visible:ring-ring"
+        >
           <CircleAlert
             className={`size-3.5 ${hasAlerts ? "text-red-500" : ""}`}
           />

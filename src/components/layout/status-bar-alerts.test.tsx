@@ -53,6 +53,17 @@ function openAlerts(list: Alert[]) {
 }
 
 describe("StatusBarAlerts — evidence disclosure", () => {
+  it.each([
+    { state: "empty", list: [] },
+    { state: "populated", list: [makeAlert({})] },
+  ])("names the alert trigger in the $state state", ({ list }) => {
+    openAlerts(list)
+    expect(screen.getByRole("button", { name: "Alerts" })).toHaveAttribute(
+      "aria-expanded",
+      "true"
+    )
+  })
+
   it("offers a collapsed expander for an alert carrying evidence", async () => {
     openAlerts([makeAlert({ evidence: EVIDENCE })])
 

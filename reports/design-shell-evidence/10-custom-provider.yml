@@ -1,0 +1,327 @@
+- generic [ref=f1e1]:
+  - alert [ref=f1e2]
+  - region "Notifications alt+T"
+  - generic [ref=f1e3]:
+    - generic [ref=f1e4]: Settings
+    - generic [ref=f1e9]:
+      - complementary [ref=f1e546]:
+        - generic [ref=f1e547]:
+          - generic [ref=f1e548]: Preferences
+          - navigation [ref=f1e551]:
+            - button "Appearance" [ref=f1e552]
+            - button "General" [ref=f1e554]
+            - button "MCP" [ref=f1e556]
+            - button "Skills" [ref=f1e558]
+            - button "Skill Packs" [ref=f1e560]
+            - button "Agents" [ref=f1e562]
+            - button "Model Providers" [ref=f1e564]
+            - button "Quick Messages" [ref=f1e566]
+            - button "Shortcuts" [ref=f1e568]
+            - button "Version Control" [ref=f1e570]
+            - button "Chat Channels" [ref=f1e572]
+            - button "Runtime Logs" [ref=f1e574]
+            - button "System" [ref=f1e576]
+      - generic [ref=f1e11]:
+        - generic [ref=f1e12]:
+          - generic [ref=f1e13]:
+            - heading "Agent SDK Management" [level=2] [ref=f1e14]
+            - paragraph [ref=f1e15]: Manage Agent SDK connection, enabled state, environment variables, config management and version preflight info in one place.
+          - button "Add custom agent" [ref=f1e16]
+        - generic [ref=f1e17]:
+          - generic [ref=f1e18]:
+            - generic [ref=f1e19]: Agent List
+            - generic [ref=f1e20]:
+              - generic [ref=f1e22] [cursor=pointer]:
+                - generic [ref=f1e23]:
+                  - button "Drag to reorder Pi" [ref=f1e24]
+                  - img "Pi" [ref=f1e33]
+                  - generic [ref=f1e38]: Pi
+                  - generic "Pi enabled" [ref=f1e39]
+                - generic [ref=f1e41]:
+                  - generic [ref=f1e42]: PASS
+                  - button "Refresh check Pi" [ref=f1e43]
+              - generic [ref=f1e50] [cursor=pointer]:
+                - generic [ref=f1e51]:
+                  - button "Drag to reorder Claude Code" [ref=f1e52]
+                  - img "Claude Code" [ref=f1e61]
+                  - generic [ref=f1e63]: Claude Code
+                  - generic "Claude Code enabled" [ref=f1e64]
+                - generic [ref=f1e66]:
+                  - generic [ref=f1e67]: FAIL
+                  - button "Refresh check Claude Code" [ref=f1e68]
+              - generic [ref=f1e75] [cursor=pointer]:
+                - generic [ref=f1e76]:
+                  - button "Drag to reorder Codex CLI" [ref=f1e77]
+                  - img "Codex" [ref=f1e86]
+                  - generic [ref=f1e88]: Codex CLI
+                  - generic "Codex CLI enabled" [ref=f1e89]
+                - generic [ref=f1e91]:
+                  - generic [ref=f1e92]: FAIL
+                  - button "Refresh check Codex CLI" [ref=f1e93]
+              - generic [ref=f1e100] [cursor=pointer]:
+                - generic [ref=f1e101]:
+                  - button "Drag to reorder Gemini CLI" [ref=f1e102]
+                  - img "Gemini CLI" [ref=f1e111]
+                  - generic [ref=f1e114]: Gemini CLI
+                  - generic "Gemini CLI enabled" [ref=f1e115]
+                - generic [ref=f1e117]:
+                  - generic [ref=f1e118]: FAIL
+                  - button "Refresh check Gemini CLI" [ref=f1e119]
+              - generic [ref=f1e126] [cursor=pointer]:
+                - generic [ref=f1e127]:
+                  - button "Drag to reorder OpenClaw" [ref=f1e128]
+                  - img "OpenClaw" [ref=f1e137]
+                  - generic [ref=f1e144]: OpenClaw
+                  - generic "OpenClaw enabled" [ref=f1e145]
+                - generic [ref=f1e147]:
+                  - generic [ref=f1e148]: FAIL
+                  - button "Refresh check OpenClaw" [ref=f1e149]
+              - generic [ref=f1e156] [cursor=pointer]:
+                - generic [ref=f1e157]:
+                  - button "Drag to reorder OpenCode" [ref=f1e158]
+                  - img "OpenCode" [ref=f1e167]
+                  - generic [ref=f1e169]: OpenCode
+                  - generic "OpenCode enabled" [ref=f1e170]
+                - generic [ref=f1e172]:
+                  - generic [ref=f1e173]: FAIL
+                  - button "Refresh check OpenCode" [ref=f1e174]
+              - generic [ref=f1e181] [cursor=pointer]:
+                - generic [ref=f1e182]:
+                  - button "Drag to reorder Cline" [ref=f1e183]
+                  - img "Cline" [ref=f1e192]
+                  - generic [ref=f1e195]: Cline
+                  - generic "Cline enabled" [ref=f1e196]
+                - generic [ref=f1e198]:
+                  - generic [ref=f1e199]: FAIL
+                  - button "Refresh check Cline" [ref=f1e200]
+              - generic [ref=f1e207] [cursor=pointer]:
+                - generic [ref=f1e208]:
+                  - button "Drag to reorder Hermes Agent" [ref=f1e209]
+                  - img "Hermes Agent" [ref=f1e218]
+                  - generic [ref=f1e222]: Hermes Agent
+                  - generic "Hermes Agent enabled" [ref=f1e223]
+                - generic [ref=f1e225]:
+                  - generic [ref=f1e226]: FAIL
+                  - button "Refresh check Hermes Agent" [ref=f1e227]
+              - generic [ref=f1e234] [cursor=pointer]:
+                - generic [ref=f1e235]:
+                  - button "Drag to reorder CodeBuddy" [ref=f1e236]
+                  - img "CodeBuddy" [ref=f1e245]
+                  - generic [ref=f1e249]: CodeBuddy
+                  - generic "CodeBuddy enabled" [ref=f1e250]
+                - generic [ref=f1e252]:
+                  - generic [ref=f1e253]: FAIL
+                  - button "Refresh check CodeBuddy" [ref=f1e254]
+              - generic [ref=f1e261] [cursor=pointer]:
+                - generic [ref=f1e262]:
+                  - button "Drag to reorder Kimi Code" [ref=f1e263]
+                  - img "Kimi Code" [ref=f1e272]
+                  - generic [ref=f1e276]: Kimi Code
+                  - generic "Kimi Code enabled" [ref=f1e277]
+                - generic [ref=f1e279]:
+                  - generic [ref=f1e280]: FAIL
+                  - button "Refresh check Kimi Code" [ref=f1e281]
+              - generic [ref=f1e288] [cursor=pointer]:
+                - generic [ref=f1e289]:
+                  - button "Drag to reorder Grok" [ref=f1e290]
+                  - img "Grok" [ref=f1e299]
+                  - generic [ref=f1e302]: Grok
+                  - generic "Grok enabled" [ref=f1e303]
+                - generic [ref=f1e305]:
+                  - generic [ref=f1e306]: FAIL
+                  - button "Refresh check Grok" [ref=f1e307]
+              - generic [ref=f1e314] [cursor=pointer]:
+                - generic [ref=f1e315]:
+                  - button "Drag to reorder Cursor" [ref=f1e316]
+                  - img "Cursor" [ref=f1e325]
+                  - generic [ref=f1e327]: Cursor
+                  - generic "Cursor enabled" [ref=f1e328]
+                - generic [ref=f1e330]:
+                  - generic [ref=f1e331]: FAIL
+                  - button "Refresh check Cursor" [ref=f1e332]
+              - generic [ref=f1e339] [cursor=pointer]:
+                - generic [ref=f1e340]:
+                  - button "Drag to reorder DeepSeek Harness" [ref=f1e341]
+                  - img "DeepSeek Harness" [ref=f1e350]
+                  - generic [ref=f1e352]: DeepSeek Harness
+                  - generic "DeepSeek Harness enabled" [ref=f1e353]
+                - generic [ref=f1e355]:
+                  - generic [ref=f1e356]: FAIL
+                  - button "Refresh check DeepSeek Harness" [ref=f1e357]
+              - generic [ref=f1e364] [cursor=pointer]:
+                - generic [ref=f1e365]:
+                  - button "Drag to reorder Qoder" [ref=f1e366]
+                  - img "Qoder" [ref=f1e375]
+                  - generic [ref=f1e377]: Qoder
+                  - generic "Qoder enabled" [ref=f1e378]
+                - generic [ref=f1e380]:
+                  - generic [ref=f1e381]: FAIL
+                  - button "Refresh check Qoder" [ref=f1e382]
+              - generic [ref=f1e389] [cursor=pointer]:
+                - generic [ref=f1e390]:
+                  - button "Drag to reorder Google Antigravity" [ref=f1e391]
+                  - img "Google Antigravity" [ref=f1e400]
+                  - generic [ref=f1e402]: Google Antigravity
+                  - generic "Google Antigravity enabled" [ref=f1e403]
+                - generic [ref=f1e405]:
+                  - generic [ref=f1e406]: FAIL
+                  - button "Refresh check Google Antigravity" [ref=f1e407]
+          - generic [ref=f1e414]:
+            - generic [ref=f1e415]:
+              - generic [ref=f1e416]:
+                - generic [ref=f1e417]:
+                  - img "Pi" [ref=f1e419]
+                  - heading "Pi" [level=3] [ref=f1e424]
+                  - generic [ref=f1e425]: npx
+                - switch "Pi enable switch" [checked] [ref=f1e427]
+              - paragraph [ref=f1e429]: Self-extensible coding agent (ACP via pi-acp)
+            - generic [ref=f1e430]:
+              - generic [ref=f1e431]:
+                - generic [ref=f1e432]:
+                  - generic [ref=f1e433]: "Preflight items: 4"
+                  - button "Diagnose" [ref=f1e437]
+                - button "Version Status PASS" [ref=f1e439]:
+                  - generic [ref=f1e440]: Version Status
+                  - generic [ref=f1e444]: PASS
+                - button "Node.js PASS" [ref=f1e446]:
+                  - generic [ref=f1e447]: Node.js
+                  - generic [ref=f1e451]: PASS
+                - button "npm PASS" [ref=f1e453]:
+                  - generic [ref=f1e454]: npm
+                  - generic [ref=f1e458]: PASS
+                - button "Node.js version PASS" [ref=f1e460]:
+                  - generic [ref=f1e461]: Node.js version
+                  - generic [ref=f1e465]: PASS
+              - generic [ref=f1e466]:
+                - text: Environment Variables
+                - textbox "KEY1=VALUE1 KEY2=VALUE2" [ref=f1e468]:
+                  - /placeholder: "KEY1=VALUE1\nKEY2=VALUE2"
+                - generic [ref=f1e469]:
+                  - generic [ref=f1e470]:
+                    - text: Let the agent handle files and commands
+                    - paragraph [ref=f1e471]: Hafidh Ops Desk stops serving file access and terminal commands, so the agent runs them in its own process — where its own sandbox and permission rules apply. Delegating to other agents is also turned off, since that would route the same work back through Hafidh Ops Desk. Hafidh Ops Desk adds no sandbox itself, so turn this on only if the agent has one configured.
+                  - switch "Let the agent handle files and commands" [ref=f1e472]
+                - generic [ref=f1e473]:
+                  - generic [ref=f1e474]:
+                    - text: Adapter version
+                    - paragraph [ref=f1e475]: Install and Upgrade use the version Hafidh Ops Desk has reviewed and pinned. Latest switches them to the package's newest npm release at that moment; if installing it fails, Hafidh Ops Desk falls back to the pinned version and notes it in the install log.
+                  - combobox "Adapter version" [ref=f1e476]:
+                    - generic: Pinned (recommended)
+                - button "Save environment variables" [ref=f1e478]
+              - generic [ref=f1e479]:
+                - region [ref=f1e480]:
+                  - heading "Pi Desk setup" [level=3] [ref=f1e481]
+                  - paragraph [ref=f1e482]: Desk launches require pi 0.85.1, pi-mcp-adapter 2.32.1 and a configured gpt-6-astra model that supports max reasoning.
+                  - paragraph [ref=f1e483]: Configure this model in your existing Pi client, then start a new conversation to retry. The adapter's PASS check does not verify Desk model readiness or provider access.
+                - generic [ref=f1e484]:
+                  - generic [ref=f1e485]:
+                    - generic [ref=f1e486]: Runtime
+                    - paragraph [ref=f1e490]: Choose which pi binary runs. Use the default, or point at your own pi build.
+                  - radiogroup [ref=f1e491]:
+                    - generic [ref=f1e492] [cursor=pointer]:
+                      - 'radio "Default pi Use the bundled pi-acp adapter with the pi on your PATH. Install pi with: npm install -g @earendil-works/pi-coding-agent" [checked] [ref=f1e493]'
+                      - generic [ref=f1e496]:
+                        - generic [ref=f1e497]: Default pi
+                        - generic [ref=f1e498]: "Use the bundled pi-acp adapter with the pi on your PATH. Install pi with: npm install -g @earendil-works/pi-coding-agent"
+                    - generic [ref=f1e499] [cursor=pointer]:
+                      - radio "Custom pi Run your own pi build, install, or wrapper." [ref=f1e500]
+                      - generic [ref=f1e501]:
+                        - generic [ref=f1e502]: Custom pi
+                        - generic [ref=f1e503]: Run your own pi build, install, or wrapper.
+                  - generic [ref=f1e505]:
+                    - generic [ref=f1e511]:
+                      - text: Installed · 0.85.1
+                      - generic [ref=f1e512]: /Users/mohamedadan/.local/share/fnm/node-versions/v24.19.0/installation/bin/pi
+                    - generic [ref=f1e513]:
+                      - button "Recheck" [ref=f1e514]
+                      - button "Uninstall" [ref=f1e515]
+                  - button "Save Runtime" [ref=f1e517]
+                - generic [ref=f1e518]:
+                  - generic [ref=f1e519]:
+                    - generic [ref=f1e520]: Pi Configuration
+                    - paragraph [ref=f1e524]: Pi authenticates with your model provider's API key. The key is written to ~/.pi/agent/auth.json and the model selection to settings.json.
+                  - generic [ref=f1e525]:
+                    - text: Provider
+                    - combobox "Provider" [ref=f1e526]:
+                      - generic: Custom provider…
+                  - generic [ref=f1e578]:
+                    - generic [ref=f1e579]:
+                      - generic [ref=f1e580]:
+                        - text: Provider ID
+                        - textbox "Provider ID" [ref=f1e581]:
+                          - /placeholder: my-provider
+                          - text: fixture-provider
+                      - generic [ref=f1e582]:
+                        - text: API protocol
+                        - combobox "API protocol" [ref=f1e583]:
+                          - generic: openai-responses
+                    - generic [ref=f1e584]:
+                      - text: API endpoint (Base URL)
+                      - textbox "API endpoint (Base URL)" [ref=f1e585]:
+                        - /placeholder: https://api.example.com/v1
+                        - text: https://provider.invalid/v1
+                    - paragraph [ref=f1e586]: Defines a provider in ~/.pi/agent/models.json at your endpoint. Most self-hosted or proxy servers use openai-completions.
+                  - generic [ref=f1e527]:
+                    - text: Model
+                    - textbox "Model" [ref=f1e528]:
+                      - /placeholder: gpt-6-astra
+                      - text: gpt-6-astra
+                  - generic [ref=f1e587]:
+                    - generic [ref=f1e588]:
+                      - generic [ref=f1e589]: Reasoning
+                      - generic [ref=f1e590] [cursor=pointer]:
+                        - switch "Enable" [checked] [ref=f1e591]
+                        - text: Enable
+                    - paragraph [ref=f1e592]: pi only sends a reasoning effort for a model that declares it — an undeclared model has every level clamped to Off, so the composer's picker springs back the moment you touch it. Written to this model's entry in models.json.
+                    - generic [ref=f1e593]:
+                      - text: Available levels
+                      - group "Available levels" [ref=f1e594]:
+                        - button "off" [pressed] [ref=f1e595]
+                        - button "minimal" [pressed] [ref=f1e596]
+                        - button "low" [pressed] [ref=f1e597]
+                        - button "medium" [pressed] [ref=f1e598]
+                        - button "high" [pressed] [ref=f1e599]
+                        - button "xhigh" [ref=f1e600]
+                      - paragraph [ref=f1e601]: These become the rows in the composer's reasoning picker. Pick the ones your endpoint accepts; pi rejects any level that isn't listed here.
+                    - generic [ref=f1e602]:
+                      - 'button "Advanced: values sent to the provider" [expanded] [active] [ref=f1e603]': "▾ Advanced: values sent to the provider"
+                      - generic [ref=f1e604]:
+                        - generic [ref=f1e605]:
+                          - generic [ref=f1e606]: "off"
+                          - 'textbox "Advanced: values sent to the provider: off" [ref=f1e607]':
+                            - /placeholder: none
+                        - generic [ref=f1e608]:
+                          - generic [ref=f1e609]: minimal
+                          - 'textbox "Advanced: values sent to the provider: minimal" [ref=f1e610]':
+                            - /placeholder: minimal
+                        - generic [ref=f1e611]:
+                          - generic [ref=f1e612]: low
+                          - 'textbox "Advanced: values sent to the provider: low" [ref=f1e613]':
+                            - /placeholder: low
+                        - generic [ref=f1e614]:
+                          - generic [ref=f1e615]: medium
+                          - 'textbox "Advanced: values sent to the provider: medium" [ref=f1e616]':
+                            - /placeholder: medium
+                        - generic [ref=f1e617]:
+                          - generic [ref=f1e618]: high
+                          - 'textbox "Advanced: values sent to the provider: high" [ref=f1e619]':
+                            - /placeholder: high
+                        - paragraph [ref=f1e620]: Leave blank to send the level name as-is. Set one when your endpoint expects something else — Google-style backends want LOW / HIGH.
+                  - generic [ref=f1e529]:
+                    - text: Thinking
+                    - combobox "Thinking" [ref=f1e530]:
+                      - generic: "Off"
+                    - paragraph [ref=f1e531]: Desk sets max reasoning at launch. Saved preferences for other Pi sessions remain available here.
+                  - generic [ref=f1e532]:
+                    - text: API Key
+                    - generic [ref=f1e533]:
+                      - textbox "API Key" [ref=f1e534]:
+                        - /placeholder: sk-...
+                      - button "Show API Key" [ref=f1e535]
+                    - paragraph [ref=f1e536]: Stored in ~/.pi/agent/auth.json for the selected provider.
+                  - button "Save Pi Config" [ref=f1e621]
+                - generic [ref=f1e538]:
+                  - generic [ref=f1e539]:
+                    - generic [ref=f1e540]: Project trust
+                    - paragraph [ref=f1e544]: Folders you allowed pi to load project files from. A trusted folder lets that repository's .pi/extensions run code when pi starts, applies to every folder inside it, and is also used when you run pi in a terminal.
+                  - paragraph [ref=f1e545]: No folders decided yet.

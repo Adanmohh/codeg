@@ -1460,6 +1460,10 @@
       "failed": "Plugin-Vorgang fehlgeschlagen"
     },
     "pi": {
+      "deskTitle": "Pi Desk einrichten",
+      "deskRequirements": "Desk benötigt pi 0.85.1, pi-mcp-adapter 2.32.1 und ein konfiguriertes gpt-6-astra-Modell, das die Denkstufe max unterstützt.",
+      "deskNextStep": "Konfiguriere dieses Modell in deinem vorhandenen Pi-Client und starte dann eine neue Unterhaltung, um es erneut zu versuchen. Die PASS-Prüfung des Adapters bestätigt weder die Modellbereitschaft für Desk noch den Anbieterzugriff.",
+      "deskThinkingHint": "Desk setzt die Denkstufe beim Start auf max. Einstellungen für andere Pi-Sitzungen können weiterhin hier gespeichert werden.",
       "configManagement": "Pi-Konfiguration",
       "configDescription": "Pi authentifiziert sich über den API-Schlüssel deines Modellanbieters. Der Schlüssel wird in ~/.pi/agent/auth.json und die Modellauswahl in settings.json geschrieben.",
       "providerLabel": "Anbieter",

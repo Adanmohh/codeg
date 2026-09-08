@@ -1460,6 +1460,10 @@
       "failed": "플러그인 작업 실패"
     },
     "pi": {
+      "deskTitle": "Pi Desk 설정",
+      "deskRequirements": "Desk를 시작하려면 pi 0.85.1, pi-mcp-adapter 2.32.1 및 max 추론을 지원하도록 구성된 gpt-6-astra 모델이 필요합니다.",
+      "deskNextStep": "기존 Pi 클라이언트에서 이 모델을 구성한 다음 새 대화를 시작하여 다시 시도하세요. 어댑터의 PASS 검사는 Desk 모델의 준비 상태나 공급자 접근 가능 여부를 확인하지 않습니다.",
+      "deskThinkingHint": "Desk는 시작 시 추론을 max로 설정합니다. 다른 Pi 세션의 환경설정은 여기에서 계속 저장할 수 있습니다.",
       "configManagement": "Pi 설정",
       "configDescription": "Pi는 모델 제공자의 API 키로 인증합니다. 키는 ~/.pi/agent/auth.json에, 모델 선택은 settings.json에 저장됩니다.",
       "providerLabel": "제공자",

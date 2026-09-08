@@ -1460,6 +1460,10 @@
       "failed": "L'opération du plugin a échoué"
     },
     "pi": {
+      "deskTitle": "Configuration de Pi Desk",
+      "deskRequirements": "Le lancement de Desk nécessite pi 0.85.1, pi-mcp-adapter 2.32.1 et un modèle gpt-6-astra configuré qui prend en charge le raisonnement max.",
+      "deskNextStep": "Configurez ce modèle dans votre client Pi existant, puis démarrez une nouvelle conversation pour réessayer. Le contrôle PASS de l’adaptateur ne vérifie ni la disponibilité du modèle pour Desk ni l’accès au fournisseur.",
+      "deskThinkingHint": "Desk règle le raisonnement sur max au lancement. Vous pouvez toujours enregistrer ici les préférences des autres sessions Pi.",
       "configManagement": "Configuration de Pi",
       "configDescription": "Pi s'authentifie via la clé API de votre fournisseur de modèle. La clé est écrite dans ~/.pi/agent/auth.json et le choix du modèle dans settings.json.",
       "providerLabel": "Fournisseur",

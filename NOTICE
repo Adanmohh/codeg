@@ -476,3 +476,21 @@ backend-keyed memory-only session. The test-only design_ops_browser.rs fixture
 adapts their SQLite, protected router, MemorySecrets and loopback provider setup
 for a separate port/export. The original Apache-2.0 LICENSE and all preceding
 attributions and license text remain in force.
+
+Shell accessibility and Pi setup presentation extend xintaofei/codeg v0.30.4
+(6f6bd648b206412644842a98d9ffeebf57292bed):
+src/components/terminal/terminal-tab-bar.tsx;
+src/components/layout/{status-bar,status-bar-alerts}.tsx;
+src/components/conversations/{sidebar-section-header,sidebar-conversation-list,
+conversation-detail-panel}.tsx; src/components/settings/pi-config-panel.tsx;
+src/components/ui/{button,input,select}.tsx and src/i18n/messages/*.json.
+The shared chat/agent-setup-notice.tsx extracts the existing composer setup
+message/actions and reuses the existing Button and translated labels. Form
+associations use the installed React useId and Radix SelectTrigger contracts.
+New code is presentation glue and regression fixtures. The original Codeg
+Apache-2.0 LICENSE and all preceding attribution remain unchanged.
+
+The same scoped accessibility follow-up extends Codeg v0.30.4
+src/components/settings/settings-shell.tsx at the immutable commit above,
+using the existing translated Navigation label and AppTitleBar size override.
+Drawer navigation, dismissal and settings persistence are unchanged.
