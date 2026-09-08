@@ -25,6 +25,11 @@ and all-three binary/profile hashes pass. Tickets'275 bundled companion checks a
 before/after hash. Actual native local bootstrap/human Done4 and shared-server
 viewer/revocation checks pass; N2 chrome correction and final refresh remain.
 
+N2 fix is pushed as PR #24, product `3d0008747ab1933bf9c1329f8e1b59d949992623`.
+Root reviewed the complete scoped layout/height/NOTICE/test diff: no source
+finding; worker52 focused tests/typecheck/scoped lint pass. Independent review
+and final handoff remain before merge and root native/browser recheck.
+
 **Next-scope preparation:** existing tickets worker is dispatched to docs-only
 `docs/business-intake-contract` from accepted main, same worktree/pane. Deliverables
 `reports/business-intake-contract.md` and `docs/contracts/business-intake.md` pin
