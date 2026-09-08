@@ -1,0 +1,2547 @@
+Source: 0192ac3f
+Command/check: pnpm test
+Recorded exit: 0
+Original: .build/business-workspace/accepted-main-frontend-tests.log
+Normalized ANSI/trailing whitespace only.
+
+Already up to date
+Done in 168ms using pnpm v11.9.0
+$ vitest run
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/components/canvas/canvas-model.test.ts (66 tests) 11ms
+ ✓ src/components/conversations/sidebar-conversation-grouping.test.ts (110 tests) 17ms
+ ✓ src/lib/tool-call-normalization.test.ts (123 tests) 12ms
+ ✓ src/lib/adapters/ai-elements-adapter.test.ts (105 tests) 24ms
+stderr | src/components/providers/update-provider.test.tsx > UpdateProvider — availability > records a failed check without persisting it as a completed one
+[Update] check failed: Error: error sending request for url
+    at checkResult (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.test.tsx:384:13)
+    at Object.<anonymous> (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.test.tsx:45:47)
+    at Object.mockCall (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+spy@2.1.9/node_modules/@vitest/spy/dist/index.js:61:17)
+    at Object.spy [as call] (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/tinyspy@3.0.2/node_modules/tinyspy/dist/index.js:45:80)
+    at Module.checkAppUpdateInfo (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/updater.ts:256:27)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:414:30
+    at Object.checkNow (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:464:17)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.test.tsx:390:18
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@testing-library+react@16.3.2_@testing-library+dom@10.4.1_@types+react-dom@19.2.4_@type_c78355cbccf8178c314ca72a784460ac/node_modules/@testing-library/react/dist/act-compat.js:47:24
+    at process.env.NODE_ENV.exports.act (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react@19.2.4/node_modules/react/cjs/react.development.js:814:22)
+
+stderr | src/components/providers/update-provider.test.tsx > UpdateProvider — stale cache after an upgrade > falls back to /health when the status route 404s (older server)
+[Update] status route unavailable: Error: not implemented
+    at callImpl (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.test.tsx:591:51)
+    at Object.<anonymous> (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.test.tsx:41:24)
+    at Object.mockCall (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+spy@2.1.9/node_modules/@vitest/spy/dist/index.js:61:17)
+    at Object.spy [as call] (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/tinyspy@3.0.2/node_modules/tinyspy/dist/index.js:45:80)
+    at Module.getServerUpdateStatus (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/updater.ts:299:25)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:529:32
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:558:15
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:580:45
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:602:10
+    at Object.react_stack_bottom_frame (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+
+stderr | src/components/providers/update-provider.test.tsx > UpdateProvider — sibling window survives a backend restart > stops advertising a release the backend is now running, without reloading
+[Update] check failed: Error: manifest unreachable
+    at callImpl (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.test.tsx:703:15)
+    at Object.<anonymous> (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.test.tsx:41:24)
+    at Object.mockCall (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+spy@2.1.9/node_modules/@vitest/spy/dist/index.js:61:17)
+    at Object.spy [as call] (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/tinyspy@3.0.2/node_modules/tinyspy/dist/index.js:45:80)
+    at Module.checkAppUpdateInfo (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/updater.ts:256:27)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:414:30
+    at Object.current (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:464:17)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:512:22
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:554:5
+
+ ✓ src/contexts/conversation-runtime-context.test.tsx (86 tests) 100ms
+stderr | src/contexts/tab-context.test.tsx > TabProvider tab state transitions > promises the retargeted identity when it reuses the group's draft
+An update to TabProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to Probe inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to TabProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ✓ src/components/providers/update-provider.test.tsx (33 tests) 186ms
+stderr | src/contexts/acp-connections-context.test.tsx > AcpConnectionsProvider disconnect teardown confirmation > reports an unconfirmed teardown, and reapplyConfig stops claiming success
+[Acp] backend teardown failed, releasing locally: Error: request timed out
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/contexts/acp-connections-context.test.tsx:1328:39
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:533:5
+    at runTest (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1056:11)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1271:3)
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:126:11
+    at withEnv (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:90:5)
+    at run (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:112:3)
+
+stdout | src/contexts/acp-connections-context.test.tsx > out-of-turn wire guard + background activity > drops streaming deltas while the connection is not prompting (Bug-A guard)
+[acp] dropping out-of-turn streaming deltas (transcript overlay renders them) { contextKey: 'conv-1-claude_code-42', type: 'CONTENT_DELTA' }
+
+ ✓ src/stores/app-workspace-store.test.ts (30 tests) 323ms
+ ✓ src/contexts/acp-connections-context.test.tsx (106 tests) 350ms
+ ✓ src/contexts/workspace-context.test.tsx (67 tests) 472ms
+ ✓ src/components/conversations/conversation-detail-panel-layout.test.ts (26 tests) 5ms
+ ✓ src/hooks/use-session-feedback.test.ts (33 tests) 885ms
+ ✓ src/lib/delegation-status.test.ts (54 tests) 9ms
+ ✓ src/lib/opencode-permissions.test.ts (67 tests) 10ms
+ ✓ src/components/settings/antigravity-config-panel.test.tsx (33 tests) 872ms
+ ✓ src/stores/conversation-window-loading.test.ts (27 tests) 12ms
+ ✓ src/components/message/selection-action-bubble.test.tsx (27 tests) 299ms
+ ✓ src/components/settings/acp-agent-settings.test.tsx (135 tests) 21ms
+stderr | src/components/settings/kimi-code-config-panel.test.tsx > KimiCodeConfigPanel > sends the parsed context window once the form is valid
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/settings/kimi-code-config-panel.test.tsx > KimiCodeConfigPanel > drops the 'key works' verdict once the credentials it measured change
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/settings/kimi-code-config-panel.test.tsx > KimiCodeConfigPanel > warns when the chosen model is absent from the key's model list
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ✓ src/lib/background-task.test.ts (40 tests) 7ms
+ ✓ src/components/message/sub-agent-session-dialog.test.tsx (23 tests) 297ms
+ ✓ src/lib/opencode-connect.test.ts (38 tests) 12ms
+ ✓ src/components/message/delegation-status-group-card.test.tsx (19 tests) 215ms
+stderr | src/components/settings/kimi-code-config-panel.test.tsx > KimiCodeConfigPanel > keeps reasoning out of the payload until it is switched on
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/settings/kimi-code-config-panel.test.tsx > KimiCodeConfigPanel > sends the chosen levels once reasoning is switched on
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/settings/kimi-code-config-panel.test.tsx > KimiCodeConfigPanel > drops a default level when its chip is switched back off
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/settings/kimi-code-config-panel.test.tsx > KimiCodeConfigPanel > surfaces the backend's own message when a save is rejected
+[KimiCode] save config failed Error: kimi native config requires a model id
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/kimi-code-config-panel.test.tsx:790:7
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1271:3)
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:126:11
+An update to KimiCodeConfigPanel inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItemText inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to SelectItem inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ✓ src/components/settings/kimi-code-config-panel.test.tsx (52 tests) 1180ms
+ ✓ src/components/diff/unified-diff-preview.test.tsx (30 tests) 700ms
+ ✓ src/components/message/message-list-view.test.tsx (44 tests) 9ms
+ ✓ src/components/conversations/sidebar-conversation-list.test.tsx (43 tests) 1653ms
+ ✓ src/components/conversations/sidebar-conversation-card.test.tsx (29 tests) 664ms
+ ✓ src/stores/turn-metadata-patches.test.ts (19 tests) 5ms
+ ✓ src/lib/branch-selector-rows.test.ts (33 tests) 14ms
+ ✓ src/components/conversations/sidebar-folder-group-layout.test.ts (34 tests) 6ms
+ ✓ src/stores/background-overlay.test.ts (17 tests) 10ms
+ ✓ src/lib/token-usage.test.ts (52 tests) 20ms
+ ✓ src/lib/keyboard-shortcuts.test.ts (40 tests) 8ms
+ ✓ src/stores/viewer-detail-sync.test.ts (17 tests) 12ms
+ ✓ src/lib/html-preview-inline.test.ts (44 tests) 51ms
+ ✓ src/components/chat/ask-question-card.test.tsx (25 tests) 725ms
+ ✓ src/components/chat/message-input.test.tsx (40 tests) 2091ms
+stderr | src/components/settings/system-network-settings.test.tsx > SystemNetworkSettings — update source outage > loads proxy settings and exposes rollback when the manifest is unreachable
+[Update] check failed: Error: manifest unreachable
+    at Object.<anonymous> (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/system-network-settings.test.tsx:205:15)
+    at Object.mockCall (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+spy@2.1.9/node_modules/@vitest/spy/dist/index.js:61:17)
+    at Object.spy [as call] (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/tinyspy@3.0.2/node_modules/tinyspy/dist/index.js:45:80)
+    at Module.checkAppUpdateInfo (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/updater.ts:256:27)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:414:30
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:464:17
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/system-network-settings.tsx:282:7
+    at Object.react_stack_bottom_frame (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29)
+[Settings] updater unknown error: manifest unreachable
+[Settings] updater unknown error: manifest unreachable
+
+ ✓ src/contexts/app-workspace-context.test.tsx (23 tests) 114ms
+stderr | src/components/settings/system-network-settings.test.tsx > SystemNetworkSettings — update source outage > loads proxy settings even when the status route is also unavailable (older server)
+[Update] check failed: Error: manifest unreachable
+    at Object.<anonymous> (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/system-network-settings.test.tsx:247:15)
+    at Object.mockCall (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+spy@2.1.9/node_modules/@vitest/spy/dist/index.js:61:17)
+    at Object.spy [as call] (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/tinyspy@3.0.2/node_modules/tinyspy/dist/index.js:45:80)
+    at Module.checkAppUpdateInfo (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/updater.ts:256:27)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:414:30
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:464:17
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/system-network-settings.tsx:282:7
+    at Object.react_stack_bottom_frame (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+    at commitHookEffectListMount (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29)
+[Update] status route unavailable: Error: not implemented
+    at Object.<anonymous> (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/system-network-settings.test.tsx:250:15)
+    at Object.mockCall (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+spy@2.1.9/node_modules/@vitest/spy/dist/index.js:61:17)
+    at Object.spy [as call] (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/tinyspy@3.0.2/node_modules/tinyspy/dist/index.js:45:80)
+    at Module.getServerUpdateStatus (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/updater.ts:299:25)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:529:32
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:558:15
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:580:45
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/providers/update-provider.tsx:602:10
+    at Object.react_stack_bottom_frame (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:25989:20)
+    at runWithFiberInDEV (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/react-dom@19.2.4_react@19.2.4/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+[Settings] updater unknown error: manifest unreachable
+[Settings] updater unknown error: manifest unreachable
+
+ ✓ src/components/layout/aux-panel-file-tree-tab-source.test.ts (30 tests) 4ms
+ ✓ src/components/settings/logs-settings.test.tsx (16 tests) 828ms
+ ✓ src/components/layout/sidebar.test.tsx (28 tests) 1409ms
+ ✓ src/components/layout/workspace-folder-dialog.test.tsx (26 tests) 1760ms
+stderr | src/components/settings/system-network-settings.test.tsx > SystemNetworkSettings — launch at login > keeps the rest of the page alive when the OS won't report login items
+[Settings] load autostart settings failed: Error: registry locked
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/system-network-settings.test.tsx:475:40
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1271:3)
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:126:11
+
+ ✓ src/components/settings/system-network-settings.test.tsx (11 tests) 766ms
+ ✓ src/components/chat/composer/use-reference-search.test.ts (24 tests) 38ms
+stderr | src/components/ai-elements/message-windows-path.test.tsx > MessageResponse — Windows paths in agent text (issue #508) > leaves Markdown that merely ABUTS the path working
+In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  <MessageResponseImpl>
+    <Streamdown className={"size-ful..."} plugins={{...}} remarkPlugins={[...]} rehypePlugins={[...]} mode="static" ...>
+      <div className={"space-y-..."}>
+        <De components={{ol:{...},li:{...}, ...}} rehypePlugins={[...]} remarkPlugins={[...]}>
+          <MarkdownParagraph node={{type:"element", ...}}>
+>           <p className={undefined}>
+              <Ye src="https://pl..." alt="alt" node={{type:"element", ...}}>
+                <div className="group rela..." data-streamdown="image-wrapper">
+                  <img>
+>                 <div className="pointer-events-none absolute inset-0 hidden rounded-lg bg-black/10 group-hover:block">
+                  ...
+
+<p> cannot contain a nested <div>.
+See this log for the ancestor stack trace.
+
+ ✓ src/components/chat/composer/rich-composer.test.tsx (30 tests) 440ms
+ ✓ src/lib/ask-question.test.ts (34 tests) 19ms
+ ✓ src/components/message/delegated-sub-thread.test.tsx (22 tests) 378ms
+ ✓ src/components/ai-elements/message-windows-path.test.tsx (24 tests) 548ms
+ ✓ src/components/ai-elements/link-safety.test.tsx (18 tests) 248ms
+ ✓ src/components/message/ask-question-result-card.test.tsx (13 tests) 478ms
+stderr | src/lib/delegation-card.test.ts > parseInput wrapper peeling > returns empty for undelegation-like payloads
+[delegation-card] could not extract delegation args (no known wrapper matched). shape=object{ command: string }
+
+ ✓ src/lib/delegation-card.test.ts (45 tests) 5ms
+ ✓ src/components/message/delegation-status-card.test.tsx (21 tests) 203ms
+ ✓ src/lib/session-failures.test.ts (24 tests) 5ms
+ ✓ src/components/message/agent-tool-call.test.tsx (27 tests) 269ms
+ ✓ src/components/files/file-viewer-drawer.test.tsx (17 tests) 344ms
+ ✓ src/components/shared/directory-browser-dialog.test.tsx (14 tests) 1209ms
+   ✓ DirectoryBrowserDialog > pre-fills the initial path and confirms it without a tree click 315ms
+ ✓ src/components/chat/composer/suggestion/suggestion-popup.test.tsx (27 tests) 4405ms
+ ✓ src/components/tasks/task-acceptance.test.ts (23 tests) 4ms
+ ✓ src/components/forge/forge-start-dialog.test.tsx (15 tests) 894ms
+   ✓ ForgeStartDialog > sends the backend's own coordinates plus the typed instruction 349ms
+ ✓ src/components/ops-intake/bug-workflow.test.tsx (10 tests) 542ms
+ ✓ src/components/ops/session.test.tsx (8 tests) 1136ms
+ ✓ src/components/chat/permission-dialog.test.tsx (12 tests) 123ms
+ ✓ src/components/chat/agent-selector.test.tsx (11 tests) 336ms
+ ✓ src/components/forge/forge-issue-detail-sheet.test.tsx (88 tests) 5817ms
+ ✓ src/lib/model-config-groups.test.ts (27 tests) 5ms
+ ✓ src/components/import-sessions/import-sessions-window.test.tsx (14 tests) 1151ms
+ ✓ src/components/business/workflow.test.tsx (12 tests) 496ms
+ ✓ src/components/settings/cursor-config-panel.test.tsx (17 tests) 562ms
+ ✓ src/components/tasks/task-settings-dialog.test.tsx (14 tests) 1750ms
+   ✓ TaskSettingsDialog stage prompts > saves the text typed for one stage under that stage's key 483ms
+ ✓ src/lib/branch-tree.test.ts (33 tests) 12ms
+ ✓ src/components/forge/forge-issue-row.test.tsx (22 tests) 219ms
+ ✓ src/components/forge/forge-settings-dialog.test.tsx (12 tests) 1078ms
+ ✓ src/lib/notification-sound.test.ts (19 tests) 15ms
+ ✓ src/components/ui/drawer-nested-layer.test.tsx (13 tests) 316ms
+ ✓ src/components/chat/session-failure-banner.test.tsx (20 tests) 138ms
+ ✓ src/components/chat/composer/rich-composer-mention.test.tsx (12 tests) 2181ms
+stderr | src/contexts/tab-context.test.tsx > TabProvider tab groups > keeps the saved layout and composer drafts when the tab fetch fails
+[TabStore] listOpenedTabs failed: Error: backend down
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/contexts/tab-context.test.tsx:2337:46
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:533:5
+    at runTest (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1056:11)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1271:3)
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:126:11
+    at withEnv (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:90:5)
+    at run (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:112:3)
+
+ ✓ src/components/message/resumed-delegation-card.test.tsx (12 tests) 116ms
+ ✓ src/components/canvas/card-footprint-units.test.ts (21 tests) 9ms
+stderr | src/components/settings/backup-settings.test.tsx > BackupSettings — export > offers to cancel an export in flight
+An update to BackupSettings inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/settings/backup-settings.test.tsx > BackupSettings — export > offers to cancel an export in flight
+An update to BackupSettings inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to BackupSettings inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to BackupSettings inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/settings/backup-settings.test.tsx > BackupSettings — restore > reports the downgrade when agents were running, and waits for the user before restarting
+Error: Not implemented: navigation (except hash changes)
+    at module.exports (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at navigateFetch (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/window/navigation.js:77:3)
+    at exports.navigate (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/window/navigation.js:55:3)
+    at LocationImpl.reload (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/window/Location-impl.js:226:5)
+    at Location.reload (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/generated/Location.js:102:36)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/backup-settings.tsx:402:34 undefined
+
+stderr | src/components/settings/backup-settings.test.tsx > BackupSettings — safety snapshots > lists snapshots and only offers rollback for ones that can be rolled back
+Error: Not implemented: navigation (except hash changes)
+    at module.exports (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at navigateFetch (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/window/navigation.js:77:3)
+    at exports.navigate (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/window/navigation.js:55:3)
+    at LocationImpl.reload (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/window/Location-impl.js:226:5)
+    at Location.reload (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/generated/Location.js:102:36)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/backup-settings.tsx:402:34
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/backup-settings.tsx:447:7 undefined
+
+ ✓ src/components/settings/backup-settings.test.tsx (9 tests) 670ms
+ ✓ src/lib/updater.test.ts (24 tests) 48ms
+ ✓ src/components/tasks/task-detail-sheet.follow-up.test.tsx (10 tests) 962ms
+ ✓ src/components/chat/composer/composer-commands.test.ts (26 tests) 146ms
+stderr | src/contexts/tab-context.test.tsx > TabProvider tab groups > adopts the recovery refetch even when its version does not advance
+[TabStore] listOpenedTabs failed: Error: backend down
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/contexts/tab-context.test.tsx:2384:46
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:533:5
+    at runTest (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1056:11)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1271:3)
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:126:11
+    at withEnv (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:90:5)
+    at run (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:112:3)
+
+stderr | src/lib/custom-style.test.ts > toHexColor > returns null for values it cannot resolve
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at getColorContext (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/custom-style.ts:472:10)
+    at Module.toHexColor (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/custom-style.ts:531:15)
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/custom-style.test.ts:240:12
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1056:17) undefined
+
+ ✓ src/lib/custom-style.test.ts (28 tests) 37ms
+stderr | src/stores/canvas-store.test.ts > canvas-store revision protocol > retries after a failed refetch so a quiet canvas still heals
+[canvas] snapshot fetch failed: Error: boom
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/stores/canvas-store.test.ts:244:32
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1271:3)
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:126:11
+
+ ✓ src/stores/canvas-store.test.ts (19 tests) 116ms
+ ✓ src/components/message/codeg-mcp-tool-card.test.tsx (19 tests) 242ms
+ ✓ src/components/message/goal-tool-call.test.tsx (13 tests) 193ms
+ ✓ src/lib/reference-link.test.ts (36 tests) 15ms
+ ✓ src/lib/tab-group-layout.test.ts (26 tests) 5ms
+ ✓ src/lib/session-files.test.ts (13 tests) 7ms
+ ✓ src/components/message/completed-turn-content.test.tsx (14 tests) 341ms
+ ✓ src/contexts/delegation-context.test.tsx (6 tests) 69ms
+ ✓ src/components/settings/channel-events-tab.test.tsx (15 tests) 796ms
+ ✓ src/components/settings/desktop-notification-settings.test.tsx (19 tests) 751ms
+ ✓ src/components/tasks/task-merge-dialog.test.tsx (11 tests) 1046ms
+ ✓ src/components/settings/qoder-config-panel.test.tsx (15 tests) 251ms
+ ✓ src/components/chat/composer/to-prompt-blocks.test.ts (17 tests) 144ms
+ ✓ src/lib/language-detect.test.ts (116 tests) 13ms
+ ✓ src/stores/runtime-canvas-reentry.test.ts (6 tests) 7ms
+ ✓ src/components/ai-elements/markdown-link.test.tsx (24 tests) 231ms
+ ✓ src/components/canvas/marquee-text-selection.test.ts (14 tests) 36ms
+ ✓ src/components/chat/pi-project-trust-banner.test.tsx (15 tests) 487ms
+ ✓ src/components/chat/composer/from-prompt-blocks.test.ts (17 tests) 69ms
+ ✓ src/components/ops/ops-flows.test.tsx (14 tests) 223ms
+ ✓ src/components/conversations/session-details-dialog.test.tsx (14 tests) 445ms
+ ✓ src/lib/unified-diff-generator.test.ts (9 tests) 27ms
+ ✓ src/lib/transport/web-transport.test.ts (13 tests) 11ms
+ ✓ src/components/layout/aux-panel-git-changes-tab.test.tsx (17 tests) 3115ms
+   ✓ GitChangesTab render cap > caps a large change set and offers to reveal the rest 922ms
+   ✓ GitChangesTab render cap > reveals all rows once expanded 931ms
+   ✓ GitChangesTab render cap > re-caps when a fresh, larger change set replaces the revealed one 1091ms
+ ✓ src/components/settings/agent-tools-settings.test.tsx (8 tests) 367ms
+ ✓ src/contexts/tab-context.test.tsx (92 tests) 10324ms
+   ✓ TabProvider cross-client sync > saves the focused tab so focus syncs across clients 512ms
+   ✓ TabProvider cross-client sync > cancels a pending local save when a remote snapshot supersedes it 604ms
+   ✓ TabProvider cross-client sync > cancels an armed save when the set reverts to the last-saved state 606ms
+   ✓ TabProvider cross-client sync > re-saves to reconcile when the set reverts while a save is in flight 1050ms
+   ✓ TabProvider cross-client sync > does not regress the version when an accepted save resolves after a newer remote 518ms
+   ✓ TabProvider cross-client sync > ignores a rejected save's stale snapshot when a newer remote already applied 517ms
+   ✓ TabProvider cross-client sync > merges the server snapshot when a save is rejected with no newer remote already applied 518ms
+   ✓ TabProvider cross-client sync > keeps a locally-closed tab closed when the rejected snapshot still has it 1036ms
+   ✓ TabProvider cross-client sync > keeps a draft just bound to a live conversation when its save is rejected 1036ms
+   ✓ TabProvider tab groups > group actions on the already-active tab never dirty the synced payload 705ms
+   ✓ TabProvider tab groups > keeps the saved layout and composer drafts when the tab fetch fails 767ms
+   ✓ TabProvider tab groups > restores drafts without dirtying the synced payload 706ms
+   ✓ TabProvider tab groups > moveTabToGroup with index (drag drops) > keeps the menu move (no index) free of rawTabs reorder and saves 705ms
+   ✓ TabProvider tab groups > moveTabToGroup with index (drag drops) > syncs a bound-tab drag insert like any user reorder 705ms
+ ✓ src/lib/collab-tool.test.ts (26 tests) 5ms
+ ✓ src/components/layout/status-bar-mcp.test.tsx (13 tests) 677ms
+ ✓ src/components/tasks/task-card.test.tsx (17 tests) 284ms
+ ✓ src/components/ai-elements/streamdown-plugins.test.ts (16 tests) 520ms
+ ✓ src/components/chat/composer/plain-text-content.test.ts (19 tests) 5ms
+ ✓ src/components/settings/opencode-permissions-section.test.tsx (20 tests) 2640ms
+   ✓ OpenCodePermissionsSection > lists every documented permission key 368ms
+ ✓ src/stores/runtime-timeline-prefix-cache.test.ts (9 tests) 6ms
+ ✓ src/components/ai-elements/remark-windows-paths.test.ts (16 tests) 15ms
+ ✓ src/lib/canvas-view-storage.test.ts (13 tests) 4ms
+ ✓ src/lib/monaco-themes.test.ts (12 tests) 4ms
+ ✓ src/lib/release-notes.test.ts (25 tests) 4ms
+ ✓ src/components/conversations/sidebar-conversation-hover-details.test.tsx (17 tests) 75ms
+stderr | src/components/settings/deepseek-config-panel.test.tsx > DeepSeekConfigPanel > keeps the typed value when the save fails
+[DeepSeek] save config failed Error: backend down
+    at /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/settings/deepseek-config-panel.test.tsx:150:53
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:146:14
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:533:11
+    at runWithTimeout (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:39:7)
+    at runTest (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1056:17)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runSuite (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1205:15)
+    at runFiles (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1262:5)
+    at startTests (file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/@vitest+runner@2.1.9/node_modules/@vitest/runner/dist/index.js:1271:3)
+    at file:///Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/vitest@2.1.9_@types+node@25.2.2_@vitest+ui@2.1.9_jsdom@25.0.1_lightningcss@1.30.2_msw@2_a00748de01525b92f420576dcf1e92c3/node_modules/vitest/dist/chunks/runBaseTests.3qpJUEJM.js:126:11
+
+ ✓ src/lib/message-input-draft.test.ts (17 tests) 5ms
+ ✓ src/hooks/use-acp-agents.test.ts (4 tests) 138ms
+ ✓ src/components/settings/deepseek-config-panel.test.tsx (11 tests) 162ms
+ ✓ src/lib/collab-collapse.test.ts (7 tests) 3ms
+ ✓ src/components/settings/delegation-settings.test.tsx (10 tests) 287ms
+ ✓ src/components/message/collab-agent-card.test.tsx (14 tests) 156ms
+ ✓ src/components/settings/workspace-background-market-dialog.test.tsx (8 tests) 1115ms
+   ✓ WorkspaceBackgroundMarketDialog > keeps a page turned right after opening, once the search debounce lands 577ms
+ ✓ src/components/settings/skill-agent-matrix.test.tsx (13 tests) 413ms
+ ✓ src/lib/file-open-target.test.ts (32 tests) 5ms
+ ✓ src/components/message/plan-mode-card.test.tsx (13 tests) 90ms
+stderr | src/components/automations/automations-page.test.tsx > AutomationsPage (master-detail) > can open the gallery from New and cancel back to the detail
+An update to RunHistory inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to RunHistory inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/automations/automations-page.test.tsx > AutomationsPage (master-detail) > keeps the header switch and surfaces Run now + Edit under the title
+An update to RunHistory inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to RunHistory inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ✓ src/components/chat/session-config-selector.test.tsx (10 tests) 987ms
+   ✓ selector hover hints > names the setting on hover, without echoing the value the chip shows 326ms
+   ✓ selector hover hints > shows the toggle's description on hover 319ms
+ ✓ src/components/message/session-viewer-host.test.tsx (6 tests) 120ms
+ ✓ src/components/layout/status-bar-update.test.tsx (15 tests) 265ms
+ ✓ src/lib/plan-parse.test.ts (22 tests) 4ms
+ ✓ src/stores/runtime-inflight-persisted-tool-calls.test.ts (10 tests) 3ms
+ ✓ src/components/forge/forge-page.test.tsx (64 tests) 11500ms
+   ✓ ForgePage header > re-counts when the filters change, never when the view does 382ms
+   ✓ ForgePage header > waits for typing to stop, then searches server-side from page 1 972ms
+   ✓ ForgePage header > sends the labels that were ticked, and clears them again 315ms
+   ✓ ForgePage detail panel > keeps the panel's task chip after its row leaves the page 402ms
+   ✓ ForgePage writes > files against the folder on screen and opens the panel on what came back 349ms
+   ✓ ForgePage write orderings > writes the state change back over a list response that predates it 384ms
+   ✓ ForgePage writes from a panel with no row > keeps both comments when two land on an item the list no longer shows 1287ms
+ ✓ src/components/automations/automations-page.test.tsx (11 tests) 743ms
+ ✓ src/lib/notification.test.ts (20 tests) 6ms
+ ✓ src/components/tasks/board-columns.test.ts (11 tests) 4ms
+ ✓ src/hooks/use-goal-actions.test.ts (11 tests) 398ms
+ ✓ src/components/canvas/card-reentry.test.ts (8 tests) 5ms
+ ✓ src/stores/runtime-draft-row-handover.test.ts (6 tests) 5ms
+ ✓ src/hooks/use-scrollbar-safe-dismiss.test.ts (13 tests) 26ms
+ ✓ src/components/message/file-reference-actions.test.tsx (18 tests) 362ms
+ ✓ src/lib/snapshot-denormalize.test.ts (12 tests) 5ms
+stderr | src/components/message/antigravity-tool-cards.test.tsx > Antigravity MCP calls reach their dedicated cards > reads the delegated task out of the unwrapped envelope
+[delegation-card] could not extract delegation args (no known wrapper matched). shape=object{ Arguments: object{ agent_type: string, task: string }, ServerName: string, ToolName: string }
+
+ ✓ src/components/message/antigravity-tool-cards.test.tsx (5 tests) 99ms
+ ✓ src/lib/codex-provider-model.test.ts (17 tests) 3ms
+ ✓ src/lib/desktop-notification.test.ts (20 tests) 12ms
+ ✓ src/lib/api-popup-windows.test.ts (9 tests) 13ms
+ ✓ src/components/chat/composer/suggestion/popup-position.test.ts (18 tests) 4ms
+ ✓ src/lib/adapters/tool-kind-classifier.test.ts (37 tests) 5ms
+ ✓ src/components/tasks/task-message-composer.test.tsx (5 tests) 460ms
+ ✓ src/components/chat/composer-connection-status.test.tsx (11 tests) 569ms
+ ✓ src/components/tasks/task-restart-dialog.test.tsx (8 tests) 430ms
+ ✓ src/components/message/user-message-segments.test.ts (23 tests) 12ms
+ ✓ src/components/ai-elements/message-windows-file-link.test.tsx (8 tests) 169ms
+ ✓ src/components/tasks/task-deliver-pr-dialog.test.tsx (7 tests) 571ms
+ ✓ src/components/ai-elements/mermaid-view.test.ts (29 tests) 5ms
+ ✓ src/lib/export-conversation.test.ts (5 tests) 15ms
+ ✓ src/lib/appearance-script.test.ts (11 tests) 23ms
+ ✓ src/components/ai-elements/message.test.tsx (18 tests) 34ms
+ ✓ src/hooks/use-workspace-state-store.test.ts (6 tests) 17ms
+ ✓ src/components/message/codex-search-tool-card.test.tsx (14 tests) 227ms
+ ✓ src/components/chat/composer/reference-text.test.ts (26 tests) 4ms
+ ✓ src/lib/permission-request.test.ts (9 tests) 5ms
+ ✓ src/hooks/use-connection-lifecycle.send-failure.test.ts (8 tests) 22ms
+ ✓ src/lib/token-speed.test.ts (27 tests) 4ms
+ ✓ src/hooks/use-ime-safe-editor-value.test.tsx (8 tests) 20ms
+ ✓ src/lib/image-diff.test.ts (11 tests) 6ms
+ ✓ src/lib/message-quote.test.ts (27 tests) 4ms
+ ✓ src/components/conversations/conversation-manage-dialog.test.tsx (15 tests) 8827ms
+   ✓ ConversationManageDialog > shows each conversation's branch in place of its message count 358ms
+   ✓ ConversationManageDialog > opens scoped to the folder it was invoked on, plus that folder's worktrees 331ms
+   ✓ ConversationManageDialog > re-queries when the folder facet moves to another project 730ms
+   ✓ ConversationManageDialog > widens to every folder a scope can name — never the hidden chat folders 698ms
+   ✓ ConversationManageDialog > drops a reply that lands after its folder scope moved on 804ms
+   ✓ ConversationManageDialog > asks for nothing when the scope covers no folder at all 716ms
+   ✓ ConversationManageDialog > keeps the folder it was opened on selectable even when it is a worktree 1110ms
+   ✓ ConversationManageDialog > filters by branch without a round-trip, from the branches the rows use 756ms
+   ✓ ConversationManageDialog > folds branches that share a `/` prefix under one header 415ms
+   ✓ ConversationManageDialog > re-opens onto the picked branch's group rather than hiding its check 435ms
+   ✓ ConversationManageDialog > flattens to whole branch names while searching 382ms
+   ✓ ConversationManageDialog > isolates the conversations that carry no branch at all 396ms
+   ✓ ConversationManageDialog > drops a branch facet the new folder scope knows nothing about 824ms
+   ✓ ConversationManageDialog > names the owning folder on every row once the scope spans folders 398ms
+   ✓ ConversationManageDialog > closes the tabs of selected conversations the facets have since hidden 475ms
+ ✓ src/components/canvas/canvas-viewport-panel.test.tsx (11 tests) 137ms
+ ✓ src/lib/composer-copy-text.test.ts (27 tests) 78ms
+ ✓ src/components/ai-elements/math-delimiters.parse.test.ts (14 tests) 26ms
+ ✓ src/components/layout/quick-actions-dropdown.test.tsx (8 tests) 1006ms
+ ✓ src/lib/terminal/keybar.test.ts (25 tests) 5ms
+ ✓ src/lib/cursor-model-variants.test.ts (13 tests) 4ms
+stderr | src/components/chat/sub-agent-overlay.test.tsx > SubAgentOverlay > renders a graceful fallback row for a delegation with unparseable input
+[delegation-card] could not extract delegation args (JSON.parse threw). shape=non-JSON(len=8)
+
+stderr | src/components/chat/sub-agent-overlay.test.tsx > SubAgentOverlay > renders fallback rows even when every delegation is unresolvable
+[delegation-card] could not extract delegation args (JSON.parse threw). shape=non-JSON(len=8)
+[delegation-card] could not extract delegation args (JSON.parse threw). shape=non-JSON(len=8)
+
+ ✓ src/components/chat/sub-agent-overlay.test.tsx (8 tests) 98ms
+ ✓ src/lib/file-tree-keyboard.test.ts (21 tests) 8ms
+ ✓ src/components/tasks/task-detail-sheet.worktree.test.tsx (5 tests) 650ms
+ ✓ src/components/ui/instant-collapsible.test.tsx (8 tests) 134ms
+ ✓ src/lib/image-tool-label.test.ts (11 tests) 5ms
+ ✓ src/components/ai-elements/file-tree.test.tsx (11 tests) 239ms
+ ✓ src/components/layout/branch-selector-list.test.tsx (7 tests) 419ms
+ ✓ src/lib/terminal/theme.test.ts (7 tests) 65ms
+ ✓ src/components/ai-elements/mermaid-block.test.tsx (11 tests) 296ms
+ ✓ src/lib/async-tasks.test.ts (11 tests) 4ms
+ ✓ src/components/tasks/task-transcript-dialog.attach.test.tsx (7 tests) 167ms
+ ✓ src/components/message/plain-text-with-badges.test.tsx (13 tests) 52ms
+ ✓ src/components/shared/folder-select.test.tsx (11 tests) 956ms
+   ✓ FolderSelect > shows the selected folder as `alias [ name ]` on the trigger 325ms
+ ✓ src/components/conversations/active-session-details.test.ts (13 tests) 6ms
+ ✓ src/lib/composer-draft-sanitize.test.ts (7 tests) 62ms
+ ✓ src/components/message/codex-script-tool-card.test.tsx (8 tests) 167ms
+ ✓ src/components/appearance-provider.test.tsx (9 tests) 55ms
+ ✓ src/lib/adapters/inflight-tool-call-state.test.ts (8 tests) 8ms
+ ✓ src/hooks/use-token-output-speed.test.ts (7 tests) 33ms
+ ✓ src/hooks/use-enabled-skill-ids.test.ts (4 tests) 234ms
+ ✓ src/components/message/image-actions.test.tsx (9 tests) 341ms
+ ✓ src/components/forge/forge-new-issue-dialog.test.tsx (7 tests) 668ms
+ ✓ src/hooks/use-long-press-to-open-menu.test.tsx (10 tests) 31ms
+ ✓ src/components/settings/general-settings.test.tsx (3 tests) 408ms
+ ✓ src/lib/adapters/qoder-codeg-mcp-pipeline.test.ts (9 tests) 5ms
+ ✓ src/lib/conversation-title.test.ts (18 tests) 13ms
+ ✓ src/lib/api-custom-agent-patch.test.ts (5 tests) 3ms
+ ✓ src/components/chat/agent-plan-overlay.test.tsx (9 tests) 77ms
+ ✓ src/components/message/conversation-message-nav.test.tsx (7 tests) 160ms
+ ✓ src/components/tasks/task-row.test.tsx (8 tests) 306ms
+ ✓ src/hooks/use-subsession-sync.test.ts (10 tests) 44ms
+ ✓ src/stores/tab-store-reopen-record.test.ts (9 tests) 5ms
+ ✓ src/lib/custom-agents.test.ts (8 tests) 4ms
+ ✓ src/components/conversations/group-shell-reconciliation.test.tsx (3 tests) 21ms
+ ✓ src/components/chat/composer/nodes/reference-node.test.tsx (11 tests) 192ms
+ ✓ src/hooks/use-connection.test.tsx (8 tests) 11ms
+ ✓ src/components/canvas/draft-card-handover.test.ts (7 tests) 4ms
+ ✓ src/components/canvas/canvas-conversation-drawer.test.tsx (7 tests) 174ms
+ ✓ src/components/chat/model-option-list.test.tsx (7 tests) 235ms
+ ✓ src/hooks/use-open-file-target.test.tsx (6 tests) 29ms
+ ✓ src/lib/terminal/write-queue.test.ts (9 tests) 7ms
+ ✓ src/lib/search-output.test.ts (17 tests) 4ms
+stderr | src/app/pet-panel/_components/PetPanel.test.tsx > PetPanel > renders the session list with a header count when sessions exist
+Received `true` for a non-boolean attribute `layout`.
+
+If you want to write it to the DOM, pass a string instead: layout="true" or layout={value.toString()}.
+
+ ✓ src/app/pet-panel/_components/PetPanel.test.tsx (7 tests) 56ms
+ ✓ src/components/conversations/sidebar-section-header.test.tsx (8 tests) 58ms
+ ✓ src/components/ui/nested-layer-dismiss.test.tsx (6 tests) 270ms
+ ✓ src/components/ai-elements/remark-cjk-autolink-tail.test.ts (26 tests) 4ms
+ ✓ src/components/chat/composer/reference-uri.test.ts (15 tests) 3ms
+ ✓ src/stores/runtime-live-message-slice-decoupling.test.ts (2 tests) 3ms
+ ✓ src/lib/path-utils.test.ts (25 tests) 10ms
+ ✓ src/components/settings/version-control-settings.test.tsx (5 tests) 161ms
+ ✓ src/lib/selector-prefs-storage.test.ts (7 tests) 2ms
+ ✓ src/components/tasks/task-detail-sheet.session-drawer.test.tsx (2 tests) 237ms
+ ✓ src/components/message/content-parts-background-badge.test.tsx (6 tests) 65ms
+ ✓ src/lib/pi-thinking.test.ts (19 tests) 4ms
+ ✓ src/hooks/use-message-queue.test.ts (7 tests) 19ms
+ ✓ src/app/pet/_hooks/usePetSessions.test.ts (5 tests) 71ms
+ ✓ src/lib/clipboard-images.test.ts (12 tests) 5ms
+ ✓ src/lib/workspace-background.test.ts (10 tests) 4ms
+ ✓ src/components/message/search-results-output.test.tsx (8 tests) 101ms
+ ✓ src/components/message/background-task-card.test.tsx (6 tests) 139ms
+ ✓ src/lib/codex-command-action.test.ts (18 tests) 4ms
+ ✓ src/lib/business/client.test.ts (11 tests) 10ms
+ ✓ src/components/chat/session-selectors.test.tsx (6 tests) 101ms
+ ✓ src/components/files/office-preview.test.tsx (7 tests) 100ms
+ ✓ src/components/diff/diff-viewer.test.tsx (2 tests) 33ms
+ ✓ src/components/settings/pi-config-panel.test.tsx (2 tests) 364ms
+ ✓ src/components/chat/composer/composer-image-thumbnails.test.tsx (5 tests) 242ms
+ ✓ src/components/layout/branch-dropdown-head-backfill.test.tsx (3 tests) 79ms
+ ✓ src/components/chat/composer/submit-key.test.ts (26 tests) 4ms
+ ✓ src/components/chat/chat-input.test.tsx (7 tests) 41ms
+ ✓ src/components/message/shell-session-tool-card.test.tsx (7 tests) 155ms
+ ✓ src/components/message/turn-stats.test.tsx (9 tests) 598ms
+ ✓ src/lib/font-presets.test.ts (18 tests) 5ms
+stderr | src/lib/copy-image.test.ts > copyImageToClipboard > releases the object URL when the canvas is unavailable
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/node_modules/.pnpm/jsdom@25.0.1/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at Object.img.onload (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/copy-image.ts:112:28)
+    at Timeout._onTimeout (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/lib/copy-image.test.ts:139:33)
+    at listOnTimeout (node:internal/timers:635:17)
+    at processTimers (node:internal/timers:571:7) undefined
+
+ ✓ src/lib/copy-image.test.ts (6 tests) 12ms
+ ✓ src/contexts/tasks-view-context.test.tsx (3 tests) 42ms
+ ✓ src/lib/queue-flush.test.ts (16 tests) 4ms
+ ✓ src/lib/file-path-display.test.ts (16 tests) 3ms
+ ✓ src/lib/pet/use-proxied-marketplace-asset.test.ts (5 tests) 245ms
+ ✓ src/lib/desktop-notification-prefs.test.ts (11 tests) 6ms
+ ✓ src/lib/file-tree-dnd.test.ts (14 tests) 59ms
+ ✓ src/components/settings/notification-sound-settings.test.tsx (6 tests) 550ms
+ ✓ src/components/token-usage/token-usage-filters.test.tsx (8 tests) 1008ms
+   ✓ CustomRangeFields > takes both ends in one visit, then closes 355ms
+ ✓ src/components/conversations/conversation-detail-header.test.tsx (2 tests) 589ms
+   ✓ ConversationDetailHeader dialog target snapshot > deletes the conversation the dialog was opened for, even after the active tab switches 345ms
+ ✓ src/components/settings/codebuddy-config.test.ts (16 tests) 6ms
+ ✓ src/components/terminal/terminal-panel.test.tsx (5 tests) 36ms
+ ✓ src/components/diff/image-diff-view.test.tsx (9 tests) 146ms
+ ✓ src/lib/sidebar-view-mode-storage.test.ts (15 tests) 6ms
+ ✓ src/lib/terminal/shortcuts.test.ts (12 tests) 11ms
+ ✓ src/components/chat/composer/quote-decoration.test.ts (9 tests) 110ms
+ ✓ src/components/layout/aux-panel-session-details-tab.test.tsx (2 tests) 80ms
+ ✓ src/components/chat/composer/badges/reference-badge.test.tsx (6 tests) 43ms
+ ✓ src/components/settings/add-custom-agent-dialog.test.ts (10 tests) 3ms
+ ✓ src/components/settings/skill-packs-settings.test.tsx (6 tests) 290ms
+ ✓ src/lib/forge-label-color.test.ts (6 tests) 3ms
+ ✓ src/components/ai-elements/message-thread.test.tsx (7 tests) 181ms
+ ✓ src/components/message/reply-artifacts.test.tsx (4 tests) 171ms
+ ✓ src/components/layout/row-more-button.test.tsx (8 tests) 327ms
+ ✓ src/components/diff/use-synced-scroll.test.ts (7 tests) 2ms
+ ✓ src/components/ai-elements/heavy-plugins-warmup.test.tsx (7 tests) 27ms
+ ✓ src/components/settings/custom-style-section.test.tsx (7 tests) 445ms
+ ✓ src/lib/ask-selection-handoff.test.ts (9 tests) 3ms
+ ✓ src/components/chat/composer/suggestion/adapters.test.ts (9 tests) 3ms
+ ✓ src/components/chat/conversation-context-bar.test.tsx (3 tests) 90ms
+ ✓ src/lib/closed-tab-stack.test.ts (7 tests) 4ms
+ ✓ src/lib/agent-plan.test.ts (5 tests) 2ms
+ ✓ src/components/settings/deepseek-config.test.ts (10 tests) 4ms
+ ✓ src/lib/fuzzy-text-match.test.ts (12 tests) 3ms
+ ✓ src/components/tasks/task-restart-guard.test.ts (9 tests) 3ms
+ ✓ src/components/ai-elements/json-tree.test.tsx (8 tests) 238ms
+ ✓ src/lib/folder-links.test.ts (16 tests) 4ms
+ ✓ src/lib/task-schedule.test.ts (12 tests) 3ms
+ ✓ src/components/files/file-workspace-panel-add-to-chat-pill.test.ts (7 tests) 2ms
+ ✓ src/components/connection/web-connection-guard.test.tsx (7 tests) 216ms
+ ✓ src/lib/task-follow-up.test.ts (10 tests) 3ms
+ ✓ src/components/layout/unstash-dialog.test.tsx (2 tests) 358ms
+ ✓ src/components/tasks/task-complete-dialog.test.tsx (4 tests) 383ms
+ ✓ src/components/business/provider-isolation.test.tsx (8 tests) 225ms
+ ✓ src/components/tasks/task-schedule-dialog.test.tsx (6 tests) 675ms
+   ✓ TaskScheduleDialog > fills the hour once a day is picked, and sends it as its own instant 389ms
+ ✓ src/lib/branch-switch.test.ts (12 tests) 2ms
+ ✓ src/lib/add-to-chat-pill-placement.test.ts (15 tests) 2ms
+ ✓ src/lib/notification-sound-prefs.test.ts (8 tests) 4ms
+ ✓ src/hooks/use-feedback-enabled.test.ts (5 tests) 109ms
+ ✓ src/components/message/context-compaction-card.test.tsx (10 tests) 66ms
+ ✓ src/components/message/collapsible-system-message.test.tsx (3 tests) 55ms
+ ✓ src/hooks/use-conversation-detail.test.tsx (2 tests) 26ms
+ ✓ src/components/ui/side-panel-layout.test.ts (10 tests) 9ms
+ ✓ src/lib/task-rounds.test.ts (7 tests) 3ms
+ ✓ src/components/message/composer-to-bubble-roundtrip.test.ts (3 tests) 82ms
+ ✓ src/hooks/use-proxied-background-thumb.test.ts (4 tests) 584ms
+   ✓ useProxiedBackgroundThumb > evicts the least recently used entry past the cache limit 341ms
+ ✓ src/components/business/session.test.tsx (2 tests) 518ms
+   ✓ business private session boundary > clears private edits and bearer on credential rejection, keeping an unrelated ambient operator slot intact 328ms
+ ✓ src/lib/file-tab-id.test.ts (19 tests) 4ms
+ ✓ src/lib/file-search-match.test.ts (9 tests) 6ms
+ ✓ src/components/layout/workspace-chrome-controller-source.test.ts (4 tests) 2ms
+ ✓ src/components/layout/git-log-commit-message.test.tsx (3 tests) 42ms
+ ✓ src/components/shared/directory-path-input.test.tsx (4 tests) 402ms
+ ✓ src/lib/feedback-check.test.ts (10 tests) 3ms
+ ✓ src/components/message/virtualized-message-thread.test.tsx (5 tests) 34ms
+ ✓ src/components/layout/remote-workspace-manage-dialog.test.tsx (4 tests) 545ms
+ ✓ src/components/settings/custom-css-dialog.test.tsx (3 tests) 166ms
+ ✓ src/components/message/live-turn-stats.test.tsx (6 tests) 4ms
+ ✓ src/lib/forge-pagination.test.ts (8 tests) 3ms
+ ✓ src/components/layout/clone-dialog.test.tsx (6 tests) 275ms
+ ✓ src/components/message/collapsible-user-message.test.tsx (3 tests) 50ms
+ ✓ src/components/chat/composer/suggestion/mention-match.test.ts (6 tests) 2ms
+ ✓ src/hooks/use-ime-guard.test.tsx (5 tests) 35ms
+ ✓ src/lib/forge-row-update.test.ts (5 tests) 2ms
+ ✓ src/components/ops-telegram/settings.test.tsx (2 tests) 200ms
+ ✓ src/components/tasks/task-cancel-dialog.test.tsx (5 tests) 516ms
+ ✓ src/components/ui/browser-link.test.tsx (7 tests) 199ms
+ ✓ src/lib/folder-display.test.ts (14 tests) 3ms
+ ✓ src/lib/shell-session-tool.test.ts (10 tests) 3ms
+ ✓ src/lib/platform.test.ts (4 tests) 4ms
+ ✓ src/components/chat/async-task-strip.test.tsx (6 tests) 211ms
+ ✓ src/components/chat/question-dialog.test.tsx (5 tests) 115ms
+ ✓ src/components/chat/composer/editor-config.test.ts (4 tests) 64ms
+ ✓ src/lib/workspace-background-market.test.ts (9 tests) 3ms
+ ✓ src/components/chat/plan-approval-card.test.tsx (5 tests) 141ms
+ ✓ src/lib/turn-window.test.ts (7 tests) 3ms
+ ✓ src/app/pet-panel/_components/SessionRow.test.tsx (4 tests) 139ms
+ ✓ src/stores/command-terminal-link-store.test.ts (10 tests) 4ms
+ ✓ src/components/workspace/pet-focus-bridge.test.tsx (3 tests) 209ms
+ ✓ src/app/globals-root-units.test.ts (3 tests) 2ms
+ ✓ src/components/conversations/tile-scroll-container.test.tsx (4 tests) 22ms
+ ✓ src/components/canvas/canvas-panning-chrome.test.ts (5 tests) 6ms
+ ✓ src/components/message/agent-capsule.test.tsx (7 tests) 100ms
+ ✓ src/components/layout/status-bar-alerts.test.tsx (5 tests) 220ms
+ ✓ src/lib/cron-humanize.test.ts (10 tests) 4ms
+ ✓ src/components/automations/agent-config-section.test.tsx (4 tests) 559ms
+   ✓ AgentConfigSection subtitles > hangs the option's own blurb under the inline chip's hover hint 337ms
+ ✓ src/components/message/read-output.test.ts (7 tests) 3ms
+ ✓ src/components/settings/codebuddy-config-panel.test.tsx (2 tests) 111ms
+ ✓ src/lib/adapters/background-task-grouping.test.ts (5 tests) 3ms
+ ✓ src/components/ai-elements/remark-file-uri-links.test.ts (9 tests) 4ms
+ ✓ src/components/ui/overlay-portal-container.test.tsx (3 tests) 187ms
+ ✓ src/components/message/completed-turn-streaming-mode.test.tsx (2 tests) 50ms
+ ✓ src/i18n/messages.test.ts (19 tests) 863ms
+ ✓ src/components/project-boot/shadcn/shadcn-preview.test.tsx (4 tests) 67ms
+ ✓ src/components/canvas/draft-card-color.test.ts (4 tests) 11ms
+ ✓ src/components/merge/conflict-parser.test.ts (8 tests) 5ms
+ ✓ src/components/settings/agent-diagnostics-dialog.test.tsx (2 tests) 125ms
+ ✓ src/lib/context-compaction.test.ts (5 tests) 2ms
+ ✓ src/components/ai-elements/message-codeg-badge.test.tsx (4 tests) 70ms
+ ✓ src/components/ai-elements/reasoning.test.tsx (3 tests) 63ms
+ ✓ src/components/layout/open-in-menu.test.tsx (4 tests) 216ms
+ ✓ src/components/terminal/term-keybar.test.tsx (5 tests) 119ms
+ ✓ src/components/chat/file-mention-menu.test.tsx (5 tests) 73ms
+ ✓ src/components/layout/aux-panel-git-log-tab.test.ts (11 tests) 3ms
+ ✓ src/stores/folder-derivation-decoupling.test.ts (3 tests) 2ms
+ ✓ src/components/chat/feedback-notes-display.test.tsx (4 tests) 118ms
+ ✓ src/lib/turn-busy.test.ts (8 tests) 3ms
+ ✓ src/components/tabs/tab-strip-wiring.test.ts (3 tests) 2ms
+ ✓ src/contexts/remote-connection-context.test.tsx (5 tests) 14ms
+ ✓ src/components/automations/composer-invocations-popup.test.tsx (3 tests) 30ms
+ ✓ src/components/chat/message-input-attachments.test.ts (5 tests) 2ms
+ ✓ src/lib/resource-kind.test.ts (35 tests) 4ms
+ ✓ src/lib/mermaid-export.test.ts (8 tests) 11ms
+ ✓ src/components/chat/composer/invocation-reference.test.ts (6 tests) 4ms
+ ✓ src/lib/research-actions.test.ts (4 tests) 2ms
+ ✓ src/components/message/content-parts-user-text.test.tsx (4 tests) 36ms
+ ✓ src/lib/claude-provider-model.test.ts (4 tests) 2ms
+ ✓ src/lib/prompt-upload-strip.test.ts (7 tests) 3ms
+ ✓ src/lib/hermes-providers.test.ts (1 test) 7ms
+ ✓ src/hooks/use-connection-lifecycle.test.ts (7 tests) 3ms
+ ✓ src/lib/background-agent.test.ts (5 tests) 2ms
+stderr | src/components/ai-elements/math-fence-pad.katex.test.ts > the math fence pad never reaches KaTeX > would differ without the strip — the check above is not vacuous
+LaTeX-incompatible input and strict mode is set to 'warn': Unrecognized Unicode character "​" (8203) [unknownSymbol]
+No character metrics for '​' in style 'Main-Regular' and mode 'text'
+
+ ✓ src/components/ai-elements/math-fence-pad.katex.test.ts (3 tests) 19ms
+ ✓ src/lib/delegation-seed.test.ts (4 tests) 7ms
+ ✓ src/lib/pet/animation.test.ts (10 tests) 2ms
+ ✓ src/components/chat/composer/quote-insert.test.ts (4 tests) 90ms
+ ✓ src/components/layout/left-edge-chrome.test.tsx (4 tests) 128ms
+ ✓ src/hooks/use-element-width.test.tsx (2 tests) 22ms
+ ✓ src/lib/agent-install-error.test.ts (14 tests) 3ms
+ ✓ src/components/layout/aux-panel.test.tsx (8 tests) 2ms
+ ✓ src/lib/pet/session-display.test.ts (8 tests) 3ms
+ ✓ src/lib/window-chrome.test.ts (3 tests) 1ms
+ ✓ src/lib/tasks-board-filter-storage.test.ts (4 tests) 2ms
+ ✓ src/lib/monaco-model-path.test.ts (8 tests) 3ms
+ ✓ src/lib/prompt-draft.test.ts (5 tests) 3ms
+ ✓ src/components/message/plan-card.test.tsx (5 tests) 58ms
+ ✓ src/components/settings/release-notes.test.tsx (4 tests) 35ms
+ ✓ src/components/ai-elements/rehype-allow-codeg.test.ts (3 tests) 2ms
+ ✓ src/lib/forge-task-chip.test.ts (11 tests) 2ms
+ ✓ src/lib/forge-source-key.test.ts (3 tests) 2ms
+ ✓ src/components/layout/branch-selector-placement.test.ts (3 tests) 1ms
+ ✓ src/lib/tool-call-lifecycle.test.ts (6 tests) 2ms
+ ✓ src/components/chat/agent-setup-notice.test.tsx (2 tests) 71ms
+ ✓ src/lib/file-tab-memory.test.ts (5 tests) 2ms
+ ✓ src/lib/drag-selection-guard.test.ts (4 tests) 4ms
+ ✓ src/components/automations/template-gallery.test.tsx (4 tests) 123ms
+ ✓ src/lib/ime-composition.test.ts (6 tests) 2ms
+ ✓ src/components/chat/composer/clipboard-actions.test.ts (3 tests) 3ms
+ ✓ src/components/business/ui.test.tsx (3 tests) 302ms
+ ✓ src/components/files/file-workspace-panel-ime-source.test.ts (4 tests) 2ms
+ ✓ src/components/chat/composer/inactive-selection.test.ts (5 tests) 78ms
+ ✓ src/contexts/ask-question-no-legacy-dialog.test.ts (3 tests) 1ms
+ ✓ src/lib/codex-code-mode.test.ts (5 tests) 2ms
+ ✓ src/components/message/generated-images-block.test.tsx (4 tests) 48ms
+ ✓ src/lib/skill-frontmatter.test.ts (4 tests) 3ms
+ ✓ src/lib/internal-build.test.ts (3 tests) 3ms
+ ✓ src/lib/context-window.test.ts (7 tests) 2ms
+ ✓ src/components/conversations/folder-alias-label.test.tsx (4 tests) 47ms
+ ✓ src/components/settings/log-buffer.test.ts (6 tests) 2ms
+ ✓ src/lib/user-message-blocks.test.ts (4 tests) 4ms
+ ✓ src/lib/format-elapsed.test.ts (5 tests) 2ms
+ ✓ src/lib/tab-drag-drop.test.ts (6 tests) 2ms
+ ✓ src/components/tabs/tab-drag-ghost.test.tsx (2 tests) 16ms
+ ✓ src/stores/backend-scoped-store-reset.test.ts (3 tests) 2ms
+ ✓ src/contexts/workbench-route-context.test.tsx (2 tests) 37ms
+ ✓ src/components/ui/app-toaster.test.tsx (1 test) 58ms
+ ✓ src/components/token-usage/charts.test.ts (5 tests) 2ms
+ ✓ src/lib/theme-presets.test.ts (2 tests) 2ms
+ ✓ src/lib/utils.test.ts (3 tests) 2ms
+ ✓ src/components/chat/collapsed-overlay-chip.test.tsx (2 tests) 60ms
+ ✓ src/lib/transport/detect.test.ts (2 tests) 1ms
+ ✓ src/lib/resolve-default-agent.test.ts (4 tests) 2ms
+ ✓ src/app/pet-panel/_components/PanelPermissionCard.test.tsx (2 tests) 73ms
+ ✓ src/lib/ops-telegram/locator.test.ts (2 tests) 2ms
+ ✓ src/lib/embedded-json.test.ts (5 tests) 2ms
+ ✓ src/components/layout/git-log-timeline.test.ts (2 tests) 1ms
+ ✓ src/test-setup.test.ts (1 test) 2ms
+ ✓ src/components/ai-elements/message-final-fence.test.tsx (1 test) 98ms
+ ✓ src/components/message/virtualized-message-thread.test.ts (3 tests) 1ms
+ ✓ src/components/message/short-path.test.ts (3 tests) 1ms
+
+ Test Files  438 passed (438)
+      Tests  6194 passed (6194)
+   Start at  18:38:28
+   Duration  34.05s (transform 12.14s, setup 64.01s, collect 130.78s, tests 122.12s, environment 164.35s, prepare 22.48s)

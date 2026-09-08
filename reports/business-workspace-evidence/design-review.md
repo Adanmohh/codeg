@@ -5,6 +5,9 @@ business scope and BC-1–16 in `brief-checklist.md`. Design Studio methods:
 aesthetic-judge, a11y-auditor, flow-validator, and limited motion review, applied
 sequentially by this worker. No additional agents or paid inference. This is a
 worker assessment for root's independent review, not an independent certification.
+Baseline broad measurements use33b9cbcb. Final review corrections use e72cc44b
+on the separate4346 export; the targeted additions below do not replace or inflate
+the earlier whole-page sample count.
 
 The visual result is a readable shared agenda: branded navigation, direct task
 creation, distinct accountable human and executor, status text plus shape, focused
@@ -26,11 +29,20 @@ trail; deliberately restrained rather than an editorial/award-style showcase.
 | BC-16 destructive text |Active light Cancel task4.07:1 |Light7.11 normal/focus,6.08 hover; dark7.99 normal/focus,6.59 hover. |
 | BC-12 focus contrast |Destructive focus border1.83 light/1.98 dark |Opaque inherited red focus border/ring7.11 light/7.99 dark against its adjacent background. |
 | BC-12 modal dismissal |Settled activeElement BODY after controlled dialog close |Scoped opener/work-area restoration; three focused regressions. Actual archive-focus and final-style-focus checks pass, including visible keyboard ring. |
+| BC-10 conflict recovery clarity |After real409, old status/revision unlabelled; current comparison omitted both |Named draft base and current region show distinct status/revision before explicit adoption. Real worker409 Review3 versus To do4, preserved draft, locked save, adopt/save5. EN/AR390 light/dark358/358 modal. |
+| BC-16 search placeholder |Enabled #737373 on composed #f7f7f7 =4.43:1 |Scoped inherited foreground/80 gives10.78 light; retained dark token7.07.12/12 EN/AR ×390/768/1280 × light/dark samples pass. |
+| BC-12 search Tab |A1×1 sr-only submit with clip-path inset(50%), UA auto1px outline and no shadow receives invisible focus; Tab can leave |tabIndex=-1 skips only the redundant submit. Visible44×44 Refresh control has a3px focus ring; actual Enter and clear query still return200 from the protected list API in all12 cases. |
 
 `measured-summary.json`: the final review has94 checked text samples in **each**
 theme and zero failed samples; the list has64 and Arabic review81. Accessible-name
 counts are derived mechanically from CLI ARIA snapshots: zero unnamed interactive
-controls. These are sampled page/state results, not certification of every user
+controls. That generic text-node probe did not sample search placeholders. The
+independent4.43 finding is retained in search-before.raw.json; its targeted
+correction is search-after.raw.json/search-summary.json, plus12 screenshots.
+Canvas records all ancestor backgrounds and placeholder alpha; no disabled,
+opacity or image exemption was applied. summarize-search.mjs calls Design Studio
+55c8614dcfff33b4caa5a544b4f1f91877214878 pure buildReport helpers only. These are
+sampled page/state results, not certification of every user
 font/theme preset or an assistive-technology session. Heading order was inspected
 from the actual h1 page / h2 task and dialog / h3 section hierarchy; the generic
 probe's heading-order field remains null.
@@ -80,9 +92,10 @@ native OS window or standalone production-server launch is claimed. English and
 Arabic business copy are implemented; other app locales use English business copy.
 The manual fixture uses real protected APIs but remains synthetic and guarded.
 
-Next review priorities are integration against the accepted task merge, an
-independent visual/keyboard pass, and broader localization when scheduled. They
-are not fabricated passing results. No unrelated product expansion was made.
+Accepted task integration and owned final gates are complete. The independent
+reviewer is performing targeted checks on the published e72 export; root owns
+the final verdict and actual packaged native startup. Broader localization remains
+future scope. No unrelated product expansion was made.
 
 Local learning: a state variant can outrank an ordinary reduced-motion utility;
 measure the actual dialog, not dormant global scroll timelines. Controlled Radix

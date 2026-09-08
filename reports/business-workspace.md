@@ -1,53 +1,21 @@
 # Business workspace — review handoff
 
 Branch **feat/business-workspace**; draft [PR21](https://github.com/Adanmohh/codeg/pull/21).
-Frontend implementation and actual protected-API browser checks are complete.
-The frozen browser-reviewed source is **33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7**.
-Later handoff commits contain documentation/evidence cleanup and accepted main
-status integration only; the tested product and live export stay unchanged.
-Root remains reviewer/merger. Accepted task PR22 **5541857a125678dfb604f542693d9c82dfe5441e**
-is integrated from main **294fb634b1833ebb13c4223484624e595598235b** as
-**0192ac3f33dff82fae424bd30b797b14044f4197**, pushed. The only conflict was an
-additive NOTICE insertion; both complete attribution blocks remain. Frontend
-source is identical to33b9cbcb and backend/Pi source is identical to accepted main.
-The live fixture's tested1ba73e3c runtime matches the accepted task runtime;
-the intervening backend delta is a test-only asynchronous discovery wait.
-Merged frontend validation passes: 6,194 tests / 438 files, typecheck, scoped lint
-and a separate 34-page export. The review fixture and its export remain frozen.
-No production mock layer.
+Implementation, owned browser checks and final gates are complete at product
+**e72cc44b612068e67a3e6dc3bc593f10988ae7ed**. The corrected export is live on
+**4346, PID60964**; the original review export on4340 is preserved. Root remains
+reviewer/merger; the independent final targeted browser verdict and root's actual
+packaged native startup are separate acceptance gates, not claimed here.
 
-Independent review identified a recovery-clarity issue: after a real conflict,
-the header showed the draft's old status/revision without identifying it as old,
-and the loaded comparison omitted the current status/revision. The scoped fix
-labels the draft base and shows current status/revision/archive state before
-adoption, in English and Arabic. No mutation, permission, CAS or confirmation
-logic changes. Two targeted regressions fail on the prior UI and pass with the
-fix, including the existing write lock and reset human confirmation. Actual
-rendered recheck is in progress on4346; all37 business client/component tests,
-typecheck, scoped lint and the separate corrected export pass. The original
-comparison omission was reproduced against the real API before this correction.
-
-Native reviewer N1 is also corrected: a fresh main window now starts at
-WebviewUrl::App("business") instead of bypassing it for "workspace". Existing
-window focus retains its current route, and the explicit legacyOperator-only
-engineering link is unchanged. Native fix **3a189d1822f9fd335cc58ecb440f75ab9cbe937e**
-is pushed; desktop/server checks and both Clippy gates pass on the owned target.
-Root owns the final isolated bundle/startup check. The local compile uses the
-inherited zero-byte sidecar placeholder, so it does not certify a runnable bundle.
-No backend fixture is restarted for this Rust source change.
-
-Independent search review identified two P2 presentation issues. The light
-placeholder is #737373 over composed #f7f7f7 (4.43:1); the hidden submit is an
-invisible tab stop, with a 1×1 box, clip-path inset(50%), UA auto 1px outline and
-no shadow. Tab can leave it: it is not a keyboard trap. The scoped correction
-uses the existing foreground/80 placeholder token in light mode, retains the
-dark placeholder token, and sets only that redundant submit's tabIndex to -1.
-Global Input, form submission and API logic are unchanged. English/Arabic
-keyboard regressions fail before the focus correction and pass afterward;
-all39 business client/component tests pass. A test initially expected an explicit
-page:0, but the accepted wire contract allows its omission/default0; the corrected
-assertion checks the submitted query/view. Actual measured search recheck and
-the final frontend export are pending in this checkpoint.
+Accepted task PR22 merge **5541857a125678dfb604f542693d9c82dfe5441e** is integrated
+from main **294fb634b1833ebb13c4223484624e595598235b** as
+**0192ac3f33dff82fae424bd30b797b14044f4197**. Only NOTICE required additive conflict
+resolution; both complete sections remain. The live fixture's1ba73e3c production
+runtime matches accepted tasks; the later task delta is a test-only discovery wait.
+The merged full frontend suite passed6,194 tests/438 files. After the bounded
+review corrections, all39 affected tests, typecheck, scoped lint and34-page export
+pass; desktop/server checks and Clippy pass after the native entry correction.
+There is no production mock layer.
 
 ## Result and boundaries
 
@@ -81,6 +49,49 @@ HTTP connection. Native OS isolation/multi-desktop operation is not claimed from
 browser testing. Rust changes are limited to the fresh main-window route and its
 comment. No engine/approval changes, new dependencies,
 lockfile changes, live provider/model calls, credential exposure or deployment.
+
+## Closed review findings
+
+**Conflict comparison,095c61642dc2f52ca8fd6e7c10556f16cf61c904.** After a real409,
+the old status/revision now reads "Your draft's base version" and the named
+"Current saved version" region shows current status/revision/archive state before
+adoption. The worker reproduced the old omission on33b9cbcb, then verified
+Review/revision3 versus To do/revision4, retained draft, locked save and explicit
+adopt/save to revision5 through the real API. English and Arabic390 light/dark
+screens show358px dialog/content without overflow. Two red/green regressions also
+retain the write lock and reset review confirmation after adoption. Root separately
+verified its own real409/adopt/save flow and13 workflow tests. Permission, CAS and
+confirmation behavior are unchanged.
+
+**Native N1,3a189d1822f9fd335cc58ecb440f75ab9cbe937e.** Fresh main-window creation
+uses WebviewUrl::App("business"). Showing an existing window preserves its route;
+the explicit legacyOperator-only engineering link remains. Root's native source
+review169015cf accepts this correction. Both compile modes and Clippy pass, but
+the inherited build.rs zero-byte sidecar placeholder does not certify a runnable
+bundle. Root owns normal packaging, companion hashes/protocol and actual startup.
+
+**Search,e72cc44b612068e67a3e6dc3bc593f10988ae7ed.** The enabled light placeholder
+was #737373 over composed #f7f7f7,4.43:1. Only the business search now uses inherited
+foreground/80 in light mode; the dark token and global Input remain. The redundant
+sr-only submit has tabIndex=-1, preserving native Enter submission. The prior1×1
+clip-path inset(50%) control had a UA auto1px outline and no shadow: an invisible
+tab stop, not a trap preventing Tab away. Actual CLI checks cover EN/AR ×
+390/768/1280 × light/dark:12/12, no page overflow, visible44×44 Refresh focus with
+3px ring, and Enter/clear each return200 through the real task list API. Canvas
+ancestor/alpha measurement plus Design Studio gives **10.78:1 light,7.07:1 dark**;
+no disabled/opacity/image exemptions. No task/provider writes in this search run.
+The two added keyboard tests failed before the focus correction. An initial test
+assertion incorrectly required explicit page:0; the accepted contract permits
+omission/default0, so the new assertion checks query/view. All39 affected tests
+pass. Root independently passes the same39 and verified the served export hash.
+
+Evidence: conflict-clarity-{before,after}.{js,json}, comparison PNGs,
+search-measure.js, search-{before,after}.raw.json and search-summary.json under
+business-workspace-evidence/. The pure summarize-search.mjs calls the installed
+Design Studio helpers at55c8614dcfff33b4caa5a544b4f1f91877214878, lab/tools/probe.mjs;
+no browser launcher/tool implementation is copied. This is a targeted correction
+review, not a new whole-page score. The independent reviewer is rechecking its
+own records on the corrected export.
 
 ## Exact source mapping
 
@@ -123,6 +134,13 @@ NOTICE preserves original attribution and every preceding worker entry.
 IntroMail0bd24dfe284b888aa9f602fa1fd00e337ea38874 supplied research context only;
 no IntroMail/AGPL/GPL/provenance-uncertain implementation was copied here.
 
+Review corrections reuse src/components/business/{task-detail,ui,workflow.test}.tsx
+and src/lib/business/copy.ts at33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7; native
+lib.rs/commands/windows.rs at0192ac3f33dff82fae424bd30b797b14044f4197; search
+src/components/ui/input.tsx, chat/feedback-notes-display.tsx and
+tasks/task-settings-dialog.test.tsx at3a189d1822f9fd335cc58ecb440f75ab9cbe937e.
+The three precise attribution sections are appended to NOTICE.
+
 ## Docs-first evidence
 
 Read complete founding/orchestration/status/decisions/AGENTS, BUSINESS-IMPLEMENTATION,
@@ -141,6 +159,10 @@ Dialog close callbacks suppress default Trigger focus; these controlled business
 modals have no Trigger, so scoped return-focus glue is necessary. The shared
 focus trap remains intact. Node24.19.0/@types-node25.2.2 fs/http types and
 Playwright CLI0.1.18/bundled1.63.0-alpha-2026-08-05 sources/help were read.
+Search interaction grounding uses actual installed user-event14.6.3 setup,
+keyboard/tab types and keypress implementation, not the manifest's lower range.
+Report conversion reads @types/node25.2.2 fs.d.ts readFileSync/writeFileSync,
+url.d.ts pathToFileURL and path.d.ts join; Node runtime remains24.19.0.
 No advertised CLI upgrade. Native entry authority is the actual locked Rust
 tauri2.10.2 (distinct from the JavaScript Tauri API version), manager/webview.rs:415–430
 joining App paths to the application URL, manager/mod.rs:373–424 falling back to
@@ -162,22 +184,24 @@ normalize terminal color/progress whitespace; original raw logs remain in .build
 
 | Command/check | Result |
 | --- | --- |
-| pnpm exec vitest run business client/components plus appearance, connection guard, sidebar, Ops flows/session, intake and Telegram integration tests | Exit0;113 tests/12 files, integrated-frontend-tests.log. |
-| pnpm exec vitest run src/components/business after final focus/copy corrections | Exit0;25 tests/4 files, including3 focus recovery regressions; final-business-tests.log. These overlap the integrated run, not an added138 tests. |
-| pnpm exec tsc --noEmit | Exit0; final-typecheck.log. |
-| Scoped eslint on all changed production/provider/navigation files, then src/components/business src/lib/business | Exit0, no warnings; checkpoint-lint.log and final-business-lint.log. |
-| CODEG_EXPORT_DIR=out-business-workspace NEXT_TELEMETRY_DISABLED=1 pnpm build | Exit0;34 static pages, final-build.log. Actual final focus/archive/drawer checks use this rebuilt export. |
-| cargo check --locked --offline --jobs4 | Exit0; default desktop, desktop-check.log. |
-| cargo check --locked --offline --no-default-features --bin codeg-server --jobs4 | Exit0; server-check.log. |
-| cargo clippy --locked --offline --all-targets --features test-utils --jobs4 -- -D warnings | Exit0; desktop-clippy.log. |
-| cargo clippy --locked --offline --no-default-features --bin codeg-server --lib --jobs4 -- -D warnings | Exit0; server-clippy.log. |
+| pnpm test, merged0192ac3f | Exit0;6,194 tests/438 files,34.05s; accepted-main-frontend-tests.log. Root independently passed the same6,194. No full-suite rerun after the bounded corrections; affected coverage below. |
+| pnpm exec vitest run src/lib/business/client.test.ts src/components/business, final e72 source | Exit0;39 tests/5 files,2.31s; search-final-tests.log. Includes15 workflow tests and provider/native access isolation. |
+| pnpm exec tsc --noEmit | Exit0 on accepted integration and final search source; accepted-main-typecheck.log/search-final-typecheck.log. |
+| Scoped eslint on changed production/provider/navigation files, then src/components/business src/lib/business | Exit0, no warnings; accepted-main-lint.log/search-final-lint.log. |
+| CODEG_EXPORT_DIR=.build/business-workspace/review-export NEXT_TELEMETRY_DISABLED=1 pnpm build | Exit0;34 static pages from e72, search-final-build.log. Corrected4346 serves exactly this export. Earlier integration/comparison exports are retained. |
+| cargo check --locked --offline --jobs4 | Exit0 after native3a correction,1m13s; native-entry-desktop-check.log. |
+| cargo check --locked --offline --no-default-features --bin codeg-server --jobs4 | Exit0,44.20s; native-entry-server-check.log. |
+| cargo clippy --locked --offline --all-targets --features test-utils --jobs4 -- -D warnings | Exit0,1m19s; native-entry-desktop-clippy.log. |
+| cargo clippy --locked --offline --no-default-features --bin codeg-server --lib --jobs4 -- -D warnings | Exit0,40.26s; native-entry-server-clippy.log. |
 | Actual static router test, owned source snapshot/target | Exit0;1 test with6 URL/body checks, static-router-test.log. Uses the unmodified Axum rewrite/ServeDir stack via axum-test's default in-process transport. |
+| playwright-cli -s=business-owner4340 --raw run-code --filename reports/business-workspace-evidence/search-measure.js | Exit0 before and after;12 final cases. summarize-search.mjs with the existing Design Studio path exits0;12 contrast samples pass. |
 | git diff --check; secret-pattern scan of report/evidence | Exit0 diff check; scan exits1 (no matching issued credential/PAT). No lockfile change. |
 
 Cargo commands run from src-tauri with the own
 .build/business-gates-target. No other worktree/old fixture target was used.
 Inherited proc-macro-error2 future-compatibility warning and test-binary unwind
-warning remain; neither is a new product failure. No broad unrelated Rust retest.
+warning remain; neither is a new product failure. The native placeholder warning
+is recorded above. No Rust changes after3a, and no broad unrelated Rust retest.
 
 Exact integrated frontend command (113 at that checkpoint; the later3 focus
 regressions are covered by the final25-test run):
@@ -203,6 +227,8 @@ Actual CLI evidence, not production mocks:
 | Current separate assignee/reviewer, area/no-result filter, unbound source400, submission and cross-session Done | generation2/{assignment-filters-source,manager-deliver,owner-accept-final,member-done-cross-session}.json. |
 | Cancel→archive→restore, status/history retained, focus after disappeared row | generation2/archive-focus.json; final-style-focus.json and screenshots. |
 |390/768/1280 list and board, light/dark; Arabic drawer/date/review, keyboard and reduced motion | generation2/after-filters/; drawer-rtl-date.json; review-focus-rtl-after-motion.json; final-style-focus.json. |
+| Corrected actual409 base/current status and revision, explicit recovery, EN/AR | conflict-clarity-before.json; conflict-clarity-after.json and PNGs; only new worker-owned record changed. |
+| Corrected search contrast, visible Tab destination and real Enter submission | search-before.raw.json; search-after.raw.json; search-summary.json;12 corrected screenshots. |
 
 Root BW checklist: frontend aspects BW-1–8/11–15 covered above and focused tests;
 BW-9/10 agent/transaction authority belongs to task backend owner (no new agent
@@ -221,7 +247,9 @@ Measured fixes: mobile filters32.2→171×44px; long dialog3974→358px content 
 358px; actual reduced-motion dialog animation none; destructive text4.07→7.11
 light and7.99 dark (hover6.08/6.59); opaque focus borders7.11/7.99. Final review
 samples94 per theme have zero contrast failures and zero unnamed interactive
-controls. Original failing/raw brief reports remain. Auto margin247px,18px
+controls. That generic text-node probe did not sample search placeholders; the
+independent finding is explicitly corrected/measured separately above. Original
+failing/raw brief reports remain. Auto margin247px,18px
 inherited radius,6px icon gap, Inter fallback stack and paired-dark/status colors
 are source-classified, not silently erased from lint. Continuous motion/CLS/
 long-frame counts and assistive technology were not assessed.
@@ -232,28 +260,37 @@ long-frame counts and assistive technology were not assessed.
 [Keyboard return](business-workspace-evidence/generation2/final-keyboard-return.png) ·
 [Viewer](business-workspace-evidence/generation2/viewer-task-real.png).
 
+[Corrected mobile search](business-workspace-evidence/search-after-390-light-en.png) ·
+[Arabic dark search/focus](business-workspace-evidence/search-after-390-dark-ar.png) ·
+[Current-versus-draft comparison](business-workspace-evidence/conflict-clarity-after-390-ar-dark.png).
+
 ## Live owned review fixture
 
-**Corrected comparison preview:** http://127.0.0.1:4346/business.html now serves
-frontend095c6164 from .build/business-workspace/conflict-export, static PID12331.
-Served business.html SHA256:
-e6d87b15258951461ef47b02a9f4c7ee9d825ed03cec4316031d4bd7807458d0.
-Index SHA256: b9a322d41f17504dfa4b2d724f48f92b2e10482656e8792eb8df21a30a7415dd.
-4346 initially served the old integrated export for the before capture (PID1233,
-now stopped). Only that static listener was replaced after the capture; the real
-4342 backend/data and frozen4340 export/listener were never restarted/replaced.
-Reload/re-authentication loads the correction. Worker-only new task
-ec9d106d-fa40-4e26-b2dc-612cedd587ad is reserved for the correction check; root
-and independent review records remain untouched.
+**Final corrected preview:** http://127.0.0.1:4346/business.html serves
+**e72cc44b612068e67a3e6dc3bc593f10988ae7ed**, static **PID60964** (owned session11100).
+Absolute export:
+/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/.build/business-workspace/review-export.
+HTTP and disk business.html SHA256 both:
+**c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54**.
+Index SHA256:58816191c20995f6cfaca4cf46165ddb7ea0253677c7b23326802db704ccddc1.
+Root independently verified this path/hash/PID and source/NOTICE correlation.
+Command: node reports/business-workspace-evidence/serve.mjs
+.build/business-workspace/review-export --backend=4342 --port=4346.
 
-**Independent review window:** root and approvals are reviewing frozen UI head
-a126730274c8a3dc822345da536eebed1f8dc253 / product33b9cbcb. The URL/export
-below stays frozen while accepted task main is integrated in this branch. Root
-may read existing records; approvals may create two uniquely named Synthetic
-review members and new tasks for its own draft/review flows. Existing Amal,
-Samira and previously captured tasks remain reserved for read-only comparison.
-No frontend-worker fixture mutations are in progress. New verification builds
-will use a separate ignored export and will not replace this live export.
+Only4346's static listener was replaced for corrections; prior listeners1233
+(baseline) and12331 (comparison095c6164) are stopped. Their exports remain in
+.build/business-workspace/{integrated-export,conflict-export}. Backend4342/data
+and frozen4340 were never restarted/replaced for these corrections. Reload and
+sign in to load the final search/comparison source. The Rust entry correction
+does not affect this running backend.
+
+**Independent review window is open.** Root and approvals may use4346 and create
+uniquely named Reviewer/Synthetic members and tasks for their own review flows.
+Existing Amal/Samira and earlier captured records remain read-only for comparison.
+Worker-only task ec9d106d-fa40-4e26-b2dc-612cedd587ad finished the correction flow
+at To do/revision5. No worker task mutations remain in progress. Root/reviewer
+records and browser sessions were not touched.4340 remains available for baseline
+comparison against product33b9cbcb, handoff a126730274c8a3dc822345da536eebed1f8dc253.
 
 Reviewer setup: open **Administrator access**, select **Original administrator
 token**, enter the public fixture-only literal below, then Connect. Organization
@@ -265,15 +302,16 @@ masked except during intentional transfer, and out of snapshots/reports/storage.
 All new review data is confined to this temporary synthetic backend. No existing
 worker browser session needs to be attached or changed.
 
-Open **http://127.0.0.1:4340/business.html**. Static proxy **PID36044** serves own
+Baseline **http://127.0.0.1:4340/business.html**: static proxy **PID36044** serves own
 out-business-workspace; guarded real task API **PID81950 on4342** owns temporary
-disk SQLite. Named CLI session hosts: business-owner4340 **PID85074** (personal Amal
-owner) and business-member4340 **PID85139** (personal Samira manager). Exactly two
+disk SQLite. Named CLI session hosts: business-owner4340 **PID85074** (tab0 personal
+Amal; tab1 corrected4346 synthetic operator) and business-member4340 **PID85139**
+(personal Samira manager). Exactly two
 named sessions. The fixture remains available for root. Operator setup choice can
 use the **test-only public literal business-tasks-synthetic-operator**. Use People
 in that context to intentionally issue a fresh personal credential; do not copy
 real credentials or install a member token as the legacy operator. All records
-are named Synthetic, with no provider/engine/scheduler process.
+in this fixture are synthetic, with no provider/engine/scheduler process.
 
 PID21431 was **this worker's earlier** in-memory4342 fixture, not tickets' PID794.
 After initially successful flows it later returned500; no unsupported diagnosis
@@ -295,7 +333,7 @@ node reports/business-workspace-evidence/serve.mjs out-business-workspace --back
 Only closed business POSTs are forwarded; legacy APIs/WebSockets/outbound are
 blocked. Proxy logs only method/path/status. No credential snapshots/traces.
 
-Final export SHA256: business.html
+Preserved4340 export SHA256: business.html
 37caadb86dd9dbf828eb42ab4bf053303801f1a96cdedc4f4accccc0258b09ac;
 index.html 4ed8eac14e81a0f07a39560ccbef20dda2f9b8dfba90c773015a3423a8a22f5c.
 The static-router test uses BUSINESS_EXPORT_DIR pointing to that own export,
@@ -309,8 +347,8 @@ fixture-static-routing.patch uses zero context; reproduce with git apply
 
 Identity and task backend are integrated from accepted main294fb634. Root must
 review/accept the exact UI head before declaring combined Increment A accepted.
-The independent review uses the frozen33b9cbcb frontend and matching accepted
-backend runtime; integration has not changed either live fixture artifact.
+The final targeted review uses corrected e72 on4346 and matching accepted backend
+runtime; the baseline33b9cbcb export is separately preserved on4340.
 Entrust success with a real running agent is intentionally
 not exercised: no model launches. Browser guard/static router tests do not claim
 a production server deployment or native-window certification.
@@ -318,8 +356,9 @@ a production server deployment or native-window certification.
 English and Arabic business copy are supplied; the other8 app locales preserve
 preferences and use English business copy. Reload requires sign-in; task lists
 use manual refresh and context revalidation on focus/every30s, not realtime push.
-Member directory follows500 cap. Pagination wiring is tested; the manual fixture
-contains5 tasks and does not claim a second50-record page browser exercise.
+Member directory follows500 cap. Pagination wiring is tested; the original manual
+fixture contained5 tasks before worker/root/reviewer additions and does not claim
+a second50-record page browser exercise.
 
 Probe errors are retained as labelled error files: duplicate date locator (date
 also present in activity), early Drawer starting-style/focus-guard sampling,

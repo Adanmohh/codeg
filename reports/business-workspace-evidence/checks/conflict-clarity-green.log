@@ -1,0 +1,18 @@
+Source: 095c6164 source
+Command/check: Targeted conflict regression run after comparison correction
+Recorded exit: 0
+Original: .build/business-workspace/conflict-clarity-green.log
+Normalized ANSI/trailing whitespace only.
+
+Already up to date
+Done in 226ms using pnpm v11.9.0
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/components/business/workflow.test.tsx (13 tests | 11 skipped) 241ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 11 skipped (13)
+   Start at  18:45:03
+   Duration  1.67s (transform 160ms, setup 116ms, collect 441ms, tests 241ms, environment 584ms, prepare 96ms)

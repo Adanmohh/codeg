@@ -1,9 +1,9 @@
 # Business workspace UI contract — implemented Increment A
 
 Owner: rebrand; branch **feat/business-workspace**, draft PR21.
-Final frontend product source33b9cbcb; accepted main294fb634 (task PR22 merge
+Final product sourcee72cc44b612068e67a3e6dc3bc593f10988ae7ed; accepted main294fb634 (task PR22 merge
 5541857a) integrated as0192ac3f. Only NOTICE required additive conflict resolution;
-tested frontend and live fixture/export remain unchanged.
+the baseline4340 export is preserved and final review corrections are served on4346.
 Implementation/evidence: reports/business-workspace.md. Backend owners retain
 identity/task/agent authorization and migrations. The only Rust presentation
 change is the owner-requested fresh native main-window business entry; no
@@ -111,6 +111,9 @@ copy. No engine start, provider launch or run minting is part of this UI.
 Edits keep their original expectedRevision. Real409 locks further writes while
 retaining the private draft, then exposes Load current task, comparison and
 explicit Use my draft with this version. No silent overwriting or blind retry.
+The retained status/revision is labelled as the draft's base; the current saved
+region shows current status/revision before adoption. Adoption resets the human
+review confirmation; the user must review and confirm the newly loaded version.
 Ambiguous creation warns the user to refresh before another creation. Errors use
 fixed public copy rather than raw server/provider bodies.
 
@@ -124,15 +127,20 @@ edge. Controlled business modals restore a connected opener or the focusable wor
 area; they never override a succeeding modal's focus. Reduced motion removes the
 business entrance zoom and Action transitions. Existing overlay opacity fade is
 retained. Scoped destructive text/focus use measured inherited red tokens.
+Search has a scoped readable placeholder and skips its redundant hidden submit
+in sequential focus. Tab reaches the visible Refresh button; Enter retains real
+form submission. Global Input, tokens and search API behavior are unchanged.
 
 English/Arabic business copy is supplied. The other8 existing locales preserve
 preferences and use English business copy. No claim of10 translated business UIs.
 
 ## Verification and owned fixture
 
-113 integrated frontend tests passed; after final focused corrections25 business
-component tests passed, including3 focus-return regressions. Typecheck/scoped
-lint/export and default desktop/server cargo check/Clippy pass. Static router test
+Merged0192 full frontend suite passed6,194 tests/438 files. After final comparison,
+native and search corrections all39 affected business client/component tests pass.
+Typecheck/scoped lint/34-page export and default desktop/server cargo check/Clippy
+pass; the latter were rerun after native3a. The local sidecar placeholder does not
+certify a runnable bundle; root owns actual packaged startup. Static router test
 executes6 real production rewrite/body checks through axum-test's default
 in-process transport. Report records source pins, exact commands and limits.
 
@@ -146,7 +154,13 @@ motion, long text and measured contrast evidence is committed. No response
 replacement or live provider/model calls. Native OS and second50-record-page
 browser tests are not claimed.
 
-Frontend proxy4340 PID36044 owns out-business-workspace. Backend4342 PID81950 is
+Corrected frontend4346 PID60964 owns .build/business-workspace/review-export from
+e72cc44b; its business.html disk/HTTP SHA256 is
+c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54.
+Actual search EN/AR390/768/1280 light/dark checks pass12/12:10.78/7.07 contrast,
+visible44px Refresh focus and successful Enter queries. Corrected comparison has
+its own real409/adopt/save evidence; independent targeted recheck is underway.
+Frozen frontend proxy4340 PID36044 retains out-business-workspace. Backend4342 PID81950 is
 the frontend worker's guarded1ba73e3c snapshot with a fresh temporary disk DB;
 test-only fixture patches preserve all production source. Earlier own PID21431
 was replaced after fixture500s; task worker PID794 was already stopped. Both

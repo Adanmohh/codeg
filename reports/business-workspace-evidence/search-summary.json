@@ -1,0 +1,560 @@
+{
+  "scope": "Search placeholder, sequential focus and Enter; no whole-page score",
+  "source": {
+    "before": "095c61642dc2f52ca8fd6e7c10556f16cf61c904",
+    "after": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+    "designStudio": "55c8614dcfff33b4caa5a544b4f1f91877214878",
+    "tool": "lab/tools/probe.mjs pure buildReport/parseCssColor/contrastRatio"
+  },
+  "method": "Canvas sRGB plus ancestor backgrounds and placeholder alpha; all sampled layers opacity 1, no images; enabled empty inputs",
+  "phases": [
+    {
+      "phase": "before",
+      "export": ".build/business-workspace/conflict-export",
+      "contrast": {
+        "checked": 1,
+        "failures": [
+          {
+            "text": "Find a task",
+            "fg": "#737373",
+            "bg": "#f7f7f7",
+            "ratio": 4.43,
+            "required": 4.5
+          }
+        ]
+      },
+      "cases": [
+        {
+          "locale": "en",
+          "theme": "light",
+          "width": 1280,
+          "foreground": {
+            "r": 115,
+            "g": 115,
+            "b": 115,
+            "a": 1
+          },
+          "effectiveForeground": {
+            "r": 115,
+            "g": 115,
+            "b": 115
+          },
+          "background": {
+            "r": 247,
+            "g": 247,
+            "b": 247,
+            "a": 1
+          },
+          "ratio": 4.43,
+          "required": 4.5,
+          "focus": {
+            "name": "Find a task",
+            "width": 1,
+            "height": 1,
+            "clipPath": "inset(50%)",
+            "outlineStyle": "auto",
+            "outlineWidth": "1px",
+            "shadow": "none",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "export": ".build/business-workspace/review-export",
+      "contrast": {
+        "checked": 12,
+        "failures": []
+      },
+      "cases": [
+        {
+          "locale": "en",
+          "theme": "light",
+          "width": 390,
+          "foreground": {
+            "r": 10,
+            "g": 10,
+            "b": 10,
+            "a": 0.8
+          },
+          "effectiveForeground": {
+            "r": 57,
+            "g": 57,
+            "b": 57
+          },
+          "background": {
+            "r": 247,
+            "g": 247,
+            "b": 247,
+            "a": 1
+          },
+          "ratio": 10.78,
+          "required": 4.5,
+          "focus": {
+            "name": "Refresh",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "en",
+          "theme": "light",
+          "width": 768,
+          "foreground": {
+            "r": 10,
+            "g": 10,
+            "b": 10,
+            "a": 0.8
+          },
+          "effectiveForeground": {
+            "r": 57,
+            "g": 57,
+            "b": 57
+          },
+          "background": {
+            "r": 247,
+            "g": 247,
+            "b": 247,
+            "a": 1
+          },
+          "ratio": 10.78,
+          "required": 4.5,
+          "focus": {
+            "name": "Refresh",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "en",
+          "theme": "light",
+          "width": 1280,
+          "foreground": {
+            "r": 10,
+            "g": 10,
+            "b": 10,
+            "a": 0.8
+          },
+          "effectiveForeground": {
+            "r": 57,
+            "g": 57,
+            "b": 57
+          },
+          "background": {
+            "r": 247,
+            "g": 247,
+            "b": 247,
+            "a": 1
+          },
+          "ratio": 10.78,
+          "required": 4.5,
+          "focus": {
+            "name": "Refresh",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "en",
+          "theme": "dark",
+          "width": 390,
+          "foreground": {
+            "r": 161,
+            "g": 161,
+            "b": 161,
+            "a": 1
+          },
+          "effectiveForeground": {
+            "r": 161,
+            "g": 161,
+            "b": 161
+          },
+          "background": {
+            "r": 21,
+            "g": 21,
+            "b": 21,
+            "a": 1
+          },
+          "ratio": 7.07,
+          "required": 4.5,
+          "focus": {
+            "name": "Refresh",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "en",
+          "theme": "dark",
+          "width": 768,
+          "foreground": {
+            "r": 161,
+            "g": 161,
+            "b": 161,
+            "a": 1
+          },
+          "effectiveForeground": {
+            "r": 161,
+            "g": 161,
+            "b": 161
+          },
+          "background": {
+            "r": 21,
+            "g": 21,
+            "b": 21,
+            "a": 1
+          },
+          "ratio": 7.07,
+          "required": 4.5,
+          "focus": {
+            "name": "Refresh",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "en",
+          "theme": "dark",
+          "width": 1280,
+          "foreground": {
+            "r": 161,
+            "g": 161,
+            "b": 161,
+            "a": 1
+          },
+          "effectiveForeground": {
+            "r": 161,
+            "g": 161,
+            "b": 161
+          },
+          "background": {
+            "r": 21,
+            "g": 21,
+            "b": 21,
+            "a": 1
+          },
+          "ratio": 7.07,
+          "required": 4.5,
+          "focus": {
+            "name": "Refresh",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "ar",
+          "theme": "light",
+          "width": 390,
+          "foreground": {
+            "r": 10,
+            "g": 10,
+            "b": 10,
+            "a": 0.8
+          },
+          "effectiveForeground": {
+            "r": 57,
+            "g": 57,
+            "b": 57
+          },
+          "background": {
+            "r": 247,
+            "g": 247,
+            "b": 247,
+            "a": 1
+          },
+          "ratio": 10.78,
+          "required": 4.5,
+          "focus": {
+            "name": "تحديث",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "ar",
+          "theme": "light",
+          "width": 768,
+          "foreground": {
+            "r": 10,
+            "g": 10,
+            "b": 10,
+            "a": 0.8
+          },
+          "effectiveForeground": {
+            "r": 57,
+            "g": 57,
+            "b": 57
+          },
+          "background": {
+            "r": 247,
+            "g": 247,
+            "b": 247,
+            "a": 1
+          },
+          "ratio": 10.78,
+          "required": 4.5,
+          "focus": {
+            "name": "تحديث",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "ar",
+          "theme": "light",
+          "width": 1280,
+          "foreground": {
+            "r": 10,
+            "g": 10,
+            "b": 10,
+            "a": 0.8
+          },
+          "effectiveForeground": {
+            "r": 57,
+            "g": 57,
+            "b": 57
+          },
+          "background": {
+            "r": 247,
+            "g": 247,
+            "b": 247,
+            "a": 1
+          },
+          "ratio": 10.78,
+          "required": 4.5,
+          "focus": {
+            "name": "تحديث",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "ar",
+          "theme": "dark",
+          "width": 390,
+          "foreground": {
+            "r": 161,
+            "g": 161,
+            "b": 161,
+            "a": 1
+          },
+          "effectiveForeground": {
+            "r": 161,
+            "g": 161,
+            "b": 161
+          },
+          "background": {
+            "r": 21,
+            "g": 21,
+            "b": 21,
+            "a": 1
+          },
+          "ratio": 7.07,
+          "required": 4.5,
+          "focus": {
+            "name": "تحديث",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "ar",
+          "theme": "dark",
+          "width": 768,
+          "foreground": {
+            "r": 161,
+            "g": 161,
+            "b": 161,
+            "a": 1
+          },
+          "effectiveForeground": {
+            "r": 161,
+            "g": 161,
+            "b": 161
+          },
+          "background": {
+            "r": 21,
+            "g": 21,
+            "b": 21,
+            "a": 1
+          },
+          "ratio": 7.07,
+          "required": 4.5,
+          "focus": {
+            "name": "تحديث",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        },
+        {
+          "locale": "ar",
+          "theme": "dark",
+          "width": 1280,
+          "foreground": {
+            "r": 161,
+            "g": 161,
+            "b": 161,
+            "a": 1
+          },
+          "effectiveForeground": {
+            "r": 161,
+            "g": 161,
+            "b": 161
+          },
+          "background": {
+            "r": 21,
+            "g": 21,
+            "b": 21,
+            "a": 1
+          },
+          "ratio": 7.07,
+          "required": 4.5,
+          "focus": {
+            "name": "تحديث",
+            "width": 44,
+            "height": 44,
+            "clipPath": "none",
+            "outlineStyle": "none",
+            "outlineWidth": "1px",
+            "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+            "focusVisible": true
+          },
+          "enter": {
+            "status": 200,
+            "page": 0,
+            "count": 1
+          },
+          "pageOverflow": false
+        }
+      ]
+    }
+  ]
+}
