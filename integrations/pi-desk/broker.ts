@@ -1,6 +1,6 @@
 // Adapted from pi-mcp-adapter v2.32.1 types.ts/tool-approval.ts and its tests.
 // Copyright (c) 2026 Nico Bailon. MIT; full notice in NOTICE and LICENSE.
-import { isDeskContext, snapshotCall } from "./protocol.ts"
+import { HAFIDH_READ_TOOLS, isDeskContext, snapshotCall } from "./protocol.ts"
 import type { DeskTransport } from "./transport.ts"
 
 export const APPROVAL_EVENT = "pi-mcp-adapter:tool-approval-request"
@@ -20,11 +20,7 @@ export interface ApprovalRequest {
   claim(handler: () => ApprovalDecision | Promise<ApprovalDecision>): boolean
 }
 
-export const HAFIDH_READ_TOOLS = [
-  "hafidh_feedback_list",
-  "hafidh_feedback_get",
-  "hafidh_intake_status",
-] as const
+export { HAFIDH_READ_TOOLS } from "./protocol.ts"
 
 /** Mutations are always denied; edits are submitted through the Desk draft tool. */
 export function claimApproval(
@@ -39,7 +35,6 @@ export function claimApproval(
       lifecycle.aborted ||
       request.signal?.aborted ||
       request.serverName !== "hafidh" ||
-      !HAFIDH_READ_TOOLS.some((name) => name === request.originalToolName) ||
       !["proxy", "direct"].includes(request.origin)
     )
       return "deny"
@@ -50,6 +45,11 @@ export function claimApproval(
       ? AbortSignal.any([lifecycle, request.signal])
       : lifecycle
     try {
+      const read = HAFIDH_READ_TOOLS.find(
+        (name) => name === request.originalToolName
+      )
+      if (!read) return "deny"
+      snapshotCall(read, request.args)
       const response = await transport.call(
         snapshotCall("desk_context", {}),
         signal
@@ -63,6 +63,7 @@ export function claimApproval(
         snapshot !== JSON.stringify(request.args)
       )
         return "deny"
+      snapshotCall(read, request.args)
       // Freeze the actual execution argument tree: no post-guard substitution.
       freezeJson(request.args)
       return "allow_once"

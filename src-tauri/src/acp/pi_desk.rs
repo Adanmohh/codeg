@@ -163,6 +163,10 @@ async fn prepare_at(
         "PI_ACP_PI_COMMAND".into(),
         companion.to_string_lossy().into_owned(),
     );
+    prepared.env.insert(
+        "CODEG_DESK_COMPANION".into(),
+        companion.to_string_lossy().into_owned(),
+    );
     prepared
         .env
         .insert("CODEG_PI_DESK_LAUNCH".into(), "1".into());
@@ -241,15 +245,19 @@ mod tests {
                 agent.to_string_lossy().into_owned(),
             ),
             ("PI_OFFLINE".into(), "1".into()),
+            ("CODEG_DESK_COMPANION".into(), "/untrusted/runtime-override".into()),
         ]);
+        let companion = Path::new(env!("CARGO_MANIFEST_DIR")).join("target/debug/codeg-mcp");
+        assert!(companion.is_file(), "build the real own companion before this explicit process fixture");
         let mut prepared = prepare_at(
             &runtime,
-            &temp.path().join("fixture-companion"),
+            &companion,
             temp.path(),
             &temp.path().join("assets"),
         )
         .await
         .expect("local installed packages and fixture catalogue");
+        assert_eq!(prepared.env["CODEG_DESK_COMPANION"], companion.to_string_lossy());
         prepared
             .bind_token(
                 Arc::new(TokenRegistry::default()),
@@ -302,6 +310,28 @@ mod tests {
             assert!(commands
                 .iter()
                 .any(|command| command["name"] == name && command["source"] == "extension"));
+        }
+        // The real installed adapter must enumerate the actual fixed companion,
+        // not merely register /mcp against an empty configuration. /desk-status
+        // is an extension command (pinned RPC docs), not an inference prompt.
+        input.write_all(b"{\"id\":\"cached-discovery\",\"type\":\"prompt\",\"message\":\"/desk-status\"}\n").await.unwrap();
+        let notice = tokio::time::timeout(std::time::Duration::from_secs(10), async {
+            let mut notice = None;
+            loop {
+                let line = output.next_line().await.unwrap().expect("RPC stays live");
+                let message: serde_json::Value = serde_json::from_str(&line).unwrap();
+                assert_ne!(message["type"], "message_start", "no model turn is allowed");
+                if message["type"] == "extension_ui_request" && message["method"] == "notify" {
+                    notice = message["message"].as_str().map(str::to_owned);
+                }
+                if message["id"] == "cached-discovery" {
+                    assert_eq!(message["success"], true);
+                    break notice.expect("status command emits actual tool discovery");
+                }
+            }
+        }).await.unwrap();
+        for tool in ["hafidh_feedback_list", "hafidh_feedback_get", "hafidh_intake_status"] {
+            assert!(notice.contains(tool), "actual extracted companion discovery: {notice}");
         }
         // Exercise the shipped wrapper, not only rpcRefusal's unit fixture.
         // Model/session changes must be rejected locally; abort remains usable.
