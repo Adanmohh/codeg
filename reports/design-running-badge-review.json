@@ -1,0 +1,32 @@
+{
+  "scope": "FolderHeader runningCount badge only",
+  "implementation": "b531501e281d093fb407580bac5c1593ac882b71",
+  "method": "Design Studio aesthetic-judge and a11y-auditor methods applied sequentially inline by the implementation worker; no independent-agent claim",
+  "evidence": [
+    "design-running-badge-before-measured.json",
+    "design-running-badge-after-measured.json",
+    "design-running-badge-before.raw",
+    "design-running-badge-after.raw",
+    "browser-running-badge/",
+    "design-running-badge-hover-guard.raw"
+  ],
+  "resolved": [
+    {
+      "check": "Accessibility last-mile: contrast the dimmest micro-labels; normal text requires 4.5:1",
+      "beforeLight": { "rest": 4.39, "hover": 3.75, "focus": 4.39 },
+      "afterLight": { "rest": 6.19, "hover": 5.29, "focus": 6.19 },
+      "afterDarkUnchanged": { "rest": 9.09, "hover": 6.94, "focus": 9.09 }
+    },
+    {
+      "check": "CRAP/contrast and repetition; Badge Color/Detail",
+      "result": "Existing amber semantic, numeric count, tabular typography, geometry and accessible label preserved; one darker light token"
+    }
+  ],
+  "findings": [],
+  "advisoryDisposition": {
+    "id": "MOT-9",
+    "result": "Source-only false positive for this selector: actual rebuilt CSSOM contains its (hover: hover) media ancestor",
+    "evidence": "design-running-badge-hover-guard.raw"
+  },
+  "limits": "Single badge in default light/dark at 1280x900; not a full-app, mobile/native, custom-theme or motion audit. Root reviewer recheck remains."
+}

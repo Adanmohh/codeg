@@ -1,0 +1,55 @@
+{
+  "file": "src/components/conversations/sidebar-conversation-list.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": true,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": true,
+    "errorState": true,
+    "motion": true,
+    "responsive": true,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": true,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": true,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": true,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "low",
+      "msg": "MOT-9: :hover styles present with no @media (hover: hover) guard anywhere in the stylesheet — touch devices get a sticky/ghost hover state (advisory, NN/g).",
+      "id": "MOT-9"
+    }
+  ],
+  "probe": null
+}
+
+SUMMARY src/components/conversations/sidebar-conversation-list.tsx: 1 gap(s) — [low] MOT-9: :hover styles present with no @media (hover: hover) guard anywhere in the stylesheet — touch devices get a sticky/ghost hover state (advisory, NN/g).
