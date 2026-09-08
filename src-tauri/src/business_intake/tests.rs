@@ -5,6 +5,7 @@ mod import_cases;
 mod legacy_cases;
 mod migration_cases;
 mod reader_cases;
+mod recovery_cases;
 mod setup_cases;
 mod support;
 

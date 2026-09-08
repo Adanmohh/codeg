@@ -27,16 +27,30 @@ pub(super) struct Secrets {
     pub values: Mutex<HashMap<String, String>>,
     pub fail_set: AtomicBool,
     pub fail_delete: AtomicBool,
+    pub set_gate: Mutex<Option<tokio::sync::oneshot::Receiver<()>>>,
+    pub set_started: tokio::sync::Notify,
+    pub set_finished: tokio::sync::Notify,
 }
 impl SecretStore for Secrets {
     fn get(&self, key: &str) -> Option<String> {
         self.values.lock().unwrap().get(key).cloned()
     }
     fn set(&self, key: &str, value: &str) -> std::result::Result<(), ()> {
+        let gate = self.set_gate.lock().unwrap().take();
+        let gated = gate.is_some();
+        if let Some(gate) = gate {
+            self.set_started.notify_one();
+            // Services runs the real synchronous adapter on spawn_blocking.
+            // Dropping the test's sender also releases this thread on panic.
+            let _ = gate.blocking_recv();
+        }
         if self.fail_set.load(Ordering::SeqCst) {
             return Err(());
         }
         self.values.lock().unwrap().insert(key.into(), value.into());
+        if gated {
+            self.set_finished.notify_one();
+        }
         Ok(())
     }
     fn delete(&self, key: &str) -> std::result::Result<(), ()> {

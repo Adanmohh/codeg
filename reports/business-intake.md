@@ -323,3 +323,73 @@ legacy account/inbox/product/host resources must remain a separate capability;
 no automatic grants, resource reassignment or stored-credential reconstruction.
 The rich tenant workspace does not gain legacy session reads, files, global events,
 terminal, child delegation or arbitrary CLI authority through this B checkpoint.
+
+## Bounded recovery test checkpoint
+
+Production remains `e9c6323760497e7b294282d2746cfe1d9b2774fa`; this checkpoint
+adds only four synthetic recovery tests, their blocking-store fixture gate and
+this report. It does not change identity, setup, candidate or publication code.
+`business_intake::tests::recovery_cases` passed **4/4, 0 ignored**, exit0,
+0.20s execution/57.91s compile. Exact command, from this worktree's `src-tauri`:
+
+```sh
+env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-target cargo test --locked --offline --no-default-features --lib business_intake::tests::recovery_cases > ../.docs/business-intake-logs/tests-recovery.log 2>&1
+```
+
+- `intake_recovery_extra_candidate_discard_history_and_explicit_new_work`: an
+  extra human selection has no prepared draft; identical creation/discard replays
+  recover the same records, changed creation input conflicts, expired disclosure
+  permits discard but blocks new selection, and reimport preserves terminal
+  history. Further work requires explicit creation. No business task is created.
+- `intake_recovery_uses_current_credential_grant_and_real_passage_scope`: a real
+  passage belonging to a different binding/source is rejected. Revoking the
+  original member credential blocks receipt recovery; an explicitly issued fresh
+  credential for that member permits recovery through normal authentication.
+  Source-grant revocation still denies access, and explicit regrant reveals only
+  retained metadata until a new source refresh. Replays create no extra decision.
+- `intake_recovery_late_blocking_store_after_abort_and_cleanup_retries_only_orphan`:
+  the actual `Services::set` blocking task waits in an injected synthetic adapter
+  while its caller is dropped. Cleanup retires its expired staged reference; the
+  delayed write then completes. A failed delete retains that orphan for a later
+  successful cleanup. The active and unrelated keys remain unchanged, with no
+  provider verification after the dropped request and no initial grants.
+- `intake_recovery_activation_commit_failure_and_lost_response_preserve_active_reference`:
+  a deferred foreign-key fixture first proves INSERT succeeds and COMMIT fails,
+  then injects that failure at the real activation transaction. Binding revision,
+  active reference, receipt and audit remain unchanged. A later cleanup removes
+  the retired staged key. Separately, discarding a successful rotation response
+  and replaying the operation recovers its durable receipt without another
+  provider read or deletion of the new active key.
+
+Installed Tokio1.49.0 `task/blocking.rs` and `sync/{oneshot,notify}.rs grounded the
+non-abortable blocking-task gate. SeaORM1.1.19/SQLx SQLite0.8.6 transaction sources
+and libsqlite3-sys0.30.1's bundled SQLite3.46.0 `sqlite3.c` deferred-FK comments
+grounded the commit-time fixture. These are API references, not copied dependency
+implementation. The existing Apache Codeg086eee48 transaction/test-helper mapping
+in NOTICE applies; no new package, lock change or third-party port is introduced.
+Rustfmt and `git diff --check` exited0. The run retains four known unused private
+model warnings, the linker unwind-size warning and the existing proc-macro-error2
+future-compatibility notice; it is not a strict Clippy pass.
+
+Limits: a failed COMMIT and a discarded successful response are exercised
+separately; a process crash or durable successful COMMIT followed by an ambiguous
+driver acknowledgement is not injected. Ledger expiry is advanced synthetically,
+not by waiting through the full request deadline. No OS keyring, real credential,
+native fallback, manual fixture, provider/model/engine, existing target, export or
+bundle is touched. Earlier passing selectors were not repeated. Full B HTTP/native
+parity, tenant lifecycle/epoch persistence, desktop/Clippy and integrated UI
+acceptance remain pending.
+
+Read the full immutable tenancy contract
+`7516461633c163c2ac683930487e33231e630b0b` through gh api. Its fixed
+`Principal::authorization_epoch() -> i64` is a read-only captured value; there is
+no refresh helper. B will persist and check it on setup/attempts, observations and
+previews so fresh authentication after suspend/resume cannot revive older evidence.
+Missing retained epochs require explicit fresh validation, never a default value.
+Identity's compiling source has not yet been supplied; migration000011→000012
+integration and the separately assigned exact-head tenancy review remain pending.
+
+Recovery log SHA256: `fbb04afad9b24ecb1442aeec8975d0fae6163ecf4bfd2e936a3787f84a17b20e`.
+New test file SHA256: `80758fe6708ae1dde4c92ccbf038f10bcf37700b25f2efd98c53c49b1dfac1ce`.
+Paused visual report remains untracked with its original SHA256
+`a2120d9cc87dbb4823b1223e02d377660fff370d846f2fd102fe1eb36599a50d`.
