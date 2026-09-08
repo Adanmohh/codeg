@@ -85,6 +85,23 @@ transaction while retaining task policy/CAS/activity. Owner server check passed;
 coverage), one manual fixture ignored. Root has not independently run these tests.
 Two temporary unused-helper warnings remain before intake consumers are wired;
 this is not final Clippy or end-to-end B acceptance. Product is unmerged.
+
+**Open P2 at `60daf42e`: strict credential reader skips existing pre-read Unix
+0600 hardening.** Independent synthetic probes fail 2/2: a valid strict read and
+rejected malformed set/delete retain0644, while the old-reader control becomes0600.
+Root read the frozen source, test-only patch and failure log and confirmed the
+source regression. Tickets is assigned to reuse the existing hardening under the
+write lock without weakening strict failure/byte preservation; exact fix review
+is required before merge. Reviewer separately reports five unchanged prerequisite/
+protected-router tests passing; those do not close this finding. No actual
+credential or existing fixture was accessed by the probes.
+
+DTO/schema checkpoint `9a4c8c882cec938665bc233b4d658d8de019ccfd` is also under
+review. Root read its complete types/migration/error/tests/registration/NOTICE
+changes; endpoints are not exposed. Owner reports server check and two focused
+tests passing, with unused-consumer warnings. The migration test checks table
+registration and rejects a missing member; populated upgrade and actual cross-org
+member evidence remain separate requirements. No B runtime acceptance is implied.
 New synthetic ports are assigned: rebrand UI4350, tickets backend4351/upstream4352;
 owners must recheck availability before launching. No new fixture is claimed running.
 [Product review](reports/review-business-intake.md).
