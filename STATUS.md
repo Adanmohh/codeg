@@ -1,6 +1,6 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications are reviewed and merged; bug-workflow integration review continues autonomously. P1 bridge/phone integration, final Design Studio fixes and combined native build remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. P1 bridge/phone integration, final Design Studio fixes and combined native build remain.
 
 ## Current position
 
@@ -11,7 +11,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
-| Bug workflow host/UI | PR #9 independent17 Rust,9 isolated Python,8 frontend tests and protected CLI review/held-task checks pass | Worker resolving additive registration conflicts with accepted Telegram/Pi, then integration gates/exact-head acceptance |
+| Bug workflow host/UI | PR #9 reviewed and merged; independent 167 integrated Rust tests plus host/Python/frontend and protected CLI checks pass | Pi cached reads/proposal and typed phone integration |
 | Telegram and beta validation | PR #10 reviewed and merged; independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Typed P1 issue extension, final integrated beta/native checks |
 | Final Design Studio loops | Preliminary seven-finding review and PR #11 specialist report accepted; shell/Pi fixes active | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
 
@@ -298,3 +298,10 @@ that merge inspection. No product implementation is delegated to root.
 - PR #12 typed issue phone-review contract read completely and accepted as a plan. It retains host-owned exact-payload review, opaque authenticated links, default-off issue inclusion, one bounded notification scan and durable no-resend states. Actual implementation and phone checks remain pending.
 - PR #9 worker integrated accepted main as `11d703c5`; root inspected the five additive registration resolutions and migration order 000005 → 000006 → 000007. Integrated gates and final exact-head acceptance remain required.
 - Tickets is implementing all five verified shell/Pi design findings. Rebrand has a separate Ops locale/RTL/copy workorder reserved after host acceptance.
+
+## Bug host accepted and follow-ons dispatched
+
+- PR #9 accepted at `8703e00fae2e1c92e045936b140b83012cfe0f57` and merged as `02e3f5d8a15a3fee792cd0625966dee6c500d184`. Root reviewed the complete final report, unchanged host behavior, five additive registrations and migration order. Independent combined Ops run: 167 passed, three manual fixtures ignored, exit 0. Both worker runtime checks/Clippy and Desk/ticket/email/frontend gates pass. See [review](reports/review-bug-workflow.md).
+- Rebrand dispatched to new `fix/design-ops` from accepted main, same pane/worktree, report `reports/design-ops-fixes.md`, owned port 4326/export. Required locale edit preservation, RTL and accurate Ops receipt/internal copy corrections with actual CLI and Design Studio rechecks. Its previous 4322 fixture is closed; evidence is retained.
+- Approvals unblocked to integrate accepted host into PR #12 and implement the accepted typed issue phone-review contract using its owned 4323 fixture.
+- Tickets continues the five shell/Pi design corrections first; a separate Pi P1 cached-read/issue-proposal branch follows acceptance. Three Herdr workers maximum, all Astra/max and docs-first rules retained. Root writes no product code.

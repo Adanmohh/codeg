@@ -1,8 +1,29 @@
 # Bug workflow host review
 
-In progress, 2026-09-08. Not accepted or merged. Early source checkpoint
+Accepted and merged, 2026-09-08. Historical review follows below. Early source checkpoint
 `506dcc305bb11999eba495634088f0d394d34bc5`. Root read full operator, process,
 runtime, review and held-fix adapters plus scoped store helpers and Python host.
+
+## Final acceptance
+
+Reviewed final head `8703e00fae2e1c92e045936b140b83012cfe0f57`, merged PR #9
+as `02e3f5d8a15a3fee792cd0625966dee6c500d184`. Final commit changes reports only;
+product integration is `11d703c5`. Root checked the additive five registration
+resolutions, both-parent preservation and migration order 000005/000006/000007.
+Reviewed host/UI behavior is unchanged by that merge. Tokio citation correction
+matches locked 1.49.0; no dependency or behavior upgrade occurred.
+
+Root independently ran combined library Ops tests on the integrated product:
+167 passed, 3 manual browser fixtures ignored, exit 0, 6.75s. Log:
+`/tmp/ops-host-integrated-independent.log`. Earlier independent 17 host, 9
+isolated Python and 8 frontend tests plus actual protected CLI evidence below
+remain applicable. Worker integrated gates pass both runtime checks and Clippy,
+13 Desk, 18 ticket, 18 email transport and 32 frontend tests and typecheck.
+
+No unresolved blocking host finding. This accepts the operator intake, exact
+issue filing and held-fix-task path. Pi cached reads/proposals, typed phone
+review, final design corrections and rebuilt integrated native artifact remain
+separate required follow-ons. No live provider/model or actual fix/build claim.
 
 ## Independent evidence
 
