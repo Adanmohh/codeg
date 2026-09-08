@@ -340,3 +340,13 @@ that merge inspection. No product implementation is delegated to root.
 - PR #14 accepted at `e7f89b611e8a229fb557f03efb9627001fc06372`, merged as `b7186ba65b2155bdba695ea6364f3ac267fbc51c`. Full final report, source, attribution/ignore-only merge resolutions and typecheck reviewed. Independent22 tests and actual complete seven-field review/reply/note locale CLI pass; worker92 frontend tests, runtime/Clippy/export gates and468 scoped text measurements pass at their documented heads.
 - Selected metadata improves4.2→8.66 light/9.76 dark. Visible threading inputs pass; closed-details probe artifacts and literal OKLCH/composite mismatches are documented. Remaining reduced-motion candidate needs property/behavior verification in the final review. [Review](reports/review-design-ops.md).
 - Final design reviewer is unblocked to integrate accepted UI and export separately. Pi P1 implementation/real companion/browser verification continues. Final integrated native build remains pending.
+
+## Full frontend regression follow-up
+
+Root full `pnpm test` at8c2a004d: **6156 passed,2 failed**,431/433 files pass,
+25.49s. Both failures expect old visible codeg branding in Forge wrong-host and
+OpenCode malformed-permission messages; current translations say Hafidh Ops Desk.
+Rebrand dispatched to separate `fix/rebrand-test-expectations`, report
+`reports/rebrand-test-expectations.md`, preserving behavioral assertions and
+all product code. Root will rerun the full suite after exact-head review/merge.
+Final combined design review and Pi bridge validation continue.
