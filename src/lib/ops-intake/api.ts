@@ -34,19 +34,28 @@ export const intake = {
     source: Source,
     proposal_id: number,
     expected_payload: PreparedIssue,
-    approved_payload: PreparedIssue
+    approved_payload: PreparedIssue,
+    review_notice?: string
   ) =>
     call<Detail>("approve", {
       source,
       proposal_id,
       expected_payload,
       approved_payload,
+      review_notice,
     }),
   deny: (
     source: Source,
     proposal_id: number,
-    expected_payload: PreparedIssue
-  ) => call<Detail>("deny", { source, proposal_id, expected_payload }),
+    expected_payload: PreparedIssue,
+    review_notice?: string
+  ) =>
+    call<Detail>("deny", {
+      source,
+      proposal_id,
+      expected_payload,
+      review_notice,
+    }),
   reconcile: (source: Source) => call<Detail>("reconcile", source),
   fix: (source: Source) => call<Detail>("fix", source),
 }

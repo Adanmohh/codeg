@@ -23,9 +23,14 @@ pub(super) struct HostIssueAction {
     pub revision: i32,
     pub prepared: PreparedIssue,
     pub connection: Option<String>,
+    pub notice: Option<(String, i32)>,
 }
 impl HostIssueAction {
     async fn check(&self, payload: &Value, ctx: &ActionContext<'_>) -> Result<(), DbError> {
+        if let Some((notice, proposal)) = &self.notice {
+            crate::ops_telegram::require_issue_notice(ctx.db, self.account, notice, *proposal)
+                .await?;
+        }
         enabled(ctx.db, self.account, &self.source.product_id)
             .await
             .map_err(gate_error)?;
@@ -246,8 +251,18 @@ pub async fn deny(
     )
     .await?;
     let p = input.expected_payload;
-    approvals::deny(
-        db,
+    let txn = db.begin().await?;
+    txn.execute(sql(
+        "UPDATE work_task SET run_seq=run_seq WHERE id=?",
+        vec![p.draft.task_id.into()],
+    ))
+    .await?;
+    if let Some(notice) = &input.review_notice {
+        crate::ops_telegram::require_issue_notice(&txn, op.account_id(), notice, input.proposal_id)
+            .await?;
+    }
+    approvals::deny_in_transaction(
+        &txn,
         p.draft.task_id,
         p.draft.run_seq,
         input.proposal_id,
@@ -255,6 +270,7 @@ pub async fn deny(
         &GithubIssueAction,
     )
     .await?;
+    txn.commit().await?;
     super::operator::detail(db, op, input.source).await
 }
 pub async fn approve(
@@ -290,6 +306,9 @@ pub async fn approve(
         revision: d.revision,
         prepared: p.clone(),
         connection: None,
+        notice: input
+            .review_notice
+            .map(|notice| (notice, input.proposal_id)),
     };
     // Durable before consuming approval. If canceled/crashed, never invent a retry.
     let changed=db.execute(sql("INSERT INTO ops_intake_host_handoff(proposal_id,product_id,ulid,state) VALUES(?,?,?,'unknown') ON CONFLICT(proposal_id) DO UPDATE SET state='unknown' WHERE state='not_authorized'",vec![input.proposal_id.into(),input.source.product_id.clone().into(),input.source.ulid.clone().into()])).await?;
@@ -387,7 +406,7 @@ pub(super) async fn propose(
         let prepared: PreparedIssue = decode(&row.try_get::<String>("", "payload_json")?)?;
         let action = HostIssueAction { account: ctx.account_id, source: source.clone(),
             draft_id: current.id, revision: current.revision, prepared: prepared.clone(),
-            connection: Some(ctx.connection_id.clone()) };
+            connection: Some(ctx.connection_id.clone()), notice:None };
         action.resource(&prepared.payload()?, &ActionContext { db: &txn, agent: &ctx.agent_id, actor: None }).await?;
         let id = row.try_get("", "id")?;
         txn.commit().await?;
@@ -417,6 +436,7 @@ pub(super) async fn propose(
         revision: d.revision,
         prepared: prepared.clone(),
         connection: Some(ctx.connection_id.clone()),
+        notice: None,
     };
     let outcome = approvals::propose(
         db,

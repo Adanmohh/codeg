@@ -1,7 +1,16 @@
 import { getTransport } from "@/lib/transport"
 import type { Proposal } from "@/lib/ops/api"
+import type { Binding, Detail, Source } from "@/lib/ops-intake/types"
+
+export type TelegramActionKind = "email_reply" | "github_issue"
+export interface IssuePhoneReview {
+  source: Source
+  binding: Binding
+  detail: Detail
+}
 
 export interface TelegramConfiguration {
+  githubIssuesEnabled: boolean
   channelId: number
   privateUserId: string
   reviewOrigin: string
@@ -18,6 +27,7 @@ export interface TelegramStatus {
   configuration: TelegramConfiguration | null
   channels: { id: number; name: string }[]
   notices: {
+    actionKind: TelegramActionKind
     proposalId: number
     taskId: number
     runSeq: number
@@ -26,6 +36,7 @@ export interface TelegramStatus {
   }[]
 }
 export interface TelegramConfigureInput {
+  githubIssuesEnabled: boolean
   channelId: number
   privateUserId: string
   reviewOrigin: string
@@ -35,6 +46,7 @@ export interface TelegramConfigureInput {
 export interface ReviewResolution {
   state: "ready" | "unavailable"
   proposal: Proposal | null
+  issue: IssuePhoneReview | null
 }
 const call = <T>(command: string, input?: unknown) =>
   getTransport().call<T>(command, input === undefined ? {} : { input })

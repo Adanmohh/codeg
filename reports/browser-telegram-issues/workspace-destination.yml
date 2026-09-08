@@ -1,0 +1,105 @@
+- generic:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e3]:
+      - generic [ref=f3e4]:
+        - button "Show Sidebar" [ref=f3e5]
+        - button "Search" [ref=f3e6]
+        - button "New Conversation" [ref=f3e7]
+      - generic [ref=f3e9]:
+        - button "Toggle Terminal" [ref=f3e10]
+        - button "Toggle Auxiliary Panel" [ref=f3e11]
+        - button "Open Settings" [ref=f3e12]
+    - main [ref=f3e14]:
+      - generic [ref=f3e19]:
+        - generic [ref=f3e20]:
+          - generic [ref=f3e21]:
+            - button "host" [ref=f3e22]
+            - generic "New Conversation" [ref=f3e26]
+          - button "More actions" [ref=f3e28]
+        - generic [ref=f3e44]:
+          - generic [ref=f3e46]:
+            - heading "What would you like to do today?" [level=1] [ref=f3e47]
+            - generic [ref=f3e108]:
+              - tablist [ref=f3e109]:
+                - tab "Code Development" [selected] [ref=f3e110]
+                - tab "Office Work" [ref=f3e111]
+                - tab "Scientific Research" [ref=f3e112]
+              - tabpanel "Code Development" [ref=f3e113]:
+                - generic [ref=f3e114]:
+                  - button "Brainstorming Explore intent & requirements before building" [ref=f3e115]:
+                    - generic [ref=f3e121]: Brainstorming
+                    - generic [ref=f3e122]: Explore intent & requirements before building
+                  - button "Systematic Debugging Find the root cause before proposing fixes" [ref=f3e123]:
+                    - generic [ref=f3e136]: Systematic Debugging
+                    - generic [ref=f3e137]: Find the root cause before proposing fixes
+                  - button "Writing Skills Create, edit & verify reusable skills" [ref=f3e138]:
+                    - generic [ref=f3e147]: Writing Skills
+                    - generic [ref=f3e148]: Create, edit & verify reusable skills
+                - generic [ref=f3e149]:
+                  - button "Show previous skills" [disabled]
+                  - generic [ref=f3e151]:
+                    - button "Writing Plans" [ref=f3e152]
+                    - button "Executing Plans" [ref=f3e160]
+                    - button "Subagent-Driven Development" [ref=f3e168]
+                    - button "Dispatching Parallel Agents" [ref=f3e176]
+                    - button "Using Git Worktrees" [ref=f3e186]
+                    - button "Test-Driven Development" [ref=f3e195]
+                    - button "Verification Before Completion" [ref=f3e202]
+                    - button "Requesting Code Review" [ref=f3e210]
+                    - button "Receiving Code Review" [ref=f3e219]
+                    - button "Finishing a Development Branch" [ref=f3e228]
+                    - button "Using Superpowers" [ref=f3e237]
+                  - button "Show more skills" [ref=f3e245]
+            - generic [ref=f3e50]:
+              - button "Pi Pi" [pressed] [ref=f3e249] [cursor=pointer]:
+                - img "Pi" [ref=f3e252]
+                - generic [ref=f3e258]: Pi
+              - button [ref=f3e260] [cursor=pointer]:
+                - img "Claude Code" [ref=f3e263]
+                - generic: Claude Code
+              - button [ref=f3e266] [cursor=pointer]:
+                - img "Codex" [ref=f3e269]
+                - generic: Codex
+              - button [ref=f3e272] [cursor=pointer]:
+                - img "Gemini CLI" [ref=f3e275]
+                - generic: Gemini CLI
+              - button [ref=f3e279] [cursor=pointer]:
+                - img "OpenClaw" [ref=f3e282]
+                - generic: OpenClaw
+              - button [ref=f3e290] [cursor=pointer]:
+                - img "OpenCode" [ref=f3e293]
+                - generic: OpenCode
+              - button [ref=f3e296] [cursor=pointer]:
+                - img "Cline" [ref=f3e299]
+                - generic: Cline
+              - button "More agents (8)" [ref=f3e303] [cursor=pointer]
+            - generic [ref=f3e308]:
+              - alert [ref=f3e309]: Pi is not installed — open Agents settings to install it
+              - generic [ref=f3e310]:
+                - button "Open Agents settings" [ref=f3e311]
+                - button "Diagnose" [ref=f3e312]
+            - generic [ref=f3e54]:
+              - generic [ref=f3e55]:
+                - textbox "Send a message..." [active] [ref=f3e58]:
+                  - paragraph [ref=f3e59]: Send a message...
+                - generic [ref=f3e60]:
+                  - generic [ref=f3e61]:
+                    - button "Add" [disabled]
+                  - generic [ref=f3e62]:
+                    - button "Send" [disabled]
+              - generic [ref=f3e63]:
+                - generic [ref=f3e64]:
+                  - button "host" [ref=f3e65]
+                  - button "No branch" [ref=f3e67]
+                - 'button "Agent connection: Disconnected" [ref=f3e75]'
+          - paragraph [ref=f3e87]: Unsent drafts are auto-saved per conversation and restored when you come back.
+    - generic [ref=f3e88]:
+      - generic [ref=f3e89]:
+        - button "Quick actions" [ref=f3e90]
+        - button "3 conversations" [ref=f3e92]
+      - generic [ref=f3e95]:
+        - button "Add Command" [ref=f3e96]
+        - button "codeg-mcp service" [ref=f3e97]
+        - button "Alerts" [ref=f3e105]

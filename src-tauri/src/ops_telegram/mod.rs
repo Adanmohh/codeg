@@ -1,4 +1,4 @@
-//! Typed, opt-in email-review notices using the existing Telegram backend.
+//! Typed, opt-in email/issue review notices using the existing Telegram backend.
 //! Locator delivery never grants approval or changes work_task/ACP state.
 mod entity;
 pub mod types;
@@ -185,6 +185,7 @@ pub async fn status(
         .await?
         .into_iter()
         .map(|n| Notice {
+            action_kind: n.action_kind,
             proposal_id: n.proposal_id,
             task_id: n.task_id,
             run_seq: n.run_seq,
@@ -204,6 +205,7 @@ pub async fn status(
         channels,
         notices,
         configuration: row.map(|r| Configuration {
+            github_issues_enabled: r.github_issues_enabled,
             channel_id: r.channel_id,
             private_user_id: r.private_user_id,
             review_origin: r.review_origin,
@@ -233,6 +235,7 @@ pub async fn configure(
     let row = config::Model {
         account_id: op.account_id(),
         enabled: input.enabled,
+        github_issues_enabled: input.github_issues_enabled,
         channel_id: input.channel_id,
         private_user_id: input.private_user_id,
         channel_sha256: hash,
@@ -295,7 +298,7 @@ async fn claim(
             return Ok(None);
         }
     }
-    let Some(snapshot) = review::notice_snapshot(&txn, cfg.account_id, proposal_id).await? else {
+    let Some(snapshot) = snapshot(&txn, cfg, proposal_id).await? else {
         return Ok(None);
     };
     let now = Utc::now();
@@ -308,7 +311,7 @@ async fn claim(
         proposal_id: Set(snapshot.proposal_id),
         task_id: Set(snapshot.task_id),
         run_seq: Set(snapshot.run_seq),
-        action_kind: Set("email_reply".into()),
+        action_kind: Set(snapshot.kind),
         snapshot_sha256: Set(snapshot.sha256),
         config_revision: Set(cfg.revision.clone()),
         channel_id: Set(cfg.channel_id),
@@ -335,6 +338,46 @@ async fn config_matches<C: ConnectionTrait>(db: &C, cfg: &config::Model) -> Resu
             && channel_current(db, cfg).await?,
     )
 }
+struct Snapshot {
+    kind: ActionKind,
+    proposal_id: i32,
+    task_id: i32,
+    run_seq: i32,
+    sha256: String,
+}
+fn host_error(_: crate::ops_intake_host::types::HostError) -> DbError {
+    invalid("Issue review is unavailable; reload the current host queue")
+}
+async fn snapshot<C: ConnectionTrait>(
+    db: &C,
+    cfg: &config::Model,
+    id: i32,
+) -> Result<Option<Snapshot>, DbError> {
+    if let Some(s) = review::notice_snapshot(db, cfg.account_id, id).await? {
+        return Ok(Some(Snapshot {
+            kind: ActionKind::EmailReply,
+            proposal_id: s.proposal_id,
+            task_id: s.task_id,
+            run_seq: s.run_seq,
+            sha256: s.sha256,
+        }));
+    }
+    if !cfg.github_issues_enabled {
+        return Ok(None);
+    }
+    Ok(
+        crate::ops_intake_host::notice::snapshot(db, cfg.account_id, id)
+            .await
+            .map_err(host_error)?
+            .map(|s| Snapshot {
+                kind: ActionKind::GithubIssue,
+                proposal_id: s.proposal_id,
+                task_id: s.task_id,
+                run_seq: s.run_seq,
+                sha256: s.sha256,
+            }),
+    )
+}
 async fn live<C: ConnectionTrait>(db: &C, row: &notice::Model) -> Result<bool, DbError> {
     let Some(cfg) = config::Entity::find_by_id(row.account_id).one(db).await? else {
         return Ok(false);
@@ -348,11 +391,12 @@ async fn live<C: ConnectionTrait>(db: &C, row: &notice::Model) -> Result<bool, D
     {
         return Ok(false);
     }
-    Ok(review::notice_snapshot(db, row.account_id, row.proposal_id)
-        .await?
-        .is_some_and(|s| {
-            s.task_id == row.task_id && s.run_seq == row.run_seq && s.sha256 == row.snapshot_sha256
-        }))
+    Ok(snapshot(db, &cfg, row.proposal_id).await?.is_some_and(|s| {
+        s.kind == row.action_kind
+            && s.task_id == row.task_id
+            && s.run_seq == row.run_seq
+            && s.sha256 == row.snapshot_sha256
+    }))
 }
 async fn finish(
     db: &DatabaseConnection,
@@ -420,29 +464,50 @@ async fn scan_account(
     let Some(backend) = runtime.backend(cfg).await else {
         return Ok(());
     };
-    let candidates = ops_proposal::Entity::find()
+    let mut after = 0;
+    let mut attempted = 0;
+    loop {
+        let candidates = ops_proposal::Entity::find()
         .from_raw_sql(Statement::from_sql_and_values(
             db.get_database_backend(),
             "SELECT p.* FROM ops_proposal p
-         JOIN ops_reply_draft d ON d.id = json_extract(p.payload_json, '$.draftId')
+         LEFT JOIN ops_reply_draft d ON d.id = json_extract(CASE WHEN json_valid(p.payload_json) THEN p.payload_json ELSE '{}' END, '$.draftId')
          JOIN work_task t ON t.id = p.task_id JOIN folder f ON f.id = t.folder_id
          LEFT JOIN ops_telegram_notice n ON n.proposal_id = p.id
-         WHERE p.action_name = 'ops.email.reply' AND p.status = 'pending' AND d.account_id = ?
-         AND d.revision = json_extract(p.payload_json, '$.draftRevision')
+         WHERE p.id > ? AND p.status = 'pending' AND (
+           (p.action_name = 'ops.email.reply' AND d.account_id = ?
+            AND d.revision = json_extract(p.payload_json, '$.draftRevision'))
+           OR (? AND p.action_name = 'github.create_issue' AND EXISTS (
+             SELECT 1 FROM ops_intake_host_product hp
+             WHERE hp.account_id = ? AND hp.product_id = json_extract(CASE WHEN json_valid(p.payload_json) THEN p.payload_json ELSE '{}' END, '$.draft.source_ref.product_id'))))
          AND t.run_seq = p.run_seq AND t.status = 'awaiting_input' AND t.deleted_at IS NULL
          AND f.deleted_at IS NULL AND (n.id IS NULL OR n.status = 'preflight_failed'
          OR (n.status = 'checking' AND n.updated_at < ?)) ORDER BY p.id ASC LIMIT 20",
             [
+                after.into(),
+                cfg.account_id.into(),
+                cfg.github_issues_enabled.into(),
                 cfg.account_id.into(),
                 (Utc::now() - chrono::Duration::seconds(30)).into(),
             ],
         ))
         .all(db)
         .await?;
-    for p in candidates {
-        if let Some(row) = claim(db, cfg, p.id, claim_id).await? {
-            dispatch(db, cfg, &backend, &row).await?;
+        if candidates.is_empty() {
+            break;
         }
+        for p in candidates {
+            after = p.id;
+            if let Some(row) = claim(db, cfg, p.id, claim_id).await? {
+                dispatch(db, cfg, &backend, &row).await?;
+                attempted += 1;
+                if attempted == 20 {
+                    return Ok(());
+                }
+            }
+        }
+        // Keyset progression skips invalid/stale rows rather than letting the first
+        // 20 starve a later valid proposal. Both kinds share bounded_scan's deadline.
     }
     Ok(())
 }
@@ -520,6 +585,7 @@ pub async fn resolve(
     let unavailable = || Resolution {
         state: "unavailable",
         proposal: None,
+        issue: None,
     };
     if uuid::Uuid::parse_str(&input.notice)
         .ok()
@@ -536,6 +602,32 @@ pub async fn resolve(
     };
     if !matches!(row.status.as_str(), "sent" | "unknown" | "sending") || !live(db, &row).await? {
         return Ok(unavailable());
+    }
+    if row.action_kind == ActionKind::GithubIssue {
+        // Local writer ownership gives the projection one coherent snapshot;
+        // neither network nor credential access occurs inside this transaction.
+        let txn = writer(db, op.account_id()).await?;
+        if !live(&txn, &row).await? {
+            return Ok(unavailable());
+        }
+        let issue = crate::ops_intake_host::notice::projection(
+            &txn,
+            op,
+            row.proposal_id,
+            &row.snapshot_sha256,
+        )
+        .await
+        .map_err(host_error)?;
+        txn.commit().await?;
+        return Ok(Resolution {
+            state: if issue.is_some() {
+                "ready"
+            } else {
+                "unavailable"
+            },
+            proposal: None,
+            issue,
+        });
     }
     let proposal = review::get(
         db,
@@ -561,7 +653,31 @@ pub async fn resolve(
     Ok(Resolution {
         state: "ready",
         proposal: Some(proposal),
+        issue: None,
     })
+}
+
+/// An additional constraint on the existing human issue decision, never an
+/// authorization. Called again under the approval core's SQLite writer lock.
+pub(crate) async fn require_issue_notice<C: ConnectionTrait>(
+    db: &C,
+    account: i32,
+    id: &str,
+    proposal: i32,
+) -> Result<(), DbError> {
+    let row = notice::Entity::find_by_id(id)
+        .filter(notice::Column::AccountId.eq(account))
+        .filter(notice::Column::ProposalId.eq(proposal))
+        .one(db)
+        .await?
+        .ok_or_else(|| invalid("This issue review link is no longer current"))?;
+    if row.action_kind != ActionKind::GithubIssue
+        || !matches!(row.status.as_str(), "sent" | "unknown" | "sending")
+        || !live(db, &row).await?
+    {
+        return Err(invalid("This issue review link is no longer current"));
+    }
+    Ok(())
 }
 
 #[cfg(test)]

@@ -103,7 +103,7 @@ impl TelegramBackend {
     pub(crate) async fn send_ops_review_link(&self, link: &str) -> Result<String, OpsSendError> {
         let mut body = super::telegram_send_message_body(
             &self.chat_id,
-            &format!("An Ops reply is ready for review. Sign in to read the complete payload and decide.\n{link}"),
+            &format!("An Ops proposal is ready for review. Sign in to read the complete payload and decide.\n{link}"),
             None, None, None,
         ).map_err(|_| OpsSendError::Unavailable)?;
         body["link_preview_options"] = json!({"is_disabled": true});

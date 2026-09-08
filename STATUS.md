@@ -1,6 +1,6 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. P1 bridge/phone integration, final Design Studio fixes and combined native build remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. Typed P1 phone review is also accepted. Pi P1 bridge integration, final Design Studio fixes and combined native build remain.
 
 ## Current position
 
@@ -12,7 +12,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 reviewed and merged; independent 167 integrated Rust tests plus host/Python/frontend and protected CLI checks pass | Pi cached reads/proposal and typed phone integration |
-| Telegram and beta validation | PR #10 reviewed and merged; independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Typed P1 issue extension, final integrated beta/native checks |
+| Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
 | Final Design Studio loops | PR #13 shell/Pi corrections reviewed and merged; six scoped findings resolved | PR #14 locale/RTL/copy browser acceptance and final integrated review |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
@@ -322,3 +322,13 @@ that merge inspection. No product implementation is delegated to root.
 - PR #13 accepted at `0565f197df5754bf14fb37d0be3a13715c70e85c`, merged as `783bfb9cd9caf9546f6ef9effc067f5c904fc6be`. Six findings resolved; root reviewed full report/contrast/images and independently passed nine tests plus actual mobile menu/field CLI checks. Worker171 tests/lint/typecheck/build pass. [Review](reports/review-design-shell.md).
 - Tickets dispatched on new `feat/step3-pi-issues`, same worktree/tab/pane, report `reports/pi-issues.md`. Implements the three public scoped cached reads and closed native issue proposal through accepted host logic, real companion/adapter discovery, meaningful bridge gates and actual synthetic CLI review. Own4324/4325 output.
 - Approvals continues typed phone review; rebrand continues locale/RTL/receipt presentation validation. All three retain docs-first, immutable gh-api borrowing, Astra/max, isolated branches and no live provider/model actions. Root writes no product code.
+
+- PR #14 measured loop found selected light-row text at4.2 contrast; correction requested. Dark threading-field candidates require direct style/screenshot verification before deciding whether they are real failures or probe artifacts. Locale/RTL/no-send browser results are positive, but final design acceptance remains open.
+
+## Typed issue phone review accepted
+
+- PR #12 accepted at `71048a5a6f603476fcf29ef3440fa46f48421e20`, merged as `e9ddab88dfc45393aab68de52db8d3848b0bb891`. Full final report, attribution, hydration correction and worker gates reviewed. Worker178 Rust/21 frontend tests and both runtime checks/Clippy/typecheck/export pass; independent175 Rust tests at the earlier checkpoint remain separately attributed.
+- Root actual Playwright CLI on the final exported source passed protected login, complete evidence/payload review, confirmation across viewport changes, keyboard filing exactly once, unknown reconciliation without another create request, and used-link invalidation. [Review](reports/review-telegram-issues.md), [browser evidence](reports/browser-issue-independent/README.md).
+- Ops design correction and Pi P1 bridge workers continue; final combined Design Studio loop and rebuilt native app remain required. No live provider calls or root product changes.
+
+- Approvals dispatched to separate report-only `review/design-phase1`, same worktree/pane, deliverable `reports/design-phase1-specialist.md`. It will map BC1–18, run actual Design Studio methods and CLI on the accepted combined UI after PR14; no product edits or fourth worker. Root retains independent synthesis/fix coordination.

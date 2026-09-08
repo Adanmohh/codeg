@@ -171,7 +171,7 @@ pub async fn revoke_evidence(
     Ok(())
 }
 
-pub(super) async fn validate_bound<C: ConnectionTrait>(
+pub(crate) async fn validate_bound<C: ConnectionTrait>(
     conn: &C,
     prepared: &PreparedIssue,
 ) -> Result<RepositoryBinding, IntakeError> {

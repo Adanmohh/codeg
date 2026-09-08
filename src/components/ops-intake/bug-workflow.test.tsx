@@ -5,6 +5,8 @@ import { WorkbenchRouteProvider } from "@/contexts/workbench-route-context"
 import { useRemoteConnection } from "@/contexts/remote-connection-context"
 import { useTasksView } from "@/contexts/tasks-view-context"
 import { intake } from "@/lib/ops-intake/api"
+import { IssuePhoneCard } from "@/components/ops-telegram/issue-review"
+import { OpsSessionProvider } from "@/components/ops/session"
 import type {
   Detail,
   EvidenceField,
@@ -301,6 +303,82 @@ it("shows the whole issue and hands off exactly the confirmed payload once", asy
     d.draft.prepared,
     d.draft.prepared
   )
+})
+
+it("phone review uses the host card without a task controller and binds its exact decision to the notice (mocked facade)", async () => {
+  const d = prepared(detail())
+  const notice = "11111111-1111-4111-8111-111111111111"
+  vi.mocked(useTasksView).mockImplementation(() => {
+    throw new Error("The isolated phone page has no Tasks controller")
+  })
+  vi.mocked(intake.approve).mockImplementation(() => new Promise(() => {}))
+  render(
+    <OpsSessionProvider>
+      <IssuePhoneCard
+        notice={notice}
+        review={{ source, binding: product.binding, detail: d }}
+      />
+    </OpsSessionProvider>
+  )
+  await screen.findByRole("heading", { name: "Review GitHub issue" })
+  expect(screen.getByLabelText("Exact issue body")).toHaveTextContent(
+    d.draft.prepared!.outgoing.body
+  )
+  expect(
+    screen.getByRole("button", { name: "Save issue draft" })
+  ).toBeDisabled()
+  const approve = screen.getByRole("button", { name: "Approve and file issue" })
+  expect(approve).toBeDisabled()
+  fireEvent.click(screen.getByRole("checkbox"))
+  fireEvent.click(approve)
+  fireEvent.click(approve)
+  await waitFor(() => expect(intake.approve).toHaveBeenCalledTimes(1))
+  expect(intake.approve).toHaveBeenCalledWith(
+    source,
+    9,
+    d.draft.prepared,
+    d.draft.prepared,
+    notice
+  )
+})
+
+it("phone review preserves confirmation on layout remount and never enables filing for a changed repository (mocked facade)", async () => {
+  const d = prepared(detail())
+  const review = { source, binding: product.binding, detail: d }
+  const Phone = ({ mobile }: { mobile: boolean }) => (
+    <OpsSessionProvider>
+      {mobile ? (
+        <section>
+          <IssuePhoneCard notice="fixture-notice" review={review} />
+        </section>
+      ) : (
+        <div>
+          <IssuePhoneCard notice="fixture-notice" review={review} />
+        </div>
+      )}
+    </OpsSessionProvider>
+  )
+  const view = render(<Phone mobile={false} />)
+  await screen.findByRole("heading", { name: "Review GitHub issue" })
+  fireEvent.click(screen.getByRole("checkbox"))
+  view.rerender(<Phone mobile />)
+  await screen.findByRole("heading", { name: "Review GitHub issue" })
+  expect(screen.getByRole("checkbox")).toBeChecked()
+  vi.mocked(intake.status).mockResolvedValue({
+    products: [
+      { ...product, binding: { ...product.binding, installation_id: 8 } },
+    ],
+    folders: [],
+    adapter_installed: true,
+    in_app_available: false,
+  })
+  view.rerender(<Phone mobile={false} />)
+  await screen.findByRole("heading", { name: "Review GitHub issue" })
+  expect(
+    screen.getByRole("button", { name: "Approve and file issue" })
+  ).toBeDisabled()
+  expect(intake.approve).not.toHaveBeenCalled()
+  view.unmount()
 })
 it("stale and unknown receipts block filing while preserving a read-only reconciliation", async () => {
   const d = prepared(detail())
