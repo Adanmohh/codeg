@@ -1,9 +1,11 @@
 # Increment B — source-to-task interaction plan
 
-Docs-only worker: rebrand, branch **docs/business-intake-ui**, accepted main
-**4e64476c7ad9161a5e535b5c75f592716d3ca6e2**. Implementation awaits root's contract
-acceptance and dispatch. No B endpoint, provider connection or passing UI result
-is claimed by this plan.
+Docs-only worker: rebrand, branch **docs/business-intake-ui**, draft
+[PR26](https://github.com/Adanmohh/codeg/pull/26), accepted main
+**4e64476c7ad9161a5e535b5c75f592716d3ca6e2**. Early report checkpoint
+**99cecbac3e8eab1da6f977ec649d8c874e668ab9** is pushed. Implementation awaits
+root's contract acceptance and dispatch. No B endpoint, provider connection or
+passing UI result is claimed by this plan.
 
 Contract authority: tickets' [PR25 draft at
 79a922945668a633ea6b5f7e68f9bdc08a0725a3](https://github.com/Adanmohh/codeg/blob/79a922945668a633ea6b5f7e68f9bdc08a0725a3/docs/contracts/business-intake.md).
@@ -13,10 +15,16 @@ Read the complete local draft first, then verified identical bytes through
 Its operations remain proposed. The open wire questions below are requests to
 tickets/approvals, not alternate API definitions.
 
-Tickets' subsequent coordination note proposes an explicit serializable
-`PreparedTask` matching CreateInput's fields/defaults with resolved ownerId,
-plus `disclosure=fresh|metadata_only` and `hasPreparedDraft`. These are noted
-below as pending contract updates, not fields already present at 79a92294.
+Tickets' subsequent coordination proposes serializable `PreparedTask` with
+resolved ownerId, `disclosure=fresh|metadata_only`, `hasPreparedDraft`,
+`candidates/select`, `imports/list`, a redacted `CandidateDetail.decision`, and
+15-second advance / 12-second provider deadlines. These remedies are agreed for
+the interaction plan, pending an immutable contract update; they are not fields
+or routes already present at 79a92294.
+Root reviewed this plan and agreed the existing authorized task snapshot plus
+exact target revision/domain checks is sufficient for a text-free link. All four
+wire dependencies below remain **open against 79a92294**; conceptual agreement
+and an announced field are not immutable contract closure.
 
 ## Smallest useful B slice
 
@@ -51,7 +59,7 @@ it does not remove the contract's later email/Hafidh obligations.
 | Step | Visible content and direct action | Proposed contract operation |
 | --- | --- | --- |
 | 1. Sources | Permitted binding label/kind and truthful readiness. Show last observed date only when returned. Select a bounded, visibly UTC import window; “Import meetings” starts one explicit pull. | `readiness`, `sources/list`, `imports/start` |
-| 2. Import progress | “Reading meetings”, “Waiting to retry”, “Stopped” or “Finished this window”; counts describe this import only. Human can stop/resume, inspect failed records when authorized and open available sources. | `imports/get`, `imports/advance`, `imports/cancel`; durable rediscovery needs Q3 |
+| 2. Import progress | “Reading meetings”, “Waiting to retry”, “Stopped” or “Finished this window”; counts describe this import only. Human can stop/resume, see a safe failure/retry state and open available sources. | `imports/get`, `imports/advance`, `imports/cancel`; durable rediscovery needs Q3 |
 | 3. Read source | Show source title, observed/local version, access state and a separate private-source notice. Read complete returned plain-text passage blocks. Optional sentence position/time appears only when present and valid. | `sources/get`; explicit record refresh through `imports/start` |
 | 4. Select evidence | Checkbox selection of exact server passages, with selected count and readable selected text. At least one, at most 20 passages / 20,000 combined characters, all from one source version. Reject excess with an explanation; never silently truncate. | `candidates/list/get/create`; send passage IDs, never caller quotations or proof |
 | 5. Save private draft | Existing title/outcome/domain/priority/calendar-date/responsibility fields. A separate source column remains visibly private. “Save private draft” returns the normalized exact draft for review. | `candidates/edit`, using the candidate and source revisions |
@@ -100,7 +108,9 @@ Freeze the authorized existing tasks/get Detail as a local review snapshot;
 changing target or receiving 409 clears confirmation. No private draft text is
 published by link, and its domain must not silently replace the chosen target
 domain. The remaining wire need is saving/rebasing passage selection when
-PreparedTask is null, without creating a fictitious new-task draft.
+PreparedTask is null, without creating a fictitious new-task draft. Tickets'
+proposed `candidates/select` serves that need if it checks both expected revisions,
+retains the nullable draft and requires fresh passage review/confirmation.
 
 **Discard:** distinguish “Discard candidate” (durable terminal decision, no task,
 source/history retained, identical reimport does not seed it again) from “Discard
@@ -153,38 +163,41 @@ not a claim that a new intake component/helper already exists.
 | `src/components/business/{work-list,activity,preferences}.tsx`, `src/lib/business/{copy,presentation}.ts` | Retain list/board/task review, public-only activity, EN/AR copy, existing themes/fonts and literal DueDay presentation. Source links need an explicitly safe display, not raw activity JSON. |
 | `src-tauri/src/business_tasks/{store,policy}.rs` | Read-only verification: create currently owns/commits its transaction; edit capability and task visibility already exist. Tickets must extract an internal transaction-aware create/link seam. UI must never sequence ordinary create then source-link as separate writes. |
 
-## DTO coordination — outstanding against PR25 at 79a92294
+## DTO coordination — exact closure status
 
 These are small contract-completion requests, not requests for scope or money.
 Implementation waits for root acceptance; this docs task can finish with explicit
 unresolved dependencies. Backend responses remain the authority.
+Root requires all four to close in the immutable B contract before implementation.
 
-1. **Tickets + approvals: capabilities/setup.** Specify the actual
+1. **Q1 — open, tickets + approvals: capabilities/setup.** Specify the actual
    BindingSummary.readiness/capabilities and Candidate.capabilities keys, allowed
    publication domains and safe access-valid-until/disclosure state. Pin the
    smallest protected binding, initial source-owner grant and publication-purpose
    setup route/result with actual-operator authority. A member role or an empty
    binding list cannot determine setup authority or grant a publication domain.
-2. **Tickets + approvals: explicit rebase.** Does candidates/edit with the current
-   expectedSourceRevision and newly selected passage IDs clear requiresRebase?
-   What current/base passages and draft are available after fresh revalidation,
-   and what is withheld in list/get while stale? Define the revision transition,
-   safe old-version disclosure and suggestion origin before UI compares them.
-   Tickets proposes PreparedTask, disclosure and hasPreparedDraft; pin these in
-   the next immutable contract. Also specify a null-draft passage selection/rebase
-   path for link. Existing authorized task detail plus final target CAS is enough
-   for a text-free link preview; no additional durable preview entity is requested.
-3. **Tickets: durable rediscovery/decision result.** The proposed imports/get
+2. **Q2 — remedy agreed, awaiting pin: explicit rebase/disclosure.** Tickets
+   proposes candidates/select for passage-only rebase with nullable PreparedTask
+   retained, disclosure=fresh|metadata_only and hasPreparedDraft. Pin the closed
+   inputs, candidate/source CAS, requiresRebase transition and permitted current/
+   base content before implementation. Stale content must be withheld in both
+   list and detail. Existing authorized task detail plus final target CAS is
+   agreed sufficient for text-free link review; no extra durable preview entity.
+3. **Q3 — remedy agreed, awaiting pin: durable rediscovery/result.** Original imports/get
    needs an importId but no list/resume discovery is defined. CandidateDetail
    lacks the terminal Decision/task link needed after a lost accept response or
-   reload without its in-memory operationId. Add a protected status/result seam,
-   including how inaccessible destinations are redacted; do not require guessing
-   IDs, ordinary task creation or replay under a different human.
-4. **Tickets + UI: timing/error contract.** Existing BusinessClient aborts at
+   reload without its in-memory operationId. Tickets proposes grant-scoped
+   imports/list and CandidateDetail.decision. Pin current authorization, pagination
+   and redaction of inaccessible task IDs/revisions as well as labels. These are
+   status/result recovery, not takeover or replay under another human. No guessed
+   ID, ordinary task creation or new operation key to recover an uncertain accept.
+4. **Q4 — remedy agreed, awaiting pin: timing/error contract.** Existing BusinessClient aborts at
    20 seconds and collapses safe errors to eight generic kinds; draft advance may
-   await a 30-second provider read. Agree one bounded advance/client deadline and
-   closed safe intake reasons, preserving all existing task/auth behavior. No
-   global timeout increase or raw provider-error rendering by inference.
+   await a 30-second provider read at 79a92294. Tickets proposes a 15-second whole
+   advance/core bound and 12-second provider read, keeping the existing client
+   unchanged. Safe allowlisted intake reasons layer on its generic error kinds
+   for intake only. No objection; pin these limits/reasons and retain durable
+   reconciliation for late/lost responses. No global timeout or raw error change.
 
 Email/Hafidh also need the contract's protected mapping and pure projections
 before capture entry points. Public email message selection must exclude private
@@ -194,6 +207,13 @@ freshness/evidence. Existing issue filing, email sends and receipt floors remain
 separate. Their unavailable controls are explained rather than simulated.
 
 ## Later acceptance gates — planned, not run here
+
+Read root's full [BI-1–BI-10 acceptance plan at
+650be3025c25386649bc906f6bed335abafcb011](https://github.com/Adanmohh/codeg/blob/650be3025c25386649bc906f6bed335abafcb011/reports/business-intake-acceptance-checklist.md)
+via gh api. It supplements PR25's B01–B18, including protected usable setup,
+credential-store/database failure and rebind boundaries, two-session privacy,
+durable claims and final integrated artifact correlation. The UI checks below
+implement that acceptance plan; they do not replace its backend or native gates.
 
 Use two named Playwright CLI sessions against a guarded synthetic backend with
 real protected APIs, a separate agreed port/export and labelled synthetic source
@@ -245,6 +265,9 @@ Local React 19.2.4 / Next 16.1.6 and existing controlled form/session components
 ground the reuse plan. Design Studio checklist methods were read locally;
 generic localStorage/visual-motion advice does not override private in-memory
 state or this bounded planning scope.
+Live docs-first PreToolUse and PostToolUse records for this worktree/session
+01a07c1c-cf2e-73e1-bbe3-e758c8363042 were read at timestamps
+1788889500/1788889589, both exit 0. Hooks remain enabled.
 
 Approved Codeg Apache-2.0 baseline is v0.30.4,
 **6f6bd648b206412644842a98d9ffeebf57292bed**; future composition will cite the
@@ -261,4 +284,6 @@ contract read exited 0. No product tests/builds, UI export, browser/native run,
 provider call, configuration, credential, new dependency or other-worktree write.
 All prior outputs/fixtures remain untouched. The paused visual report stays
 untracked and the ignored research checkpoint stays preserved. Only this report
-belongs to this branch's change. Draft PR/commit handoff follows the early push.
+belongs to this branch's change. `git diff --check` passes; no A gates were rerun.
+The docs-only early report/push and draft PR creation exited 0. Root retains
+review/merge authority; DTO completion remains with tickets/approvals.
