@@ -1,0 +1,750 @@
+[
+  {
+    "file": "01-before-light.json",
+    "theme": "light",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "documentWidth": 1440,
+    "samples": [
+      {
+        "text": "Folders",
+        "ratio": 3.71,
+        "fg": [
+          129.52941176470588,
+          129.52941176470588,
+          129.52941176470588
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 9.12,
+        "fg": [
+          69.48627450980392,
+          69.48627450980392,
+          69.48627450980392
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No conversations",
+        "ratio": 2.66,
+        "fg": [
+          155.23529411764707,
+          155.23529411764707,
+          155.23529411764707
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "Chat",
+        "ratio": 3.71,
+        "fg": [
+          129.52941176470588,
+          129.52941176470588,
+          129.52941176470588
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No chats",
+        "ratio": 2.66,
+        "fg": [
+          155.23529411764707,
+          155.23529411764707,
+          155.23529411764707
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "Recent",
+        "ratio": 3.71,
+        "fg": [
+          129.52941176470588,
+          129.52941176470588,
+          129.52941176470588
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No recent conversations",
+        "ratio": 2.66,
+        "fg": [
+          155.23529411764707,
+          155.23529411764707,
+          155.23529411764707
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 4.74,
+        "fg": [
+          115,
+          115,
+          115
+        ],
+        "bg": [
+          255,
+          255,
+          255
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+        "ratio": 4.42,
+        "fg": [
+          223,
+          34,
+          37
+        ],
+        "bg": [
+          253.01176470588234,
+          243.98823529411766,
+          243.98823529411766
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 4.74,
+        "fg": [
+          115,
+          115,
+          115
+        ],
+        "bg": [
+          255,
+          255,
+          255
+        ],
+        "sizePx": 12,
+        "weight": "500"
+      },
+      {
+        "text": "[status inherited text]",
+        "ratio": 4.35,
+        "fg": [
+          115,
+          115,
+          115
+        ],
+        "bg": [
+          245,
+          245,
+          245
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      }
+    ]
+  },
+  {
+    "file": "02-before-dark.json",
+    "theme": "dark",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "documentWidth": 1440,
+    "samples": [
+      {
+        "text": "Folders",
+        "ratio": 5.09,
+        "fg": [
+          136.44313725490196,
+          136.44313725490196,
+          136.44313725490196
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 9.96,
+        "fg": [
+          193.02745098039216,
+          193.02745098039216,
+          193.02745098039216
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No conversations",
+        "ratio": 4.05,
+        "fg": [
+          119.87058823529411,
+          119.87058823529411,
+          119.87058823529411
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "Chat",
+        "ratio": 5.09,
+        "fg": [
+          136.44313725490196,
+          136.44313725490196,
+          136.44313725490196
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No chats",
+        "ratio": 4.05,
+        "fg": [
+          119.87058823529411,
+          119.87058823529411,
+          119.87058823529411
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "Recent",
+        "ratio": 5.09,
+        "fg": [
+          136.44313725490196,
+          136.44313725490196,
+          136.44313725490196
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No recent conversations",
+        "ratio": 4.05,
+        "fg": [
+          119.87058823529411,
+          119.87058823529411,
+          119.87058823529411
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 7.66,
+        "fg": [
+          161,
+          161,
+          161
+        ],
+        "bg": [
+          10,
+          10,
+          10
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+        "ratio": 4.57,
+        "fg": [
+          208.49803921568628,
+          82.89725490196078,
+          84.49725490196079
+        ],
+        "bg": [
+          22.490196078431374,
+          14.486274509803922,
+          14.486274509803922
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 7.66,
+        "fg": [
+          161,
+          161,
+          161
+        ],
+        "bg": [
+          10,
+          10,
+          10
+        ],
+        "sizePx": 12,
+        "weight": "500"
+      },
+      {
+        "text": "[status inherited text]",
+        "ratio": 5.86,
+        "fg": [
+          161,
+          161,
+          161
+        ],
+        "bg": [
+          38,
+          38,
+          38
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      }
+    ]
+  },
+  {
+    "file": "05-after-light.json",
+    "theme": "light",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "documentWidth": 1440,
+    "samples": [
+      {
+        "text": "Folders",
+        "ratio": 7.54,
+        "fg": [
+          81.5294117647059,
+          81.5294117647059,
+          81.5294117647059
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 9.12,
+        "fg": [
+          69.48627450980392,
+          69.48627450980392,
+          69.48627450980392
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No conversations",
+        "ratio": 7.54,
+        "fg": [
+          81.5294117647059,
+          81.5294117647059,
+          81.5294117647059
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "Chat",
+        "ratio": 7.54,
+        "fg": [
+          81.5294117647059,
+          81.5294117647059,
+          81.5294117647059
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No chats",
+        "ratio": 7.54,
+        "fg": [
+          81.5294117647059,
+          81.5294117647059,
+          81.5294117647059
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "Recent",
+        "ratio": 7.54,
+        "fg": [
+          81.5294117647059,
+          81.5294117647059,
+          81.5294117647059
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No recent conversations",
+        "ratio": 7.54,
+        "fg": [
+          81.5294117647059,
+          81.5294117647059,
+          81.5294117647059
+        ],
+        "bg": [
+          250,
+          250,
+          250
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 4.74,
+        "fg": [
+          115,
+          115,
+          115
+        ],
+        "bg": [
+          255,
+          255,
+          255
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+        "ratio": 18.31,
+        "fg": [
+          10,
+          10,
+          10
+        ],
+        "bg": [
+          253.01176470588234,
+          243.98823529411766,
+          243.98823529411766
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 4.74,
+        "fg": [
+          115,
+          115,
+          115
+        ],
+        "bg": [
+          255,
+          255,
+          255
+        ],
+        "sizePx": 12,
+        "weight": "500"
+      },
+      {
+        "text": "[status inherited text]",
+        "ratio": 8.9,
+        "fg": [
+          68.23137254901961,
+          68.23137254901961,
+          68.23137254901961
+        ],
+        "bg": [
+          245,
+          245,
+          245
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      }
+    ]
+  },
+  {
+    "file": "12-after-dark.json",
+    "theme": "dark",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "documentWidth": 1440,
+    "samples": [
+      {
+        "text": "Folders",
+        "ratio": 8.81,
+        "fg": [
+          181.64313725490194,
+          181.64313725490194,
+          181.64313725490194
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 9.96,
+        "fg": [
+          193.02745098039216,
+          193.02745098039216,
+          193.02745098039216
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No conversations",
+        "ratio": 8.81,
+        "fg": [
+          181.64313725490194,
+          181.64313725490194,
+          181.64313725490194
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "Chat",
+        "ratio": 8.81,
+        "fg": [
+          181.64313725490194,
+          181.64313725490194,
+          181.64313725490194
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No chats",
+        "ratio": 8.81,
+        "fg": [
+          181.64313725490194,
+          181.64313725490194,
+          181.64313725490194
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "Recent",
+        "ratio": 8.81,
+        "fg": [
+          181.64313725490194,
+          181.64313725490194,
+          181.64313725490194
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "No recent conversations",
+        "ratio": 8.81,
+        "fg": [
+          181.64313725490194,
+          181.64313725490194,
+          181.64313725490194
+        ],
+        "bg": [
+          23,
+          23,
+          23
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 7.66,
+        "fg": [
+          161,
+          161,
+          161
+        ],
+        "bg": [
+          10,
+          10,
+          10
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted.",
+        "ratio": 18.17,
+        "fg": [
+          250,
+          250,
+          250
+        ],
+        "bg": [
+          22.490196078431374,
+          14.486274509803922,
+          14.486274509803922
+        ],
+        "sizePx": 14,
+        "weight": "400"
+      },
+      {
+        "text": "fresh-desk-workspace",
+        "ratio": 7.66,
+        "fg": [
+          161,
+          161,
+          161
+        ],
+        "bg": [
+          10,
+          10,
+          10
+        ],
+        "sizePx": 12,
+        "weight": "500"
+      },
+      {
+        "text": "[status inherited text]",
+        "ratio": 8.75,
+        "fg": [
+          196.7921568627451,
+          196.7921568627451,
+          196.7921568627451
+        ],
+        "bg": [
+          38,
+          38,
+          38
+        ],
+        "sizePx": 12,
+        "weight": "400"
+      }
+    ]
+  }
+]
