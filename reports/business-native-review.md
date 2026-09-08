@@ -1,0 +1,71 @@
+# Business native acceptance review — 2026-09-08
+
+**Checkpoint: N1 blocks final native acceptance at PR21 `0192ac3f33dff82fae424bd30b797b14044f4197`. Root accepted the finding and assigned the correction to rebrand.** Native command registration/schema review found no mismatch in the 22 business operations. The extra bundled `codeg-server` is explained by the pinned Tauri CLI's Cargo binary discovery; `externalBin` is not the complete executable inventory. No product edit, build, artifact mutation or native execution was performed in this review.
+
+Reviewer/worktree: tickets, `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`. Report branch: `review/business-integration-regressions`, starting at report commit `8af5d0f8f10302d2fbde4e60d8b92d03b079ce17`. Accepted product baseline: `294fb634b1833ebb13c4223484624e595598235b`, including PR22 merge `5541857a125678dfb604f542693d9c82dfe5441e`. Reviewed PR21 source through immutable `git show`; `git diff 294fb634..0192ac3f -- src-tauri` is empty. The review remains independent of rebrand's pending correction and root's bundle preparation.
+
+## N1 — P2: native startup bypasses the business entry
+
+- **Source:** `src-tauri/src/lib.rs:988–990` at `0192ac3f` creates `main` with `WebviewUrl::App("workspace".into())`; `src-tauri/tauri.conf.json:13` configures an empty window list. `src/app/workspace/page.tsx:6` renders `ConversationDetailPanel`; its inherited layout mounts the engineering workspace providers. PR21's `src/app/page.tsx:10` redirect to `/business` only runs when `/` is loaded.
+- **Reproducible trigger:** normal fresh desktop startup, with no already-created `main` window. The explicit native URL loads `/workspace`, so the root-page redirect is bypassed. This is an exact-source conclusion, not a new runtime reproduction.
+- **Impact:** the native app starts in the legacy engineering workspace instead of the accepted business entry and its isolated connection flow.
+- **Required correction:** create the fresh main window at the business entry; retain explicit engineering navigation. Recheck the final packaged native startup, including the local-owner and shared-member choices.
+- **Boundary:** tray/dock restoration is not another fresh-window creation path: `commands/windows.rs:1975` calls `show_and_focus_window`; lines 850–856 only show/focus/unminimize the existing window and preserve its route.
+- **Status:** root accepted N1 as blocking final native acceptance and assigned the bounded PR21 correction to rebrand. Exact committed correction re-review is pending; this worker has changed no product source.
+
+## Native versus shared HTTP authority and DTO parity
+
+Read full PR21 `src/lib/business/{client,identity,tasks,route,presentation}.ts`, `src/components/business/connect.tsx`, the business page and accepted Rust business command wrappers/types/HTTP handlers. Source findings:
+
+| Boundary | Verified behavior |
+| --- | --- |
+| Explicit shared connection | `connect.tsx:101–106` submits `{kind:"http", address, token}` even when `isTauri()` is true. `client.ts:131–143` posts the member bearer to the selected `/api/business/...` origin with `{input}`, no cookies, cache, redirects or referrer. It does not automatically select the inherited Tauri/operator transport. |
+| Explicit native owner | `connect.tsx:157–164` exposes the local-desktop choice only under the native administrator disclosure. `client.ts:127–129` invokes a fixed registered command with `{input}`. Native wrappers derive `operator_principal` from managed `AppDatabase`; no actor/role/delegation proof is accepted from JavaScript. The context/bootstrap exceptions use the same trusted local store boundary. |
+| HTTP authority | `business_identity/http.rs:40–87,168–187` distinguishes the actual protected operator bearer from a resolved member credential, installs the private Principal, and nests task routes under that same business middleware. The UI's administrator checkbox changes a label, not server authority. Existing legacy routes retain their separate operator middleware. |
+| Lifecycle | Switching/disconnecting closes the prior client, empties its bearer and aborts HTTP requests; the business page's generation fence discards late responses. Native IPC is not cancelled by AbortController: late closed-client responses are rejected, but the 20-second HTTP timer does not abort an already-issued native command. This is a disclosed transport limit, not a claim of tested native cancellation. |
+| Cold business frontend | PR21's route guard returns before subscribing the legacy operator transport. Appearance/i18n use local preferences on business paths and skip inherited configuration reads, native language listeners and tray sync there. This does not disable the desktop backend's existing startup engines. |
+
+A read-only Python comparison of the fixed frontend map against `src-tauri/src/lib.rs:1567–1589` found **22 commands and 22 registrations, no missing or extra entry, exit 0**: nine identity operations and thirteen task operations, including link and protected source entrustment. `commands/mod.rs` exports both modules and desktop setup manages the initialized AppDatabase at `lib.rs:503–510` before window creation.
+
+Compared inputs/results individually: camelCase keys, UUID strings, nullable organization/member context, task owner/assignee/reviewer/due date and execution fields, six domains, five roles/status vocabulary, page/capabilities and revision fields agree. The frontend explicitly supplies create notes/priority/dueDate where Rust also permits defaults; this is compatible. Generic progress permits only `todo`, `in_progress`, `review`; accept/return remain the review command. All nonempty Rust input DTOs retain `deny_unknown_fields`; the native envelope is Tauri's argument map, while HTTP additionally denies unknown envelope keys. `business_context` declares no `input`, so its harmless extra `{input:{}}` is unused by the generated wrapper.
+
+Installed `@tauri-apps/api@2.10.1` `core.js/core.d.ts` confirms `invoke` and `isTauri`; installed `tauri@2.10.2/src/ipc/command.rs:61–109` reads each declared argument by key and deserializes its type. `tauri-macros@2.5.4/src/command/wrapper.rs:397–483` only extracts declared function arguments. Thus the reviewed `{input}` adapter reaches the same typed core without inventing an alternate identity constructor. Actual WebKit/invoke operation execution is still a final native gate.
+
+The server's inherited CORS layer allows origins/methods/headers (`web/router.rs:27–30,1778`), and the native config has no CSP that statically blocks the chosen HTTP/HTTPS origin. This removes a source-level preflight mismatch; it does not establish WebKit network/TLS behavior. Installed `tauri@2.10.2/src/webview/mod.rs:1776–1829` checks command ACLs for plugins or an explicit application ACL manifest. This project uses default `tauri_build::build()` and has no tracked app-permissions manifest; pinned `tauri-build@2.5.5/src/acl.rs:400–413` omits an empty app manifest. The absence of per-command names in `capabilities/default.json` is therefore not a missing native registration. Local native authority remains the inherited trusted single-user desktop, not an OS sandbox for shared members.
+
+## Why the bundle includes codeg-server; refresh and companion caveat
+
+Local authority: full `src-tauri/Cargo.toml`, `tauri.conf.json`, `build.rs`, `scripts/prepare-sidecars.mjs`; package scripts, relevant release source and installed CLI help. Cargo explicitly declares `codeg`, `codeg-server` and `codeg-mcp`; `default-run="codeg"` chooses the main executable. `codeg-server` and `codeg-mcp` have no required feature gate. Only the companion is in `externalBin`.
+
+Official source was resolved using **gh api only**, from installed `@tauri-apps/cli@2.10.0`: `tauri-apps/tauri` tag `tauri-cli-v2.10.0` → **`8d67af37b6d3fc0aedaab58549b1bca5b34fda19`** ([immutable source tree](https://github.com/tauri-apps/tauri/tree/8d67af37b6d3fc0aedaab58549b1bca5b34fda19)). Exact inspected files:
+
+| Official file at that commit | Immutable blob / decisive behavior |
+| --- | --- |
+| `crates/tauri-cli/src/interface/rust.rs` | `c4c339e697d61aa4f76b3b719954bd7b644f493c`; lines 483–489 add `--bins`; 927–1014 discover Cargo binaries and mark the main one. |
+| `crates/tauri-cli/src/interface/mod.rs` | `683d29ebaf34221d4e0483df0f054a6b77bcdc49`; lines 63–74 pass the entire discovered list and output directory to the bundler. |
+| `crates/tauri-cli/src/interface/rust/desktop.rs` | `ddde0a4f0a448941df8212bdf6b2ae1bccc75c09`; runs Cargo build, debug/release and requested target. |
+| `crates/tauri-cli/src/build.rs` | `627fd763ac9075cfbaaa55d6414877fe57be3e30`; lines 118–135 build successfully before bundling. |
+| `crates/tauri-cli/src/bundle.rs` | `4d3637ab58ba35d91444df79668226d899dbbb30`; standalone bundle command packages existing outputs and does not perform that build. |
+| `crates/tauri-bundler/src/bundle/macos/app.rs` | `703973c2b75aed50020f2b81f5b6045576884c69`; lines 67–73 remove/recreate the old app; 91–104 copy external binaries before Cargo binaries; 158–171 copy each Cargo output into `Contents/MacOS`. |
+| `crates/tauri-bundler/src/bundle/settings.rs` | `71321b2937bae3cf5a60dc8d1fa2cc0b334ce7f2`; lines 901–931 retain both lists; 1011–1028 resolve Cargo output paths; 1127–1142 strip the external target suffix. |
+| `crates/tauri-bundler/src/utils/fs_utils.rs` | `7527e6331888d702e1bfa93cbc5d2cf1c2aad489`; `copy_file` uses replacing `fs::copy`, with no skip-if-existing rule. |
+
+**Server conclusion:** bundling `codeg-server` is the expected automatic consequence of declaring a supported Cargo binary under this CLI, rather than a stale file left inside the previous app. The config does not explicitly designate it as a launched desktop sidecar. A successful ordinary `tauri build` builds/checks all binary targets for the selected profile/target, then recreates the app and copies the corresponding current `codeg-server` output. `tauri bundle` alone, a main-binary-only manual build, or copying the previous app does not establish that refresh. Root should record the final build command/commit/profile/target and hash all three final executables against their corresponding completed build outputs.
+
+**Companion caveat:** the configured `codeg-mcp-<triple>` is copied first, then the Cargo `codeg-mcp` at the same final basename is copied over it. Separately, installed **tauri-build@2.5.5** `src/lib.rs:56–84,519–533` also removes/replaces `<profile>/codeg-mcp` with the staged external file during build-script execution. Consequently a prior sidecar-stage hash alone cannot certify the final bundled companion; inspect/hash the completed profile output and final `MacOS/codeg-mcp` after all default-feature compilation. This explains the known owned-output collision without claiming a new observed final-bundle failure. Do not run competing builds/process fixtures in that output directory.
+
+The preparation script builds a real release companion with `--no-default-features` and stages it; `CODEG_SKIP_SIDECAR=1` skips that protection. Project `build.rs` permits a zero-byte staged placeholder for check-only workflows. File presence/executable bit is therefore insufficient acceptance evidence. No companion or server artifact was touched or executed by this reviewer.
+
+## Launch and runtime acceptance limits
+
+`acp/connection.rs:4306–4369` resolves an explicit `CODEG_MCP_BIN`, then the sibling of the current executable, then PATH; a normal app uses `Contents/MacOS/codeg-mcp`. It checks executable-file eligibility, not content identity. Pi requires the delegation bridge, writes per-launch assets, probes the installed Pi/model catalogue without inference, and binds the parent token; `acp/pi_desk.rs` removes the operator bearer from the probe and retains the scoped launch environment. Existing accepted extracted-assets/process evidence is not evidence that the newly packaged executable has passed.
+
+Still required from root's final artifact run: corrected cold native `/business` entry; actual explicit native owner context/bootstrap/task mutation through registered IPC; explicit shared HTTP member connection inside WebKit remaining separate from local owner authority; intended engineering navigation/restoration; final app/companion/server hashes and companion protocol discovery. Native startup retains inherited backend automation/task-engine initialization and optional saved embedded-web-server startup; isolated synthetic/no-engine data and guards remain necessary for that run. This worker launched no engine, browser, provider or sidecar and did not repeat accepted unit/frontend/Clippy/build suites. Prior BW-17's 312 passes remain in `business-integration-regressions.md`, not new native evidence.
+
+## Docs-first, attribution and checkpoint evidence
+
+Read the current project workorder/instructions and applied code-context with the existing rag-skills venv and `HF_HUB_OFFLINE=1`; installed-doc corpus query exits 3 because `tickets.db` is absent. No installation/ingestion or invented coverage. Direct installed package/source reads supply the version pins above; React is 19.2.4. Live own-session audit `01a07c1c-d82f-7022-84db-778a438632f1` records PreToolUse and PostToolUse at `1788882773`, tool Bash, correct worktree, exit 0; hooks remained enabled.
+
+Official Tauri files carry Apache-2.0/MIT headers; inspected root `LICENSE_MIT` blob `b08530d59433b3060f4fad8751ac2610c0b0aff3` at the same commit. This is source analysis only, with no third-party implementation port or NOTICE/LICENSE change. Existing Codeg/IntroMail attribution remains untouched. Read-only `git show`, exact-ref gh-api source retrieval and the 22-entry comparison exited 0; discovery had a few nonexistent-path/no-match probes, corrected through `rg --files` and exact tree listings. No passing runtime result is inferred from source reads or help output.
+
+Only this report is being added. Paused untracked `reports/visual-correspondence.md`, existing outputs and all other worktrees/fixtures remain untouched. Commit/push checkpoint will be provided to root; exact N1 correction review will be appended when its immutable commit is supplied.
