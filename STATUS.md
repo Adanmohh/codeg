@@ -1,6 +1,10 @@
 # Status — 2026-09-08
 
-**Implementation paused for product ideation; source comparison complete.** Phase 1 functional implementation and prior local validation are complete. Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
+**Implementation resumed: visual-first shared business workspace.** Phase 1 functional implementation and prior local validation are complete. Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
+
+## Autonomous implementation — resumed
+
+Owner requests best assumptions and delivery; conversation is optional. [Implementation scope and sequence](docs/BUSINESS-IMPLEMENTATION.md): shared member identity/permissions and business tasks first, visual role-based work surfaces, then meeting/feedback ingestion and business adapters. Existing engineering tools remain supporting capabilities. Three fresh worker assignments are being dispatched; previous visual work is preserved.
 
 ## Research during ideation
 

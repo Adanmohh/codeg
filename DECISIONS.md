@@ -73,3 +73,7 @@ Owner confirms engineering is necessary but must not be the main hero. Business 
 ## 2026-09-08 — Business domains and shared human/agent work
 
 Owner explicitly adds marketing, channels, ads import/management, website and feedback, with engineering features backing them. Tasks must support humans and agents across both domains. Record target structure and gaps in docs/BUSINESS-WORKSPACE.md; reuse the existing task engine and approval seam after a schema audit, not a parallel business-task engine. Current visual workers continue their bounded real-surface refresh. Broader integrations and workflow additions will be separate reviewed tasks; no fake dashboard metrics or empty module claims.
+
+## 2026-09-08 — Autonomous business-workspace implementation resumed
+
+Owner instructs best assumptions and delivery; talking is only nice to have. Adopt a visual-first workspace with optional conversation. Implement shared organization identity/permissions and human-agent business tasks on the existing Rust core before expanding meeting/business adapters. Preserve the engineering executor as supporting capability and restricted-member isolation from legacy operator routes. Exact scope, sequence and worker ownership: docs/BUSINESS-IMPLEMENTATION.md. No new heavyweight workflow runtime or live action is implied.
