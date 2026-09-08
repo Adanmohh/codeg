@@ -880,3 +880,15 @@ Testing Library16.3.2 and Vitest2.1.9 are API references only. Existing
 locked axum0.8.8, SeaORM1.1.19, Tokio1.49.0 and tempfile3.24.0 fixture
 calls are retained; no dependency, vendor or third-party code is ported.
 Original Apache-2.0 LICENSE and all preceding attribution remain intact.
+
+Business workbench pane-width layout correction (2026):
+Adapts the Apache-2.0 Codeg container-query pattern in
+src/components/conversations/session-details-content.tsx at
+Adanmohh/codeg a40b03393a466672060066ae6e0e8c9054a2349d to the existing
+business/work-list.tsx, business/task-form.tsx and business-intake/{workspace,
+source-review}.tsx surfaces. Columns now follow the available pane width,
+including the unchanged split-pane geometry, instead of the outer viewport.
+Installed Tailwind CSS4.1.18 manifest/source and the accepted @container /
+@[20rem] source pattern are the API authority. No dependency source, new
+runtime or AGPL/GPL code is ported. Original Apache-2.0 LICENSE and every
+preceding attribution section remain intact.

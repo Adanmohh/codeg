@@ -141,10 +141,10 @@ export function WorkList({
       </div>
     )
   return (
-    <div className="border-border overflow-hidden rounded-2xl border bg-card">
+    <div className="@container border-border overflow-hidden rounded-2xl border bg-card">
       <div
         aria-hidden="true"
-        className="text-muted-foreground bg-muted/30 hidden grid-cols-[minmax(0,1fr)_200px_140px] gap-5 border-b px-6 py-3 text-xs lg:grid"
+        className="text-muted-foreground bg-muted/30 hidden grid-cols-[minmax(0,1fr)_200px_140px] gap-5 border-b px-6 py-3 text-xs @[48rem]:grid"
       >
         <span>{copy.taskTitle}</span>
         <span>{copy.assignment}</span>
@@ -156,7 +156,7 @@ export function WorkList({
             <button
               type="button"
               onClick={() => onOpen(task.key)}
-              className="group hover:bg-muted/40 focus-visible:ring-ring grid w-full min-w-0 gap-4 px-4 py-5 text-start outline-none focus-visible:ring-2 focus-visible:ring-inset sm:px-6 lg:grid-cols-[minmax(0,1fr)_200px_140px] lg:items-center lg:gap-5"
+              className="group hover:bg-muted/40 focus-visible:ring-ring grid w-full min-w-0 gap-4 px-4 py-5 text-start outline-none focus-visible:ring-2 focus-visible:ring-inset @[30rem]:px-6 @[48rem]:grid-cols-[minmax(0,1fr)_200px_140px] @[48rem]:items-center @[48rem]:gap-5"
             >
               <div className="min-w-0">
                 <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-2">

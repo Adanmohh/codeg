@@ -212,7 +212,11 @@ export function SourcesWorkspace({
       })
   }
   return (
-    <div hidden={!active} className="space-y-7" data-business-sources>
+    <div
+      hidden={!active}
+      className="@container space-y-7"
+      data-business-sources
+    >
       {sourceId && binding ? (
         <SourceReview
           key={`${binding.binding.id}:${sourceId}`}
@@ -348,7 +352,7 @@ export function SourcesWorkspace({
                   {copy.contactOperator}
                 </p>
               )}
-              <div className="grid min-w-0 gap-7 xl:grid-cols-[minmax(0,1.3fr)_minmax(20rem,0.7fr)]">
+              <div className="grid min-w-0 gap-7 @[50rem]:grid-cols-[minmax(0,1.3fr)_minmax(20rem,0.7fr)]">
                 <section
                   className="min-w-0 space-y-4"
                   aria-label={copy.sources}

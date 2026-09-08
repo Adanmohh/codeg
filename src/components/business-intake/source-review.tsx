@@ -221,7 +221,7 @@ export function SourceReview({
     !!source &&
     validPassages(source.passages, selected, source.source.revision)
   return (
-    <div className="space-y-6">
+    <div className="@container space-y-6">
       <Action variant="ghost" className="-ms-3" onClick={onBack}>
         <ArrowLeft className="size-4 rtl:rotate-180" aria-hidden />
         {copy.sources}
@@ -267,8 +267,8 @@ export function SourceReview({
       <div
         className={
           candidate
-            ? "grid min-w-0 gap-8 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
-            : "grid min-w-0 gap-8 xl:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]"
+            ? "grid min-w-0 gap-8 @[50rem]:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
+            : "grid min-w-0 gap-8 @[50rem]:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]"
         }
       >
         <div className="min-w-0 space-y-6">
