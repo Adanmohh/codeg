@@ -179,3 +179,60 @@ Temporary unused source/import/candidate consumers remain until the next slice
 Native runtime/checks, strict
 Clippy and all full B fences/atomic decisions remain pending. No manual fixture,
 browser, old target/export or accepted native bundle was changed.
+
+Compiling setup/reader source SHA: `67708b0768cae3cacecd0dd1989c57bb565ab5f0`
+(PR28). Shared with the frontend owner and independent reviewer.
+
+## Source/import checkpoint and new tenancy steering
+
+Source/import core now compiles: immutable normalized versions, explicit source-wide
+refresh fences, durable human-claimed imports, current-Principal revalidation after
+one read, and read-only source projections. Eight source/import HTTP operations use
+the existing authenticated Principal. Locked offline server check exited0,11.67s,
+log `check-imports.log`; runtime cases for this slice are pending. No complete B
+workflow or race acceptance is claimed. New native registrations are held for the
+published tenancy selection seam; existing setup registrations are preserved.
+
+Owner now requires true multitenancy and tenant-managed UI. Root/identity own that
+contract; this worker continues only tenant-neutral core taking the existing private
+Principal with explicit organization filtering. No new bootstrap/identity constructor,
+fallback or broad auth migration is being introduced. Existing B work is preserved.
+Precise seams to close, read at base086eee48/current67708b07:
+
+- `business_identity/store.rs:104,175` and migration000009: organization selection
+  and bootstrap use the singleton=1 row; `context` also loads that one organization.
+  This must become explicit authorized tenant selection/provisioning. Current
+  two-database foreign-member tests do not certify two tenants in one backend.
+- `business_identity/mod.rs` (`operator_principal`, `current_human`) and
+  `business_identity/http.rs`: protected operator bearer currently selects that
+  singleton owner. Native `commands/business_identity.rs`, `business_tasks.rs` and
+  `business_intake.rs` call this global owner seam. A server operator and a tenant
+  administrator need the new contract's explicit distinction; do not infer one
+  tenant or authorization from UI choice alone.
+- Existing member credentials already store organization/member lineage; all intake
+  writer calls use `begin_write(db, principal.organization_id())` and recheck that
+  Principal. Binding/grant/source/import/candidate/decision/link/receipt keys and
+  foreign keys carry organization IDs. Preserve those scoped checks and original
+  credential revocation when tenant selection changes.
+- `ops/mod.rs` still resolves a process-level CODEG_OPS_ACCOUNT_ID/default1 for
+  legacy operator transport. B member use does not call that constructor, but B
+  setup's verified-operator resolver currently consumes it. Tenant→legacy account/
+  inbox/product resolution must replace that global selection before multitenant
+  enablement. Existing `ops_intake_host_product` and repository bindings are also
+  global product IDs/account tuples; B's monotonic fence detects changes but does
+  not create tenant ownership for those legacy records.
+- The existing credential adapter is one OS-keyring/file store and process-local
+  writer lock. B keys have backend-generated unique references in an org-scoped
+  staged ledger, never caller refs. Tenant admin setup authority, provider resource
+  associations and shared-backend secret custody must be specified independently
+  of desktop local-owner credentials; UI theme/settings are not authorization.
+- `business_tasks/agent.rs` and `work_task/desk.rs:72` preserve reviewed separate
+  source entrustment, exact task/run/root/agent and original human delegation.
+  Engineering work_task/folder/engine indices remain legacy local resources without
+  native tenant ownership. A central tenant task must not acquire an arbitrary local
+  executor just from matching IDs, generic CLI type or a reconstructed operator.
+  B adds no agent source grant, task execution, privileged CLI or MCP authority.
+
+Per-tenant UI preferences/navigation are frontend/identity contract work, not B
+source permission. No global store, local filesystem or engine is claimed to be
+an OS/multi-tenant sandbox. No tenant migration or new framework is implemented here.

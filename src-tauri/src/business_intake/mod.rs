@@ -5,10 +5,12 @@ mod common;
 pub mod error;
 mod fireflies;
 pub(crate) mod http;
+mod imports;
 pub(crate) mod legacy;
 mod records;
 pub(crate) mod services;
 mod setup;
+mod sources;
 pub mod types;
 
 use crate::business_identity::Principal;
@@ -30,6 +32,19 @@ macro_rules! operation {
 }
 operation!(bindings_list, access::list, PageInput, BindingList);
 operation!(bindings_status, access::status, BindingInput, BindingView);
+operation!(sources_list, sources::list, BindingPageInput, SourcePage);
+operation!(sources_get, sources::get, SourceInput, SourceDetail);
+operation!(imports_start, imports::start, StartImportInput, Import);
+operation!(imports_capture, imports::capture, CaptureInput, Import);
+operation!(imports_list, imports::list, ImportsInput, ImportPage);
+operation!(imports_get, imports::get, ImportInput, Import);
+operation!(
+    imports_advance,
+    imports::advance,
+    ImportRevisionInput,
+    Import
+);
+operation!(imports_cancel, imports::cancel, ImportRevisionInput, Import);
 operation!(
     bindings_update,
     setup::update,

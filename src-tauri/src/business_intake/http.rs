@@ -56,6 +56,14 @@ handler!(bindings_disable, DisableBindingInput, BindingAdmin);
 handler!(grants_list, BindingPageInput, GrantPage);
 handler!(grants_upsert, UpsertGrantInput, GrantResult);
 handler!(grants_revoke, RevokeGrantInput, GrantResult);
+handler!(sources_list, BindingPageInput, SourcePage);
+handler!(sources_get, SourceInput, SourceDetail);
+handler!(imports_start, StartImportInput, Import);
+handler!(imports_capture, CaptureInput, Import);
+handler!(imports_list, ImportsInput, ImportPage);
+handler!(imports_get, ImportInput, Import);
+handler!(imports_advance, ImportRevisionInput, Import);
+handler!(imports_cancel, ImportRevisionInput, Import);
 async fn bindings_create(
     Extension(state): Extension<Arc<AppState>>,
     Extension(p): Extension<Principal>,
@@ -86,6 +94,14 @@ pub(crate) fn router() -> Router {
             .route("/bindings/disable", post(bindings_disable))
             .route("/grants/list", post(grants_list))
             .route("/grants/upsert", post(grants_upsert))
-            .route("/grants/revoke", post(grants_revoke)),
+            .route("/grants/revoke", post(grants_revoke))
+            .route("/sources/list", post(sources_list))
+            .route("/sources/get", post(sources_get))
+            .route("/imports/start", post(imports_start))
+            .route("/imports/capture", post(imports_capture))
+            .route("/imports/list", post(imports_list))
+            .route("/imports/get", post(imports_get))
+            .route("/imports/advance", post(imports_advance))
+            .route("/imports/cancel", post(imports_cancel)),
     )
 }

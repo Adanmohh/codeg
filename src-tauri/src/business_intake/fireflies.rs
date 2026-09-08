@@ -234,7 +234,7 @@ impl Normalized {
     pub fn digest(&self) -> common::Result<String> {
         // Fetch/health/status/expiry is not a provider content revision.
         common::digest(
-            &json!({"normalization":1,"title":self.title,"passages":self.passages,"content":self.content,"summary":self.summary}),
+            &json!({"normalization":1,"providerRevision":self.provider_revision,"title":self.title,"passages":self.passages,"content":self.content,"summary":self.summary}),
         )
     }
 }

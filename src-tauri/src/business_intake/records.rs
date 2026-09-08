@@ -67,6 +67,7 @@ pub(super) struct Source {
 #[derive(FromQueryResult)]
 pub(super) struct Version {
     pub digest: String,
+    pub provider_revision: Option<String>,
 }
 #[derive(FromQueryResult)]
 pub(super) struct Passage {
