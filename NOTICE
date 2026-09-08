@@ -617,3 +617,13 @@ migration m20260908_000009_business_identity.rs. The original Codeg LICENSE and
 all prior notices remain. rand0.8.5/rand_core0.6.4, sha2 0.10.9, base64 0.22.1,
 Axum0.8.8 and SeaORM1.1.19 were read as installed API references; no dependency
 implementation is copied and no dependency version changes.
+
+The ignored business identity loopback fixture adapts accepted
+src-tauri/src/ops_telegram/tests/issues_browser.rs at the same accepted Codeg
+4ec04d7282a50529335d724438d42b99a53385a2, blob
+c6a279e12b6cab0990583dadf46703b90aedfa7f, Apache-2.0: test-only AppState,
+in-memory database, real protected router and loopback listener. The new fixture
+adds a strict path guard and has no provider, scheduler or engine startup.
+reports/business-identity-evidence/browser-*.js is test orchestration glue using
+the installed Playwright CLI0.1.18 and Playwright1.63.0-alpha-2026-08-05 API;
+no Playwright implementation is copied and no packages are installed/upgraded.
