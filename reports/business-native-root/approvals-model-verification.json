@@ -1,0 +1,16 @@
+{
+  "sessionId": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+  "evidence": "local rollout turn_context metadata and current live footer/Herdr get",
+  "latest": {
+    "timestamp": "2026-09-08T17:34:55.878Z",
+    "model": "gpt-6-astra",
+    "effort": "max"
+  },
+  "recordedModels": [
+    "gpt-6-astra"
+  ],
+  "currentFooter": "gpt-6-astra max",
+  "currentHerdrQuotaModel": "gpt-6-astra",
+  "finding": "No Luna turn_context exists in this session record; current selection is Astra/max. No model reset performed.",
+  "limits": "A transient third-party quota label is not proof of a generated turn. Initial Sep7 contexts used Astra/medium before max activation; not every historical turn was max."
+}
