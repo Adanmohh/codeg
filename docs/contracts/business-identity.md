@@ -45,6 +45,8 @@ pub(crate) async fn operator_principal<C: ConnectionTrait>(
 
 `agent_principal` is trusted crate-only glue after business_tasks validates backend-derived parent/task/run linkage. It stores delegator authority for current rechecks and rejects agent-on-agent delegation. It is not an HTTP endpoint and not a substitute for the live execution/resource checks. `operator_principal` is callable only from verified legacy operator HTTP or native Tauri boundaries; never from serialized actor data or the agent bridge. Native business commands use this same core, preserving existing operator-only native access.
 
+Agent calls to `authorize` must provide the actual task domain (`Some(domain)`); domain-less agent reads fail closed. The task router's current planned export is `business_tasks::http::router()` with relative POST `/tasks/{list,get,create,update,assign,progress,note,submit,review,cancel,archive,link-execution}`. Tasks now define date-only `dueDate` in their own contract; identity timestamps remain RFC3339 instants.
+
 Persistence seam: at the authorized link transaction call crate-only `delegation_grant(&Principal) -> Result<DelegationGrant, IdentityError>` and store `grant.to_storage()?` in the backend-owned link. `DelegationGrant` has private fields, Serialize but no Deserialize or public constructor, and contains only org/member/credential IDs plus operator lineage, **no bearer**. Later, after the task module loads and verifies its exact live link/run, call crate-only `agent_principal_from_binding(conn, organization_id, agent_member_id, stored_grant: &str) -> Result<Principal, IdentityError>`. It checks original org, current human member, original credential revocation (or protected operator lineage) and current active agent. `authorize` then checks the current human/agent domain intersection on each operation. No request field may supply or replace stored_grant; no alternate principal constructor in tasks.
 
 ## Protected transport
@@ -72,6 +74,8 @@ All identity endpoints use POST JSON `{ "input": ... }`, camelCase DTOs and `den
 Errors use existing AppCommandError JSON: authentication_failed/401, permission_denied/403, not_found/404, invalid_input/400, stale revision uses already_exists/409 with stable `business.revisionConflict` i18n_key. DB failures return a safe generic database_error/500 without SQL/token details. Before bootstrap, non-context operations report configuration_missing with `business.bootstrapRequired`. Auth/identity responses use Cache-Control: no-store.
 
 Task router owner supplies its relative `/tasks` subtree for mounting beneath this same authenticated business boundary, with `Extension<Principal>` and existing `Extension<Arc<AppState>>`. No second auth system. Identity owner adds shared registrations sequentially when the task module is ready.
+
+The exact four-file [registration patch](business-tasks-registration.patch) is now supplied against task checkpoint `76bb6909` (identity base861fb0ef). It registers the task library/native modules, migration000010, the12 verified native commands and the task router **before** business authentication. `git apply --check` passes against the unchanged registry files in this identity worktree. The task worker applies/compiles it with its committed task source; PR23 does not import the unaccepted task module. This is patch-application evidence only until that combined compile runs.
 
 ## Provenance and limits
 
