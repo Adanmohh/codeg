@@ -1,0 +1,18 @@
+{
+  "source": "f3b408dae5c724f354763961d79a17a7ae5c86f8",
+  "original_blob_count": 731,
+  "baseline_mismatches": [],
+  "after_unchanged_original_blobs": 730,
+  "after_changed_original_blobs": [
+    {
+      "path": "src-tauri/src/business_identity/tests.rs",
+      "expected": "dde485c89805dae15986b6c7f01ffd3300bab8a1",
+      "actual": "18142e086c10ca95b56a4540f6a53a468e566552"
+    }
+  ],
+  "registration_change": "One test-only module line; no production change",
+  "added_test_path": "src-tauri/src/business_identity/tests/independent_review.rs",
+  "added_test_sha256": "f406841d2eaa31bb834e47efee7bf67a4ac08526036b173343f29758f247f602",
+  "added_test_matches_committed_report_file": true,
+  "production_mismatches": []
+}

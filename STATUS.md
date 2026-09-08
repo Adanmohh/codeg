@@ -1,5 +1,21 @@
 # Status — 2026-09-08
 
+Final bounded review `febbdc7f1b7cb5cb07dd6465fb4ffc32950350a4` is imported.
+At frozen `f3b408da`,16 unchanged tests plus four reviewer probes pass, with no
+additional blocker in migration/identity/settings core. Root verified the result
+SHA256 and all six artifact hashes and read both log outcomes. Cancellation,
+actual migration receipt retry, retained A task/history and settings races are
+covered within the report's limits. Raw evidence formatting is preserved.
+
+Follow-on PR30 source `29774b50aafc29658a2f48fab1f44d366ed2c8a0` is now
+assigned for focused independent review: platform/recovery/settings endpoints,
+unlinked-run epoch correction and native ACL/session preparation. Owner reports
+both runtime checks,42 business tests/2 ignored and two generated-ACL/session
+tests passing. Root read the report; these newer results are owner evidence.
+Restricted native tenant creation remains unavailable, explicitly reported false;
+MockRuntime ACL results do not close the channel-isolation gate. Final owner
+tests/Clippy, reviewer follow-on and B integration remain pending.
+
 Independent tenancy checkpoint `8d935c88` is read and imported:
 [review](reports/review-business-tenancy.md). Frozen `f3b408da` passes16 unchanged
 identity/auth tests, one manual fixture ignored, exit0/0.99s; reviewer reports

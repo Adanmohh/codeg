@@ -1,0 +1,506 @@
+//! Reviewer-only probes for f3b408da. Not compiled by the product worktree.
+//! Fixture patterns: Apache Codeg f3813e3f business_identity/tests/transactions.rs
+//! and db/test_helpers.rs. Installed SeaORM1.1.19/SQLx0.8.6 are API references.
+use super::*;
+use crate::db::{migration::Migrator, test_helpers::fresh_disk_db};
+use sea_orm::{sqlx, ConnectOptions, Database, TransactionTrait};
+use sea_orm_migration::{MigratorTrait, SchemaManager};
+use std::time::Duration;
+
+const TENANCY: &str = "m20260908_000012_business_tenancy";
+
+async fn prefix(conn: &DatabaseConnection) {
+    let count = Migrator::migrations()
+        .iter()
+        .position(|m| m.name() == TENANCY)
+        .unwrap();
+    Migrator::up(conn, Some(count.try_into().unwrap()))
+        .await
+        .unwrap();
+}
+
+async fn scalar(conn: &DatabaseConnection, sql: &str) -> i64 {
+    conn.query_one(store::statement(sql, vec![]))
+        .await
+        .unwrap()
+        .unwrap()
+        .try_get_by_index(0)
+        .unwrap()
+}
+
+async fn snapshot(conn: &DatabaseConnection, table: &str) -> String {
+    // Table names below are fixed fixture constants; capture every retained column.
+    let columns = conn
+        .query_all(store::statement(
+            &format!("PRAGMA table_info({table})"),
+            vec![],
+        ))
+        .await
+        .unwrap()
+        .iter()
+        .map(|r| {
+            format!(
+                "\"{}\"",
+                r.try_get::<String>("", "name")
+                    .unwrap()
+                    .replace('"', "\"\"")
+            )
+        })
+        .collect::<Vec<_>>()
+        .join(",");
+    conn.query_one(store::statement(
+        &format!("SELECT json_group_array(json_array({columns})) FROM (SELECT * FROM {table} ORDER BY id)"),
+        vec![],
+    ))
+    .await
+    .unwrap()
+    .unwrap()
+    .try_get_by_index(0)
+    .unwrap()
+}
+
+async fn seed_retained(conn: &DatabaseConnection) {
+    conn.execute_unprepared(r#"
+INSERT INTO business_organization VALUES ('original',1,'Retained team','before');
+INSERT INTO business_member (id,organization_id,display_name,kind,role,domains_json,operator_owner,created_at,updated_at)
+ VALUES ('owner','original','Owner','human','owner','["feedback"]',1,'before','before'),
+        ('agent','original','Agent','agent','member','["feedback"]',0,'before','before');
+INSERT INTO business_credential VALUES ('credential','original','owner','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','synthetic','before',NULL);
+INSERT INTO business_identity_event VALUES ('old-event','original','owner','member_created','agent','before');
+INSERT INTO business_task (id,organization_id,title,notes,domain,owner_id,assignee_id,creator_id,reviewer_id,created_at,updated_at)
+ VALUES ('task','original','Retained public work','Retained notes','feedback','owner','agent','owner','owner','before','before');
+INSERT INTO business_task_activity VALUES ('activity','original','task',1,'created','owner','Owner','human','{"preserved":true}','before');
+INSERT INTO business_task_execution_authority VALUES ('authority','original','task','feedback',1,37,2,'synthetic-root','agent','pi','owner','before');
+INSERT INTO business_task_execution VALUES ('execution','original','task','authority',37,2,'synthetic-root','agent','pi','{"organization_id":"original","delegator_id":"owner","credential_id":"credential","operator":false}','owner','before',NULL);
+INSERT INTO business_task_deliverable VALUES ('deliverable','original','task',1,'agent','Agent','agent','Retained reviewed output','execution','before');
+UPDATE business_task SET current_execution_id='execution',current_deliverable_id='deliverable',status='review' WHERE id='task';
+"#).await.unwrap();
+}
+
+#[tokio::test]
+async fn review_tenancy_retained_task_lineage_and_actual_migration_receipt_retry() {
+    let dir = tempfile::tempdir().unwrap();
+    let mut options = ConnectOptions::new(format!(
+        "sqlite:{}?mode=rwc",
+        dir.path().join("review.db").display()
+    ));
+    options.max_connections(3).min_connections(3);
+    let conn = Database::connect(options).await.unwrap();
+    prefix(&conn).await;
+    seed_retained(&conn).await;
+    let tables = [
+        "business_member",
+        "business_credential",
+        "business_identity_event",
+        "business_task",
+        "business_task_activity",
+        "business_task_execution_authority",
+        "business_task_execution",
+        "business_task_deliverable",
+    ];
+    let mut before = Vec::new();
+    for table in tables {
+        before.push(snapshot(&conn, table).await);
+    }
+    // Fail SeaORM's migration receipt AFTER the actual schema transaction committed.
+    conn.execute_unprepared("CREATE TRIGGER fixture_migration_receipt_failure BEFORE INSERT ON seaql_migrations WHEN NEW.version='m20260908_000012_business_tenancy' BEGIN SELECT RAISE(ABORT,'synthetic receipt failure'); END;").await.unwrap();
+    assert!(Migrator::up(&conn, None).await.is_err());
+    assert!(SchemaManager::new(&conn)
+        .has_table("business_tenancy_metadata")
+        .await
+        .unwrap());
+    assert_eq!(scalar(&conn, "SELECT count(*) FROM seaql_migrations WHERE version='m20260908_000012_business_tenancy'").await, 0);
+    for (table, expected) in tables.iter().zip(&before) {
+        assert_eq!(snapshot(&conn, table).await, *expected, "retained {table}");
+    }
+    // Inspect all three distinct checked-out connections, not arbitrary pool queries.
+    let pool = conn.get_sqlite_connection_pool();
+    let mut leases = Vec::new();
+    for _ in 0..3 {
+        leases.push(pool.acquire().await.unwrap());
+    }
+    for lease in &mut leases {
+        let enabled: i64 = sqlx::query_scalar("PRAGMA foreign_keys")
+            .fetch_one(&mut **lease)
+            .await
+            .unwrap();
+        assert_eq!(enabled, 1);
+    }
+    drop(leases);
+    let op = operator_principal(&conn).await.unwrap();
+    assert_eq!(op.organization_id(), "original");
+    let mut changed = settings::Settings::defaults("Keep post-commit preference".into());
+    changed.palette = settings::Palette::Violet;
+    let saved = settings::update(
+        &conn,
+        &op,
+        settings::UpdateSettingsInput {
+            expected_revision: 1,
+            settings: changed,
+        },
+    )
+    .await
+    .unwrap();
+    conn.execute_unprepared("DROP TRIGGER fixture_migration_receipt_failure")
+        .await
+        .unwrap();
+    Migrator::up(&conn, None).await.unwrap();
+    assert_eq!(scalar(&conn, "SELECT count(*) FROM seaql_migrations WHERE version='m20260908_000012_business_tenancy'").await, 1);
+    let current = settings::get(&conn, &op).await.unwrap();
+    assert_eq!(current.revision, saved.revision);
+    assert_eq!(current.settings, saved.settings);
+    for (table, expected) in tables.iter().zip(&before) {
+        if *table != "business_identity_event" {
+            assert_eq!(
+                snapshot(&conn, table).await,
+                *expected,
+                "retry retained {table}"
+            );
+        }
+    }
+    assert_eq!(
+        scalar(
+            &conn,
+            "SELECT count(*) FROM business_identity_event WHERE id='old-event'"
+        )
+        .await,
+        1
+    );
+    assert_eq!(
+        scalar(
+            &conn,
+            "SELECT count(*) FROM business_identity_event WHERE action='settings_updated'"
+        )
+        .await,
+        1
+    );
+    assert!(conn
+        .query_all(store::statement("PRAGMA foreign_key_check", vec![]))
+        .await
+        .unwrap()
+        .is_empty());
+    assert!(conn
+        .execute_unprepared("UPDATE business_tenancy_metadata SET original_organization_id=NULL")
+        .await
+        .is_err());
+    assert!(conn
+        .execute_unprepared("DELETE FROM business_task_activity")
+        .await
+        .is_err());
+    assert!(conn
+        .execute_unprepared("UPDATE business_task_execution SET delegation_json='{}'")
+        .await
+        .is_err());
+    assert!(conn
+        .execute_unprepared("UPDATE business_task SET owner_id='missing-member'")
+        .await
+        .is_err());
+    assert!(conn
+        .execute_unprepared(
+            "UPDATE business_organization SET authorization_epoch=authorization_epoch+1"
+        )
+        .await
+        .is_err());
+}
+
+#[tokio::test]
+async fn review_tenancy_cancel_closes_pinned_connection_and_retry_preserves_data() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("cancel.db");
+    let conn = Database::connect(format!("sqlite:{}?mode=rwc", path.display()))
+        .await
+        .unwrap();
+    prefix(&conn).await;
+    seed_retained(&conn).await;
+    conn.execute_unprepared("CREATE TEMP TABLE fixture_connection_identity (id INTEGER)")
+        .await
+        .unwrap();
+    let other = Database::connect(format!("sqlite:{}?mode=rw", path.display()))
+        .await
+        .unwrap();
+    let writer = begin_write(&other, "original").await.unwrap();
+    let reader = conn.clone();
+    let mut running = tokio::spawn(async move { Migrator::up(&reader, None).await });
+    assert!(
+        tokio::time::timeout(Duration::from_millis(100), &mut running)
+            .await
+            .is_err()
+    );
+    assert!(conn.get_sqlite_connection_pool().try_acquire().is_none());
+    running.abort();
+    assert!(running.await.unwrap_err().is_cancelled());
+    writer.rollback().await.unwrap();
+    let mut lease = tokio::time::timeout(
+        Duration::from_secs(3),
+        conn.get_sqlite_connection_pool().acquire(),
+    )
+    .await
+    .unwrap()
+    .unwrap();
+    let old_connection: i64 = sqlx::query_scalar(
+        "SELECT count(*) FROM sqlite_temp_master WHERE name='fixture_connection_identity'",
+    )
+    .fetch_one(&mut *lease)
+    .await
+    .unwrap();
+    assert_eq!(
+        old_connection, 0,
+        "cancelled migration connection must be closed"
+    );
+    let enabled: i64 = sqlx::query_scalar("PRAGMA foreign_keys")
+        .fetch_one(&mut *lease)
+        .await
+        .unwrap();
+    assert_eq!(enabled, 1);
+    drop(lease);
+    assert!(!SchemaManager::new(&conn)
+        .has_table("business_tenancy_metadata")
+        .await
+        .unwrap());
+    assert_eq!(
+        scalar(&conn, "SELECT count(*) FROM business_task_execution").await,
+        1
+    );
+    Migrator::up(&conn, None).await.unwrap();
+    assert_eq!(
+        store::organization(&conn).await.unwrap().unwrap().id,
+        "original"
+    );
+    assert_eq!(
+        scalar(&conn, "SELECT count(*) FROM business_task_deliverable").await,
+        1
+    );
+    assert!(conn
+        .query_all(store::statement("PRAGMA foreign_key_check", vec![]))
+        .await
+        .unwrap()
+        .is_empty());
+}
+
+fn settings_input(revision: i64, display: &str) -> settings::UpdateSettingsInput {
+    settings::UpdateSettingsInput {
+        expected_revision: revision,
+        settings: settings::Settings::defaults(display.into()),
+    }
+}
+
+#[tokio::test]
+async fn review_tenancy_settings_roles_closed_payload_and_audit_atomicity() {
+    let db = fresh_in_memory_db().await;
+    let op = initialize(&db.conn).await;
+    for role in [Role::Viewer, Role::Member, Role::Manager] {
+        let (_, _, principal) = human(&db.conn, &op, role, vec![Domain::Feedback]).await;
+        assert_eq!(
+            settings::get(&db.conn, &principal).await.unwrap().revision,
+            1
+        );
+        assert!(matches!(
+            settings::update(&db.conn, &principal, settings_input(1, "Denied")).await,
+            Err(IdentityError::Forbidden)
+        ));
+    }
+    let (_, _, admin) = human(&db.conn, &op, Role::Admin, vec![Domain::Feedback]).await;
+    assert!(!admin.is_operator());
+    let agent_member = store::create_member(
+        &db.conn,
+        &op,
+        CreateMemberInput {
+            organization_id: op.organization_id().into(),
+            display_name: "Synthetic scoped agent".into(),
+            kind: MemberKind::Agent,
+            role: Role::Member,
+            domains: vec![Domain::Feedback],
+        },
+    )
+    .await
+    .unwrap();
+    let agent = agent_principal(&db.conn, &admin, &agent_member.id)
+        .await
+        .unwrap();
+    assert!(matches!(
+        settings::get(&db.conn, &agent).await,
+        Err(IdentityError::Forbidden)
+    ));
+    assert!(matches!(
+        settings::update(&db.conn, &agent, settings_input(1, "Denied")).await,
+        Err(IdentityError::Forbidden)
+    ));
+    for extra in ["organizationId", "actor", "role", "css", "baseUrl"] {
+        let mut input = json!({"expectedRevision":1,"settings":{"displayName":"safe","palette":"blue","workspaceLayout":"stacked","defaultWorkArea":"conversations"}});
+        input[extra] = json!("untrusted");
+        assert!(serde_json::from_value::<settings::UpdateSettingsInput>(input).is_err());
+    }
+    for bad in [
+        "".to_owned(),
+        " ".to_owned(),
+        "x".repeat(121),
+        "bad\u{0000}name".to_owned(),
+    ] {
+        assert!(matches!(
+            settings::update(&db.conn, &admin, settings_input(1, &bad)).await,
+            Err(IdentityError::Invalid(_))
+        ));
+    }
+    for revision in [0, -1] {
+        assert!(matches!(
+            settings::update(
+                &db.conn,
+                &admin,
+                settings_input(revision, "No invalid revision")
+            )
+            .await,
+            Err(IdentityError::Invalid(_))
+        ));
+    }
+    let before = settings::get(&db.conn, &admin).await.unwrap();
+    db.conn.execute_unprepared("CREATE TRIGGER fixture_settings_audit_failure BEFORE INSERT ON business_identity_event WHEN NEW.action='settings_updated' BEGIN SELECT RAISE(ABORT,'synthetic audit failure'); END;").await.unwrap();
+    assert!(matches!(
+        settings::update(&db.conn, &admin, settings_input(1, "Must roll back")).await,
+        Err(IdentityError::Database(_))
+    ));
+    let after = settings::get(&db.conn, &admin).await.unwrap();
+    assert_eq!(after.revision, before.revision);
+    assert_eq!(after.settings, before.settings);
+    assert_eq!(
+        scalar(
+            &db.conn,
+            "SELECT count(*) FROM business_identity_event WHERE action='settings_updated'"
+        )
+        .await,
+        0
+    );
+    db.conn
+        .execute_unprepared("DROP TRIGGER fixture_settings_audit_failure")
+        .await
+        .unwrap();
+    let saved = settings::update(&db.conn, &admin, settings_input(1, "  Tenant preference  "))
+        .await
+        .unwrap();
+    assert_eq!(saved.settings.display_name, "Tenant preference");
+    assert_eq!(
+        scalar(
+            &db.conn,
+            "SELECT count(*) FROM business_identity_event WHERE action='settings_updated'"
+        )
+        .await,
+        1
+    );
+    assert_eq!(
+        store::organization(&db.conn).await.unwrap().unwrap().name,
+        "Synthetic team"
+    );
+}
+
+#[tokio::test]
+async fn review_tenancy_settings_real_cas_and_queued_epoch_and_credential_fences() {
+    let dir = tempfile::tempdir().unwrap();
+    let db = fresh_disk_db(dir.path()).await;
+    let other = Database::connect(format!(
+        "sqlite:{}?mode=rw",
+        dir.path().join("source.db").display()
+    ))
+    .await
+    .unwrap();
+    let op = initialize(&db.conn).await;
+    let (_, issued, admin) = human(&db.conn, &op, Role::Admin, vec![Domain::Feedback]).await;
+    let (a, b) = tokio::join!(
+        settings::update(&db.conn, &admin, settings_input(1, "Concurrent A")),
+        settings::update(&other, &admin, settings_input(1, "Concurrent B"))
+    );
+    assert_eq!(usize::from(a.is_ok()) + usize::from(b.is_ok()), 1);
+    assert!(matches!(a, Err(IdentityError::Conflict)) || matches!(b, Err(IdentityError::Conflict)));
+    let before = settings::get(&db.conn, &admin).await.unwrap();
+    assert_eq!(before.revision, 2);
+    assert_eq!(
+        scalar(
+            &db.conn,
+            "SELECT count(*) FROM business_identity_event WHERE action='settings_updated'"
+        )
+        .await,
+        1
+    );
+    let epoch_writer = begin_write(&db.conn, op.organization_id()).await.unwrap();
+    for state in ["suspended", "active"] {
+        epoch_writer.execute(store::statement("UPDATE business_organization SET status=?,revision=revision+1,authorization_epoch=authorization_epoch+1 WHERE id=?",vec![state.into(),op.organization_id().into()])).await.unwrap();
+    }
+    let reader = other.clone();
+    let captured = admin.clone();
+    let mut pending = tokio::spawn(async move {
+        settings::update(&reader, &captured, settings_input(2, "Old epoch must fail")).await
+    });
+    assert!(
+        tokio::time::timeout(Duration::from_millis(50), &mut pending)
+            .await
+            .is_err()
+    );
+    epoch_writer.commit().await.unwrap();
+    assert!(matches!(
+        pending.await.unwrap(),
+        Err(IdentityError::Unauthorized)
+    ));
+    let current = store::resolve_credential(&db.conn, &issued.token)
+        .await
+        .unwrap();
+    assert_eq!(current.authorization_epoch(), 3);
+    let unchanged = settings::get(&db.conn, &current).await.unwrap();
+    assert_eq!(unchanged.revision, before.revision);
+    assert_eq!(unchanged.settings, before.settings);
+    assert_eq!(
+        scalar(
+            &db.conn,
+            "SELECT count(*) FROM business_identity_event WHERE action='settings_updated'"
+        )
+        .await,
+        1
+    );
+    let saved = settings::update(
+        &db.conn,
+        &current,
+        settings_input(2, "Explicit fresh authentication"),
+    )
+    .await
+    .unwrap();
+    assert_eq!(saved.revision, 3);
+    let revoke_writer = begin_write(&db.conn, current.organization_id())
+        .await
+        .unwrap();
+    revoke_writer
+        .execute(store::statement(
+            "UPDATE business_credential SET revoked_at='synthetic-revocation' WHERE id=?",
+            vec![issued.credential.id.into()],
+        ))
+        .await
+        .unwrap();
+    let reader = other.clone();
+    let captured = current.clone();
+    let mut pending = tokio::spawn(async move {
+        settings::update(
+            &reader,
+            &captured,
+            settings_input(3, "Revoked credential must fail"),
+        )
+        .await
+    });
+    assert!(
+        tokio::time::timeout(Duration::from_millis(50), &mut pending)
+            .await
+            .is_err()
+    );
+    revoke_writer.commit().await.unwrap();
+    assert!(matches!(
+        pending.await.unwrap(),
+        Err(IdentityError::Unauthorized)
+    ));
+    let fresh_operator = operator_principal(&db.conn).await.unwrap();
+    let final_view = settings::get(&db.conn, &fresh_operator).await.unwrap();
+    assert_eq!(final_view.revision, 3);
+    assert_eq!(final_view.settings, saved.settings);
+    assert_eq!(
+        scalar(
+            &db.conn,
+            "SELECT count(*) FROM business_identity_event WHERE action='settings_updated'"
+        )
+        .await,
+        2
+    );
+}
