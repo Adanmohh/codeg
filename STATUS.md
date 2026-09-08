@@ -73,6 +73,14 @@ New fixture ports will be coordinated; accepted A package and existing fixtures
 remain preserved. Fireflies is the first complete vertical slice; email/Hafidh
 capture remains required before claiming the complete B scope.
 
+Independent review preparation `599aa1e6b74c0841ab2753dd58c806cae0c83dcd`
+is read and imported: 16 concrete contract/BI probes covering credential failure,
+authority, cross-import ordering, atomic decisions, privacy and actual UI.
+These are planned probes; product review awaits the first committed compiling
+backend checkpoint. Tickets and rebrand are reading the existing implementation
+seams on their assigned branches; no B product pass is inferred from preparation.
+[Product review](reports/review-business-intake.md).
+
 **UI planning PR26 reviewed and merged** at exact report head
 `91a69f339e99266b35bb912ae7d1cb155a6acd76`. Root read the full report and final
 diff. This accepted the business interaction plan. Later PR25 and PR27 close all
