@@ -24,6 +24,14 @@ link/read seams; complete exact DTOs, durable claim/reimport rules, transcript
 visibility and concrete synthetic acceptance cases. Root reviews the completed
 contract before any B product implementation.
 
+Checkpoint before the root-requested final N2 artifact recheck: those adjacent
+source reads are now complete and the contract draft includes closed DTOs,
+authenticated resumable claims, publication/source separation and 18 proposed
+synthetic cases. Its final consistency review and exact source ledger/report
+handoff remain. No B implementation or tests have run. The separate companion
+report/result update will preserve this docs branch and the previous artifact
+evidence, then this bounded contract preparation resumes.
+
 Docs-first code-context guide used the existing venv with `HF_HUB_OFFLINE=1`,
 exit0, mostly other-project rules. No applicable new code rule was invented;
 user's no-extra-worker limit overrides unrelated delegation guidance. Installed
