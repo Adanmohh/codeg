@@ -15,16 +15,19 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
 | Final Design Studio loops | PRs #13/#14/#18/#19 corrections accepted, including both badges and reduced motion | Final integrated specialist PR #16, root recheck and native bundle |
 
-The macOS debug app bundle currently contains Step 1 only. No live email,
+The macOS unsigned debug app now contains all accepted Phase1 product changes;
+build and isolated native startup/migration checks pass. [Artifact and evidence](reports/native-phase1-build.md).
+Final integrated design report acceptance and the bundle refresh remain;
+the login-landmark correction is accepted. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
 Historical dispatch/review entries below describe their state at that time;
 the table above is the latest status.
 
 Root final frontend regression passes6158 tests across433 files. Integrated
 backend passes178 Ops and13 Desk-selector tests. Real release companion and
-debug server builds pass; the existing local test database upgraded through
-migration000008. Native executable compilation is running, with final bundle
-packaging after the remaining UI corrections. [Build evidence](reports/native-phase1-build.md).
+debug server and native bundle builds pass; both existing isolated test databases
+upgraded through migration000008. Final root82 focused design tests and actual
+integrated CLI drawer/empty-view checks pass. [Build evidence](reports/native-phase1-build.md).
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
@@ -393,3 +396,16 @@ Final combined design review and Pi bridge validation continue.
   5.29 hover; dark9.09/6.94, provider4→4. Group fixture evidence also passes.
   [Review](reports/review-design-running-badge.md). All known product corrections
   are accepted; final audit and packaged-app/browser gates continue.
+
+- Final auditor identified a low-severity missing main landmark on the login
+  page. Root verified its outer div and assigned idle tickets a new isolated
+  `fix/design-login-landmark`, same worktree/pane, report
+  `reports/design-login-landmark.md`. Small semantic correction only; actual
+  CLI single-landmark/form/error/retry checks and relevant existing gates.
+  Other final design evidence remains valid; refresh the bundle after acceptance.
+
+- PR #20 login landmark accepted at `bbec6ede04d8fcf9a8964b584cb9566d55974e29`,
+  merged as `ff31938066e79abcf438bf793504ae1527a58358`. Root reviewed the complete
+  report and two-tag diff; worker15 existing tests/lint/typecheck/export and
+  actual protected390/1280 invalid-token/keyboard-retry checks pass. [Review](reports/review-design-login-landmark.md).
+  Final specialist targeted recheck and native/export refresh are in progress.

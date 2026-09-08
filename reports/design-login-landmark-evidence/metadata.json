@@ -1,0 +1,15 @@
+{
+  "baseCommit": "602f852cf25017e41f46091f92a17f075f4a996a",
+  "productCommit": "66849a91c7a6bdb5105215bbabd70e659ddb36f4",
+  "files": {
+    "src/app/login/page.tsx": "1dfb3cc63a3164addb94ec7e06ec11a24afd9eae4b38a2c2ac3501693d11a39b",
+    "src-tauri/target/design-login-landmark-export/login.html": "540d37093e30cbd298b5387c378d658997ea7b0dd7765780380cd2338d19a3e7"
+  },
+  "fixtureShutdown": {
+    "rustTestExit": 0,
+    "proxyExit": 0,
+    "browserCloseExit": 0,
+    "listenerProbeExit": 1,
+    "listenersRemaining": 0
+  }
+}

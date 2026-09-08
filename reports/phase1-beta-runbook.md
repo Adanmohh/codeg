@@ -1,4 +1,4 @@
-# Phase 1 beta runbook — integration in progress
+# Phase 1 beta runbook — local validation and live setup
 
 This follows FOUNDING P1/P2, not Phase2 release/social automation. The application
 reuses the existing Tasks/worktree/diff review flows. The root orchestrator writes
@@ -10,10 +10,10 @@ no product code. Current source of truth: STATUS.md.
 | --- | --- | --- |
 | Received email → thread → draft/note → complete human review → provider receipt | Accepted PR6/7; independent protected-API/loopback Playwright flow and Rust assertions | Live inbox/key not used |
 | Stale/denied/failed/unknown email | Independently exercised UI and durable state tests | No real email sent |
-| Agent token → live task/run → public ticket/draft/proposal | PR8 accepted; independent bridge/extraction/default checks passed | Astra catalogue/provider setup missing; no inference |
+| Agent token → live task/run → public ticket/draft/proposal | PR8/15 accepted; real companion/adapter cached reads, exact native proposals and scope/cancellation checks pass | Astra catalogue/provider setup missing; no inference |
 | TestFlight read → human proof → GitHub App issue | Accepted read/filing modules and PR9 protected host/UI; local issue/held-task flow passed | Hafidh admin/App credentials and repository not validated live |
 | Phone notification → login → exact review | PR10 email and PR12 issue fixtures; independent protected approval and no-resend recovery passed | Reachable protected origin/private recipient/bot not configured or activated |
-| Fixed-build note | Existing Tasks plus native reply-draft tools will compose it after actual fix/build evidence | No fix/build on Hafidh or reporter delivery claimed |
+| Fixed-build note | Existing Tasks and accepted native reply-draft/proposal tools support the evidence-based brief below | No fix/build on Hafidh or reporter delivery claimed |
 
 ## P1 beta rehearsal
 
@@ -80,4 +80,20 @@ hafidh-intake0.1.0. All three README installation commands exited0. An
 package metadata (mcp2.0.1/httpx0.28.1/pydantic2.12.5). No tracked manifest/lock
 changed, no other environment was modified and no live credential was used.
 The accepted host module now imports successfully under the isolated Python
-command. This does not yet validate a native bundle or live backend.
+command. Subsequent native build/startup and final browser validation are in
+[native build evidence](native-phase1-build.md); this does not validate live access.
+
+## Local artifact
+
+The unsigned macOS app is built at
+`src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app`. Its version remains the
+inherited0.30.4; source commits and binary hashes in the native report identify
+this Phase1 build. The Python intake adapter uses the dedicated environment
+above and the explicit CODEG_INTAKE_PYTHON path; it is not a standalone portable
+Python distribution. STATUS.md identifies the latest accepted design/build gate.
+
+Root's startup test used CODEG_DATA_DIR and CODEG_HOME set to
+`/tmp/ops-desk-native-data`; it upgraded only that isolated existing test database
+and stopped its own native process afterward. Actual browser fixtures used
+loopback provider implementations. No real email, issue, Telegram notification,
+agent inference, store release or deployment follows from those local passes.
