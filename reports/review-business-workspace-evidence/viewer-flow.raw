@@ -1,0 +1,7 @@
+### Error
+Error: locator.click: Error: strict mode violation: getByRole('button', { name: 'Shared work', exact: true }) resolved to 2 elements:
+    1) <button type="button" class="focus-visible:ring-ring flex min-h-12 w-full items-center gap-3 rounded-xl px-3 py-3 text-start text-sm font-medium outline-none focus-visible:ring-2 text-sidebar-foreground hover:bg-sidebar-accent">…</button> aka getByRole('navigation', { name: 'Workspace' }).getByRole('button', { name: 'Shared work' })
+    2) <button type="button" data-slot="button" data-size="default" data-variant="outline" class="group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructi…>…</button> aka locator('#business-main').getByRole('button', { name: 'Shared work' })
+
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Shared work', exact: true })[22m

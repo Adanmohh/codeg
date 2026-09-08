@@ -1,0 +1,126 @@
+{
+  "reviewer": "Independent approvals worker; GPT-6 Astra/max; no additional agents",
+  "specialists": [
+    "aesthetic-judge",
+    "a11y-auditor",
+    "flow-validator",
+    "motion-judge"
+  ],
+  "method": "Actual Design Studio selected methods applied sequentially; original baseline JSONs unchanged; final closure grounded in actual Playwright CLI and pure measured helpers. No paid flow SDK.",
+  "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+  "baselineSource": "33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7",
+  "fixtureBackendSource": "1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5",
+  "artifact": {
+    "origin": "http://127.0.0.1:4346",
+    "export": ".build/business-workspace/review-export",
+    "sha256": "c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54",
+    "backendPort": 4342,
+    "binding": "Browser independently verifies metadata and served business.html SHA256; root published clean source/build association to e72. No fixture restarted/exported by reviewer."
+  },
+  "verdict": "No blocking or open findings in the bounded business UI review. Ready for root integration and final native/integrated gates.",
+  "scores": {
+    "states": 8.5,
+    "feedback": 8.5,
+    "accessibility": 8,
+    "responsive": 8.5,
+    "visual/tokens": 8
+  },
+  "designWeightedVerdict": "Coherent founder task workspace: work, accountable people and decisions lead, with engineering subordinate. Usability evidence is stronger than visual originality; this does not certify unimplemented business integrations.",
+  "ongelmat": [],
+  "top3Fixes": [],
+  "closedFindings": [
+    {
+      "id": "BUI-R2",
+      "priority": "P2",
+      "status": "closed",
+      "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+      "element": "src/components/business/workspace.tsx:379",
+      "originalEvidence": "Six light baseline samples: enabled placeholder4.43 (<4.5).",
+      "correction": "Scoped foreground/80 light placeholder; inherited muted foreground in dark. Global Input unchanged.",
+      "independentRecheck": "Four targeted light samples10.7805 and two dark samples7.0679; actual Canvas/ancestor composition. All >=4.5.",
+      "evidence": [
+        "final-search-results.json",
+        "final-search-retry.raw"
+      ]
+    },
+    {
+      "id": "BUI-R3",
+      "priority": "P2",
+      "status": "closed",
+      "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+      "element": "src/components/business/workspace.tsx:386",
+      "originalEvidence": "Tab after search focused clipped1px submit. Not a keyboard trap.",
+      "correction": "Hidden submit tabIndex=-1; Enter remains a form submission.",
+      "independentRecheck": "Six cases: Tab reaches44x44 Refresh; 500ms settled screenshot and nontransparent3px shadow; trimmed Enter search200 each.",
+      "evidence": [
+        "final-search-results.json",
+        "final-search-1280-light-en.png",
+        "final-search-390-dark-ar.png"
+      ]
+    },
+    {
+      "id": "BUI-R1",
+      "priority": "P3",
+      "status": "closed",
+      "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+      "correctionCommit": "095c61642dc2f52ca8fd6e7c10556f16cf61c904",
+      "element": "src/components/business/task-detail.tsx:221 and :257",
+      "originalEvidence": "Real409 retained draft safely, but saved comparison omitted Review/revision3 while header showed old To do/revision1.",
+      "correction": "Label draft base and current saved status/revision; preserve explicit adoption and CAS.",
+      "independentRecheck": "Own task f93173e9-e8fa-433a-851f-f28e27669d76: actual409 expected1, currentReview3 with complete brief/names/date/deliverable. Save locked until explicit adoption; expected3 savesInProgress4, old deliverable unbound, no Accept control.",
+      "evidence": [
+        "final-conflict-results.json",
+        "final-conflict.raw",
+        "final-conflict-current-390-light.png",
+        "final-conflict-adopted-390-light.png"
+      ]
+    }
+  ],
+  "measured": {
+    "baselineOverviewCases": 12,
+    "finalSearchCases": 6,
+    "finalSearchContrastLight": 10.780495359643696,
+    "finalSearchContrastDark": 7.0679475758900265,
+    "finalSearchEnter200": 6,
+    "visibleRefreshAfterTab": 6,
+    "finalSearchDocumentOverflowCases": 0,
+    "paletteAndLint": "All original raw warnings retained; source-backed Canvas/alpha/paired-dark classification in measurement-classification.json. Real initial search defect was kept and fixed.",
+    "motion": "106 actual rAF samples; normal23 intermediate positions/28 animated frames, reduce0/0; settled focus and eight ordered screenshots. No CLS/long-frame claim."
+  },
+  "functional": {
+    "finalCold": "business.html200, zeroAPI/ws/outbound",
+    "finalConflict": "create200; individual intervening progress/submit200; stale update409; getReview3; explicit adoption expected3 update200 => InProgress4/currentDeliverableId:null; no Accept; no private browser storage",
+    "baseline": "Two members, named human create/progress/submit/keyboard reviewDone6, domain/viewer403/404, revoked401 private teardown, six fields through actual other-tab locale/breakpoint changes, board/filter/empty/retry. See bw-final.json; no blanket18of18 claim."
+  },
+  "motion": {
+    "grade": "good within measured scope",
+    "topFix": null,
+    "limits": "No continuous smoothness/CLS/long-frame instrumentation."
+  },
+  "externalGates": [
+    {
+      "id": "N1",
+      "priority": "P2",
+      "owner": "tickets discovery; rebrand correction; root packaged runtime check",
+      "status": "Source3a189d18 corrected business landing; actual native startup not independently run in this browser report."
+    },
+    {
+      "id": "BW-17",
+      "owner": "root",
+      "status": "Final integrated legacy Ops/engineering and native release checks not rerun here."
+    }
+  ],
+  "limits": [
+    "Single synthetic organization; no live providers/agents/accounts. No full owner administration browser campaign or multi-org fixture.",
+    "Baseline matrix33b9cbcb carried forward; only source-reviewed search/conflict corrections were rechecked on final e72 export.",
+    "Arabic layout/direction checked, not native-language proofreading. Final current/base comparison browser check is English; AR copy and tests source-reviewed.",
+    "Root39 tests/5files at e72 are attributed to root; no duplicate suite ran here.",
+    "Code-context dependency corpus missing for approvals (docs exit3); direct installed source used. Design Studio project memory absent; learnings retained here.",
+    "Final search first selector attempt failed before measurement; retained final-search.raw. Corrected source-grounded locator recheck passes. Earlier harness/capture attempts remain labelled separately."
+  ],
+  "report": "reports/review-business-workspace.md",
+  "finalPrHandoff": {
+    "head": "9f60575906fde0468cfa9f40db77ed868dabb346",
+    "verification": "gh api resolved PR head; root independently verified later changes are reports only, product e72 unchanged."
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#fafafa",
+      "#9bd4c5",
+      "#a1a1a1",
+      "#171717",
+      "#151515",
+      "#181818",
+      "#222222",
+      "#1d1d1d",
+      "#ffd230",
+      "#33291a",
+      "#262626"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      36,
+      12
+    ],
+    "spacingPx": [
+      12,
+      28,
+      32,
+      20,
+      6,
+      8,
+      4,
+      16
+    ],
+    "radiiPx": [
+      14,
+      18,
+      10,
+      33554400
+    ]
+  },
+  "contrast": {
+    "checked": 23,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 12,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "My work"
+      },
+      {
+        "level": 2,
+        "text": "Synthetic review: customer welcome brief"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- banner:\n  - button \"Open workspace navigation\"\n  - text: Hafidh Studio · Synthetic\n- main:\n  - paragraph: Workspace\n  - heading \"My work\" [level=1]\n  - paragraph: What you own and what’s assigned to you.\n  - button \"Create task\"\n  - textbox \"Find a task\"\n  - button \"Find a task\"\n  - button \"Refresh\"\n  - combobox \"Area of work\":\n    - option \"All areas\" [selected]\n    - option \"Marketing\"\n    - option \"Feedback\"\n  - combobox \"Status\":\n    - option \"All statuses\" [selected]\n    - option \"To do\"\n    - option \"In progress\"\n    - option \"Review\"\n    - option \"Done\"\n    - option \"Cancelled\"\n  - checkbox \"Archived\"\n  - text: Archived\n  - button \"List\" [pressed]\n  - button \"Board\"\n  - paragraph: 1 tasks loaded\n  - list:\n    - listitem:\n      - 'button \"Review Marketing · Normal Synthetic review: customer welcome brief Accountable owner Synthetic review · Maya · Manager Assigned to Synthetic review · Noura · Member 2026-10-01\"':\n        - text: Review Marketing · Normal\n        - 'heading \"Synthetic review: customer welcome brief\" [level=2]'\n        - text: Accountable owner Synthetic review · Maya · Manager Assigned to Synthetic review · Noura · Member\n        - time: 2026-10-01",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#181818 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#222222 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#1d1d1d rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffd230 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#33291a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "18px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}

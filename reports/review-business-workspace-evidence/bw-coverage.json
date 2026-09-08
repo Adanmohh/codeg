@@ -1,0 +1,97 @@
+{
+  "checklistSource": "reports/business-acceptance-checklist.md at ff4f6c6c (read in full)",
+  "reviewSource": "33b9cbcb baseline; source fixes095c6164/e72cc44b; backend1ba73e3c",
+  "noBlanket18of18Claim": true,
+  "checks": [
+    {
+      "id": "BW-1",
+      "status": "carry-forward / limited UI scope",
+      "evidenceAndLimits": "Original-operator bootstrap and member administration are grounded in accepted identity PR23/report and source; this UI review used explicit fixture operator setup only. It did not replay all owner-management UI."
+    },
+    {
+      "id": "BW-2",
+      "status": "pass scoped browser; spoof policy source-backed",
+      "evidenceAndLimits": "Two separately minted personal sessions share task e64a0ac7. Creation/submit/review records show Maya/Noura server-derived identities; client exposes no actor/org selector. No new browser actor-spoof campaign."
+    },
+    {
+      "id": "BW-3",
+      "status": "pass cold UI; legacy backend carry-forward",
+      "evidenceAndLimits": "Five cold paths200 with zero API/ws and synthetic ambient operator value. All guarded app traffic stays on business endpoints; member UI has no engineering link. Legacy backend credential rejection uses prior independently reviewed identity tests, not the fixture proxy denial."
+    },
+    {
+      "id": "BW-4",
+      "status": "pass representative real UI/API",
+      "evidenceAndLimits": "Viewer has no create or task write controls. Individual-viewer task create and note403; readable detail200 with every capability false. Other forged viewer verbs use accepted policy/source/test coverage."
+    },
+    {
+      "id": "BW-5",
+      "status": "pass domain sample; multi-org limit",
+      "evidenceAndLimits": "Feedback task e2705d60 is absent for marketing viewer and get404. Cross-domain Noura is absent from assignment options. Only the fixture single organization was exercised; no second server/org provisioned."
+    },
+    {
+      "id": "BW-6",
+      "status": "pass credential/session sample; transaction carry-forward",
+      "evidenceAndLimits": "Own member credential revoked200; next actual note401 tears down dialog/private draft and returns sign-in. Stored lineage and writer revalidation covered by the separate exact-head task review, not repeated."
+    },
+    {
+      "id": "BW-7",
+      "status": "pass real human-only flow",
+      "evidenceAndLimits": "Task created in UI with distinct owner/assignee/reviewer and calendar date, progressed and submitted by member, accepted by named manager; execution:null and no engine/provider calls."
+    },
+    {
+      "id": "BW-8",
+      "status": "pass CAS safety; BUI-R1 rendered fix pending",
+      "evidenceAndLimits": "Actual old-revision save409 keeps draft and locks Save. Load current does not write; explicit adoption saves revision4 and invalidates review. Baseline comparison status/revision omission was reproduced;095c source and root rendered fix pass, reviewer final export pending."
+    },
+    {
+      "id": "BW-9",
+      "status": "carry-forward backend review; no live agent",
+      "evidenceAndLimits": "No agent or model launched. Agent/self-review/progress authority is covered by reports/review-business-tasks.md at1ba73e3c and accepted identity core. No agent-harness browser claim."
+    },
+    {
+      "id": "BW-10",
+      "status": "carry-forward exact-head ownership/lifecycle review",
+      "evidenceAndLimits": "The previous task review independently ran5 ownership+6 bridge+2 other focused tests, preserving rejected writes and authority fencing. No broad run repeated for this UI report."
+    },
+    {
+      "id": "BW-11",
+      "status": "pass scoped dates/layout",
+      "evidenceAndLimits": "Literal2026-10-01 persists, private2026-12-31 survives locale/width changes. Arabic direction, bdi names and LTR calendar date are source-backed;390/768/1280 measured no document overflow. Not a native Arabic language proofread."
+    },
+    {
+      "id": "BW-12",
+      "status": "pass scoped list/board/filter",
+      "evidenceAndLimits": "My/shared real task lists; query Enter shows empty result then Clear filters restores; marketing filter hides feedback sample.390 board client350/scroll1364 and keyboard scrollLeft40; no outer overflow. Pagination beyond fixture size was source-reviewed only."
+    },
+    {
+      "id": "BW-13",
+      "status": "baseline two P2s; final recheck pending",
+      "evidenceAndLimits": "All12 overview captures have named accessible controls/no heading jumps; selected empty options sampled. Search contrast4.43 and invisible tab stop are actionable. Dark review and settled drawer focus pass; reduced-motion travel suppressed. No full screen-reader/native certification."
+    },
+    {
+      "id": "BW-14",
+      "status": "pass actual draft cases; late response source/test carry-forward",
+      "evidenceAndLimits": "Title/brief/date and note/deliverable/review drafts survive actual other-tab Arabic/English and390/768/1280 changes; explicit discard and keep editing work; no browser storage. Revoked personal session removes old draft; no actual delayed-response browser injection."
+    },
+    {
+      "id": "BW-15",
+      "status": "pass scoped cold/error/re-auth",
+      "evidenceAndLimits": "Cold page, real expired401 sign-in, viewer reconnect, and deliberate one-request network interruption with actual retry recovery. The network interruption is clearly a guard simulation, not a production outage."
+    },
+    {
+      "id": "BW-16",
+      "status": "external native gate pending root",
+      "evidenceAndLimits": "N1 fresh native landing was discovered by tickets and confirmed/assigned by root; native source3a189d18 now targets business. This reviewer did not start a bundled native app."
+    },
+    {
+      "id": "BW-17",
+      "status": "root integrated regression gate",
+      "evidenceAndLimits": "Old Ops/engineering surfaces and preserved original admin access remain a root integrated check; this worker did not touch their4320/4323/etc fixtures or run a broad suite."
+    },
+    {
+      "id": "BW-18",
+      "status": "specialist evidence complete baseline; root final acceptance",
+      "evidenceAndLimits": "Actual CLI matrix, pure Design Studio selector/lint/probes, four sequential specialist methods and measured findings are recorded. Final corrected-export verification remains; root owns integrated package/release synthesis."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "actualFrameClassification": [
+    {
+      "preference": "no-preference",
+      "frames": 53,
+      "intermediatePositions": 23,
+      "firstPositions": [
+        [
+          44.2,
+          -322
+        ],
+        [
+          60.9,
+          -322
+        ],
+        [
+          77.6,
+          -268.494
+        ],
+        [
+          94.3,
+          -219.978
+        ],
+        [
+          110.9,
+          -177.453
+        ],
+        [
+          127.6,
+          -140.775
+        ],
+        [
+          144.2,
+          -110.295
+        ],
+        [
+          160.9,
+          -85.173
+        ]
+      ],
+      "activeFrameAnimations": 28,
+      "restored": true,
+      "transitionProperties": [
+        "transform, height, opacity, filter"
+      ]
+    },
+    {
+      "preference": "reduce",
+      "frames": 53,
+      "intermediatePositions": 0,
+      "firstPositions": [
+        [
+          39.9,
+          -322
+        ],
+        [
+          56.6,
+          8
+        ],
+        [
+          73.3,
+          8
+        ],
+        [
+          89.9,
+          8
+        ],
+        [
+          106.5,
+          8
+        ],
+        [
+          123.3,
+          8
+        ],
+        [
+          139.9,
+          8
+        ],
+        [
+          156.6,
+          8
+        ]
+      ],
+      "activeFrameAnimations": 0,
+      "restored": true,
+      "transitionProperties": [
+        "none"
+      ]
+    }
+  ],
+  "rtl": {
+    "dir": "rtl",
+    "x": 62,
+    "width": 320,
+    "viewport": 390,
+    "side": "right"
+  },
+  "notes": "The two endpoint positions in reduce are the hidden starting state and settled popup; no interpolated travel. Normal keyboard focus capture was immediate; settled recheck required before claiming visible ring."
+}

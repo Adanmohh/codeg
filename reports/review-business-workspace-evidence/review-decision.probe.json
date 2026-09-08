@@ -1,0 +1,154 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#fafafa",
+      "#9bd4c5",
+      "#a1a1a1",
+      "#171717",
+      "#151515",
+      "#181818",
+      "#222222",
+      "#ffd230",
+      "#2e2415",
+      "#262626",
+      "#020202",
+      "#111513",
+      "#1c1f1e"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      30,
+      12
+    ],
+    "spacingPx": [
+      12,
+      28,
+      32,
+      20,
+      6,
+      8,
+      4,
+      16
+    ],
+    "radiiPx": [
+      14,
+      18,
+      10,
+      33554400
+    ]
+  },
+  "contrast": {
+    "checked": 39,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 27,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)",
+      "ease"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "My work"
+      },
+      {
+        "level": 2,
+        "text": "Synthetic review: customer welcome brief"
+      },
+      {
+        "level": 2,
+        "text": "Synthetic review: customer welcome brief"
+      },
+      {
+        "level": 3,
+        "text": "Deliverable"
+      },
+      {
+        "level": 3,
+        "text": "Review"
+      },
+      {
+        "level": 3,
+        "text": "Activity"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- 'dialog \"Synthetic review: customer welcome brief\"':\n  - 'heading \"Synthetic review: customer welcome brief\" [level=2]'\n  - paragraph: \"Synthetic review: customer welcome brief\"\n  - button \"Close\"\n  - text: Review Marketing · Normal Revision 5\n  - paragraph: Synthetic review UNSAVED conflict draft — keep this exact text\n  - term: Accountable owner\n  - definition: Synthetic review · Maya · Manager\n  - term: Assigned to\n  - definition: Synthetic review · Noura · Member\n  - term: Reviewer\n  - definition: Synthetic review · Maya · Manager\n  - term: Due date\n  - definition:\n    - time: 2026-10-01\n  - heading \"Deliverable\" [level=3]\n  - paragraph: \"Synthetic review revised deliverable: the customer receives a concise welcome brief with a clear next step.\"\n  - text: Synthetic review · Noura · Member\n  - button \"Edit task\"\n  - button \"Responsibility\"\n  - button \"Start work\"\n  - button \"Move to To do\"\n  - heading \"Review\" [level=3]\n  - text: Review note\n  - textbox \"Review note\": \"Synthetic review accepted: clear customer outcome and named responsibility.\"\n  - checkbox \"I have reviewed this task and its current deliverable.\" [checked]\n  - text: I have reviewed this task and its current deliverable.\n  - button \"Accept work\"\n  - button \"Return for changes\"\n  - group: Submit for review\n  - text: Add note\n  - textbox \"Add note\"\n  - paragraph: Share an update with everyone who can access this task.\n  - button \"Add note\" [disabled]\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic review · Maya · Manager · Task created\n      - time: Sep 8, 2026, 6:48 PM\n      - group: Saved version · Revision 1\n    - listitem:\n      - paragraph: Synthetic review · Noura · Member · Task updated\n      - time: Sep 8, 2026, 6:50 PM\n      - paragraph: To do → In progress\n    - listitem:\n      - paragraph: Synthetic review · Noura · Member · Submitted work for review\n      - time: Sep 8, 2026, 6:50 PM\n      - group: Deliverable\n    - listitem:\n      - paragraph: Synthetic review · Maya · Manager · Task updated\n      - time: Sep 8, 2026, 6:51 PM\n      - group: Saved version · Revision 4\n    - listitem:\n      - paragraph: Synthetic review · Noura · Member · Submitted work for review\n      - time: Sep 8, 2026, 6:53 PM\n      - group: Deliverable\n  - group: Engineering detail\n  - button \"Cancel task\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#181818 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#222222 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffd230 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#2e2415 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#020202 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#111513 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#1c1f1e rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "18px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}

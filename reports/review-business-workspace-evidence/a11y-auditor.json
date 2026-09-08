@@ -1,0 +1,29 @@
+{
+  "specialist": "a11y-auditor",
+  "phase": "baseline33b9cbcb",
+  "scores": {
+    "accessibility": 6.5,
+    "states": 8.5
+  },
+  "findings": [
+    {
+      "id": "BUI-R2",
+      "surface": "Business workspace search",
+      "element": "src/components/business/workspace.tsx:379",
+      "severity": "med",
+      "priority": "P2",
+      "check": "Input field / accessible placeholder contrast: #737373 over #f7f7f7 =4.43, required4.5; enabled in six light captures",
+      "fix": "Use a scoped search color pairing with4.5 contrast in both themes; preserve global tokens. Candidate e72cc44b is source-reviewed, rendered recheck pending."
+    },
+    {
+      "id": "BUI-R3",
+      "surface": "Business workspace search",
+      "element": "src/components/business/workspace.tsx:386",
+      "severity": "med",
+      "priority": "P2",
+      "check": "Keyboard/focus-visible: Tab after search enters1x1 clip-path inset50% hidden submit; UAoutline clipped in settled screenshot",
+      "fix": "Provide visible focus or remove redundant hidden submit from sequential focus while keeping Enter submission. Candidate e72cc44b is source-reviewed, rendered recheck pending."
+    }
+  ],
+  "notes": "All12 baseline overview snapshots: zero unnamed controls/heading jumps, no document overflow; empty select options included. Dark review measured39 text samples with0 contrast failures and a visible3px settled keyboard ring. Real viewer403/404 and revoked401 teardown pass. Screen-reader/native certification outside scope."
+}

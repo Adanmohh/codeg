@@ -1,0 +1,43 @@
+{
+  "specialist": "a11y-auditor",
+  "phase": "final targeted rendered correction recheck",
+  "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+  "artifactSha256": "c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54",
+  "scores": {
+    "accessibility": 8,
+    "states": 8.5
+  },
+  "findings": [],
+  "closedFindings": [
+    {
+      "id": "BUI-R2",
+      "priority": "P2",
+      "status": "closed",
+      "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+      "element": "src/components/business/workspace.tsx:379",
+      "originalEvidence": "Six light baseline samples: enabled placeholder4.43 (<4.5).",
+      "correction": "Scoped foreground/80 light placeholder; inherited muted foreground in dark. Global Input unchanged.",
+      "independentRecheck": "Four targeted light samples10.7805 and two dark samples7.0679; actual Canvas/ancestor composition. All >=4.5.",
+      "evidence": [
+        "final-search-results.json",
+        "final-search-retry.raw"
+      ]
+    },
+    {
+      "id": "BUI-R3",
+      "priority": "P2",
+      "status": "closed",
+      "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+      "element": "src/components/business/workspace.tsx:386",
+      "originalEvidence": "Tab after search focused clipped1px submit. Not a keyboard trap.",
+      "correction": "Hidden submit tabIndex=-1; Enter remains a form submission.",
+      "independentRecheck": "Six cases: Tab reaches44x44 Refresh; 500ms settled screenshot and nontransparent3px shadow; trimmed Enter search200 each.",
+      "evidence": [
+        "final-search-results.json",
+        "final-search-1280-light-en.png",
+        "final-search-390-dark-ar.png"
+      ]
+    }
+  ],
+  "notes": "Baseline named-controls/heading/selected-empty-option checks remain valid for scoped changes. Final search only was remeasured in six cases; not a second full matrix. All six settled screenshots visually inspected. Screen-reader/native certification remains outside this browser review."
+}
