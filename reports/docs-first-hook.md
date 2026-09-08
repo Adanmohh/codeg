@@ -72,3 +72,12 @@ owned worktree. Later paired Pre/Post records also continue (9024/9025,
 9044/9045,8994/8995 respectively). No command payload or secrets printed.
 Root continues manual docs-first because this session predates hook activation;
 these worker records are not a claim of live root interception.
+
+## Business final acceptance checkpoint — 2026-09-08
+
+Root inspected fresh metadata-only records during the UI/native correction loop:
+rebrand PostToolUse row16161/time1788882531, tickets row16100/time1788882442,
+approvals row16181/time1788882581. Each has exit0 and its original worker
+session/owned worktree; neighboring PreToolUse records remain present. All three
+Herdr pane footers show GPT-6 Astra/max. The metadata confirms ongoing hook
+execution, with the heuristic and root-session limits above unchanged.

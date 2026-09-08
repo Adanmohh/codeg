@@ -72,3 +72,20 @@ check proposed removing the symlinked modules directory and refused without a TT
 No install/purge was approved. Root read the package script (`vitest run`) and
 used that exact installed runner directly; no dependency or product edits.
 Final corrections, if any, require affected regressions and accepted-export checks.
+# Conflict correction checkpoint
+
+Root reviewed committed `095c61642dc2f52ca8fd6e7c10556f16cf61c904` and ran its
+unchanged source archive with installed Vitest2.1.9: workflow.test.tsx **13 passed**,
+exit0,2.15s. Log `/tmp/root-business-conflict-095c6164.log`. The correction labels
+the retained draft base and displays saved status/revision; it preserves the
+existing CAS lock and resets review confirmation after explicit adoption.
+
+Actual corrected-export browser acceptance is pending. Root opened its own
+`root-business-conflict` session at4346 and created only synthetic task
+`cac9ba87-7f3f-4201-b29b-886c82c7514f`. Actual progress changed revision1 to Review;
+the stale edit returned409 and retained the draft. That export still carries
+the old comparison: do not attribute this browser run to the committed fix.
+The owner was notified to publish the corrected export identity explicitly.
+An initial selector used “New task” instead of the actual “Create task” and
+timed out before creation; a later named-region wait timed out on the old export.
+No mutation was retried blindly and no passing correction claim is made.
