@@ -8,6 +8,10 @@ Owner requests best assumptions and delivery; conversation is optional. [Impleme
 
 Identity worker `wR:p3` is now dispatched to independent review of committed task PR #22, with `reports/review-business-tasks.md` as deliverable. The task owner continues implementation and the workspace owner continues UI integration; no new worker was started.
 
+### Task review blocker — R1 / P1
+
+Independent review checkpoint `592618ec` examines PR #22 head `76bb6909`. Root confirmed the source finding: execution linking proves a run is live but does not prove authorization for its organization/business scope and assigned business agent. PR #22 remains blocked pending a trusted source-run binding check, negative unrelated-run and valid-binding tests, and independent review of the committed fix. This is a source-established finding in an unfinished branch, not a claim of a deployed exploit. The reviewer continues lifecycle/schema/provenance review; the task owner is implementing corrections.
+
 ## Research during ideation
 
 Owner clarified a role-based desktop workspace with shared tasks for humans and agents throughout the organization, and meeting/note sources such as Fireflies feeding task orchestration. Three workers completed gh api source reviews of Intromail shared work, meeting ingestion and role/work-platform alternatives. Root reviewed all three reports. Recommendation: keep the desktop/executor; add shared organization tasks, real ownership/permissions and durable ingestion, then role-specific business capabilities. No product changes or live actions were performed during research. The research pause ended with the implementation dispatch above. [Source findings and proposed direction](reports/business-workspace-research.md).
