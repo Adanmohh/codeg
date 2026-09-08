@@ -89,8 +89,31 @@ remain (task prepare/link, three intake error helpers, write-only secret field).
 `cargo test --locked --offline --no-default-features --lib business_intake::tests`
 with the same new isolated target: exit0,2 passed/0 ignored,0.04s execution.
 These cover closed/spoof/secret-header/null input rejection and fresh migration
-with cross-org member-FK rejection and five retained table registrations; they
-do not establish upgrade of a populated database or complete B authorization.
+with nonexistent-owner FK rejection and five table registrations. The latter is
+not an actual existing cross-org-member or populated-row-retention test, despite
+the initial test name; neither claim is made. Populated upgrade and real cross-org
+references remain planned, as does complete B authorization.
 
 Root reserved UI4350, own synthetic backend4351/upstream4352. Availability will
 be checked immediately before a coordinated launch. No new listener exists yet.
+
+## P2 strict-store permission correction
+
+Independent review `473b3b316abdac67bacf09d4fef011ba3ec24ff4` found that
+`read_tokens_for_write` at `60daf42e` skipped the inherited pre-read Unix0600
+hardening. Read the full store and independent synthetic probe patch. The bounded
+fix shares the existing hardening helper between both readers and calls it before
+strict read under `TOKEN_WRITE_LOCK`. Only files are hardened; the directory
+read-failure probe keeps its contents and traversal permissions. True NotFound
+alone initializes an empty map; malformed/read failures still preserve all bytes.
+No native keyring behavior or authorization changed. This reuses the existing
+Apache source and test pattern already attributed above and in NOTICE.
+
+Same isolated target: `cargo test --locked --offline --no-default-features --lib
+keyring_store::tests` exited0: **10 passed/0 failed/0 ignored**, execution0.23s,
+compile44.89s. Log: `.docs/business-intake-logs/tests-strict-hardening.log`.
+New regression `intake_store_strict_read_and_rejected_mutations_retain_0600_hardening`
+checks valid0644 strict reads plus rejected malformed set/delete, byte preservation,
+0600 mode and no temporary residue. Existing directory-failure, concurrent mutation
+and legacy hardening cases also passed. Independent probe rerun remains reviewer-owned;
+no actual credentials, fixture, target outside the owned new target or A bundle touched.
