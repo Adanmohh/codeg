@@ -14,6 +14,8 @@ Independent review checkpoint `592618ec` examines PR #22 head `76bb6909`. Root c
 
 Independent review evidence advanced to `6138e10e` (verified local and GitHub branch head). Reviewer ran unchanged `1e8b5250`: 10 task-core and 4 engine-bridge tests passed; root inspected both logs. Reviewer reports 723 source files match target blobs and no additional blocking schema/visibility/revocation/CAS finding. The per-generation binding change at `f83bf6c8` does not close R1; source entrustment and its focused re-review remain required.
 
+R1 fix candidate `1ba73e3c` is pushed: separate protected-operator source entrustment, exact task/agent/run ownership and pre-link revision checks, with root-only agent identity. Root reviewed the central source changes. Worker reports 34 combined business tests passing (2 manual fixtures ignored); independent exact-head ownership re-review is dispatched. R1 remains open until that review passes; final runtime/companion and guarded API gates continue.
+
 ## Research during ideation
 
 Owner clarified a role-based desktop workspace with shared tasks for humans and agents throughout the organization, and meeting/note sources such as Fireflies feeding task orchestration. Three workers completed gh api source reviews of Intromail shared work, meeting ingestion and role/work-platform alternatives. Root reviewed all three reports. Recommendation: keep the desktop/executor; add shared organization tasks, real ownership/permissions and durable ingestion, then role-specific business capabilities. No product changes or live actions were performed during research. The research pause ended with the implementation dispatch above. [Source findings and proposed direction](reports/business-workspace-research.md).
