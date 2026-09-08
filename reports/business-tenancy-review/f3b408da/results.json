@@ -1,0 +1,34 @@
+{
+  "source": "f3b408dae5c724f354763961d79a17a7ae5c86f8",
+  "package": "codeg@0.30.4",
+  "baseline": {
+    "selector": "business_identity::tests",
+    "exit_code": 0,
+    "passed": 16,
+    "failed": 0,
+    "ignored": 1,
+    "execution_seconds": 0.99,
+    "compile_seconds": 143
+  },
+  "reviewer_probes": {
+    "selector": "business_identity::tests::independent_review",
+    "exit_code": 0,
+    "passed": 4,
+    "failed": 0,
+    "ignored": 0,
+    "execution_seconds": 0.34,
+    "compile_seconds": 61
+  },
+  "production_source_unchanged": true,
+  "native_platform_provisioning_tested": false,
+  "fixtures_started": false,
+  "live_provider_model_engine_calls": 0,
+  "artifacts_sha256": {
+    "identity-unchanged.log": "52e677dfb9d8db8c64f01dae2bdc7efff555e83051a78cfe4a52935d4d82bd45",
+    "independent-probes.log": "bd75a10e76d785dd9aa03bd9cfeb081cf6770271b9ed554594aa7afa1ea744c8",
+    "independent-probes.patch": "6edbcbe5ddbee64e2ca3f59133ab2eb7f141508a52552a597a2f6685598f2817",
+    "independent_cases.rs": "f406841d2eaa31bb834e47efee7bf67a4ac08526036b173343f29758f247f602",
+    "source-blobs-before.json": "c6e22a87e9066ffeab51baccb4fc03a8f34fed3965eaa49690b4c17f859313a7",
+    "source-correspondence.json": "684358c5153b9a05f318f58ce0d49828fa2d15fb979c887c25eb3fe6acd8fe4b"
+  }
+}

@@ -8,11 +8,13 @@ Review target: `f3b408dae5c724f354763961d79a17a7ae5c86f8`, PR30, tree
 B is preserved/pushed at `15bb402b`, including four passing recovery tests at
 `6513dc15`; its production remains `e9c63237`. Paused visual report is preserved.
 
-## Current verdict and scope
+## Bounded verdict and scope
 
-No concrete blocking finding established in this first source/unchanged-test
-pass. Additional reviewer probes below are still pending; this is not a complete
-tenancy acceptance. Read the full implementation report, contract, product diff,
+**No additional blocking findings in the reviewed f3b408da migration/identity/
+settings core.** Sixteen unchanged tests and four reviewer probes passed
+independently. This completes the bounded first-checkpoint review, not complete
+tenancy acceptance: the unlinked-run epoch correction and the other unfinished
+boundaries below remain explicit. Read the full implementation report, contract, product diff,
 identity/settings/migration source and relevant unchanged transaction/auth code.
 Scope is the pinned-connection parent rebuild, foreign-key restoration and retry,
 captured/legacy delegation epochs, original organization mapping, and settings
@@ -40,11 +42,39 @@ ignored4341 browser fixture was not started. Linker unwind-size and existing
 proc-macro-error2 future-compatibility notices remain. This is not Clippy,
 desktop/native, browser, provider or full B acceptance.
 
-Planned additional synthetic probes: cancellation while the migration owns a
-connection and waits for the writer; retained populated task/execution/history
-and real SeaORM receipt-insert failure/retry; settings role/agent restrictions,
-audit rollback and two-connection CAS/queued lifecycle or credential revocation.
-These will be reviewer-only test additions, never product corrections.
+Four reviewer-only probes also passed, **exit0, 4 passed/0 failed/0 ignored,
+0.34s execution/1m01s compile**, using the same command/target with selector
+`business_identity::tests::independent_review` and log `independent-probes.log`.
+
+| Probe | Independently observed boundary |
+| --- | --- |
+| `review_tenancy_retained_task_lineage_and_actual_migration_receipt_retry` | Actual SeaORM migration receipt INSERT fails after the schema COMMIT. Every column in eight populated member/credential/history/task/authority/execution/deliverable tables is retained; all three separately checked-out connections enforce FKs. Retry records exactly one migration receipt, preserves a post-commit settings change, original mapping and immutable task/delegation history. |
+| `review_tenancy_cancel_closes_pinned_connection_and_retry_preserves_data` | Hold an independent SQLite writer, observe the migration still pending with its single pool connection occupied, abort before releasing the writer, then confirm the replacement connection lacks the old TEMP marker and has FKs on. No partial tenancy marker; retained task lineage survives and retry succeeds. |
+| `review_tenancy_settings_roles_closed_payload_and_audit_atomicity` | Viewer/member/manager writes and scoped-agent reads/writes are denied. A real admin credential remains non-operator and can save. Extra actor/org/URL/CSS fields, invalid names and nonpositive revisions fail. An injected audit INSERT failure rolls back settings/revision; valid save adds one event without renaming the organization. |
+| `review_tenancy_settings_real_cas_and_queued_epoch_and_credential_fences` | Two SQLite connections race one settings revision: one save, one conflict, one event. A queued save loses authority after suspend/resume commits; explicit fresh authentication can save. A later queued credential revocation denies the stale save without settings/audit mutation. |
+
+Committed [result and artifact hashes](business-tenancy-review/f3b408da/results.json),
+[unchanged log](business-tenancy-review/f3b408da/identity-unchanged.log),
+[probe log](business-tenancy-review/f3b408da/independent-probes.log),
+[test-only patch](business-tenancy-review/f3b408da/independent-probes.patch),
+[readable tests](business-tenancy-review/f3b408da/independent_cases.rs), and
+[source correspondence](business-tenancy-review/f3b408da/source-correspondence.json).
+The clean baseline matches 731/731 blobs. For the additional run, 730 remain exact;
+the only changed original file is `business_identity/tests.rs`, with one test
+module registration. The new test file exactly matches the report copy; no
+production blob differs. `git apply --check --reverse` against the owned archive
+exited0 for the committed patch. No owner source correction was needed.
+
+Probe SHA256 `f406841d2eaa31bb834e47efee7bf67a4ac08526036b173343f29758f247f602`;
+patch `6edbcbe5ddbee64e2ca3f59133ab2eb7f141508a52552a597a2f6685598f2817`;
+unchanged log `52e677dfb9d8db8c64f01dae2bdc7efff555e83051a78cfe4a52935d4d82bd45`;
+probe log `bd75a10e76d785dd9aa03bd9cfeb081cf6770271b9ed554594aa7afa1ea744c8`.
+The exact tested reviewer file retains an unused `TransactionTrait` import;
+that warning is disclosed rather than changing the tested artifact. Rustfmt and
+source/report-only diff checks exited0. The complete staged artifact diff check
+exits2 only for the two preserved logs' final blank lines and a blank context
+line in the unified patch. Raw evidence hashes are preserved. No broad suite or
+passing selector was repeated.
 
 ## Grounding and attribution
 
@@ -65,8 +95,12 @@ and `src/lib/theme-presets.ts`9181e38c. Full original Apache-2.0 LICENSE read;
 blob `261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64`. All earlier notices remain.
 SQLite official `version-3.46.0` resolves through gh api to
 `bebe2d8be8acfd02592c4972f4ba32c3b4e4a33f`; its public-domain LICENSE was read.
+Its LICENSE blob `f68a6c175f0b72086c313a9dbd9f2ec8d87525dd` matches NOTICE.
 Dependency primitives are API references, not copied implementations. No
 Edublend, GPL or AGPL implementation is introduced by this diff or review.
+Reviewer fixture glue additionally follows the same pinned Codeg transaction
+tests and `db/test_helpers.rs`; attribution is included in the test file. The
+production NOTICE/LICENSE and dependency manifests/locks are unchanged by review.
 
 ## Explicit pending boundaries
 
@@ -84,5 +118,14 @@ Edublend, GPL or AGPL implementation is introduced by this diff or review.
   isolation acceptance; platform-specific responder conditions must be retained.
   Caller-window controls must exclude arbitrary target labels. These are future
   native gates, not an executed exploit or a defect claim against accepted A.
+- Cancellation was measured while waiting behind an independent writer, not at
+  every SQLite/driver await point. Receipt failure was deliberately injected
+  after the real schema commit; there was no forced OS process/power loss. The
+  populated retention fixture is A-only and launches no actual execution run.
 - No old targets, fixtures, exports, A bundle, real stores or credentials changed;
   no live provider/model/engine/Pi process, server launch or new dependency.
+
+Early report checkpoint `8d935c88d061ca5179fb74ad7f9f2a337aae7a36` was pushed
+and relayed before these probes completed. Both test processes have exited0.
+The final reviewed implementation remains exactly f3b408da; later owner product
+commits require their own source correlation and focused review.
