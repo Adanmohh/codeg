@@ -4,6 +4,8 @@
 
 ## Final integration and acceptance loops — active
 
+Latest: search fixes are pushed at `e72cc44b`; root independently passed all39 affected client/component tests at that unchanged head. Independent N1 source review resolves native entry at `3a189d18`, report `169015cf` now on main. Final corrected-export measurements/synthesis remain open before PR #21 merge. Root's [business quickstart](docs/BUSINESS-QUICKSTART.md) explains the implemented human/agent workflow and staged integration limits.
+
 Native review found **N1/P2** at PR #21 `0192ac3f`: fresh main-window creation still opens `workspace`, bypassing the business landing page. Rebrand is dispatched to correct the entry in its own branch; tickets independently reviews the committed fix and native transport/bundling. Approvals continues the independent UI/Design Studio loop. Final native acceptance remains open. Root's real release companion preparation passed; final app packaging and isolated startup follow the corrected UI acceptance.
 
 Correction loop: native entry fix `3a189d18` is committed and under independent re-review. Conflict clarity fix `095c6164` passes root's 13 workflow tests and actual corrected-export409/preserved-draft/explicit-adoption checks. Independent12-state EN/AR light/dark390/768/1280 matrix found no page overflow, but verified two search P2s: light placeholder contrast4.43 and an invisible keyboard-focusable submit. Rebrand owns both fixes; final UI merge remains blocked on their rechecks. Root's standalone server/companion build also passed. No final business native artifact is claimed yet.
