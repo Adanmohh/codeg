@@ -2,8 +2,8 @@
 
 Prepared against frozen contract `670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5`
 and accepted access seam `18be55edc276713fc6d46d075baec363245ba285`;
-final bounded contract verdict is pending. No B implementation, provider access
-or passing test is claimed. Root
+the bounded contract and UI reviews are closed and implementation is dispatched.
+No passing B test or live provider access is claimed. Root
 orchestrates and independently checks the integrated result; workers own code.
 This complements the contract's18 detailed cases with observable user outcomes.
 

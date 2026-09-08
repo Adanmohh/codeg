@@ -57,7 +57,7 @@ plus access `18be55ed` has no open contract blockers in independent review
 or live configuration action are claimed. Sources stay private to explicit authorized humans; only exact
 human-reviewed task text is published to a permitted work area. Import must be
 durable/idempotent and use the existing task/identity core without launching an
-agent. A usable protected source-binding/grant setup is part of contract review.
+agent. A usable protected source-binding/grant setup is part of implementation.
 
 | Existing worker | Branch and bounded deliverable |
 | --- | --- |
@@ -75,24 +75,22 @@ capture remains required before claiming the complete B scope.
 
 **UI planning PR26 reviewed and merged** at exact report head
 `91a69f339e99266b35bb912ae7d1cb155a6acd76`. Root read the full report and final
-diff. This accepts the business interaction plan, not B product or the unfinished
-backend contract. Independent review `ca787542` and UI reconciliation `08824564`
-agree Q2–Q4 rebase/disclosure, recovery and timing/error definitions are coherent
-at `85f6001f`. Q1 setup/capabilities still needs the owner's immutable integrated
-contract; this is now closed by PR25 and independent review `2a765db2`.
+diff. This accepted the business interaction plan. Later PR25 and PR27 close all
+four contract questions; product implementation and runtime acceptance remain
+separate from those documentation verdicts.
 [Plan](reports/business-intake-ui-plan.md) · [Root BI acceptance plan](reports/business-intake-acceptance-checklist.md).
 
 Protected access seam `18be55edc276713fc6d46d075baec363245ba285` is reviewed
 and imported: actual-operator setup, explicit binding/history audience, zero
 initial grants, owner-revision/source-refresh fences, staged secret activation
-and strict failure-preserving credential-store mutation. PR25 must reconcile
-this exact seam; its bounded final contract review is complete.
+and the required strict failure-preserving credential-store mutation. PR25
+incorporates this exact seam; its bounded final contract review is complete.
 [Access contract](docs/contracts/business-intake-access.md).
 
 All retain separate worktrees, Astra/max and live docs-first hooks; latest
 before/after hook records exit0. Installed pinned source then immutable gh api,
-approved borrowing/NOTICE and preserved paused work apply. Root reviews the
-concrete contract before assigning B implementation. Increment C business
+approved borrowing/NOTICE and preserved paused work apply. Root reviews committed
+implementation and independent evidence before merging product. Increment C business
 platform adapters follow the shared-work/import foundation. No new engine or
 unselected Sentry/SigNoz commitment is implied.
 
