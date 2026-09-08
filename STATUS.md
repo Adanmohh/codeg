@@ -2,6 +2,17 @@
 
 ## Current owner direction — shared rich workspace and multiple tenants
 
+Final architecture contract `af00c956787142f900384f7ba6b34ebbc005eb88`
+is reviewed and imported. **Identity/settings implementation is dispatched** to
+approvals in its existing worktree on `feat/business-tenancy`, report
+`reports/business-tenancy.md`: migration000012, explicit platform/tenant context,
+provisioning/recovery, suspension epochs, settings CAS and native ACL/session
+enforcement. Tickets retains B/migration000011, then independently reviews exact
+tenancy product heads after its compiling checkpoint. Rebrand retains the rich
+shared workspace and tenant UI. Closed settings/helper DTOs must be published
+before dependent integration; execution isolation remains a separate gate.
+No new worker, production merge, fixture migration or native acceptance is implied.
+
 Owner explicitly wants the engineering workspace's richness for business users:
 chat and terminal AI, tabs and split panes alongside shared tasks, tables, boards,
 data visualization and content calendars. A separate simplified business dashboard
