@@ -1,0 +1,6 @@
+{
+  "specialist": "aesthetic-judge",
+  "scores": { "visual": 8, "tokens": 8 },
+  "findings": [],
+  "notes": "Inline worker method, not independent review. BC-1/3/5/7/9: deliberate branded navigation and responsibility trail; real work is the primary artifact. CRAP alignment/proximity verified from desktop/mobile list, board and detail captures. Inherited font/radius/paired-theme and alpha/status flags are classified in design-review.md and final-style-focus.json; raw flags remain available. No fabricated marketing metrics."
+}

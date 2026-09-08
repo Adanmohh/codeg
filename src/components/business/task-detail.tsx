@@ -666,7 +666,13 @@ function TaskEditor({
                 ? copy.restore
                 : copy.archive
           }
-          description={copy.archiveHint}
+          description={
+            confirm === "cancel"
+              ? copy.cancelTaskHint
+              : task.archivedAt
+                ? copy.restoreHint
+                : copy.archiveHint
+          }
           onClose={() => {
             if (!busy) setConfirm(null)
           }}

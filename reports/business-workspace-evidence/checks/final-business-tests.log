@@ -1,0 +1,16 @@
+Already up to date
+Done in 155ms using pnpm v11.9.0
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/components/business/provider-isolation.test.tsx (8 tests) 128ms
+ ✓ src/components/business/ui.test.tsx (3 tests) 268ms
+ ✓ src/components/business/session.test.tsx (2 tests) 305ms
+ ✓ src/components/business/workflow.test.tsx (12 tests) 370ms
+
+ Test Files  4 passed (4)
+      Tests  25 passed (25)
+   Start at  14:00:48
+   Duration  1.67s (transform 449ms, setup 530ms, collect 1.82s, tests 1.07s, environment 1.43s, prepare 199ms)
+

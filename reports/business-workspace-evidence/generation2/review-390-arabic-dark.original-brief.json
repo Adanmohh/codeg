@@ -1,0 +1,138 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#fafafa",
+      "#9bd4c5",
+      "#a1a1a1",
+      "#171717",
+      "#ffffff",
+      "#262626",
+      "#ffd230",
+      "#f59300",
+      "#000000",
+      "#242424",
+      "#9dd8c4",
+      "#ff6467",
+      "#ff6469"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      12,
+      14,
+      16,
+      20,
+      30
+    ],
+    "spacingPx": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      20,
+      28,
+      32
+    ],
+    "radiiPx": [
+      10,
+      14,
+      18,
+      33554400
+    ]
+  },
+  "contrast": {
+    "checked": 81,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 21,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)",
+      "ease"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "snapshot": "- dialog \"Prepare the feedback summary · Synthetic\":\n  - heading \"Prepare the feedback summary · Synthetic\" [level=2]\n  - paragraph: Prepare the feedback summary · Synthetic\n  - button \"إغلاق\"\n  - text: المراجعة الملاحظات · عادية النسخة 4\n  - paragraph: Synthetic member-owned work, created without a conversation, folder, agent or engine.\n  - term: المسؤول عن النتيجة\n  - definition: Amal · Synthetic owner\n  - term: المكلّف بالعمل\n  - definition: Samira · Synthetic manager\n  - term: المراجع\n  - definition: Amal · Synthetic owner\n  - term: تاريخ الاستحقاق\n  - definition: بلا تاريخ استحقاق\n  - heading \"مخرجات العمل\" [level=3]\n  - paragraph: \"Synthetic feedback summary: customers need a clear first step and a named person for questions. Recommend reviewing the welcome copy. No customer message, provider call or agent launch occurred.\"\n  - text: Samira · Synthetic manager\n  - button \"تعديل المهمة\"\n  - button \"المسؤولية\"\n  - button \"بدء العمل\"\n  - button \"نقل إلى للتنفيذ\"\n  - heading \"المراجعة\" [level=3]\n  - text: ملاحظة المراجعة\n  - textbox \"ملاحظة المراجعة\": \"Synthetic owner decision: the summary is clear; keep the recommendation as work for a later human decision.\"\n  - checkbox \"راجعت هذه المهمة ومخرجاتها الحالية.\" [checked]\n  - text: راجعت هذه المهمة ومخرجاتها الحالية.\n  - button \"قبول العمل\"\n  - button \"إعادة للتعديل\"\n  - group: إرسال للمراجعة\n  - text: إضافة ملاحظة\n  - textbox \"إضافة ملاحظة\"\n  - paragraph: شارك تحديثًا مع كل من يستطيع الوصول إلى هذه المهمة.\n  - button \"إضافة ملاحظة\" [disabled]\n  - heading \"النشاط\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Nabil · Synthetic member · أُنشئت المهمة\n      - time: 08‏/09‏/2026، 1:01 م\n      - group: النسخة المحفوظة · النسخة 1\n    - listitem:\n      - paragraph: Amal · Synthetic owner · حدّث المسؤولية\n      - time: 08‏/09‏/2026، 1:14 م\n      - term: المسؤول عن النتيجة\n      - definition: Amal · Synthetic owner\n      - term: المكلّف بالعمل\n      - definition: Samira · Synthetic manager\n      - term: المراجع\n      - definition: Amal · Synthetic owner\n    - listitem:\n      - paragraph: Samira · Synthetic manager · حُدثت المهمة\n      - time: 08‏/09‏/2026، 1:18 م\n      - paragraph: للتنفيذ → قيد التنفيذ\n    - listitem:\n      - paragraph: Samira · Synthetic manager · قدّم العمل للمراجعة\n      - time: 08‏/09‏/2026، 1:18 م\n      - group: مخرجات العمل\n  - group: التفاصيل الهندسية\n  - button \"إلغاء المهمة\"",
+    "unnamedInteractive": 0,
+    "headingOrderBreaks": null,
+    "landmarks": null
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#171717 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffffff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffd230 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f59300 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#000000 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#242424 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9dd8c4 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ff6467 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ff6469 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "18px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}

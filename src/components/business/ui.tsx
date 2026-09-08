@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, type ComponentProps, type ReactNode } from "react"
+import { useId, useRef, type ComponentProps, type ReactNode } from "react"
 import {
   AlertCircle,
   Bot,
@@ -34,6 +34,8 @@ export function Action({
       type={type}
       className={cn(
         "min-h-11 rounded-xl px-4 motion-reduce:transition-none",
+        props.variant === "destructive" &&
+          "text-red-800 focus-visible:border-red-800 focus-visible:ring-red-800 dark:text-red-300 dark:focus-visible:border-red-300 dark:focus-visible:ring-red-300",
         className
       )}
       {...props}
@@ -231,6 +233,7 @@ export function Modal({
   wide?: boolean
 }) {
   const copy = useBusinessCopy()
+  const returnFocus = useRef<HTMLElement | null>(null)
   return (
     <Dialog
       open
@@ -240,8 +243,29 @@ export function Modal({
     >
       <DialogContent
         showCloseButton={false}
+        onOpenAutoFocus={() => {
+          returnFocus.current =
+            document.activeElement instanceof HTMLElement
+              ? document.activeElement
+              : null
+        }}
+        onCloseAutoFocus={(event) => {
+          // These controlled dialogs have no Radix Trigger. Restore the actual
+          // opener, or the work area when an updated/archived row has disappeared.
+          event.preventDefault()
+          if (document.activeElement?.closest('[role="dialog"]')) return
+          if (
+            returnFocus.current?.isConnected &&
+            returnFocus.current !== document.body &&
+            returnFocus.current !== document.documentElement
+          ) {
+            returnFocus.current.focus()
+            if (document.activeElement === returnFocus.current) return
+          }
+          document.getElementById("business-main")?.focus()
+        }}
         className={cn(
-          "min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none sm:p-7",
+          "min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7",
           wide ? "max-w-3xl" : "max-w-lg"
         )}
       >

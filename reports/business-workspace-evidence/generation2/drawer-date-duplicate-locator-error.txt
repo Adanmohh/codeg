@@ -1,0 +1,8 @@
+### Error
+Error: locator.waitFor: Error: strict mode violation: getByRole('dialog', { name: 'Check the homepage promise · Synthetic', exact: true }).locator('time[datetime="2026-12-31"]') resolved to 2 elements:
+    1) <time dir="ltr" class="tabular-nums" datetime="2026-12-31">2026-12-31</time> aka getByRole('time').filter({ hasText: '-12-31' })
+    2) <time dir="ltr" class="tabular-nums" datetime="2026-12-31">2026-12-31</time> aka getByRole('listitem').getByText('-12-31')
+
+Call log:
+[2m  - waiting for getByRole('dialog', { name: 'Check the homepage promise · Synthetic', exact: true }).locator('time[datetime="2026-12-31"]') to be visible[22m
+

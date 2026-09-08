@@ -1,0 +1,38 @@
+[
+  {
+    "theme": "light",
+    "state": "normal",
+    "text": 7.105514541331278,
+    "focusBorder": null
+  },
+  {
+    "theme": "light",
+    "state": "hover",
+    "text": 6.082127933981806,
+    "focusBorder": null
+  },
+  {
+    "theme": "light",
+    "state": "focus",
+    "text": 7.105514541331278,
+    "focusBorder": 7.105514541331278
+  },
+  {
+    "theme": "dark",
+    "state": "normal",
+    "text": 7.987897878851088,
+    "focusBorder": null
+  },
+  {
+    "theme": "dark",
+    "state": "hover",
+    "text": 6.589833005532011,
+    "focusBorder": null
+  },
+  {
+    "theme": "dark",
+    "state": "focus",
+    "text": 7.987897878851088,
+    "focusBorder": 7.987897878851088
+  }
+]

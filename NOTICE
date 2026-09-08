@@ -681,3 +681,12 @@ src-tauri/src/db/test_helpers.rs fresh_disk_db helper from that exact commit.
 The patch is applied only to an ignored, owned test snapshot; all production
 backend source remains unchanged. The protected router and fixture guard remain.
 Original Codeg copyright, Apache-2.0 LICENSE and all earlier notices are retained.
+
+Business workspace static-route verification (test evidence only):
+reports/business-workspace-evidence/fixture-static-routing.patch reuses the
+Apache-2.0 TestServer/build_router setup in src-tauri/src/business_identity/tests.rs
+at Adanmohh/codeg 1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5, blob
+c606ac88e9556bb8284dc28ce647938c921d5a59. It is applied only to the frontend
+worker's ignored fixture snapshot to check its own exported HTML through the
+unchanged production static router. No backend product source is ported or edited.
+Installed axum-test17.3.0 APIs are references, not copied dependency code.

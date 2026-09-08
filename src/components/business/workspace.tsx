@@ -325,7 +325,8 @@ export function BusinessWorkspace({
         </header>
         <main
           id="business-main"
-          className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-5 py-7 sm:px-8 lg:px-10 lg:py-10"
+          tabIndex={-1}
+          className="focus-visible:ring-ring min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-5 py-7 outline-none focus-visible:ring-2 focus-visible:ring-inset sm:px-8 lg:px-10 lg:py-10"
         >
           <div className="mx-auto max-w-6xl">
             {view === "people" ? (

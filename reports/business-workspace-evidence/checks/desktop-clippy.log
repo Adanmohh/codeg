@@ -1,0 +1,64 @@
+    Checking tokio v1.49.0
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src-tauri)
+   Compiling ucd-trie v0.1.7
+    Checking diff v0.1.13
+   Compiling pest v2.8.6
+    Checking yansi v1.0.1
+    Checking pretty_assertions v1.4.1
+   Compiling pest_meta v2.8.6
+    Checking rust-multipart-rfc7578_2 v0.8.0
+    Checking reserve-port v2.4.0
+    Checking assert-json-diff v2.0.2
+   Compiling pest_generator v2.8.6
+    Checking console v0.16.3
+    Checking tokio-util v0.7.18
+    Checking tauri v2.10.2
+    Checking tokio-stream v0.1.18
+    Checking sqlx-core v0.8.6
+    Checking h2 v0.4.13
+warning: codeg@0.30.4: codeg-mcp sidecar missing at binaries/codeg-mcp-aarch64-apple-darwin; wrote 0-byte placeholder. Run `pnpm tauri:prepare-sidecars` before `tauri build` to ship a working binary.
+    Checking tower v0.5.3
+    Checking async-compression v0.4.42
+    Checking tokio-native-tls v0.3.1
+    Checking tower-http v0.6.8
+    Checking sqlx-sqlite v0.8.6
+    Checking tokio-rustls v0.26.4
+    Checking rmcp v1.3.0
+    Checking hyper v1.8.1
+    Checking sqlx v0.8.6
+    Checking sea-query-binder v0.7.0
+    Checking tokio-tungstenite v0.28.0
+    Checking sea-orm v1.1.19
+    Checking hyper-util v0.1.20
+    Checking hyper-rustls v0.27.7
+    Checking reqwest v0.13.2
+    Checking tauri-plugin-fs v2.4.5
+    Checking hyper-tls v0.6.0
+    Checking axum v0.8.8
+    Checking sea-schema v0.16.2
+    Checking tokio-tungstenite v0.26.2
+    Checking kill_tree v0.2.4
+    Checking sea-orm-cli v1.1.19
+    Checking reqwest v0.12.28
+    Checking sea-orm-migration v1.1.19
+    Checking tauri-plugin-dialog v2.6.0
+    Checking sacp v11.0.0
+    Checking tauri-plugin-updater v2.10.0
+    Checking tauri-plugin-window-state v2.4.1
+    Checking tauri-plugin-single-instance v2.4.2
+    Checking tauri-plugin-process v2.3.1
+    Checking tauri-plugin-notification v2.3.3
+    Checking tauri-plugin-autostart v2.5.1
+    Checking tauri-plugin-opener v2.5.3
+    Checking async_zip v0.0.18
+   Compiling pest_derive v2.8.6
+    Checking auto-future v1.0.0
+    Checking bytesize v2.3.1
+    Checking similar v2.7.0
+    Checking axum-test v17.3.0
+    Checking temp-env v0.3.6
+    Checking sacp-tokio v11.0.0 (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src-tauri/vendor/sacp-tokio)
+    Checking insta v1.47.2
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 15s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

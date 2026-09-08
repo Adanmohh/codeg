@@ -1,0 +1,35 @@
+--- a/src-tauri/src/business_tasks/tests/fixture.rs
++++ b/src-tauri/src/business_tasks/tests/fixture.rs
+@@ -12,7 +12,32 @@
+ 
+ const OPERATOR: &str = "business-tasks-synthetic-operator";
+ 
++// Frontend-owned verification only, adapted from accepted business_identity/tests.rs.
++// Exercise the actual production rewrite/ServeDir stack; no scheduler or providers.
+ #[tokio::test]
++async fn business_export_paths_use_real_static_router() {
++    let directory = tempfile::tempdir().unwrap();
++    let db = fresh_disk_db(directory.path()).await;
++    let state = Arc::new(crate::app_state::AppState::new_for_test(db, directory.path().into()));
++    let export = std::path::PathBuf::from(std::env::var_os("BUSINESS_EXPORT_DIR").expect("owned export required"));
++    let server = axum_test::TestServer::new(crate::web::router::build_router(
++        state, OPERATOR.into(), export.clone(), Arc::new(crate::web::shutdown::ShutdownSignal::new()),
++    )).unwrap();
++    for (path, filename) in [
++        ("/business", "business.html"),
++        ("/business/", "business.html"),
++        ("/business.html", "business.html"),
++        ("/business/?case=synthetic", "business.html"),
++        ("/", "index.html"),
++        ("/index.html", "index.html"),
++    ] {
++        let response = server.get(path).add_header("authorization", "Bearer synthetic-ambient-old-operator").await;
++        response.assert_status_ok();
++        response.assert_text(std::fs::read_to_string(export.join(filename)).unwrap());
++    }
++}
++
++#[tokio::test]
+ #[ignore = "manual guarded task API fixture on loopback4342; no engine or UI claims"]
+ async fn business_tasks_browser_fixture() {
+     let directory = tempfile::tempdir().unwrap();

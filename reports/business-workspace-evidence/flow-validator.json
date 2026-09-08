@@ -1,0 +1,6 @@
+{
+  "specialist": "flow-validator",
+  "scores": { "functional": 9 },
+  "findings": [],
+  "notes": "Inline method applied to actual scripted Playwright CLI interaction/response artifacts, not an LLM flow executor. BC-2/3/8/10/11/14/15: bootstrap/personal credential, two shared sessions, human creation, real409 compare/adopt, independent review/Done, viewer403/revocation401, assignment/unbound source400, cancel/archive/restore and private locale retention pass on final relevant source. First product failures (mobile shrink/overflow, contrast, motion and focus) corrected and rechecked. Earlier fixture500 and locator/timing failures retained, not counted as passing. Backend1ba73e3c remains an integration dependency."
+}

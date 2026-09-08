@@ -1,0 +1,84 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#fafafa",
+      "#0a0a0a",
+      "#737373",
+      "#245e58",
+      "#276258",
+      "#f5f5f5",
+      "#e5e5e5"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      12,
+      14,
+      16,
+      36
+    ],
+    "spacingPx": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      20,
+      32,
+      36,
+      40,
+      247
+    ],
+    "radiiPx": [
+      10,
+      14,
+      18,
+      33554400
+    ]
+  },
+  "contrast": {
+    "checked": 64,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 6,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "snapshot": "- alert\n- complementary:\n  - paragraph: Hafidh\n  - paragraph: Ops Desk\n  - paragraph: Workspace\n  - paragraph: Hafidh Studio · Synthetic\n  - navigation \"Workspace\":\n    - button \"My work\"\n    - button \"Shared work\"\n    - button \"Review\"\n    - button \"People & agents\"\n  - combobox \"Language\":\n    - option \"English\" [selected]\n    - option \"简体中文\"\n    - option \"繁體中文\"\n    - option \"日本語\"\n    - option \"한국어\"\n    - option \"Español\"\n    - option \"Deutsch\"\n    - option \"Français\"\n    - option \"Português\"\n    - option \"العربية\"\n  - combobox \"Appearance\":\n    - option \"Device appearance\"\n    - option \"Light\" [selected]\n    - option \"Dark\"\n  - text: Amal · Synthetic owner\n  - paragraph: Owner · Connected\n  - button \"Disconnect\"\n- main:\n  - paragraph: Workspace\n  - heading \"Shared work\" [level=1]\n  - paragraph: A shared view of the work your team can access.\n  - button \"Create task\"\n  - textbox \"Find a task\"\n  - button \"Find a task\"\n  - button \"Refresh\"\n  - combobox \"Area of work\":\n    - option \"All areas\" [selected]\n    - option \"Marketing\"\n    - option \"Channels\"\n    - option \"Ads\"\n    - option \"Website\"\n    - option \"Feedback\"\n    - option \"Engineering\"\n  - combobox \"Status\":\n    - option \"All statuses\" [selected]\n    - option \"To do\"\n    - option \"In progress\"\n    - option \"Review\"\n    - option \"Done\"\n    - option \"Cancelled\"\n  - checkbox \"Archived\"\n  - text: Archived\n  - button \"List\" [pressed]\n  - button \"Board\"\n  - paragraph: 5 tasks loaded\n  - list:\n    - listitem:\n      - button \"To do Feedback · Normal Prepare the feedback summary · Synthetic Accountable owner Nabil · Synthetic member Assigned to Nabil · Synthetic member No due date\":\n        - text: To do Feedback · Normal\n        - heading \"Prepare the feedback summary · Synthetic\" [level=2]\n        - text: Accountable owner Nabil · Synthetic member Assigned to Nabil · Synthetic member No due date\n    - listitem:\n      - button \"To do Feedback · Low Synthetic long title CustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContext Accountable owner Amal · Synthetic owner Assigned to Unassigned 2028-02-29\":\n        - text: To do Feedback · Low\n        - heading \"Synthetic long title CustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContextCustomerContext\" [level=2]\n        - text: Accountable owner Amal · Synthetic owner Assigned to Unassigned\n        - time: 2028-02-29\n    - listitem:\n      - button \"To do Feedback · Normal Summarize customer feedback · Synthetic Accountable owner Amal · Synthetic owner Assigned to Unassigned No due date\":\n        - text: To do Feedback · Normal\n        - heading \"Summarize customer feedback · Synthetic\" [level=2]\n        - text: Accountable owner Amal · Synthetic owner Assigned to Unassigned No due date\n    - listitem:\n      - button \"To do Website · Normal Check the homepage promise · Synthetic Accountable owner Amal · Synthetic owner Assigned to Atlas · Synthetic agentAgent 2026-12-31\":\n        - text: To do Website · Normal\n        - heading \"Check the homepage promise · Synthetic\" [level=2]\n        - text: Accountable owner Amal · Synthetic owner Assigned to Atlas · Synthetic agentAgent\n        - time: 2026-12-31\n    - listitem:\n      - button \"To do Marketing · High Shape the customer welcome · Synthetic Accountable owner Amal · Synthetic owner Assigned to Nabil · Synthetic member 2026-10-01\":\n        - text: To do Marketing · High\n        - heading \"Shape the customer welcome · Synthetic\" [level=2]\n        - text: Accountable owner Amal · Synthetic owner Assigned to Nabil · Synthetic member\n        - time: 2026-10-01",
+    "unnamedInteractive": 0,
+    "headingOrderBreaks": null,
+    "landmarks": null
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#276258 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "18px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "247px spacing off brief + 4px scale"
+    }
+  ]
+}

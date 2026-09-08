@@ -1,0 +1,6 @@
+{
+  "specialist": "a11y-auditor",
+  "scores": { "accessibility": 8, "states": 8 },
+  "findings": [],
+  "notes": "Inline worker method. BC-4/7/9/12/13/16: corrected small filters, long-content overflow, controlled-modal focus, reduced-motion specificity and destructive text/focus contrast. Actual RTL drawer contains focus and returns it; final keyboard return has visible inset ring. Final review94 samples per theme:0 contrast failures; CLI ARIA name parser:0 unnamed controls. People busy/parent loading source refutes the two string-search warnings. No screen-reader or full preset certification."
+}

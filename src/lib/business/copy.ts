@@ -203,6 +203,9 @@ const english = {
   archived: "Archived",
   restore: "Restore from archive",
   archiveHint: "The task leaves active lists. Its history is retained.",
+  cancelTaskHint: "The task is marked Cancelled. Its history is retained.",
+  restoreHint:
+    "The task returns to current lists. Its status and history are retained.",
   workChanged: "Task updated",
   noteAdded: "Added a note",
   delivered: "Submitted work for review",
@@ -424,6 +427,8 @@ const arabic: BusinessCopy = {
   archived: "مؤرشفة",
   restore: "استعادة من الأرشيف",
   archiveHint: "تُزال المهمة من القوائم النشطة ويبقى سجلها محفوظًا.",
+  cancelTaskHint: "تُعلَّم المهمة بأنها ملغاة ويبقى سجلها محفوظًا.",
+  restoreHint: "تعود المهمة إلى القوائم الحالية مع الاحتفاظ بحالتها وسجلها.",
   workChanged: "حُدثت المهمة",
   noteAdded: "أضاف ملاحظة",
   delivered: "قدّم العمل للمراجعة",

@@ -1,266 +1,231 @@
-# Business workspace — active implementation checkpoint
+# Business workspace — review handoff
 
-Branch `feat/business-workspace`; draft [PR21](https://github.com/Adanmohh/codeg/pull/21).
-Base `4ec04d7282a50529335d724438d42b99a53385a2`; pushed source checkpoint
-`c1a35955`, plus the scoped long-content correction in this checkpoint.
-Real protected bootstrap/member creation, two personal sessions, task creation,
-409 draft recovery, independent human review and cross-session completion have
-passed. Role/revocation and complete responsive/Design Studio checks are still in
-progress; this is not a final acceptance claim.
+Branch **feat/business-workspace**; draft [PR21](https://github.com/Adanmohh/codeg/pull/21).
+Frontend implementation and actual protected-API browser checks are complete.
+This checkpoint records the final scoped contrast, motion, focus and confirmation
+copy corrections; the final commit SHA is recorded below after committing.
+Root remains reviewer/merger. The task backend is tested at **1ba73e3c** in an
+owned snapshot and is not yet merged into this branch. No production mock layer.
 
-## Implemented behavior
+## Result and boundaries
 
-The default entry opens a branded business workspace. A separate in-memory
-connection signs into the shared server or explicitly connects the local native
-operator. Original operators can bootstrap an organization; authorized owners and
-admins can manage human/agent members and issue/revoke personal credentials.
-One-time secrets remain masked until intentional reveal/copy and disappear on
-closing the credential surface. Agent directory entries cannot receive sign-in
-credentials. Existing operator login and engineering routes remain available;
-only the server's `legacyOperator` capability displays the engineering entry.
+The default entry is a branded business workspace with My work, Shared work,
+Review and People & agents. A human can connect, create/assign work, edit its
+brief, contribute notes/deliverables and review the result without chat, a git
+folder, terminal or agent. List/board, actual loaded counts, area/status/search,
+archive and pagination use the real protected task API. Each task distinguishes
+its accountable human, human/agent executor and nullable authorized reviewer.
+Due dates remain exact nullable **YYYY-MM-DD calendar days**; no timezone conversion.
+Done uses the separate human review operation and explicit confirmation of the
+saved revision/current deliverable. Cancel, archive and restore describe their
+actual effects. Execution linking remains subordinate and never starts an engine.
 
-My work, shared work and review support list/board views, server filters and
-50-record pagination. Direct task creation and detail expose human ownership,
-human/agent execution, nullable reviewer, calendar-only due date, notes,
-deliverables, public activity and capability-controlled mutations. Progress has
-only todo/in_progress/review; completion uses the distinct human review operation.
-Null reviewer means any currently authorized human reviewer. Review displays the
-actual saved revision and current deliverable. Existing execution links are
-subordinate detail and do not launch an engine.
+An original operator can bootstrap the organization and issue personal access.
+Member credentials use a **separate in-memory business client**, never the legacy
+bearer store or WebTransport. Owner role/engineering domain do not grant legacy
+access: only server capability **legacyOperator** exposes that destination and
+source entrustment. Agent directory entries have no human sign-in issuer. Issued
+credentials are masked by default, intentionally revealed/copied, and cleared on
+close. Context/principal/revision changes reset private editing; authentication
+failure closes the client and late responses are discarded. Locale/viewport
+changes preserve drafts. Safe fixed errors replace raw backend/provider bodies.
 
-Conflicts preserve the edited draft and original revision, lock writes, and
-require loading/comparing the current version before explicit adoption. Ambiguous
-create failures do not automatically retry. Locale/viewport changes preserve
-private drafts; disconnect, authentication failure or membership revision change
-unmount the private workspace and discard late responses. Errors use safe fixed
-copy instead of raw backend/provider bodies.
+Cold /business, /business/, /business.html, / and /index.html omit legacy
+settings/wallpaper/connection providers even with an ambient old operator token.
+/business-other retains inherited providers. Browser member requests use only
+closed /api/business POST {input} operations, omit cookies and refuse redirects.
+Native remains operator-only; a desktop member can choose the separate shared
+HTTP connection. Native OS isolation/multi-desktop operation is not claimed from
+browser testing. No Rust product edits, engine/approval changes, new dependencies,
+lockfile changes, live provider/model calls, credential exposure or deployment.
 
-Cold `/business`, `/business/`, `/business.html`, `/` and `/index.html` omit legacy
-settings/wallpaper/operator-connection reads, even with an ambient old operator
-token. `/business-other` and `/workspace` retain inherited behavior. The business
-client uses only the fixed `/api/business` POST envelope, omits cookies, refuses
-redirects and never reads/writes the legacy bearer store. Local desktop business
-commands remain operator-only; member HTTP credentials use the separate client.
+## Exact source mapping
 
-## Source-to-adaptation map and authority
+All frontend adaptation is Apache-2.0 Codeg. Upstream baseline:
+xintaofei/codeg v0.30.4, **6f6bd648b206412644842a98d9ffeebf57292bed**.
+Accepted fork source for the following rows:
+Adanmohh/codeg **4ec04d7282a50529335d724438d42b99a53385a2**.
 
-| Exact source read | Adaptation |
+| Source files read | Adaptation |
 | --- | --- |
-| `Adanmohh/codeg@4ec04d7282a50529335d724438d42b99a53385a2`: `src/components/ui/{button,input,textarea,dialog,drawer}.tsx` | Existing imported controls, modal focus/dismissal and shared Drawer; scoped business composition, no new UI system. |
-| Same commit: `src/components/tasks/{board-columns.ts,task-card.tsx}`, `src/components/ops/session.tsx` | Status list/board presentation and keyed in-memory editing lifetime; separate business DTOs. |
-| Same commit: `src/app/{layout.tsx,page.tsx,login/page.tsx,workspace/layout.tsx}`, `src/components/layout/sidebar.tsx` | Minimal business entry/navigation and inherited engineering access. |
-| Same commit: `src/components/{i18n-provider,appearance-provider}.tsx`, `src/components/connection/web-connection-guard.tsx`, `src/lib/transport/{web-auth,web-transport,tauri-transport,index}.ts`, `src/lib/app-error.ts` | Local-only provider boundary; isolated typed HTTP/native client and safe command-error decoding. |
-| Same commit: `src-tauri/src/web/router.rs`, `next.config.ts` | Read-only static-export routing authority, including direct `.html`; actual server/browser verification remains pending. |
-| Identity `861fb0ef4394d4980a19ba375bb4c1f3f218d39b`, accepted `c911c406`, merged `ab46c9d9`: `docs/contracts/business-identity.md`, `src-tauri/src/business_identity/{types,mod,store}.rs` | Exact UUID/camelCase inputs, member grant limits, protected owner credential semantics and transport-only legacy capability. |
-| Tasks `bf4309f5abdb077fd8e1a8e42db4861dadcda24b`: `docs/contracts/business-tasks.md`, `src-tauri/src/business_tasks/{types,policy,validation}.rs`; activity/HTTP checkpoint `76bb6909511016a11e864abe19d4ffd493aafa0c`, `store.rs` and handlers | Exact operation DTOs, nullable all-day date/reviewer, public activity fields and task capabilities. New combined `1e8b5250` is reported by its owner; runtime integration pending. |
+| src/components/ui/{button,input,textarea,dialog,drawer}.tsx | Imported controls; scoped business forms/modals/navigation. Shared Dialog/Drawer unchanged. |
+| src/components/tasks/{board-columns.ts,task-card.tsx}; src/components/ops/session.tsx | Status/list/board composition and keyed in-memory lifetime, using separate business DTOs. |
+| src/app/{layout.tsx,page.tsx,login/page.tsx,workspace/layout.tsx}; src/components/layout/sidebar.tsx | Minimal business default entry and retained authorized engineering navigation. |
+| src/components/{i18n-provider,appearance-provider}.tsx; connection/web-connection-guard.tsx; src/lib/transport/{web-auth,web-transport,tauri-transport,index}.ts; app-error.ts | Local-only provider boundary, typed dedicated HTTP/native client and safe error decoding. |
+| src-tauri/src/web/router.rs; next.config.ts | Static export/rewrite authority; direct .html and trailing-slash verification. |
+| public/icon.svg | Accepted original Hafidh code-native vector mark; no image service/new asset system. |
+| reports/design-reduced-motion-evidence/server.mjs | Owned synthetic static export/closed loopback proxy, no production server edits. |
 
-Inherited Apache baseline: `xintaofei/codeg@v0.30.4`,
-`6f6bd648b206412644842a98d9ffeebf57292bed`. NOTICE appends the exact frontend
-adaptation and preserves all earlier licenses/entries. The Hafidh vector mark is
-the accepted original `public/icon.svg`. IntroMail research at
-`0bd24dfe284b888aa9f602fa1fd00e337ea38874` supplies domain guidance only; no
-IntroMail, Plane, OpenProject, AGPL/GPL or provenance-uncertain implementation is
-copied into this frontend. No dependency or lockfile change.
+Identity authority: **861fb0ef4394d4980a19ba375bb4c1f3f218d39b**, accepted
+c911c406/main ab46c9d9; docs/contracts/business-identity.md and
+src-tauri/src/business_identity/{types,mod,store}.rs. Accepted main through
+a670163d was integrated as **0e5eb3e7**; both complete NOTICE sections retained.
 
-Read complete BUSINESS-IMPLEMENTATION, FOUNDING, ORCHESTRATOR, STATUS, DECISIONS,
-AGENTS, the three research reports, root's 18-item acceptance checklist and design
-BRIEF. Applied code-context and Design Studio art-direction/frontend-design/
-checklist methods. Offline guide retrieval exited 0; installed-doc retrieval
-exited 3 because `rebrand.db` is absent. No corpus/model/package installation.
-Relevant retrieved guidance: installed-version authority, precise staging,
-existing-source reuse and one route per job. No invented repository rule.
+Task DTO authority: **bf4309f5abdb077fd8e1a8e42db4861dadcda24b**, then tested
+R1 source **1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5**;
+docs/contracts/business-tasks.md, business_tasks/{types,policy,validation,store}.rs
+and HTTP/native wrappers. Public activity fields were read at76bb6909. No actor
+or org override, new auth boundary, or unapproved backend endpoint was invented.
+Operator-only entrust-execution requires confirmation; linking is separate and
+uses the returned revision. A real unbound legacy task returns400 without launch.
 
-Local API authority: React19.2.4 hooks/types, Next16.1.6 navigation/build help,
-Tailwind4.1.18 theme.css, next-intl4.8.3 provider exports, next-themes0.4.6,
-@tauri-apps/api2.10.1 invoke/core types, radix-ui1.6.0 Dialog types,
-@base-ui/react1.7.0 Drawer Root/Popup types, lucide-react0.563.0 declarations,
-TypeScript5.8.3 DOM/Intl types, Vitest2.1.9 and Testing Library React16.3.2.
-Playwright CLI0.1.18 help and skill read; no update installed. All remote source
-reads use `gh api` immutable refs, not latest-library substitution.
+Test-only fixture patches use the same1ba73e3c source: tests/fixture.rs (blob
+1c2f30c657fb339be53392cda21e508bd866929e), db/test_helpers.rs (blob
+98cc3fa307e793cad07af75f577c24d3189a181a), and business_identity/tests.rs
+(blob c606ac88e9556bb8284dc28ce647938c921d5a59). Both patches are committed
+under the evidence directory and apply only to the ignored owned snapshot.
+NOTICE preserves original attribution and every preceding worker entry.
+IntroMail0bd24dfe284b888aa9f602fa1fd00e337ea38874 supplied research context only;
+no IntroMail/AGPL/GPL/provenance-uncertain implementation was copied here.
 
-Docs-first audit still contains live PreToolUse/PostToolUse for session
-`01a07c1c-cf2e-73e1-bbe3-e758c8363042`, this worktree, following separate
-`cat node_modules/react/package.json` and `cat src-tauri/Cargo.toml` reads.
-Hooks remain enabled; no bypass or global configuration change.
+## Docs-first evidence
 
-## Validation at this checkpoint
+Read complete founding/orchestration/status/decisions/AGENTS, BUSINESS-IMPLEMENTATION,
+all three research reports, root BW-1–18 checklist and unchanged design brief.
+Applied code-context, art direction/frontend design/checklist and Playwright CLI.
+Offline RAG guide retrieval exited0 using the existing rag-skills venv and
+HF_HUB_OFFLINE=1. Installed-doc query exited3 because rebrand.db is absent;
+coverage was not invented and no corpus/model/package was installed.
 
-| Command / evidence | Exit and result |
+Local installed authority: React19.2.4/@types19.2.13 hooks, Next16.1.6 export and
+navigation, Tailwind4.1.18 tokens/variants/important utilities, next-intl4.8.3,
+next-themes0.4.6, Tauri API2.10.1, radix-ui1.6.0 resolving Dialog1.1.17 and
+FocusScope1.1.10, Base UI1.7.0 Drawer/FloatingFocusManager/enqueueFocus,
+Lucide0.563.0, TypeScript5.8.3 DOM types, Vitest2.1.9 and Testing Library16.3.2.
+Dialog close callbacks suppress default Trigger focus; these controlled business
+modals have no Trigger, so scoped return-focus glue is necessary. The shared
+focus trap remains intact. Node24.19.0/@types-node25.2.2 fs/http types and
+Playwright CLI0.1.18/bundled1.63.0-alpha-2026-08-05 sources/help were read.
+No advertised CLI upgrade. Axum-test17.3.0 local TestServer/response docs ground
+static routing verification. All remote research used gh api immutable refs.
+
+Live docs-first audit: session **01a07c1c-cf2e-73e1-bbe3-e758c8363042**, cwd this
+worktree, PreToolUse and PostToolUse exit0 at epoch1788864741, following separate
+React package/Cargo manifest reads. Audit path:
+/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl. Hooks remain enabled.
+
+## Verification
+
+Logs are under .build/business-workspace/ in this worktree; final evidence copies
+are under reports/business-workspace-evidence/checks/.
+
+| Command/check | Result |
 | --- | --- |
-| `pnpm exec vitest run src/lib/business/client.test.ts src/components/business src/components/appearance-provider.test.tsx src/components/connection/web-connection-guard.test.tsx src/components/layout/sidebar.test.tsx` | 0; 75/75 across 7 files, `.build/business-workspace/checkpoint-tests.log`. |
-| `pnpm exec tsc --noEmit` | 0; `checkpoint-typecheck.log`. |
-| Scoped `pnpm exec eslint` on business files, root/login/sidebar and provider seams | 0, no warnings; `checkpoint-lint.log`. |
-| `CODEG_EXPORT_DIR=out-business-workspace NEXT_TELEMETRY_DISABLED=1 pnpm build` | 0; 34 static pages including business. `build.log`. This build predates the final activity/unknown-member presentation adjustment; final export rebuild pending integration. |
-| `git diff --check`, lockfile diff | 0; no lockfile changes. |
+| pnpm exec vitest run business client/components plus appearance, connection guard, sidebar, Ops flows/session, intake and Telegram integration tests | Exit0;113 tests/12 files, integrated-frontend-tests.log. |
+| pnpm exec vitest run src/components/business after final focus/copy corrections | Exit0;25 tests/4 files, including3 focus recovery regressions; final-business-tests.log. These overlap the integrated run, not an added138 tests. |
+| pnpm exec tsc --noEmit | Exit0; final-typecheck.log. |
+| Scoped eslint on all changed production/provider/navigation files, then src/components/business src/lib/business | Exit0, no warnings; checkpoint-lint.log and final-business-lint.log. |
+| CODEG_EXPORT_DIR=out-business-workspace NEXT_TELEMETRY_DISABLED=1 pnpm build | Exit0;34 static pages, final-build.log. Actual final focus/archive/drawer checks use this rebuilt export. |
+| cargo check --locked --offline --jobs4 | Exit0; default desktop, desktop-check.log. |
+| cargo check --locked --offline --no-default-features --bin codeg-server --jobs4 | Exit0; server-check.log. |
+| cargo clippy --locked --offline --all-targets --features test-utils --jobs4 -- -D warnings | Exit0; desktop-clippy.log. |
+| cargo clippy --locked --offline --no-default-features --bin codeg-server --lib --jobs4 -- -D warnings | Exit0; server-clippy.log. |
+| Actual static router test, owned source snapshot/target | Exit0;1 test with6 URL/body checks, static-router-test.log. Uses the unmodified Axum rewrite/ServeDir stack via axum-test's default in-process transport. |
+| git diff --check; secret-pattern scan of report/evidence | Exit0 diff check; scan exits1 (no matching issued credential/PAT). No lockfile change. |
 
-Behavioral tests cover dedicated bearer transport, unsafe origins, cookies and
-redirect denial, native command mapping, authentication teardown/late responses,
-cold-route legacy isolation, membership downgrade clearing private state, viewer
-restrictions, capability-only engineering access, human creation/review,
-calendar-day roundtrip, nullable reviewer, locale draft retention, stale CAS
-comparison, masked one-time credentials and public plaintext activity allowlists.
-Synthetic DTOs/fetch stubs exist only in unit tests, never production fallbacks.
-Initial test-only harness issues (inherited boolean `1`, unsupported Testing
-Library `exact` option and narrowed locale type) were corrected without weakening
-assertions. Connect hydration was aligned with installed React's external-store
-pattern; final lint/typecheck pass. No browser result is inferred from these tests.
+Cargo commands run from src-tauri with the own
+.build/business-gates-target. No other worktree/old fixture target was used.
+Inherited proc-macro-error2 future-compatibility warning and test-binary unwind
+warning remain; neither is a new product failure. No broad unrelated Rust retest.
 
-## Remaining work and concrete limits
+Actual CLI evidence, not production mocks:
 
-1. Push this frontend checkpoint, integrate accepted identity main while preserving
-   all attribution, then integrate the accepted task backend when available.
-2. Launch only the owned guarded fixture on **4340** with
-   `out-business-workspace/` and two CLI sessions `business-owner4340` /
-   `business-member4340`. Backend owner has reserved 4342; no other fixture is
-   modified. Need the published real task fixture/static-export setup contract.
-3. Complete actual protected task/member UI flows, 390/768/1280 light/dark/RTL,
-   focus/reduced-motion/long-content checks and measured Design Studio review.
-   Rebuild after integration and record exact tested head; no API-only acceptance.
-4. New business copy currently has English and Arabic. The other eight existing
-   app locales retain their global preferences and use English business copy;
-   this limitation is explicit, not a claim of ten-language translation coverage.
-   Credentials/drafts intentionally do not persist across reloads. The directory
-   follows the backend's 500-member cap.
+| Workflow | Evidence under business-workspace-evidence/ |
+| --- | --- |
+| Five cold entry paths200, ambient operator token, zero API calls; failed/offline connection and responsive sign-in | connection-before.json; connection-after.json; connection screenshots. |
+| Operator bootstrap, human/agent setup, masked one-time token, personal owner and independent member sessions | bootstrap-people.json; owner-personal-session.json; member-connect.json. No issued credential in artifacts. |
+| Human/agent/unassigned work, explicit/nullable reviewer, exact dates incl leap day, private locale draft | create-work.json; member-own-work.json; member-draft-locale.json. |
+| Real409, preserved draft, compare/adopt/save; member note/deliverable and independent human review | member-conflict-review.json; manager-review.json. |
+| Actual viewer downgrade, forbidden forged requests403, revocation401 and private-state teardown | generation2/{owner-downgrade-member,member-downgrade-check,viewer-forgery,owner-revoke-member,member-revocation-check}.json. |
+| Current separate assignee/reviewer, area/no-result filter, unbound source400, submission and cross-session Done | generation2/{assignment-filters-source,manager-deliver,owner-accept-final,member-done-cross-session}.json. |
+| Cancel→archive→restore, status/history retained, focus after disappeared row | generation2/archive-focus.json; final-style-focus.json and screenshots. |
+|390/768/1280 list and board, light/dark; Arabic drawer/date/review, keyboard and reduced motion | generation2/after-filters/; drawer-rtl-date.json; review-focus-rtl-after-motion.json; final-style-focus.json. |
 
-Preservation: paused `reports/visual-workspace.md` stays untracked and unchanged
-(SHA256 `ded5a851409095dc40fffff7f778f668f79a614aa4040a1bb0349c81b0f5768e`).
-The byte-identical colliding research copy was preserved under ignored
-`.build/rebrand-paused-checkpoints/20260908-business-resume/` (SHA256
-`d4d99598d10870b55e0700f439e49df86a57255a2c01e0ae00b7cf04b523a7a0`).
-Existing 4326 fixture/export/browser and all other worker outputs remain untouched.
-No backend edits, live provider/model calls, secret outputs, new agents or deployment.
+Root BW checklist: frontend aspects BW-1–8/11–15 covered above and focused tests;
+BW-9/10 agent/transaction authority belongs to task backend owner (no new agent
+bridge here); BW-16 native limitation is explicit; BW-17 integrated frontend
+regressions passed. BW-18 worker Design Studio review/evidence is provided for
+root's independent accepted-source assessment.
 
-## Integration and first browser checkpoint
+## Visual review and images
 
-Frontend implementation `79cfe080` is pushed. Accepted identity/main through
-`a670163d` was merged as **`0e5eb3e7`**, pushed. Only additive NOTICE conflicted;
-both complete append sections and original attribution were preserved. A local
-resolution script initially misparsed the equals separator; corrected from the
-two parent notices and amended the unpublished merge before push. The inherited
-registration patch contains a trailing-space context line; it was preserved.
-Identity integration typecheck and isolated export build exited0.
+See [measured review](business-workspace-evidence/design-review.md), BC-1–16,
+raw/pure reports and specialist-method JSONs. Methods applied sequentially with
+no agents or inference. Worker scores8/10 for states/feedback/accessibility/
+responsive/visual; not an independent or award-level certification.
 
-Actual CLI connection evidence is in `reports/business-workspace-evidence/`.
-All five entry paths returned200 and rendered with **zero API calls**, including
-ambient old operator token/wallpaper. Initial mobile capture put sign-in too low;
-the scoped mobile introduction is now compact and selects are16px. Six after
-captures cover390/768/1280, light/dark and Arabic RTL, with no horizontal overflow,
-44px fields, visible keyboard focus and sign-in within the390px capture. Invalid
-connection copy now describes entered information instead of task fields.
-`connection-after.json` records actual values. The unavailable state came from
-the disconnected fixture guard, not a simulated production success.
+Measured fixes: mobile filters32.2→171×44px; long dialog3974→358px content within
+358px; actual reduced-motion dialog animation none; destructive text4.07→7.11
+light and7.99 dark (hover6.08/6.59); opaque focus borders7.11/7.99. Final review
+samples94 per theme have zero contrast failures and zero unnamed interactive
+controls. Original failing/raw brief reports remain. Auto margin247px,18px
+inherited radius,6px icon gap, Inter fallback stack and paired-dark/status colors
+are source-classified, not silently erased from lint. Continuous motion/CLS/
+long-frame counts and assistive technology were not assessed.
 
-Probe corrections are retained honestly: initial error locator also matched
-Next's route announcer, so it was scoped to the sign-in region; reduced motion
-correctly sets `transition-property:none` despite an inert0.15s duration; source
-formatting added a leading semicolon incompatible with CLI function-expression
-input, removed from test scripts. No product behavior was weakened. The task
-owner's4342 listener then closed before my login completed; that timeout is
-preserved, not counted as passing integration.
+[Desktop list](business-workspace-evidence/generation2/after-filters/work-list-1280-light.png) ·
+[Mobile dark board](business-workspace-evidence/generation2/after-filters/work-board-390-dark.png) ·
+[Arabic review](business-workspace-evidence/generation2/review-390-arabic-dark.png) ·
+[Keyboard return](business-workspace-evidence/generation2/final-keyboard-return.png) ·
+[Viewer](business-workspace-evidence/generation2/viewer-task-real.png).
 
-Current real fixture: source snapshot
-`.build/business-workspace/task-fixture-1ba73e3c/`, byte-unchanged archive of
-**`1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5`** (`src-tauri`, Pi bundled source,
-LICENSE/NOTICE), own target `.build/business-fixture-target/`. `cargo test
---locked --offline --manifest-path <snapshot>/src-tauri/Cargo.toml
---no-default-features --lib --jobs4
+## Live owned review fixture
+
+Open **http://127.0.0.1:4340/business.html**. Static proxy **PID36044** serves own
+out-business-workspace; guarded real task API **PID81950 on4342** owns temporary
+disk SQLite. Named CLI browsers: business-owner4340 **PID85074** (personal Amal
+owner) and business-member4340 **PID85139** (personal Samira manager). Exactly two
+named sessions. The fixture remains available for root. Operator setup choice can
+use the **test-only public literal business-tasks-synthetic-operator**. Use People
+in that context to intentionally issue a fresh personal credential; do not copy
+real credentials or install a member token as the legacy operator. All records
+are named Synthetic, with no provider/engine/scheduler process.
+
+PID21431 was **this worker's earlier** in-memory4342 fixture, not tickets' PID794.
+After initially successful flows it later returned500; no unsupported diagnosis
+or passing downgrade claim was made. It was stopped and replaced only here.
+SeaORM1.1.19 uses SQLite max1; SQLx-core0.8.6 retains10-minute idle/30-minute
+connection lifetime defaults, a concrete manual in-memory fixture concern, not
+proven root cause. Production database uses disk. Committed
+fixture-temporary-disk.patch switches only the ignored test to its existing
+fresh_disk_db helper; failed and generation1 evidence is preserved. Current
+manual Cargo session18511 remains serving. Static router verification uses a
+separate target and never restarts that fixture.
+
+Reproduction source: .build/business-workspace/task-fixture-1ba73e3c/ archive;
+manual fixture command uses its src-tauri/Cargo.toml, --locked --offline
+--no-default-features --lib --jobs4, test
 business_tasks::tests::fixture::business_tasks_browser_fixture -- --ignored
---exact --nocapture` compiled in2m55s and now runs the ignored guarded fixture,
-PID21431 on4342, in-memory SQLite, no engine/provider. This listener belongs to
-this frontend worktree; the task worker's earlier PID794 was stopped before it
-started. Known linker unwind-table
-and proc-macro-error2 future-compatibility warnings remain. This is an owned test
-snapshot, not a product merge or backend edit. Proxy PID36044 on4340 runs
-`node reports/business-workspace-evidence/serve.mjs out-business-workspace
---backend=4342`, with closed operations and no header/body logging. Browser PIDs
-85074 (`business-owner4340`) and85139 (`business-member4340`) are owned here.
-Initial actual UI sign-in returns a real context needing bootstrap.
+--exact --nocapture, with own .build/business-fixture-target. Proxy command:
+node reports/business-workspace-evidence/serve.mjs out-business-workspace --backend=4342.
+Only closed business POSTs are forwarded; legacy APIs/WebSockets/outbound are
+blocked. Proxy logs only method/path/status. No credential snapshots/traces.
 
-The owner created `Hafidh Studio · Synthetic` and four named synthetic human/agent
-members through the actual UI. The protected owner then issued its own personal
-credential through the masked one-time surface, disconnected the original
-operator and signed in as an ordinary owner-role member. The second named browser
-signed in as the separate human member. Both personal sessions have no engineering
-entry, no credential in localStorage and no legacy API calls. The old ambient
-operator token remains unchanged. Evidence: `bootstrap-people.json`,
-`owner-personal-session.json` and `member-connect.json`. Credential strings are
-absent from the saved evidence.
+## Limits and preservation
 
-R1 frontend alignment follows the new explicit operator-only entrust endpoint;
-it stays under engineering detail, requires confirmation and never auto-links.
-The subsequent link uses the newly returned task revision. An owner-role member
-does not get this control. Focused client/workflow tests now23/23 pass, typecheck
-and scoped lint exit0 (`entrust-*.log`); earlier12 session/workflow tests also
-passed after mobile corrections. Entrust export rebuild exited0. Real task UI,
-source-binding failure display, member flows and measured Design Studio acceptance
-remain in progress. The task backend is not yet accepted/main-integrated here.
+Task1ba73e3c is a tested dependency snapshot, not an accepted-main merge. Current
+origin/main at inspection is ebb553de. Identity is integrated; root must accept/
+integrate the task backend and review the exact UI head before declaring combined
+Increment A accepted. Entrust success with a real running agent is intentionally
+not exercised: no model launches. Browser guard/static router tests do not claim
+a production server deployment or native-window certification.
 
-## Actual task workflow checkpoint
+English and Arabic business copy are supplied; the other8 app locales preserve
+preferences and use English business copy. Reload requires sign-in; task lists
+use manual refresh and context revalidation on focus/every30s, not realtime push.
+Member directory follows500 cap. Pagination wiring is tested; the manual fixture
+contains5 tasks and does not claim a second50-record page browser exercise.
 
-`create-work.json`: four tasks created by UI, with a distinct human owner,
-human/agent/unassigned execution and explicit/nullable reviewer. Exact calendar
-days `2026-10-01`, `2026-12-31`, `2028-02-29` and null roundtrip without conversion.
-`member-conflict-review.json`: the assigned personal member kept its draft after a
-real409, loaded/compared the owner's revision2, explicitly adopted it and saved
-revision3; progress, note and deliverable reached review revision6 with no accept
-control. A separately signed-in named manager confirmed and accepted the actual
-deliverable, producing done revision7. `manager-review.json` and
-`connect-current-owner.json` prove the result and its visibility in the independent
-owner session. No conversation, engine, provider or outbound action was required.
+Probe errors are retained as labelled error files: duplicate date locator (date
+also present in activity), early Drawer starting-style/focus-guard sampling,
+BODY focus handoff before the final correction, initial reviewer selector, and
+waiting on dormant global scroll timelines. Final runs wait for actual settled
+surfaces; no mutation was blindly repeated after an uncertain response.
 
-The settled390px long-content test found3974px content inside a358px dialog.
-The business-only modal now uses a min-zero grid column and inherited anywhere
-wrapping; the shared dialog implementation is unchanged. Actual rebuilt export
-measures358/358, full page390px (`long-detail-{settled-before,after}.json` and
-screens). Tailwind4.1.18 installed `grid-cols` and wrapping utility implementation
-was read before editing. Typecheck, scoped lint and isolated export build exited0
-(`long-content-*.log`).
-
-Two probe mistakes are retained: the reviewer locator omitted the actual word
-“have”, corrected without changing product/assertions; waiting for *all* document
-animations included dormant OverlayScrollbars scroll timelines (`currentTime:null`).
-Review had already succeeded200. The corrected read-only capture waits for the
-dialog's actual opacity1/transformnone and does not repeat the mutation. Failed
-selector/timeline artifacts remain labelled, not counted as successful flows.
-
-Current pushed product checkpoint is **`45255b86`**. Personal member creation and
-real cross-tab locale/theme retention also passed (`member-own-work.json`,
-`member-draft-locale.json`): owner/creator/executor are the current member, reviewer
-and date are null, unauthorized assignment choices are absent, and private text
-survives390px Arabic/light/dark and English restoration without storage.
-
-Fixture continuity: the first long-running in-memory fixture later returned500
-for context/directory/update. The attempted role downgrade did not pass and no
-claim is made for it. The protected error intentionally exposes no database
-detail; root cause is not directly proven. Local `sea-orm1.1.19` defaults SQLite
-to one connection and retains `sqlx-core0.8.6`'s10-minute idle/30-minute connection
-lifetime defaults, making in-memory lifetime a concrete manual-fixture concern.
-Production `db/mod.rs` uses an on-disk database. Only owned PID21431 was stopped;
-its evidence remains. `fixture-temporary-disk.patch` records the ignored fixture's
-switch to the **existing** `fresh_disk_db(directory.path())` test helper. All
-production backend files remain byte-identical to1ba73e3c; no tracked Rust edit.
-The replacement uses fresh temporary synthetic data and the same protected router
-and guard. It now owns **PID81950 on4342**, manual Cargo session18511; proxy
-PID36044 on4340 and both named browsers are unchanged. Compilation completed in
-42.12s (`task-fixture-disk.log`); the manual test remains serving. This is fixture
-repair, not a backend product finding.
-
-Generation2 evidence is isolated under `business-workspace-evidence/generation2/`.
-Bootstrap, member setup and creation rebuilt synthetic fixture data through the
-same UI. The previous successful workflow evidence is preserved. The owner then
-changed the active member to viewer by UI; the next actual context revalidation
-unmounted the open private edit. Viewer controls are absent, and actual viewer
-credentials receive403 for task creation, elevated identity creation and bootstrap.
-Confirmed member revocation clears the workspace/credential and shows explicit
-sign-in recovery. See `owner-downgrade-member`, `member-downgrade-check`,
-`viewer-forgery`, `owner-revoke-member` and `member-revocation-check` JSON files.
-
-Twelve actual list/board captures cover390/768/1280 in light/dark. The first pass
-found mobile filters shrinking to32.2px despite no page overflow. Scoped
-Tailwind4.1.18 `basis-40` now wraps them into a readable row: both171×44px at390,
-with16px text, no undersized active targets or page overflow. Desktop/tablet
-measurements are preserved. Before files remain in generation2; rebuilt after
-files are under `generation2/after-filters/`. Typecheck, scoped lint and isolated
-export build exited0 (`filters-*.log`). Current full-page light measurement has
-64 text samples, no contrast failures and no unnamed interactive controls;
-complete paired-theme/RTL/focus/Design Studio assessment is still pending.
+Paused reports/visual-workspace.md stays untracked, SHA256
+ ded5a851409095dc40fffff7f778f668f79a614aa4040a1bb0349c81b0f5768e.
+The colliding research copy remains in ignored
+.build/rebrand-paused-checkpoints/20260908-business-resume/, SHA256
+ d4d99598d10870b55e0700f439e49df86a57255a2c01e0ae00b7cf04b523a7a0.
+Existing4326/out-design-ops/browser and all other worker fixtures/outputs are
+untouched. Protected founding/planning docs and all prior NOTICE entries remain.
