@@ -1,7 +1,9 @@
 # Increment B — root acceptance plan
 
-Draft against contract79a92294; binding/grant and UI contract review remains
-open. No B implementation, provider access or passing test is claimed. Root
+Prepared against frozen contract `670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5`
+and accepted access seam `18be55edc276713fc6d46d075baec363245ba285`;
+final bounded contract verdict is pending. No B implementation, provider access
+or passing test is claimed. Root
 orchestrates and independently checks the integrated result; workers own code.
 This complements the contract's18 detailed cases with observable user outcomes.
 
@@ -23,8 +25,9 @@ only explicitly reviewed business text; source evidence keeps its own audience.
 No automatic external publishing, provider delivery or unattended synchronization
 claim. Platform signing/distribution and live service setup remain separate.
 
-The contract's exact approved API and credential lifecycle will replace any
-remaining assumptions here before product dispatch. Reuse existing fixtures only
+The pinned API and staged credential lifecycle govern the implementation gates,
+including strict store failure preservation and cross-import source fencing.
+Reuse existing fixtures only
 with their owner's coordination; root and reviewers create separate synthetic
 records and preserve paused work. Do not substitute mocked frontend JSON for the
 actual shared API acceptance.
