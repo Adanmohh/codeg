@@ -1,11 +1,17 @@
 # Shell accessibility and Pi setup fixes
 
-In progress. Branch `fix/design-shell`, from accepted main
+Implementation and focused gates complete; final rendered checks in progress.
+Draft PR: https://github.com/Adanmohh/codeg/pull/13.
+Branch `fix/design-shell`, from accepted main
 `ba93e87200b16d9fd15411b885f8c852b92078c0`, including PR11 review merge
 `625d8ed7266ed4cf49454942f3dbb5c48409bd07`. Scope is the five verified findings
 in `reports/design-pi-specialist.md`: Pi control associations; terminal/alert
 names; shell contrast; full setup reason/settings action and readiness copy;
 scoped setup-banner contrast. No task/Ops/approval/locale-provider changes.
+Owner explicitly included the revealed custom-provider ID/API/base URL and
+reasoning controls. These use the existing labels, state and save contract.
+Only four new guidance keys in each Pi translation namespace are additive;
+locale loading/RTL and unrelated copy remain with their owner.
 
 Docs first: complete current planning/AGENTS/brief and design specialist
 definitions read. Code-context guide exits 0 (headed CLI and pinned-version
@@ -26,6 +32,15 @@ Browser plan: reuse only this worker's closed fixture 4324 (owner authorized),
 fresh temporary DB and empty catalogue. No other fixtures, live actions or
 provider/model calls. Preserve real owned companion. Existing accepted before
 captures remain attributable to PR11; add focused after evidence and actual
-before/after status measurements. Final lint/typecheck/build and meaningful
-focused behavior tests pending. Report will record commands, exact sources,
+before/after status measurements. Focused ESLint, typecheck and production
+build pass (exit 0). Six focused Vitest files pass, 171 tests. Initial test
+harness mistakes (it.each array spreading and unsupported Testing Library
+exact option) were corrected from installed types/source; no product behavior
+was changed for them. Before captures include light/dark shell and revealed
+custom-provider/reasoning state, 2 Pi metadata preflights, 0 prompt/off-origin
+requests or blocked config writes. Report will record commands, exact sources,
 commit/PR, limitations and completed evidence.
+
+P1 host merge `02e3f5d8a15a3fee792cd0625966dee6c500d184` is owner-confirmed
+accepted. The separate Pi P1 bridge follows this design PR's review/merge;
+no host or issue tools are included here.

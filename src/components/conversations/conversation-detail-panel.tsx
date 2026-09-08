@@ -55,6 +55,7 @@ import { AgentDiagnosticsDialog } from "@/components/settings/agent-diagnostics-
 import { useFeedbackEnabled } from "@/hooks/use-feedback-enabled"
 import { useSessionFeedback } from "@/hooks/use-session-feedback"
 import { AgentSelector } from "@/components/chat/agent-selector"
+import { AgentSetupNotice } from "@/components/chat/agent-setup-notice"
 import { ChatInput } from "@/components/chat/chat-input"
 import { WelcomeHero, WelcomeTip } from "@/components/chat/welcome-hero"
 import { QuickActions } from "@/components/chat/quick-actions"
@@ -240,7 +241,6 @@ const ConversationTabView = memo(function ConversationTabView({
 }: ConversationTabViewProps) {
   const t = useTranslations("Folder.conversation")
   const tWelcome = useTranslations("Folder.chat.welcomeInputPanel")
-  const tDiag = useTranslations("DiagnosticsSettings")
   const sharedT = useTranslations("Folder.chat.shared")
   const tMessageList = useTranslations("Folder.chat.messageList")
   const tAsyncTasks = useTranslations("Folder.chat.asyncTasks")
@@ -707,8 +707,8 @@ const ConversationTabView = memo(function ConversationTabView({
     selectedModeIdRef.current = selectedModeId
   }, [selectedModeId])
 
-  // The single blocking message shown in the composer's inline banner (clicking
-  // it opens Agent Settings). The not-installed prompt takes priority: it's the
+  // The single blocking message shown with an explicit Agent Settings action.
+  // The not-installed prompt takes priority: it's the
   // actionable one and, unlike the connect-time toast, it's deterministic — it
   // appears the moment a not-installed agent is selected, independent of whether
   // a (deduped/superseded) connect attempt ever reached the preflight.
@@ -2172,25 +2172,15 @@ const ConversationTabView = memo(function ConversationTabView({
                 />
               </div>
               {composerBlockedMessage ? (
-                <div className="flex w-full items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-xs text-destructive">
-                  <button
-                    type="button"
-                    onClick={handleOpenAgentsSettings}
-                    title={composerBlockedMessage}
-                    className="min-w-0 flex-1 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap text-left transition-colors hover:text-destructive/80"
-                  >
-                    {composerBlockedMessage}
-                  </button>
-                  {selectedAgentNotInstalled ? (
-                    <button
-                      type="button"
-                      onClick={() => setComposerDiagnosticsOpen(true)}
-                      className="shrink-0 rounded border border-destructive/40 px-2 py-0.5 font-medium transition-colors hover:bg-destructive/10"
-                    >
-                      {tDiag("button")}
-                    </button>
-                  ) : null}
-                </div>
+                <AgentSetupNotice
+                  message={composerBlockedMessage}
+                  onOpenSettings={handleOpenAgentsSettings}
+                  onDiagnose={
+                    selectedAgentNotInstalled
+                      ? () => setComposerDiagnosticsOpen(true)
+                      : undefined
+                  }
+                />
               ) : null}
               <ChatInput
                 // composerConnStatus (not connStatus): a chat draft mid-reconnect
@@ -2251,25 +2241,16 @@ const ConversationTabView = memo(function ConversationTabView({
               disabled={isConnecting || dbConversationId != null}
             />
             {composerBlockedMessage ? (
-              <div className="mt-2 flex w-full items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-xs text-destructive">
-                <button
-                  type="button"
-                  onClick={handleOpenAgentsSettings}
-                  title={composerBlockedMessage}
-                  className="min-w-0 flex-1 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap text-left transition-colors hover:text-destructive/80"
-                >
-                  {composerBlockedMessage}
-                </button>
-                {selectedAgentNotInstalled ? (
-                  <button
-                    type="button"
-                    onClick={() => setComposerDiagnosticsOpen(true)}
-                    className="shrink-0 rounded border border-destructive/40 px-2 py-0.5 font-medium transition-colors hover:bg-destructive/10"
-                  >
-                    {tDiag("button")}
-                  </button>
-                ) : null}
-              </div>
+              <AgentSetupNotice
+                className="mt-2"
+                message={composerBlockedMessage}
+                onOpenSettings={handleOpenAgentsSettings}
+                onDiagnose={
+                  selectedAgentNotInstalled
+                    ? () => setComposerDiagnosticsOpen(true)
+                    : undefined
+                }
+              />
             ) : null}
           </div>
           <div className="min-h-0 flex-1">{messageListNode}</div>

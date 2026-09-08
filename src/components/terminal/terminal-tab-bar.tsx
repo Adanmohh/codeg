@@ -41,6 +41,7 @@ export function TerminalTabBar({
   onToggleKeybar,
 }: TerminalTabBarProps) {
   const t = useTranslations("Folder.terminal")
+  const tShortcuts = useTranslations("ShortcutSettings.actions")
   const ime = useImeGuard()
   const { shortcuts } = useShortcutSettings()
   const isMac = useIsMac()
@@ -159,6 +160,8 @@ export function TerminalTabBar({
                 className="h-6 w-6 shrink-0"
                 onClick={() => void createTerminal()}
                 disabled={!canCreateTerminal}
+                aria-label={tShortcuts("new_terminal_tab.title")}
+                title={tShortcuts("new_terminal_tab.title")}
               >
                 <Plus className="h-3 w-3" />
               </Button>

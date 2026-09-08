@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { useTranslations } from "next-intl"
 import {
   CheckCircle2,
@@ -206,6 +206,7 @@ export function PiConfigPanel({
   onSaved: () => Promise<void>
 }) {
   const t = useTranslations("AcpAgentSettings")
+  const formId = useId()
 
   // --- Credentials (pi's native ~/.pi/agent/{settings,auth,models}.json) ---
   // `selectedProvider` is the Select value: a built-in id, a loaded-but-not-
@@ -600,6 +601,16 @@ export function PiConfigPanel({
 
   return (
     <div className="space-y-4">
+      <section
+        aria-labelledby={`${formId}-desk-title`}
+        className="space-y-2 rounded-md border bg-muted/10 p-3 text-sm text-foreground"
+      >
+        <h3 id={`${formId}-desk-title`} className="font-medium">
+          {t("pi.deskTitle")}
+        </h3>
+        <p>{t("pi.deskRequirements")}</p>
+        <p>{t("pi.deskNextStep")}</p>
+      </section>
       {/* Runtime — which pi binary pi-acp spawns. "Default pi" manages the
           global pi on PATH (install XOR uninstall, never both); "Custom pi"
           points at your own build. */}
@@ -916,7 +927,11 @@ export function PiConfigPanel({
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-2xs text-muted-foreground">
+          <label
+            id={`${formId}-provider-label`}
+            htmlFor={`${formId}-provider`}
+            className="text-2xs text-muted-foreground"
+          >
             {t("pi.providerLabel")}
           </label>
           <Select
@@ -924,7 +939,11 @@ export function PiConfigPanel({
             onValueChange={handleProviderChange}
             disabled={savingCreds || loadingCreds}
           >
-            <SelectTrigger className="w-full">
+            <SelectTrigger
+              id={`${formId}-provider`}
+              aria-labelledby={`${formId}-provider-label`}
+              className="w-full"
+            >
               <SelectValue placeholder={t("pi.providerPlaceholder")} />
             </SelectTrigger>
             <SelectContent align="start">
@@ -945,10 +964,14 @@ export function PiConfigPanel({
           <div className="space-y-2.5 rounded-md border border-dashed p-2.5">
             <div className="grid grid-cols-2 gap-2">
               <div className="space-y-1.5">
-                <label className="text-2xs text-muted-foreground">
+                <label
+                  htmlFor={`${formId}-provider-id`}
+                  className="text-2xs text-muted-foreground"
+                >
                   {t("pi.providerIdLabel")}
                 </label>
                 <Input
+                  id={`${formId}-provider-id`}
                   value={customId}
                   onChange={(event) => setCustomId(event.target.value)}
                   placeholder="my-provider"
@@ -957,7 +980,11 @@ export function PiConfigPanel({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-2xs text-muted-foreground">
+                <label
+                  id={`${formId}-api-label`}
+                  htmlFor={`${formId}-api`}
+                  className="text-2xs text-muted-foreground"
+                >
                   {t("pi.apiProtocolLabel")}
                 </label>
                 <Select
@@ -965,7 +992,11 @@ export function PiConfigPanel({
                   onValueChange={setCustomApi}
                   disabled={savingCreds || loadingCreds}
                 >
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger
+                    id={`${formId}-api`}
+                    aria-labelledby={`${formId}-api-label`}
+                    className="w-full"
+                  >
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent align="start">
@@ -979,10 +1010,14 @@ export function PiConfigPanel({
               </div>
             </div>
             <div className="space-y-1.5">
-              <label className="text-2xs text-muted-foreground">
+              <label
+                htmlFor={`${formId}-base-url`}
+                className="text-2xs text-muted-foreground"
+              >
                 {t("pi.baseUrlLabel")}
               </label>
               <Input
+                id={`${formId}-base-url`}
                 value={customBaseUrl}
                 onChange={(event) => setCustomBaseUrl(event.target.value)}
                 placeholder="https://api.example.com/v1"
@@ -997,13 +1032,17 @@ export function PiConfigPanel({
         )}
 
         <div className="space-y-1.5">
-          <label className="text-2xs text-muted-foreground">
+          <label
+            htmlFor={`${formId}-model`}
+            className="text-2xs text-muted-foreground"
+          >
             {t("pi.modelLabel")}
           </label>
           <Input
+            id={`${formId}-model`}
             value={model}
             onChange={(event) => setModel(event.target.value)}
-            placeholder="claude-sonnet-5"
+            placeholder="gpt-6-astra"
             spellCheck={false}
             disabled={savingCreds || loadingCreds}
           />
@@ -1051,10 +1090,17 @@ export function PiConfigPanel({
             {reasoning.enabled && (
               <>
                 <div className="space-y-1">
-                  <label className="text-2xs text-muted-foreground">
+                  <span
+                    id={`${formId}-levels-label`}
+                    className="text-2xs text-muted-foreground"
+                  >
                     {t("pi.levelsLabel")}
-                  </label>
-                  <div className="flex flex-wrap gap-1.5">
+                  </span>
+                  <div
+                    role="group"
+                    aria-labelledby={`${formId}-levels-label`}
+                    className="flex flex-wrap gap-1.5"
+                  >
                     {PI_THINKING_LEVELS.map((level) => {
                       const active = reasoning.levels.includes(level)
                       return (
@@ -1093,19 +1139,28 @@ export function PiConfigPanel({
                     <button
                       type="button"
                       onClick={() => setShowWireValues((prev) => !prev)}
+                      aria-expanded={showWireValues}
+                      aria-controls={`${formId}-wire-values`}
                       className="text-2xs text-muted-foreground hover:text-foreground"
                     >
-                      {showWireValues ? "▾ " : "▸ "}
+                      <span aria-hidden>{showWireValues ? "▾ " : "▸ "}</span>
                       {t("pi.wireValuesTitle")}
                     </button>
                     {showWireValues && (
-                      <div className="space-y-1.5 rounded-md border border-dashed p-2">
+                      <div
+                        id={`${formId}-wire-values`}
+                        className="space-y-1.5 rounded-md border border-dashed p-2"
+                      >
                         {reasoning.levels.map((level) => (
                           <div key={level} className="flex items-center gap-2">
-                            <span className="w-16 shrink-0 font-mono text-2xs text-muted-foreground">
+                            <label
+                              htmlFor={`${formId}-wire-${level}`}
+                              className="w-16 shrink-0 font-mono text-2xs text-muted-foreground"
+                            >
                               {level}
-                            </span>
+                            </label>
                             <Input
+                              id={`${formId}-wire-${level}`}
                               value={reasoning.wireValues[level] ?? ""}
                               onChange={(event) =>
                                 setReasoning((prev) => ({
@@ -1137,7 +1192,11 @@ export function PiConfigPanel({
         )}
 
         <div className="space-y-1.5">
-          <label className="text-2xs text-muted-foreground">
+          <label
+            id={`${formId}-thinking-label`}
+            htmlFor={`${formId}-thinking`}
+            className="text-2xs text-muted-foreground"
+          >
             {t("pi.thinkingLabel")}
           </label>
           <Select
@@ -1149,7 +1208,12 @@ export function PiConfigPanel({
               savingCreds || loadingCreds || (isCustom && !reasoning.enabled)
             }
           >
-            <SelectTrigger className="w-full">
+            <SelectTrigger
+              id={`${formId}-thinking`}
+              aria-labelledby={`${formId}-thinking-label`}
+              aria-describedby={`${formId}-thinking-help`}
+              className="w-full"
+            >
               <SelectValue />
             </SelectTrigger>
             <SelectContent align="start">
@@ -1160,6 +1224,12 @@ export function PiConfigPanel({
               ))}
             </SelectContent>
           </Select>
+          <p
+            id={`${formId}-thinking-help`}
+            className="text-xs text-muted-foreground"
+          >
+            {t("pi.deskThinkingHint")}
+          </p>
           {defaultLevelUnlisted && (
             <p className="text-2xs text-destructive">
               {t("pi.defaultLevelUnlisted")}
@@ -1168,11 +1238,15 @@ export function PiConfigPanel({
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-2xs text-muted-foreground">
+          <label
+            htmlFor={`${formId}-api-key`}
+            className="text-2xs text-muted-foreground"
+          >
             {t("pi.apiKeyLabel")}
           </label>
           <div className="flex items-center gap-2">
             <Input
+              id={`${formId}-api-key`}
               type={showKey ? "text" : "password"}
               value={apiKey}
               onChange={(event) => setApiKey(event.target.value)}

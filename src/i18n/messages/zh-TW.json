@@ -1460,6 +1460,10 @@
       "failed": "外掛操作失敗"
     },
     "pi": {
+      "deskTitle": "Pi Desk 設定",
+      "deskRequirements": "啟動 Desk 需要 pi 0.85.1、pi-mcp-adapter 2.32.1，以及已設定且支援 max 推理的 gpt-6-astra 模型。",
+      "deskNextStep": "請在現有 Pi 用戶端中設定此模型，然後建立新對話重試。轉接器的 PASS 檢查不代表 Desk 模型已就緒或可存取供應商。",
+      "deskThinkingHint": "Desk 啟動時會設定 max 推理。此處仍可儲存其他 Pi 工作階段的偏好設定。",
       "configManagement": "Pi 設定",
       "configDescription": "Pi 透過模型提供方的 API Key 驗證。Key 寫入 ~/.pi/agent/auth.json，模型選擇寫入 settings.json。",
       "providerLabel": "提供方",
