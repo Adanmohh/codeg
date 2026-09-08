@@ -356,3 +356,5 @@ Final combined design review and Pi bridge validation continue.
 - Root full frontend rerun at `cc778461` passes **6158/6158 tests,433/433 files**, exit0,25.81s. Log `/tmp/ops-phase1-frontend-tests-final.log`. The previously transient Forge case also passes in this unchanged full run. No assertion was weakened and no product edit was needed.
 
 - Root final integrated Pi-branch backend checkpoint `cd2a29fb`:178 Ops tests/5 manual ignored and13 Desk-selector tests/3 manual ignored pass, exit0. All six P1 regressions included. Worker actual companion/adapter19+1 and human-denial browser fixture pass with zero GitHub creates/token requests; final report acceptance remains.
+
+- Final Design Studio loop verified an inherited10px running-session badge at4.38:1 light contrast. Root independently confirmed actual DOM/Canvas composite. Rebrand dispatched `fix/design-running-badge`, same worktree/pane, report `reports/design-running-badge.md`; smallest token correction plus actual light/dark/hover/focus recheck. Root locale browser closed and4326 export released to its owner; data/provider counts preserved.
