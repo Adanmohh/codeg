@@ -1,6 +1,7 @@
 {
-  "scope": "FolderHeader runningCount badge only",
-  "implementation": "b531501e281d093fb407580bac5c1593ac882b71",
+  "scope": "FolderHeader and live SidebarFolderGroupHeader runningCount badges only",
+  "implementation": "7f3fce05092ecbd62525fac7cf0788d62efae9e5",
+  "folderEvidenceUnchangedFrom": "b531501e281d093fb407580bac5c1593ac882b71",
   "method": "Design Studio aesthetic-judge and a11y-auditor methods applied sequentially inline by the implementation worker; no independent-agent claim",
   "evidence": [
     "design-running-badge-before-measured.json",
@@ -8,11 +9,15 @@
     "design-running-badge-before.raw",
     "design-running-badge-after.raw",
     "browser-running-badge/",
-    "design-running-badge-hover-guard.raw"
+    "design-running-badge-hover-guard.raw",
+    "design-running-badge-group-before-measured.json",
+    "design-running-badge-group-after-measured.json",
+    "design-running-badge-group-setup.raw",
+    "design-running-badge-group-cleanup.raw"
   ],
   "resolved": [
     {
-      "check": "Accessibility last-mile: contrast the dimmest micro-labels; normal text requires 4.5:1",
+      "check": "Accessibility last-mile: both badges independently produce these results; normal text requires 4.5:1",
       "beforeLight": { "rest": 4.39, "hover": 3.75, "focus": 4.39 },
       "afterLight": { "rest": 6.19, "hover": 5.29, "focus": 6.19 },
       "afterDarkUnchanged": { "rest": 9.09, "hover": 6.94, "focus": 9.09 }
@@ -28,5 +33,6 @@
     "result": "Source-only false positive for this selector: actual rebuilt CSSOM contains its (hover: hover) media ancestor",
     "evidence": "design-running-badge-hover-guard.raw"
   },
-  "limits": "Single badge in default light/dark at 1280x900; not a full-app, mobile/native, custom-theme or motion audit. Root reviewer recheck remains."
+  "unassessedAdvisories": "The group source linter flags whole-component async/disabled/list-empty/loading states outside the count badge; parent owns list state, and rename/delete actions were not exercised. Raw diagnostics are retained.",
+  "limits": "Two badges in default light/dark at 1280x900; group data supplied only by temporary browser read-response fixtures, then removed. Not a full-app, mobile/native, custom-theme or motion audit. Root reviewer recheck remains."
 }
