@@ -1,5 +1,26 @@
 # Decisions
 
+## 2026-09-08 — Owner expands tenant architecture and corrects workspace direction
+
+Implement real multiple-organization isolation and tenant-managed UI settings;
+the historical singleton target is superseded. Research the owner's Edublend via
+immutable gh api source and compare established tenant implementations. Separate
+tenant administration from protected platform/host authority, and preserve current
+credential, source, task and run fences while the migration contract is reviewed.
+
+The owner explicitly wants the rich engineering-style workspace for business
+roles too: terminal AI and chat, topic tabs and split panes, with task management,
+tables, boards, data visualization and content planning calendars alongside them.
+Role and tenant configuration tailor tools and information; simplifying business
+users into a separate lightweight dashboard is rejected. Reuse the existing shell
+through workers, with tenant-safe execution rather than exposing operator routes.
+New views and multi-tenancy remain implementation requirements, not delivered claims.
+
+Existing three Herdr workers retain ownership, Astra/max, docs-first/gh api,
+licence provenance and file reports. Root remains orchestrator-only. Current B
+work is preserved and continues; design loops and actual Playwright CLI checks
+must assess the corrected shared-workspace direction.
+
 ## 2026-09-07 — Step 0 baseline
 
 - Read FOUNDING.md and ORCHESTRATOR.md completely. Step 0 runs with the orchestrator alone; later implementation uses Codex workers through Herdr, with one writer per worktree and reports returned as files. No product code was written in Step 0.

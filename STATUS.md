@@ -1,5 +1,32 @@
 # Status — 2026-09-08
 
+## Current owner direction — shared rich workspace and multiple tenants
+
+Owner explicitly wants the engineering workspace's richness for business users:
+chat and terminal AI, tabs and split panes alongside shared tasks, tables, boards,
+data visualization and content calendars. A separate simplified business dashboard
+is not the target. Rebrand has this correction and must checkpoint current intake
+work before adapting the shared shell. Existing authority boundaries remain until
+tenant-safe tools and execution are reviewed; calendar and new data views are
+requirements, not implemented features.
+
+True multi-tenancy and tenant-managed appearance are now authorized architecture
+work. Approvals is dispatched to `reports/business-multitenancy-review.md` after
+its bounded B review, using Edublend remote source
+`735e7695a44ab6e5dbda521c822f3a3809f289c8` and Payload multi-tenant plugin
+`54a0e3d24015b2e9c565bd7e695be1ec7184662e`. Root relayed both immutable pins.
+The current singleton database constraint is not yet migrated. Tenant branding,
+navigation/defaults, personal preferences, tenant-admin versus platform-operator
+authority and safe terminal execution need one reviewed contract. All three
+existing Herdr workers received the clarified direction; no new worker started.
+
+Independent B checkpoint `d92d1b9534025f994a85f070d3bb78174c876e62` is imported:
+12 unchanged setup/reader/legacy/migration tests pass at exact `67708b07`, with
+749/749 source blobs matched and no additional concrete blocker established.
+Root reads the evidence; this is reviewer execution, not a root rerun. R1 remains
+closed. Late/uncertain credential cleanup, full imports/publication/UI and final
+integration remain pending. A preview and existing fixtures are preserved.
+
 **Increment A is reviewed, merged and locally accepted. Increment B preparation
 implementation and independent review are dispatched across all three workers.** Root remains orchestrator-only.
 The accepted business workspace supports shared human/agent tasks, named
