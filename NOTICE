@@ -820,3 +820,48 @@ Codeg src-tauri/src/db/migration/m20260908_000010_business_tasks.rs at086eee48.
 Closed serde inputs and safe AppCommandError projections reuse
 business_identity/{types,mod}.rs and business_tasks/types.rs at that source.
 No third-party schema, source-key framework, dependency or copyleft code is added.
+
+Business intake fixed Fireflies reader (2026):
+src-tauri/src/business_intake/fireflies.rs reduces the read-only query and
+credential/error patterns in firefliesai/n8n-nodes-fireflies at immutable
+fbd24607bc784a2294ce402426aefe2cb8c00f50 (MIT):
+nodes/Fireflies/helpers/queries.ts, blobc775b8bbe6c0bbb16f8f7e8a60467c248ad93859;
+credentials/FirefliesApi.credentials.ts, bloba39bced68aeceb23b33641e774e3509554caac49;
+nodes/Fireflies/transport/index.ts, blob0b60c1c9e9d61f4583298cd2c0c464e9864861f5.
+Only fixed user/list/detail projections and HTTP-200 GraphQL error rejection are
+ported. No n8n runtime, mutation, raw provider error or credential disclosure.
+LICENSE.md, blob1e4b3a6e245384b89f24f2aef5e3f8e7fa1f4d23, reproduced in full:
+
+Copyright 2022 n8n
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+The surrounding intake access/setup/transport glue reuses accepted Apache Codeg
+at086eee485e6f40a8b02ea77c9dbeefe315c81596:
+business_identity/{mod,http,store,types,tests}.rs and commands/business_identity.rs;
+ops/{mod,email,email_entity}.rs; ops_intake_host/{store,types,mod}.rs;
+db/service/ticket_service/mod.rs and db/entities/ops_ticket.rs;
+email_transport/tests.rs for isolated local HTTP fixtures and ops/tests.rs for
+synthetic account fixtures. Paths are relative to src-tauri/src/.
+Existing MIT Chatwoot public-message attribution remains above; the extracted
+query applies the identical private-note/activity exclusion to one stored row.
+The new legacy generation fence and staged setup ledger implement the accepted
+application access18be55ed contract; they do not port another framework/store.
+Installed SeaORM1.1.19, Axum0.8.8, reqwest0.12.28, Tokio1.49.0 and serde1.0.228
+source/types are API references only. All prior NOTICE sections remain intact.

@@ -41,7 +41,7 @@ CREATE TABLE business_intake_setup (
  digest TEXT NOT NULL, binding_id TEXT NOT NULL, base_revision INTEGER, base_epoch INTEGER,
  owner_authority_revision INTEGER NOT NULL CHECK(owner_authority_revision > 0),
  plan_json TEXT NOT NULL CHECK(json_valid(plan_json)), credential_ref TEXT NOT NULL UNIQUE,
- state TEXT NOT NULL CHECK(state IN ('staged','active','retired')), expires_at TEXT NOT NULL, created_at TEXT NOT NULL,
+ state TEXT NOT NULL CHECK(state IN ('staged','active','retired')), expires_at TEXT NOT NULL, created_at TEXT NOT NULL, cleanup_at TEXT,
  UNIQUE(organization_id,actor_id,operation_id),
  FOREIGN KEY(organization_id,actor_id) REFERENCES business_member(organization_id,id) ON DELETE RESTRICT
 );
@@ -142,7 +142,8 @@ CREATE TABLE business_intake_audit (
  FOREIGN KEY(organization_id,actor_id) REFERENCES business_member(organization_id,id) ON DELETE RESTRICT
 );
 CREATE TABLE business_intake_legacy_generation (
- kind TEXT NOT NULL, resource_id TEXT NOT NULL, generation INTEGER NOT NULL CHECK(generation > 0),
+ kind TEXT NOT NULL, resource_id TEXT NOT NULL, generation INTEGER NOT NULL CHECK(typeof(generation)='integer' AND generation > 0),
+ changing BOOLEAN NOT NULL DEFAULT 0 CHECK(changing IN (0,1)),
  PRIMARY KEY(kind,resource_id)
 );
 CREATE TRIGGER business_intake_binding_identity BEFORE UPDATE OF id,organization_id,kind,domain,source_owner_id,resource_json,created_at ON business_intake_binding
@@ -155,6 +156,33 @@ BEGIN SELECT RAISE(ABORT,'Source identity is immutable'); END;
 CREATE TRIGGER business_intake_candidate_terminal BEFORE UPDATE ON business_intake_candidate WHEN OLD.state != 'pending'
 BEGIN SELECT RAISE(ABORT,'Source decision is terminal'); END;
 "#).await?;
+        // A retained counter fences even configuration change-away-and-back.
+        // Never derive authority from a reusable hash of current settings.
+        tx.execute_unprepared("INSERT INTO business_intake_legacy_generation(kind,resource_id,generation) SELECT 'email',CAST(id AS TEXT),1 FROM ops_ticket_inbox; INSERT INTO business_intake_legacy_generation(kind,resource_id,generation) SELECT 'hafidh_testflight',product_id,1 FROM ops_intake_host_product;").await?;
+        for (table, kind, key, columns, changed) in [
+            ("ops_ticket_inbox","email","id","account_id,email_address,channel_type","OLD.account_id IS NOT NEW.account_id OR OLD.email_address IS NOT NEW.email_address OR OLD.channel_type IS NOT NEW.channel_type"),
+            ("ops_email_config","email","inbox_id","account_id,credential_ref","OLD.account_id IS NOT NEW.account_id OR OLD.credential_ref IS NOT NEW.credential_ref"),
+            ("ops_intake_host_product","hafidh_testflight","product_id","account_id,config_json","OLD.account_id IS NOT NEW.account_id OR OLD.config_json IS NOT NEW.config_json"),
+            ("ops_intake_binding","hafidh_testflight","product_id","config_json","OLD.config_json IS NOT NEW.config_json"),
+        ] {
+            for (event, row, predicate) in [("INSERT","NEW","1"),("DELETE","OLD","1"),("UPDATE","NEW",changed)] {
+                let update = if event=="UPDATE" {format!(" OF {columns}")} else {String::new()};
+                tx.execute_unprepared(&format!("CREATE TRIGGER business_intake_fence_{table}_{event} AFTER {event}{update} ON {table} WHEN {predicate} BEGIN INSERT INTO business_intake_legacy_generation(kind,resource_id,generation) VALUES('{kind}',CAST({row}.{key} AS TEXT),1) ON CONFLICT(kind,resource_id) DO UPDATE SET generation=generation+1; END;")).await?;
+            }
+        }
+        for (event, row) in [("INSERT", "NEW"), ("DELETE", "OLD"), ("UPDATE", "NEW")] {
+            let clause = if event == "UPDATE" {
+                " OF parent_id,deleted_at,path"
+            } else {
+                ""
+            };
+            let predicate = if event == "UPDATE" {
+                " WHEN OLD.parent_id IS NOT NEW.parent_id OR OLD.deleted_at IS NOT NEW.deleted_at OR OLD.path IS NOT NEW.path"
+            } else {
+                ""
+            };
+            tx.execute_unprepared(&format!("CREATE TRIGGER business_intake_fence_folder_{event} AFTER {event}{clause} ON folder{predicate} BEGIN UPDATE business_intake_legacy_generation SET generation=generation+1 WHERE kind='hafidh_testflight' AND resource_id IN (SELECT product_id FROM ops_intake_host_product WHERE json_extract(config_json,'$.binding.folder_id')={row}.id); END;")).await?;
+        }
         for table in [
             "binding",
             "grant",
@@ -193,6 +221,20 @@ BEGIN SELECT RAISE(ABORT,'Source decision is terminal'); END;
             return Err(DbErr::Custom(
                 "Cannot remove retained source history or credentials".into(),
             ));
+        }
+        for table in [
+            "ops_ticket_inbox",
+            "ops_email_config",
+            "ops_intake_host_product",
+            "ops_intake_binding",
+            "folder",
+        ] {
+            for event in ["INSERT", "DELETE", "UPDATE"] {
+                tx.execute_unprepared(&format!(
+                    "DROP TRIGGER business_intake_fence_{table}_{event}"
+                ))
+                .await?;
+            }
         }
         for table in [
             "audit",

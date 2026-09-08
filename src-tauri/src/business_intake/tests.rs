@@ -1,5 +1,10 @@
 use super::types::*;
 use serde_json::json;
+mod legacy_cases;
+mod migration_cases;
+mod reader_cases;
+mod setup_cases;
+mod support;
 
 #[test]
 fn intake_closed_inputs_reject_identity_queries_secret_refs_and_null_replacement() {

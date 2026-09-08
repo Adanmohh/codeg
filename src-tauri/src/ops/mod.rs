@@ -1,6 +1,7 @@
 //! Operator-only Ops glue over the existing ticket and approval services.
 //! Borrowed Codeg transport/handler patterns are mapped in NOTICE.
 pub mod agent;
+pub(crate) mod business;
 pub mod delivery;
 mod draft_entity;
 pub mod email;

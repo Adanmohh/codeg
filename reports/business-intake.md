@@ -117,3 +117,65 @@ checks valid0644 strict reads plus rejected malformed set/delete, byte preservat
 0600 mode and no temporary residue. Existing directory-failure, concurrent mutation
 and legacy hardening cases also passed. Independent probe rerun remains reviewer-owned;
 no actual credentials, fixture, target outside the owned new target or A bundle touched.
+
+Correction SHA: `74bde8b6f1aeee135122cf52f78746eec36c6602`. Independent review
+`435b1c046ed0dc0d889e2b47c1527196ffa823e0` closes R1: original strict-store3,
+task2, protected-router1 and identical permission probes2 all pass, eight total,
+exit0. Those reviewer runs certify the narrow prerequisite, not the later B core.
+
+## Protected setup / reader checkpoint
+
+Implemented the eight binding/grant operations over the existing business HTTP
+middleware and matching native command names. Zero initial grants; member-owner
+credentials and agents cannot configure sources. Current grants intersect current
+source/destination identity permissions. Owner revision drift pauses use until
+protected revalidation; setup authority alone gives no source read.
+
+Fireflies uses the fixed MIT adapter user/list/detail queries, an immutable staged
+credential reference,12-second provider budget and15-second core budget. Setup
+activation checks current Principal, owner revision, binding revision/epoch and
+attempt expiry in the writer. Same-provider rotation preserves an active key on
+failure. A private ledger supports bounded later cleanup of only proven unreferenced
+keys. It does not claim atomicity between SQLite and the existing credential store.
+
+Pure legacy projections now narrow the accepted account/inbox/public-message and
+account/product/TestFlight stores. Email type8 ingested normalized content and
+type0 authored public text use the identical public-note/activity predicate;
+addresses/headers/attributes are excluded. Hafidh includes only title/description,
+revision and existing expiry, never reporter, proof, config or a freshness write.
+Retained configuration counters fence away-and-back changes, including host-folder
+and repository binding changes. In-place email key changes bracket store I/O with
+a persisted changing flag and counter increments; a crash remains fail-closed.
+
+Actual Fireflies port and complete MIT licence are now in NOTICE:
+`firefliesai/n8n-nodes-fireflies@fbd24607bc784a2294ce402426aefe2cb8c00f50`,
+`helpers/queries.ts`, `credentials/FirefliesApi.credentials.ts`,
+`transport/index.ts` and `LICENSE.md` (full paths/blobs in the accepted source ledger).
+Pure legacy/transport fixtures adapt the exact existing Codeg files at086eee48
+listed in NOTICE. No new dependency, provider mutation or copyleft source.
+
+Tests so far: the first setup/reader selector passed10/10,0ignored,exit0,0.39s
+(compile97s). Added populated migration/foreign-installation-owner and legacy cases
+then gave12pass/2fail: a projection initially rejected inherited email type8;
+source-read correction admits exactly types0/8. The Hafidh test kept a single-pool
+read transaction open before a separate count; the test now closes it first.
+Focused `business_intake::tests::legacy_cases` recheck exited0:2passed/0ignored,
+0.10s (compile37.29s). The other12 cases passed before that correction, including
+populated task/ticket retention and atomic migration-DDL rollback. The actual
+foreign-org owner case uses a real second organization's member in a separate
+temporary database; accepted v1 permits one organization per backend. It does
+not bypass the singleton constraint to fabricate a second organization in one DB.
+Initial HTTP compilation also caught Arc coercion and test-module path errors;
+both were corrected before the10-pass run. Logs retain these failed iterations.
+
+Server check with registered setup routes exited0,16.30s, before the narrow email
+projection correction; updated locked/offline check exited0,9.01s. Existing
+`ops::tests` selector also exited0:22passed/3 manual ignored,1.68s, including
+scope/privacy, exact review, cancellation, unknown/no-resend and receipt recovery.
+Logs: `check-setup-checkpoint.log`, `tests-setup-legacy.log`,
+`tests-legacy-corrected.log`, `tests-ops-setup-checkpoint.log` in the owned log directory.
+Temporary unused source/import/candidate consumers remain until the next slice
+(32 server warnings,17 test warnings including the inherited linker warning).
+Native runtime/checks, strict
+Clippy and all full B fences/atomic decisions remain pending. No manual fixture,
+browser, old target/export or accepted native bundle was changed.
