@@ -4,8 +4,12 @@ Work in progress on `feat/step3-pi-issues`, sole tickets worktree. Base is accep
 main `f4da70275932fcb527e9bd86946f740b3be515e5`, including PR13 merge
 `783bfb9cd9caf9546f6ef9effc067f5c904fc6be` and accepted PR9 host. No PR12 source
 is copied. Draft PR: https://github.com/Adanmohh/codeg/pull/15.
-Initial contract commit `70ed832a` is pushed. Implementation and exact final
-validation heads will be recorded here.
+Initial contract commit `70ed832a` and implementation checkpoint `b15f11a7`
+are pushed. Accepted main `126e7f24b80f42e8bfe30b6141ad1335359f87f9`
+(including PR12 merge `e9ddab88dfc45393aab68de52db8d3848b0bb891`) was merged
+without conflicts as `ae131cf871b1092018388e2cd9d814be9bdc8eb3`. Its
+`notice.rs`, host registrations and root planning docs remain byte-identical
+to that accepted main. NOTICE retains every accepted section plus this port.
 
 ## Contract and ownership
 
@@ -82,8 +86,31 @@ Two one-line visibility changes reuse `ops::agent::require_live` and
 companion environment overrides caller runtime plumbing. `/desk-status` reports
 actual registered read-tool names for no-inference discovery checks.
 
-Remaining gates: scoped
-host/bridge cancellation and freshness regressions, actual fixed companion and
-installed adapter/extracted-assets discovery, strict Node/frontend typechecks,
-desktop/server/companion checks and Clippy, and synthetic protected proposal
-review through actual Playwright CLI on owned 4324/4325 with separate output.
+Integrated progress: six P1 bridge tests pass, including bounded pagination,
+unchanged draft preservation after source import, human edit/CAS, revoked proof,
+stable Pi deny and cancel/peer-abort. The pagination test first used an invalid
+non-SHA source revision; accepted host validation rejected it. Correcting that
+synthetic fixture to a valid different SHA yields 6/6, exit 0.
+Frontend and strict Node typechecks and the isolated Next16.1.6 static export
+(`src-tauri/target/pi-issues-export`) pass, exit 0. Before this merge, real
+companion/extension Vitest passed 19/19 and the extracted-assets actual installed
+Pi/adapter fixture passed 1/1, with zero model messages/provider connections.
+Final integrated reruns follow restoration of the own real companion.
+
+The browser fixture reuses accepted host loopback/Python and human-evidence
+helpers, then executes all three reads through the real companion/listener
+and a native framed proposal through the same live engine. It asserts cache
+bytes and upstream read count stay unchanged during agent reads, exact host
+payload persistence and default pending scope. Actual CLI UI evidence is pending.
+The own Python3.13.14 environment was installed offline from the accepted
+requirements.lock; no lock/dependency changes or other worktree writes.
+
+Live hook pairs were verified again at timestamp1788830836, PreToolUse and
+PostToolUse, for the same exact session/worktree above. No hook is bypassed.
+Installed adapter source blob hashes for types/index/config/server-manager/init/
+metadata-cache/tool-approval/LICENSE all match `gh api` at immutable
+`10a45367e033a32026987a75d6f401e37340c86f`.
+
+Remaining: final desktop/server/companion checks and Clippy, combined Desk/host
+regressions, restored-companion/extracted-assets tests, actual synthetic CLI
+proposal review on owned4324, and final report/head handoff.

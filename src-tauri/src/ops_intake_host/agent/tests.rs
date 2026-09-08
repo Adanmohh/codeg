@@ -66,10 +66,19 @@ pub(crate) async fn human_prepared(
     ))
     .await
     .unwrap();
+    let draft = prepare_source(db, ctx, &source).await;
+    (source, draft)
+}
+
+pub(crate) async fn prepare_source(
+    db: &DatabaseConnection,
+    ctx: &RunContext,
+    source: &SourceInput,
+) -> Draft {
     let human = crate::ops::Operator::server().unwrap();
     assert_eq!(human.account_id(), ctx.account_id);
     let runtime = HostRuntime::production();
-    let mut draft = store::ensure_draft(db, &source).await.unwrap();
+    let mut draft = store::ensure_draft(db, source).await.unwrap();
     for (field, value) in [
         (EvidenceField::Build, "42"),
         (EvidenceField::Screen, "Mushaf reader"),
@@ -120,5 +129,5 @@ pub(crate) async fn human_prepared(
     )
     .await
     .unwrap();
-    (source, draft)
+    draft
 }

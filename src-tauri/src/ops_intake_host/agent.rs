@@ -205,7 +205,8 @@ pub async fn cached_list(
     let product_id = product_for(&txn, ctx).await?;
     let rows = txn.query_all(store::sql("SELECT ulid FROM ops_intake_host_snapshot WHERE product_id=? ORDER BY ulid LIMIT 11 OFFSET ?",
         vec![product_id.clone().into(), (i64::from(input.page) * 10).into()])).await?;
-    let next_page = (rows.len() > 10).then_some(input.page + 1);
+    let page_limit = rows.len() > 10 && input.page == 10000;
+    let next_page = (rows.len() > 10 && !page_limit).then_some(input.page + 1);
     let mut items = Vec::new();
     for row in rows.iter().take(10) {
         let source = SourceInput {
@@ -222,8 +223,17 @@ pub async fn cached_list(
             draft,
         });
     }
-    let result = CachedPage { product_id, next_page, semantics: SEMANTICS,
-        operator_action: items.is_empty().then_some("No cached records on this page. An operator can import TestFlight feedback in Bug intake; this tool does not fetch it."), items };
+    let result = CachedPage {
+        product_id,
+        next_page,
+        semantics: SEMANTICS,
+        operator_action: if page_limit {
+            Some("The local page limit was reached; more cached records exist. Ask an operator to inspect Bug intake.")
+        } else {
+            items.is_empty().then_some("No cached records on this page. An operator can import TestFlight feedback in Bug intake; this tool does not fetch it.")
+        },
+        items,
+    };
     txn.commit().await?;
     Ok(result)
 }

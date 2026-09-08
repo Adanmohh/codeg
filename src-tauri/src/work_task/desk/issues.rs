@@ -2,6 +2,10 @@
 use super::*;
 use crate::ops_intake_host::{agent as intake, types::SourceInput};
 
+#[path = "issues_browser.rs"]
+#[cfg(unix)]
+mod browser;
+
 fn sql(text: &str, values: Vec<sea_orm::Value>) -> Statement {
     Statement::from_sql_and_values(sea_orm::DbBackend::Sqlite, text, values)
 }
@@ -58,6 +62,169 @@ async fn cache_bytes(engine: &TaskEngine) -> Vec<String> {
         result.push(row.try_get("", "data").unwrap());
     }}
     result
+}
+
+#[tokio::test]
+async fn desk_issues_cached_pagination_and_changed_source_preserve_human_draft() {
+    let (engine, task) = running_task().await;
+    let (listener, _, token) = bridge(&engine, PARENT_CONN).await;
+    let ctx = context(&engine, task).await;
+    let (source, draft) = intake::tests::human_prepared(&engine.db.conn, &ctx).await;
+    for n in 0..14 {
+        let ulid = format!("01ARZ3NDEKTSV4RRFFQ69G5F{n:02}");
+        engine.db.conn.execute(sql(
+            "INSERT INTO ops_intake_host_snapshot(product_id,ulid,record_json,verified_at,error) SELECT product_id,?,json_set(record_json,'$.source_ref.ulid',?),NULL,NULL FROM ops_intake_host_snapshot WHERE product_id=? AND ulid=?",
+            vec![ulid.clone().into(), ulid.into(), source.product_id.clone().into(), source.ulid.clone().into()],
+        )).await.unwrap();
+    }
+    let before = cache_bytes(&engine).await;
+    let first = succeeded(call(&listener, &token, DeskTool::HafidhFeedbackList, json!({})).await);
+    assert_eq!(first["nextPage"], 1);
+    assert_eq!(first["items"].as_array().unwrap().len(), 10);
+    assert!(first["items"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .all(|i| i["draft"].is_null()));
+    let second = succeeded(
+        call(
+            &listener,
+            &token,
+            DeskTool::HafidhFeedbackList,
+            json!({"page":first["nextPage"]}),
+        )
+        .await,
+    );
+    assert_eq!(second["items"].as_array().unwrap().len(), 5);
+    assert!(second["nextPage"].is_null());
+    let mut ulids: Vec<_> = first["items"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .chain(second["items"].as_array().unwrap())
+        .map(|i| i["ulid"].as_str().unwrap())
+        .collect();
+    ulids.sort();
+    ulids.dedup();
+    assert_eq!(ulids.len(), 15);
+    assert_eq!(cache_bytes(&engine).await, before);
+    engine.db.conn.execute(sql("UPDATE ops_intake_host_snapshot SET record_json=json_set(record_json,'$.source_revision',?),verified_at=NULL WHERE product_id=? AND ulid=?", vec!["b".repeat(64).into(), source.product_id.clone().into(), source.ulid.clone().into()])).await.unwrap();
+    let before = cache_bytes(&engine).await;
+    let detail = get(&listener, &token, &source).await;
+    assert_eq!(detail["item"]["draft"]["revision"], draft.revision);
+    assert_eq!(detail["item"]["draft"]["matchesSourceRevision"], false);
+    assert_eq!(detail["item"]["draft"]["preparedForCurrentRun"], false);
+    assert_eq!(detail["item"]["cache"]["state"], "unverified");
+    assert_eq!(cache_bytes(&engine).await, before);
+    no_proposal(&engine).await;
+}
+
+#[tokio::test]
+async fn desk_issues_human_edit_exactness_and_revoked_evidence() {
+    use crate::ops_intake_host::{
+        operator,
+        types::{SaveInput, Severity},
+        HostRuntime,
+    };
+    let (engine, task) = running_task().await;
+    let (listener, _, token) = bridge(&engine, PARENT_CONN).await;
+    let ctx = context(&engine, task).await;
+    let (source, initial) = intake::tests::human_prepared(&engine.db.conn, &ctx).await;
+    let human = crate::ops::Operator::server().unwrap();
+    let runtime = HostRuntime::production();
+    let mut d = operator::save(
+        &engine.db.conn,
+        &human,
+        &runtime,
+        SaveInput {
+            source: source.clone(),
+            expected_revision: initial.revision,
+            title: "Human corrected title".into(),
+            summary: "Human corrected reproduction".into(),
+            labels: vec![],
+            confirmed_severity: None,
+        },
+    )
+    .await
+    .unwrap();
+    assert_eq!(
+        call(
+            &listener,
+            &token,
+            DeskTool::DeskProposeIssue,
+            json!({"draftId":d.id,"expectedRevision":initial.revision})
+        )
+        .await
+        .code,
+        Some(DeskError::Stale)
+    );
+    assert_eq!(
+        call(
+            &listener,
+            &token,
+            DeskTool::DeskProposeIssue,
+            json!({"draftId":d.id,"expectedRevision":d.revision})
+        )
+        .await
+        .code,
+        Some(DeskError::SeverityRequired)
+    );
+    no_proposal(&engine).await;
+    d = operator::save(
+        &engine.db.conn,
+        &human,
+        &runtime,
+        SaveInput {
+            source: source.clone(),
+            expected_revision: d.revision,
+            title: d.title,
+            summary: d.summary,
+            labels: d.labels,
+            confirmed_severity: Some(Severity::Medium),
+        },
+    )
+    .await
+    .unwrap();
+    crate::ops_intake::revoke_evidence(&engine.db.conn, &d.proofs["log"].proof.artifact_id)
+        .await
+        .unwrap();
+    assert_eq!(
+        call(
+            &listener,
+            &token,
+            DeskTool::DeskProposeIssue,
+            json!({"draftId":d.id,"expectedRevision":d.revision})
+        )
+        .await
+        .code,
+        Some(DeskError::EvidenceRequired)
+    );
+    no_proposal(&engine).await;
+    // Human re-attaches reviewed evidence through the accepted helper. The
+    // native proposal must carry the human's new title/body, never the old one.
+    d = intake::tests::prepare_source(&engine.db.conn, &ctx, &source).await;
+    let result = succeeded(
+        call(
+            &listener,
+            &token,
+            DeskTool::DeskProposeIssue,
+            json!({"draftId":d.id,"expectedRevision":d.revision}),
+        )
+        .await,
+    );
+    assert_eq!(result["status"], "pending");
+    assert_eq!(result["title"], "Human corrected title");
+    let rows = ops_proposal::Entity::find()
+        .all(&engine.db.conn)
+        .await
+        .unwrap();
+    assert_eq!(rows.len(), 1);
+    let payload: Value = serde_json::from_str(&rows[0].payload_json).unwrap();
+    assert_eq!(payload, serde_json::to_value(d.prepared.unwrap()).unwrap());
+    assert!(payload["outgoing"]["body"]
+        .as_str()
+        .unwrap()
+        .contains("Human corrected reproduction"));
 }
 
 #[tokio::test]
