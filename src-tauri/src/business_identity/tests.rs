@@ -7,6 +7,7 @@ use std::sync::Arc;
 mod fixture;
 mod policy;
 mod transactions;
+mod tenancy;
 
 async fn initialize(conn: &DatabaseConnection) -> Principal {
     store::bootstrap(

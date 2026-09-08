@@ -6,6 +6,7 @@
 use sea_orm::{ConnectionTrait, DatabaseConnection, DatabaseTransaction, TransactionTrait};
 
 pub(crate) mod http;
+pub mod settings;
 pub mod store;
 pub mod types;
 pub use types::{Domain, Member, MemberKind, MemberStatus, Permission, Role};
@@ -63,6 +64,7 @@ pub struct Principal {
     organization_id: String,
     member_id: String,
     authority: Authority,
+    authorization_epoch: i64,
 }
 
 /// Opaque lineage for trusted task-link storage; contains IDs, never a bearer.
@@ -74,6 +76,7 @@ pub struct DelegationGrant {
     delegator_id: String,
     credential_id: Option<String>,
     operator: bool,
+    authorization_epoch: i64,
 }
 impl DelegationGrant {
     pub fn to_storage(&self) -> Result<String, IdentityError> {
@@ -94,6 +97,7 @@ pub(crate) fn delegation_grant(principal: &Principal) -> Result<DelegationGrant,
         delegator_id: principal.member_id.clone(),
         credential_id,
         operator: principal.is_operator(),
+        authorization_epoch: principal.authorization_epoch(),
     })
 }
 
@@ -111,6 +115,7 @@ pub(crate) async fn agent_principal_from_binding<C: ConnectionTrait>(
         delegator_id: String,
         credential_id: Option<String>,
         operator: bool,
+        authorization_epoch: Option<i64>,
     }
     let grant: StoredGrant =
         serde_json::from_str(stored_grant).map_err(|_| IdentityError::Unauthorized)?;
@@ -122,14 +127,29 @@ pub(crate) async fn agent_principal_from_binding<C: ConnectionTrait>(
         (false, Some(id)) => Authority::Credential(id),
         _ => return Err(IdentityError::Unauthorized),
     };
+    let authorization_epoch = match grant.authorization_epoch {
+        Some(epoch) if epoch > 0 => epoch,
+        None if store::organization(conn)
+            .await?
+            .is_some_and(|org| org.id == organization_id) =>
+        {
+            1
+        }
+        _ => return Err(IdentityError::Unauthorized),
+    };
     let delegator = Principal {
         organization_id: grant.organization_id,
         member_id: grant.delegator_id,
         authority,
+        authorization_epoch,
     };
     agent_principal(conn, &delegator, agent_member_id).await
 }
 impl Principal {
+    /// Captured once by authentication, never refreshed after async work.
+    pub fn authorization_epoch(&self) -> i64 {
+        self.authorization_epoch
+    }
     pub fn organization_id(&self) -> &str {
         &self.organization_id
     }
@@ -164,6 +184,20 @@ async fn current_human<C: ConnectionTrait>(
     conn: &C,
     principal: &Principal,
 ) -> Result<Member, IdentityError> {
+    let org = store::organization_by_id(conn, principal.organization_id())
+        .await?
+        .filter(|org| {
+            org.status == types::OrganizationStatus::Active
+                && org.authorization_epoch == principal.authorization_epoch()
+        })
+        .ok_or(IdentityError::Unauthorized)?;
+    if principal.is_operator()
+        && !store::organization(conn)
+            .await?
+            .is_some_and(|original| original.id == org.id)
+    {
+        return Err(IdentityError::Unauthorized);
+    }
     let member = store::member(conn, principal.organization_id(), principal.member_id())
         .await?
         .filter(|m| m.kind == MemberKind::Human && m.status == MemberStatus::Active)
@@ -256,6 +290,7 @@ pub(crate) async fn agent_principal<C: ConnectionTrait>(
         organization_id: agent.organization_id,
         member_id: agent.id,
         authority: Authority::Agent(Box::new(delegator.clone())),
+        authorization_epoch: delegator.authorization_epoch(),
     })
 }
 
@@ -271,5 +306,6 @@ pub(crate) async fn operator_principal<C: ConnectionTrait>(
         organization_id: org.id,
         member_id: member.id,
         authority: Authority::Operator,
+        authorization_epoch: org.authorization_epoch,
     })
 }

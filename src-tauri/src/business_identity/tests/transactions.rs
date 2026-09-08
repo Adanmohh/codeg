@@ -194,13 +194,22 @@ async fn identity_audit_failure_rolls_back_member_creation_and_history_is_immuta
 
 #[tokio::test]
 async fn explicitly_named_identity_migration_is_atomic_and_preserves_initialized_rows() {
-    let db = fresh_in_memory_db().await;
+    // Test000009 against its actual prefix, not later tenant tables that must
+    // remain intact and intentionally refuse lossy down-migration.
+    let db = crate::db::AppDatabase {
+        conn: Database::connect("sqlite::memory:").await.unwrap(),
+    };
+    for earlier in Migrator::migrations()
+        .into_iter()
+        .take_while(|m| m.name() != "m20260908_000009_business_identity")
+    {
+        earlier.up(&SchemaManager::new(&db.conn)).await.unwrap();
+    }
     let migration = Migrator::migrations()
         .into_iter()
         .find(|m| m.name() == "m20260908_000009_business_identity")
         .unwrap();
     let manager = SchemaManager::new(&db.conn);
-    migration.down(&manager).await.unwrap();
     db.conn
         .execute_unprepared("CREATE TABLE business_credential (id INTEGER)")
         .await
@@ -215,6 +224,13 @@ async fn explicitly_named_identity_migration_is_atomic_and_preserves_initialized
         .await
         .unwrap();
     migration.up(&manager).await.unwrap();
+    for later in Migrator::migrations()
+        .into_iter()
+        .skip_while(|m| m.name() != "m20260908_000009_business_identity")
+        .skip(1)
+    {
+        later.up(&manager).await.unwrap();
+    }
     let op = initialize(&db.conn).await;
     assert!(migration.down(&manager).await.is_err());
     assert!(

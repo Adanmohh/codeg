@@ -796,3 +796,24 @@ React19.2.4, @types/react19.2.13, Next16.1.6, Tailwind4.1.18 and
 tauri2.10.2 drag.js (official06374a902a50d2bd8b8d85593623ad16ac32325a)
 is a drag-contract reference; no dependency implementation is copied.
 Original Apache LICENSE and every preceding attribution remain intact.
+
+Business tenancy identity and settings (2026):
+Reuses accepted Apache-2.0 Codeg at Adanmohh/codeg
+f3813e3f1edb521f1d1b20d0b372643acc4123a5:
+src-tauri/src/business_identity/mod.rs (22a99cae327682b04fbcced34cf5ce19f6120dad),
+store.rs (bb11e6042fcfeaa61c51c1ae47b9b74e596ea794),
+types.rs (145f1d0e460967380960323bdfac875a076f46b2),
+tests/transactions.rs (e9cac228b8a99a48e43ffe74ff35b073c30625ff),
+src-tauri/src/db/migration/m20260908_000009_business_identity.rs
+(ad2db145b175abb56303218d9d141a706d9a7b6c), and
+src/lib/theme-presets.ts (9181e38cd443357685b057ffe3c322b52af33314).
+Destination: captured organization epoch/compatibility and existing credential
+authorization, closed settings.rs, migration000012 and focused regression glue.
+The existing IntroMail opaque-token attribution above remains unchanged.
+Installed SeaORM1.1.19, SQLx0.8.6 and libsqlite3-sys0.30.1/SQLite3.46.0
+connection/transaction/foreign-key primitives were read as API references.
+SQLite official version-3.46.0 resolves bebe2d8be8acfd02592c4972f4ba32c3b4e4a33f;
+its public-domain LICENSE.md blob f68a6c175f0b72086c313a9dbd9f2ec8d87525dd
+was verified through gh api. No SQLite/dependency implementation is copied.
+No Edublend proprietary source is ported. No AGPL/GPL source is used.
+Original Codeg Apache-2.0 LICENSE and all preceding notices remain.
