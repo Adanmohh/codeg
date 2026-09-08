@@ -1,7 +1,7 @@
 # Status — 2026-09-08
 
 **Increment A is reviewed, merged and locally accepted. Increment B preparation
-has an accepted contract; implementation dispatch is starting.** Root remains orchestrator-only.
+has an accepted contract; backend implementation and independent review are dispatched.** Root remains orchestrator-only.
 The accepted business workspace supports shared human/agent tasks, named
 responsibility, role/domain access, conflict recovery and explicit human review.
 Marketing, channels, ads, website and feedback are work areas; connected platform
@@ -61,9 +61,15 @@ agent. A usable protected source-binding/grant setup is part of contract review.
 
 | Existing worker | Branch and bounded deliverable |
 | --- | --- |
-| tickets, wR:p4 | `docs/business-intake-contract`: `docs/contracts/business-intake.md` and `reports/business-intake-contract.md`; closed Fireflies/email/feedback import, claim, candidate and atomic task seams. Final companion handoff is completed separately. |
-| approvals, wR:p3 | `review/business-intake-contract`: `reports/review-business-intake-contract.md`; independent source visibility/publication/transaction review and smallest protected binding/grant API. |
+| tickets, wR:p4 | Dispatched `feat/business-intake` from accepted main `086eee48`: backend/access/staged credential and strict-store seam, sole migration `000011`, imports/candidates/atomic tasks, fixed Fireflies and safe legacy projections. Deliver `reports/business-intake.md`; early compiling checkpoints and draft PR. |
+| approvals, wR:p3 | Dispatched `review/business-intake` from accepted main: independent committed product/credential/permission/concurrency/atomicity review, later UI/session review. Deliver `reports/review-business-intake.md`; no product edits. |
 | rebrand, wR:p2 | `docs/business-intake-ui`: `reports/business-intake-ui-plan.md`; business source→passage→reviewed task flow, readiness/rebase/access recovery and visual/keyboard acceptance plan. |
+
+Backend and reviewer dispatches were delivered through Herdr. Rebrand is finishing
+the exact-pin UI closure before frontend dispatch. No B runtime gate has run.
+New fixture ports will be coordinated; accepted A package and existing fixtures
+remain preserved. Fireflies is the first complete vertical slice; email/Hafidh
+capture remains required before claiming the complete B scope.
 
 **UI planning PR26 reviewed and merged** at exact report head
 `91a69f339e99266b35bb912ae7d1cb155a6acd76`. Root read the full report and final
