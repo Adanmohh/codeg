@@ -314,3 +314,5 @@ that merge inspection. No product implementation is delegated to root.
 - A new high finding on the same recovery path is assigned to tickets: mobile Settings menu lacks an accessible name and has a 32px target. The worker will fix and recheck drawer navigation before acceptance. [Review](reports/review-design-shell.md).
 
 - PR #12 implementation checkpoint `8ff15d9d` reviewed; independent combined Ops suite passes 175 tests, three manual fixtures ignored. Typed notification/host decision/migration boundaries have no blocking source finding so far; final worker gates and actual issue phone CLI review remain. [Review](reports/review-telegram-issues.md).
+
+- PR #14 Ops correction checkpoint `d20b1f8d` reviewed; independent22 locale/session/receipt tests pass. Actual cross-tab language/RTL/receipt CLI rechecks and final worker gates remain. [Review](reports/review-design-ops.md).
