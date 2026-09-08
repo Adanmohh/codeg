@@ -1,0 +1,56 @@
+- generic [active]:
+  - alert [ref=f2e1]
+  - region "Notifications alt+T"
+  - generic [ref=f2e2]:
+    - generic [ref=f2e989]:
+      - generic [ref=f2e990]:
+        - button "Show Sidebar" [ref=f2e991]
+        - button "Search" [ref=f2e992]
+        - button "New Conversation" [ref=f2e993]
+      - generic [ref=f2e995]:
+        - button "Switch to board view" [ref=f2e996]
+        - button "Task settings" [ref=f2e997]
+        - button "Open Settings" [ref=f2e998]
+    - main [ref=f2e1000]:
+      - generic [ref=f2e1002]:
+        - generic [ref=f2e1004]:
+          - button "Back to Conversations" [ref=f2e1005]
+          - heading "To-dos" [level=1] [ref=f2e1008]
+        - generic [ref=f2e1011]:
+          - generic [ref=f2e1012]:
+            - button "All folders" [ref=f2e1013]
+            - button "Filter 1" [ref=f2e1015]:
+              - text: Filter
+              - generic [ref=f2e1016]: "1"
+            - 'combobox "Status: All statuses" [ref=f2e1017]':
+              - generic: All statuses
+            - button "New task" [ref=f2e1018]
+          - generic [ref=f2e1020]:
+            - generic [ref=f2e1021]:
+              - generic [ref=f2e1022]: Status
+              - generic [ref=f2e1023]:
+                - text: Task
+                - generic [ref=f2e1024]: "2"
+            - generic [ref=f2e1027]:
+              - 'button "Canceled Plan fix: TestFlight draft: Synthetic audio stops at verse four Requeue Archive" [ref=f2e1028] [cursor=pointer]':
+                - generic "Canceled" [ref=f2e1031]
+                - generic [ref=f2e1033]: "Plan fix: TestFlight draft: Synthetic audio stops at verse four"
+                - generic [ref=f2e1040]:
+                  - button "Requeue" [ref=f2e1041]
+                  - button "Archive" [ref=f2e1042]
+              - button "Running Codex Synthetic triage task Cancel View session" [ref=f2e1043] [cursor=pointer]:
+                - generic "Running" [ref=f2e1046]
+                - generic [ref=f2e1050]:
+                  - img "Codex" [ref=f2e1052]
+                  - generic [ref=f2e1054]: Synthetic triage task
+                - generic [ref=f2e1057]:
+                  - button "Cancel" [ref=f2e1058]
+                  - button "View session" [ref=f2e1059]
+    - generic [ref=f2e24]:
+      - generic [ref=f2e25]:
+        - button "Quick actions" [ref=f2e26]
+        - button "1 conversations" [ref=f2e537]
+      - generic [ref=f2e27]:
+        - button "Add Command" [ref=f2e1060]
+        - button "codeg-mcp service" [ref=f2e1061]
+        - button [ref=f2e1069]

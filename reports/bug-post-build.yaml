@@ -1,0 +1,140 @@
+- generic:
+  - alert [ref=f3e1]
+  - region "Notifications alt+T"
+  - generic [ref=f3e2]:
+    - generic [ref=f3e4]:
+      - separator
+      - main [ref=f3e6]:
+        - generic [ref=f3e7]:
+          - generic [ref=f3e11]:
+            - generic [ref=f3e13]:
+              - tablist [ref=f3e45]:
+                - tab "New Conversation Close conversation tab" [selected] [ref=f3e47] [cursor=pointer]:
+                  - generic "synthetic-project · feat/step2-bug-workflow — New Conversation" [ref=f3e49]: New Conversation
+                  - button "Close conversation tab" [ref=f3e50]
+                - button "New Conversation" [ref=f3e55]
+              - generic [ref=f3e60]:
+                - generic [ref=f3e61]:
+                  - generic [ref=f3e62]:
+                    - button "synthetic-project" [ref=f3e63]
+                    - generic "New Conversation" [ref=f3e67]
+                  - button "More actions" [ref=f3e69]
+                - generic [ref=f3e85]:
+                  - generic [ref=f3e87]:
+                    - heading "What would you like to do today?" [level=1] [ref=f3e88]
+                    - generic [ref=f3e89]:
+                      - tablist [ref=f3e90]:
+                        - tab "Code Development" [selected] [ref=f3e91]
+                        - tab "Office Work" [ref=f3e92]
+                        - tab "Scientific Research" [ref=f3e93]
+                      - tabpanel "Code Development" [ref=f3e94]:
+                        - generic [ref=f3e95]:
+                          - button "Brainstorming Explore intent & requirements before building" [ref=f3e96]:
+                            - generic [ref=f3e102]: Brainstorming
+                            - generic [ref=f3e103]: Explore intent & requirements before building
+                          - button "Systematic Debugging Find the root cause before proposing fixes" [ref=f3e104]:
+                            - generic [ref=f3e117]: Systematic Debugging
+                            - generic [ref=f3e118]: Find the root cause before proposing fixes
+                          - button "Writing Skills Create, edit & verify reusable skills" [ref=f3e119]:
+                            - generic [ref=f3e128]: Writing Skills
+                            - generic [ref=f3e129]: Create, edit & verify reusable skills
+                        - generic [ref=f3e130]:
+                          - button "Show previous skills" [disabled]
+                          - generic [ref=f3e132]:
+                            - button "Writing Plans" [ref=f3e133]
+                            - button "Executing Plans" [ref=f3e141]
+                            - button "Subagent-Driven Development" [ref=f3e149]
+                            - button "Dispatching Parallel Agents" [ref=f3e157]
+                            - button "Using Git Worktrees" [ref=f3e167]
+                            - button "Test-Driven Development" [ref=f3e176]
+                            - button "Verification Before Completion" [ref=f3e183]
+                            - button "Requesting Code Review" [ref=f3e191]
+                            - button "Receiving Code Review" [ref=f3e200]
+                            - button "Finishing a Development Branch" [ref=f3e209]
+                            - button "Using Superpowers" [ref=f3e218]
+                          - button "Show more skills" [ref=f3e226]
+                    - generic [ref=f3e231]:
+                      - button "Claude Code Claude Code" [pressed] [ref=f3e233] [cursor=pointer]:
+                        - img "Claude Code" [ref=f3e236]
+                        - generic [ref=f3e239]: Claude Code
+                      - button [ref=f3e241] [cursor=pointer]:
+                        - img "Codex" [ref=f3e244]
+                        - generic: Codex
+                      - button [ref=f3e247] [cursor=pointer]:
+                        - img "Gemini CLI" [ref=f3e250]
+                        - generic: Gemini CLI
+                      - button [ref=f3e254] [cursor=pointer]:
+                        - img "OpenClaw" [ref=f3e257]
+                        - generic: OpenClaw
+                      - button [ref=f3e265] [cursor=pointer]:
+                        - img "OpenCode" [ref=f3e268]
+                        - generic: OpenCode
+                      - button [ref=f3e271] [cursor=pointer]:
+                        - img "Cline" [ref=f3e274]
+                        - generic: Cline
+                      - button [ref=f3e278] [cursor=pointer]:
+                        - img "Hermes Agent" [ref=f3e281]
+                        - generic: Hermes Agent
+                      - button [ref=f3e286] [cursor=pointer]:
+                        - img "CodeBuddy" [ref=f3e289]
+                        - generic: CodeBuddy
+                      - button [ref=f3e294] [cursor=pointer]:
+                        - img "Kimi Code" [ref=f3e297]
+                        - generic: Kimi Code
+                      - button [ref=f3e302] [cursor=pointer]:
+                        - img "Pi" [ref=f3e305]
+                        - generic: Pi
+                      - button [ref=f3e311] [cursor=pointer]:
+                        - img "Grok" [ref=f3e314]
+                        - generic: Grok
+                      - button [ref=f3e318] [cursor=pointer]:
+                        - img "Cursor" [ref=f3e321]
+                        - generic: Cursor
+                      - button [ref=f3e324] [cursor=pointer]:
+                        - img "DeepSeek Harness" [ref=f3e327]
+                        - generic: DeepSeek Harness
+                      - button [ref=f3e330] [cursor=pointer]:
+                        - img "Qoder" [ref=f3e333]
+                        - generic: Qoder
+                      - button [ref=f3e336] [cursor=pointer]:
+                        - img "Google Antigravity" [ref=f3e339]
+                        - generic: Google Antigravity
+                    - generic [ref=f3e342]:
+                      - button "Claude Code's ACP adapter is not installed (separate from your own CLI) · open Agents settings to install it" [ref=f3e343] [cursor=pointer]
+                      - button "Diagnose" [ref=f3e344]
+                    - generic [ref=f3e347]:
+                      - generic [ref=f3e348]:
+                        - textbox "Send a message..." [active] [ref=f3e351]:
+                          - paragraph [ref=f3e352]: Send a message...
+                        - generic [ref=f3e353]:
+                          - generic [ref=f3e354]:
+                            - button "Add" [disabled]
+                          - generic [ref=f3e355]:
+                            - button "Send" [disabled]
+                      - generic [ref=f3e356]:
+                        - generic [ref=f3e357]:
+                          - button "synthetic-project" [ref=f3e358]
+                          - button "feat/step2-bug-workflow" [ref=f3e360]
+                        - 'button "Agent connection: Disconnected" [ref=f3e363]'
+                  - paragraph [ref=f3e375]: Click the conversation count in the status bar to open Token Usage — spend broken down by day, agent, model, and folder.
+            - separator
+          - separator
+          - generic [ref=f3e21]:
+            - button [ref=f3e376]
+            - button "Hide Terminal (⌘J)" [ref=f3e23]
+      - separator
+    - generic [ref=f3e24]:
+      - generic [ref=f3e25]:
+        - button "Quick actions" [ref=f3e26]
+        - button "1 conversations" [ref=f3e378]
+      - generic [ref=f3e27]:
+        - button "Add Command" [ref=f3e381]
+        - button "codeg-mcp service" [ref=f3e28]
+        - button [ref=f3e31]
+    - generic [ref=f3e36]:
+      - button "Show Sidebar (⌘B)" [ref=f3e37]
+      - button "Search" [ref=f3e38]
+    - generic [ref=f3e43]:
+      - button "Toggle Terminal (⌘J)" [ref=f3e389]
+      - button "Toggle Auxiliary Panel (⌘E)" [ref=f3e390]
+      - button "Open Settings (⌘,)" [ref=f3e44]

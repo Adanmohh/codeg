@@ -1663,6 +1663,7 @@ pub fn build_router(
         .route("/terminal_list", post(handlers::terminal::terminal_list))
         // Catch-all
         .merge(handlers::ops::router())
+        .merge(handlers::ops_intake::router())
         .merge(handlers::ops_telegram::router())
         .fallback(api_not_found)
         .layer(middleware::from_fn(move |req, next| {

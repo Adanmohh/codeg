@@ -1,0 +1,160 @@
+- generic:
+  - alert [ref=f1e2]: Hafidh Ops Desk
+  - region "Notifications alt+T"
+  - generic [ref=f1e14]:
+    - generic [ref=f1e499]:
+      - separator
+      - main [ref=f1e501]:
+        - generic [ref=f1e502]:
+          - generic [ref=f1e505]:
+            - generic [ref=f1e506]: Bug intake
+            - generic [ref=f1e511]:
+              - generic [ref=f1e512]:
+                - generic [ref=f1e513]:
+                  - heading "Bug intake" [level=1] [ref=f1e514]
+                  - paragraph [ref=f1e515]: TestFlight report → reviewed evidence → GitHub issue
+                - button "Product settings" [ref=f1e516]
+              - generic [ref=f1e517]:
+                - generic [ref=f1e518]:
+                  - generic [ref=f1e520]:
+                    - text: Product
+                    - combobox "Product" [ref=f1e521]:
+                      - option "synthetic-hafidh · owner/repo" [selected]
+                      - option "synthetic-unconfigured · owner/repo"
+                  - button "Read TestFlight" [ref=f1e522]
+                - paragraph [ref=f1e523]: Read-only TestFlight intake. In-app feedback is unavailable. A list read does not confirm evidence freshness.
+                - generic [ref=f1e524]:
+                  - region "TestFlight reports" [ref=f1e525]:
+                    - heading "Source reports" [level=2] [ref=f1e526]
+                    - 'button "TestFlight draft: Synthetic audio stops at verse four pending · Build 42" [active] [pressed] [ref=f1e559]':
+                      - generic [ref=f1e560]: "TestFlight draft: Synthetic audio stops at verse four"
+                      - generic [ref=f1e561]: pending · Build 42
+                    - 'button "TestFlight draft: Synthetic unknown response example pending · Build 42" [ref=f1e562]':
+                      - generic [ref=f1e563]: "TestFlight draft: Synthetic unknown response example"
+                      - generic [ref=f1e564]: pending · Build 42
+                    - 'button "TestFlight draft: Synthetic rejected label example pending · Build 42" [ref=f1e565]':
+                      - generic [ref=f1e566]: "TestFlight draft: Synthetic rejected label example"
+                      - generic [ref=f1e567]: pending · Build 42
+                  - generic [ref=f1e568]:
+                    - button "Reload status" [ref=f1e570]
+                    - generic [ref=f1e571]:
+                      - heading "Source report" [level=2] [ref=f1e572]
+                      - paragraph [ref=f1e573]: Synthetic audio stops at verse four
+                      - generic [ref=f1e574]:
+                        - generic [ref=f1e575]:
+                          - term [ref=f1e576]: Device
+                          - definition [ref=f1e577]: iPhone 16
+                        - generic [ref=f1e578]:
+                          - term [ref=f1e579]: OS version
+                          - definition [ref=f1e580]: "18.2"
+                        - generic [ref=f1e581]:
+                          - term [ref=f1e582]: App version
+                          - definition [ref=f1e583]: Not provided
+                        - generic [ref=f1e584]:
+                          - term [ref=f1e585]: Build
+                          - definition [ref=f1e586]: "42"
+                        - generic [ref=f1e587]:
+                          - term [ref=f1e588]: Platform
+                          - definition [ref=f1e589]: IOS
+                        - generic [ref=f1e590]:
+                          - term [ref=f1e591]: Submitted
+                          - definition [ref=f1e592]: 7.9.2026 klo 13.00.00
+                      - paragraph [ref=f1e593]: TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAV
+                      - generic [ref=f1e594]:
+                        - paragraph [ref=f1e595]: Source refresh required
+                        - button "Refresh source" [ref=f1e596]
+                      - paragraph [ref=f1e597]: A changed source revision resets its evidence and severity confirmation. Saved edits remain available for comparison until you choose the current draft.
+                    - generic [ref=f1e598]:
+                      - heading "Required evidence" [level=2] [ref=f1e599]
+                      - list "Evidence checklist" [ref=f1e600]:
+                        - listitem [ref=f1e601]:
+                          - text: build
+                          - generic [ref=f1e602]: Required
+                        - listitem [ref=f1e603]:
+                          - text: screen
+                          - generic [ref=f1e604]: Required
+                        - listitem [ref=f1e605]:
+                          - text: reciter
+                          - generic [ref=f1e606]: Required
+                        - listitem [ref=f1e607]:
+                          - text: log
+                          - generic [ref=f1e608]: Required
+                      - paragraph [ref=f1e609]: "Cannot prepare or file: add build, screen, reciter, log evidence."
+                      - status [ref=f1e610]: Refresh this report before attaching proof. The host must verify its current source revision.
+                      - group [ref=f1e612]:
+                        - generic [ref=f1e613]:
+                          - text: Evidence type
+                          - combobox "Evidence type" [disabled] [ref=f1e614]:
+                            - option "Build" [disabled] [selected]
+                            - option "Screen" [disabled]
+                            - option "Reciter" [disabled]
+                            - option "Log" [disabled]
+                        - paragraph [ref=f1e615]:
+                          - text: TestFlight reports build
+                          - strong [ref=f1e616]: "42"
+                          - text: . Confirm that build in the proof content.
+                        - generic [ref=f1e617]:
+                          - text: Build evidence summary
+                          - textbox "Build evidence summary" [disabled]
+                        - generic [ref=f1e618]:
+                          - text: Sanitized proof content
+                          - textbox "Sanitized proof content Paste reviewed UTF-8 text, up to 8 KiB, including the exact summary above. Remove names, contact details, credentials and private paths. A URL, screenshot or session ID alone is not a diagnostic log." [disabled] [ref=f1e619]
+                          - generic [ref=f1e620]: Paste reviewed UTF-8 text, up to 8 KiB, including the exact summary above. Remove names, contact details, credentials and private paths. A URL, screenshot or session ID alone is not a diagnostic log.
+                        - generic [ref=f1e621]:
+                          - text: Captured at (optional)
+                          - textbox "Captured at (optional) An actual ISO timestamp, including timezone, when known. Leave blank otherwise." [disabled]
+                          - generic [ref=f1e622]: An actual ISO timestamp, including timezone, when known. Leave blank otherwise.
+                        - button "Attach reviewed proof" [disabled]
+                    - generic [ref=f1e623]:
+                      - heading "Issue draft" [level=2] [ref=f1e624]
+                      - paragraph [ref=f1e625]:
+                        - text: "Suggestion:"
+                        - strong [ref=f1e626]: low
+                        - text: severity; audio. These are triage guesses. Confirm or change severity below.
+                      - group [ref=f1e628]:
+                        - generic [ref=f1e629]:
+                          - text: Issue title
+                          - textbox "Issue title" [ref=f1e630]: "TestFlight draft: Synthetic audio stops at verse four"
+                        - generic [ref=f1e631]:
+                          - text: Reproduction and expected behavior
+                          - textbox "Reproduction and expected behavior This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions." [ref=f1e632]: Synthetic audio stops at verse four
+                          - generic [ref=f1e633]: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions.
+                        - generic [ref=f1e634]:
+                          - text: Repository labels
+                          - textbox "Repository labels Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing." [ref=f1e635]
+                          - generic [ref=f1e636]: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing.
+                        - generic [ref=f1e637]:
+                          - text: Human-confirmed severity
+                          - combobox "Human-confirmed severity" [ref=f1e638]:
+                            - option "Not confirmed" [selected]
+                            - option "High"
+                            - option "Medium"
+                            - option "Low"
+                        - generic [ref=f1e639]:
+                          - button "Save issue draft" [ref=f1e640]
+                          - generic [ref=f1e641]: Draft saved locally
+                      - generic [ref=f1e642]:
+                        - generic [ref=f1e643]:
+                          - text: Active triage task
+                          - combobox "Active triage task" [ref=f1e644]:
+                            - option "Choose an active task" [selected]
+                            - option "#1 · Synthetic triage task"
+                        - button "Prepare exact issue" [disabled]
+                        - paragraph [ref=f1e645]: Refresh the source, attach all four proofs, confirm severity and save edits before preparing.
+          - separator
+          - generic [ref=f1e532]:
+            - button [ref=f1e534]
+            - button "Hide Terminal (⌘J)" [ref=f1e535]
+      - separator
+    - generic [ref=f1e290]:
+      - generic [ref=f1e291]:
+        - button "Quick actions" [ref=f1e292]
+        - button "1 conversations" [ref=f1e294]
+      - generic [ref=f1e297]:
+        - button "Add Command" [ref=f1e536]
+        - button "codeg-mcp service" [ref=f1e537]
+        - button [ref=f1e545]
+    - generic [ref=f1e550]:
+      - button "Show Sidebar (⌘B)" [ref=f1e551]
+      - button "Search" [ref=f1e552]
+    - button "Open Settings (⌘,)" [ref=f1e558]

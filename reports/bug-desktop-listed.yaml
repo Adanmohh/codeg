@@ -1,0 +1,57 @@
+- generic [active]:
+  - alert [ref=f1e2]: Hafidh Ops Desk
+  - region "Notifications alt+T"
+  - generic [ref=f1e14]:
+    - generic [ref=f1e499]:
+      - separator
+      - main [ref=f1e501]:
+        - generic [ref=f1e502]:
+          - generic [ref=f1e505]:
+            - generic [ref=f1e506]: Bug intake
+            - generic [ref=f1e511]:
+              - generic [ref=f1e512]:
+                - generic [ref=f1e513]:
+                  - heading "Bug intake" [level=1] [ref=f1e514]
+                  - paragraph [ref=f1e515]: TestFlight report → reviewed evidence → GitHub issue
+                - button "Product settings" [ref=f1e516]
+              - generic [ref=f1e517]:
+                - generic [ref=f1e518]:
+                  - generic [ref=f1e520]:
+                    - text: Product
+                    - combobox "Product" [ref=f1e521]:
+                      - option "synthetic-hafidh · owner/repo" [selected]
+                      - option "synthetic-unconfigured · owner/repo"
+                  - button "Read TestFlight" [ref=f1e522]
+                - paragraph [ref=f1e523]: Read-only TestFlight intake. In-app feedback is unavailable. A list read does not confirm evidence freshness.
+                - generic [ref=f1e524]:
+                  - region "TestFlight reports" [ref=f1e525]:
+                    - heading "Source reports" [level=2] [ref=f1e526]
+                    - 'button "TestFlight draft: Synthetic audio stops at verse four pending · Build 42" [ref=f1e559]':
+                      - generic [ref=f1e560]: "TestFlight draft: Synthetic audio stops at verse four"
+                      - generic [ref=f1e561]: pending · Build 42
+                    - 'button "TestFlight draft: Synthetic unknown response example pending · Build 42" [ref=f1e562]':
+                      - generic [ref=f1e563]: "TestFlight draft: Synthetic unknown response example"
+                      - generic [ref=f1e564]: pending · Build 42
+                    - 'button "TestFlight draft: Synthetic rejected label example pending · Build 42" [ref=f1e565]':
+                      - generic [ref=f1e566]: "TestFlight draft: Synthetic rejected label example"
+                      - generic [ref=f1e567]: pending · Build 42
+                  - generic [ref=f1e529]:
+                    - heading "Select a report" [level=2] [ref=f1e530]
+                    - paragraph [ref=f1e531]: Review source details, attach the four required proofs, then prepare the exact issue for human approval.
+          - separator
+          - generic [ref=f1e532]:
+            - button [ref=f1e534]
+            - button "Hide Terminal (⌘J)" [ref=f1e535]
+      - separator
+    - generic [ref=f1e290]:
+      - generic [ref=f1e291]:
+        - button "Quick actions" [ref=f1e292]
+        - button "1 conversations" [ref=f1e294]
+      - generic [ref=f1e297]:
+        - button "Add Command" [ref=f1e536]
+        - button "codeg-mcp service" [ref=f1e537]
+        - button [ref=f1e545]
+    - generic [ref=f1e550]:
+      - button "Show Sidebar (⌘B)" [ref=f1e551]
+      - button "Search" [ref=f1e552]
+    - button "Open Settings (⌘,)" [ref=f1e558]

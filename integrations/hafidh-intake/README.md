@@ -30,6 +30,15 @@ In-app intake is unavailable: the existing Hafidh feedback route only accepts
 POST and sends a notification. TestFlight uses GET list and GET sync/status;
 no source writes, sync triggers, ASC polling or attachment fetches are exposed.
 
+The Desk's trusted host runs `python -I -m hafidh_intake.host` as a closed child
+process using the same adapter. It accepts bounded NDJSON frames with
+`request_id`, `operation` (`list`, `get`, `status`) and `input`; replies carry
+the same request ID and the strict adapter `result`. It is not a generic MCP
+proxy. Unknown fields/operations are rejected without echoing input. Its
+process-local list state is required for get/revalidation, and failure never
+substitutes a cached record. The parent must kill the child on timeout or
+protocol failure. This entry point does not add or alter the three MCP tools.
+
 DTOs omit identity fields, notes, signed URLs and raw attachment bytes. Known
 contact values, tokens and common private paths are removed from free text.
 This is a bounded redactor, not a universal personal-data detector: source text
