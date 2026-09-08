@@ -312,3 +312,5 @@ that merge inspection. No product implementation is delegated to root.
 
 - PR #13 product `f8ba4597` reviewed; root independently passed nine Pi configuration/setup/status accessibility tests. Final browser measurements and exact-head acceptance remain.
 - A new high finding on the same recovery path is assigned to tickets: mobile Settings menu lacks an accessible name and has a 32px target. The worker will fix and recheck drawer navigation before acceptance. [Review](reports/review-design-shell.md).
+
+- PR #12 implementation checkpoint `8ff15d9d` reviewed; independent combined Ops suite passes 175 tests, three manual fixtures ignored. Typed notification/host decision/migration boundaries have no blocking source finding so far; final worker gates and actual issue phone CLI review remain. [Review](reports/review-telegram-issues.md).
