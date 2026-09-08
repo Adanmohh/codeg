@@ -16,7 +16,7 @@ Independent review evidence advanced to `6138e10e` (verified local and GitHub br
 
 R1 fix candidate `1ba73e3c` is pushed: separate protected-operator source entrustment, exact task/agent/run ownership and pre-link revision checks, with root-only agent identity. Root reviewed the central source changes. Worker reports 34 combined business tests passing (2 manual fixtures ignored); independent exact-head ownership re-review is dispatched. R1 remains open until that review passes; final runtime/companion and guarded API gates continue.
 
-**Current R1 verdict: resolved at `1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5`.** Independent reviewer passed 5 ownership, 6 bridge and 2 migration/HTTP tests on that unchanged archive; root inspected all three logs. Reviewer reports 726 source blobs match the frozen commit and no additional blocking finding in this bounded review. Final review report is being published. Earlier open-R1 entries above are historical; PR #22 remains unmerged pending its final runtime/companion/API gates and acceptance review.
+**Current R1 verdict: resolved at `1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5`.** Independent reviewer passed 5 ownership, 6 bridge and 2 migration/HTTP tests on that unchanged archive; root inspected all three logs. Reviewer reports 726 source blobs match the frozen commit and no additional blocking finding in this bounded review. Final independent review report is published at `a8d1dbbebf5cfef57fb489f5417f303fa8dd422f` on `review/business-tasks`, path `reports/review-business-tasks.md`; root verified the GitHub head and report. Earlier open-R1 entries above are historical; PR #22 remains unmerged pending its final runtime/companion/API gates and acceptance review.
 
 ## Research during ideation
 
