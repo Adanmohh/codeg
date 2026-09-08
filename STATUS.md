@@ -46,7 +46,9 @@ Later root commits contain only documentation/evidence.
 The app is unsigned and not notarized/distributed. Live service setup, actual
 provider delivery, paid inference and real beta use remain unvalidated. Existing
 worker fixtures are preserved. Root final4318 server PID97709 remains available;
-root native and final browser sessions are closed.
+final acceptance browser sessions are closed. At the user's request, the accepted
+native preview was reopened as PID80241 with the existing synthetic N2 workspace;
+it remains open for viewing. It contains accepted A, not unfinished B changes.
 
 ## Increment B — meeting/feedback to shared tasks
 
@@ -122,6 +124,18 @@ blocker. Root imported the evidence and verified both recorded digests. Owner re
 at74b now corrects the same test-scope overstatement. No B runtime acceptance is implied.
 New synthetic ports are assigned: rebrand UI4350, tickets backend4351/upstream4352;
 owners must recheck availability before launching. No new fixture is claimed running.
+
+Setup/reader checkpoint `67708b0768cae3cacecd0dd1989c57bb565ab5f0` is pushed
+to draft PR28 and under independent review. Eight setup/grant HTTP/native
+registrations now exist, alongside protected access, staged credentials, fixed
+Fireflies reads and legacy projection/configuration-fence prerequisites. Root
+read the report and setup/access/service/transport paths; full source/test review
+is ongoing. Owner reports14 distinct intake cases passing across12 earlier passes
+and two corrected legacy cases, updated server check exit0, and existing Ops22
+passes/3 manual fixtures ignored. Failed iterations remain documented. Native,
+Clippy, full import/decision and real UI gates remain pending; source/import/
+candidate endpoints are not exposed at this checkpoint. No B fixture launched
+or accepted A package changed. Rebrand has the immutable setup/DTO handoff.
 [Product review](reports/review-business-intake.md).
 
 **UI planning PR26 reviewed and merged** at exact report head
