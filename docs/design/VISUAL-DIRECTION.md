@@ -1,4 +1,4 @@
-# Visual refresh — Hafidh dispatch desk
+# Visual refresh — Hafidh founder desk
 
 Owner request, 2026-09-08: the app looks basic; continue improving autonomously.
 This reopens visual quality after the bounded Phase 1 functional acceptance. It
@@ -6,9 +6,26 @@ adds no service, backend workflow, dependency, paid asset or later-phase feature
 The existing 8.1 score was scoped to correctness and measured operational UI;
 it is not evidence that the visual finish satisfied the owner.
 
+## Owner steering: business viewpoint
+
+Owner says the app is too technical-heavy and wants a business development
+perspective. This overrides the developer-oriented reading of dispatch desk.
+Default audience is the founder/operator. Lead with customer conversations,
+replies and decisions waiting for the owner, and actionable work. A person
+should understand the overview without knowing agents, task runs or backends.
+Technical evidence, IDs, diagnostics and connection machinery belong in detail;
+retain everything required for informed approval. Prefer business-language
+headings while preserving exact statuses and all workflow behavior.
+Do not imply sales CRM, lead stages, revenue, retention metrics, follow-up
+scheduling or launch publishing already exist. The current data supports
+correspondence, review decisions and work queues. Phase 2 planned launch/social
+work and Phase 3 multi-product scope remain separately described. Owner priority
+among founder overview, sales/growth and customer success is optional/pending;
+continue with founder overview unless steered otherwise.
+
 ## Art direction
 
-Direction: editorial workspace discipline, composed as a dispatch desk.
+Direction: editorial workspace discipline, composed as a founder’s correspondence and decision desk.
 World: correspondence, work queue, evidence sheet, review stamp, receipt.
 Color: retain Hafidh accent #245e58 / dark #9bd4c5 and inherited semantic theme
 pairs. In the default theme, aim for a gently differentiated canvas and raised

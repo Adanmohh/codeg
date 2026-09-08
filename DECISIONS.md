@@ -63,3 +63,7 @@ Use the actual `MCPServer` API at the mandated MCP Python SDK v2.0.1; its old Fa
 ## 2026-09-08 — Owner-authorized visual refresh
 
 Owner finds the app basic and requests continued work. Reopen visual quality with the dispatch-desk direction in docs/design/VISUAL-DIRECTION.md. Preserve accepted workflows, user themes/fonts, source/borrow rules and local-only testing. Root orchestrates two implementation workers and one independent report-only reviewer through existing Herdr topic tabs. No new service choice or Phase 2 feature is implied; Sentry versus SigNoz remains undecided.
+
+## 2026-09-08 — Business-facing owner steering
+
+Owner wants a business development viewpoint and finds the current approach too technical. Reframe the active visual refresh around customers, conversations, owner decisions and actionable work; keep diagnostics in detail and preserve required approval evidence. Founder overview is the interim assumption while optional priority is pending. Do not present nonexistent CRM, revenue or launch features as implemented.

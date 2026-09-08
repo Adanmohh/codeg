@@ -4,7 +4,7 @@
 
 ## Visual refresh — active
 
-Direction: [Hafidh dispatch desk](docs/design/VISUAL-DIRECTION.md). The earlier functional/design pass is retained as baseline; new visual acceptance remains open. All three workers dispatched from `181ec705`: rebrand `wR:t2/p2`, `feat/visual-workspace`, report `reports/visual-workspace.md`; approvals `wR:t3/p3`, `review/visual-refresh`, report `reports/visual-refresh-baseline.md` plus final audit; tickets `wR:t4/p4`, `feat/visual-correspondence`, report `reports/visual-correspondence.md`. Each uses its existing isolated worktree with GPT-6 Astra/max, docs-first and exact borrowing rules. Root remains orchestrator-only.
+Direction: [Hafidh founder desk](docs/design/VISUAL-DIRECTION.md). Owner steering adds a business-facing founder overview: customers, conversations and decisions, with technical detail subordinate. The earlier functional/design pass is retained as baseline; new visual acceptance remains open. All three workers dispatched from `181ec705`: rebrand `wR:t2/p2`, `feat/visual-workspace`, report `reports/visual-workspace.md`; approvals `wR:t3/p3`, `review/visual-refresh`, report `reports/visual-refresh-baseline.md` plus final audit; tickets `wR:t4/p4`, `feat/visual-correspondence`, report `reports/visual-correspondence.md`. Each uses its existing isolated worktree with GPT-6 Astra/max, docs-first and exact borrowing rules. Root remains orchestrator-only.
 
 ## Current position
 
