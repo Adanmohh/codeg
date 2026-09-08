@@ -5,6 +5,7 @@ import { ArrowLeft, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   ops,
+  type DeliveryStatus,
   type OpsContext,
   type Proposal,
   type ThreadKey,
@@ -40,6 +41,21 @@ export function proposalStatus(p: Proposal): string {
   if (p.status === "denied") return "Denied · not sent"
   if (p.status === "pending") return "Pending human review"
   return p.status
+}
+
+function deliveryExplanation(status: DeliveryStatus["status"]): string {
+  switch (status) {
+    case "sent":
+      return "Resend accepted this reply and it is recorded in the thread. Provider acceptance does not confirm recipient delivery."
+    case "receipt_recorded":
+      return "Resend accepted this reply. Finish recording receipt saves the accepted reply in the thread; it does not send again. Provider acceptance does not confirm recipient delivery."
+    case "failed":
+      return "The provider did not accept this reply. Open the original thread, correct the problem and prepare a new proposal for review."
+    case "not_sent":
+      return "This attempt stopped before sending. Open the original thread, correct the problem and prepare a new proposal for review."
+    default:
+      return "Delivery is unconfirmed. Do not resend this proposal or create another delivery key. Reconcile the provider outcome first."
+  }
 }
 
 export function ApprovalsView({
@@ -91,10 +107,20 @@ export function ApprovalsView({
                     aria-current={selectedId === p.id ? "true" : undefined}
                     onClick={() => onSelect(p.id)}
                   >
-                    <span className="block truncate text-sm font-medium">
+                    <span
+                      dir="auto"
+                      className="block truncate text-sm font-medium"
+                    >
                       {p.payload?.reply.subject ?? `Reply review #${p.id}`}
                     </span>
-                    <span className="block text-xs text-muted-foreground">
+                    <span
+                      className={cn(
+                        "block text-xs",
+                        selectedId === p.id
+                          ? "text-foreground/75"
+                          : "text-muted-foreground"
+                      )}
+                    >
                       Task #{p.taskId} · Run {p.runSeq}
                     </span>
                     <span className="block text-xs">{proposalStatus(p)}</span>
@@ -107,9 +133,8 @@ export function ApprovalsView({
               <ShieldCheck className="size-7 text-primary" aria-hidden="true" />
               <h2 className="text-sm font-medium">No proposals to review</h2>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Save reply drafts in the inbox. A task-bound proposal adapter
-                will bring them here for human review; that agent capability is
-                not connected yet.
+                Save reply drafts in the inbox. Agent reply proposals appear
+                here for human review.
               </p>
             </div>
           ))
@@ -161,7 +186,7 @@ function ProposalDetail({
     <div className="min-w-0 flex-1 overflow-y-auto">
       <div className="border-b p-2 sm:hidden">
         <Button className={touchButton} variant="ghost" onClick={onBack}>
-          <ArrowLeft aria-hidden="true" />
+          <ArrowLeft className="rtl:rotate-180" aria-hidden="true" />
           Back to review queue
         </Button>
       </div>
@@ -201,6 +226,7 @@ export function ReviewCard({
   onThread: (key: ThreadKey) => void
   onResolved: () => void
 }) {
+  const inbox = context.inboxes.find((inbox) => inbox.id === proposal.inboxId)
   const [editor, setEditor] = useOpsSessionState(
     `edit:review:${proposal.id}`,
     () => ({
@@ -264,7 +290,12 @@ export function ReviewCard({
         <p className="text-xs font-medium text-muted-foreground">
           Proposal #{proposal.id} · Task #{proposal.taskId} · Run{" "}
           {proposal.runSeq}
-          {" · "}Account {context.accountId}
+          {inbox && (
+            <>
+              {" "}
+              · <bdi>{inbox.name}</bdi>
+            </>
+          )}
         </p>
         <h1 className="text-xl font-semibold">{proposalStatus(proposal)}</h1>
         <Button
@@ -286,18 +317,18 @@ export function ReviewCard({
       {proposal.delivery && (
         <div className="space-y-3">
           <Notice error={!!proposal.delivery.error}>
-            {proposal.delivery.error ??
-              (proposal.delivery.status === "sent"
-                ? "Resend accepted this reply and it is recorded in the thread. Provider acceptance does not confirm recipient delivery."
-                : "A delivery attempt exists. Do not resend this proposal or create another delivery key.")}
+            {deliveryExplanation(proposal.delivery.status)}
+            {proposal.delivery.error && (
+              <span className="mt-2 block">{proposal.delivery.error}</span>
+            )}
           </Notice>
           <dl className="space-y-1 break-all text-xs text-muted-foreground">
             <dt>Message ID</dt>
-            <dd>{proposal.delivery.messageId}</dd>
+            <dd dir="ltr">{proposal.delivery.messageId}</dd>
             {proposal.delivery.providerId && (
               <>
                 <dt>Provider receipt</dt>
-                <dd>{proposal.delivery.providerId}</dd>
+                <dd dir="ltr">{proposal.delivery.providerId}</dd>
               </>
             )}
           </dl>
@@ -383,13 +414,13 @@ export function ReviewCard({
             </Button>
           </div>
         </>
-      ) : (
+      ) : !proposal.delivery ? (
         <Notice>
           {proposal.status === "denied"
             ? "This proposal was denied. Its private reply content has been redacted from the review record."
-            : "This record has no editable pending payload. Open the thread for its current draft. No delivery receipt is implied by this decision."}
+            : "This decision has no recorded delivery receipt. Approval alone does not confirm sending. Open the original thread for its current draft."}
         </Notice>
-      )}
+      ) : null}
     </article>
   )
 }

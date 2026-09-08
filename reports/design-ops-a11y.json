@@ -1,0 +1,15 @@
+{
+  "specialist": "a11y-auditor",
+  "execution": "Sequential inline method; no additional agent or inference",
+  "scores": { "accessibility": 8, "states": 9 },
+  "findings": [
+    {
+      "surface": "Ops thread and review",
+      "element": "Inherited shared-control CSS transitions",
+      "severity": "med",
+      "check": "Brief accessibility convention / reduced motion: 6–19 transitions remain under prefers-reduced-motion; reducedMotionEffective=false",
+      "fix": "Track a separately coordinated shared-control reduced-motion correction. No global CSS or motion behavior was added by this bounded task."
+    }
+  ],
+  "notes": "BC-3/7/10/12/14: final measurements cover 468 text samples in 12 cases: zero contrast failures, unnamed interactive controls, heading jumps, targets below 44px or horizontal overflow; mobile text inputs are at least 16px. Populated threading fields are open and included. Empty inputs and closed disclosures have explicit DOM evidence; a blank-valued named select is included. No whole-app, screen-reader, native-WebView or motion/jank certification. Static lint's reply-editor list/loading flags describe address-normalization .map calls, not a missing list UI; parent views own loading/errors."
+}

@@ -1,0 +1,43 @@
+async (page) => {
+  const settings = page.context().pages().find(p => p.url().endsWith('/settings/system'))
+  const workspace = page.context().pages().find(p => p.url().endsWith('/workspace'))
+  const openOps = async () => {
+    if (!await workspace.getByRole('button', { name: 'Ops desk', exact: true }).isVisible()) await workspace.keyboard.press('Meta+b')
+    await workspace.getByRole('button', { name: 'Ops desk', exact: true }).click()
+  }
+  if (await settings.locator('html').getAttribute('lang') === 'ar') {
+    await settings.getByRole('combobox').click()
+    await settings.getByRole('option', { name: 'الإنجليزية', exact: true }).click()
+    await workspace.waitForFunction(() => document.documentElement.lang === 'en')
+  }
+  await workspace.setViewportSize({ width: 1280, height: 900 })
+  await workspace.keyboard.press('Escape')
+  await openOps()
+  await workspace.getByRole('button', { name: /Reader Open Synthetic locale/ }).click()
+  await workspace.getByLabel('Reply message', { exact: true }).fill('Before locale: unsaved reply (Build 42) — رسالة تجريبية')
+  await workspace.getByLabel('Reply message', { exact: true }).scrollIntoViewIfNeeded()
+  const before = await workspace.getByLabel('Reply message', { exact: true }).inputValue()
+  await workspace.screenshot({ path: 'reports/browser-design-ops/before-locale-edit.png' })
+  await settings.getByRole('combobox').click()
+  await settings.getByRole('option', { name: 'Arabic', exact: true }).click()
+  await workspace.waitForFunction(() => document.documentElement.lang === 'ar')
+  const lost = await workspace.getByRole('region', { name: 'Ops desk', exact: true }).count() === 0
+  await workspace.screenshot({ path: 'reports/browser-design-ops/before-locale-lost.png' })
+  await openOps()
+  await workspace.getByRole('button', { name: /Reader Open Synthetic locale/ }).click()
+  const after = await workspace.getByLabel('Reply message', { exact: true }).inputValue()
+  await workspace.setViewportSize({ width: 390, height: 844 })
+  await workspace.keyboard.press('Escape')
+  await workspace.waitForTimeout(350)
+  await workspace.getByRole('button', { name: 'Back to inbox', exact: true }).scrollIntoViewIfNeeded()
+  await workspace.screenshot({ path: 'reports/browser-design-ops/before-rtl-thread.png' })
+  const arrow = await workspace.getByRole('button', { name: 'Back to inbox', exact: true }).locator('svg').evaluate(el => ({ rotate: getComputedStyle(el).rotate, transform: getComputedStyle(el).transform }))
+  await workspace.getByRole('button', { name: 'Approvals', exact: true }).click()
+  await workspace.getByRole('button', { name: /Reply review #3 Task/ }).click()
+  await workspace.screenshot({ path: 'reports/browser-design-ops/before-accepted-copy.png' })
+  const acceptedCopy = await workspace.locator('article').innerText()
+  await settings.getByRole('combobox').click()
+  await settings.getByRole('option', { name: 'الإنجليزية', exact: true }).click()
+  await workspace.waitForFunction(() => document.documentElement.lang === 'en')
+  return { syntheticOnly: true, before, opsUnmounted: lost, restoredSavedValue: after, rtlBackArrow: arrow, acceptedCopy, restoredEnglish: true }
+}

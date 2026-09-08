@@ -1,0 +1,69 @@
+async (page) => {
+  // Navigation dialogs are handled by explicit CLI calls between checks.
+  const workspace = page.context().pages().find(p => p.url().endsWith('/workspace'))
+  const settings = page.context().pages().find(p => p.url().endsWith('/settings/system'))
+  if (!workspace?.url().startsWith('http://127.0.0.1:4326/') || !settings) throw Error('Owned fixture only')
+  const check = (ok, message) => { if (!ok) throw Error(message) }
+  const results = []
+  const stats = () => workspace.evaluate(async () => (await fetch('/api/ops_design_fixture_stats', { headers: { Authorization: 'Bearer ops-design-synthetic-operator' } })).json())
+  const language = async (option, lang) => {
+    await settings.getByRole('combobox').click()
+    await settings.getByRole('option', { name: option, exact: true }).click()
+    await workspace.waitForFunction(lang => document.documentElement.lang === lang, lang)
+    check(await workspace.getByRole('region', { name: 'Ops desk', exact: true }).isVisible(), 'Locale change unmounted Ops')
+  }
+  const screenshot = async name => workspace.screenshot({ path: `reports/browser-design-ops/${name}.png` })
+  await workspace.setViewportSize({ width: 1280, height: 900 })
+  if (!await workspace.getByRole('button', { name: 'Ops desk', exact: true }).isVisible()) await workspace.keyboard.press('Meta+b')
+  await workspace.getByRole('button', { name: 'Ops desk', exact: true }).click()
+  await workspace.getByRole('button', { name: /Reader Open Synthetic locale/ }).click()
+  await workspace.getByLabel('Reply message', { exact: true }).waitFor()
+  const start = await stats()
+  for (const [viewport, width, height] of [['desktop', 1280, 900], ['mobile', 390, 844]]) {
+    await workspace.setViewportSize({ width, height })
+    if (width === 390) { await workspace.keyboard.press('Escape'); await workspace.waitForTimeout(350) }
+    for (const theme of ['light', 'dark']) {
+      await workspace.emulateMedia({ colorScheme: theme })
+      await workspace.evaluate(theme => document.documentElement.classList.toggle('dark', theme === 'dark'), theme)
+      await workspace.waitForTimeout(250)
+      await workspace.getByRole('button', { name: 'Reply draft', exact: true }).click()
+      const prefix = `Private sentinel ${viewport} ${theme}`
+      const reply = `${prefix}: reply (Build 42). رسالة تجريبية`
+      const note = `ملاحظة ${prefix} (42): reader@example.com`
+      await workspace.getByLabel('Reply message', { exact: true }).fill(reply)
+      await workspace.getByRole('button', { name: 'Private note', exact: true }).click()
+      await workspace.getByLabel('Private note · never emailed').fill(note)
+      await screenshot(`after-${viewport}-${theme}-en-note`)
+      await language('Arabic', 'ar')
+      check(await workspace.getByLabel('Private note · never emailed').inputValue() === note, 'Arabic note lost')
+      await screenshot(`after-${viewport}-${theme}-ar-note`)
+      await workspace.getByRole('button', { name: 'Reply draft', exact: true }).click()
+      check(await workspace.getByLabel('Reply message', { exact: true }).inputValue() === reply, 'Arabic reply lost')
+      await workspace.locator('article > header').scrollIntoViewIfNeeded()
+      await screenshot(`after-${viewport}-${theme}-ar-thread`)
+      const direction = await workspace.getByRole('region', { name: 'Ops desk', exact: true }).evaluate(root => ({
+        html: document.documentElement.dir,
+        email: [...root.querySelectorAll('bdi[dir="ltr"]')].map(el => ({ text: el.textContent, direction: getComputedStyle(el).direction })),
+        messages: [...root.querySelectorAll('[aria-label="Conversation messages"] p')].map(el => ({ direction: getComputedStyle(el).direction, dir: el.getAttribute('dir') })),
+        accountPrefix: /Account \d+/.test(root.textContent),
+        overflow: document.documentElement.scrollWidth > innerWidth,
+      }))
+      check(!direction.accountPrefix && !direction.overflow, 'Internal banner or overflow remains')
+      check(direction.email.every(el => el.direction === 'ltr'), 'Email direction')
+      if (width === 390) {
+        direction.backRotation = await workspace.getByRole('button', { name: 'Back to inbox', exact: true }).locator('svg').evaluate(el => getComputedStyle(el).rotate)
+        check(direction.backRotation === '180deg', 'RTL inbox Back not mirrored')
+      }
+      await language('الإنجليزية', 'en')
+      check(await workspace.getByLabel('Reply message', { exact: true }).inputValue() === reply, 'Restored-English reply lost')
+      await workspace.getByRole('button', { name: 'Private note', exact: true }).click()
+      check(await workspace.getByLabel('Private note · never emailed').inputValue() === note, 'Restored-English note lost')
+      await screenshot(`after-${viewport}-${theme}-en-note-restored`)
+      results.push({ viewport, theme, replyPreserved: true, notePreserved: true, direction })
+    }
+  }
+  const finish = await stats()
+  const privatePersisted = await workspace.evaluate(() => Object.values(localStorage).some(value => value.includes('Private sentinel')))
+  check(!privatePersisted && finish.providerRequests === start.providerRequests, 'Locale persisted private content or dispatched')
+  return { syntheticOnly: true, results, privatePersisted, providerBefore: start.providerRequests, providerAfter: finish.providerRequests, restoredEnglish: true }
+}

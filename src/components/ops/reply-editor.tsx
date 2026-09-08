@@ -62,6 +62,7 @@ export function ReplyEditor({
       </label>
       <Input
         id={`${prefix}-${key}`}
+        dir={key === "subject" ? "auto" : "ltr"}
         value={fields[key]}
         readOnly={readOnly}
         disabled={disabled}
@@ -90,6 +91,7 @@ export function ReplyEditor({
         </label>
         <Textarea
           id={`${prefix}-text`}
+          dir="auto"
           rows={7}
           className="min-h-40 rounded-lg"
           value={fields.text}
@@ -111,6 +113,7 @@ export function ReplyEditor({
           </label>
           <Textarea
             id={`${prefix}-references`}
+            dir="ltr"
             value={fields.references}
             disabled={disabled}
             rows={3}

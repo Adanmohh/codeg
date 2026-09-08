@@ -1,0 +1,17 @@
+// Read-only evidence for samples excluded by the settled-theme extractor.
+async (page) => {
+  if (!page.url().startsWith('http://127.0.0.1:4326/')) throw Error('Owned fixture only')
+  return await page.getByRole('region', { name: 'Ops desk', exact: true }).evaluate(root => ({
+    theme: document.documentElement.className,
+    controls: [...root.querySelectorAll('input,textarea,select')].map(el => ({
+      label: el.labels?.[0]?.textContent?.trim() ?? el.getAttribute('aria-label'),
+      tag: el.tagName, type: el.getAttribute('type'),
+      emptyValue: !el.value, hasPlaceholder: !!el.getAttribute('placeholder'),
+      selectedOptionText: el.tagName === 'SELECT' ? [...el.selectedOptions].map(o => o.textContent.trim()).join(', ') : null,
+      disabled: el.matches(':disabled'), nativeVisibility: el.checkVisibility(),
+      rects: el.getClientRects().length,
+      disclosure: el.closest('details')?.querySelector('summary')?.textContent?.trim() ?? null,
+      detailsOpen: el.closest('details')?.open ?? null,
+    })),
+  }))
+}
