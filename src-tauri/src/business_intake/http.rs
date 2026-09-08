@@ -58,6 +58,15 @@ handler!(grants_upsert, UpsertGrantInput, GrantResult);
 handler!(grants_revoke, RevokeGrantInput, GrantResult);
 handler!(sources_list, BindingPageInput, SourcePage);
 handler!(sources_get, SourceInput, SourceDetail);
+handler!(candidates_list, CandidatesInput, CandidatePage);
+handler!(candidates_get, CandidateInput, CandidateDetail);
+handler!(candidates_create, CreateCandidateInput, Candidate);
+handler!(candidates_select, SelectCandidateInput, CandidateDetail);
+handler!(candidates_edit, EditCandidateInput, CandidateDetail);
+handler!(candidates_accept, AcceptCandidateInput, DecisionResult);
+handler!(candidates_link, LinkCandidateInput, DecisionResult);
+handler!(candidates_discard, DiscardInput, Decision);
+handler!(tasks_sources, TaskInput, TaskSources);
 handler!(imports_start, StartImportInput, Import);
 handler!(imports_capture, CaptureInput, Import);
 handler!(imports_list, ImportsInput, ImportPage);
@@ -97,6 +106,15 @@ pub(crate) fn router() -> Router {
             .route("/grants/revoke", post(grants_revoke))
             .route("/sources/list", post(sources_list))
             .route("/sources/get", post(sources_get))
+            .route("/candidates/list", post(candidates_list))
+            .route("/candidates/get", post(candidates_get))
+            .route("/candidates/create", post(candidates_create))
+            .route("/candidates/select", post(candidates_select))
+            .route("/candidates/edit", post(candidates_edit))
+            .route("/candidates/accept", post(candidates_accept))
+            .route("/candidates/link", post(candidates_link))
+            .route("/candidates/discard", post(candidates_discard))
+            .route("/tasks/sources", post(tasks_sources))
             .route("/imports/start", post(imports_start))
             .route("/imports/capture", post(imports_capture))
             .route("/imports/list", post(imports_list))

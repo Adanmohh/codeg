@@ -1,5 +1,6 @@
 use super::types::*;
 use serde_json::json;
+mod candidate_cases;
 mod import_cases;
 mod legacy_cases;
 mod migration_cases;

@@ -865,3 +865,14 @@ The new legacy generation fence and staged setup ledger implement the accepted
 application access18be55ed contract; they do not port another framework/store.
 Installed SeaORM1.1.19, Axum0.8.8, reqwest0.12.28, Tokio1.49.0 and serde1.0.228
 source/types are API references only. All prior NOTICE sections remain intact.
+
+Business intake source/import/candidate core (2026):
+src-tauri/src/business_intake/{sources,imports,candidates,decisions}.rs composes
+the existing task-owned prepare/create/link transaction helpers and private
+Principal authorization. Application-specific revision, source-claim and
+publication rules transcribe accepted contract670af9ca and access18be55ed above.
+No new upstream workflow engine, authority constructor or source framework is
+ported. Transaction/revocation fixture structure additionally follows
+src-tauri/src/business_identity/tests/transactions.rs and db/test_helpers.rs
+at the same Apache Codeg086eee485e6f40a8b02ea77c9dbeefe315c81596 pin.
+Private source records are never automatically copied into published tasks.

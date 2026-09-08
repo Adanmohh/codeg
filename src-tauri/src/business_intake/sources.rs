@@ -31,6 +31,7 @@ pub(super) async fn inspect(
     let valid = s.revision.is_some()
         && s.access == "fresh"
         && s.observed_epoch == Some(c.binding.access_epoch)
+        && unexpired(c.grant.expires_at.as_deref())
         && s.access_until
             .as_deref()
             .is_some_and(|v| unexpired(Some(v)));

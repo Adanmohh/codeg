@@ -1,7 +1,9 @@
 //! Explicit private-source intake, using the existing identity and task core.
 //! Accepted contract670af9ca/access18be55ed; exact source mapping in NOTICE.
 mod access;
+mod candidates;
 mod common;
+mod decisions;
 pub mod error;
 mod fireflies;
 pub(crate) mod http;
@@ -34,6 +36,60 @@ operation!(bindings_list, access::list, PageInput, BindingList);
 operation!(bindings_status, access::status, BindingInput, BindingView);
 operation!(sources_list, sources::list, BindingPageInput, SourcePage);
 operation!(sources_get, sources::get, SourceInput, SourceDetail);
+operation!(
+    candidates_list,
+    candidates::list,
+    CandidatesInput,
+    CandidatePage
+);
+operation!(
+    candidates_get,
+    candidates::get,
+    CandidateInput,
+    CandidateDetail
+);
+operation!(
+    candidates_create,
+    candidates::create,
+    CreateCandidateInput,
+    Candidate
+);
+operation!(
+    candidates_select,
+    candidates::select,
+    SelectCandidateInput,
+    CandidateDetail
+);
+operation!(
+    candidates_edit,
+    candidates::edit,
+    EditCandidateInput,
+    CandidateDetail
+);
+operation!(
+    candidates_accept,
+    decisions::accept,
+    AcceptCandidateInput,
+    DecisionResult
+);
+operation!(
+    candidates_link,
+    decisions::link,
+    LinkCandidateInput,
+    DecisionResult
+);
+operation!(
+    candidates_discard,
+    decisions::discard,
+    DiscardInput,
+    Decision
+);
+operation!(
+    tasks_sources,
+    decisions::task_sources,
+    TaskInput,
+    TaskSources
+);
 operation!(imports_start, imports::start, StartImportInput, Import);
 operation!(imports_capture, imports::capture, CaptureInput, Import);
 operation!(imports_list, imports::list, ImportsInput, ImportPage);

@@ -257,3 +257,36 @@ tabs and split panes alongside task/table/board/calendar views. This checkpoint
 adds no member access to legacy terminal/session/host APIs. Tenant/session/host
 isolation and explicit tenant selection must be reviewed before those capabilities
 are exposed; a simplified separate dashboard is not the assumed product contract.
+
+## Exact candidate publication checkpoint
+
+Nine candidate/task-source HTTP operations now consume the same explicit Principal
+and organization-scoped writer. Select preserves null/prepared drafts and rebases
+only exact current passage IDs. Edit uses the task-owned preparation helper with
+explicit editing-human owner and unchanged calendar dates. Accept has no task body:
+it creates the saved reviewed text through the existing task helper. Text-free link
+uses the existing target visibility/edit/domain/CAS helper and invalidates review.
+Task, candidate terminal state, private decision/link, receipt and audit share one
+transaction. Historical decision rediscovery independently checks target Read;
+public task/source links without source grants reveal only an opaque link ID.
+No agent source access, new grants, run launch or terminal capability is added.
+
+Locked/offline server check exited0,12.92s (`check-candidates.log`); four unused
+private persistence fields remain to remove or consume before strict Clippy.
+Focused `business_intake::tests::candidate_cases` exited0: **7 passed/0 ignored**,
+0.40s execution/68s compile (`tests-candidates.log`). Coverage: exact human draft,
+editor/decider identity separation, calendar deadline, no automatic transcript
+publication, identical receipt replay, task-only reader restriction, null-draft
+text-free link/review invalidation, destination-Read withholding, expired metadata,
+source revision and grant epoch fences, invalid old/duplicate/passages, closed
+publication input, injected decision-insert rollback and real two-connection CAS
+and original-credential revocation. Test import warning removed after that run;
+no production correction was needed by these seven tests. Extra-candidate paths,
+full HTTP/native parity and late/uncertain staged cleanup remain pending.
+
+Read approvals' exact tenancy proposal `a2be945d9869c9807a5e3f4d7a98dab1fc2cf2cf`
+through gh api. It preserves the current private Principal, UUIDs and grant epochs,
+separates tenant-owned provider connections from platform legacy-resource entrustment,
+and names the companion's legacy unrestricted session-read path as a new-target
+prerequisite. This checkpoint changes none of those platform/tenant/native/CLI
+boundaries. Edublend/Payload source has not been copied into this implementation.

@@ -152,6 +152,9 @@ pub(super) struct Fixture {
 impl Fixture {
     pub async fn new() -> Self {
         let db = fresh_in_memory_db().await;
+        Self::with_db(db).await
+    }
+    pub async fn with_db(db: AppDatabase) -> Self {
         store::bootstrap(
             &db.conn,
             BootstrapInput {
@@ -210,6 +213,121 @@ impl Fixture {
             &self.op,
             &self.services,
             enable(&result.binding),
+        )
+        .await
+        .unwrap()
+    }
+    pub async fn source(&self, binding: &BindingAdmin) -> SourceDetail {
+        let import = super::super::imports_start(
+            &self.db.conn,
+            &self.op,
+            &self.services,
+            StartImportInput {
+                operation_id: id(),
+                binding_id: binding.id.clone(),
+                selection: Selection::Window {
+                    from_date: "2026-09-01T00:00:00Z".into(),
+                    to_date: "2026-09-08T00:00:00Z".into(),
+                },
+            },
+        )
+        .await
+        .unwrap();
+        self.mock.json(
+            json!({"data":{"transcripts":[{"id":"review-record","title":"Private source title"}]}}),
+        );
+        let import = super::super::imports_advance(
+            &self.db.conn,
+            &self.op,
+            &self.services,
+            ImportRevisionInput {
+                operation_id: id(),
+                import_id: import.id,
+                expected_revision: import.revision,
+            },
+        )
+        .await
+        .unwrap();
+        self.mock.json(transcript(
+            "review-record",
+            "Private transcript marker; never automatically publish.",
+        ));
+        super::super::imports_advance(
+            &self.db.conn,
+            &self.op,
+            &self.services,
+            ImportRevisionInput {
+                operation_id: id(),
+                import_id: import.id,
+                expected_revision: import.revision,
+            },
+        )
+        .await
+        .unwrap();
+        let source = super::super::sources_list(
+            &self.db.conn,
+            &self.op,
+            &self.services,
+            BindingPageInput {
+                binding_id: binding.id.clone(),
+                page: 0,
+            },
+        )
+        .await
+        .unwrap()
+        .items
+        .remove(0);
+        super::super::sources_get(
+            &self.db.conn,
+            &self.op,
+            &self.services,
+            SourceInput {
+                source_id: source.id,
+            },
+        )
+        .await
+        .unwrap()
+    }
+    pub async fn refresh(
+        &self,
+        binding: &BindingAdmin,
+        source_id: &str,
+        text: &str,
+    ) -> SourceDetail {
+        let import = super::super::imports_start(
+            &self.db.conn,
+            &self.op,
+            &self.services,
+            StartImportInput {
+                operation_id: id(),
+                binding_id: binding.id.clone(),
+                selection: Selection::Record {
+                    source_id: source_id.into(),
+                },
+            },
+        )
+        .await
+        .unwrap();
+        self.mock.json(transcript("review-record", text));
+        super::super::imports_advance(
+            &self.db.conn,
+            &self.op,
+            &self.services,
+            ImportRevisionInput {
+                operation_id: id(),
+                import_id: import.id,
+                expected_revision: import.revision,
+            },
+        )
+        .await
+        .unwrap();
+        super::super::sources_get(
+            &self.db.conn,
+            &self.op,
+            &self.services,
+            SourceInput {
+                source_id: source_id.into(),
+            },
         )
         .await
         .unwrap()
