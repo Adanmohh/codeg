@@ -1,6 +1,6 @@
 # Shell and Pi design correction review
 
-In progress, 2026-09-08. Product checkpoint
+Accepted and merged, 2026-09-08. Historical review follows. Product checkpoint
 `f8ba45973925f5e78331de1d47e913f5a56cb1f5` reviewed, including all presentation
 changes, field associations, translated guidance, NOTICE and regression tests.
 No credential/config persistence, model guard or approval behavior change.
@@ -32,3 +32,20 @@ route and no overflow. Provider/Model/Thinking/API Key names also passed.
 [Evidence](browser-shell-independent/README.md). The menu finding is resolved
 in the working change; final commit and worker gates are still required before
 PR acceptance. Root closed its session and released the worker fixture.
+
+## Final acceptance
+
+PR #13 accepted at `0565f197df5754bf14fb37d0be3a13715c70e85c`, merged as
+`783bfb9cd9caf9546f6ef9effc067f5c904fc6be`. Final commit changes reports and
+artifacts only; product is reviewed `e29cab3e`. Root read the full final report,
+inspected light/dark screenshots and composited contrast results, and verified
+its independent tests/CLI evidence above. All six bounded findings resolved.
+Worker 171 focused tests, lint, typecheck and production builds pass.
+
+Sidebar labels/empty text now measure7.54 light/8.81 dark; inherited status
+text8.90/8.75; setup reason18.31/18.17. Full mobile setup text and explicit
+44px recovery action remain readable. Repeated remount/focus exploratory
+attempts did not establish a sticky-error guarantee and are disclosed as such;
+accepted lifecycle behavior was not changed. No whole-app/accessibility or
+live model-readiness certificate is implied. Final combined design review
+and native rebuild remain separate.

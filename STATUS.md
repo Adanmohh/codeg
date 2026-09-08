@@ -13,7 +13,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 reviewed and merged; independent 167 integrated Rust tests plus host/Python/frontend and protected CLI checks pass | Pi cached reads/proposal and typed phone integration |
 | Telegram and beta validation | PR #10 reviewed and merged; independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Typed P1 issue extension, final integrated beta/native checks |
-| Final Design Studio loops | Preliminary seven-finding review and PR #11 specialist report accepted; shell/Pi fixes active | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
+| Final Design Studio loops | PR #13 shell/Pi corrections reviewed and merged; six scoped findings resolved | PR #14 locale/RTL/copy browser acceptance and final integrated review |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
@@ -316,3 +316,9 @@ that merge inspection. No product implementation is delegated to root.
 - PR #12 implementation checkpoint `8ff15d9d` reviewed; independent combined Ops suite passes 175 tests, three manual fixtures ignored. Typed notification/host decision/migration boundaries have no blocking source finding so far; final worker gates and actual issue phone CLI review remain. [Review](reports/review-telegram-issues.md).
 
 - PR #14 Ops correction checkpoint `d20b1f8d` reviewed; independent22 locale/session/receipt tests pass. Actual cross-tab language/RTL/receipt CLI rechecks and final worker gates remain. [Review](reports/review-design-ops.md).
+
+## Shell/Pi design corrections accepted; P1 bridge dispatched
+
+- PR #13 accepted at `0565f197df5754bf14fb37d0be3a13715c70e85c`, merged as `783bfb9cd9caf9546f6ef9effc067f5c904fc6be`. Six findings resolved; root reviewed full report/contrast/images and independently passed nine tests plus actual mobile menu/field CLI checks. Worker171 tests/lint/typecheck/build pass. [Review](reports/review-design-shell.md).
+- Tickets dispatched on new `feat/step3-pi-issues`, same worktree/tab/pane, report `reports/pi-issues.md`. Implements the three public scoped cached reads and closed native issue proposal through accepted host logic, real companion/adapter discovery, meaningful bridge gates and actual synthetic CLI review. Own4324/4325 output.
+- Approvals continues typed phone review; rebrand continues locale/RTL/receipt presentation validation. All three retain docs-first, immutable gh-api borrowing, Astra/max, isolated branches and no live provider/model actions. Root writes no product code.
