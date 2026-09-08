@@ -350,3 +350,5 @@ Rebrand dispatched to separate `fix/rebrand-test-expectations`, report
 `reports/rebrand-test-expectations.md`, preserving behavioral assertions and
 all product code. Root will rerun the full suite after exact-head review/merge.
 Final combined design review and Pi bridge validation continue.
+
+- PR #17 test-only rebrand correction accepted at `da61360474314fb0ed26eb55dc6ef170e6754ee9`, merged as `cc77846154964872287c0dde35b3fb60819b3260`. Root reviewed all three literal expected-brand updates and the full report; behavior assertions remain. Worker84 focused tests/lint/typecheck pass. One unrelated Forge timing failure occurred before/after, then passed unchanged alone and in the full focused retry; it is documented, not claimed fixed. Root full-suite rerun is running.
