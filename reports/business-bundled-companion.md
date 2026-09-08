@@ -1,12 +1,12 @@
-# Final bundled companion acceptance — harness ready, execution pending
+# Final bundled companion acceptance — passed
 
-**The report-only harness is materialized and syntax-checks successfully. Waiting for root's final absolute `Contents/MacOS/codeg-mcp` path, SHA256 and source/build identity/stable window. No candidate executable has been run.** This recipe tests that exact packaged companion; prior source-process passes do not certify it. Root owns the final app build, all-three profile/bundle hashes and native AX startup review. N1 source resolution is recorded separately in [business-native-review.md](business-native-review.md), pushed as `169015cf3568a1b136b8ebca3d2a1b95cd630057`.
+**The exact supplied bundled companion passed: command exit0, 275 harness checks, no failures.** Both MCP feature groups completed their synthetic read/refusal/stale/cancellation/missing-listener cases; all children exited0, owned socket state was removed, and before/after artifact hashes matched. Evidence: [result-1788886066203-29071.json](business-bundled-companion-evidence/result-1788886066203-29071.json). This is packaged MCP transport evidence with a synthetic peer. Root owns the separate final app/all-three executable correlation and native AX review. N1 source resolution is recorded in [business-native-review.md](business-native-review.md), pushed as `169015cf3568a1b136b8ebca3d2a1b95cd630057`.
 
-Owner/worktree: tickets, `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`; branch `review/business-integration-regressions`. No shared target build, existing fixture restart, other-worktree edit, provider/agent launch, installation or credential access is planned. Only new owned synthetic socket/child-process state will be created after the artifact handoff.
+Owner/worktree: tickets, `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets`; branch `review/business-integration-regressions`. Only the supplied companion and new owned synthetic socket state were used. No shared target build/mutation, existing fixture restart, other-worktree edit, Pi/model/provider/engine launch, installation or credential access. Root's concurrent isolated app launch was outside this probe.
 
 ## Pinned recipe and execution boundary
 
-Read the existing real-process recipe `integrations/pi-desk/process.test.ts` completely, its config/package, `protocol.ts`, actual companion CLI parser/dispatch/schema/UDS transport, listener token boundary and extracted-assets fixture. Source pin: accepted **Adanmohh/codeg `294fb634b1833ebb13c4223484624e595598235b`**; these paths are unchanged at N1 fix **`3a189d1822f9fd335cc58ecb440f75ab9cbe937e`**. Local source comparison exits 0. Exact blobs:
+Read the existing real-process recipe `integrations/pi-desk/process.test.ts` completely, its config/package, `protocol.ts`, actual companion CLI parser/dispatch/schema/UDS transport, listener token boundary and extracted-assets fixture. Source pin: accepted **Adanmohh/codeg `294fb634b1833ebb13c4223484624e595598235b`**. The nine paths below remain unchanged at root's immutable build source **`6cfff7d64e4d45f84d8cd5a26325b6ad4e1f311f`**: `git diff --exit-code` of the two commits, restricted to those paths, exited0 before execution. Read that build commit's complete `src-tauri/Cargo.toml` via local `git show`, exit0; package is `0.30.4`. Exact blobs:
 
 | File | Blob |
 | --- | --- |
@@ -26,26 +26,40 @@ The companion has a handwritten CLI/JSON-RPC dispatcher, not an rmcp server wrap
 
 ## Materialized harness and syntax evidence
 
-Root accepted recipe commit `6af123bad49d5d25027fa8af9fbc3ef1310a1a79`, then authorized materialization only. Harness SHA256: **`9e9fdc9bb2df58e6c6d9f15e3c12dafc74027690f197a01dabf35afe78a16796`**. The adjacent [NOTICE](business-bundled-companion-evidence/NOTICE) maps the exact borrowed fixture and reproduces all inherited Pi-package MIT notices; the original Apache licence remains at the repository root. No root NOTICE/LICENSE edit.
+Root accepted recipe commit `6af123bad49d5d25027fa8af9fbc3ef1310a1a79` and materialized harness **`464ae97a1bf243d9a22f5ec35fa6c45d7c674c66`**, then supplied the completed-build execution handoff. Ran that unchanged committed harness, SHA256 **`9e9fdc9bb2df58e6c6d9f15e3c12dafc74027690f197a01dabf35afe78a16796`**. The adjacent [NOTICE](business-bundled-companion-evidence/NOTICE) maps the exact borrowed fixture and reproduces all inherited Pi-package MIT notices; the original Apache licence remains at the repository root. No root NOTICE/LICENSE edit.
 
-Ran **`node --check reports/business-bundled-companion-evidence/probe.mjs`**, Node **v24.19.0**, **exit 0** on the final harness. Installed help explicitly says this checks syntax without executing the script. An initial syntax check also passed before adding the output-ownership guard; the final check is the source/hash above. `git diff --check` exits 0. No harness invocation, child companion, socket listener, result JSON or scratch directory was created by these checks. Runtime assertions and cleanup remain untested until the artifact handoff.
+Previously ran **`node --check reports/business-bundled-companion-evidence/probe.mjs`**, Node **v24.19.0**, **exit0** on the final harness. Installed help explicitly says this checks syntax without executing the script. These preparatory checks did not execute a candidate. Runtime evidence below was obtained only after the explicit completed-build handoff; no syntax/test rerun was needed for unchanged harness source.
 
 The harness requires all five named arguments, validates the SHA/source syntax and owned worktree, checks the actual bundle-path suffix/nonempty executable/digest, then launches only that absolute binary. Its child environment is exactly `NODE_ENV=test` and `PATH=/usr/bin:/bin`; it does not inherit HOME or credentials. New scratch is owned `.bpc-*`, mode0700. A unique `result-<timestamp>-<pid>.json` in the evidence directory uses exclusive create/mode0600. Failure summaries use fixed check labels; raw request tokens, arbitrary response bodies and stderr text are never serialized. The public outcome is explicitly synthetic transport data, not a claimed real task DTO.
 
-After root supplies the exact values and stable window, run this command from the tickets worktree (placeholders below are not executable handoff values):
+Executed once from the tickets worktree, **exit0**, in root's explicit stable window **`business-native-6cfff7d6`**:
 
 ```text
 node reports/business-bundled-companion-evidence/probe.mjs \
-  --binary '<root absolute .app/Contents/MacOS/codeg-mcp>' \
-  --sha256 '<root 64-character lowercase SHA256>' \
-  --source '<root 40-character lowercase source commit>' \
+  --binary '/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app/Contents/MacOS/codeg-mcp' \
+  --sha256 90f9fd8ed430ce1710919fc030ac87c34ba0c8e0a6e23cc4706f2c2b9515846d \
+  --source 6cfff7d64e4d45f84d8cd5a26325b6ad4e1f311f \
   --package-version '0.30.4' \
-  --stable-window '<root-handoff-reference>'
+  --stable-window business-native-6cfff7d6
 ```
 
-The stable-window reference is a short identifier using letters/digits/`._:-`; record the actual root handoff, never infer stability from elapsed time. Confirm the pinned package version against root's supplied source. The harness records all actual child PIDs/exits, exact tool sets, four forwarded reads per group, cancellation and missing-listener outcomes, before/after identity, and generated-directory removal. Forced termination, interruption, RPC failure or changed digest produces failure, not a clean acceptance claim. Its zero model/provider counters describe actions issued by this harness, not an OS-wide network monitor.
+Root supplied the stable window after its normal Tauri build exited0; this worker did not infer stability or rebuild anything. The before/after executable was **21,711,944 bytes**, SHA256 **`90f9fd8ed430ce1710919fc030ac87c34ba0c8e0a6e23cc4706f2c2b9515846d`**, at the exact resolved path above. The result JSON SHA256 is **`9f7608abcd50f0427dd64b195a40f3e94a34367aaeace90a95c6cf6efe24c690`**. Source identity is the root handoff plus local source comparison; the digest independently identifies the binary tested.
 
-## Planned assertions against the supplied executable
+## Observed runtime results
+
+| Boundary | Actual evidence |
+| --- | --- |
+| Help and initialization | Bundled `--help` exited0; both groups returned protocol `2024-11-05`, `codeg-mcp` version `0.30.4`, tools capability and correlated JSON-RPC. No stdout contamination or stderr bytes. |
+| Discovery | Exactly three intake and ten Desk tools listed below; all input schemas closed. Three intake descriptions explicitly say cached; business progress schema contains only `todo`, `in_progress`, `review`. No mutation invoked. |
+| Local refusals | 26 disabled/forbidden tool calls and four nonobject-input calls returned `-32602` with no success result and zero forwarded requests before the read cases. |
+| Synthetic read/error relay | Each group forwarded exactly four reads: fixed public success, wrong-record `denied`, retired-state `stale`, and parked cancellation. Exact UDS token/tool/input envelope matched; no CLI parent label was forwarded. Success/error JSON and `isError` matched exactly. |
+| Cancellation and missing listener | Both parked reads closed their UDS connection after cancellation, emitted no cancelled result, and subsequent discovery responded. After listener close, safe reads returned `-32603` without success/fallback. |
+| Child lifecycle | Help PID `29072`, intake `29073`, Desk `29074`: each exit0, signal null, no spawn/stdin error, zero stderr bytes, no forced termination. Harness PID `29071`, exit0. |
+| Cleanup and identity | Owned `.bpc-Z6HysH` and sockets removed (`scratchRemoved:true`); before/after path, size and SHA256 equal. No other fixture touched. |
+
+The **275 checks are harness assertions, including repeated RPC health checks, not 275 independent test cases**. Both feature groups passed; `failures` is empty. The harness issued zero model/Pi launches, provider requests or TCP listeners. Those counters describe this harness's actions, not an OS-wide network monitor. Root was notified that artifact execution/cleanup had completed before this report commit.
+
+## Approved recipe retained for reproduction
 
 1. **Artifact identity:** require the supplied absolute path and expected SHA256 before any execution; verify regular nonempty executable and digest. Record source/build identity, resolved path and byte size. Read its actual `--help` first after handoff. Execute the original bundle path directly, without chmod/copy/staging or concurrent compilation. Rehash after the run; a mismatch invalidates the result and stops acceptance.
 2. **Owned setup:** create a unique short socket path inside a new directory in this worktree, with synthetic public records and a synthetic launch token known only to the harness/child. No TCP backend/real database is attached. Use argv `--features intake` or `--features desk`, `--parent-connection-id fixture-untrusted-label`, `--socket-path <owned socket>`, `--token <synthetic token>`, and `--parent-pid <harness PID>`. Never inherit a production socket or parent token. Do not log request tokens or arbitrary stderr payloads.
@@ -61,10 +75,10 @@ Exact `desk` tools: `desk_context`, `desk_tickets`, `desk_thread`, `desk_save_re
 
 Each request gets a bounded five-second response deadline, with a separate bounded teardown deadline. The evidence records checks, feature/name sets, request counts, synthetic success/refusal values, cancellation/socket closure, child exits and before/after executable hashes. No prompt, model, provider SDK, live email/GitHub request or freshness-minting operation is issued. This topology creates only the harness, actual companion and owned UDS listener; it is not an OS-wide network trace or sandbox claim.
 
-## Limits and next handoff
+## Limits and docs-first evidence
 
 The companion deliberately forwards object-shaped input to the trusted backend, whose closed DTOs and live authorization reject extra identity/scope fields. It is not a second Ops/task validator. Schema inspection and synthetic refusals must not be misreported as executing that real backend validation. Existing accepted listener/ownership/CAS/revocation tests provide separate source evidence; this task will not redundantly rerun those suites or start another task engine. Full bundled parent-listener/real task binding, extracted Pi/adapter loading and native AX controls are separate gates if root requires them after this artifact wire check.
 
-No runtime execution/result is recorded yet. Source reads/blob inspection and final syntax check exited 0; there are no new runtime passes. Code-context guide with the existing venv/`HF_HUB_OFFLINE=1` exited0 and returned mostly other-project guidance; applied its installed-version rule. Docs query exited3 because `tickets.db` coverage is absent; no ingestion/install or invented coverage. Live own-session PreToolUse/PostToolUse records at `1788884318` confirm hooks remain enabled. All APIs were read locally; no new remote research. The reused fixture attribution is preserved in the evidence NOTICE. Root NOTICE/LICENSE, product source, target outputs and all paused work remain unchanged.
+Code-context guide with the existing venv/`HF_HUB_OFFLINE=1` exited0 and returned mostly other-project guidance; applied its installed-version rule. Docs query exited3 because `tickets.db` coverage is absent; no ingestion/install or invented coverage. Installed Node24.19.0 help and `@types/node@25.2.2` APIs were read before harness authoring. Live own-session PreToolUse/PostToolUse records at `1788886098`/`1788886099` have exit0 and the tickets worktree; hooks remain enabled. All APIs were read locally; no new remote research. The reused fixture attribution is preserved in the evidence NOTICE. Root NOTICE/LICENSE, product source, target outputs and paused visual work remain unchanged.
 
-**Next input required:** root's final bundle executable absolute path, SHA256, source commit and stable completed-build window. Wait for that handoff before executing even `--help`. Root will independently correlate `codeg`, `codeg-server` and `codeg-mcp` profile/bundle hashes. A protocol pass will be attributed only to the exact tested digest.
+**Bounded acceptance complete for the exact digest above.** No malformed/truncated response extension, wrong-token backend authorization test, real database/parent-listener binding, Pi/installed-adapter launch or native AX interaction was run here. Root's reported all-three executable/profile and 1,016 web-file matches remain root evidence, not worker reruns. This result does not certify release signing, distribution, other binaries or a changed artifact.
