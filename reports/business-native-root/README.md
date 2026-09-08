@@ -103,3 +103,14 @@ route identity strips URL query/credentials. Only owned-window screenshots.
 refresh and actual native chrome/drag/recovery recheck. Browser Design Studio
 closure remains valid for unchanged business state/data behavior. No Windows/
 Linux runtime, signing/notarization, live provider or full screen-reader claim.
+
+## Existing server database upgrade — passed
+
+Verified old root-owned4318 listener PID55173, then replaced only that process
+with this package's actual codeg-server (SHA7093247d), new PID61465. Same
+isolated `/tmp/ops-desk-browser-data`, loopback4318, public synthetic test token,
+root out and existing Python adapter. Log `/tmp/business-final-root-server-upgrade.log`
+records both000009 and000010 applied; protected real business/context returns200,
+operator:true and needsBootstrap:true. Existing Ops database was upgraded, not
+reseeded. `server-upgrade-context.json` records the exact source/identity.
+Final browser check will use the final refreshed root export after N2 acceptance.

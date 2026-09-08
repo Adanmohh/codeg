@@ -1,0 +1,18 @@
+{
+  "status": 200,
+  "context": {
+    "needsBootstrap": true,
+    "organization": null,
+    "member": null,
+    "operator": true,
+    "capabilities": {
+      "manageMembers": true,
+      "legacyOperator": true
+    }
+  },
+  "pid": 61465,
+  "replacedPid": 55173,
+  "binarySha256": "7093247d3e17b1652cad07816914830fd9022561dc90a0d3a0f1576461b83d93",
+  "dataRoot": "/tmp/ops-desk-browser-data",
+  "backendSource": "6cfff7d64e4d45f84d8cd5a26325b6ad4e1f311f"
+}
