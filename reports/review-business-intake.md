@@ -1,11 +1,14 @@
 # Independent Increment B product review
 
-**Frozen checkpoint `60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d`: five unchanged
-focused tests pass independently. One P2 remains in the strict credential reader;
-two independent permission probes reproduce it (exit101).** This is a review of
-credential mutation and task transaction prerequisites, not acceptance of the
-unfinished intake backend or UI. No additional blocker was found in the task
-extraction reviewed here.
+**One open P2: strict credential reads lose legacy file-permission hardening.**
+Five unchanged focused tests pass at prerequisite checkpoint
+`60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d`; two additional reviewer tests reproduce
+R1 (exit101). The separate schema/DTO checkpoint
+`9a4c8c882cec938665bc233b4d658d8de019ccfd` passes its two unchanged tests
+independently and introduces no further blocking finding in this review.
+The incomplete intake backend and UI are **not accepted** by these limited
+results; authorization, source ordering and atomic publication consumers remain
+pending. R1 is unchanged at9a4c8c88 and awaits a committed correction.
 
 Reviewer branch **review/business-intake** starts from accepted main
 **0bd50aedc7bdfea0bc392d4feb63b9101b5af92d**. The preceding contract review
@@ -113,9 +116,63 @@ this review does not claim them.
 Committed logs, probe patch, source-verification summary and test result metadata:
 [`review-business-intake-evidence/60daf42e`](review-business-intake-evidence/60daf42e/).
 The original failure logs are preserved. The new owner checkpoint
-**9a4c8c882cec938665bc233b4d658d8de019ccfd** will be reviewed separately; its
-reported checks are not covered by this verdict. R1 was relayed to tickets and
-root through authorized internal Herdr prompts, both exit0.
+**9a4c8c882cec938665bc233b4d658d8de019ccfd** is reviewed separately below. R1 was
+relayed to tickets and root through authorized internal Herdr prompts, both
+exit0. The finding/log publication is review commit
+**473b3b316abdac67bacf09d4fef011ba3ec24ff4**, pushed successfully. Root independently
+read the source/probe and agreed with P2; that source confirmation is attributed
+to root, not counted as another reviewer test.
+
+## Separate schema/DTO review at9a4c8c88
+
+Resolved **9a4c8c882cec938665bc233b4d658d8de019ccfd** through `gh api`; its parent is
+the frozen60daf42e checkpoint. Read the full nine-file diff, error/types/tests,
+sole `m20260908_000011_business_intake.rs`, additive module/registry, NOTICE and
+report. Keyring/task extraction and Cargo manifest/lockfile are byte-identical
+to60daf42e (`git diff --exit-code`, exit0). PR28 remains draft.
+
+Source observations: the migration opens an explicit transaction, uses composite
+organization/member/source/task foreign keys, records source refresh fences and
+nullable initial source revision, retains history and rejects rollback once a
+binding or staged setup exists. DTO inputs reject unknown fields; the key wrapper
+has neither Debug nor Serialize/Clone. Credential replacement distinguishes
+omission from explicit null. DecisionTask has an explicit restricted variant,
+without task ID/revision. Source/grant disclosure, owner-revision revalidation,
+safe retries and public-task publication still require their not-yet-present
+consumers; these types are not proof of runtime privacy enforcement.
+
+Independent unchanged selector `business_intake::tests`, using the same
+locked/offline/server-library command and own target above: **exit0, 2 passed,
+0 failed, 0 ignored, 0.05s execution**. Both exact test bodies were read. The
+archive `.build/review-business-intake/9a4c8c88` matches **733/733** source,
+integration and licence blobs. Logs and verification summary:
+[`review-business-intake-evidence/9a4c8c88`](review-business-intake-evidence/9a4c8c88/).
+Four unused-consumer warnings, the linker warning and the dependency future
+compatibility warning are preserved. No Clippy result or waiver is claimed.
+
+**Evidence correction, not another schema blocker:**
+`business_intake/tests.rs:36–72` inserts a random nonexistent owner UUID and
+checks five table registrations. It does not seed a foreign-organization member
+or any existing task row. The test name's “retains_task_rows” and owner report's
+“cross-org member-FK rejection” overstate what runs. The observed result is
+missing-member rejection with zero inserted bindings plus fresh table existence.
+Describe that accurately; populated upgrade/rollback/atomic-failure coverage
+and real positive/negative association cases remain future gates. No relaxed
+organization constraints or fabricated cross-org fixture was used here.
+
+NOTICE remains additive. Verified the referenced accepted base086eee48 task
+migration blob **3cb107d5bc0ab375e1b82fc64c7fefc82396b318**, identity types
+**145f1d0e460967380960323bdfac875a076f46b2**, identity module
+**22a99cae327682b04fbcced34cf5ce19f6120dad**, and earlier task types mapping.
+This transcribes accepted application contracts and reuses the existing Apache
+schema/error patterns; no new external source or dependency. Read installed
+serde/serde_derive **1.0.228** missing-field and deny-unknown-field generation;
+serde_json remains **1.0.149**. No remote documentation survey was needed.
+
+Publication hygiene: the first staged `git diff --check` exited2 only for the
+three raw successful Cargo logs' final blank lines. Those bytes are deliberately
+retained as command evidence; the pre-stage tracked report diff check exited0.
+No product formatting/test failure was suppressed.
 
 ## Source and test-probe provenance
 
