@@ -1,12 +1,14 @@
 # Independent Increment B intake contract review
 
-**Final reconciliation is pending; Increment B is not implemented.** The full
-`85f6001f2fa8f9d33748ceddbf7980ce68942ede` contract/report and complete change from
-`79a922945668a633ea6b5f7e68f9bdc08a0725a3` have been reviewed. Its preparation,
-recovery and deadline amendments are coherent. The remaining setup, explicit
-scope and refresh-fence requirements are closed in the root-accepted access
-contract; the intake owner must incorporate its exact reference before the final
-no-open-contract-blocker verdict. No product or runtime acceptance is claimed.
+**No open contract blockers** at the frozen owner head
+**670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5**, incorporating canonical access seam
+**18be55edc276713fc6d46d075baec363245ba285**. The full initial contract/report,
+85f6001f amendment and complete 85f6001f→670af9ca contract/report diff were read.
+The final reconciliation closes the protected setup, grant/history/owner lifecycle,
+source refresh ordering and UI contract gaps. It is ready for root's implementation
+dispatch. **Increment B is not implemented; no product/runtime test acceptance
+is claimed.** The strict credential-store read, task helpers and host projection
+remain explicitly assigned implementation prerequisites, not alleged existing APIs.
 
 The protected seam is published at **18be55edc276713fc6d46d075baec363245ba285**:
 [business-intake-access.md](../docs/contracts/business-intake-access.md). Root
@@ -22,13 +24,14 @@ credentials remain restricted to business transport.
 | --- | --- |
 | Initial owner contract and report | `79a922945668a633ea6b5f7e68f9bdc08a0725a3`; complete read, contract blob `79aab775dc163597b54937bc827c4b5b043af846` |
 | DTO/recovery/source-ledger amendment | `85f6001f2fa8f9d33748ceddbf7980ce68942ede`; contract blob `99e5bfccecdb2d7d40afd93ceff315622536ddaf`, report blob `60e8265cc4ea9c664fd41c7e893c081882e4e26e` |
-| Protected access seam | `18be55edc276713fc6d46d075baec363245ba285`; complete published contract |
-| Owner reconciled contract | Awaiting immutable handoff; not assumed from uncommitted files |
-| UI interaction plan | `99cecbac3e8eab1da6f977ec649d8c874e668ab9`; complete read, Q2–Q4 incorporated in 85f6001f |
+| Protected access seam | `18be55edc276713fc6d46d075baec363245ba285`; complete published contract, blob `42f5a13b9fb6449d599264d34de12bd37227378e` |
+| Owner reconciled contract | `670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5`; contract blob `9b98ce117c01370c93a599732facbef6ca423142`, report blob `fe96729bcf5709fa7f394c9de0410eec8d72593a` |
+| Owner report closeout | `7f4d4dbc66f3b7487ffcb623769d79c9be2ac044`; full diff read, only reports/business-intake-contract.md changed. Contract SHA256 `6d4be7f3be2c41264ab3bb9c27311e879306a75af0aaae6c0e240f434c874dbd` independently checked; review target remains 670af9ca. |
+| UI interaction plan | `99cecbac3e8eab1da6f977ec649d8c874e668ab9`; complete read; full amendment through `57b07ca81257421b9cbb414f7ac456c1bb39ea06` read, Q2–Q4 fit recorded there |
 | Root acceptance plan | `650be3025c25386649bc906f6bed335abafcb011`; all BI-1–BI-10 read, future acceptance requirements |
 
 Owner [PR25](https://github.com/Adanmohh/codeg/pull/25) was independently queried
-through `gh api`: draft/open at 85f6001f, based on
+through `gh api`: draft/open at **670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5**, based on
 `c7f7366fef2d7945cea18d4da1b7594fa3026e1c`. Reviewer branch
 `review/business-intake-contract` starts from accepted
 `4e64476c7ad9161a5e535b5c75f592716d3ca6e2`. Read full FOUNDING, ORCHESTRATOR,
@@ -36,13 +39,28 @@ STATUS, DECISIONS, AGENTS, business scope, all three research reports/root
 synthesis and accepted identity/task contracts. This is a documentation boundary
 review, not an audit of a future migration or adapter implementation.
 
-## Concrete findings and required closure
+## Final consistency and historical findings
 
-These severities describe implementation-blocking contract gaps at the cited
-checkpoint. They do not imply that an unimplemented B endpoint is exploitable.
+| Item | Verified closure at 670af9ca |
+| --- | --- |
+| BI-R1 / Q1: setup, audience and owner lifecycle | Contract lines 10–14 incorporate the exact access document; 125–201 specify actual operator setup, zero grants, historical/current/future confirmation, pinned owner revision, staged secrets and strict store ownership. Lines 392–428 use one BindingList/View/Summary; 447–461 give candidate capabilities and destination-Read withholding. |
+| BI-R2: source refresh ordering | Lines 233–246 require the source-scoped fence and pre-read content revision across imports; identity/fence exist before the first detail, whose content revision is explicitly null. B10 at line 564 includes the distinct-import late-response regression. |
+| BI-R3: key-store prerequisite | Lines 187–201 assign tickets the narrow strict reader and staging lifecycle; the contract does not claim that the old product path is already fixed. |
+| Q2–Q4: preparation/recovery/deadlines | Existing nullable-draft rebase and terminal decision recovery remain; ImportView is explicitly unfinished/all with default, prepared access epoch fences grant-only changes, and read12s/core15s/client20s remains bounded in both runtimes. |
+| Safe repair and legacy prerequisite | Owner/resource drift has a fixed binding_unavailable/422 reason and protected revalidation affordance. Legacy monotonic configuration fencing and pure projection are explicitly tickets-owned prerequisites before capture. |
 
-**BI-R1 / P2 — protected setup and audience were not closed at 85f6001f.**
-`docs/contracts/business-intake.md:99–121` defers setup and initially gives the
+The final safe error mapping matches the actual existing ConfigurationInvalid→422
+HTTP mapping. The final contract requires withholding a saved PreparedTask's
+hidden destination/member IDs unless the reader has destination Read. It requires
+all terminal mutation flags false; capabilities do not replace final authorization.
+Q1 now has a concrete UI contract; rebrand publishes its own UI-fit closure.
+
+The historical severities below explain what changed and the regression required
+at implementation. They are **closed contract gaps**, not executed exploit
+reports or evidence that the future code already passes.
+
+**BI-R1 / P2 — protected setup and audience, closed at 670af9ca.**
+At 85f6001f, `docs/contracts/business-intake.md:99–121` defers setup and gives the
 named source owner access; `:316` defines a different BindingSummary from the
 new access seam. Following that draft literally could either leave real operators
 unable to establish grants or infer access from an owner label. Required closure:
@@ -61,7 +79,7 @@ the same owner and bumps the binding epoch; changed ownership needs a new bindin
 A rename may conservatively require revalidation. Ownership itself grants nothing;
 each requesting human's original credential is separately rechecked.
 
-**BI-R2 / P2 — per-import leases alone do not order source refreshes.**
+**BI-R2 / P2 — per-import leases alone do not order refreshes, closed at 670af9ca.**
 At 85f6001f, `docs/contracts/business-intake.md:150–156,180–185` invalidates
 freshness and checks an import's own attempt. Reproducible future trigger: import A
 reads an old source while import B refreshes the same source and commits a newer
@@ -74,8 +92,9 @@ an expired attempt nor an older response commits. A content hash that returns to
 an earlier value cannot substitute for this ordering. Access seam lines 255–263
 specify the correction and its required two-import regression.
 
-**BI-R3 / P2 prerequisite — existing token-map mutation can erase unrelated keys
-on a read failure.** Tickets identified this; the reviewer independently read
+**BI-R3 / P2 implementation prerequisite — existing token-map mutation can erase
+unrelated keys on a read failure; strict-reader ownership is now explicit.**
+Tickets identified this; the reviewer independently read
 `src-tauri/src/keyring_store.rs:80–117`, blob
 `29fc3fb38280338aa26939c45f80ef9aefc2a394`. A corrupt/unreadable existing
 `tokens.json` becomes an empty map in `read_tokens_at`; `change_token_at` then
@@ -124,8 +143,8 @@ process-local. Resource reassociation uses a new binding, preserving all old row
   detail/refresh from member core, impersonate Pi context, refresh issue evidence,
   or widen private notes/proofs. This remains explicit implementation work.
 
-Minor wire consistency sent to the owner: imports/list must spell out its allowed
-unfinished/all union and default, rather than one literal plus conflicting prose.
+The minor imports/list wire inconsistency is also closed at 670af9ca: ImportView
+is unfinished/all with default unfinished and an explicit nonnegative Page type.
 
 ## Source and licence verification
 
@@ -167,9 +186,9 @@ untested; the owner's reported public-doc404 was not retried for this review.
 | Existing rag-skills venv with HF_HUB_OFFLINE=1, code-context guide | Exit0; applied Atomic per-task staging; unrelated corpus rules not promoted to project policy |
 | code-context docs query | Exit3, approvals.db missing; no install/ingestion or fabricated coverage |
 | gh api help, immutable source reads and PR25 head query | Exit0; no provider endpoints or active accounts |
-| git show/diff/rev-parse, source reads and git diff --check | Exit0; complete 79a→85 contract diff/report, truncated combined output reread in bounded chunks |
-| Checkpoint commits/pushes | 6a16b009b2349e7a57aba7490e4cdba5c7111569 and 18be55edc276713fc6d46d075baec363245ba285, exit0 |
-| Authorized internal Herdr prompts | Root/tickets/rebrand received exact seam and bounded findings; no new worker |
+| git show/diff/rev-parse, source reads and git diff --check | Exit0; complete 79a→85 and 85→670 contract/report changes; truncated combined output reread in bounded chunks. A first UI diff selected no matching paths; actual reports/business-intake-ui-plan.md was discovered from commit stat and its full amendment read. |
+| Checkpoint commits/pushes | 6a16b009b2349e7a57aba7490e4cdba5c7111569, 18be55edc276713fc6d46d075baec363245ba285 and ca787542b0ff19330cf3ecedade34cba630a839c, exit0; this final report follows those pushed checkpoints |
+| Authorized internal Herdr prompts | Root/tickets/rebrand received exact seam and bounded findings; no new worker. Two bounded waits timed out with exit1 while the owner prepared its commit; the later exact-head handoff resolved that wait. |
 | Product tests, builds, fixture/provider/credential actions | Not run; not authorized in this docs-only scope |
 
 Live hook evidence before the first report write: PreToolUse/PostToolUse
