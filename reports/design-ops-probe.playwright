@@ -7,6 +7,8 @@ async (page) => {
     throw Error("Fixture only")
   const results = []
   const scope = page.getByRole("region", { name: "Ops desk", exact: true })
+  const appearance = page.context().pages().find((p) => p.url().endsWith("/settings/appearance"))
+  if (!appearance) throw Error("Open the fixture Appearance settings tab first")
   const surface = await scope.locator("article h1").innerText()
   for (const [viewport, width, height] of [
     ["mobile", 390, 844],
@@ -19,11 +21,12 @@ async (page) => {
         colorScheme: theme,
         reducedMotion: "no-preference",
       })
-      await page.evaluate(
-        (t) => document.documentElement.classList.toggle("dark", t === "dark"),
-        theme
-      )
-      await page.waitForTimeout(250) // Let inherited color transitions settle.
+      await appearance.getByRole("combobox").first().click()
+      await appearance.getByRole("option", { name: theme === "dark" ? "Dark" : "Light", exact: true }).click()
+      await page.waitForFunction((t) => document.documentElement.classList.contains(t) && document.documentElement.style.colorScheme === t, theme)
+      const headers = scope.locator("article details")
+      if (await headers.count() && await headers.getAttribute("open") === null) await headers.locator("summary").click()
+      await page.waitForTimeout(400) // Real persisted theme, with disclosure content painted.
       const raw = await scope.evaluate((root) => {
         const canvas = document.createElement("canvas")
         canvas.width = canvas.height = 1
@@ -46,11 +49,12 @@ async (page) => {
           easings = new Set()
         const textSamples = [],
           smallTargets = [],
-          smallInputs = []
+          smallInputs = [],
+          excludedControls = []
         let transitionsCount = 0
         const visible = (el) =>
           el.getClientRects().length &&
-          getComputedStyle(el).visibility !== "hidden"
+          getComputedStyle(el).visibility !== "hidden" && el.checkVisibility()
         for (const el of [root, ...root.querySelectorAll("*")].filter(
           visible
         )) {
@@ -68,8 +72,11 @@ async (page) => {
           const controlText = ["INPUT", "SELECT", "TEXTAREA"].includes(
             el.tagName
           )
+          // A select can have value="" while painting a named option (All statuses).
+          const emptyControl = controlText && el.tagName !== "SELECT" && !el.value && !el.getAttribute("placeholder")
+          if (emptyControl) excludedControls.push({ label: el.labels?.[0]?.textContent?.trim(), reason: "No value or placeholder is painted; its visible label is sampled separately" })
           if (
-            (hasText || controlText) &&
+            (hasText || (controlText && !emptyControl)) &&
             !el.matches(":disabled") &&
             !el.closest("fieldset[disabled]")
           ) {
@@ -79,6 +86,9 @@ async (page) => {
               bg,
               sizePx: parseFloat(cs.fontSize),
               bold: parseInt(cs.fontWeight, 10) >= 700,
+              label: el.labels?.[0]?.textContent?.trim() ?? null,
+              visible: el.checkVisibility(),
+              detailsOpen: el.closest("details")?.open ?? null,
             })
             colors.add(fg)
             colors.add(bg)
@@ -148,6 +158,7 @@ async (page) => {
           },
           smallTargets,
           smallInputs,
+          excludedControls,
           horizontalOverflow: root.scrollWidth > root.clientWidth,
           viewportOverflow:
             document.documentElement.scrollWidth > window.innerWidth,
@@ -172,6 +183,12 @@ async (page) => {
       raw.reducedMotionEffective =
         reducedCount === 0 || reducedCount < raw.transitionsCount * 0.2
       results.push({ surface, viewport, theme, raw })
+      await scope.locator("article > header").scrollIntoViewIfNeeded()
+      await page.screenshot({ path: `reports/browser-design-ops/final-${surface.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${viewport}-${theme}.png` })
+      if (await headers.count()) {
+        await page.getByLabel("References · one message ID per line").scrollIntoViewIfNeeded()
+        await page.screenshot({ path: `reports/browser-design-ops/final-headers-${surface.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${viewport}-${theme}.png` })
+      }
     }
   }
   await page.emulateMedia({ reducedMotion: "no-preference" })

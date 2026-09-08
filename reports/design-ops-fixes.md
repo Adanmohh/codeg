@@ -1,62 +1,110 @@
-# Ops locale, direction and review copy corrections
+# Ops locale, RTL and receipt corrections
 
-The four scoped production corrections are implemented at **d20b1f8d** and pushed in draft [PR14](https://github.com/Adanmohh/codeg/pull/14). This evidence checkpoint precedes the requested integration of accepted main f4da7027; final combined export/recheck and report remain.
+Complete and ready for root review in draft [PR14](https://github.com/Adanmohh/codeg/pull/14), branch `fix/design-ops`. Final production/evidence SHA is recorded in the closing documentation commit. Sole worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`.
 
-- Sole worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`.
-- Branch: `fix/design-ops`, created after a clean check/fetch from accepted main **617385194f67b3d9e5aca5d9d29f3b1baeebb070**. PR9 is accepted at 8703e00f and merged as 02e3f5d8.
-- Scope: the four items in the fully read [workorder](design-ops-workorder.md). Root remains reviewer/merger. No additional agent, live provider action, inference, dependency upgrade or global/other-worktree write.
-- Owned preview: **127.0.0.1:4326**, separate **out-design-ops/** export and this worktree's existing `.build/intake-host` Rust target. Other fixtures/exports remain untouched.
+The four [workorder](design-ops-workorder.md) corrections and root's selected-row contrast follow-up are implemented. No approval/sender/API/DTO/component-prop change, dependency upgrade, live provider action, inference, deployment, extra agent or other-worktree write.
 
-## Implementation boundaries
+## Final behavior
 
-1. Keep the initial i18n boot guard, then retain the mounted provider tree while later message bundles load. Existing locale request cancellation and the backend-keyed, memory-only Ops session remain authoritative. No draft or credential persistence.
-2. Mirror the two Ops mobile Back arrows using Codeg's existing RTL utility pattern. Isolate email identifiers and derive message/subject/note direction from content while the surrounding Arabic layout stays RTL.
-3. Remove the account-number/duplicated connection banner ahead of correspondence. Retain inbox identity, task/thread context and actionable per-inbox connection controls.
-4. Make closed-review explanations follow the real receipt state: provider acceptance is not recipient delivery; local receipt recording does not send again. Preserve approve/deny/dispatch/reconciliation conditions and payloads.
+- `i18n-provider.tsx` keeps the initial settings/message boot guard, then retains the mounted tree while later bundles load. Existing request cancellation and the last loaded bundle remain authoritative. Private Ops edits stay in memory; backend ID/base-URL changes still clear them, including colliding account/object IDs.
+- `inbox-view.tsx`, `proposals-view.tsx` and `reply-editor.tsx` reuse `rtl:rotate-180`, native content direction and LTR identifier isolation. `ops-page.tsx` removes the account-number/duplicate connection banner; actual inbox identity and actionable connection controls remain.
+- Terminal explanations distinguish accepted/recorded, accepted/recording-pending, failed, stopped-before-send, denied and unknown. Provider acceptance does not assert recipient delivery. **Finish recording receipt** uses the existing local recording action without another send; unknown still prohibits blind retry/new keys.
+- Selected Task/Run, Open and date text use existing `text-foreground/75`; unselected rows keep their treatment. Actual-theme verification found no threading-input color correction necessary.
 
-Owned production seams: `src/components/i18n-provider.tsx`, scoped `src/components/ops/{ops-page,inbox-view,proposals-view,reply-editor}.tsx`. Public component props and backend/API types remain unchanged. The phone owner may continue to reuse `ReviewCard`, `proposalStatus` and `ReplyEditor`; this task changes their presentation only. The phone route and typed issue notification implementation stay with approvals.
+`ReviewCard`, `proposalStatus`, `ReplyEditor`, exact edited-payload handoff and all gate/dispatch/reconciliation conditions retain their contracts. The only Rust change is an explicitly ignored synthetic browser fixture plus its test-module declaration. No runtime, migration or lockfile change.
 
-The only Rust change is an ignored `src-tauri/src/ops/tests/integration/design_ops_browser.rs` fixture and its one module declaration, reusing accepted synthetic provider/store/router helpers. No Rust runtime, gate, sender, migration, facade or component-prop change.
+## Integration and exact reuse
 
-## Current evidence and fixture access
+Clean branch base: **617385194f67b3d9e5aca5d9d29f3b1baeebb070**. Implementation **d20b1f8d** and evidence checkpoint **881f5181e351bbe26dddc738735579d626214f69** were pushed before merge **785393397e5dafc3838b98c6dd1c934d1897f561**, which incorporates accepted main **8f63f89cc159babd51d4900f4b235d9fecdaa923** (PR13/f4da7027 included). Its sole conflict was additive NOTICE text; both complete blocks survived. Rust, locks, Ops/session/API and locale-provider source were unchanged by integration. The own export was rebuilt afterward.
 
-Baseline Playwright CLI reproduction is in `design-ops-before.raw` and `browser-design-ops/before-*.png`: the separate Settings tab changed English → Arabic, the Ops subtree disappeared, and reopening restored the saved `Original approved body` instead of the unsaved synthetic reply. The mobile Back SVG had no rotation; the accepted receipt also displayed the contradictory no-receipt disclaimer. The before export was built before any product edits; the same loaded baseline browser pages were used for the final captures. Two initial probe attempts needed ordinary sidebar/drawer handling; the completed returned result is the evidence.
-
-The real-editor locale suite first failed **5/8** on the baseline, then passed **8/8** after the boot-latch correction. Initial boot, delayed/failed/superseded locale bundles, reply/private note/complete review, desktop/mobile subtree changes and colliding backend IDs/base URLs are exercised. The focused receipt/session suite passes **22 tests**. An initially unsupported test matcher was replaced with this repository's existing Vitest assertions; nested paragraph markup was corrected to a span. The first type/build attempt caught confusing the existing `DeliveryStatus` DTO with its `status` field; the function and fixtures now use the read DTO's indexed status type and the receipt callback's actual DTO return. No package or lockfile upgrade.
-
-Root can open **http://127.0.0.1:4326/login**, enter the deliberately nonsecret fixture token **ops-design-synthetic-operator**, then open Ops desk. Current owned server PID **63050**, fixture state `.build/design-ops/e0b6e800-4361-442d-963d-c137628b62c9`, export **out-design-ops/**. Its authenticated read-only `/api/ops_design_fixture_stats` returns only synthetic IDs and provider request count. Proposal **1** is reserved for locale/edit checks; **2** is provider-accepted/local-recording-pending, **3** accepted/recorded, **4** unknown, **5** rejected, **6** denied. All four provider requests happened only against the fixture's loopback server during seeding; no runtime engine or inference starts. Please keep proposal 2's recording action untouched until this worker records its no-resend recheck. Other terminal records are safe for read-only review.
-
-The actual rebuilt d20b1f8d UI passed English → Arabic → English for reply/private note and every review field at 1280×900 and 390×844, light/dark. Returned evidence: `design-ops-after.raw`, `design-ops-review.raw`; captures are `browser-design-ops/after-*.png`. The workspace stayed visible; both mobile Back icons rotate 180 degrees in RTL; emails/thread IDs stay LTR and Arabic note/subject content resolves RTL. No account prefix or document overflow. Synthetic private values are absent from localStorage, and provider count remains **4 → 4**. The real leave prompt still appears; cancelling preserved the note and focus on Approvals (`design-ops-leave-cancel.raw`). Two CLI attempts using event listeners closed only the named browser session; bounded CLI actions and explicit native-dialog commands completed the checks without changing browser tooling or application code.
-
-All five actual terminal states were captured and checked (`design-ops-terminal.raw`): recording-pending, accepted/recorded, unknown, rejected and denied. No terminal offers approval/send. Proposal **2 is now fully recorded** after clicking the existing **Finish recording receipt**; the provider request count stayed **4 → 4**. Do not reseed or replay it. All provider fixtures remain synthetic; unknown proposal 4 is untouched.
-
-Pre-integration gates: **75 frontend tests**, default desktop/server checks, desktop/server Clippy with warnings denied, and **167 Rust Ops tests (4 ignored explicit manual fixtures)** all passed, exit 0. Typecheck and separate export also passed. Exact commands are in `design-ops-rust-gates.sh` and the local `design-ops-*.log` evidence. Root independently passed all **22 Ops flow/session tests**, exit 0, `/tmp/ops-design-locale-independent.log` (owner-reported evidence, not a worker rerun).
-
-Design Studio **55c8614dcfff33b4caa5a544b4f1f91877214878** pure buildReport consumed actual CLI probes of pending/thread plus five terminal states at both widths/themes (28 rows). The terminal surfaces have no measured contrast failures. Light selected-row muted metadata measures **4.2:1**, requiring a small owned-list foreground correction. The initial extractor also sampled unpainted inputs inside closed disclosures; that measurement limitation will be corrected explicitly before the final probe. Raw measurements remain in `design-ops-probe-{pending,thread}.raw`, `design-ops-terminal.raw` and `design-ops-measured*`.
-
-Remaining: checkpoint/push this evidence, merge accepted main while preserving both NOTICE additions, correct/recheck the selected-row contrast, rebuild only out-design-ops, run affected frontend/integration gates, release stable 4326 and rewrite the final report. Existing 4320/4322/4323/4324 exports and state remain untouched.
-
-## Source authority and attribution
-
-Read the complete current STATUS/workorder/root design review/locale reproduction, and the unchanged complete FOUNDING/ORCHESTRATOR/DECISIONS/AGENTS from the preceding integration. Verified those four files are unchanged at this baseline. Read the actual i18n provider, message loader, Ops session and its backend-isolation tests, complete scoped Ops screens/DTOs and accepted browser/provider helpers before implementation.
-
-| Immutable authority | Exact source | Reuse / intended correction |
+| Immutable authority | Exact source files read | Reuse |
 | --- | --- | --- |
-| Codeg v0.30.4, Apache-2.0, **6f6bd648b206412644842a98d9ffeebf57292bed** | `src/components/i18n-provider.tsx`, `src/i18n/messages.ts`, `src/app/layout.tsx` | Existing asynchronous locale/cache/provider architecture; minimal mount-preservation glue |
-| Same Codeg pin | `src/components/ui/pagination.tsx` | Existing `rtl:rotate-180` directional icon pattern |
-| Accepted Ops UI **756d064f1cc391ed1da32ba90429adef225f080d**, with accepted main **61738519** | `src/components/ops/{session,inbox-view,proposals-view,reply-editor,ops-page}.tsx`, `session.test.tsx`, `ops-flows.test.tsx` | Existing private memory lifetime, exact editor/review props and receipt presentation |
-| Accepted Ops/Telegram fixture source at **617385194f67b3d9e5aca5d9d29f3b1baeebb070** | `src-tauri/src/ops/tests/integration.rs`, `integration/{browser,telegram_browser}.rs` | Real protected routes, SQLite, in-memory secrets and loopback Resend fixture; dedicated port/export only |
+| Codeg v0.30.4, Apache-2.0, **6f6bd648b206412644842a98d9ffeebf57292bed** | `src/components/i18n-provider.tsx`, `src/i18n/messages.ts`, `src/app/layout.tsx` | Existing async locale/cache architecture; minimal mount-preservation glue |
+| Same Codeg pin | `src/components/ui/pagination.tsx` | Existing RTL icon utility |
+| Accepted Ops UI **756d064f1cc391ed1da32ba90429adef225f080d**, accepted main **61738519** | `src/components/ops/{session,inbox-view,proposals-view,reply-editor,ops-page}.tsx`, `session.test.tsx`, `ops-flows.test.tsx` | Private memory lifetime, editor/review handoff and receipt presentation |
+| Accepted local **617385194f67b3d9e5aca5d9d29f3b1baeebb070** | `src-tauri/src/ops/tests/integration.rs`, `integration/{browser,telegram_browser}.rs` | Protected router, SQLite, MemorySecrets, loopback provider reused by `integration/design_ops_browser.rs` |
+| Accepted shell **e29cab3e6126fd0a0bf59dc9b63b52b625e3a67d** | `src/components/layout/status-bar.tsx` | Existing foreground/75 treatment |
+| Local Design Studio **55c8614dcfff33b4caa5a544b4f1f91877214878** | `lab/tools/probe.mjs`, `scripts/{brief,design-lint,select-judges,merge-findings}.mjs`, audit/specialist methods | Tool use: actual CLI measurements passed to the pure formatter |
 
-Original Apache LICENSE and all existing NOTICE/MIT text are preserved; the scoped Codeg reuse is appended in NOTICE. No AGPL, enterprise or PolyForm source. All remote research, if needed, uses `gh api` at immutable refs; local exact source is first and no latest-source repinning is authorized.
+Original Apache LICENSE and every accepted NOTICE/MIT block remain; precise local reuse is appended in NOTICE. No AGPL/enterprise/PolyForm source. Local pinned reads sufficed; no remote dependency research or latest-source repinning. Remote documentation, when needed, remains `gh api` at immutable refs.
 
-## Docs-first and planned verification
+## Actual browser evidence
 
-Repeated separate React package/Cargo manifest reads. Observed live hook records for session **01a07c1c-cf2e-73e1-bbe3-e758c8363042**, exact own cwd: **PreToolUse 7130 / PostToolUse 7114** in `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl`. Hooks remain enabled.
+Installed Playwright CLI **0.1.18**, owned session `ops-design4326`, real protected local server, separate **out-design-ops/**. All records/providers are synthetic. Valid unchanged pre-integration flow evidence is retained.
 
-Code-context uses the existing `/Users/mohamedadan/projects/rag-skills/.venv/bin/python` with `HF_HUB_OFFLINE=1`: guide **exit 0**, dependency docs **exit 3**, because `data/code/rebrand.db` is absent. Relevant guidance: installed-version source, retaining navigation and clear terminal states, and no unsafe email HTML. Other returned deployment/delegation rules are outside this assignment. No corpus ingestion or private source environment change.
+| Check | Evidence/result |
+| --- | --- |
+| Baseline failure | [before](design-ops-before.raw): locale unmounted Ops and reverted the unsaved reply; Back had no rotation; accepted receipt also displayed the contradictory no-receipt disclaimer |
+| Reply/note and complete review | [after](design-ops-after.raw), [review](design-ops-review.raw): English→Arabic→English passes at 1280×900 and 390×844, both themes; all edits retained, private localStorage absent, provider **4→4** |
+| RTL/leave guard | Both Back icons **180°**; English body/emails LTR, Arabic note/subject RTL; no account prefix/overflow. [Cancel](design-ops-leave-cancel.raw) preserves note and focus |
+| Terminal/recording | [terminal](design-ops-terminal.raw): five real fixture states offer no second send. Proposal 2 completed UI recording, provider **4→4** |
+| Integrated final measurement | [final report](design-ops-final-measured.json): pending review, thread with open headers and recorded receipt; **12 cases, 468 text samples**, zero scoped contrast failures, unnamed controls, heading jumps, targets under 44px or horizontal overflow; mobile inputs ≥16px |
 
-Installed authority so far: React **19.2.4** and its installed TypeScript props/hooks; next-intl **4.8.3**; TypeScript **5.8.3**; existing Next **16.1.6** export configuration. Further used primitives will be read before edits. Applied code-context, Playwright CLI, Design Studio audit/checklist and mobile methods. No specialist fan-out under the owner's no-agent constraint.
+The **original measured summary is not a clean contrast pass**. [Original results](design-ops-measured.json) retain selected light metadata **4.2:1**, dark threading candidates **2.27/2.66:1** and blank samples. Final probes select actual **Appearance → Light/Dark**, wait for matching class/color scheme, open threading disclosures and check native visibility; no injected theme class.
 
-Planned meaningful regressions: delayed initial boot; reply/private-note/full-review edits through delayed locale messages and responsive remounts; failed/superseded locale loads; synchronous backend isolation with colliding IDs; no private values persisted or save/send invoked by a locale change; receipt-state copy and recording-only callback. Actual CLI will reproduce the original loss first on 4326, then verify English/Arabic/restored-English behavior, 390px mixed-direction content and terminal receipt views. Measured Design Studio evidence will cover the changed surfaces, with remaining inherited findings reported separately.
+| Target | Final settled contrast |
+| --- | --- |
+| Selected Task/Run, Open and date | **8.66:1 light**, **9.76:1 dark**; light RGB(67,68,68) on RGB(238,242,242) |
+| Open review In-Reply-To / References | **18.48:1 light**, **17.50:1 dark**; dark RGB(250,250,250) on RGB(21,21,21) |
+| Open draft In-Reply-To / References | **18.48:1 light**, **15.43:1 dark**; dark RGB(250,250,250) on RGB(33,33,33) |
 
-Commands completed: separate source reads, clean check, fetch, branch creation and Codeg pinned source reads **exit 0**; code-context exits above. One attempted Design Studio skill path was absent; its wrapper points to the actual `commands/design-audit.md`, which was then read completely. No product edit or pass was inferred from that missing path.
+[Direct styles](design-ops-threading-styles.raw) show light `lab(98.26 0 0)` text in the real Dark setting. A closed textarea still returned a rectangle while Playwright visibility and native `checkVisibility()` were false. [Control evidence](design-ops-control-visibility.raw) identifies closed disclosures and visibly empty Cc/Bcc inputs; their labels remain sampled. The blank-valued **All statuses** select paints a name and is included. Every populated, enabled threading field is included. The initial extractor cannot conclusively attribute every stale color sample; its failures are preserved rather than relabelled as product passes.
+
+Screens: [selected row](browser-design-ops/final-selected-thread-light.png), [review fields](browser-design-ops/final-headers-pending-human-review-desktop-dark.png), [draft fields](browser-design-ops/final-headers-synthetic-locale-review-desktop-dark.png), [mobile RTL](browser-design-ops/after-mobile-dark-ar-thread.png), [recording pending](browser-design-ops/after-terminal-2-mobile-light.png), [recorded receipt](browser-design-ops/final-sent-provider-accepted-mobile-light.png). Reproducible scripts/raws use `design-ops-*`; all final CLI/probe commands exit 0.
+
+## Gates
+
+Every final command below exited **0**. Logs remain locally in `reports/` (gitignored); browser results and measurements are committed.
+
+| Command | Result |
+| --- | --- |
+| `pnpm exec vitest run src/components/ops` | **22 passed**: 8 locale/session, 14 flow/receipt. Locale suite first failed 5/8 on baseline, then passed 8/8 |
+| Integrated Vitest selection below | **92 passed**, 11 files; `design-ops-integrated-frontend.log` |
+| `pnpm exec tsc --noEmit` | Pass; `design-ops-integrated-tsc.log` |
+| `pnpm exec eslint` on five changed UI files plus both Ops test files | Pass; `design-ops-integrated-eslint.log` |
+| `CODEG_EXPORT_DIR=out-design-ops pnpm exec next build` | Pass, 33 routes; `design-ops-integrated-build.log` |
+| `cargo check --locked` | Default desktop pass |
+| `cargo check --locked --no-default-features --bin codeg-server --bin codeg-mcp` | Server/MCP pass |
+| `cargo clippy --locked --all-targets --features test-utils -- -D warnings` | Desktop pass |
+| `cargo clippy --locked --no-default-features --bin codeg-server --bin codeg-mcp --lib -- -D warnings` | Server/MCP pass |
+| `cargo test --locked --no-default-features --bin codeg-server --lib ops` | **167 passed, 4 manual fixtures ignored**, 0 failed, 5.95s |
+
+Integrated frontend command:
+
+```sh
+pnpm exec vitest run src/components/ops src/components/ops-telegram src/components/ops-intake src/components/settings/system-network-settings.test.tsx src/i18n/messages.test.ts src/lib/transport/web-transport.test.ts src/components/settings/pi-config-panel.test.tsx src/components/layout/status-bar-alerts.test.tsx src/components/chat/agent-setup-notice.test.tsx src/components/conversations/sidebar-section-header.test.tsx
+```
+
+Rust uses only `.build/intake-host`; [gate script](design-ops-rust-gates.sh) records exact invocations. It passed on d20b1f8d; Rust/locks remained byte-identical after integration, so unrelated Rust tests were not repeated. The final CSS-only follow-up passed the rebuilt export, integrated frontend suite, scoped lint/typecheck and actual contrast checks.
+
+Meaningful tests cover initial boot, delayed/failed/superseded bundles, responsive remounts, complete edited payload, colliding backend IDs/base URLs, no private persistence/save/send on locale change, and receipt-only callbacks. Initial harness/type errors were corrected against actual DTOs/Vitest APIs without upgrades.
+
+Root independently reported **22 tests passing** (`/tmp/ops-design-locale-independent.log`) and final 4326 cross-tab reply/note preservation, 390px width, RTL Back/email direction, no private localStorage and unchanged provider count. These are owner-reported independent results.
+
+## Design Studio verdict and limits
+
+Audited against `docs/design/BRIEF.html` schema 1, scan mode, BC-3/4/5/7/9/10/12/14/18. Aesthetic/a11y/flow methods ran **sequentially inline**, with no extra agent or paid flow executor. [Merged findings](design-ops-findings.json) retain the specialist evidence. Scores /10: states **9**, feedback **9**, accessibility **8**, responsive **9**, visual/tokens **8**. Design-weighted verdict: requested fixes are review-ready; no whole-app certification.
+
+One remaining measured limitation: inherited shared-control transitions persist under reduced motion (**6–19**, `reducedMotionEffective=false`); jank/CLS unassessed. Shared motion/global CSS is outside this workorder. Static lint's ReplyEditor list/loading warning comes from address-normalization `.map`; parents own loading/errors. Literal brief checks flag converted/composited OKLCH colors, differing Inter fallback stacks and inherited **6px** label gaps. Diagnostics remain committed, not an all-token pass. Existing Ops copy remains English under Arabic layout; native WebView and the separate phone route were not certified here.
+
+The inherited nonexistent `/tmp/ops-ui-task-fixture` folder causes unrelated shell Git/workspace 404 diagnostics. No engine starts. Existing sidecar-placeholder/future-compatibility warnings and expected mocked Settings errors remain in logs. No packaged/signed/distributed build claim.
+
+## Stable root fixture
+
+Keep **http://127.0.0.1:4326/login** alive; deliberately nonsecret token **ops-design-synthetic-operator**. Server PID **63050**, own data `.build/design-ops/e0b6e800-4361-442d-963d-c137628b62c9`, export **out-design-ops/**. Proposal **1** pending; **2/3** accepted/recorded; **4** unknown; **5** rejected; **6** denied. Proposal 2's recovery already ran once; do not reseed/replay for this evidence. Root browser remains open; worker browser writes are finished.
+
+[Release state](design-ops-fixture-release.raw): English/LTR, Follow system, provider **4**, synthetic only. `/api/ops_design_fixture_stats` is authenticated/read-only and **test-only**. Launcher from own `src-tauri/`:
+
+```sh
+CODEG_OPS_ACCOUNT_ID=1 CARGO_TARGET_DIR=../.build/intake-host cargo test --locked --no-default-features --lib ops_design_browser_fixture -- --ignored --nocapture
+```
+
+A fresh launch creates new synthetic data; current review reuses the running instance. Every other fixture/export is preserved.
+
+## Docs-first evidence
+
+Complete founding/orchestration documents, AGENTS, current STATUS/workorder and design brief/reviews were read. Protected docs changed only through accepted merge. Separate React package/Cargo manifest reads activated the live hook. Own session **01a07c1c-cf2e-73e1-bbe3-e758c8363042**, exact cwd: initial Pre/Post lines **7130/7114**, final live **8986/8985** in `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl`. Hooks stayed enabled.
+
+Code-context used existing RAG `.venv/bin/python`, **HF_HUB_OFFLINE=1**: guide exit **0**, docs lookup exit **3** because `data/code/rebrand.db` is absent. Guidance: installed-source authority, retained navigation/terminal states, no unsafe email HTML. Direct pinned reads replace missing corpus coverage; no ingestion/environment change.
+
+Installed source/types: React **19.2.4** / types **19.2.13**, next-intl **4.8.3**, Next **16.1.6**, Tailwind **4.1.18**, next-themes **0.4.6** (actual localStorage/class/color-scheme behavior), TypeScript **5.8.3** DOM (visibility/selection), Testing Library **16.3.2**, Vitest **2.1.9**, CLI **0.1.18** / Playwright core **1.63.0-alpha-2026-08-05**. Helper fs signatures were read from installed **@types/node 25.2.2**; executing Node is **24.19.0**, not a claimed v25 runtime. Fixture grounding retains locked Tokio **1.49.0**, Axum **0.8.8**, SeaORM **1.1.19**. No dependency/global-tool change.

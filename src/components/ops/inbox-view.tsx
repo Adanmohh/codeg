@@ -145,14 +145,28 @@ export function InboxView({
                         >
                           {ticket.contact}
                         </span>
-                        <span className="text-xs text-muted-foreground">
+                        <span
+                          className={cn(
+                            "text-xs",
+                            selected?.conversationId === ticket.id
+                              ? "text-foreground/75"
+                              : "text-muted-foreground"
+                          )}
+                        >
                           {statuses[ticket.status]}
                         </span>
                       </span>
                       <span dir="auto" className="block truncate text-sm">
                         {ticket.subject}
                       </span>
-                      <span className="block text-xs text-muted-foreground">
+                      <span
+                        className={cn(
+                          "block text-xs",
+                          selected?.conversationId === ticket.id
+                            ? "text-foreground/75"
+                            : "text-muted-foreground"
+                        )}
+                      >
                         {new Date(ticket.updatedAt).toLocaleDateString()}
                       </span>
                     </button>

@@ -465,6 +465,9 @@ Port: the existing i18n provider's initial boot guard gains mount-preservation
 glue for subsequent message loads; Ops Back icons reuse rtl:rotate-180 from
 pagination. Native dir/bdi presentation is applied to the existing Ops editors.
 No provider, session persistence, sender, gate or message-loader replacement.
+Selected-row metadata uses the existing text-foreground/75 treatment from
+src/components/layout/status-bar.tsx in accepted Codeg shell correction
+e29cab3e6126fd0a0bf59dc9b63b52b625e3a67d; no new palette or theme policy.
 
 Accepted local Ops source at Adanmohh/codeg commit
 617385194f67b3d9e5aca5d9d29f3b1baeebb070:

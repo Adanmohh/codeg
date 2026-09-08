@@ -113,7 +113,14 @@ export function ApprovalsView({
                     >
                       {p.payload?.reply.subject ?? `Reply review #${p.id}`}
                     </span>
-                    <span className="block text-xs text-muted-foreground">
+                    <span
+                      className={cn(
+                        "block text-xs",
+                        selectedId === p.id
+                          ? "text-foreground/75"
+                          : "text-muted-foreground"
+                      )}
+                    >
                       Task #{p.taskId} · Run {p.runSeq}
                     </span>
                     <span className="block text-xs">{proposalStatus(p)}</span>

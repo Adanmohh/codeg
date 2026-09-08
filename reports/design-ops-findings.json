@@ -1,0 +1,26 @@
+{
+  "deduped": [
+    {
+      "surface": "Ops thread and review",
+      "element": "Inherited shared-control CSS transitions",
+      "severity": "med",
+      "check": "Brief accessibility convention / reduced motion: 6–19 transitions remain under prefers-reduced-motion; reducedMotionEffective=false",
+      "fix": "Track a separately coordinated shared-control reduced-motion correction. No global CSS or motion behavior was added by this bounded task.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    }
+  ],
+  "top3": [
+    {
+      "surface": "Ops thread and review",
+      "element": "Inherited shared-control CSS transitions",
+      "severity": "med",
+      "check": "Brief accessibility convention / reduced motion: 6–19 transitions remain under prefers-reduced-motion; reducedMotionEffective=false",
+      "fix": "Track a separately coordinated shared-control reduced-motion correction. No global CSS or motion behavior was added by this bounded task.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    }
+  ]
+}

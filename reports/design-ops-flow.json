@@ -1,0 +1,7 @@
+{
+  "specialist": "flow-validator",
+  "execution": "Sequential inline method over actual Playwright CLI evidence; paid flow-test executor not invoked",
+  "scores": { "functional": 9 },
+  "findings": [],
+  "notes": "BC-3/5/7/9/10/12/14: all four viewport/theme locale cases preserve reply/private note, all four preserve the complete edited review, five actual terminal states offer no second send, and receipt recording completes with provider count 4→4. Baseline first failure: wrong-state-rendered, locale load unmounted Ops and lost the unsaved reply; fixed run first failure: none. Evidence: design-ops-{before,after,review,leave-cancel,terminal}.raw and matching screenshots. Backend isolation, failed/superseded bundles and delayed boot are covered by real-editor tests; not claimed as extra browser scenarios."
+}
