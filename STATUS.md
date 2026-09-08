@@ -10,6 +10,17 @@ work before adapting the shared shell. Existing authority boundaries remain unti
 tenant-safe tools and execution are reviewed; calendar and new data views are
 requirements, not implemented features.
 
+Early architecture review `a2be945d9869c9807a5e3f4d7a98dab1fc2cf2cf` is read
+in full and imported as [the tenancy proposal](reports/business-multitenancy-review.md).
+Root accepts its direction and staged boundaries as a proposal. Initial delivery
+keeps each credential scoped to one tenant, introduces explicit platform versus
+tenant context, retained-data migration and tenant settings CAS, and preserves the
+shared rich workspace. Migration `000012_business_tenancy` is reserved, not applied.
+Reviewer is completing native capability/window and B-seam consistency before
+the identity/settings implementation dispatch. Native restricted-window authority,
+legacy-resource entrustment and isolated execution profiles remain open contracts;
+no tenant isolation or runtime pass is claimed.
+
 True multi-tenancy and tenant-managed appearance are now authorized architecture
 work. Approvals is dispatched to `reports/business-multitenancy-review.md` after
 its bounded B review, using Edublend remote source
