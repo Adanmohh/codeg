@@ -13,6 +13,12 @@ Initial pushed checkpoint `e5139af8`, complete DTO/cases checkpoint
 `79a922945668a633ea6b5f7e68f9bdc08a0725a3`.
 Deliverable: [business-intake.md](../docs/contracts/business-intake.md).
 
+**Frozen final contract source:**
+`670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5`, SHA256
+`6d4be7f3be2c41264ab3bb9c27311e879306a75af0aaae6c0e240f434c874dbd`.
+Sent that exact pin to approvals and rebrand for targeted final consistency review.
+This final report update changes no contract or product bytes.
+
 ## Contract decisions and required seams
 
 - B1 uses fixed read-only Fireflies queries, explicit human source grants and
@@ -46,7 +52,8 @@ planned synthetic acceptance cases**. No case has been executed in this docs tas
 
 Read rebrand's complete interaction plan at
 `99cecbac3e8eab1da6f977ec649d8c874e668ab9`, its later reconciliation
-`57b07ca81257421b9cbb414f7ac456c1bb39ea06`, and root's complete BI-1–BI-10 plan
+`57b07ca81257421b9cbb414f7ac456c1bb39ea06` and access amendment
+`088245648c691df2cc482b3bcf8424f7b9e8bb0b`, and root's complete BI-1–BI-10 plan
 at `650be3025c25386649bc906f6bed335abafcb011`. Closed the proposed passage-only
 rebase/null-draft disclosure, durable import/terminal-decision rediscovery and
 12-second read/15-second backend bound beneath the existing 20-second client.
@@ -163,6 +170,9 @@ ground the proposed seams.
 | `gh api` commit/tree/content reads at the immutable refs above | Successful inspected content; public-api-ff lookup 404/exit1 explicitly retained as a coverage gap. No provider endpoints called. |
 | Local Fireflies/n8n dependency search | Exit1/no installed package found; not adopted. Two initial guessed file lookups failed (Hafidh models.py / split ticket entities); actual schemas.py and nested ops_ticket.rs located, relevant source reread. No API claim rests on those guesses. |
 | `git diff --check` at checkpoint 79a92294 | Exit0. No runtime/test/build gate was run for B docs. |
+| Final `git diff --check c7f7366fef2d7945cea18d4da1b7594fa3026e1c HEAD` at 670af9ca | Exit0. `git diff --name-only` lists only docs/contracts/business-intake.md and this report. |
+| `shasum -a 256` contract and paused visual report | Exit0; final contract hash above, paused file hash unchanged below. |
+| `gh api repos/Adanmohh/codeg/pulls/25` selected public metadata | Exit0; open draft, main base, exact 670af9ca head confirmed before report closeout. Early/final checkpoint commits and pushes exited0. |
 
 Documentation editing checks caught two invalid patch shapes before applying;
 corrected patches were applied normally. A guessed singular error.rs lookup
