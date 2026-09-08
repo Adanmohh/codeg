@@ -32,6 +32,7 @@ const client: BusinessClient = {
   close: vi.fn(),
   identity,
   tasks,
+  intake: vi.fn(),
 }
 function wrapper(children: ReactNode, locale: "en" | "ar" = "en") {
   return (

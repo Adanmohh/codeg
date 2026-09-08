@@ -36,6 +36,7 @@ const client: BusinessClient = {
   native: true,
   label: "local",
   close: vi.fn(),
+  intake: vi.fn(),
   identity,
   tasks,
 }

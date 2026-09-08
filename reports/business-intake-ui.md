@@ -122,4 +122,18 @@ email and Hafidh remain obligations through the backend's safe projections.
 No live configuration, provider/model/engine action, send or deployment is
 authorized by these fixture checks.
 
-Checkpoint commit and draft PR URL will be recorded after publication.
+Early report checkpoint: `556956d4`; draft PR
+https://github.com/Adanmohh/codeg/pull/29. Root reserved UI **4350**, tickets
+backend **4351** and synthetic upstream **4352**; all remain unstarted here.
+
+Typed client checkpoint: exact closed intake operations, native names and safe
+reason allowlist extend the existing client. Existing identity/task errors and
+20-second timeout remain. Initial focused Vitest2.1.9 run passed **26/26**
+(client13, source freshness/selection3, provider isolation8, session2), exit 0.
+The tests use explicitly synthetic unit responses; no production mock or live
+backend acceptance is claimed. Source fields preserve normalized nulls, exact
+passage revisions and date-only task values. Client-checkpoint typecheck
+`tsc --noEmit --incremental false` passed, exit 0, after correcting an ES2022
+`Object.hasOwn` use to the installed ES2020 `hasOwnProperty.call` API and adding
+the new client method to the native test fixture. The first typecheck exited 2
+for those two implementation mistakes; no target or dependency was upgraded.

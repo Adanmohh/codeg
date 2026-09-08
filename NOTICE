@@ -796,3 +796,16 @@ React19.2.4, @types/react19.2.13, Next16.1.6, Tailwind4.1.18 and
 tauri2.10.2 drag.js (official06374a902a50d2bd8b8d85593623ad16ac32325a)
 is a drag-contract reference; no dependency implementation is copied.
 Original Apache LICENSE and every preceding attribution remain intact.
+
+Business Sources frontend (2026):
+Composes the accepted Apache-2.0 Codeg business workspace at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d: src/lib/business/{client,tasks,
+identity,presentation}.ts, src/components/business/{task-form,task-detail,ui,
+workspace}.tsx and src/components/ui/{input,button,dialog,textarea}.tsx.
+The isolated client, task fields, revision comparison and modal focus patterns
+are adapted as frontend glue for contract670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5
+and access18be55edc276713fc6d46d075baec363245ba285. No provider, IntroMail or
+dependency implementation is copied. React19.2.4/@types-react19.2.13,
+TypeScript5.8.3, Next16.1.6, Tailwind4.1.18 and Vitest2.1.9 installed source,
+types and CLI help are API references only. Original Codeg Apache-2.0 LICENSE
+and all preceding attribution remain unchanged.
