@@ -89,3 +89,16 @@ The owner was notified to publish the corrected export identity explicitly.
 An initial selector used “New task” instead of the actual “Create task” and
 timed out before creation; a later named-region wait timed out on the old export.
 No mutation was retried blindly and no passing correction claim is made.
+
+Corrected-export follow-up: once4346 explicitly served
+`.build/business-workspace/conflict-export`, root reauthenticated and created
+new synthetic task `bbfa9c14-086d-478f-b509-4d10b0fb79d2`. Actual progression200
+changed it to Review/revision2. Stale update409 preserved the exact draft;
+the named base group showed To do/revision1 and the saved region showed
+Review/revision2. Save stayed disabled. At390px the labels remained visible;
+root inspected [capture](conflict-corrected-390.png). Explicit adoption/save
+persisted the draft at revision3, confirmed by UI and actual get200. Metadata
+editing correctly invalidated the earlier review to in_progress. A final
+text locator matched both detail and activity and was narrowed to the first
+visible detail; no mutation was repeated. This completes root's bounded
+conflict-correction browser check; the broader independent UI audit continues.
