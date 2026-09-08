@@ -25,10 +25,15 @@ and all-three binary/profile hashes pass. Tickets'275 bundled companion checks a
 before/after hash. Actual native local bootstrap/human Done4 and shared-server
 viewer/revocation checks pass; N2 chrome correction and final refresh remain.
 
-N2 fix is pushed as PR #24, product `3d0008747ab1933bf9c1329f8e1b59d949992623`.
-Root reviewed the complete scoped layout/height/NOTICE/test diff: no source
-finding; worker52 focused tests/typecheck/scoped lint pass. Independent review
-and final handoff remain before merge and root native/browser recheck.
+**PR #24 reviewed and merged** at exact report handoff
+`f7a74b67151a75fd05a15910d9cb84d17356e59d`, merge
+`c0ebd3d5bc9414b72411bfff3f8949c9d7b5ca95`. Product remains
+`3d0008747ab1933bf9c1329f8e1b59d949992623`. Root read the complete source,
+NOTICE and final handoff; independent unchanged-archive review passed 23 tests
+with no blocking source finding. Owner52 focused tests, typecheck, scoped lint,
+default desktop check and isolated export pass. Root now rebuilds the ordinary
+package before actual three-state native clearance/drag/400px and final integrated
+Playwright CLI checks. N2 runtime closure remains pending.
 
 **Next-scope preparation:** existing tickets worker is dispatched to docs-only
 `docs/business-intake-contract` from accepted main, same worktree/pane. Deliverables
