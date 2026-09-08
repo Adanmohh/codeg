@@ -61,3 +61,18 @@ playwright-core1.63.0-alpha-2026-08-05, @types/node25.2.2 fs.d.ts, and existing
 @fontsource-variable/inter5.3.0 index.css (OFL-1.1 font, no font code copied).
 All specialist methods were applied sequentially by this reviewer; no agents,
 MCP browser, paid flow SDK, dependency installation or live service was used.
+
+Final correction review at `e72cc44b612068e67a3e6dc3bc593f10988ae7ed`:
+`final-search.js` embeds the same accepted capture.js (blob2e335c24 above);
+`final-conflict.js` reuses the same synthetic credential-in-memory orchestration
+(blob0e54c8a above) with real protected task API calls read from the reviewed
+Codeg types. `final-guard.js` adds browser SHA-256 artifact verification using
+installed TypeScript DOM Body.arrayBuffer/SubtleCrypto.digest types. No new
+third-party implementation, dependency or product source is copied.
+
+The product correction's original foreground/80 token was independently read
+through gh api: `src/components/chat/feedback-notes-display.tsx` at Codeg
+`3a189d1822f9fd335cc58ecb440f75ab9cbe937e`, blob
+`a897fae2cb089bbda3e94c203071bae4c3ef440d`, Apache-2.0. Its existing e72 root
+NOTICE block remains untouched. Source presence verifies attribution, not
+production readiness; rendered contrast/keyboard checks provide behavior evidence.

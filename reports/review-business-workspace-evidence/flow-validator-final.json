@@ -1,0 +1,30 @@
+{
+  "specialist": "flow-validator",
+  "phase": "final targeted real protected API/CLI correction recheck",
+  "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+  "artifactSha256": "c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54",
+  "scores": {
+    "functional": 8.5
+  },
+  "findings": [],
+  "closedFindings": [
+    {
+      "id": "BUI-R1",
+      "priority": "P3",
+      "status": "closed",
+      "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+      "correctionCommit": "095c61642dc2f52ca8fd6e7c10556f16cf61c904",
+      "element": "src/components/business/task-detail.tsx:221 and :257",
+      "originalEvidence": "Real409 retained draft safely, but saved comparison omitted Review/revision3 while header showed old To do/revision1.",
+      "correction": "Label draft base and current saved status/revision; preserve explicit adoption and CAS.",
+      "independentRecheck": "Own task f93173e9-e8fa-433a-851f-f28e27669d76: actual409 expected1, currentReview3 with complete brief/names/date/deliverable. Save locked until explicit adoption; expected3 savesInProgress4, old deliverable unbound, no Accept control.",
+      "evidence": [
+        "final-conflict-results.json",
+        "final-conflict.raw",
+        "final-conflict-current-390-light.png",
+        "final-conflict-adopted-390-light.png"
+      ]
+    }
+  ],
+  "notes": "Cold final business route200 makes zero API/ws requests. Synthetic second human credential supplied intervening progress/submit through real protected API and was revoked afterward; create/save/load/adopt were actual UI actions. No intercepted approve JSON, fake task response, agent/provider call. Earlier two-session human review, permission and draft flows are preserved rather than repeated."
+}

@@ -1,0 +1,127 @@
+{
+  "source": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+  "taskId": "f93173e9-e8fa-433a-851f-f28e27669d76",
+  "creationStatus": 200,
+  "intervention": {
+    "kind": "Real API synthetic individual human writer",
+    "startStatus": 200,
+    "submitStatus": 200,
+    "task": {
+      "id": "f93173e9-e8fa-433a-851f-f28e27669d76",
+      "organizationId": "90510636-d17f-4c4d-8be4-3a11a3221822",
+      "title": "Synthetic review: final comparison",
+      "notes": "Synthetic current saved brief. Maya will compare it with an unsaved draft.",
+      "domain": "marketing",
+      "status": "review",
+      "priority": "normal",
+      "dueDate": "2026-10-02",
+      "ownerId": "4ee4d62d-c1f8-48f5-aac4-81a043cb513a",
+      "assigneeId": "2bda20d2-f860-4a6f-a0f0-40dfc46c45ab",
+      "creatorId": "4ee4d62d-c1f8-48f5-aac4-81a043cb513a",
+      "reviewerId": "4ee4d62d-c1f8-48f5-aac4-81a043cb513a",
+      "revision": 3,
+      "currentDeliverableId": "daf4a539-50f6-4dfb-af66-59d5c654e076",
+      "createdAt": "2026-09-08T16:30:27.721239+00:00",
+      "updatedAt": "2026-09-08T16:30:27.882642+00:00",
+      "archivedAt": null,
+      "capabilities": {
+        "edit": true,
+        "assign": false,
+        "progress": true,
+        "review": false,
+        "comment": true,
+        "submit": true,
+        "cancel": true,
+        "archive": false,
+        "linkExecution": false
+      }
+    },
+    "deliverables": [
+      {
+        "id": "daf4a539-50f6-4dfb-af66-59d5c654e076",
+        "revision": 3,
+        "author": {
+          "id": "2bda20d2-f860-4a6f-a0f0-40dfc46c45ab",
+          "displayName": "Synthetic review · Noura · Member",
+          "kind": "human"
+        },
+        "body": "Synthetic review FINAL deliverable: a clear first step for the customer, ready for Maya.",
+        "createdAt": "2026-09-08T16:30:27.882472+00:00"
+      }
+    ],
+    "execution": null
+  },
+  "staleWrite": {
+    "status": 409,
+    "input": {
+      "taskId": "f93173e9-e8fa-433a-851f-f28e27669d76",
+      "expectedRevision": 1,
+      "title": "Synthetic review: final comparison",
+      "notes": "Synthetic review FINAL retained draft — explicit adoption required.",
+      "domain": "marketing",
+      "priority": "normal",
+      "dueDate": "2026-10-02"
+    }
+  },
+  "loaded": {
+    "status": 200,
+    "revision": 3,
+    "statusName": "review"
+  },
+  "comparison": {
+    "base": "Your draft's base version\nTo do\nMarketing · Normal\nRevision 1",
+    "current": "Current saved version\nReview\nRevision 3\n\nSynthetic review: final comparison\n\nSynthetic current saved brief. Maya will compare it with an unsaved draft.\n\nAccountable owner\nS\nSynthetic review · Maya · Manager\nAssigned to\nS\nSynthetic review · Noura · Member\nReviewer\nS\nSynthetic review · Maya · Manager\nDue date\n2026-10-02\nDeliverable\n\nSynthetic review FINAL deliverable: a clear first step for the customer, ready for Maya.\n\nS\nSynthetic review · Noura · Member\nUse my draft with this version\nDiscard my draft",
+    "draft": "Synthetic review FINAL retained draft — explicit adoption required.",
+    "snapshot": "- 'dialog \"Synthetic review: final comparison\"':\n  - 'heading \"Synthetic review: final comparison\" [level=2]'\n  - paragraph: \"Synthetic review: final comparison\"\n  - button \"Close\"\n  - group \"Your draft's base version\": Your draft's base version To do Marketing · Normal Revision 1\n  - alert:\n    - paragraph: This task changed while you were editing.\n    - paragraph: Your draft is kept here. Load the current task and compare before saving again.\n  - region \"Current saved version\":\n    - heading \"Current saved version\" [level=3]\n    - text: Review Revision 3\n    - paragraph: \"Synthetic review: final comparison\"\n    - paragraph: Synthetic current saved brief. Maya will compare it with an unsaved draft.\n    - term: Accountable owner\n    - definition: Synthetic review · Maya · Manager\n    - term: Assigned to\n    - definition: Synthetic review · Noura · Member\n    - term: Reviewer\n    - definition: Synthetic review · Maya · Manager\n    - term: Due date\n    - definition:\n      - time: 2026-10-02\n    - heading \"Deliverable\" [level=3]\n    - paragraph: \"Synthetic review FINAL deliverable: a clear first step for the customer, ready for Maya.\"\n    - text: Synthetic review · Noura · Member\n    - button \"Use my draft with this version\"\n    - button \"Discard my draft\"\n  - group:\n    - text: Task title\n    - textbox \"Task title\" [disabled]: \"Synthetic review: final comparison\"\n    - text: Brief\n    - textbox \"Brief\" [disabled]: Synthetic review FINAL retained draft — explicit adoption required.\n    - text: Area of work\n    - combobox \"Area of work\" [disabled]:\n      - option \"Marketing\" [disabled] [selected]\n      - option \"Feedback\" [disabled]\n    - text: Priority\n    - combobox \"Priority\" [disabled]:\n      - option \"Low\" [disabled]\n      - option \"Normal\" [disabled] [selected]\n      - option \"High\" [disabled]\n      - option \"Urgent\" [disabled]\n    - text: Due date\n    - textbox \"Due date\" [disabled]: 2026-10-02\n    - paragraph: Calendar date; no time or reminder is set.\n  - button \"Cancel\"\n  - button \"Save changes\" [disabled]\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic review · Maya · Manager · Task created\n      - time: Sep 8, 2026, 7:30 PM\n      - group: Saved version · Revision 1\n  - group: Engineering detail\n  - button \"Cancel task\" [disabled]",
+    "geometry": {
+      "opacity": "1",
+      "activeAnimations": 0,
+      "documentWidth": 390
+    }
+  },
+  "adopted": {
+    "status": 200,
+    "input": {
+      "taskId": "f93173e9-e8fa-433a-851f-f28e27669d76",
+      "expectedRevision": 3,
+      "title": "Synthetic review: final comparison",
+      "notes": "Synthetic review FINAL retained draft — explicit adoption required.",
+      "domain": "marketing",
+      "priority": "normal",
+      "dueDate": "2026-10-02"
+    },
+    "task": {
+      "id": "f93173e9-e8fa-433a-851f-f28e27669d76",
+      "organizationId": "90510636-d17f-4c4d-8be4-3a11a3221822",
+      "title": "Synthetic review: final comparison",
+      "notes": "Synthetic review FINAL retained draft — explicit adoption required.",
+      "domain": "marketing",
+      "status": "in_progress",
+      "priority": "normal",
+      "dueDate": "2026-10-02",
+      "ownerId": "4ee4d62d-c1f8-48f5-aac4-81a043cb513a",
+      "assigneeId": "2bda20d2-f860-4a6f-a0f0-40dfc46c45ab",
+      "creatorId": "4ee4d62d-c1f8-48f5-aac4-81a043cb513a",
+      "reviewerId": "4ee4d62d-c1f8-48f5-aac4-81a043cb513a",
+      "revision": 4,
+      "currentDeliverableId": null,
+      "createdAt": "2026-09-08T16:30:27.721239+00:00",
+      "updatedAt": "2026-09-08T16:30:28.836371+00:00",
+      "archivedAt": null,
+      "capabilities": {
+        "edit": true,
+        "assign": true,
+        "progress": true,
+        "review": false,
+        "comment": true,
+        "submit": true,
+        "cancel": true,
+        "archive": false,
+        "linkExecution": false
+      }
+    },
+    "execution": null
+  },
+  "noAccept": true,
+  "privateStored": false
+}

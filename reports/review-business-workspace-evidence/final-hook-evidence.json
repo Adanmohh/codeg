@@ -1,0 +1,45 @@
+{
+  "scope": "Only own resumed session/worktree; command payloads omitted",
+  "records": [
+    {
+      "event": "PostToolUse",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "event": "PreToolUse",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "event": "PostToolUse",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "event": "PreToolUse",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "event": "PostToolUse",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "event": "PreToolUse",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "event": "PostToolUse",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "event": "PreToolUse",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    }
+  ]
+}

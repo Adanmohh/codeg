@@ -1,0 +1,1 @@
+{"fixture":{"export":".build/business-workspace/review-export","backendPort":4342,"sha256":"c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54"},"evidence":{"calls":[],"blocked":[],"websockets":[],"paths":[{"path":"/business.html","status":200,"apiCalls":0,"width":1280}]}}

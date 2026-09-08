@@ -1,0 +1,11 @@
+{
+  "specialist": "motion-judge",
+  "phase": "final synthesis; unchanged baseline evidence carried forward",
+  "scores": {
+    "motion": 8
+  },
+  "findings": [],
+  "notes": "Grade: good within measured scope. Actual106 requestAnimationFrame samples: normal23 intermediate horizontal positions and28 frames with active animations; reduced0 intermediate positions and0 active animations. Eight ordered screenshots with actual timings corroborate instant reduced opening and normal travel. Closed starting endpoint is not interpolated travel. Escape detaches and restores focus; RTL drawer right at x62,width320,viewport390. Settled Close/My work/Shared work focus rings verified. Continuous smoothness, CLS/long frames and scroll comfort not instrumented; no fabricated performance score.",
+  "reviewSource": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+  "method": "Same reviewer sequential method; no additional agent or rerun of completed matrix/motion"
+}

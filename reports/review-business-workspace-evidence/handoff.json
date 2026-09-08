@@ -1,0 +1,17 @@
+{
+  "reviewerBrowsersClosed": [
+    "business-review-a",
+    "business-review-b",
+    "business-review-final"
+  ],
+  "fixtureActions": "No process restarts, reseeds or exports. Existing4340/backend4342/final4346 and all earlier fixture listeners left unchanged.",
+  "finalTarget": {
+    "origin": "http://127.0.0.1:4346",
+    "publishedPid": 60964,
+    "export": ".build/business-workspace/review-export",
+    "backendPort": 4342
+  },
+  "ownFinalTaskId": "f93173e9-e8fa-433a-851f-f28e27669d76",
+  "ownFinalTaskState": "InProgress revision4 after explicit adoption; execution:null. Only synthetic review-owned records changed.",
+  "temporaryInterveningCredential": "Issued to own Noura member; revoked in finally. Credential value never reported."
+}
