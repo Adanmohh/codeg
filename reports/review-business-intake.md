@@ -1,12 +1,17 @@
 # Independent Increment B product review
 
-**R1 is closed at `74bde8b6f1aeee135122cf52f78746eec36c6602`: all eight requested
-tests pass independently, including the identical two reviewer probes that
-failed before the fix.** There are no open findings in the prerequisite/schema
-scope reviewed so far. The complete intake backend and UI are **not accepted**
-by these limited results; authorization, source ordering, protected setup and
-atomic publication consumers remain pending future committed checkpoints.
-Earlier failures and schema evidence are preserved below with their exact pins.
+**The bounded setup/access/reader review at
+`67708b0768cae3cacecd0dd1989c57bb565ab5f0` has 12 independent passing tests and
+no additional concrete blocking finding established.** This is not complete B
+acceptance: imports, source-wide ordering, candidates and atomic publication
+consumers are unfinished at this head, and late/uncertain credential cleanup
+still needs execution evidence. R1 remains closed at `74bde8b6` on the preserved
+eight-test rerun, including the identical previously failing reviewer probes.
+
+The owner's new multi-tenant architecture request supersedes the historical
+single-organization target. After committing this checkpoint, this reviewer
+switches to bounded docs-only research in `reports/business-multitenancy-review.md`.
+No current authorization boundary or product source is changed by that steering.
 
 Reviewer branch **review/business-intake** starts from accepted main
 **0bd50aedc7bdfea0bc392d4feb63b9101b5af92d**. The preceding contract review
@@ -18,6 +23,106 @@ The preparation commit **599aa1e6b74c0841ab2753dd58c806cae0c83dcd** was pushed a
 imported by root. Existing fixtures, exports, credential stores, targets and
 processes remain untouched. This review created only its own archives, target,
 synthetic temporary test data and report evidence.
+
+## Setup/access/reader checkpoint at67708b07
+
+Resolved the full immutable head above through `gh api`; parent is
+**74bde8b6f1aeee135122cf52f78746eec36c6602**. Read its complete 28-file diff,
+report and NOTICE, all new source and 12 focused test bodies/support, existing
+identity/transaction/authentication seams and changed legacy email projection
+and configuration paths. The own unchanged archive
+`.build/review-business-intake/67708b07` matches **749/749** tracked backend,
+Pi integration and licence blobs, with zero mismatches. No extra reviewer test
+was added at this head; the earlier strict-store probes were not rerun.
+
+Observed source boundaries:
+
+- Setup and grants use the actual `Principal::is_operator` marker and revalidate
+  current identity inside the SQLite writer. An owner-role member is not that
+  marker. Native and HTTP reuse their existing authenticated boundaries; the
+  protected HTTP test includes an actual operator success and issued-member
+  denials rather than constructing an alleged operator from input fields.
+- Bindings start with zero grants. Reads require the current source-domain
+  permission and current explicit grant; publication intersects member, binding
+  and grant ceilings. Owner revision drift pauses readiness. Grant changes bump
+  binding epoch/revision. No source access follows from the owner label alone.
+- Setup reserves a unique secret reference, performs credential/provider work
+  outside SQLite, then rechecks attempt, expiry, current operator, exact owner
+  revision and immutable provider identity before activation. A fresh receipt/
+  current-reference check handles an uncertain activation result. Cleanup first
+  proves the reference unbound under a writer, marks it retired and commits;
+  bounded, retained cleanup rows allow later cleanup of a delayed store write.
+  This is source-reviewed intent, not proof of atomicity across the stores.
+- The fixed Fireflies reader has no proxy, redirects or automatic retries,
+  a 12s request/2MiB response cap, closed read queries and exact user/transcript
+  checks. The core budget is 15s. Missing, empty and unsupported summaries remain
+  distinct. `action_items` string support is present; the fixture's normalized
+  nonempty case uses the defensive array branch, so that case alone does not
+  execute the official free-text string shape. No automatic assignment occurs.
+- Legacy email exposes the existing public content predicate and text types
+  0/8; Hafidh exposes only cached bounded public title/description. Configuration
+  generation and folder/product association changes fence away/back reuse.
+  No credential, private-note metadata or arbitrary provider action is exposed.
+- The new migration tests explicitly select migration000011. Populated A task/
+  ticket DTOs survive failed transactional DDL, corrected reapply and refused
+  populated-B rollback. The foreign-owner test supplies a real member ID from
+  a **separate database** and checks rejection before setup I/O; it is not a
+  same-database two-tenant isolation test. The current singleton schema remains.
+
+Independent commands use the unchanged archive's `src-tauri`, the explicit own
+target, and the same locked/offline/no-default-features command documented below.
+
+| Selector suffix after `business_intake::tests::` | Independent result |
+| --- | --- |
+| `setup_cases` | Exit0; 5 passed, 0 failed/ignored; 0.26s |
+| `reader_cases` | Exit0; 3 passed, 0 failed/ignored; 0.06s |
+| `legacy_cases` | Exit0; 2 passed, 0 failed/ignored; 0.09s |
+| `migration_cases` | Exit0; 2 passed, 0 failed/ignored; 0.12s |
+
+The setup tests exercise replay, zero grants, operator/member transport,
+safe output, staged set failure/wrong-user rotation preserving active and
+unrelated keys, provider-await owner/disable races and current grant ceilings.
+The reader tests use only an ephemeral loopback provider. Legacy tests exercise
+private/activity exclusion and real config/folder generation changes. The
+protected router is axum-test's in-process HTTP transport, not a listening-server
+or browser E2E test. Credential I/O is injected synthetic memory. No live store,
+existing fixture, desktop preview, provider account or browser was touched.
+
+**Remaining limits:** these tests do not execute late blocking writes after
+cancellation, failed cleanup followed by eventual orphan deletion, uncertain
+SQLite commit responses, cross-process store coordination or complete import/
+claim/publication/recovery flows. Installed Tokio **1.49.0** documents that an
+already running `spawn_blocking` operation cannot be aborted. Installed reqwest
+**0.12.28** source confirms `no_proxy`, retry and body-inclusive timeout behavior.
+These reads ground the audit; they do not replace the missing race probes.
+Desktop/companion/Clippy/UI gates were not run by this reviewer. The logs retain
+17 library-test warnings, including unfinished-consumer warnings and the linker
+warning, plus proc-macro-error2's future compatibility warning; no waiver.
+
+Owner evidence is separate: its 14 distinct intake passes combine the earlier
+two schema/input cases with these 12 cases across corrected iterations. Its
+report retains a 12-pass/2-fail iteration before the normalized-email/test-
+transaction corrections, and reports the corrected legacy pair, server check
+and existing Ops 22-pass/3-manual-ignored run. Those broader results and original
+failed runs were not independently executed or fabricated in this archive.
+
+Verified borrowed Fireflies source using only immutable `gh api` content reads
+at **fbd24607bc784a2294ce402426aefe2cb8c00f50**, including Git-blob recomputation:
+`nodes/Fireflies/helpers/queries.ts` **c775b8bbe6c0bbb16f8f7e8a60467c248ad93859**,
+`credentials/FirefliesApi.credentials.ts` **a39bced68aeceb23b33641e774e3509554caac49**,
+`nodes/Fireflies/transport/index.ts` **0b60c1c9e9d61f4583298cd2c0c464e9864861f5**,
+and `LICENSE.md` **1e4b3a6e245384b89f24f2aef5e3f8e7fa1f4d23**. The original
+MIT Copyright2022 n8n licence is reproduced in additive product NOTICE. The port
+uses fixed read contracts, not the adapter's mutation helpers or n8n runtime.
+Existing Codeg Apache attribution remains; no new dependency/lockfile change.
+
+Live own-session hook PreToolUse and PostToolUse records remain visible at audit
+lines20125 and20120 respectively, with the approvals cwd. Hooks were never
+bypassed. Code-context's previously reported local corpus limits still apply.
+Raw logs, hashes and structured scope result are committed under
+[`review-business-intake-evidence/67708b07`](review-business-intake-evidence/67708b07/).
+No reviewer test process remains active. The existing A preview PID80241/session32545
+and all earlier fixtures/exports remain untouched.
 
 ## Permission correction: exact execution and closure
 
@@ -274,9 +379,10 @@ both exit0 and the approvals cwd. No hook was disabled or bypassed.
 
 ## Remaining B probes and original review plan
 
-The preparation table below remains the full plan. P01 and the task-owned part
-of P12 now have the scoped evidence above, including the executed R1 closure. Other rows are
-planned; no full B or UI pass is implied.
+The preparation table below remains the historical full B plan. P01 and the
+task-owned part of P12 have the prerequisite evidence, and P02–P05/P09/P14/P15
+now have the partial setup/reader evidence and limits above. No full B or UI pass
+is implied. Further product review is deferred by the tenancy-research dispatch.
 
 Use the implementation owner's real protected router/core and committed test
 seams, after reading them. These cases are outcomes to test, not names of APIs
@@ -367,4 +473,5 @@ copies no product source and changes no NOTICE entry.
 
 The historical table describes preparation only. Current exact-head findings,
 tests and limits appear first; this branch contains review reports/evidence,
-with no product changes. Further B review waits for committed compiling source.
+with no product changes. The current bounded checkpoint is complete; the next
+authorized activity is docs-only tenancy research, not more product execution.

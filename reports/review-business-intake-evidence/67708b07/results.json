@@ -1,0 +1,91 @@
+{
+  "sourceHead": "67708b0768cae3cacecd0dd1989c57bb565ab5f0",
+  "parent": "74bde8b6f1aeee135122cf52f78746eec36c6602",
+  "reviewerBranch": "review/business-intake",
+  "independent": true,
+  "commandTemplate": "cargo test --locked --offline --no-default-features --lib SELECTOR --target-dir /Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/target -j 4",
+  "tests": [
+    {
+      "selector": "business_intake::tests::setup_cases",
+      "exit": 0,
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 0.26,
+      "log": "67708b07-setup.log"
+    },
+    {
+      "selector": "business_intake::tests::reader_cases",
+      "exit": 0,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 0.06,
+      "log": "67708b07-reader.log"
+    },
+    {
+      "selector": "business_intake::tests::legacy_cases",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 0.09,
+      "log": "67708b07-legacy.log"
+    },
+    {
+      "selector": "business_intake::tests::migration_cases",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 0.12,
+      "log": "67708b07-migration.log"
+    }
+  ],
+  "passed": 12,
+  "failed": 0,
+  "ignored": 0,
+  "sourceFilesChecked": 749,
+  "sourceFilesMatching": 749,
+  "additionalReviewerProbes": 0,
+  "openConcreteFindings": 0,
+  "scopeVerdict": "Bounded setup/access/reader checkpoint complete. Full B not accepted; remaining race/integration limits in report. Next dispatch is docs-only tenancy research.",
+  "borrowedSource": {
+    "repository": "firefliesai/n8n-nodes-fireflies",
+    "commit": "fbd24607bc784a2294ce402426aefe2cb8c00f50",
+    "license": "MIT; Copyright 2022 n8n",
+    "files": [
+      {
+        "path": "nodes/Fireflies/helpers/queries.ts",
+        "blob": "c775b8bbe6c0bbb16f8f7e8a60467c248ad93859"
+      },
+      {
+        "path": "credentials/FirefliesApi.credentials.ts",
+        "blob": "a39bced68aeceb23b33641e774e3509554caac49"
+      },
+      {
+        "path": "nodes/Fireflies/transport/index.ts",
+        "blob": "0b60c1c9e9d61f4583298cd2c0c464e9864861f5"
+      },
+      {
+        "path": "LICENSE.md",
+        "blob": "1e4b3a6e245384b89f24f2aef5e3f8e7fa1f4d23"
+      }
+    ]
+  },
+  "limits": [
+    "No late/cancelled store completion, cleanup retry or uncertain-commit probe",
+    "No same-database two-tenant test; singleton schema remains",
+    "Imports/source claims/candidates/atomic decisions unfinished at this head",
+    "In-process protected router and loopback mock only",
+    "No desktop/server/companion/Clippy/browser gates independently run at this head",
+    "No fixed fixture, real credential store or user preview changed"
+  ],
+  "sha256": {
+    "67708b07-legacy.log": "d81c3f74c40ccd909664af8dfcc877a5684136710ae70a1b57f01c276c73656a",
+    "67708b07-migration.log": "94cc05aefdde1fc47dd4306ff20458fc771d8e0987defb15446c92b6f0e2f75c",
+    "67708b07-reader.log": "733a2df4913f59057f41154c043a666cf156267fcddc5a50cacc7657477f7cf7",
+    "67708b07-setup.log": "324d75d1395aa35ba83b3357df5dd9bcdc651ba81e3d60c07414ab90afcb6e99",
+    "67708b07-source-verification.json": "c9d8ba5bb374775a02ea6e2b06ee0fe4d7598e8009e348e298984f140128fdd1"
+  }
+}
