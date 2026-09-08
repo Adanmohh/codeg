@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, type ReactNode } from "react"
+import { X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { BusinessError, type BusinessClient } from "@/lib/business/client"
@@ -19,6 +20,53 @@ import { DueDay } from "./work-list"
 import { ActivityList } from "./activity"
 import { TaskSources } from "@/components/business-intake/task-sources"
 import type { SourceSummary } from "@/lib/business/intake"
+
+type RegisterClose = (request: (() => void) | null) => void
+
+function TaskFrame({
+  title,
+  onClose,
+  presentation,
+  registerClose,
+  children,
+}: {
+  title: string
+  onClose: () => void
+  presentation: "dialog" | "pane"
+  registerClose?: RegisterClose
+  children: ReactNode
+}) {
+  const copy = useBusinessCopy()
+  useEffect(() => {
+    registerClose?.(onClose)
+    return () => registerClose?.(null)
+  }, [onClose, registerClose])
+  if (presentation === "dialog")
+    return (
+      <Modal title={title} onClose={onClose} wide>
+        {children}
+      </Modal>
+    )
+  return (
+    <div className="mx-auto max-w-3xl space-y-5 p-5 [overflow-wrap:anywhere] sm:p-6">
+      <header className="flex items-start justify-between gap-4 border-b pb-5">
+        <h2 className="min-w-0 pt-2 text-xl font-semibold tracking-tight">
+          <bdi>{title}</bdi>
+        </h2>
+        <Action
+          variant="ghost"
+          size="icon"
+          className="size-11 shrink-0 p-0"
+          onClick={onClose}
+          aria-label={copy.close}
+        >
+          <X aria-hidden="true" />
+        </Action>
+      </header>
+      {children}
+    </div>
+  )
+}
 
 function fieldsOf(task: Task): TaskFields {
   return {
@@ -47,6 +95,8 @@ export function TaskDetailDialog({
   onClose,
   onChanged,
   onSource,
+  presentation = "dialog",
+  registerClose,
 }: {
   taskId: string
   initial?: TaskDetail
@@ -57,6 +107,8 @@ export function TaskDetailDialog({
   onClose: () => void
   onChanged: () => void
   onSource?: (source: SourceSummary) => void
+  presentation?: "dialog" | "pane"
+  registerClose?: RegisterClose
 }) {
   const copy = useBusinessCopy()
   const [detail, setDetail] = useState<TaskDetail | null>(initial ?? null)
@@ -82,7 +134,12 @@ export function TaskDetailDialog({
   }, [client, taskId, initial, reload])
   if (!detail)
     return (
-      <Modal title={copy.loading} onClose={onClose}>
+      <TaskFrame
+        title={copy.loading}
+        onClose={onClose}
+        presentation={presentation}
+        registerClose={registerClose}
+      >
         {error != null && (
           <ErrorNotice error={error}>
             <Action variant="outline" onClick={() => setReload(reload + 1)}>
@@ -90,7 +147,7 @@ export function TaskDetailDialog({
             </Action>
           </ErrorNotice>
         )}
-      </Modal>
+      </TaskFrame>
     )
   return (
     <TaskEditor
@@ -102,6 +159,8 @@ export function TaskDetailDialog({
       onClose={onClose}
       onChanged={onChanged}
       onSource={onSource}
+      presentation={presentation}
+      registerClose={registerClose}
     />
   )
 }
@@ -115,6 +174,8 @@ function TaskEditor({
   onClose,
   onChanged,
   onSource,
+  presentation,
+  registerClose,
 }: {
   initial: TaskDetail
   client: BusinessClient
@@ -124,6 +185,8 @@ function TaskEditor({
   onClose: () => void
   onChanged: () => void
   onSource?: (source: SourceSummary) => void
+  presentation: "dialog" | "pane"
+  registerClose?: RegisterClose
 }) {
   const copy = useBusinessCopy()
   const [detail, setDetail] = useState(initial)
@@ -244,7 +307,12 @@ function TaskEditor({
     setError(null)
   }
   return (
-    <Modal title={task.title} onClose={close} wide>
+    <TaskFrame
+      title={task.title}
+      onClose={close}
+      presentation={presentation}
+      registerClose={registerClose}
+    >
       <div
         className="flex flex-wrap items-center gap-3"
         role={conflicted ? "group" : undefined}
@@ -784,7 +852,7 @@ function TaskEditor({
           </div>
         </Modal>
       )}
-    </Modal>
+    </TaskFrame>
   )
 }
 

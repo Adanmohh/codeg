@@ -6,6 +6,7 @@ import {
   ArrowRight,
   BookOpen,
   CircleCheck,
+  FileText,
   LayoutGrid,
   List,
   ListTodo,
@@ -14,6 +15,7 @@ import {
   Plus,
   RefreshCw,
   Search,
+  Table2,
   Users,
   X,
 } from "lucide-react"
@@ -48,6 +50,7 @@ import {
   roleLabel,
 } from "./ui"
 import { BusinessPreferences } from "./preferences"
+import { BusinessWorkbench, type WorkSurface } from "./workbench"
 import { WorkList } from "./work-list"
 import { People } from "./people"
 import { CreateTask } from "./task-form"
@@ -75,11 +78,13 @@ export function BusinessWorkspace({
   const locale = useLocale()
   const actor = context.member!
   const organizationId = context.organization!.id
-  const [view, setView] = useState<View>("mine")
+  const [view, setView] = useState<"mine" | "shared" | "review">("mine")
   const [sourcesVisited, setSourcesVisited] = useState(false)
+  const [peopleVisited, setPeopleVisited] = useState(false)
+  const [activeTab, setActiveTab] = useState("work")
   const [sourceEntry, setSourceEntry] = useState<SourceEntry | null>(null)
   const entryRead = useCallback(() => setSourceEntry(null), [])
-  const [mode, setMode] = useState<"list" | "board">("list")
+  const [mode, setMode] = useState<"list" | "board" | "table">("list")
   const [domain, setDomain] = useState<BusinessDomain | "">("")
   const [status, setStatus] = useState<BusinessStatus | "">("")
   const [search, setSearch] = useState("")
@@ -91,10 +96,14 @@ export function BusinessWorkspace({
   const [error, setError] = useState<unknown>(null)
   const [navOpen, setNavOpen] = useState(false)
   const [creating, setCreating] = useState(false)
-  const [selected, setSelected] = useState<{
-    id: string
-    initial?: TaskDetail
-  } | null>(null)
+  const [openTasks, setOpenTasks] = useState<
+    {
+      id: string
+      label: string
+      initial?: TaskDetail
+    }[]
+  >([])
+  const closeRequests = useRef(new Map<string, () => void>())
   const [refreshKey, setRefreshKey] = useState(0)
   const generation = useRef(0)
   const menuRef = useRef<HTMLButtonElement>(null)
@@ -150,9 +159,7 @@ export function BusinessWorkspace({
       archived,
     }
     void Promise.all([
-      view === "people" || view === "sources"
-        ? Promise.resolve(null)
-        : client.tasks("list", input),
+      client.tasks("list", input),
       client.identity("members/list", { organizationId }),
     ])
       .then(([tasks, directory]) => {
@@ -236,10 +243,36 @@ export function BusinessWorkspace({
         : copy.sharedWorkHint
   function navigate(next: View) {
     if (next === "sources") setSourcesVisited(true)
-    setView(next)
-    setStatus("")
-    setArchived(false)
+    if (next === "people") setPeopleVisited(true)
+    if (next === "sources" || next === "people") setActiveTab(next)
+    else {
+      setActiveTab("work")
+      setView(next)
+      setStatus("")
+      setArchived(false)
+    }
     setNavOpen(false)
+  }
+  function openTask(id: string, initial?: TaskDetail) {
+    const label =
+      initial?.task.title ??
+      page?.tasks.find((task) => task.id === id)?.title ??
+      copy.taskDetails
+    setOpenTasks((current) =>
+      current.some((task) => task.id === id)
+        ? current
+        : [...current, { id, label, initial }]
+    )
+    setActiveTab(id)
+  }
+  function closeTask(id: string) {
+    setOpenTasks((current) => current.filter((task) => task.id !== id))
+    setActiveTab((current) => (current === id ? "work" : current))
+  }
+  function selectedNav(id: View) {
+    return id === "sources" || id === "people"
+      ? activeTab === id
+      : activeTab === "work" && view === id
   }
   const navigation = (
     <>
@@ -267,10 +300,10 @@ export function BusinessWorkspace({
             type="button"
             key={id}
             onClick={() => navigate(id)}
-            aria-current={view === id ? "page" : undefined}
+            aria-current={selectedNav(id) ? "page" : undefined}
             className={cn(
               "focus-visible:ring-ring flex min-h-12 w-full items-center gap-3 rounded-xl px-3 py-3 text-start text-sm font-medium outline-none focus-visible:ring-2",
-              view === id
+              selectedNav(id)
                 ? "bg-primary/10 text-primary"
                 : "text-sidebar-foreground hover:bg-sidebar-accent"
             )}
@@ -315,9 +348,327 @@ export function BusinessWorkspace({
       </div>
     </>
   )
+  const workContent = (
+    <main
+      id="business-main"
+      tabIndex={-1}
+      className="focus-visible:ring-ring min-w-0 p-5 outline-none focus-visible:ring-2 focus-visible:ring-inset sm:p-6"
+    >
+      <div className="mx-auto max-w-6xl">
+        <>
+          <header className="mb-5 flex flex-wrap items-center justify-between gap-4">
+            <div className="min-w-0">
+              <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
+              <p className="text-muted-foreground mt-1 max-w-xl text-sm leading-relaxed">
+                {hint}
+              </p>
+            </div>
+            {page?.canCreate && (
+              <Action onClick={() => setCreating(true)}>
+                <Plus aria-hidden="true" />
+                {copy.createTask}
+              </Action>
+            )}
+          </header>
+          {actor.role === "viewer" && (
+            <p className="bg-muted/40 mb-6 rounded-xl border p-4 text-sm">
+              {copy.readOnlyHint}
+            </p>
+          )}
+          <div className="mb-5 space-y-3">
+            <form
+              className="flex gap-2"
+              onSubmit={(event) => {
+                event.preventDefault()
+                setQuery(search.trim())
+              }}
+            >
+              <div className="relative min-w-0 flex-1">
+                <Search
+                  className="text-muted-foreground pointer-events-none absolute start-3 top-3.5 size-4"
+                  aria-hidden="true"
+                />
+                <Input
+                  className="min-h-11 rounded-xl ps-10 placeholder:text-foreground/80 dark:placeholder:text-muted-foreground"
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                  aria-label={copy.search}
+                  placeholder={copy.search}
+                  maxLength={240}
+                />
+                <button type="submit" className="sr-only" tabIndex={-1}>
+                  {copy.search}
+                </button>
+              </div>
+              <Action
+                variant="outline"
+                onClick={() => void reload()}
+                aria-label={copy.refresh}
+                disabled={loading}
+                size="icon"
+                className="size-11 p-0"
+              >
+                <RefreshCw aria-hidden="true" />
+              </Action>
+            </form>
+            <div className="flex flex-wrap items-center gap-2">
+              <select
+                className={
+                  controlClass +
+                  " !w-auto max-w-full flex-1 basis-40 sm:flex-none sm:basis-auto"
+                }
+                aria-label={copy.domain}
+                value={domain}
+                onChange={(event) =>
+                  setDomain(event.target.value as BusinessDomain | "")
+                }
+              >
+                <option value="">{copy.allDomains}</option>
+                {actor.domains.map((item) => (
+                  <option key={item} value={item}>
+                    {copy[item]}
+                  </option>
+                ))}
+              </select>
+              {view !== "review" && (
+                <select
+                  className={
+                    controlClass +
+                    " !w-auto max-w-full flex-1 basis-40 sm:flex-none sm:basis-auto"
+                  }
+                  aria-label={copy.status}
+                  value={status}
+                  onChange={(event) =>
+                    setStatus(event.target.value as BusinessStatus | "")
+                  }
+                >
+                  <option value="">{copy.allStatuses}</option>
+                  {BUSINESS_STATUSES.map((item) => (
+                    <option key={item} value={item}>
+                      {copy[item]}
+                    </option>
+                  ))}
+                </select>
+              )}
+              <label className="text-muted-foreground flex min-h-11 items-center gap-2 px-2 text-xs">
+                <input
+                  type="checkbox"
+                  checked={archived}
+                  onChange={(event) => setArchived(event.target.checked)}
+                  className="accent-primary size-4"
+                />
+                {copy.archived}
+              </label>
+              <div
+                className="bg-muted/50 ms-auto flex shrink-0 gap-1 rounded-xl p-1"
+                aria-label={copy.workspace}
+              >
+                <Action
+                  variant={mode === "list" ? "outline" : "ghost"}
+                  className="px-3"
+                  onClick={() => setMode("list")}
+                  aria-pressed={mode === "list"}
+                >
+                  <List aria-hidden="true" />
+                  {copy.list}
+                </Action>
+                <Action
+                  variant={mode === "board" ? "outline" : "ghost"}
+                  className="px-3"
+                  onClick={() => setMode("board")}
+                  aria-pressed={mode === "board"}
+                >
+                  <LayoutGrid aria-hidden="true" />
+                  {copy.board}
+                </Action>
+                <Action
+                  variant={mode === "table" ? "outline" : "ghost"}
+                  className="px-3"
+                  onClick={() => setMode("table")}
+                  aria-pressed={mode === "table"}
+                >
+                  <Table2 aria-hidden="true" />
+                  {copy.table}
+                </Action>
+              </div>
+            </div>
+          </div>
+          {page && (
+            <p className="text-muted-foreground mb-3 text-xs tabular-nums">
+              {page.tasks.length} {copy.loadedTasks}
+            </p>
+          )}
+          {page && page.tasks.length > 0 && (
+            <WorkList
+              tasks={page.tasks.map((task) =>
+                taskPreview(task, members, copy.memberUnavailable)
+              )}
+              mode={mode}
+              onOpen={(id) => openTask(id)}
+            />
+          )}
+          {page && page.tasks.length === 0 && (
+            <section className="border-border bg-card rounded-xl border p-6">
+              <div className="bg-primary/10 text-primary mb-4 flex size-10 items-center justify-center rounded-xl">
+                <ListTodo className="size-5" aria-hidden="true" />
+              </div>
+              <h2 className="text-xl font-semibold tracking-tight">
+                {query || domain || status || archived
+                  ? copy.noResults
+                  : view === "mine"
+                    ? copy.emptyMyTitle
+                    : view === "review"
+                      ? copy.emptyReviewTitle
+                      : copy.emptyTitle}
+              </h2>
+              <p className="text-muted-foreground mt-3 max-w-md text-sm leading-relaxed">
+                {query || domain || status || archived
+                  ? copy.noResultsHint
+                  : view === "mine"
+                    ? copy.emptyMyHint
+                    : view === "review"
+                      ? copy.emptyReviewHint
+                      : copy.emptyHint}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {query || domain || status || archived ? (
+                  <Action
+                    variant="outline"
+                    onClick={() => {
+                      setQuery("")
+                      setSearch("")
+                      setDomain("")
+                      setStatus("")
+                      setArchived(false)
+                    }}
+                  >
+                    {copy.clearFilters}
+                  </Action>
+                ) : view === "mine" ? (
+                  <Action variant="outline" onClick={() => navigate("shared")}>
+                    {copy.sharedWork}
+                    <ArrowRight className="rtl:rotate-180" aria-hidden="true" />
+                  </Action>
+                ) : page.canCreate && view === "shared" ? (
+                  <Action onClick={() => setCreating(true)}>
+                    <Plus aria-hidden="true" />
+                    {copy.createTask}
+                  </Action>
+                ) : null}
+              </div>
+            </section>
+          )}
+          {page?.hasMore && (
+            <div className="mt-5 flex justify-center">
+              <Action
+                variant="outline"
+                disabled={loading}
+                onClick={() => void more()}
+              >
+                {copy.more}
+              </Action>
+            </div>
+          )}
+        </>
+        {loading && (
+          <p role="status" className="text-muted-foreground py-6 text-sm">
+            {copy.loading}
+          </p>
+        )}
+        {error != null && (
+          <div className="mt-5">
+            <ErrorNotice error={error}>
+              <Action
+                variant="outline"
+                disabled={loading}
+                onClick={() => void reload()}
+              >
+                {copy.retry}
+              </Action>
+            </ErrorNotice>
+          </div>
+        )}
+      </div>
+    </main>
+  )
+  const surfaces: WorkSurface[] = [
+    { id: "work", label: title, icon: ListTodo, render: () => workContent },
+    ...(sourcesVisited
+      ? [
+          {
+            id: "sources",
+            label: intakeCopy.sources,
+            icon: BookOpen,
+            render: (visible: boolean) => (
+              <div className="p-5 sm:p-6">
+                <SourcesWorkspace
+                  client={client}
+                  actor={actor}
+                  members={members}
+                  active={visible}
+                  entry={sourceEntry}
+                  onEntryRead={entryRead}
+                  onTask={(id) => openTask(id)}
+                />
+              </div>
+            ),
+          },
+        ]
+      : []),
+    ...(peopleVisited
+      ? [
+          {
+            id: "people",
+            label: copy.team,
+            icon: Users,
+            render: () => (
+              <div className="p-5 sm:p-6">
+                <People
+                  client={client}
+                  context={context}
+                  members={members}
+                  reload={reload}
+                />
+              </div>
+            ),
+          },
+        ]
+      : []),
+    ...openTasks.map((task) => ({
+      id: task.id,
+      label: task.label,
+      icon: FileText,
+      close: () => {
+        setActiveTab(task.id)
+        closeRequests.current.get(task.id)?.()
+      },
+      render: () => (
+        <TaskDetailDialog
+          taskId={task.id}
+          initial={task.initial}
+          client={client}
+          actor={actor}
+          members={members}
+          legacyOperator={context.capabilities.legacyOperator}
+          presentation="pane"
+          registerClose={(request) => {
+            if (request) closeRequests.current.set(task.id, request)
+            else closeRequests.current.delete(task.id)
+          }}
+          onClose={() => closeTask(task.id)}
+          onChanged={() => void reload()}
+          onSource={(source) => {
+            closeTask(task.id)
+            setSourceEntry({ sourceId: source.id, bindingId: source.bindingId })
+            navigate("sources")
+          }}
+        />
+      ),
+    })),
+  ]
   return (
     <div className="bg-background flex h-full min-w-0 overflow-hidden">
-      <aside className="bg-sidebar border-border hidden w-[248px] shrink-0 flex-col overflow-y-auto border-e p-5 lg:flex">
+      <aside className="bg-sidebar border-border hidden w-[224px] shrink-0 flex-col overflow-y-auto border-e p-4 lg:flex">
         {navigation}
       </aside>
       <div className="flex min-w-0 flex-1 flex-col">
@@ -337,269 +688,11 @@ export function BusinessWorkspace({
           </span>
           <Brand compact />
         </header>
-        <main
-          id="business-main"
-          tabIndex={-1}
-          className="focus-visible:ring-ring min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-5 py-7 outline-none focus-visible:ring-2 focus-visible:ring-inset sm:px-8 lg:px-10 lg:py-10"
-        >
-          <div className="mx-auto max-w-6xl">
-            {view === "people" ? (
-              <People
-                client={client}
-                context={context}
-                members={members}
-                reload={reload}
-              />
-            ) : view === "sources" ? null : (
-              <>
-                <header className="mb-8 flex flex-wrap items-end justify-between gap-5">
-                  <div className="min-w-0">
-                    <p className="text-primary mb-3 text-sm font-semibold">
-                      {copy.workspace}
-                    </p>
-                    <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                      {title}
-                    </h1>
-                    <p className="text-muted-foreground mt-3 max-w-xl text-sm leading-relaxed">
-                      {hint}
-                    </p>
-                  </div>
-                  {page?.canCreate && (
-                    <Action onClick={() => setCreating(true)}>
-                      <Plus aria-hidden="true" />
-                      {copy.createTask}
-                    </Action>
-                  )}
-                </header>
-                {actor.role === "viewer" && (
-                  <p className="bg-muted/40 mb-6 rounded-xl border p-4 text-sm">
-                    {copy.readOnlyHint}
-                  </p>
-                )}
-                <div className="mb-5 space-y-3">
-                  <form
-                    className="flex gap-2"
-                    onSubmit={(event) => {
-                      event.preventDefault()
-                      setQuery(search.trim())
-                    }}
-                  >
-                    <div className="relative min-w-0 flex-1">
-                      <Search
-                        className="text-muted-foreground pointer-events-none absolute start-3 top-3.5 size-4"
-                        aria-hidden="true"
-                      />
-                      <Input
-                        className="min-h-11 rounded-xl ps-10 placeholder:text-foreground/80 dark:placeholder:text-muted-foreground"
-                        value={search}
-                        onChange={(event) => setSearch(event.target.value)}
-                        aria-label={copy.search}
-                        placeholder={copy.search}
-                        maxLength={240}
-                      />
-                      <button type="submit" className="sr-only" tabIndex={-1}>
-                        {copy.search}
-                      </button>
-                    </div>
-                    <Action
-                      variant="outline"
-                      onClick={() => void reload()}
-                      aria-label={copy.refresh}
-                      disabled={loading}
-                      size="icon"
-                      className="size-11 p-0"
-                    >
-                      <RefreshCw aria-hidden="true" />
-                    </Action>
-                  </form>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <select
-                      className={
-                        controlClass +
-                        " !w-auto max-w-full flex-1 basis-40 sm:flex-none sm:basis-auto"
-                      }
-                      aria-label={copy.domain}
-                      value={domain}
-                      onChange={(event) =>
-                        setDomain(event.target.value as BusinessDomain | "")
-                      }
-                    >
-                      <option value="">{copy.allDomains}</option>
-                      {actor.domains.map((item) => (
-                        <option key={item} value={item}>
-                          {copy[item]}
-                        </option>
-                      ))}
-                    </select>
-                    {view !== "review" && (
-                      <select
-                        className={
-                          controlClass +
-                          " !w-auto max-w-full flex-1 basis-40 sm:flex-none sm:basis-auto"
-                        }
-                        aria-label={copy.status}
-                        value={status}
-                        onChange={(event) =>
-                          setStatus(event.target.value as BusinessStatus | "")
-                        }
-                      >
-                        <option value="">{copy.allStatuses}</option>
-                        {BUSINESS_STATUSES.map((item) => (
-                          <option key={item} value={item}>
-                            {copy[item]}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                    <label className="text-muted-foreground flex min-h-11 items-center gap-2 px-2 text-xs">
-                      <input
-                        type="checkbox"
-                        checked={archived}
-                        onChange={(event) => setArchived(event.target.checked)}
-                        className="accent-primary size-4"
-                      />
-                      {copy.archived}
-                    </label>
-                    <div
-                      className="bg-muted/50 ms-auto flex shrink-0 gap-1 rounded-xl p-1"
-                      aria-label={copy.workspace}
-                    >
-                      <Action
-                        variant={mode === "list" ? "outline" : "ghost"}
-                        className="px-3"
-                        onClick={() => setMode("list")}
-                        aria-pressed={mode === "list"}
-                      >
-                        <List aria-hidden="true" />
-                        {copy.list}
-                      </Action>
-                      <Action
-                        variant={mode === "board" ? "outline" : "ghost"}
-                        className="px-3"
-                        onClick={() => setMode("board")}
-                        aria-pressed={mode === "board"}
-                      >
-                        <LayoutGrid aria-hidden="true" />
-                        {copy.board}
-                      </Action>
-                    </div>
-                  </div>
-                </div>
-                {page && (
-                  <p className="text-muted-foreground mb-3 text-xs tabular-nums">
-                    {page.tasks.length} {copy.loadedTasks}
-                  </p>
-                )}
-                {page && page.tasks.length > 0 && (
-                  <WorkList
-                    tasks={page.tasks.map((task) =>
-                      taskPreview(task, members, copy.memberUnavailable)
-                    )}
-                    mode={mode}
-                    onOpen={(id) => setSelected({ id })}
-                  />
-                )}
-                {page && page.tasks.length === 0 && (
-                  <section className="border-border bg-card rounded-2xl border px-6 py-12 sm:p-12">
-                    <div className="bg-primary/10 text-primary mb-5 flex size-12 items-center justify-center rounded-2xl">
-                      <ListTodo className="size-6" aria-hidden="true" />
-                    </div>
-                    <h2 className="text-xl font-semibold tracking-tight">
-                      {query || domain || status || archived
-                        ? copy.noResults
-                        : view === "mine"
-                          ? copy.emptyMyTitle
-                          : view === "review"
-                            ? copy.emptyReviewTitle
-                            : copy.emptyTitle}
-                    </h2>
-                    <p className="text-muted-foreground mt-3 max-w-md text-sm leading-relaxed">
-                      {query || domain || status || archived
-                        ? copy.noResultsHint
-                        : view === "mine"
-                          ? copy.emptyMyHint
-                          : view === "review"
-                            ? copy.emptyReviewHint
-                            : copy.emptyHint}
-                    </p>
-                    <div className="mt-6 flex flex-wrap gap-3">
-                      {query || domain || status || archived ? (
-                        <Action
-                          variant="outline"
-                          onClick={() => {
-                            setQuery("")
-                            setSearch("")
-                            setDomain("")
-                            setStatus("")
-                            setArchived(false)
-                          }}
-                        >
-                          {copy.clearFilters}
-                        </Action>
-                      ) : view === "mine" ? (
-                        <Action
-                          variant="outline"
-                          onClick={() => navigate("shared")}
-                        >
-                          {copy.sharedWork}
-                          <ArrowRight
-                            className="rtl:rotate-180"
-                            aria-hidden="true"
-                          />
-                        </Action>
-                      ) : page.canCreate && view === "shared" ? (
-                        <Action onClick={() => setCreating(true)}>
-                          <Plus aria-hidden="true" />
-                          {copy.createTask}
-                        </Action>
-                      ) : null}
-                    </div>
-                  </section>
-                )}
-                {page?.hasMore && (
-                  <div className="mt-5 flex justify-center">
-                    <Action
-                      variant="outline"
-                      disabled={loading}
-                      onClick={() => void more()}
-                    >
-                      {copy.more}
-                    </Action>
-                  </div>
-                )}
-              </>
-            )}
-            {sourcesVisited && (
-              <SourcesWorkspace
-                client={client}
-                actor={actor}
-                members={members}
-                active={view === "sources"}
-                entry={sourceEntry}
-                onEntryRead={entryRead}
-                onTask={(id) => setSelected({ id })}
-              />
-            )}
-            {loading && view !== "sources" && (
-              <p role="status" className="text-muted-foreground py-6 text-sm">
-                {copy.loading}
-              </p>
-            )}
-            {error != null && (
-              <div className="mt-5">
-                <ErrorNotice error={error}>
-                  <Action
-                    variant="outline"
-                    disabled={loading}
-                    onClick={() => void reload()}
-                  >
-                    {copy.retry}
-                  </Action>
-                </ErrorNotice>
-              </div>
-            )}
-          </div>
-        </main>
+        <BusinessWorkbench
+          surfaces={surfaces}
+          activeId={activeTab}
+          onActivate={setActiveTab}
+        />
       </div>
       <Drawer
         open={navOpen}
@@ -626,26 +719,8 @@ export function BusinessWorkspace({
           onClose={() => setCreating(false)}
           onCreated={(detail) => {
             setCreating(false)
-            setSelected({ id: detail.task.id, initial: detail })
+            openTask(detail.task.id, detail)
             void reload()
-          }}
-        />
-      )}
-      {selected && (
-        <TaskDetailDialog
-          key={selected.id}
-          taskId={selected.id}
-          initial={selected.initial}
-          client={client}
-          actor={actor}
-          members={members}
-          legacyOperator={context.capabilities.legacyOperator}
-          onClose={() => setSelected(null)}
-          onChanged={() => void reload()}
-          onSource={(source) => {
-            setSelected(null)
-            setSourceEntry({ sourceId: source.id, bindingId: source.bindingId })
-            navigate("sources")
           }}
         />
       )}

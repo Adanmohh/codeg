@@ -1,0 +1,9 @@
+Compiling shared-shell checkpoint
+React19.2.4 / TypeScript5.8.3 / Vitest2.1.9
+
+Focused tests: 41 passed / 4 files, exit0, 2.13s.
+Scoped ESLint: all changed frontend files, exit0, zero warnings.
+Follow-up ESLint: workbench + test + scoped ui, exit0.
+TypeScript initial and test-inclusive checks: exit0. Final commit-source tsc --noEmit --incremental false: exit0.
+git diff --check: exit0.
+No backend/provider/native runtime acceptance claimed.

@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useOverlayHostHidden } from "@/components/ui/overlay-host-hidden"
 import {
   Dialog,
   DialogContent,
@@ -234,11 +235,12 @@ export function Modal({
 }) {
   const copy = useBusinessCopy()
   const returnFocus = useRef<HTMLElement | null>(null)
+  const hidden = useOverlayHostHidden()
   return (
     <Dialog
-      open
+      open={!hidden}
       onOpenChange={(open) => {
-        if (!open) onClose()
+        if (!open && !hidden) onClose()
       }}
     >
       <DialogContent
@@ -254,6 +256,9 @@ export function Modal({
           // opener, or the work area when an updated/archived row has disappeared.
           event.preventDefault()
           if (document.activeElement?.closest('[role="dialog"]')) return
+          // A closed work tab may already have restored focus to its surviving
+          // sibling. Do not override that with this dialog's removed opener.
+          if (document.activeElement?.getAttribute("role") === "tab") return
           if (
             returnFocus.current?.isConnected &&
             returnFocus.current !== document.body &&

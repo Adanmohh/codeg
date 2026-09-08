@@ -1,7 +1,7 @@
 # Business Sources implementation
 
-Status: compiling wired frontend checkpoint on `feat/business-intake-ui`, based on accepted
-`a40b03393a466672060066ae6e0e8c9054a2349d`. No B runtime or browser pass is claimed.
+Status: compiling Sources plus shared-workbench frontend checkpoint on `feat/business-intake-ui`, based on accepted
+`a40b03393a466672060066ae6e0e8c9054a2349d`. No integrated B runtime or browser pass is claimed.
 The accepted A workspace, native chrome, paused visual checkpoint and existing
 fixtures/exports are preserved. This worker owns frontend glue only; tickets
 owns Rust, protected registrations, migration 000011 and all provider access.
@@ -100,10 +100,9 @@ Principal boundary. Source/import/candidate routes are not exposed at that
 checkpoint. This report does not claim an integrated endpoint or fixture pass.
 
 Reviewer preparation: `599aa1e6b74c0841ab2753dd58c806cae0c83dcd`,
-`reports/review-business-intake.md`. No browser or fixture is active for B.
+`reports/review-business-intake.md`. The owned public cold-entry export is now on 4350; protected B flow validation still awaits backend handoff.
 Root reserved owned UI **4350**, tickets' protected synthetic backend **4351**
-and synthetic upstream **4352**. No B listener/browser has started here. Exact
-registered backend source and synthetic access must be coordinated before launch.
+and synthetic upstream **4352**. The 4350 export listener is owned here; exact registered backend source and synthetic access must be coordinated before protected flow checks.
 No old listener, export or browser is changed.
 
 ## Checks and remaining work
@@ -125,7 +124,7 @@ authorized by these fixture checks.
 
 Early report checkpoint: `556956d4`; draft PR
 https://github.com/Adanmohh/codeg/pull/29. Root reserved UI **4350**, tickets
-backend **4351** and synthetic upstream **4352**; all remain unstarted here.
+backend **4351** and synthetic upstream **4352**; only the owned UI4350 listener is started here.
 
 Typed client checkpoint: exact closed intake operations, native names and safe
 reason allowlist extend the existing client. Existing identity/task errors and
@@ -181,7 +180,7 @@ Focused checkpoint checks:
 
 Reproducible logs are under `reports/business-intake-ui-evidence/`. Unit fixture
 records and responses are explicitly synthetic and excluded from product
-imports. No new listener/browser is running, and no old fixture is changed.
+imports. The owned cold-entry listener/browser is recorded below; no old fixture is changed.
 The next independent-review target is this committed composition, followed by
 an isolated export and real protected API4351 validation when tickets publishes
 its executable checkpoint. Fireflies, email and Hafidh controls use only their
@@ -215,7 +214,7 @@ exit 0, 34 static routes. `business.html` SHA256:
 It predates the navigation correction and is **not** advertised as a corrected
 or accepted preview. No browser or backend was used for that build.
 
-Prepared, not launched: `reports/business-intake-ui-evidence/serve.mjs` serves
+Owned fixture: `reports/business-intake-ui-evidence/serve.mjs` serves
 only an owned export on loopback4350 and proxies the closed identity, human-task
 and intake operations to the separately guarded backend4351. It rejects legacy
 APIs, engine operations and WebSockets, and records only method/path/status.
@@ -328,14 +327,14 @@ JS/CSS and client-side isolation are excluded.
 
 Root's architecture research pins are edu-blend
 735e7695a44ab6e5dbda521c822f3a3809f289c8 (proprietary inspiration only; no source
-republication) and Payload54a0e3d24015b2e9c565bd7e695be1ec7184662e (MIT).
+republication) and Payload 54a0e3d24015b2e9c565bd7e695be1ec7184662e (MIT).
 Approvals owns the architecture report/authority contract; neither source has
 been copied here, and this UI report does not independently certify its isolation.
 
 Local code-context's workflow and custom-UI rules support meaningful pane jobs
 and actual design iteration. Its cross-project DB/delegation advice does not
 override assigned ownership. W3C ARIA Practices main was resolved via gh api
-to7e4034b262bc0d25332e330d8a582aaf34113829; exact
+to 7e4034b262bc0d25332e330d8a582aaf34113829; exact
 content/patterns/{tabs,table}/*-pattern.html was read. Full tab focus/panel
 semantics are required, and a visual table does not justify incomplete grid
 roles. These are documentation references, not copied implementation or a
@@ -345,11 +344,111 @@ would each fail the owner's corrected requirement.
 
 ### Latest backend integration status
 
-Tickets' PR28 handoff is5de1176beb4778604b26df65f2ec669b0ab7987b, production
+Tickets' PR28 handoff is 5de1176beb4778604b26df65f2ec669b0ab7987b, production
 4a194500b76b97aa5caaf9434ce5c1f16e54ea48. The exact committed http.rs was read:
 eight source/import operations now join the eight setup operations under the
 existing Principal middleware, and their names match the closed TS client.
 Candidate decisions and task-source references are not exposed in this router
 yet. Native source/import additions are explicitly held for reviewed tenant
 selection. No native readiness or independent backend acceptance is inferred;
-no manual4351/4352 listener handoff has occurred here.
+no manual 4351/4352 listener handoff has occurred here.
+
+
+## Shared workbench source checkpoint
+
+The first composition now opens real authorized tasks in separate working tabs,
+with the same task editor and its pending-write, revision, review and explicit
+unsaved-close rules. My work/Shared work/Review retain their filters and real
+loaded task page; Table is a semantic table over that same page. Sources and
+People are separate lazily visited surfaces. No fixture response is imported
+by production UI.
+
+The existing Codeg sibling-pane geometry and hidden-surface context keep every
+editor mounted in the same React parent/slot while switching tabs, resizing,
+changing locale or moving between narrow and wide windows. A wide pane can keep
+the collection/reference alongside the active task. The installed resizable
+control retains its pointer and keyboard implementation; pane sizes and private
+contents remain in memory with no global tab store or localStorage persistence.
+The business-only modal now respects the hidden-surface context so a background
+pane's portal cannot paint over another pane. Original engineering providers,
+authentication, native chrome and backend remain unchanged.
+
+Source mapping is appended in NOTICE at exact accepted Codeg a40b0339. Local
+React19.2.4/@types-react19.2.13 hook/DOM types and
+react-resizable-panels2.1.9 PanelGroup/Panel/PanelResizeHandle definitions were
+read before adaptation. The pure existing computeRects implementation and
+KeptMountedSurface/flat sibling examples were read completely at their relevant
+functions. No new package, runtime or lockfile. Code-context guide again returned
+workflow/type/source-first guidance; dependency docs exit3 remains the missing
+rebrand.db corpus, not a library upgrade. Live hook audit has this session's
+PreToolUse line20657 and PostToolUse line20658; hooks stay enabled.
+
+New focused evidence: **41/41 pass in four files**, Vitest2.1.9, exit0:
+`vitest run src/components/business/workbench.test.tsx
+src/components/business/workflow.test.tsx src/components/business/ui.test.tsx
+src/components/business-intake/workflow.test.tsx`.
+Five new shell cases cover independent task drafts and DOM identity across
+split/tab/locale/narrow changes, guarded mouse/Delete close, manual EN/AR tab
+focus/linked panels, and exact calendar-date task table navigation. One new
+modal case covers hidden portal privacy and retained parent draft state. The
+existing 17 intake and 15 task workflow cases remain passing. The first run was
+39/40: jsdom does not load the Tailwind visibility class in this suite; explicit
+hidden style now accompanies the inherited hiding class and role/inert guards.
+The assertion was retained. Async test reads now await the actual loaded heading;
+final output contains no React act warning. Raw outputs are preserved in the own
+ignored evidence directory; this is not rendered or backend acceptance.
+
+### Tenant contract reconciliation
+
+Read complete architecture af00c956787142f900384f7ba6b34ebbc005eb88 and the fixed
+settings/native contract 7516461633c163c2ac683930487e33231e630b0b,
+`docs/contracts/business-tenancy.md`. Approvals owns its compiling helpers and
+all identity/native ACL implementation. UI settings will use exact closed
+organizationId/revision/settings responses and expectedRevision updates with
+no caller actor/organization selector. Neutral/blue/violet presets and
+split/stacked layout remain scoped presentation, not authority; personal locale
+and theme mode remain separate. A conversations default grants no execution.
+
+The pending explicit personal-credential switch authenticates the destination
+scope and offers cancel/discard while old edits remain intact. Only confirmed
+switch closes/aborts the old client, invalidates delayed results/events and clears
+private draft/cache/tab/pane content; same-scope locale/viewport preserves it.
+Compiling identity/settings core f3b408dae5c724f354763961d79a17a7ae5c86f8 now implements lifecycle fields and manageTenantSettings; transport registration/native bridge remain pending. Native kind=native remains original-operator compatibility and will not be used
+as tenant authority. Restricted native access must consume approvals' actual
+window-bound bridge/ACL. No guessed selector, settings runtime success or member
+terminal endpoint has been added. Execution isolation is a separate backend gate
+and does not block this real shared-shell work.
+
+### Owned preview inventory
+
+Public cold-entry preview only: http://127.0.0.1:4350/business and /business.html.
+Node PID50065, owned exec session64827, script
+`reports/business-intake-ui-evidence/serve.mjs`, fixed protected proxy target4351.
+Two own CLI sessions are intake-ui-a4350 (browser PID50564) and
+intake-ui-b4350 (browser PID50617). Both remain unauthenticated; no production
+credential, broad Settings snapshot or provider/engine action. Tickets has not
+handed off a protected4351/upstream4352 fixture, so source/import/candidate flow
+acceptance is still pending and no mocked native readiness is claimed.
+
+Served export `.build/business-intake-ui-b9a7607f` is **pre-shell** product
+b9a7607f7d2d3651501672c6020ff167af8fc70e. Build command
+`CODEG_EXPORT_DIR=.build/business-intake-ui-b9a7607f NEXT_TELEMETRY_DISABLED=1 pnpm build`
+passed exit0 with34 static routes. business.html SHA256:
+3f46f53e3227793684c1d81d4acd3f6b2f865fa9396a1623b70f5b23b8d51d86.
+It is not the new shell export or accepted design. A fresh export will be given
+an explicit source/hash before replacing this owned preview. All accepted old
+fixtures, exports, browsers and the paused visual checkpoint are preserved.
+
+
+Actual public baseline on the **pre-shell** 4350 export: Playwright CLI0.1.18,
+intake-ui-a4350 at1280×900/light/English, document overflow=false,
+nativeChrome=false and fixture calls=[] (zero protected API calls). This checks
+only the unauthenticated connection surface. No full Sources, task pane or
+settings browser pass is claimed from it. All commands exited0; no CLI update.
+
+Commit-source `tsc --noEmit --incremental false` passed exit0. Scoped ESLint
+and final41-test rerun passed exit0 after focus recovery was added to guarded
+tab closure. No passing checks were weakened. Public baseline B session at
+390×844/dark/Arabic returned direction=rtl, overflow=false and fixture calls=[];
+PNG evidence is public-before-1280-light.png and public-before-390-dark-ar.png.
+These are cold-entry captures of b9, not the new shell's rendered acceptance.

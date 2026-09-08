@@ -820,3 +820,24 @@ WebSocket forwarding, credential/body logging, provider implementation or
 production server change. Node24.19.0 and installed @types/node25.2.2 existing
 http/fs/path definitions are references; no newer-only API is introduced.
 Original Apache-2.0 LICENSE and every prior attribution remain intact.
+
+Business shared workbench (2026):
+Adapts Apache-2.0 Codeg at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d:
+src/app/workspace/layout.tsx (KeptMountedSurface),
+src/components/conversations/conversation-detail-panel.tsx (stable keyed sibling
+pane geometry), src/lib/tab-group-layout.ts (unchanged computeRects),
+src/components/ui/{resizable,overlay-host-hidden}.tsx,
+src/hooks/use-media-query.ts, src/components/tabs/tab-bar.tsx (tab chrome and
+explicit close actions), and src/components/business/{workspace,task-detail,
+work-list,ui}.tsx. New frontend glue composes existing isolated business task
+and source surfaces into tabs/panes; legacy stores/providers and host terminal
+APIs are not imported. The scoped business modal consumes the existing hidden
+surface context. Existing task fields, revision gates and close guards remain.
+Installed react-resizable-panels2.1.9 (MIT) PanelGroup/Panel/PanelResizeHandle
+types, React19.2.4/@types-react19.2.13 hooks/DOM types, lucide-react0.563.0,
+Tailwind4.1.18, Testing Library React16.3.2/DOM10.4.1 and Vitest2.1.9 are API
+references, not copied dependency code. W3C ARIA Practices tabs/table docs at
+7e4034b262bc0d25332e330d8a582aaf34113829 are documentation references only.
+No Edublend, Payload, AGPL/GPL or other third-party source is ported.
+Original Apache-2.0 LICENSE and all preceding attribution remain intact.
