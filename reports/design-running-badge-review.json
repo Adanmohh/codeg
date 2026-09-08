@@ -1,6 +1,9 @@
 {
   "scope": "FolderHeader and live SidebarFolderGroupHeader runningCount badges only",
   "implementation": "7f3fce05092ecbd62525fac7cf0788d62efae9e5",
+  "integratedProductHead": "ced70f8038c5afc57ca76311b67b409acb8ac74c",
+  "acceptedMain": "71ec9f208aa4984dc6c7d00262d0c44e738d0a02",
+  "integration": "NOTICE-only conflict resolved preserving all Pi/drawer/badge attribution; accepted code retained, combined typecheck exit 0. Badge code and measured 4326 export unchanged.",
   "folderEvidenceUnchangedFrom": "b531501e281d093fb407580bac5c1593ac882b71",
   "method": "Design Studio aesthetic-judge and a11y-auditor methods applied sequentially inline by the implementation worker; no independent-agent claim",
   "evidence": [
