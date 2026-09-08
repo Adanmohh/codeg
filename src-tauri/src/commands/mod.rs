@@ -4,6 +4,7 @@ pub mod app_update;
 pub mod automation;
 pub mod background;
 pub mod backup;
+pub mod business_identity;
 pub mod canvas;
 pub mod chat_authoring;
 pub mod chat_channel;

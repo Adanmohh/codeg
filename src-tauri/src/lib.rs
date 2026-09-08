@@ -17,6 +17,7 @@ mod app_error;
 pub mod app_state;
 pub mod automation;
 pub mod backgrounds;
+pub mod business_identity;
 pub mod chat_channel;
 pub mod commands;
 pub mod db;
@@ -1563,6 +1564,15 @@ mod tauri_app {
                 token_usage_commands::token_usage_sync,
             work_task_commands::work_task_list,
             crate::commands::ops::ops_context,
+            crate::commands::business_identity::business_context,
+            crate::commands::business_identity::business_bootstrap,
+            crate::commands::business_identity::business_members_list,
+            crate::commands::business_identity::business_members_create,
+            crate::commands::business_identity::business_members_update,
+            crate::commands::business_identity::business_members_revoke,
+            crate::commands::business_identity::business_credentials_issue,
+            crate::commands::business_identity::business_credentials_list,
+            crate::commands::business_identity::business_credentials_revoke,
             crate::commands::ops::ops_inbox_create,
             crate::commands::ops::ops_tickets,
             crate::commands::ops::ops_thread,

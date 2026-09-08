@@ -30,6 +30,7 @@ pub fn build_router(
         .allow_headers(Any);
 
     let token_for_ws = token.clone();
+    let business_api = crate::business_identity::http::router(state.clone(), token.clone());
 
     let api = Router::new()
         .route("/health", post(health_check))
@@ -1714,7 +1715,7 @@ pub fn build_router(
     // router, so it is the OUTERMOST layer. The instrumented `next.run(req)`
     // future therefore wraps routing + auth + handler — auth-reject logs land
     // inside the `http` span.
-    let api = public_api.merge(api).layer(middleware::from_fn(
+    let api = public_api.merge(api).merge(business_api).layer(middleware::from_fn(
         |req: axum::extract::Request, next: Next| async move {
             let method = req.method().clone();
             let path = req.uri().path().to_string();

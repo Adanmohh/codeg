@@ -615,3 +615,30 @@ watchers, source-key or field-journal implementation from its copyleft-source
 research is copied. The source create/PATCH authorization omissions are not
 retained. Original Apache LICENSE and every preceding notice remain in force.
 No GPL/AGPL or additional dependency implementation is imported.
+
+Business member identity boundary (2026)
+========================================
+Owner-authorized IntroInnovation/intromail at the unchanged FOUNDING pin
+0bd24dfe284b888aa9f602fa1fd00e337ea38874:
+backend/app/services/mcp/auth.py, blob
+1faab9205afa2a65c02ff284b12c867c0b85ba99 (introduced in
+13be7b092b6bec9db48e1ac3b71fcdc7493f1fc5).
+The high-entropy opaque token, SHA-256-only storage, revoke and server-derived
+principal pattern is adapted into src-tauri/src/business_identity/{mod,store}.rs.
+Organization membership, domain/role checks and transactional revalidation are
+application glue; installation-global and caller-supplied authority are not
+imported. No Plane/OpenProject task code or other GPL/AGPL source is ported.
+
+Shared handlers, native commands and transactional migration glue extend Codeg
+Apache-2.0 v0.30.4, 6f6bd648b206412644842a98d9ffeebf57292bed, and accepted
+Adanmohh/codeg 4ec04d7282a50529335d724438d42b99a53385a2:
+src-tauri/src/web/auth.rs, blob 861ad112be52f682e319255ae3173c65b1aa1cef;
+src-tauri/src/web/handlers/ops.rs, blob ed2bf828943d0fc538b0e30a71175e42fcbfac11;
+src-tauri/src/commands/ops.rs, blob 03b869d1b2c67ec99e7527c6f8377c75111b4606;
+src-tauri/src/db/migration/m20260908_000008_ops_telegram_issues.rs, blob
+abcf6ce3d2bd95a4017c2ee98c6d99da30dbd6f0.
+Adapted targets: business_identity/http.rs, commands/business_identity.rs and
+migration m20260908_000009_business_identity.rs. The original Codeg LICENSE and
+all prior notices remain. rand0.8.5/rand_core0.6.4, sha2 0.10.9, base64 0.22.1,
+Axum0.8.8 and SeaORM1.1.19 were read as installed API references; no dependency
+implementation is copied and no dependency version changes.
