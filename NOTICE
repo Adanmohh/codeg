@@ -538,3 +538,11 @@ The same scoped accessibility follow-up extends Codeg v0.30.4
 src/components/settings/settings-shell.tsx at the immutable commit above,
 using the existing translated Navigation label and AppTitleBar size override.
 Drawer navigation, dismissal and settings persistence are unchanged.
+
+Running-session badge contrast correction (2026) extends the existing
+src/components/conversations/sidebar-conversation-list.tsx FolderHeader from
+xintaofei/codeg v0.30.4, commit 6f6bd648b206412644842a98d9ffeebf57292bed,
+Apache-2.0. Only the light amber text utility and its explanatory comment change;
+the count, accessible label, dark tokens and behavior remain inherited.
+The correction uses installed tailwindcss 4.1.18 theme.css tokens without copying
+dependency implementation. Original Apache LICENSE and all notices above remain.
