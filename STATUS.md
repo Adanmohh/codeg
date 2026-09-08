@@ -1,5 +1,12 @@
 # Status — 2026-09-08
 
+Owner final desktop `business_` run at unchanged `29774b50` reports46 passes,
+2 manual fixtures ignored, exit0, including generated553-command ACL and real
+command/session MockRuntime checks. Server/companion check also reports exit0.
+Final server/Clippy and committed evidence closeout are still pending; independent
+changed-boundary review continues. These are owner results, not root reruns or
+complete native isolation. No fixture, app, export or accepted package changed.
+
 Final bounded review `febbdc7f1b7cb5cb07dd6465fb4ffc32950350a4` is imported.
 At frozen `f3b408da`,16 unchanged tests plus four reviewer probes pass, with no
 additional blocker in migration/identity/settings core. Root verified the result
