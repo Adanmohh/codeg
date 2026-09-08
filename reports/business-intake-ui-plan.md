@@ -6,12 +6,13 @@ Docs-only worker: rebrand, branch **docs/business-intake-ui**. Root accepted
 **56c3ad91fcf5398ed2b6746f770fd88bd0f54c4f**. This follow-up starts from accepted
 main **2233cd4366a38f22ca308dcc81191be4489b40e5** and verifies the newly pinned
 contract: **Q1–Q4 are closed for UI consistency at 670af9ca; no remaining UI
-contract defect was found**. Implementation still awaits root's complete contract
-acceptance and dispatch. No B endpoint, provider connection or passing UI result
-is claimed by this plan.
+contract defect was found**. Root has accepted PR25 at report head
+**7f4d4dbc66f3b7487ffcb623769d79c9be2ac044** (merge aa16a9b9); its contract bytes
+remain 670af9ca. This worker's frontend implementation awaits separate dispatch.
+No B endpoint, provider connection or passing UI result is claimed by this plan.
 Follow-up draft: [PR27](https://github.com/Adanmohh/codeg/pull/27).
 
-Contract authority: tickets' [PR25 draft at
+Contract authority: tickets' [accepted PR25 contract at
 670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5](https://github.com/Adanmohh/codeg/blob/670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5/docs/contracts/business-intake.md).
 Read the complete local draft first, then verified identical bytes through
 `gh api` at that immutable commit: SHA256
@@ -220,8 +221,9 @@ contract surface is proposed. Backend responses remain the authority.
 
 This closes the UI contract checklist. Implementation of strict credential-store
 reads, owner/source fences, atomic task helpers and the actual protected UI remains
-future work with the existing acceptance gates; root acceptance/dispatch is still
-required. No tested runtime guarantee follows from this documentation agreement.
+future work with the existing acceptance gates. Tickets' backend dispatch does
+not start this worker's frontend assignment. No tested runtime guarantee follows
+from this documentation agreement.
 
 **Q1 access review at 18be55ed:** canonical bindings/list returns canManageSetup
 and BindingView; status returns the same checked projection. Only the actual
@@ -350,7 +352,7 @@ PR26's docs-only report/push/PR creation exited 0 and root merged it. This
 follow-up changes only the contract reconciliation in this report; no source,
 NOTICE, lockfile, protected planning document or fixture is edited by the worker.
 Root retains review/merge authority; Q1–Q4 have no remaining UI contract defect
-at the two immutable pins above. Implementation remains paused until dispatch.
+at the two immutable pins above. This worker remains docs-only until dispatch.
 
 Reconciliation checkpoint **57b07ca81257421b9cbb414f7ac456c1bb39ea06** is pushed;
 `git commit`, `git push` and draft PR27 creation exited 0. The follow-up report
