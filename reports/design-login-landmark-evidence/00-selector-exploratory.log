@@ -1,0 +1,7 @@
+### Error
+Error: locator.waitFor: Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+    1) <p role="alert" id="login-error" class="text-sm text-foreground">Invalid token. Please check and try again.</p> aka getByText('Invalid token. Please check')
+    2) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+Call log:
+[2m  - waiting for getByRole('alert') to be visible[22m

@@ -1,0 +1,13 @@
+Already up to date
+Done in 157ms using pnpm v11.9.0
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/tickets
+
+ ✓ src/lib/ops-telegram/locator.test.ts (2 tests) 1ms
+ ✓ src/lib/transport/web-transport.test.ts (13 tests) 8ms
+
+ Test Files  2 passed (2)
+      Tests  15 passed (15)
+   Start at  05:44:27
+   Duration  633ms (transform 47ms, setup 240ms, collect 49ms, tests 9ms, environment 581ms, prepare 78ms)
