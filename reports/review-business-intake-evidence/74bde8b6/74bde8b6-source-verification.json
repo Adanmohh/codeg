@@ -1,0 +1,15 @@
+{
+  "head": "74bde8b6f1aeee135122cf52f78746eec36c6602",
+  "archive": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/74bde8b6",
+  "phase": "immutable archive and separate test-only probe copy",
+  "files": 733,
+  "matching": 733,
+  "mismatches": [],
+  "probeDifferences": [
+    {
+      "path": "src-tauri/src/keyring_store.rs",
+      "expected": "2973118cb2a47eabfca9fb0b3413fd534e91aba8",
+      "actual": "4902fd3136cce31b5e81afda9686fb05a5805662"
+    }
+  ]
+}

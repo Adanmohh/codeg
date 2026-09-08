@@ -1,14 +1,12 @@
 # Independent Increment B product review
 
-**One open P2: strict credential reads lose legacy file-permission hardening.**
-Five unchanged focused tests pass at prerequisite checkpoint
-`60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d`; two additional reviewer tests reproduce
-R1 (exit101). The separate schema/DTO checkpoint
-`9a4c8c882cec938665bc233b4d658d8de019ccfd` passes its two unchanged tests
-independently and introduces no further blocking finding in this review.
-The incomplete intake backend and UI are **not accepted** by these limited
-results; authorization, source ordering and atomic publication consumers remain
-pending. R1 is unchanged at9a4c8c88 and awaits a committed correction.
+**R1 is closed at `74bde8b6f1aeee135122cf52f78746eec36c6602`: all eight requested
+tests pass independently, including the identical two reviewer probes that
+failed before the fix.** There are no open findings in the prerequisite/schema
+scope reviewed so far. The complete intake backend and UI are **not accepted**
+by these limited results; authorization, source ordering, protected setup and
+atomic publication consumers remain pending future committed checkpoints.
+Earlier failures and schema evidence are preserved below with their exact pins.
 
 Reviewer branch **review/business-intake** starts from accepted main
 **0bd50aedc7bdfea0bc392d4feb63b9101b5af92d**. The preceding contract review
@@ -21,7 +19,67 @@ imported by root. Existing fixtures, exports, credential stores, targets and
 processes remain untouched. This review created only its own archives, target,
 synthetic temporary test data and report evidence.
 
-## Current exact-head review
+## Permission correction: exact execution and closure
+
+Resolved **74bde8b6f1aeee135122cf52f78746eec36c6602** through `gh api`, parent
+**9a4c8c882cec938665bc233b4d658d8de019ccfd**. Read the complete two-file correction
+and report diff. `keyring_store.rs` blob is
+**2973118cb2a47eabfca9fb0b3413fd534e91aba8**. The shared existing hardening helper
+runs before strict reading while `change_token_at` holds `TOKEN_WRITE_LOCK`.
+Its file guard preserves directory traversal/contents on the deterministic
+read-failure case. Only true NotFound starts an empty map; malformed/read errors
+still return before replacement. Native keyring behavior is unchanged.
+
+Task helpers, DTOs, migrations, registry, Cargo manifest/lockfile and NOTICE are
+byte-identical to `9a4c8c88` (`git diff --exit-code`, exit0). Existing Apache
+attribution remains sufficient for this local helper/test adaptation; no new
+third-party code or dependency was added. The owner report now accurately
+describes the schema test's nonexistent-owner rejection and table existence.
+That evidence wording is resolved; the missing broader migration tests remain
+explicit future coverage, not silently upgraded to passing evidence.
+
+The unchanged archive `.build/review-business-intake/74bde8b6` matches all
+**733/733** tracked backend/integration/licence blobs. The separate probe copy
+differs only by appended tests in `keyring_store.rs`. The added test bodies are
+byte-identical to the original failure probes: SHA256
+**33fd516f1979aba67699d79c0d24fdaad5f1b6b88b776cbe3f422fea55716d55**.
+All six original evidence-file hashes still match; no old log or assertion was
+rewritten. Only patch context offsets change at the fixed source.
+
+Commands use `<archive>/src-tauri`, the same explicit reviewer-owned target and
+locked/offline/no-default-features library command documented below.
+
+| Selector / source | Independent observed result |
+| --- | --- |
+| `intake_store_` / unchanged `74bde8b6` | Exit0; 3 passed, 0 failed/ignored; 0.02s, including both original store tests and the new permission regression |
+| `intake_task_` / unchanged `74bde8b6` | Exit0; 2 passed, 0 failed/ignored; 0.18s |
+| `real_business_router_derives_actor_rejects_spoofs_and_returns_revision_conflicts` / unchanged `74bde8b6` | Exit0; 1 passed, 0 failed/ignored; 0.22s |
+| `independent_intake_` / same two added probes on `74bde8b6` | Exit0; 2 passed, 0 failed/ignored; 0.00s reported |
+
+The probes now verify 0600 after a valid strict read and after both rejected
+malformed set/delete, alongside unchanged bytes and no temporary residue. The
+existing reader's positive control still passes. The store tests additionally
+preserve invalid UTF-8/wrong JSON value/directory failures, missing-file creation
+and unrelated entries. Task rollback/owner/review behavior and authenticated
+router positives, spoof/domain/viewer denials and CAS conflicts pass unchanged.
+**R1 is closed on executed evidence, not solely the owner's passing tests.**
+
+Logs, test-only patch, attribution, hash correspondence and structured closure:
+[`review-business-intake-evidence/74bde8b6`](review-business-intake-evidence/74bde8b6/).
+The four unused-consumer warnings, linker unwind warning and proc-macro-error2
+future compatibility warning remain disclosed; this is not a Clippy waiver.
+Owner-reported full `keyring_store::tests` 10-pass result was not separately
+repeated beyond the bounded selectors above. No broader A gates or unchanged
+schema test rerun, browser/provider operation, native keyring call or fixture
+mutation was performed. No reviewer test process remains running.
+
+Before the isolated probe edit, live hooks recorded own-session PreToolUse
+**1788894427**, line19605, and PostToolUse **1788894376**, line19588, exit0 with
+the approvals cwd; observed timestamp1788894428. Separate React19.2.4 package
+and Cargo manifest reads preceded this re-review. Existing code-context and
+installed pinned-source grounding remain applicable; hooks were not bypassed.
+
+## Frozen prerequisite review at60daf42e (historical)
 
 Resolved the immutable owner commit through `gh api`, parent
 **086eee485e6f40a8b02ea77c9dbeefe315c81596**. Read the complete six-file diff,
@@ -45,9 +103,9 @@ These results do not yet prove atomic intake claim/link/receipt publication:
 the intake consumers and their source/grant revalidation do not exist at this
 head. The Rust transaction parameter alone is not an authorization capability.
 
-## R1 — P2: strict mutation reads skip existing credential-file hardening
+## R1 — P2: original credential hardening regression, now closed
 
-**Open**, server/Unix. Exact location:
+**Closed at `74bde8b6` by the execution above.** Original server/Unix location:
 [`src-tauri/src/keyring_store.rs:103–116`](https://github.com/Adanmohh/codeg/blob/60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d/src-tauri/src/keyring_store.rs#L103-L116),
 called by `change_token_at` at line124. This is separate from the earlier task
 review's R1; the identifier is local to this report.
@@ -64,20 +122,20 @@ Reproduction: in a temporary directory, seed a 0644 JSON credential map with
 synthetic values; compare the existing reader with the strict reader. Then seed
 a malformed 0644 map containing an unrelated synthetic entry, invoke both set
 and delete, and inspect bytes, directory contents and mode. No real store or
-account is involved. Both reviewer tests fail as expected, exit101: valid strict
+account is involved. At60daf42e both reviewer tests failed, exit101: valid strict
 read mode **420 (0644)** versus required **384 (0600)**, and rejected set/delete
 modes **[420,420]** versus **[384,384]**. The existing-reader positive control
 reaches 0600; all byte-preservation and no-residue assertions pass before those
 mode failures. The added probe is isolated from the immutable source archive.
 
-**Required fix:** retain the existing best-effort Unix permission hardening on
+**Original fix requirement, now met:** retain the existing best-effort Unix permission hardening on
 the strict mutation read, under the existing lock, while preserving the new
 fail-closed read/parse behavior. A shared narrow pre-read helper is sufficient.
 Regression tests must cover valid strict reads and rejected set/delete: 0600,
 unchanged malformed bytes and no replacement/temp residue. No credential-store
 rewrite or cross-process/SQLite atomicity claim is needed.
 
-## Independently executed evidence
+## Original independently executed evidence at60daf42e
 
 Unchanged archive:
 `.build/review-business-intake/60daf42e`; separate reviewer probe archive:
@@ -150,13 +208,13 @@ integration and licence blobs. Logs and verification summary:
 Four unused-consumer warnings, the linker warning and the dependency future
 compatibility warning are preserved. No Clippy result or waiver is claimed.
 
-**Evidence correction, not another schema blocker:**
+**Historical evidence correction, resolved in the74bde8b6 owner report:**
 `business_intake/tests.rs:36–72` inserts a random nonexistent owner UUID and
 checks five table registrations. It does not seed a foreign-organization member
 or any existing task row. The test name's “retains_task_rows” and owner report's
 “cross-org member-FK rejection” overstate what runs. The observed result is
 missing-member rejection with zero inserted bindings plus fresh table existence.
-Describe that accurately; populated upgrade/rollback/atomic-failure coverage
+The corrected report now describes that accurately; populated upgrade/rollback/atomic-failure coverage
 and real positive/negative association cases remain future gates. No relaxed
 organization constraints or fabricated cross-org fixture was used here.
 
@@ -217,7 +275,7 @@ both exit0 and the approvals cwd. No hook was disabled or bypassed.
 ## Remaining B probes and original review plan
 
 The preparation table below remains the full plan. P01 and the task-owned part
-of P12 now have the scoped evidence above, including open R1. Other rows are
+of P12 now have the scoped evidence above, including the executed R1 closure. Other rows are
 planned; no full B or UI pass is implied.
 
 Use the implementation owner's real protected router/core and committed test

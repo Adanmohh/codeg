@@ -1,0 +1,46 @@
+warning: function `invalid` is never used
+  --> src/business_intake/error.rs:87:15
+   |
+87 | pub(super) fn invalid() -> Error {
+   |               ^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `conflict` is never used
+  --> src/business_intake/error.rs:90:15
+   |
+90 | pub(super) fn conflict() -> Error {
+   |               ^^^^^^^^
+
+warning: function `missing` is never used
+  --> src/business_intake/error.rs:93:15
+   |
+93 | pub(super) fn missing() -> Error {
+   |               ^^^^^^^
+
+warning: field `0` is never read
+   --> src/business_intake/types.rs:101:19
+    |
+101 | pub struct Secret(pub(super) String);
+    |            ------ ^^^^^^^^^^^^^^^^^
+    |            |
+    |            field in this struct
+    |
+    = help: consider removing this field
+
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 5 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.88s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 2 tests
+test business_tasks::tests::intake_task_source_link_is_atomic_text_free_and_invalidates_review ... ok
+test business_tasks::tests::intake_task_transaction_rolls_back_creation_and_preserves_explicit_editor_owner ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 3709 filtered out; finished in 0.18s
+
