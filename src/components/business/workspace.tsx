@@ -363,7 +363,7 @@ export function BusinessWorkspace({
             className={cn(
               "focus-visible:ring-ring flex min-h-12 w-full items-center gap-3 rounded-xl px-3 py-3 text-start text-sm font-medium outline-none focus-visible:ring-2",
               selectedNav(id)
-                ? "bg-primary/10 text-primary"
+                ? "bg-primary/10 text-sidebar-foreground font-semibold"
                 : "text-sidebar-foreground hover:bg-sidebar-accent"
             )}
           >

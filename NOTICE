@@ -904,3 +904,12 @@ global token, default shared Button, role, action or API behavior. Installed
 Tailwind CSS4.1.18 opacity utilities and React19.2.4 context are references;
 no dependency implementation or AGPL/GPL source is copied. Original LICENSE
 and every preceding attribution remain intact.
+
+Business selected-navigation contrast correction (2026):
+The selected item in src/components/business/workspace.tsx retains its existing
+primary tint and aria-current behavior, using the paired sidebar-foreground
+and semibold weight from the accepted Codeg semantic system. Source references:
+that workspace and src/app/globals.css at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0), with Tailwind4.1.18.
+No new palette, global token, authentication or navigation behavior is added.
+Original LICENSE and all previous attribution sections remain intact.
