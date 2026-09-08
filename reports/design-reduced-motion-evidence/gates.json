@@ -1,0 +1,73 @@
+{
+  "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets",
+  "baseline": "0c11345803c77e24cba433a69d51c9669b74fe36",
+  "productHead": "cebce09d0df73205277d59c7048e733cc4b588f4",
+  "commands": [
+    {
+      "command": "pnpm exec vitest run src/components/ui/drawer-nested-layer.test.tsx src/components/tasks/task-detail-sheet.session-drawer.test.tsx src/components/files/file-viewer-drawer.test.tsx src/components/canvas/canvas-conversation-drawer.test.tsx",
+      "exit": 0,
+      "result": "39 passed / 4 files; 1.78s",
+      "evidence": "reports/design-reduced-motion-tests.log"
+    },
+    {
+      "command": "pnpm exec eslint src/components/ui/drawer.tsx",
+      "exit": 0,
+      "result": "pass",
+      "evidence": "reports/design-reduced-motion-lint.log"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "exit": 0,
+      "result": "pass",
+      "evidence": "reports/design-reduced-motion-typecheck.log"
+    },
+    {
+      "command": "CODEG_EXPORT_DIR=src-tauri/target/design-reduced-motion-before pnpm build",
+      "exit": 0,
+      "result": "baseline production export",
+      "evidence": "reports/design-reduced-motion-before-build.log"
+    },
+    {
+      "command": "CODEG_EXPORT_DIR=src-tauri/target/design-reduced-motion-after pnpm build",
+      "exit": 0,
+      "result": "corrected production export",
+      "evidence": "reports/design-reduced-motion-after-build.log"
+    },
+    {
+      "command": "playwright-cli -s=drawer-motion --raw run-code --filename=reports/design-reduced-motion-evidence/measure.js",
+      "exit": 0,
+      "result": "before and after, both preferences",
+      "evidence": "reports/design-reduced-motion-evidence/{before,after}.json"
+    },
+    {
+      "command": "playwright-cli -s=drawer-motion --raw run-code --filename=reports/design-reduced-motion-evidence/gestures.js",
+      "exit": 0,
+      "result": "nested Escape and actual CDP touch swipe; both preferences",
+      "evidence": "reports/design-reduced-motion-evidence/gestures.json"
+    },
+    {
+      "command": "PI_CODING_AGENT_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/target/pi-desk-browser/reduced-motion-empty-catalogue cargo test --locked --no-default-features --lib pi_desk_browser_fixture -- --ignored --nocapture",
+      "exit": 0,
+      "result": "1 passed; 564.33s; graceful shutdown; cwd src-tauri",
+      "evidence": "reports/design-reduced-motion-fixture.log"
+    },
+    {
+      "command": "playwright-cli -s=drawer-motion close",
+      "exit": 0,
+      "result": "owned browser closed",
+      "evidence": null
+    },
+    {
+      "command": "lsof -nP -iTCP:4324 -iTCP:4325 -sTCP:LISTEN",
+      "exit": 1,
+      "result": "expected no-match: neither owned listener remains",
+      "evidence": null
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0,
+      "result": "pass",
+      "evidence": null
+    }
+  ]
+}
