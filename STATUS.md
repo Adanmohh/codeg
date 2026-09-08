@@ -1,5 +1,17 @@
 # Status — 2026-09-08
 
+## Status update — 2026-09-09
+
+PR30 tenancy work is closed for its bounded backend/platform/settings scope:
+product `29774b50`, owner validation and independent review both complete with no
+additional finding. The PR remains draft and unmerged. The three workers are
+preserved in their existing Herdr panes; approvals and tickets have completed
+their current review handoffs, while rebrand continues the shared rich workspace
+UI work. Remaining acceptance work is the B000011→000012 integration with
+persisted B epochs, the full tenant-scoped CLI/event/file/child execution boundary,
+and a complete native tenant IPC/channel boundary. Existing native platform access
+and all fixtures/previews/bundles remain unchanged.
+
 PR30 report closeout `b3dfbcb602314cee6eb0039d92cb997762c02dd8` is imported
 and verified as report-only from `d3a176d2`; product remains `29774b50` and
 validation artifacts are unchanged. Its opening now attributes the independent
