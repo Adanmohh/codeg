@@ -1,0 +1,62 @@
+async (page) => {
+  const workspace = page.context().pages().find(p => p.url().endsWith('/workspace'))
+  const settings = page.context().pages().find(p => p.url().endsWith('/settings/system'))
+  if (!workspace?.url().startsWith('http://127.0.0.1:4326/') || !settings) throw Error('Owned fixture only')
+  const check = (ok, message) => { if (!ok) throw Error(message) }
+  const results = []
+  const stats = () => workspace.evaluate(async () => (await fetch('/api/ops_design_fixture_stats', { headers: { Authorization: 'Bearer ops-design-synthetic-operator' } })).json())
+  const language = async (option, lang) => {
+    await settings.getByRole('combobox').click()
+    await settings.getByRole('option', { name: option, exact: true }).click()
+    await workspace.waitForFunction(lang => document.documentElement.lang === lang, lang)
+    check(await workspace.getByRole('heading', { name: 'Pending human review', exact: true }).isVisible(), 'Locale lost pending review')
+  }
+  await workspace.getByRole('button', { name: /Re: Synthetic locale review Task/ }).click()
+  await workspace.getByLabel('Reply message', { exact: true }).waitFor()
+  const start = await stats()
+  for (const [viewport, width, height] of [['desktop', 1280, 900], ['mobile', 390, 844]]) {
+    await workspace.setViewportSize({ width, height })
+    if (width === 390) { await workspace.keyboard.press('Escape'); await workspace.waitForTimeout(350) }
+    for (const theme of ['light', 'dark']) {
+      await workspace.emulateMedia({ colorScheme: theme })
+      await workspace.evaluate(theme => document.documentElement.classList.toggle('dark', theme === 'dark'), theme)
+      await workspace.waitForTimeout(250)
+      const edits = {
+        To: 'sentinel.reader@example.com, second@example.com',
+        Cc: 'sentinel.cc@example.com',
+        'Bcc · hidden from other recipients': 'sentinel.bcc@example.com',
+        Subject: `مراجعة Private sentinel ${viewport} ${theme} (42)`,
+        'Reply message': `Private sentinel ${viewport} ${theme}: complete review (42).`,
+        'In-Reply-To · message ID': 'sentinel.parent@example.com',
+        'References · one message ID per line': 'sentinel.first@example.com\nsentinel.parent@example.com',
+      }
+      const headers = workspace.locator('article details')
+      if (await headers.getAttribute('open') === null) await headers.locator('summary').click()
+      for (const [label, value] of Object.entries(edits)) await workspace.getByLabel(label, { exact: true }).fill(value)
+      await language('Arabic', 'ar')
+      for (const [label, value] of Object.entries(edits)) check(await workspace.getByLabel(label, { exact: true }).inputValue() === value, `Arabic review lost ${label}`)
+      const direction = await workspace.getByRole('region', { name: 'Ops desk', exact: true }).evaluate(root => ({
+        fields: [...root.querySelectorAll('input,textarea')].map(el => ({ label: el.labels[0].textContent, dir: el.getAttribute('dir'), direction: getComputedStyle(el).direction })),
+        accountPrefix: /Account \d+/.test(root.textContent),
+        overflow: document.documentElement.scrollWidth > innerWidth,
+      }))
+      check(!direction.accountPrefix && !direction.overflow, 'Review banner or overflow')
+      if (width === 390) {
+        direction.backRotation = await workspace.getByRole('button', { name: 'Back to review queue', exact: true }).locator('svg').evaluate(el => getComputedStyle(el).rotate)
+        check(direction.backRotation === '180deg', 'RTL review Back not mirrored')
+      }
+      await workspace.locator('article > header').scrollIntoViewIfNeeded()
+      await workspace.screenshot({ path: `reports/browser-design-ops/after-${viewport}-${theme}-ar-review.png` })
+      await language('الإنجليزية', 'en')
+      for (const [label, value] of Object.entries(edits)) check(await workspace.getByLabel(label, { exact: true }).inputValue() === value, `Restored-English review lost ${label}`)
+      check(await workspace.getByLabel('From · inbox identity').inputValue() === 'support@example.com', 'Inbox identity changed')
+      await workspace.getByRole('button', { name: 'Approve and send reply', exact: true }).scrollIntoViewIfNeeded()
+      await workspace.screenshot({ path: `reports/browser-design-ops/after-${viewport}-${theme}-en-review-restored.png` })
+      results.push({ viewport, theme, allReviewFieldsPreserved: true, direction })
+    }
+  }
+  const finish = await stats()
+  const privatePersisted = await workspace.evaluate(() => Object.values(localStorage).some(value => value.includes('Private sentinel') || value.includes('sentinel.bcc@example.com')))
+  check(!privatePersisted && finish.providerRequests === start.providerRequests, 'Locale persisted private content or dispatched')
+  return { syntheticOnly: true, results, privatePersisted, providerBefore: start.providerRequests, providerAfter: finish.providerRequests, restoredEnglish: true }
+}

@@ -1,6 +1,6 @@
 # Ops locale, direction and review copy corrections
 
-The four scoped production corrections are implemented. Browser rechecks and final gates are in progress; this is a reviewable checkpoint, not the final acceptance claim.
+The four scoped production corrections are implemented at **d20b1f8d** and pushed in draft [PR14](https://github.com/Adanmohh/codeg/pull/14). This evidence checkpoint precedes the requested integration of accepted main f4da7027; final combined export/recheck and report remain.
 
 - Sole worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`.
 - Branch: `fix/design-ops`, created after a clean check/fetch from accepted main **617385194f67b3d9e5aca5d9d29f3b1baeebb070**. PR9 is accepted at 8703e00f and merged as 02e3f5d8.
@@ -26,7 +26,15 @@ The real-editor locale suite first failed **5/8** on the baseline, then passed *
 
 Root can open **http://127.0.0.1:4326/login**, enter the deliberately nonsecret fixture token **ops-design-synthetic-operator**, then open Ops desk. Current owned server PID **63050**, fixture state `.build/design-ops/e0b6e800-4361-442d-963d-c137628b62c9`, export **out-design-ops/**. Its authenticated read-only `/api/ops_design_fixture_stats` returns only synthetic IDs and provider request count. Proposal **1** is reserved for locale/edit checks; **2** is provider-accepted/local-recording-pending, **3** accepted/recorded, **4** unknown, **5** rejected, **6** denied. All four provider requests happened only against the fixture's loopback server during seeding; no runtime engine or inference starts. Please keep proposal 2's recording action untouched until this worker records its no-resend recheck. Other terminal records are safe for read-only review.
 
-Final work remaining: refreshed export and desktop/mobile English/Arabic/restored-English CLI checks, all terminal views and recording-only provider-count assertion, measured Design Studio recheck, desktop/server Clippy/checks and final report/PR update. Existing 4320/4322/4323/4324 exports and state remain untouched.
+The actual rebuilt d20b1f8d UI passed English → Arabic → English for reply/private note and every review field at 1280×900 and 390×844, light/dark. Returned evidence: `design-ops-after.raw`, `design-ops-review.raw`; captures are `browser-design-ops/after-*.png`. The workspace stayed visible; both mobile Back icons rotate 180 degrees in RTL; emails/thread IDs stay LTR and Arabic note/subject content resolves RTL. No account prefix or document overflow. Synthetic private values are absent from localStorage, and provider count remains **4 → 4**. The real leave prompt still appears; cancelling preserved the note and focus on Approvals (`design-ops-leave-cancel.raw`). Two CLI attempts using event listeners closed only the named browser session; bounded CLI actions and explicit native-dialog commands completed the checks without changing browser tooling or application code.
+
+All five actual terminal states were captured and checked (`design-ops-terminal.raw`): recording-pending, accepted/recorded, unknown, rejected and denied. No terminal offers approval/send. Proposal **2 is now fully recorded** after clicking the existing **Finish recording receipt**; the provider request count stayed **4 → 4**. Do not reseed or replay it. All provider fixtures remain synthetic; unknown proposal 4 is untouched.
+
+Pre-integration gates: **75 frontend tests**, default desktop/server checks, desktop/server Clippy with warnings denied, and **167 Rust Ops tests (4 ignored explicit manual fixtures)** all passed, exit 0. Typecheck and separate export also passed. Exact commands are in `design-ops-rust-gates.sh` and the local `design-ops-*.log` evidence. Root independently passed all **22 Ops flow/session tests**, exit 0, `/tmp/ops-design-locale-independent.log` (owner-reported evidence, not a worker rerun).
+
+Design Studio **55c8614dcfff33b4caa5a544b4f1f91877214878** pure buildReport consumed actual CLI probes of pending/thread plus five terminal states at both widths/themes (28 rows). The terminal surfaces have no measured contrast failures. Light selected-row muted metadata measures **4.2:1**, requiring a small owned-list foreground correction. The initial extractor also sampled unpainted inputs inside closed disclosures; that measurement limitation will be corrected explicitly before the final probe. Raw measurements remain in `design-ops-probe-{pending,thread}.raw`, `design-ops-terminal.raw` and `design-ops-measured*`.
+
+Remaining: checkpoint/push this evidence, merge accepted main while preserving both NOTICE additions, correct/recheck the selected-row contrast, rebuild only out-design-ops, run affected frontend/integration gates, release stable 4326 and rewrite the final report. Existing 4320/4322/4323/4324 exports and state remain untouched.
 
 ## Source authority and attribution
 

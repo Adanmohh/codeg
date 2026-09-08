@@ -1,0 +1,214 @@
+{
+  "surface": "Synthetic locale review",
+  "viewport": "desktop",
+  "theme": "dark",
+  "scope": "Ops thread/review only; inherited shell is outside this measurement",
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#fafafa",
+      "#262626",
+      "#0a0a0a",
+      "#151515",
+      "#a1a1a1",
+      "#4b4b4b",
+      "#1f0b0c",
+      "#151a18",
+      "#161109",
+      "#222222",
+      "#171717",
+      "#1c1c1c",
+      "#212121",
+      "#555555"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      12,
+      14,
+      16,
+      20
+    ],
+    "spacingPx": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      20,
+      24
+    ],
+    "radiiPx": [
+      10,
+      14
+    ]
+  },
+  "contrast": {
+    "checked": 77,
+    "failures": [
+      {
+        "text": "",
+        "fg": "#0a0a0a",
+        "bg": "#4b4b4b",
+        "ratio": 2.27,
+        "required": 4.5
+      },
+      {
+        "text": "",
+        "fg": "#0a0a0a",
+        "bg": "#1f0b0c",
+        "ratio": 1.05,
+        "required": 4.5
+      },
+      {
+        "text": "design-locale@example.com",
+        "fg": "#0a0a0a",
+        "bg": "#555555",
+        "ratio": 2.66,
+        "required": 4.5
+      },
+      {
+        "text": "design-locale@example.com",
+        "fg": "#0a0a0a",
+        "bg": "#555555",
+        "ratio": 2.66,
+        "required": 4.5
+      }
+    ]
+  },
+  "motion": {
+    "transitionsCount": 22,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": null,
+    "reducedMotionEffective": false,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "snapshot": "- region \"Ops desk\":\n  - navigation \"Ops views\":\n    - button \"Inbox\"\n    - button \"Approvals\"\n    - button \"Morning\"\n  - button \"Telegram notifications\"\n  - button \"Refresh\"\n  - complementary \"Ticket list\":\n    - text: Resend key configured\n    - button \"Pull now\"\n    - group: Manage email connection\n    - text: Inbox\n    - combobox \"Inbox\":\n      - option \"Support · support@example.com\" [selected]\n    - text: Ticket status\n    - combobox \"Ticket status\":\n      - option \"All statuses\" [selected]\n      - option \"Open\"\n      - option \"Resolved\"\n      - option \"Pending\"\n      - option \"Snoozed\"\n    - list:\n      - listitem:\n        - button \"Reader Open Synthetic denied review 8.9.2026\"\n      - listitem:\n        - button \"Reader Open Synthetic rejected review 8.9.2026\"\n      - listitem:\n        - button \"Reader Open Synthetic unknown review 8.9.2026\"\n      - listitem:\n        - button \"Reader Open Synthetic accepted review 8.9.2026\"\n      - listitem:\n        - button \"Reader Open Synthetic recording review 8.9.2026\"\n      - listitem:\n        - button \"Reader Open Synthetic locale review 8.9.2026\"\n      - listitem:\n        - button \"Reader Open A real local thread 8.9.2026\"\n    - button \"Previous\" [disabled]\n    - button \"Next\" [disabled]\n  - article:\n    - text: \"Open · Thread #2\"\n    - heading \"Synthetic locale review\" [level=1]\n    - paragraph: Reader · reader@example.com\n    - strong: Incoming email\n    - text: reader@example.com\n    - time: 8.9.2026 klo 3.21.11\n    - paragraph: Hello (build 42). Reply to reader@example.com, please. مرحباً، الصوت يتوقف في الشاشة الرئيسية. Build 42.\n    - strong: Private note\n    - text: operator:http\n    - time: 8.9.2026 klo 3.21.11\n    - paragraph: \"ملاحظة تجريبية داخلية: تحقق من Build 42 (reader@example.com).\"\n    - region \"Compose\":\n      - button \"Reply draft\" [pressed]\n      - button \"Private note\"\n      - paragraph: Saved draft · revision 1. Prepare the full reply here. Sending requires a proposal, human review and connected delivery.\n      - text: From · inbox identity\n      - textbox \"From · inbox identity\": support@example.com\n      - text: To\n      - textbox \"To\": reader@example.com\n      - text: Cc\n      - textbox \"Cc\"\n      - text: Bcc · hidden from other recipients\n      - textbox \"Bcc · hidden from other recipients\"\n      - paragraph: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.\n      - text: Subject\n      - textbox \"Subject\": \"Re: Synthetic locale review\"\n      - text: Reply message\n      - textbox \"Reply message\": Original approved body\n      - group: Thread headers · part of the complete payload\n      - paragraph: Plain text only. Attachments are not supported in this draft.\n      - button \"Save draft\" [disabled]\n      - text: No unsaved changes",
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#4b4b4b rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#1f0b0c rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151a18 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#161109 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#222222 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#171717 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#1c1c1c rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#212121 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#555555 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ],
+  "targetsUnder44": [],
+  "inputsUnder16": [
+    {
+      "name": "Replacement API key",
+      "size": "14px"
+    },
+    {
+      "name": "Inbox",
+      "size": "14px"
+    },
+    {
+      "name": "Ticket status",
+      "size": "14px"
+    },
+    {
+      "name": "From · inbox identity",
+      "size": "14px"
+    },
+    {
+      "name": "To",
+      "size": "14px"
+    },
+    {
+      "name": "Cc",
+      "size": "14px"
+    },
+    {
+      "name": "Bcc · hidden from other recipients",
+      "size": "14px"
+    },
+    {
+      "name": "Subject",
+      "size": "14px"
+    },
+    {
+      "name": "Reply message",
+      "size": "14px"
+    },
+    {
+      "name": "In-Reply-To · message ID",
+      "size": "14px"
+    },
+    {
+      "name": "References · one message ID per line",
+      "size": "14px"
+    }
+  ],
+  "horizontalOverflow": false,
+  "viewportOverflow": false
+}

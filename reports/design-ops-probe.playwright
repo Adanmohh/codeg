@@ -1,0 +1,179 @@
+// CLI function input, not an application JavaScript module.
+// Bounded Ops measurements via the installed Playwright CLI.
+// Design Studio's pure buildReport consumes this raw shape; no browser MCP,
+// provider mutation, inference, or product instrumentation is involved.
+async (page) => {
+  if (!page.url().startsWith("http://127.0.0.1:4326/"))
+    throw Error("Fixture only")
+  const results = []
+  const scope = page.getByRole("region", { name: "Ops desk", exact: true })
+  const surface = await scope.locator("article h1").innerText()
+  for (const [viewport, width, height] of [
+    ["mobile", 390, 844],
+    ["desktop", 1280, 900],
+  ]) {
+    await page.setViewportSize({ width, height })
+    if (width < 1024) await page.keyboard.press("Escape")
+    for (const theme of ["light", "dark"]) {
+      await page.emulateMedia({
+        colorScheme: theme,
+        reducedMotion: "no-preference",
+      })
+      await page.evaluate(
+        (t) => document.documentElement.classList.toggle("dark", t === "dark"),
+        theme
+      )
+      await page.waitForTimeout(250) // Let inherited color transitions settle.
+      const raw = await scope.evaluate((root) => {
+        const canvas = document.createElement("canvas")
+        canvas.width = canvas.height = 1
+        const ctx = canvas.getContext("2d")
+        if (!ctx) throw Error("Color measurement unavailable")
+        const paintedColor = (layers) => {
+          ctx.clearRect(0, 0, 1, 1)
+          for (const color of ["white", ...layers]) {
+            ctx.fillStyle = color
+            ctx.fillRect(0, 0, 1, 1)
+          }
+          const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data
+          return `rgb(${r}, ${g}, ${b})`
+        }
+        const colors = new Set(),
+          fontFamilies = new Set(),
+          fontSizesPx = new Set()
+        const spacingPx = new Set(),
+          radiiPx = new Set(),
+          easings = new Set()
+        const textSamples = [],
+          smallTargets = [],
+          smallInputs = []
+        let transitionsCount = 0
+        const visible = (el) =>
+          el.getClientRects().length &&
+          getComputedStyle(el).visibility !== "hidden"
+        for (const el of [root, ...root.querySelectorAll("*")].filter(
+          visible
+        )) {
+          if (["OPTION", "SVG", "PATH"].includes(el.tagName.toUpperCase()))
+            continue
+          const cs = getComputedStyle(el)
+          const layers = []
+          for (let node = el; node; node = node.parentElement)
+            layers.unshift(getComputedStyle(node).backgroundColor)
+          const bg = paintedColor(layers)
+          const fg = paintedColor([...layers, cs.color])
+          const hasText = [...el.childNodes].some(
+            (n) => n.nodeType === 3 && n.textContent.trim().length > 2
+          )
+          const controlText = ["INPUT", "SELECT", "TEXTAREA"].includes(
+            el.tagName
+          )
+          if (
+            (hasText || controlText) &&
+            !el.matches(":disabled") &&
+            !el.closest("fieldset[disabled]")
+          ) {
+            textSamples.push({
+              text: (el.innerText || el.value || "").trim().slice(0, 60),
+              fg,
+              bg,
+              sizePx: parseFloat(cs.fontSize),
+              bold: parseInt(cs.fontWeight, 10) >= 700,
+            })
+            colors.add(fg)
+            colors.add(bg)
+            fontFamilies.add(cs.fontFamily)
+          }
+          fontSizesPx.add(parseFloat(cs.fontSize))
+          for (const prop of [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "gap",
+            "columnGap",
+            "rowGap",
+          ]) {
+            const n = parseFloat(cs[prop])
+            if (n > 0) spacingPx.add(Math.round(n))
+          }
+          const radius = parseFloat(cs.borderTopLeftRadius)
+          if (radius > 0) radiiPx.add(Math.round(radius))
+          if (parseFloat(cs.transitionDuration) > 0) {
+            transitionsCount++
+            easings.add(cs.transitionTimingFunction)
+          }
+          if (el.matches("button,input,select,textarea,summary,a[href]")) {
+            const hit = el.matches('input[type="checkbox"]')
+              ? el.closest("label") || el
+              : el
+            const rect = hit.getBoundingClientRect()
+            const name =
+              el.getAttribute("aria-label") ||
+              el.labels?.[0]?.textContent?.trim() ||
+              el.textContent.trim()
+            if (rect.width < 44 || rect.height < 44)
+              smallTargets.push({
+                name,
+                width: rect.width,
+                height: rect.height,
+              })
+            if (
+              controlText &&
+              !el.matches('input[type="checkbox"]') &&
+              parseFloat(cs.fontSize) < 16
+            )
+              smallInputs.push({ name, size: cs.fontSize })
+          }
+        }
+        const levels = [...root.querySelectorAll("h1,h2,h3,h4,h5,h6")].map(
+          (el) => +el.tagName[1]
+        )
+        return {
+          colors: [...colors],
+          fontFamilies: [...fontFamilies],
+          fontSizesPx: [...fontSizesPx].sort((a, b) => a - b),
+          spacingPx: [...spacingPx].sort((a, b) => a - b),
+          radiiPx: [...radiiPx].sort((a, b) => a - b),
+          textSamples,
+          transitionsCount,
+          easings: [...easings],
+          reducedMotionHandled: null,
+          headingOrderBreaks: levels.filter(
+            (n, i) => i && n > levels[i - 1] + 1
+          ).length,
+          landmarks: {
+            main: !!root.closest("main"),
+            nav: !!document.querySelector("nav,[role=navigation]"),
+          },
+          smallTargets,
+          smallInputs,
+          horizontalOverflow: root.scrollWidth > root.clientWidth,
+          viewportOverflow:
+            document.documentElement.scrollWidth > window.innerWidth,
+        }
+      })
+      const snapshot = await scope.ariaSnapshot()
+      raw.aria = {
+        snapshot,
+        headingOrderBreaks: raw.headingOrderBreaks,
+        landmarks: raw.landmarks,
+      }
+      await page.emulateMedia({ reducedMotion: "reduce" })
+      const reducedCount = await scope
+        .evaluate(
+          (root) =>
+            [...root.querySelectorAll("*")].filter(
+              (el) =>
+                el.getClientRects().length &&
+                parseFloat(getComputedStyle(el).transitionDuration) > 0
+            ).length
+        )
+      raw.reducedMotionEffective =
+        reducedCount === 0 || reducedCount < raw.transitionsCount * 0.2
+      results.push({ surface, viewport, theme, raw })
+    }
+  }
+  await page.emulateMedia({ reducedMotion: "no-preference" })
+  return results
+}

@@ -1,0 +1,119 @@
+{
+  "surface": "Pending human review",
+  "viewport": "mobile",
+  "theme": "light",
+  "scope": "Ops thread/review only; inherited shell is outside this measurement",
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#ffffff",
+      "#171717",
+      "#f5f5f5",
+      "#737373",
+      "#f7f7f7",
+      "#fbfbfb",
+      "#fcfcfc",
+      "#fafafa",
+      "#245e58",
+      "#fce8e9"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      12,
+      14,
+      16,
+      20
+    ],
+    "spacingPx": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      20
+    ],
+    "radiiPx": [
+      10
+    ]
+  },
+  "contrast": {
+    "checked": 31,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 17,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": null,
+    "reducedMotionEffective": false,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "snapshot": "- region \"Ops desk\":\n  - navigation \"Ops views\":\n    - button \"Inbox\"\n    - button \"Approvals\"\n    - button \"Morning\"\n  - button \"Telegram notifications\"\n  - button \"Refresh\"\n  - button \"Back to review queue\"\n  - article:\n    - paragraph: \"Proposal #1 · Task #1 · Run 1 · Support\"\n    - heading \"Pending human review\" [level=1]\n    - button \"Open original thread\"\n    - paragraph: \"Draft #1 · Revision 1. Review all recipients and the complete message below. Edits apply to this approval; the saved draft is not reread for delivery.\"\n    - text: From · inbox identity\n    - textbox \"From · inbox identity\": support@example.com\n    - text: To\n    - textbox \"To\": sentinel.reader@example.com, second@example.com\n    - text: Cc\n    - textbox \"Cc\": sentinel.cc@example.com\n    - text: Bcc · hidden from other recipients\n    - textbox \"Bcc · hidden from other recipients\": sentinel.bcc@example.com\n    - paragraph: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.\n    - text: Subject\n    - textbox \"Subject\": مراجعة Private sentinel mobile dark (42)\n    - text: Reply message\n    - textbox \"Reply message\": \"Private sentinel mobile dark: complete review (42).\"\n    - group:\n      - text: Thread headers · part of the complete payload In-Reply-To · message ID\n      - textbox \"In-Reply-To · message ID\": sentinel.parent@example.com\n      - text: References · one message ID per line\n      - textbox \"References · one message ID per line\": sentinel.first@example.com sentinel.parent@example.com\n    - paragraph: Plain text only. Attachments are not supported in this draft.\n    - status: Approving sends this exact reply through Resend. Check To, Cc and Bcc before continuing.\n    - button \"Approve and send reply\"\n    - button \"Deny proposal\"",
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffffff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#171717 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f5f5f5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#737373 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f7f7f7 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fbfbfb rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fcfcfc rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fce8e9 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ],
+  "targetsUnder44": [],
+  "inputsUnder16": [],
+  "horizontalOverflow": false,
+  "viewportOverflow": false
+}

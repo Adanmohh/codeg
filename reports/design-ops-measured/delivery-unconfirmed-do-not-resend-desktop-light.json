@@ -1,0 +1,114 @@
+{
+  "surface": "Delivery unconfirmed · do not resend",
+  "viewport": "desktop",
+  "theme": "light",
+  "scope": "Ops thread/review only; inherited shell is outside this measurement",
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#ffffff",
+      "#171717",
+      "#f5f5f5",
+      "#737373",
+      "#fafafa",
+      "#f7f7f7",
+      "#df2225",
+      "#fcfcfc"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      12,
+      14,
+      16,
+      20
+    ],
+    "spacingPx": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      20,
+      24
+    ],
+    "radiiPx": [
+      10
+    ]
+  },
+  "contrast": {
+    "checked": 33,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 6,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": null,
+    "reducedMotionEffective": false,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "snapshot": "- region \"Ops desk\":\n  - navigation \"Ops views\":\n    - button \"Inbox\"\n    - button \"Approvals\"\n    - button \"Morning\"\n  - button \"Telegram notifications\"\n  - button \"Refresh\"\n  - complementary \"Proposal queue\":\n    - heading \"Review queue\" [level=1]\n    - paragraph: Pending first, then recent decisions. Approval alone is not delivery.\n    - list:\n      - listitem:\n        - 'button \"Re: Synthetic locale review Task #1 · Run 1 Pending human review\"'\n      - listitem:\n        - 'button \"Reply review #6 Task #6 · Run 1 Denied · not sent\"'\n      - listitem:\n        - 'button \"Reply review #5 Task #5 · Run 1 Not sent · needs attention\"'\n      - listitem:\n        - 'button \"Reply review #4 Task #4 · Run 1 Delivery unconfirmed · do not resend\"'\n      - listitem:\n        - 'button \"Reply review #3 Task #3 · Run 1 Sent · provider accepted\"'\n      - listitem:\n        - 'button \"Reply review #2 Task #2 · Run 1 Provider accepted · recording pending\"'\n  - article:\n    - paragraph: \"Proposal #4 · Task #4 · Run 1 · Support\"\n    - heading \"Delivery unconfirmed · do not resend\" [level=1]\n    - button \"Open original thread\"\n    - alert: Delivery is unconfirmed. Do not resend this proposal or create another delivery key. Reconcile the provider outcome first. Delivery outcome is unknown. Do not resend or create a new delivery key; reconcile with the provider first\n    - term: Message ID\n    - definition: ops-d440de7b-42a5-4b5e-bf5f-ea9f51513438@example.com",
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffffff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#171717 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f5f5f5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#737373 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f7f7f7 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#df2225 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fcfcfc rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ],
+  "targetsUnder44": [],
+  "inputsUnder16": [],
+  "horizontalOverflow": false,
+  "viewportOverflow": false
+}
