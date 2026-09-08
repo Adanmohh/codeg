@@ -18,7 +18,7 @@ export function StatusBar() {
     // command control room. The branch selector and context-window circle live
     // in the below-composer row, so those are the bar's only two clusters.
     return (
-      <div className="h-8 shrink-0 border-t border-border ws-chrome-border ws-surface-muted px-3 flex items-center justify-between text-xs text-muted-foreground">
+      <div className="h-8 shrink-0 border-t border-border ws-chrome-border ws-surface-muted px-3 flex items-center justify-between text-xs text-foreground/75">
         <div className="flex items-center gap-3">
           <QuickActionsDropdown />
           <StatusBarStats />
@@ -34,7 +34,7 @@ export function StatusBar() {
   }
 
   return (
-    <div className="h-8 shrink-0 border-t border-border ws-chrome-border ws-surface-muted pl-2 pr-4 flex items-center justify-between text-xs text-muted-foreground">
+    <div className="h-8 shrink-0 border-t border-border ws-chrome-border ws-surface-muted pl-2 pr-4 flex items-center justify-between text-xs text-foreground/75">
       {/* The branch selector, context-window circle and agent connection status
           moved to the below-composer folder/branch row; the left side now
           carries the quick-actions launcher (the window's bottom-left corner)

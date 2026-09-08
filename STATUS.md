@@ -13,7 +13,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 reviewed and merged; independent 167 integrated Rust tests plus host/Python/frontend and protected CLI checks pass | Pi cached reads/proposal and typed phone integration |
 | Telegram and beta validation | PR #10 reviewed and merged; independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Typed P1 issue extension, final integrated beta/native checks |
-| Final Design Studio loops | Preliminary seven-finding review and PR #11 specialist report accepted; shell/Pi fixes active | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
+| Final Design Studio loops | PR #13 shell/Pi corrections reviewed and merged; six scoped findings resolved | PR #14 locale/RTL/copy browser acceptance and final integrated review |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
@@ -305,3 +305,20 @@ that merge inspection. No product implementation is delegated to root.
 - Rebrand dispatched to new `fix/design-ops` from accepted main, same pane/worktree, report `reports/design-ops-fixes.md`, owned port 4326/export. Required locale edit preservation, RTL and accurate Ops receipt/internal copy corrections with actual CLI and Design Studio rechecks. Its previous 4322 fixture is closed; evidence is retained.
 - Approvals unblocked to integrate accepted host into PR #12 and implement the accepted typed issue phone-review contract using its owned 4323 fixture.
 - Tickets continues the five shell/Pi design corrections first; a separate Pi P1 cached-read/issue-proposal branch follows acceptance. Three Herdr workers maximum, all Astra/max and docs-first rules retained. Root writes no product code.
+
+- Accepted-host main rebuild passed: static frontend, real server/companion and isolated Python host import. Existing 4318 test database upgraded through migrations 000006/000007; actual Playwright CLI Ops/intake navigation and inspected screenshots pass. [Upgrade evidence](reports/browser-step2-main-upgrade.md). Final design changes and native bundle are still pending.
+
+## Shell design correction review in progress
+
+- PR #13 product `f8ba4597` reviewed; root independently passed nine Pi configuration/setup/status accessibility tests. Final browser measurements and exact-head acceptance remain.
+- A new high finding on the same recovery path is assigned to tickets: mobile Settings menu lacks an accessible name and has a 32px target. The worker will fix and recheck drawer navigation before acceptance. [Review](reports/review-design-shell.md).
+
+- PR #12 implementation checkpoint `8ff15d9d` reviewed; independent combined Ops suite passes 175 tests, three manual fixtures ignored. Typed notification/host decision/migration boundaries have no blocking source finding so far; final worker gates and actual issue phone CLI review remain. [Review](reports/review-telegram-issues.md).
+
+- PR #14 Ops correction checkpoint `d20b1f8d` reviewed; independent22 locale/session/receipt tests pass. Actual cross-tab language/RTL/receipt CLI rechecks and final worker gates remain. [Review](reports/review-design-ops.md).
+
+## Shell/Pi design corrections accepted; P1 bridge dispatched
+
+- PR #13 accepted at `0565f197df5754bf14fb37d0be3a13715c70e85c`, merged as `783bfb9cd9caf9546f6ef9effc067f5c904fc6be`. Six findings resolved; root reviewed full report/contrast/images and independently passed nine tests plus actual mobile menu/field CLI checks. Worker171 tests/lint/typecheck/build pass. [Review](reports/review-design-shell.md).
+- Tickets dispatched on new `feat/step3-pi-issues`, same worktree/tab/pane, report `reports/pi-issues.md`. Implements the three public scoped cached reads and closed native issue proposal through accepted host logic, real companion/adapter discovery, meaningful bridge gates and actual synthetic CLI review. Own4324/4325 output.
+- Approvals continues typed phone review; rebrand continues locale/RTL/receipt presentation validation. All three retain docs-first, immutable gh-api borrowing, Astra/max, isolated branches and no live provider/model actions. Root writes no product code.

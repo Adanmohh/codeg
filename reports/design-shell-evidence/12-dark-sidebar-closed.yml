@@ -1,0 +1,139 @@
+- generic:
+  - alert [ref=f1e1]
+  - region "Notifications alt+T"
+  - generic [ref=f1e2]:
+    - generic [ref=f1e4]:
+      - separator
+      - main [ref=f1e6]:
+        - generic [ref=f1e7]:
+          - generic [ref=f1e11]:
+            - generic [ref=f1e13]:
+              - tablist [ref=f1e17]:
+                - tab "New Conversation Close conversation tab" [selected] [ref=f1e19] [cursor=pointer]:
+                  - generic "fresh-desk-workspace · fix/design-shell — New Conversation" [ref=f1e21]: New Conversation
+                  - button "Close conversation tab" [ref=f1e22]
+                - button "New Conversation" [ref=f1e27]
+              - generic [ref=f1e34]:
+                - generic [ref=f1e35]:
+                  - generic [ref=f1e36]:
+                    - button "fresh-desk-workspace" [ref=f1e37]
+                    - generic "New Conversation" [ref=f1e41]
+                  - button "More actions" [ref=f1e43]
+                - generic [ref=f1e59]:
+                  - generic [ref=f1e61]:
+                    - heading "What would you like to do today?" [level=1] [ref=f1e62]
+                    - generic [ref=f1e63]:
+                      - tablist [ref=f1e64]:
+                        - tab "Code Development" [selected] [ref=f1e65]
+                        - tab "Office Work" [ref=f1e66]
+                        - tab "Scientific Research" [ref=f1e67]
+                      - tabpanel "Code Development" [ref=f1e68]:
+                        - generic [ref=f1e69]:
+                          - button "Brainstorming Explore intent & requirements before building" [ref=f1e70]:
+                            - generic [ref=f1e76]: Brainstorming
+                            - generic [ref=f1e77]: Explore intent & requirements before building
+                          - button "Systematic Debugging Find the root cause before proposing fixes" [ref=f1e78]:
+                            - generic [ref=f1e91]: Systematic Debugging
+                            - generic [ref=f1e92]: Find the root cause before proposing fixes
+                          - button "Writing Skills Create, edit & verify reusable skills" [ref=f1e93]:
+                            - generic [ref=f1e102]: Writing Skills
+                            - generic [ref=f1e103]: Create, edit & verify reusable skills
+                        - generic [ref=f1e104]:
+                          - button "Show previous skills" [disabled]
+                          - generic [ref=f1e106]:
+                            - button "Writing Plans" [ref=f1e107]
+                            - button "Executing Plans" [ref=f1e115]
+                            - button "Subagent-Driven Development" [ref=f1e123]
+                            - button "Dispatching Parallel Agents" [ref=f1e131]
+                            - button "Using Git Worktrees" [ref=f1e141]
+                            - button "Test-Driven Development" [ref=f1e150]
+                            - button "Verification Before Completion" [ref=f1e157]
+                            - button "Requesting Code Review" [ref=f1e165]
+                            - button "Receiving Code Review" [ref=f1e174]
+                            - button "Finishing a Development Branch" [ref=f1e183]
+                            - button "Using Superpowers" [ref=f1e192]
+                          - button "Show more skills" [ref=f1e200]
+                    - generic [ref=f1e205]:
+                      - button "Pi Pi" [pressed] [ref=f1e207] [cursor=pointer]:
+                        - img "Pi" [ref=f1e210]
+                        - generic [ref=f1e215]: Pi
+                      - button [ref=f1e217] [cursor=pointer]:
+                        - img "Claude Code" [ref=f1e220]
+                        - generic: Claude Code
+                      - button [ref=f1e223] [cursor=pointer]:
+                        - img "Codex" [ref=f1e226]
+                        - generic: Codex
+                      - button [ref=f1e229] [cursor=pointer]:
+                        - img "Gemini CLI" [ref=f1e232]
+                        - generic: Gemini CLI
+                      - button [ref=f1e236] [cursor=pointer]:
+                        - img "OpenClaw" [ref=f1e239]
+                        - generic: OpenClaw
+                      - button [ref=f1e247] [cursor=pointer]:
+                        - img "OpenCode" [ref=f1e250]
+                        - generic: OpenCode
+                      - button [ref=f1e253] [cursor=pointer]:
+                        - img "Cline" [ref=f1e256]
+                        - generic: Cline
+                      - button [ref=f1e260] [cursor=pointer]:
+                        - img "Hermes Agent" [ref=f1e263]
+                        - generic: Hermes Agent
+                      - button [ref=f1e268] [cursor=pointer]:
+                        - img "CodeBuddy" [ref=f1e271]
+                        - generic: CodeBuddy
+                      - button [ref=f1e276] [cursor=pointer]:
+                        - img "Kimi Code" [ref=f1e279]
+                        - generic: Kimi Code
+                      - button [ref=f1e284] [cursor=pointer]:
+                        - img "Grok" [ref=f1e287]
+                        - generic: Grok
+                      - button [ref=f1e291] [cursor=pointer]:
+                        - img "Cursor" [ref=f1e294]
+                        - generic: Cursor
+                      - button [ref=f1e297] [cursor=pointer]:
+                        - img "DeepSeek Harness" [ref=f1e300]
+                        - generic: DeepSeek Harness
+                      - button [ref=f1e303] [cursor=pointer]:
+                        - img "Qoder" [ref=f1e306]
+                        - generic: Qoder
+                      - button [ref=f1e309] [cursor=pointer]:
+                        - img "Google Antigravity" [ref=f1e312]
+                        - generic: Google Antigravity
+                    - generic [ref=f1e315]:
+                      - alert [ref=f1e316]: "Pi Desk is not installed or configured: pi 0.85.1, pi-mcp-adapter 2.32.1, and a configured gpt-6-astra catalogue entry with max reasoning are required. Use the existing Pi client configuration; no model fallback or login was attempted."
+                      - button "Open Agents settings" [ref=f1e318]
+                    - generic [ref=f1e321]:
+                      - generic [ref=f1e322]:
+                        - textbox "Send a message..." [active] [ref=f1e325]:
+                          - paragraph [ref=f1e326]: Send a message...
+                        - generic [ref=f1e327]:
+                          - generic [ref=f1e328]:
+                            - button "Add" [disabled]
+                          - generic [ref=f1e329]:
+                            - button "Send" [disabled]
+                      - generic [ref=f1e330]:
+                        - generic [ref=f1e331]:
+                          - button "fresh-desk-workspace" [ref=f1e332]
+                          - button "fix/design-shell" [ref=f1e334]
+                        - 'button "Agent connection: Disconnected" [ref=f1e337]'
+                  - paragraph [ref=f1e349]: Live feedback in the + menu drops a note into the turn the agent is already running, without interrupting it.
+            - separator
+          - separator
+          - generic [ref=f1e351]:
+            - button "New Terminal" [ref=f1e353]
+            - button "Hide Terminal (⌘J)" [ref=f1e354]
+      - separator
+    - generic [ref=f1e355]:
+      - button "Quick actions" [ref=f1e357]
+      - generic [ref=f1e358]:
+        - button "Add Command" [ref=f1e359]
+        - button "codeg-mcp service" [ref=f1e360]
+        - button "Alerts" [ref=f1e368]:
+          - generic [ref=f1e371]: "1"
+    - generic [ref=f1e374]:
+      - button "Show Sidebar (⌘B)" [ref=f1e375]
+      - button "Search" [ref=f1e376]
+    - generic [ref=f1e381]:
+      - button "Toggle Terminal (⌘J)" [ref=f1e382]
+      - button "Toggle Auxiliary Panel (⌘E)" [ref=f1e383]
+      - button "Open Settings (⌘,)" [ref=f1e384]

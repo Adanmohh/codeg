@@ -1460,6 +1460,10 @@
       "failed": "Installation failed"
     },
     "pi": {
+      "deskTitle": "Pi Desk setup",
+      "deskRequirements": "Desk launches require pi 0.85.1, pi-mcp-adapter 2.32.1 and a configured gpt-6-astra model that supports max reasoning.",
+      "deskNextStep": "Configure this model in your existing Pi client, then start a new conversation to retry. The adapter's PASS check does not verify Desk model readiness or provider access.",
+      "deskThinkingHint": "Desk sets max reasoning at launch. Saved preferences for other Pi sessions remain available here.",
       "configManagement": "Pi Configuration",
       "configDescription": "Pi authenticates with your model provider's API key. The key is written to ~/.pi/agent/auth.json and the model selection to settings.json.",
       "providerLabel": "Provider",

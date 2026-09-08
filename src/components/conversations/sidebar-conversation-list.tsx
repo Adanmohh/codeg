@@ -2803,7 +2803,7 @@ export function SidebarConversationList({
       // INSIDE the group rather than as another top-level row.
       return (
         <div
-          className="flex h-[2rem] items-center text-[0.75rem] text-muted-foreground/70"
+          className="flex h-[2rem] items-center text-[0.75rem] text-sidebar-foreground/70"
           style={{
             paddingLeft: `calc(var(--conv-rail-axis) + 0.875rem + ${CONV_RAIL_DEPTH_STEP})`,
           }}
@@ -2851,7 +2851,7 @@ export function SidebarConversationList({
         // spans this row; it renders nothing at depth 0 (a plain folder has no
         // spine).
         <div
-          className="relative flex h-[2rem] items-center text-[0.75rem] text-muted-foreground/70"
+          className="relative flex h-[2rem] items-center text-[0.75rem] text-sidebar-foreground/70"
           style={{
             paddingLeft: `calc(var(--conv-rail-axis) + 0.875rem + ${depth} * ${CONV_RAIL_DEPTH_STEP})`,
           }}
@@ -2869,7 +2869,7 @@ export function SidebarConversationList({
       // Folderless flat hint — no themeWrap, no conversation rail; align with the
       // section header's text inset (px-[0.5rem]) rather than the folder rail.
       return (
-        <div className="px-[0.5rem] py-[0.375rem] text-[0.75rem] text-muted-foreground/70">
+        <div className="px-[0.5rem] py-[0.375rem] text-[0.75rem] text-sidebar-foreground/70">
           {t("noChats")}
         </div>
       )
@@ -2879,7 +2879,7 @@ export function SidebarConversationList({
       // aligned with the section header's text inset). The header's own hover
       // actions (Open Folder / Clone / Import) are how you add the first folder.
       return (
-        <div className="px-[0.5rem] py-[0.375rem] text-[0.75rem] text-muted-foreground/70">
+        <div className="px-[0.5rem] py-[0.375rem] text-[0.75rem] text-sidebar-foreground/70">
           {t("noFolders")}
         </div>
       )
@@ -2889,7 +2889,7 @@ export function SidebarConversationList({
       // the other two. Only reachable in a workspace with no conversations at
       // all, since Recent spans every section.
       return (
-        <div className="px-[0.5rem] py-[0.375rem] text-[0.75rem] text-muted-foreground/70">
+        <div className="px-[0.5rem] py-[0.375rem] text-[0.75rem] text-sidebar-foreground/70">
           {t("noRecent")}
         </div>
       )
@@ -2984,7 +2984,7 @@ export function SidebarConversationList({
       // this placeholder; the content is lifted (relative) above the z-0 rails.
       return (
         <div
-          className="relative py-[0.375rem] text-[0.75rem] text-muted-foreground/70"
+          className="relative py-[0.375rem] text-[0.75rem] text-sidebar-foreground/70"
           style={{
             paddingLeft: `calc(0.875rem + ${row.depth} * ${CONV_RAIL_DEPTH_STEP} + 0.875rem)`,
           }}

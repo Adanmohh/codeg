@@ -1,0 +1,86 @@
+[
+  {
+    "auditLine": 7231,
+    "time": 1788826432,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PreToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7232,
+    "time": 1788826432,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PostToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7233,
+    "time": 1788826432,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PostToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7240,
+    "time": 1788826444,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PostToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7241,
+    "time": 1788826444,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PreToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7242,
+    "time": 1788826444,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PreToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7243,
+    "time": 1788826444,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PostToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7244,
+    "time": 1788826444,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PostToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7265,
+    "time": 1788826480,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PreToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7285,
+    "time": 1788826531,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PostToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7286,
+    "time": 1788826531,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PreToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  },
+  {
+    "auditLine": 7287,
+    "time": 1788826531,
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "event": "PreToolUse",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets"
+  }
+]
