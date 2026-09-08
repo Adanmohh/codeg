@@ -15,16 +15,18 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
 | Final Design Studio loops | PRs #13/#14/#18/#19 corrections accepted, including both badges and reduced motion | Final integrated specialist PR #16, root recheck and native bundle |
 
-The macOS debug app bundle currently contains Step 1 only. No live email,
+The macOS unsigned debug app now contains all accepted Phase1 product changes;
+build and isolated native startup/migration checks pass. [Artifact and evidence](reports/native-phase1-build.md).
+Final integrated design report acceptance remains. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
 Historical dispatch/review entries below describe their state at that time;
 the table above is the latest status.
 
 Root final frontend regression passes6158 tests across433 files. Integrated
 backend passes178 Ops and13 Desk-selector tests. Real release companion and
-debug server builds pass; the existing local test database upgraded through
-migration000008. Native executable compilation is running, with final bundle
-packaging after the remaining UI corrections. [Build evidence](reports/native-phase1-build.md).
+debug server and native bundle builds pass; both existing isolated test databases
+upgraded through migration000008. Final root82 focused design tests and actual
+integrated CLI drawer/empty-view checks pass. [Build evidence](reports/native-phase1-build.md).
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
