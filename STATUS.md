@@ -98,14 +98,22 @@ credential or existing fixture was accessed by the probes.
 Published review `473b3b316abdac67bacf09d4fef011ba3ec24ff4` is imported with
 the unchanged-test logs, failing probes, test-only patch and 728/728 source
 verification summary. Root read the report/results and verified all six recorded
-evidence digests. R1 remains open pending a committed fix and independent recheck.
+evidence digests. Correction `74bde8b6f1aeee135122cf52f78746eec36c6602` is now
+pushed to draft PR28: shared hardening runs before both readers, with a regular-file
+guard that preserves directory-failure fixtures. Root read the complete fix/report;
+owner reports all10 credential-store tests passing. R1 remains pending independent
+execution of the original probes and unchanged store/task/router checks at this fix.
 
 DTO/schema checkpoint `9a4c8c882cec938665bc233b4d658d8de019ccfd` is also under
 review. Root read its complete types/migration/error/tests/registration/NOTICE
 changes; endpoints are not exposed. Owner reports server check and two focused
 tests passing, with unused-consumer warnings. The migration test checks table
 registration and rejects a missing member; populated upgrade and actual cross-org
-member evidence remain separate requirements. No B runtime acceptance is implied.
+member evidence remain separate requirements. Published independent review
+`5ea431f3c7f59b042af9b513d231c1a332a845d7` confirms two unchanged schema/DTO
+tests pass at9a4 (0.05s), all733 source blobs match, and no additional scoped schema
+blocker. Root imported the evidence and verified both recorded digests. Owner report
+at74b now corrects the same test-scope overstatement. No B runtime acceptance is implied.
 New synthetic ports are assigned: rebrand UI4350, tickets backend4351/upstream4352;
 owners must recheck availability before launching. No new fixture is claimed running.
 [Product review](reports/review-business-intake.md).
