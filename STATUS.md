@@ -1,5 +1,14 @@
 # Status — 2026-09-08
 
+Independent tenancy checkpoint `8d935c88` is read and imported:
+[review](reports/review-business-tenancy.md). Frozen `f3b408da` passes16 unchanged
+identity/auth tests, one manual fixture ignored, exit0/0.99s; reviewer reports
+731/731 source blobs matched. No concrete blocker established in that bounded
+pass. Four reviewer-only migration cancellation/receipt retry/retained-task and
+settings permission/CAS/revocation probes are still compiling. An entrusted-but-
+unlinked run epoch correction is also pending from the owner. Platform/native,
+B persisted epochs and combined migration gates remain open; no final acceptance.
+
 **Restricted native tenant windows remain unavailable pending a complete IPC
 boundary.** Root verified that Tauri2.10.2's private `Channel::from_callback_fn`
 queues large replies without the channel interceptor. The inspected protocol
