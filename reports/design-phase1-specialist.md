@@ -100,4 +100,25 @@ No hook bypass or credential printing. Only fixture-only synthetic auth is used.
 - Docs-first full source reads: exit0. RAG docs gap: exit3 as above.
 - Deterministic component lint, CLI measurements, sequential specialist JSON,
   merged findings, scores and full branch/PR handoff are next. No final browser,
-  final-export, contrast or comprehensive BC pass is claimed at this checkpoint.
+final-export, contrast or comprehensive BC pass is claimed at this checkpoint.
+
+## Accepted integration and fixture preparation
+
+Preparation commit **5e137304** pushed; draft **https://github.com/Adanmohh/codeg/pull/16**.
+Root accepted PR14 at **e7f89b611e8a229fb557f03efb9627001fc06372** and merged
+**b7186ba65b2155bdba695ea6364f3ac267fbc51c**. Integration/export is now authorized.
+Before committing any fixture changes: the planned test-only adaptation adds
+explicit port/static-directory environment overrides to the two existing ignored
+browser fixtures (`integration/design_ops_browser.rs` and
+`ops_telegram/tests/issues_browser.rs`). Both still bind literal loopback; defaults
+remain their original4326/4323 exports. This worker will use4327/out-design-final,
+run email then issue fixture sequentially, own their PIDs/data, and preserve all
+existing fixtures. No engine, scheduler, live keyring/provider or runtime API change.
+
+Raw palette/motion candidates are retained. A report-only Canvas conversion of
+the original brief produces a labelled measurement copy; paired dark tokens and
+alpha composites get separate source-backed classification. Empty-valued select
+options remain sampled; native checkVisibility excludes closed-details controls.
+Reduced-motion duration counts alone will not be labelled spatial-motion defects:
+property/keyframe and rendered-interaction evidence will distinguish color/border/
+opacity feedback from movement, layout or scrolling.
