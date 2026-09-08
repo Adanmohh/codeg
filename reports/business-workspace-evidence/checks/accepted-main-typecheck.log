@@ -1,0 +1,8 @@
+Source: 0192ac3f
+Command/check: pnpm exec tsc --noEmit
+Recorded exit: 0
+Original: .build/business-workspace/accepted-main-typecheck.log
+Normalized ANSI/trailing whitespace only.
+
+Already up to date
+Done in 402ms using pnpm v11.9.0

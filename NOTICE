@@ -591,6 +591,40 @@ and docs/src/app/(docs)/react/handbook/animation/page.mdx;
 tailwindlabs/tailwindcss v4.1.18, 6db2a6d637ed12489f9fd5a64ca394d934eb14f4.
 No Base UI or Tailwind implementation is copied or ported.
 
+Business workspace provider isolation (2026)
+=============================================
+Adapts Apache-2.0 Codeg providers from accepted Adanmohh/codeg
+4ec04d7282a50529335d724438d42b99a53385a2:
+src/components/{i18n-provider,appearance-provider}.tsx and
+src/components/connection/web-connection-guard.tsx, with static export routing
+read from src-tauri/src/web/router.rs and next.config.ts. The inherited local
+language/font/theme lifecycle is retained; business member routes omit operator
+API reads and connection subscriptions. New route checks and tests are glue.
+Original xintaofei/codeg v0.30.4 Apache source and LICENSE remain unchanged
+(6f6bd648b206412644842a98d9ffeebf57292bed). No IntroMail/Plane/OpenProject hunk
+or additional third-party dependency is introduced by this provider change.
+
+Business organization workspace (2026)
+========================================
+Presentation and connection glue reuse Apache-2.0 Codeg source from accepted
+Adanmohh/codeg 4ec04d7282a50529335d724438d42b99a53385a2:
+src/components/ui/{button,input,textarea,dialog,drawer}.tsx;
+src/components/tasks/{board-columns.ts,task-card.tsx};
+src/components/ops/session.tsx; src/components/layout/sidebar.tsx;
+src/app/{layout.tsx,page.tsx,login/page.tsx,workspace/layout.tsx};
+src/lib/transport/{web-auth,web-transport,tauri-transport,index}.ts and
+src/lib/app-error.ts. Existing controls and Drawer are imported unchanged;
+the business route adds a dedicated typed client and private editing lifetime.
+The original Hafidh vector mark reuses the accepted public/icon.svg. The original
+xintaofei/codeg v0.30.4 Apache LICENSE is retained, immutable upstream commit
+6f6bd648b206412644842a98d9ffeebf57292bed.
+Business identity and task DTOs follow the separately attributed accepted/new
+backend contracts at 861fb0ef4394d4980a19ba375bb4c1f3f218d39b and
+bf4309f5abdb077fd8e1a8e42db4861dadcda24b; public task activity was read at
+76bb6909511016a11e864abe19d4ffd493aafa0c. No IntroMail/Plane/OpenProject
+implementation, AGPL/GPL-derived hunk or new third-party dependency is copied
+into this frontend. All existing source and license notices remain unchanged.
+
 Shared organization business tasks (2026)
 ========================================
 Adapts xintaofei/codeg v0.30.4, Apache-2.0,
@@ -685,3 +719,64 @@ adds a strict path guard and has no provider, scheduler or engine startup.
 reports/business-identity-evidence/browser-*.js is test orchestration glue using
 the installed Playwright CLI0.1.18 and Playwright1.63.0-alpha-2026-08-05 API;
 no Playwright implementation is copied and no packages are installed/upgraded.
+
+Business workspace browser fixture glue extends the existing Apache-2.0
+reports/design-reduced-motion-evidence/server.mjs at accepted Adanmohh/codeg
+4ec04d7282a50529335d724438d42b99a53385a2. Its own static export listener permits
+only closed business operations to the guarded loopback task fixture; no legacy
+proxy, WebSocket forwarding, credential logging or production server change.
+The UI's separate source-entrustment operation follows the task owner's fixed
+contract and exact HTTP/native wrappers at
+1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5. No backend implementation is ported
+or edited by this frontend branch. All preceding attribution remains unchanged.
+
+Business workspace manual-fixture continuity (test evidence only):
+reports/business-workspace-evidence/fixture-temporary-disk.patch adapts only
+src-tauri/src/business_tasks/tests/fixture.rs at Adanmohh/codeg
+1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5 to call the existing Apache-2.0
+src-tauri/src/db/test_helpers.rs fresh_disk_db helper from that exact commit.
+The patch is applied only to an ignored, owned test snapshot; all production
+backend source remains unchanged. The protected router and fixture guard remain.
+Original Codeg copyright, Apache-2.0 LICENSE and all earlier notices are retained.
+
+Business workspace static-route verification (test evidence only):
+reports/business-workspace-evidence/fixture-static-routing.patch reuses the
+Apache-2.0 TestServer/build_router setup in src-tauri/src/business_identity/tests.rs
+at Adanmohh/codeg 1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5, blob
+c606ac88e9556bb8284dc28ce647938c921d5a59. It is applied only to the frontend
+worker's ignored fixture snapshot to check its own exported HTML through the
+unchanged production static router. No backend product source is ported or edited.
+Installed axum-test17.3.0 APIs are references, not copied dependency code.
+
+Business conflict comparison clarification (2026):
+Reuses the Apache-2.0 business workspace at Adanmohh/codeg
+33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7:
+src/components/business/{task-detail,ui,workflow.test}.tsx and
+src/lib/business/copy.ts. Presentation glue labels the preserved draft's base
+and displays the current saved status/revision using the existing StatusBadge;
+the read, adoption, revision and human-confirmation behavior is unchanged.
+React19.2.4/@types-react19.2.13 and Testing Library16.3.2 installed types are API
+references. No dependency implementation is copied. Original Codeg Apache-2.0
+LICENSE and every preceding attribution remain unchanged.
+
+Business native entry correction (2026):
+Adapts the existing Apache-2.0 main-window creation in src-tauri/src/lib.rs at
+Adanmohh/codeg 0192ac3f33dff82fae424bd30b797b14044f4197 to use the business
+route. src-tauri/src/commands/windows.rs and
+src/components/business/workspace.tsx remain the unchanged authority for
+existing-window focus and explicit engineering navigation. Installed locked
+tauri2.10.2 manager/{webview,mod}.rs and tauri-utils2.8.2 config.rs were read
+as URL/asset-resolution API references; no dependency source is copied or
+upgraded. Original Codeg Apache-2.0 LICENSE and all prior attribution remain.
+
+Business search accessibility clarification (2026):
+Reuses Apache-2.0 Codeg src/components/ui/input.tsx and the foreground/80 token
+in src/components/chat/feedback-notes-display.tsx at Adanmohh/codeg
+3a189d1822f9fd335cc58ecb440f75ab9cbe937e. The business workspace applies a
+scoped placeholder override and removes its redundant hidden submit control
+from sequential keyboard focus, preserving Enter submission and global Input.
+Regression interaction style follows src/components/tasks/task-settings-dialog.test.tsx
+at the same immutable source. Installed user-event14.6.3 setup/keyboard/tab types
+and implementation, React19.2.4 and Tailwind4.1.18 are API references only;
+no dependency implementation is ported. Original Apache LICENSE and all
+preceding notices remain intact.

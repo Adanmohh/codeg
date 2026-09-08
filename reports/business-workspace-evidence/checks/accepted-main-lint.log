@@ -1,0 +1,8 @@
+Source: 0192ac3f
+Command/check: Scoped eslint on changed production/provider/navigation files
+Recorded exit: 0
+Original: .build/business-workspace/accepted-main-lint.log
+Normalized ANSI/trailing whitespace only.
+
+Already up to date
+Done in 378ms using pnpm v11.9.0

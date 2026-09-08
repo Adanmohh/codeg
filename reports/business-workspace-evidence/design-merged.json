@@ -1,0 +1,26 @@
+{
+  "deduped": [
+    {
+      "surface": "business workspace",
+      "element": "continuous motion",
+      "severity": "low",
+      "check": "BC-13 | smoothness/scroll-comfort not assessed",
+      "fix": "If continuous-motion certification is required, record an interaction filmstrip/video and CLS/long-frame measurements in the independent design pass.",
+      "specialists": [
+        "motion-judge"
+      ]
+    }
+  ],
+  "top3": [
+    {
+      "surface": "business workspace",
+      "element": "continuous motion",
+      "severity": "low",
+      "check": "BC-13 | smoothness/scroll-comfort not assessed",
+      "fix": "If continuous-motion certification is required, record an interaction filmstrip/video and CLS/long-frame measurements in the independent design pass.",
+      "specialists": [
+        "motion-judge"
+      ]
+    }
+  ]
+}

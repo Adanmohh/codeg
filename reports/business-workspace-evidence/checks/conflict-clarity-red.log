@@ -1,0 +1,1498 @@
+Source: before 095c6164
+Command/check: Targeted conflict regression run against prior presentation
+Recorded exit: 1
+Original: .build/business-workspace/conflict-clarity-red.log
+Normalized ANSI/trailing whitespace only.
+
+Already up to date
+Done in 233ms using pnpm v11.9.0
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ❯ src/components/business/workflow.test.tsx (13 tests | 2 failed | 11 skipped) 1254ms
+   × visual business task workflow > locks a stale metadata draft until the user loads and explicitly adopts the current revision 201ms
+     → Unable to find an accessible element with the role "group" and name "Your draft's base version"
+
+Here are the accessible roles:
+
+  dialog:
+
+  Name "Synthetic launch brief":
+  <div
+    aria-describedby="radix-_r_2_"
+    aria-labelledby="radix-_r_1_"
+    class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-background ring-border pointer-events-auto relative grid max-h-[calc(100dvh-2rem)] w-full overflow-y-auto shadow-2xl ring-1 duration-100 outline-none min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7 max-w-3xl"
+    data-slot="dialog-content"
+    data-state="open"
+    id="radix-_r_0_"
+    role="dialog"
+    style="pointer-events: auto;"
+    tabindex="-1"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Synthetic launch brief":
+  <h2
+    class="text-xl font-semibold tracking-tight"
+    data-slot="dialog-title"
+    id="radix-_r_1_"
+  />
+
+  Name "Current saved version":
+  <h3
+    class="font-semibold"
+  />
+
+  Name "Deliverable":
+  <h3
+    class="text-sm font-semibold"
+  />
+
+  Name "Activity":
+  <h3
+    class="text-sm font-semibold"
+  />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p
+    class="text-muted-foreground text-sm sr-only"
+    data-slot="dialog-description"
+    id="radix-_r_2_"
+  />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="text-sm font-medium"
+  />
+
+  Name "":
+  <p
+    class="text-sm leading-relaxed break-words whitespace-pre-wrap"
+    dir="auto"
+  />
+
+  Name "":
+  <p
+    class="text-muted-foreground text-sm leading-relaxed"
+  />
+
+  Name "":
+  <p
+    class="text-muted-foreground text-xs leading-relaxed"
+  />
+
+  Name "":
+  <p
+    class="text-muted-foreground text-sm"
+  />
+
+  Name "":
+  <p
+    class="text-muted-foreground leading-relaxed"
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "Close":
+  <button
+    aria-label="Close"
+    class="group/button inline-flex items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 min-h-11 rounded-xl motion-reduce:transition-none size-11 shrink-0 p-0"
+    data-size="icon"
+    data-slot="button"
+    data-variant="ghost"
+    type="button"
+  />
+
+  Name "Use my draft with this version":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/80 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"
+    data-size="default"
+    data-slot="button"
+    data-variant="default"
+    type="button"
+  />
+
+  Name "Discard my draft":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"
+    data-size="default"
+    data-slot="button"
+    data-variant="outline"
+    type="button"
+  />
+
+  Name "Cancel":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"
+    data-size="default"
+    data-slot="button"
+    data-variant="outline"
+    type="button"
+  />
+
+  Name "Save changes":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/80 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"
+    data-size="default"
+    data-slot="button"
+    data-variant="default"
+    disabled=""
+    type="submit"
+  />
+
+  Name "Cancel task":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-[3px] active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-destructive/10 hover:bg-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none text-red-800 focus-visible:border-red-800 focus-visible:ring-red-800 dark:text-red-300 dark:focus-visible:border-red-300 dark:focus-visible:ring-red-300"
+    data-size="default"
+    data-slot="button"
+    data-variant="destructive"
+    disabled=""
+    type="button"
+  />
+
+  --------------------------------------------------
+  alert:
+
+  Name "":
+  <div
+    class="border-destructive/25 bg-destructive/5 flex gap-3 rounded-xl border p-4 text-sm"
+    role="alert"
+  />
+
+  --------------------------------------------------
+  term:
+
+  Name "":
+  <dt
+    class="text-muted-foreground mb-2 text-xs"
+  />
+
+  Name "":
+  <dt
+    class="text-muted-foreground mb-2 text-xs"
+  />
+
+  Name "":
+  <dt
+    class="text-muted-foreground mb-2 text-xs"
+  />
+
+  Name "":
+  <dt
+    class="text-muted-foreground mb-2 text-xs"
+  />
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd
+    class="text-sm"
+  />
+
+  --------------------------------------------------
+  time:
+
+  Name "":
+  <time
+    class="tabular-nums"
+    datetime="2026-09-08"
+    dir="ltr"
+  />
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  <fieldset
+    class="space-y-5"
+    disabled=""
+  />
+
+  Name "":
+  <details
+    class="border-t pt-3"
+  />
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Task title":
+  <input
+    class="bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 h-9 border px-3 py-1 text-base transition-colors file:h-7 file:text-sm file:font-medium focus-visible:ring-[3px] aria-invalid:ring-[3px] md:text-sm file:text-foreground placeholder:text-muted-foreground w-full min-w-0 outline-none file:inline-flex file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 read-only:bg-muted/40 read-only:text-muted-foreground read-only:cursor-default min-h-11 rounded-xl"
+    data-slot="input"
+    dir="auto"
+    id="_r_5_"
+    maxlength="240"
+    required=""
+    value="My pending title"
+  />
+
+  Name "Brief":
+  <textarea
+    class="border-input bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 resize-none rounded-xl border px-3 py-3 text-base transition-colors focus-visible:ring-[3px] aria-invalid:ring-[3px] md:text-sm placeholder:text-muted-foreground flex field-sizing-content w-full outline-none disabled:cursor-not-allowed disabled:opacity-50 min-h-32"
+    data-slot="textarea"
+    dir="auto"
+    id="_r_6_"
+    maxlength="20000"
+  />
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Area of work":
+  <select
+    class="min-h-11 w-full min-w-0 rounded-xl border border-input bg-background px-3 py-2 text-base text-foreground outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 disabled:opacity-60 md:text-sm"
+    id="_r_7_"
+    required=""
+  />
+
+  Name "Priority":
+  <select
+    class="min-h-11 w-full min-w-0 rounded-xl border border-input bg-background px-3 py-2 text-base text-foreground outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 disabled:opacity-60 md:text-sm"
+    id="_r_8_"
+  />
+
+  --------------------------------------------------
+  option:
+
+  Name "Marketing":
+  <option
+    value="marketing"
+  />
+
+  Name "Engineering":
+  <option
+    value="engineering"
+  />
+
+  Name "Low":
+  <option
+    value="low"
+  />
+
+  Name "Normal":
+  <option
+    value="normal"
+  />
+
+  Name "High":
+  <option
+    value="high"
+  />
+
+  Name "Urgent":
+  <option
+    value="urgent"
+  />
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  <ol
+    class="space-y-5"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body
+  data-scroll-locked="1"
+  style="pointer-events: none;"
+>
+  <span
+    aria-hidden="true"
+    data-aria-hidden="true"
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
+  <div
+    aria-hidden="true"
+    data-aria-hidden="true"
+  />
+  <div
+    aria-hidden="true"
+    class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/80 duration-100 supports-backdrop-filter:backdrop-blur-xs fixed inset-0 z-50"
+    data-aria-hidden="true"
+    data-slot="dialog-overlay"
+    data-state="open"
+    style="pointer-events: auto;"
+  />
+  <div
+    class="pointer-events-none fixed inset-0 z-50 grid place-items-center p-4"
+  >
+    <div
+      aria-describedby="radix-_r_2_"
+      aria-labelledby="radix-_r_1_"
+      class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-background ring-border pointer-events-auto relative grid max-h-[calc(100dvh-2rem)] w-full overflow-y-auto shadow-2xl ring-1 duration-100 outline-none min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7 max-w-3xl"
+      data-slot="dialog-content"
+      data-state="open"
+      id="radix-_r_0_"
+      role="dialog"
+      style="pointer-events: auto;"
+      tabindex="-1"
+    >
+      <div
+        class="flex items-start justify-between gap-4"
+      >
+        <div
+          class="min-w-0 space-y-2"
+        >
+          <h2
+            class="text-xl font-semibold tracking-tight"
+            data-slot="dialog-title"
+            id="radix-_r_1_"
+          >
+            Synthetic launch brief
+          </h2>
+          <p
+            class="text-muted-foreground text-sm sr-only"
+            data-slot="dialog-description"
+            id="radix-_r_2_"
+          >
+            Synthetic launch brief
+          </p>
+        </div>
+        <button
+          aria-label="Close"
+          class="group/button inline-flex items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 min-h-11 rounded-xl motion-reduce:transition-none size-11 shrink-0 p-0"
+          data-size="icon"
+          data-slot="button"
+          data-variant="ghost"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex flex-wrap items-center gap-3"
+      >
+        <span
+          class="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-medium border-border text-muted-foreground bg-muted/40"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle size-3.5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+          </svg>
+          To do
+        </span>
+        <span
+          class="text-muted-foreground text-xs"
+        >
+          Marketing
+           ·
+          Normal
+        </span>
+        <span
+          class="text-muted-foreground ms-auto text-xs tabular-nums"
+        >
+          Revision
+
+          1
+        </span>
+      </div>
+      <div
+        class="border-destructive/25 bg-destructive/5 flex gap-3 rounded-xl border p-4 text-sm"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert text-destructive mt-0.5 size-4 shrink-0"
+          fill="none"
+          height="24"
+...
+   × visual business task workflow > requires a new human confirmation after comparing and adopting a changed review 1052ms
+     → Unable to find role="region" and name "Current saved version"
+
+Ignored nodes: comments, script, style
+<body
+  data-scroll-locked="1"
+  style="pointer-events: none;"
+>
+  <span
+    aria-hidden="true"
+    data-aria-hidden="true"
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
+  <div
+    aria-hidden="true"
+    data-aria-hidden="true"
+  />
+  <div
+    aria-hidden="true"
+    class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/80 duration-100 supports-backdrop-filter:backdrop-blur-xs fixed inset-0 z-50"
+    data-aria-hidden="true"
+    data-slot="dialog-overlay"
+    data-state="open"
+    style="pointer-events: auto;"
+  />
+  <div
+    class="pointer-events-none fixed inset-0 z-50 grid place-items-center p-4"
+  >
+    <div
+      aria-describedby="radix-_r_c_"
+      aria-labelledby="radix-_r_b_"
+      class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-background ring-border pointer-events-auto relative grid max-h-[calc(100dvh-2rem)] w-full overflow-y-auto shadow-2xl ring-1 duration-100 outline-none min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7 max-w-3xl"
+      data-slot="dialog-content"
+      data-state="open"
+      id="radix-_r_a_"
+      role="dialog"
+      style="pointer-events: auto;"
+      tabindex="-1"
+    >
+      <div
+        class="flex items-start justify-between gap-4"
+      >
+        <div
+          class="min-w-0 space-y-2"
+        >
+          <h2
+            class="text-xl font-semibold tracking-tight"
+            data-slot="dialog-title"
+            id="radix-_r_b_"
+          >
+            Synthetic launch brief
+          </h2>
+          <p
+            class="text-muted-foreground text-sm sr-only"
+            data-slot="dialog-description"
+            id="radix-_r_c_"
+          >
+            Synthetic launch brief
+          </p>
+        </div>
+        <button
+          aria-label="Close"
+          class="group/button inline-flex items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 min-h-11 rounded-xl motion-reduce:transition-none size-11 shrink-0 p-0"
+          data-size="icon"
+          data-slot="button"
+          data-variant="ghost"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex flex-wrap items-center gap-3"
+      >
+        <span
+          class="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-medium border-amber-700/20 bg-amber-500/10 text-amber-800 dark:text-amber-300"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-dashed size-3.5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.1 2.182a10 10 0 0 1 3.8 0"
+            />
+            <path
+              d="M13.9 21.818a10 10 0 0 1-3.8 0"
+            />
+            <path
+              d="M17.609 3.721a10 10 0 0 1 2.69 2.7"
+            />
+            <path
+              d="M2.182 13.9a10 10 0 0 1 0-3.8"
+            />
+            <path
+              d="M20.279 17.609a10 10 0 0 1-2.7 2.69"
+            />
+            <path
+              d="M21.818 10.1a10 10 0 0 1 0 3.8"
+            />
+            <path
+              d="M3.721 6.391a10 10 0 0 1 2.7-2.69"
+            />
+            <path
+              d="M6.391 20.279a10 10 0 0 1-2.69-2.7"
+            />
+          </svg>
+          Review
+        </span>
+        <span
+          class="text-muted-foreground ...
+
+Ignored nodes: comments, script, style
+<body
+  data-scroll-locked="1"
+  style="pointer-events: none;"
+>
+  <span
+    aria-hidden="true"
+    data-aria-hidden="true"
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
+  <div
+    aria-hidden="true"
+    data-aria-hidden="true"
+  />
+  <div
+    aria-hidden="true"
+    class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/80 duration-100 supports-backdrop-filter:backdrop-blur-xs fixed inset-0 z-50"
+    data-aria-hidden="true"
+    data-slot="dialog-overlay"
+    data-state="open"
+    style="pointer-events: auto;"
+  />
+  <div
+    class="pointer-events-none fixed inset-0 z-50 grid place-items-center p-4"
+  >
+    <div
+      aria-describedby="radix-_r_c_"
+      aria-labelledby="radix-_r_b_"
+      class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-background ring-border pointer-events-auto relative grid max-h-[calc(100dvh-2rem)] w-full overflow-y-auto shadow-2xl ring-1 duration-100 outline-none min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7 max-w-3xl"
+      data-slot="dialog-content"
+      data-state="open"
+      id="radix-_r_a_"
+      role="dialog"
+      style="pointer-events: auto;"
+      tabindex="-1"
+    >
+      <div
+        class="flex items-start justify-between gap-4"
+      >
+        <div
+          class="min-w-0 space-y-2"
+        >
+          <h2
+            class="text-xl font-semibold tracking-tight"
+            data-slot="dialog-title"
+            id="radix-_r_b_"
+          >
+            Synthetic launch brief
+          </h2>
+          <p
+            class="text-muted-foreground text-sm sr-only"
+            data-slot="dialog-description"
+            id="radix-_r_c_"
+          >
+            Synthetic launch brief
+          </p>
+        </div>
+        <button
+          aria-label="Close"
+          class="group/button inline-flex items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 min-h-11 rounded-xl motion-reduce:transition-none size-11 shrink-0 p-0"
+          data-size="icon"
+          data-slot="button"
+          data-variant="ghost"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex flex-wrap items-center gap-3"
+      >
+        <span
+          class="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-medium border-amber-700/20 bg-amber-500/10 text-amber-800 dark:text-amber-300"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-dashed size-3.5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.1 2.182a10 10 0 0 1 3.8 0"
+            />
+            <path
+              d="M13.9 21.818a10 10 0 0 1-3.8 0"
+            />
+            <path
+              d="M17.609 3.721a10 10 0 0 1 2.69 2.7"
+            />
+            <path
+              d="M2.182 13.9a10 10 0 0 1 0-3.8"
+            />
+            <path
+              d="M20.279 17.609a10 10 0 0 1-2.7 2.69"
+            />
+            <path
+              d="M21.818 10.1a10 10 0 0 1 0 3.8"
+            />
+            <path
+              d="M3.721 6.391a10 10 0 0 1 2.7-2.69"
+            />
+            <path
+              d="M6.391 20.279a10 10 0 0 1-2.69-2.7"
+            />
+          </svg>
+          Review
+        </span>
+        <span
+          class="text-muted-foreground ...
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/business/workflow.test.tsx > visual business task workflow > locks a stale metadata draft until the user loads and explicitly adopts the current revision
+TestingLibraryElementError: Unable to find an accessible element with the role "group" and name "Your draft's base version"
+
+Here are the accessible roles:
+
+  dialog:
+
+  Name "Synthetic launch brief":
+  <div
+    aria-describedby="radix-_r_2_"
+    aria-labelledby="radix-_r_1_"
+    class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-background ring-border pointer-events-auto relative grid max-h-[calc(100dvh-2rem)] w-full overflow-y-auto shadow-2xl ring-1 duration-100 outline-none min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7 max-w-3xl"
+    data-slot="dialog-content"
+    data-state="open"
+    id="radix-_r_0_"
+    role="dialog"
+    style="pointer-events: auto;"
+    tabindex="-1"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Synthetic launch brief":
+  <h2
+    class="text-xl font-semibold tracking-tight"
+    data-slot="dialog-title"
+    id="radix-_r_1_"
+  />
+
+  Name "Current saved version":
+  <h3
+    class="font-semibold"
+  />
+
+  Name "Deliverable":
+  <h3
+    class="text-sm font-semibold"
+  />
+
+  Name "Activity":
+  <h3
+    class="text-sm font-semibold"
+  />
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  <p
+    class="text-muted-foreground text-sm sr-only"
+    data-slot="dialog-description"
+    id="radix-_r_2_"
+  />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p />
+
+  Name "":
+  <p
+    class="text-sm font-medium"
+  />
+
+  Name "":
+  <p
+    class="text-sm leading-relaxed break-words whitespace-pre-wrap"
+    dir="auto"
+  />
+
+  Name "":
+  <p
+    class="text-muted-foreground text-sm leading-relaxed"
+  />
+
+  Name "":
+  <p
+    class="text-muted-foreground text-xs leading-relaxed"
+  />
+
+  Name "":
+  <p
+    class="text-muted-foreground text-sm"
+  />
+
+  Name "":
+  <p
+    class="text-muted-foreground leading-relaxed"
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "Close":
+  <button
+    aria-label="Close"
+    class="group/button inline-flex items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 min-h-11 rounded-xl motion-reduce:transition-none size-11 shrink-0 p-0"
+    data-size="icon"
+    data-slot="button"
+    data-variant="ghost"
+    type="button"
+  />
+
+  Name "Use my draft with this version":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/80 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"
+    data-size="default"
+    data-slot="button"
+    data-variant="default"
+    type="button"
+  />
+
+  Name "Discard my draft":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"
+    data-size="default"
+    data-slot="button"
+    data-variant="outline"
+    type="button"
+  />
+
+  Name "Cancel":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"
+    data-size="default"
+    data-slot="button"
+    data-variant="outline"
+    type="button"
+  />
+
+  Name "Save changes":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/80 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"
+    data-size="default"
+    data-slot="button"
+    data-variant="default"
+    disabled=""
+    type="submit"
+  />
+
+  Name "Cancel task":
+  <button
+    class="group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:ring-[3px] active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-destructive/10 hover:bg-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none text-red-800 focus-visible:border-red-800 focus-visible:ring-red-800 dark:text-red-300 dark:focus-visible:border-red-300 dark:focus-visible:ring-red-300"
+    data-size="default"
+    data-slot="button"
+    data-variant="destructive"
+    disabled=""
+    type="button"
+  />
+
+  --------------------------------------------------
+  alert:
+
+  Name "":
+  <div
+    class="border-destructive/25 bg-destructive/5 flex gap-3 rounded-xl border p-4 text-sm"
+    role="alert"
+  />
+
+  --------------------------------------------------
+  term:
+
+  Name "":
+  <dt
+    class="text-muted-foreground mb-2 text-xs"
+  />
+
+  Name "":
+  <dt
+    class="text-muted-foreground mb-2 text-xs"
+  />
+
+  Name "":
+  <dt
+    class="text-muted-foreground mb-2 text-xs"
+  />
+
+  Name "":
+  <dt
+    class="text-muted-foreground mb-2 text-xs"
+  />
+
+  --------------------------------------------------
+  definition:
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd />
+
+  Name "":
+  <dd
+    class="text-sm"
+  />
+
+  --------------------------------------------------
+  time:
+
+  Name "":
+  <time
+    class="tabular-nums"
+    datetime="2026-09-08"
+    dir="ltr"
+  />
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  <fieldset
+    class="space-y-5"
+    disabled=""
+  />
+
+  Name "":
+  <details
+    class="border-t pt-3"
+  />
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Task title":
+  <input
+    class="bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 h-9 border px-3 py-1 text-base transition-colors file:h-7 file:text-sm file:font-medium focus-visible:ring-[3px] aria-invalid:ring-[3px] md:text-sm file:text-foreground placeholder:text-muted-foreground w-full min-w-0 outline-none file:inline-flex file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 read-only:bg-muted/40 read-only:text-muted-foreground read-only:cursor-default min-h-11 rounded-xl"
+    data-slot="input"
+    dir="auto"
+    id="_r_5_"
+    maxlength="240"
+    required=""
+    value="My pending title"
+  />
+
+  Name "Brief":
+  <textarea
+    class="border-input bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 resize-none rounded-xl border px-3 py-3 text-base transition-colors focus-visible:ring-[3px] aria-invalid:ring-[3px] md:text-sm placeholder:text-muted-foreground flex field-sizing-content w-full outline-none disabled:cursor-not-allowed disabled:opacity-50 min-h-32"
+    data-slot="textarea"
+    dir="auto"
+    id="_r_6_"
+    maxlength="20000"
+  />
+
+  --------------------------------------------------
+  combobox:
+
+  Name "Area of work":
+  <select
+    class="min-h-11 w-full min-w-0 rounded-xl border border-input bg-background px-3 py-2 text-base text-foreground outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 disabled:opacity-60 md:text-sm"
+    id="_r_7_"
+    required=""
+  />
+
+  Name "Priority":
+  <select
+    class="min-h-11 w-full min-w-0 rounded-xl border border-input bg-background px-3 py-2 text-base text-foreground outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 disabled:opacity-60 md:text-sm"
+    id="_r_8_"
+  />
+
+  --------------------------------------------------
+  option:
+
+  Name "Marketing":
+  <option
+    value="marketing"
+  />
+
+  Name "Engineering":
+  <option
+    value="engineering"
+  />
+
+  Name "Low":
+  <option
+    value="low"
+  />
+
+  Name "Normal":
+  <option
+    value="normal"
+  />
+
+  Name "High":
+  <option
+    value="high"
+  />
+
+  Name "Urgent":
+  <option
+    value="urgent"
+  />
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  <ol
+    class="space-y-5"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body
+  data-scroll-locked="1"
+  style="pointer-events: none;"
+>
+  <span
+    aria-hidden="true"
+    data-aria-hidden="true"
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
+  <div
+    aria-hidden="true"
+    data-aria-hidden="true"
+  />
+  <div
+    aria-hidden="true"
+    class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/80 duration-100 supports-backdrop-filter:backdrop-blur-xs fixed inset-0 z-50"
+    data-aria-hidden="true"
+    data-slot="dialog-overlay"
+    data-state="open"
+    style="pointer-events: auto;"
+  />
+  <div
+    class="pointer-events-none fixed inset-0 z-50 grid place-items-center p-4"
+  >
+    <div
+      aria-describedby="radix-_r_2_"
+      aria-labelledby="radix-_r_1_"
+      class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-background ring-border pointer-events-auto relative grid max-h-[calc(100dvh-2rem)] w-full overflow-y-auto shadow-2xl ring-1 duration-100 outline-none min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7 max-w-3xl"
+      data-slot="dialog-content"
+      data-state="open"
+      id="radix-_r_0_"
+      role="dialog"
+      style="pointer-events: auto;"
+      tabindex="-1"
+    >
+      <div
+        class="flex items-start justify-between gap-4"
+      >
+        <div
+          class="min-w-0 space-y-2"
+        >
+          <h2
+            class="text-xl font-semibold tracking-tight"
+            data-slot="dialog-title"
+            id="radix-_r_1_"
+          >
+            Synthetic launch brief
+          </h2>
+          <p
+            class="text-muted-foreground text-sm sr-only"
+            data-slot="dialog-description"
+            id="radix-_r_2_"
+          >
+            Synthetic launch brief
+          </p>
+        </div>
+        <button
+          aria-label="Close"
+          class="group/button inline-flex items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 min-h-11 rounded-xl motion-reduce:transition-none size-11 shrink-0 p-0"
+          data-size="icon"
+          data-slot="button"
+          data-variant="ghost"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex flex-wrap items-center gap-3"
+      >
+        <span
+          class="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-medium border-border text-muted-foreground bg-muted/40"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle size-3.5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+          </svg>
+          To do
+        </span>
+        <span
+          class="text-muted-foreground text-xs"
+        >
+          Marketing
+           ·
+          Normal
+        </span>
+        <span
+          class="text-muted-foreground ms-auto text-xs tabular-nums"
+        >
+          Revision
+
+          1
+        </span>
+      </div>
+      <div
+        class="border-destructive/25 bg-destructive/5 flex gap-3 rounded-xl border p-4 text-sm"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert text-destructive mt-0.5 size-4 shrink-0"
+          fill="none"
+          height="24"
+...
+ ❯ Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/components/business/workflow.test.tsx:267:25
+    265|     fireEvent.click(screen.getByRole("button", { name: "Load current t…
+    266|     await screen.findByText("Changed by another person")
+    267|     const base = screen.getByRole("group", {
+       |                         ^
+    268|       name: "Your draft's base version",
+    269|     })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/components/business/workflow.test.tsx > visual business task workflow > requires a new human confirmation after comparing and adopting a changed review
+TestingLibraryElementError: Unable to find role="region" and name "Current saved version"
+
+Ignored nodes: comments, script, style
+<body
+  data-scroll-locked="1"
+  style="pointer-events: none;"
+>
+  <span
+    aria-hidden="true"
+    data-aria-hidden="true"
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
+  <div
+    aria-hidden="true"
+    data-aria-hidden="true"
+  />
+  <div
+    aria-hidden="true"
+    class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/80 duration-100 supports-backdrop-filter:backdrop-blur-xs fixed inset-0 z-50"
+    data-aria-hidden="true"
+    data-slot="dialog-overlay"
+    data-state="open"
+    style="pointer-events: auto;"
+  />
+  <div
+    class="pointer-events-none fixed inset-0 z-50 grid place-items-center p-4"
+  >
+    <div
+      aria-describedby="radix-_r_c_"
+      aria-labelledby="radix-_r_b_"
+      class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-background ring-border pointer-events-auto relative grid max-h-[calc(100dvh-2rem)] w-full overflow-y-auto shadow-2xl ring-1 duration-100 outline-none min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7 max-w-3xl"
+      data-slot="dialog-content"
+      data-state="open"
+      id="radix-_r_a_"
+      role="dialog"
+      style="pointer-events: auto;"
+      tabindex="-1"
+    >
+      <div
+        class="flex items-start justify-between gap-4"
+      >
+        <div
+          class="min-w-0 space-y-2"
+        >
+          <h2
+            class="text-xl font-semibold tracking-tight"
+            data-slot="dialog-title"
+            id="radix-_r_b_"
+          >
+            Synthetic launch brief
+          </h2>
+          <p
+            class="text-muted-foreground text-sm sr-only"
+            data-slot="dialog-description"
+            id="radix-_r_c_"
+          >
+            Synthetic launch brief
+          </p>
+        </div>
+        <button
+          aria-label="Close"
+          class="group/button inline-flex items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 min-h-11 rounded-xl motion-reduce:transition-none size-11 shrink-0 p-0"
+          data-size="icon"
+          data-slot="button"
+          data-variant="ghost"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex flex-wrap items-center gap-3"
+      >
+        <span
+          class="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-medium border-amber-700/20 bg-amber-500/10 text-amber-800 dark:text-amber-300"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-dashed size-3.5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.1 2.182a10 10 0 0 1 3.8 0"
+            />
+            <path
+              d="M13.9 21.818a10 10 0 0 1-3.8 0"
+            />
+            <path
+              d="M17.609 3.721a10 10 0 0 1 2.69 2.7"
+            />
+            <path
+              d="M2.182 13.9a10 10 0 0 1 0-3.8"
+            />
+            <path
+              d="M20.279 17.609a10 10 0 0 1-2.7 2.69"
+            />
+            <path
+              d="M21.818 10.1a10 10 0 0 1 0 3.8"
+            />
+            <path
+              d="M3.721 6.391a10 10 0 0 1 2.7-2.69"
+            />
+            <path
+              d="M6.391 20.279a10 10 0 0 1-2.69-2.7"
+            />
+          </svg>
+          Review
+        </span>
+        <span
+          class="text-muted-foreground ...
+
+Ignored nodes: comments, script, style
+<body
+  data-scroll-locked="1"
+  style="pointer-events: none;"
+>
+  <span
+    aria-hidden="true"
+    data-aria-hidden="true"
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
+  <div
+    aria-hidden="true"
+    data-aria-hidden="true"
+  />
+  <div
+    aria-hidden="true"
+    class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/80 duration-100 supports-backdrop-filter:backdrop-blur-xs fixed inset-0 z-50"
+    data-aria-hidden="true"
+    data-slot="dialog-overlay"
+    data-state="open"
+    style="pointer-events: auto;"
+  />
+  <div
+    class="pointer-events-none fixed inset-0 z-50 grid place-items-center p-4"
+  >
+    <div
+      aria-describedby="radix-_r_c_"
+      aria-labelledby="radix-_r_b_"
+      class="data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-background ring-border pointer-events-auto relative grid max-h-[calc(100dvh-2rem)] w-full overflow-y-auto shadow-2xl ring-1 duration-100 outline-none min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7 max-w-3xl"
+      data-slot="dialog-content"
+      data-state="open"
+      id="radix-_r_a_"
+      role="dialog"
+      style="pointer-events: auto;"
+      tabindex="-1"
+    >
+      <div
+        class="flex items-start justify-between gap-4"
+      >
+        <div
+          class="min-w-0 space-y-2"
+        >
+          <h2
+            class="text-xl font-semibold tracking-tight"
+            data-slot="dialog-title"
+            id="radix-_r_b_"
+          >
+            Synthetic launch brief
+          </h2>
+          <p
+            class="text-muted-foreground text-sm sr-only"
+            data-slot="dialog-description"
+            id="radix-_r_c_"
+          >
+            Synthetic launch brief
+          </p>
+        </div>
+        <button
+          aria-label="Close"
+          class="group/button inline-flex items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 min-h-11 rounded-xl motion-reduce:transition-none size-11 shrink-0 p-0"
+          data-size="icon"
+          data-slot="button"
+          data-variant="ghost"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex flex-wrap items-center gap-3"
+      >
+        <span
+          class="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-lg border px-2 py-1 text-xs font-medium border-amber-700/20 bg-amber-500/10 text-amber-800 dark:text-amber-300"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-circle-dashed size-3.5"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.1 2.182a10 10 0 0 1 3.8 0"
+            />
+            <path
+              d="M13.9 21.818a10 10 0 0 1-3.8 0"
+            />
+            <path
+              d="M17.609 3.721a10 10 0 0 1 2.69 2.7"
+            />
+            <path
+              d="M2.182 13.9a10 10 0 0 1 0-3.8"
+            />
+            <path
+              d="M20.279 17.609a10 10 0 0 1-2.7 2.69"
+            />
+            <path
+              d="M21.818 10.1a10 10 0 0 1 0 3.8"
+            />
+            <path
+              d="M3.721 6.391a10 10 0 0 1 2.7-2.69"
+            />
+            <path
+              d="M6.391 20.279a10 10 0 0 1-2.69-2.7"
+            />
+          </svg>
+          Review
+        </span>
+        <span
+          class="text-muted-foreground ...
+ ❯ waitForWrapper node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/components/business/workflow.test.tsx:335:32
+    333|     await screen.findByText("This task changed while you were editing.…
+    334|     fireEvent.click(screen.getByRole("button", { name: "Load current t…
+    335|     const saved = await screen.findByRole("region", {
+       |                                ^
+    336|       name: "Current saved version",
+    337|     })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 11 skipped (13)
+   Start at  18:43:59
+   Duration  3.75s (transform 232ms, setup 360ms, collect 1.16s, tests 1.25s, environment 541ms, prepare 102ms)

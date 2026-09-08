@@ -1,0 +1,334 @@
+{
+  "normalization": "Canvas-normalized copy; original brief is unchanged. Paired dark and alpha/status colors still require source classification.",
+  "summaries": [
+    {
+      "name": "list-1280-light",
+      "contrast": {
+        "checked": 64,
+        "failures": []
+      },
+      "unnamedInteractive": 0,
+      "headingOrderBreaks": null,
+      "briefViolations": [
+        {
+          "kind": "off-palette-color",
+          "detail": "#276258 rendered but not in brief palette"
+        },
+        {
+          "kind": "extra-font-family",
+          "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+        },
+        {
+          "kind": "off-scale-radius",
+          "detail": "18px radius off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "6px spacing off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "247px spacing off brief + 4px scale"
+        }
+      ],
+      "motion": {
+        "transitionsCount": 6,
+        "easings": [
+          "cubic-bezier(0.4, 0, 0.2, 1)"
+        ],
+        "reducedMotionHandled": true,
+        "reducedMotionEffective": null,
+        "cls": null,
+        "longFrames": null
+      }
+    },
+    {
+      "name": "review-1280-light",
+      "contrast": {
+        "checked": 94,
+        "failures": [
+          {
+            "text": "Cancel task",
+            "fg": "#df2225",
+            "bg": "#fce8e9",
+            "ratio": 4.07,
+            "required": 4.5
+          }
+        ]
+      },
+      "unnamedInteractive": 0,
+      "headingOrderBreaks": null,
+      "briefViolations": [
+        {
+          "kind": "off-palette-color",
+          "detail": "#276258 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#973c00 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#f59300 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#000000 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#27624e rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#e21d27 rendered but not in brief palette"
+        },
+        {
+          "kind": "extra-font-family",
+          "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+        },
+        {
+          "kind": "off-scale-radius",
+          "detail": "18px radius off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "6px spacing off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "247px spacing off brief + 4px scale"
+        }
+      ],
+      "motion": {
+        "transitionsCount": 21,
+        "easings": [
+          "cubic-bezier(0.4, 0, 0.2, 1)",
+          "ease"
+        ],
+        "reducedMotionHandled": true,
+        "reducedMotionEffective": null,
+        "cls": null,
+        "longFrames": null
+      }
+    },
+    {
+      "name": "review-390-arabic-dark",
+      "contrast": {
+        "checked": 81,
+        "failures": []
+      },
+      "unnamedInteractive": 0,
+      "headingOrderBreaks": null,
+      "briefViolations": [
+        {
+          "kind": "off-palette-color",
+          "detail": "#9bd4c5 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#a1a1a1 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#262626 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#ffd230 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#f59300 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#000000 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#242424 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#9dd8c4 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#ff6467 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#ff6469 rendered but not in brief palette"
+        },
+        {
+          "kind": "extra-font-family",
+          "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+        },
+        {
+          "kind": "off-scale-radius",
+          "detail": "18px radius off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "6px spacing off brief + 4px scale"
+        }
+      ],
+      "motion": {
+        "transitionsCount": 21,
+        "easings": [
+          "cubic-bezier(0.4, 0, 0.2, 1)",
+          "ease"
+        ],
+        "reducedMotionHandled": true,
+        "reducedMotionEffective": null,
+        "cls": null,
+        "longFrames": null
+      }
+    },
+    {
+      "name": "review-1280-light-final",
+      "contrast": {
+        "checked": 94,
+        "failures": []
+      },
+      "unnamedInteractive": 0,
+      "headingOrderBreaks": null,
+      "briefViolations": [
+        {
+          "kind": "off-palette-color",
+          "detail": "#276258 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#973c00 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#f59300 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#000000 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#27624e rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#9f0712 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#e21d27 rendered but not in brief palette"
+        },
+        {
+          "kind": "extra-font-family",
+          "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+        },
+        {
+          "kind": "off-scale-radius",
+          "detail": "18px radius off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "6px spacing off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "247px spacing off brief + 4px scale"
+        }
+      ],
+      "motion": {
+        "transitionsCount": 21,
+        "easings": [
+          "cubic-bezier(0.4, 0, 0.2, 1)",
+          "ease"
+        ],
+        "reducedMotionHandled": true,
+        "reducedMotionEffective": null,
+        "cls": null,
+        "longFrames": null
+      }
+    },
+    {
+      "name": "review-1280-dark-final",
+      "contrast": {
+        "checked": 94,
+        "failures": []
+      },
+      "unnamedInteractive": 0,
+      "headingOrderBreaks": null,
+      "briefViolations": [
+        {
+          "kind": "off-palette-color",
+          "detail": "#a1a1a1 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#9bd4c5 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#9dd8c4 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#262626 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#242424 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#ffd230 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#f59300 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#000000 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#ffa2a2 rendered but not in brief palette"
+        },
+        {
+          "kind": "off-palette-color",
+          "detail": "#ff6469 rendered but not in brief palette"
+        },
+        {
+          "kind": "extra-font-family",
+          "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+        },
+        {
+          "kind": "off-scale-radius",
+          "detail": "18px radius off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "6px spacing off brief + 4px scale"
+        },
+        {
+          "kind": "off-scale-spacing",
+          "detail": "247px spacing off brief + 4px scale"
+        }
+      ],
+      "motion": {
+        "transitionsCount": 21,
+        "easings": [
+          "cubic-bezier(0.4, 0, 0.2, 1)",
+          "ease"
+        ],
+        "reducedMotionHandled": true,
+        "reducedMotionEffective": null,
+        "cls": null,
+        "longFrames": null
+      }
+    }
+  ]
+}

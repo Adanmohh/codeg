@@ -1,0 +1,8 @@
+Source: 095c6164 source
+Command/check: Scoped eslint on business files
+Recorded exit: 0
+Original: .build/business-workspace/conflict-final-lint.log
+Normalized ANSI/trailing whitespace only.
+
+Already up to date
+Done in 219ms using pnpm v11.9.0

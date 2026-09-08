@@ -1,0 +1,71 @@
+{
+  "file": "src/components/business/workspace.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": true,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": true,
+    "activeState": false,
+    "aria": true,
+    "role": true,
+    "emptyState": true,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": true,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #276258 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (extra-font-family): Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-scale-radius): 18px radius off brief + 4px scale."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-scale-spacing): 6px spacing off brief + 4px scale."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-scale-spacing): 247px spacing off brief + 4px scale."
+    }
+  ],
+  "probe": {
+    "ok": true,
+    "checked": 64
+  }
+}

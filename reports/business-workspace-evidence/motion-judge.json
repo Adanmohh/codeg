@@ -1,0 +1,14 @@
+{
+  "specialist": "motion-judge",
+  "scores": {},
+  "findings": [
+    {
+      "surface": "business workspace",
+      "element": "continuous motion",
+      "severity": "low",
+      "check": "BC-13 | smoothness/scroll-comfort not assessed",
+      "fix": "If continuous-motion certification is required, record an interaction filmstrip/video and CLS/long-frame measurements in the independent design pass."
+    }
+  ],
+  "notes": "No filmstrip/video or jank metrics: no motion grade invented. Actual reduced-motion dialog and Action CSS behavior, settled Drawer position and normal/hover/focus stills are recorded separately. Inherited overlay keeps100ms opacity fade."
+}

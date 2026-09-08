@@ -1,0 +1,10 @@
+Source: 3a189d18 source
+Command/check: cargo check --locked --offline --no-default-features --bin codeg-server --jobs4
+Recorded exit: 0
+Original: .build/business-workspace/native-entry-server-check.log
+Normalized ANSI/trailing whitespace only.
+
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src-tauri)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 44.20s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

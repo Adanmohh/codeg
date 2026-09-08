@@ -1,0 +1,23 @@
+Already up to date
+Done in 156ms using pnpm v11.9.0
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/lib/ops-telegram/locator.test.ts (2 tests) 3ms
+ ✓ src/lib/business/client.test.ts (11 tests) 11ms
+ ✓ src/components/appearance-provider.test.tsx (9 tests) 44ms
+ ✓ src/components/connection/web-connection-guard.test.tsx (7 tests) 99ms
+ ✓ src/components/ops-telegram/settings.test.tsx (2 tests) 106ms
+ ✓ src/components/business/provider-isolation.test.tsx (8 tests) 126ms
+ ✓ src/components/ops/ops-flows.test.tsx (14 tests) 149ms
+ ✓ src/components/ops-intake/bug-workflow.test.tsx (10 tests) 455ms
+ ✓ src/components/business/session.test.tsx (2 tests) 340ms
+ ✓ src/components/business/workflow.test.tsx (12 tests) 409ms
+ ✓ src/components/ops/session.test.tsx (8 tests) 725ms
+ ✓ src/components/layout/sidebar.test.tsx (28 tests) 997ms
+
+ Test Files  12 passed (12)
+      Tests  113 passed (113)
+   Start at  13:29:10
+   Duration  2.36s (transform 1.65s, setup 2.39s, collect 4.96s, tests 3.46s, environment 5.61s, prepare 667ms)

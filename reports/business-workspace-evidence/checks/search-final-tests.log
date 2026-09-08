@@ -1,0 +1,22 @@
+Source: e72cc44b source
+Command/check: pnpm exec vitest run src/lib/business/client.test.ts src/components/business
+Recorded exit: 0
+Original: .build/business-workspace/search-final-tests.log
+Normalized ANSI/trailing whitespace only.
+
+Already up to date
+Done in 204ms using pnpm v11.9.0
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/lib/business/client.test.ts (11 tests) 10ms
+ ✓ src/components/business/provider-isolation.test.tsx (8 tests) 118ms
+ ✓ src/components/business/ui.test.tsx (3 tests) 251ms
+ ✓ src/components/business/session.test.tsx (2 tests) 280ms
+ ✓ src/components/business/workflow.test.tsx (15 tests) 565ms
+
+ Test Files  5 passed (5)
+      Tests  39 passed (39)
+   Start at  19:04:55
+   Duration  2.31s (transform 489ms, setup 705ms, collect 1.88s, tests 1.22s, environment 2.89s, prepare 493ms)

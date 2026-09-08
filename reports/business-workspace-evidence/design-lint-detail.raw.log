@@ -1,0 +1,89 @@
+{
+  "file": "src/components/business/task-detail.tsx",
+  "surface": {
+    "isButton": false,
+    "isInput": true,
+    "isList": false,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": false,
+    "focusState": true,
+    "activeState": false,
+    "aria": false,
+    "role": false,
+    "emptyState": false,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": false,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #276258 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #973c00 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #f59300 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #000000 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #27624e rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #9f0712 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #e21d27 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (extra-font-family): Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system."
+    },
+    {
+      "sev": "low",
+      "msg": "probe: +3 more brief violations in probe.json"
+    }
+  ],
+  "probe": {
+    "ok": true,
+    "checked": 94
+  }
+}
+
+SUMMARY src/components/business/task-detail.tsx: 9 gap(s) — [med] MEASURED brief violation (off-palette-color): #276258 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #973c00 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #f59300 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #000000 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #27624e rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #9f0712 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #e21d27 rendered but not in brief palette.  |  [med] MEASURED brief violation (extra-font-family): Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system.  |  [low] probe: +3 more brief violations in probe.json

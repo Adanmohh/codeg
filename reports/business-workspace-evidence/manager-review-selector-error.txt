@@ -1,0 +1,4 @@
+### Error
+TimeoutError: locator.check: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('dialog', { name: 'Shape the customer welcome · Synthetic', exact: true }).getByLabel('I reviewed this task and its current deliverable.', { exact: true })[22m
