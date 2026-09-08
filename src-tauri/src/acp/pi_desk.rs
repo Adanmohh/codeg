@@ -314,23 +314,40 @@ mod tests {
         // The real installed adapter must enumerate the actual fixed companion,
         // not merely register /mcp against an empty configuration. /desk-status
         // is an extension command (pinned RPC docs), not an inference prompt.
-        input.write_all(b"{\"id\":\"cached-discovery\",\"type\":\"prompt\",\"message\":\"/desk-status\"}\n").await.unwrap();
+        let required_tools = ["hafidh_feedback_list", "hafidh_feedback_get", "hafidh_intake_status", "desk_business_task", "desk_business_progress", "desk_business_note", "desk_business_submit"];
+        // Pinned adapter2.32.1 index.ts:642-680 starts eager initialization in
+        // session_start without awaiting it for programmatic directTools. RPC
+        // command discovery therefore precedes actual MCP tool registration.
+        // Poll observed names, not elapsed startup time or configuration alone.
         let notice = tokio::time::timeout(std::time::Duration::from_secs(10), async {
-            let mut notice = None;
+            let mut attempt = 0;
             loop {
-                let line = output.next_line().await.unwrap().expect("RPC stays live");
-                let message: serde_json::Value = serde_json::from_str(&line).unwrap();
-                assert_ne!(message["type"], "message_start", "no model turn is allowed");
-                if message["type"] == "extension_ui_request" && message["method"] == "notify" {
-                    notice = message["message"].as_str().map(str::to_owned);
+                attempt += 1;
+                let id = format!("cached-discovery-{attempt}");
+                let mut wire = serde_json::to_vec(&serde_json::json!({"id": id, "type": "prompt", "message": "/desk-status"})).unwrap();
+                wire.push(b'\n');
+                input.write_all(&wire).await.unwrap();
+                let mut notice = None;
+                loop {
+                    let line = output.next_line().await.unwrap().expect("RPC stays live");
+                    let message: serde_json::Value = serde_json::from_str(&line).unwrap();
+                    assert_ne!(message["type"], "message_start", "no model turn is allowed");
+                    if message["type"] == "extension_ui_request" && message["method"] == "notify" {
+                        notice = message["message"].as_str().map(str::to_owned);
+                    }
+                    if message["id"] == id {
+                        assert_eq!(message["success"], true);
+                        break;
+                    }
                 }
-                if message["id"] == "cached-discovery" {
-                    assert_eq!(message["success"], true);
-                    break notice.expect("status command emits actual tool discovery");
+                let notice = notice.expect("status command emits actual tool discovery");
+                if required_tools.iter().all(|tool| notice.contains(tool)) {
+                    break notice;
                 }
+                tokio::time::sleep(std::time::Duration::from_millis(25)).await;
             }
-        }).await.unwrap();
-        for tool in ["hafidh_feedback_list", "hafidh_feedback_get", "hafidh_intake_status", "desk_business_task", "desk_business_progress", "desk_business_note", "desk_business_submit"] {
+        }).await.expect("actual installed companion tools must become available within the startup deadline");
+        for tool in required_tools {
             assert!(notice.contains(tool), "actual extracted companion discovery: {notice}");
         }
         // Exercise the shipped wrapper, not only rpcRefusal's unit fixture.

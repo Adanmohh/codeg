@@ -1,0 +1,18 @@
+{
+  "PreToolUse": {
+    "event": "PreToolUse",
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets",
+    "time": 1788859227,
+    "exit": 0,
+    "context_emitted": false
+  },
+  "PostToolUse": {
+    "event": "PostToolUse",
+    "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets",
+    "time": 1788859188,
+    "exit": 0,
+    "context_emitted": false
+  }
+}

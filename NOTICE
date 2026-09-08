@@ -609,7 +609,8 @@ Accepted Adanmohh/codeg 4ec04d7282a50529335d724438d42b99a53385a2:
 Business fields and organization/revision glue implement the owner-approved
 docs/BUSINESS-IMPLEMENTATION.md. IntroInnovation/intromail (owner-authorized)
 0bd24dfe284b888aa9f602fa1fd00e337ea38874, backend/app/models.py (Task basic
-title/notes/due/creator fields) and services/task_ops.py / agent/tasks_pack.py
+title/notes/due/creator fields), backend/app/services/task_ops.py and
+backend/app/services/agent/tasks_pack.py
 inform the common human-agent operation boundary. No favorites, relations,
 watchers, source-key or field-journal implementation from its copyleft-source
 research is copied. The source create/PATCH authorization omissions are not
@@ -638,6 +639,15 @@ router, with no engine or provider startup. Source entrustment and exact
 business-agent ownership checks are new authorization glue over the same
 Codeg lifecycle mutex and identity writer transaction; no additional upstream
 task, authorization or workflow implementation is copied.
+The task browser evidence scripts adapt the accepted
+reports/business-identity-evidence/{browser-api,browser-second-session}.js
+at d9882b68b268b516b1d1a24031862a022a797899, Apache-2.0, as test orchestration
+only. Installed Playwright CLI0.1.18 / Playwright1.63.0-alpha-2026-08-05 types
+are API references; no dependency implementation is copied or upgraded.
+The extracted Pi process fixture uses pi-mcp-adapter2.32.1 index.ts:642-680 at
+10a45367e033a32026987a75d6f401e37340c86f as a lifecycle reference: eager
+initialization completes asynchronously. Bounded polling verifies real tool
+registration without changing adapter source or making a model request.
 
 Business member identity boundary (2026)
 ========================================

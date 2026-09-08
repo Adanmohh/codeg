@@ -1,6 +1,6 @@
 # Business tasks contract
 
-Owner: tickets, `feat/business-tasks`, draft [PR22](https://github.com/Adanmohh/codeg/pull/22). Base `4ec04d7282a50529335d724438d42b99a53385a2`; initial checkpoint `cb2e184f`. Implementation/gates remain in progress. Identity follows approvals' [business-identity.md](business-identity.md): private Principal, UUID string IDs, current credentials/grants and one writer transaction. No alternate auth system.
+Owner: tickets, `feat/business-tasks`, draft [PR22](https://github.com/Adanmohh/codeg/pull/22). Base `4ec04d7282a50529335d724438d42b99a53385a2`; initial checkpoint `cb2e184f`; implemented runtime source `1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5`, integrated with accepted identity/main. Validation and limitations are recorded in [business-tasks report](../../reports/business-tasks.md). Identity follows approvals' [business-identity.md](business-identity.md): private Principal, UUID string IDs, current credentials/grants and one writer transaction. No alternate auth system.
 
 ## Record, dates and defaults
 
