@@ -14,6 +14,14 @@ Validation already passed at documented immutable heads: root6194 frontend tests
 
 Workers retain Astra/max, docs-first hooks and pinned gh-api borrowing. The historical Luna acknowledgement had zero tool calls and occurred after all PR22 product commits; current displayed Astra/max is verified. Native package and final synthesis results will be appended here.
 
+**Native loop found N2/P2:** actual packaged local workspace places macOS window
+buttons over the brand and its blank top header does not drag the window.
+[Evidence](reports/business-native-root/N2-native-chrome.md). Rebrand is dispatched
+to a separate bounded native-chrome correction, reusing existing titlebar/controls;
+root continues actual human/shared-member checks. Package build/all1016 web hashes
+and all-three binary/profile hashes pass. Tickets reports275 bundled companion
+checks pass with unchanged before/after hash; final report review follows.
+
 ## Earlier Increment A checkpoints — historical
 
 ## Autonomous implementation — resumed

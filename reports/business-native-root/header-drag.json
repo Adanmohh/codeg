@@ -1,0 +1,141 @@
+{
+  "pid": 27415,
+  "windowId": 49837,
+  "source": "6cfff7d64e4d45f84d8cd5a26325b6ad4e1f311f",
+  "product": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+  "input": {
+    "from": [
+      600,
+      62
+    ],
+    "to": [
+      680,
+      102
+    ],
+    "activeGuard": true
+  },
+  "before": [
+    {
+      "bounds": {
+        "Height": 33,
+        "Width": 1512,
+        "X": 0,
+        "Y": 0
+      },
+      "id": 49840,
+      "name": ""
+    },
+    {
+      "bounds": {
+        "Height": 860,
+        "Width": 1260,
+        "X": 126,
+        "Y": 42
+      },
+      "id": 49837,
+      "name": "Hafidh Ops Desk"
+    },
+    {
+      "bounds": {
+        "Height": 500,
+        "Width": 500,
+        "X": 0,
+        "Y": 482
+      },
+      "id": 49850,
+      "name": ""
+    },
+    {
+      "bounds": {
+        "Height": 33,
+        "Width": 1512,
+        "X": 0,
+        "Y": 0
+      },
+      "id": 49842,
+      "name": ""
+    },
+    {
+      "bounds": {
+        "Height": 33,
+        "Width": 1512,
+        "X": 0,
+        "Y": 0
+      },
+      "id": 49841,
+      "name": ""
+    },
+    {
+      "bounds": {
+        "Height": 33,
+        "Width": 1512,
+        "X": 0,
+        "Y": 0
+      },
+      "id": 49839,
+      "name": ""
+    }
+  ],
+  "after": [
+    {
+      "bounds": {
+        "Height": 33,
+        "Width": 1512,
+        "X": 0,
+        "Y": 0
+      },
+      "id": 49840,
+      "name": ""
+    },
+    {
+      "bounds": {
+        "Height": 860,
+        "Width": 1260,
+        "X": 126,
+        "Y": 42
+      },
+      "id": 49837,
+      "name": "Hafidh Ops Desk"
+    },
+    {
+      "bounds": {
+        "Height": 500,
+        "Width": 500,
+        "X": 0,
+        "Y": 482
+      },
+      "id": 49850,
+      "name": ""
+    },
+    {
+      "bounds": {
+        "Height": 33,
+        "Width": 1512,
+        "X": 0,
+        "Y": 0
+      },
+      "id": 49842,
+      "name": ""
+    },
+    {
+      "bounds": {
+        "Height": 33,
+        "Width": 1512,
+        "X": 0,
+        "Y": 0
+      },
+      "id": 49841,
+      "name": ""
+    },
+    {
+      "bounds": {
+        "Height": 33,
+        "Width": 1512,
+        "X": 0,
+        "Y": 0
+      },
+      "id": 49839,
+      "name": ""
+    }
+  ]
+}

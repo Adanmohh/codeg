@@ -36,7 +36,18 @@ if args[2] == "windows" {
     func walk(_ node: AXUIElement, _ path: [Int], _ depth: Int) {
         guard depth <= 30, rows.count < 1000 else { return }
         let role = attr(node, kAXRoleAttribute) as? String ?? ""
+        guard role != "AXMenuBar" else { return }
         var row: [String: Any] = ["path": path.map(String.init).joined(separator: "."), "role": role]
+        if let v = attr(node, kAXPositionAttribute), CFGetTypeID(v) == AXValueGetTypeID() {
+            var point = CGPoint.zero
+            if AXValueGetValue(v as! AXValue, .cgPoint, &point) { row["x"] = point.x; row["y"] = point.y }
+        }
+        if let v = attr(node, kAXSizeAttribute), CFGetTypeID(v) == AXValueGetTypeID() {
+            var size = CGSize.zero
+            if AXValueGetValue(v as! AXValue, .cgSize, &size) { row["width"] = size.width; row["height"] = size.height }
+        }
+        if let enabled = attr(node, kAXEnabledAttribute) as? Bool { row["enabled"] = enabled }
+        if let expanded = attr(node, kAXExpandedAttribute) as? Bool { row["expanded"] = expanded }
         for key in [kAXTitleAttribute, kAXDescriptionAttribute] {
             if let text = attr(node, key) as? String, !text.isEmpty { row[key] = safe(text) }
         }

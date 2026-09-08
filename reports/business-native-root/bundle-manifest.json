@@ -1,0 +1,39 @@
+{
+  "buildSource": "6cfff7d64e4d45f84d8cd5a26325b6ad4e1f311f",
+  "productSource": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+  "packageVersion": "0.30.4",
+  "identifier": "app.hafidh.opsdesk",
+  "binaries": [
+    {
+      "name": "codeg",
+      "path": "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app/Contents/MacOS/codeg",
+      "bytes": 310948376,
+      "sha256": "c2569a97a34934e3f8529a041d9aa639fe622b0f3050ba1b7ae1d28cdd9aae3c",
+      "profileSha256": "c2569a97a34934e3f8529a041d9aa639fe622b0f3050ba1b7ae1d28cdd9aae3c",
+      "matchesProfile": true
+    },
+    {
+      "name": "codeg-mcp",
+      "path": "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app/Contents/MacOS/codeg-mcp",
+      "bytes": 21711944,
+      "sha256": "90f9fd8ed430ce1710919fc030ac87c34ba0c8e0a6e23cc4706f2c2b9515846d",
+      "profileSha256": "90f9fd8ed430ce1710919fc030ac87c34ba0c8e0a6e23cc4706f2c2b9515846d",
+      "matchesProfile": true
+    },
+    {
+      "name": "codeg-server",
+      "path": "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app/Contents/MacOS/codeg-server",
+      "bytes": 241246544,
+      "sha256": "7093247d3e17b1652cad07816914830fd9022561dc90a0d3a0f1576461b83d93",
+      "profileSha256": "7093247d3e17b1652cad07816914830fd9022561dc90a0d3a0f1576461b83d93",
+      "matchesProfile": true
+    }
+  ],
+  "web": {
+    "sourceFiles": 1016,
+    "bundledFiles": 1016,
+    "missing": [],
+    "extra": [],
+    "different": []
+  }
+}
