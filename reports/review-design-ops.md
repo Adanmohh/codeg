@@ -22,3 +22,16 @@ No blocking source finding. Actual cross-tab locale/RTL browser checks, terminal
 receipt views and final worker gates/report remain before acceptance. Root will
 respect reserved fixture proposal2 until the worker completes its recording-only
 check and releases the stable4326 fixture. This is not final design acceptance.
+
+## Measured follow-up findings
+
+Worker `design-ops-after.raw` reports preserved reply/note in all four viewport/
+theme combinations, correct Arabic/email directions and180-degree mobile back
+rotation, no private persistence/overflow, provider count4→4 and restored English.
+Root inspected desktop Arabic screenshots. However, measured contrast still
+fails for selected light-row secondary text (Task/Run, Open/date):4.2 against4.5.
+Requested a narrow correction and remeasure. Dark threading identifiers also
+report2.27/2.66; root requested direct settled-theme style/screenshot verification
+to distinguish real native-control contrast from a color-probe artifact. Empty
+control samples may be excluded only with evidence. Current summary is not a
+clean contrast pass; final acceptance remains pending these checks.
