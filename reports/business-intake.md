@@ -236,3 +236,24 @@ Precise seams to close, read at base086eee48/current67708b07:
 Per-tenant UI preferences/navigation are frontend/identity contract work, not B
 source permission. No global store, local filesystem or engine is claimed to be
 an OS/multi-tenant sandbox. No tenant migration or new framework is implemented here.
+
+Source/import compiling SHA: `4a194500b76b97aa5caaf9434ce5c1f16e54ea48`, pushed to
+PR28. Its new focused selector `business_intake::tests::import_cases` passed
+**5/5,0 ignored**, exit0,0.43s execution/58.02s compile, same isolated locked/offline
+server-library target. Log `tests-imports.log` covers deduplicated discovery and
+replay without another HTTP read, nullable pre-detail revision, identical/A→B→A
+versions, retained candidate identity, explicit cancellation and expired claims,
+cross-import source fencing, grant revocation, dropped caller future, three-attempt
+retry budget and capped five-page duplicate discovery. These synthetic loopback
+tests create no business task or persistent fixture; publication is still pending.
+
+Independent review `d92d1b9534025f994a85f070d3bb78174c876e62` at67708b07 reports
+setup5/reader3/legacy2/migration2 passing and749/749 source blobs matched, with no
+new concrete blocker in that scope. Late/uncertain credential cleanup and complete
+publication remain gaps, not certified by those12 passes or the newer five tests.
+
+Owner clarified the tenant experience retains the rich chat/terminal workspace,
+tabs and split panes alongside task/table/board/calendar views. This checkpoint
+adds no member access to legacy terminal/session/host APIs. Tenant/session/host
+isolation and explicit tenant selection must be reviewed before those capabilities
+are exposed; a simplified separate dashboard is not the assumed product contract.
