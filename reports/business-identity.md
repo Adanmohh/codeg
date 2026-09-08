@@ -19,8 +19,23 @@ The complete business scope, FOUNDING, ORCHESTRATOR, STATUS, DECISIONS and all t
 
 ## Checks and remaining work
 
-Contract checkpoint only: no compile/test result claimed yet. Next: compiling auth/principal/migration checkpoint, early draft PR, identity CRUD/revocation/security regressions, default/server checks and Clippy, frontend typecheck. Task/UI integration uses the published contract. No live providers/accounts, agent launches, external sends or broad Settings snapshots. Existing fixtures and outputs are preserved.
+The first independently usable identity implementation is ready for source review: separate business bearer auth, operator-only atomic bootstrap, member management, individual credential issue/revoke, domain/role permissions, immutable identity audit, and private delegation lineage. HTTP/native wrappers share the same core. No provider/client/engine authority is exposed to member credentials.
+
+Current checks (own target only):
+
+| Command | Result | Evidence |
+|---|---|---|
+| `cargo check --locked --no-default-features --bin codeg-server` | exit0, 53.90s | `/tmp/business-identity-server-check.log` |
+| `cargo test --locked --no-default-features --lib business_identity::tests -- --nocapture` | exit0, 13 passed, 0 failed, 0 ignored, 0.66s test runtime | `/tmp/business-identity-tests.log` |
+| Initial smaller identity selector before additional cases | exit0, 3 passed | `/tmp/business-identity-tests-checkpoint.log`; superseded by13 |
+| `git diff --check` | exit0 | own working tree |
+
+The13 tests cover actual full-router anonymous/member/owner-credential bootstrap denial; all three member roles denied legacy HTTP and WebSocket paths; original operator health preserved; spoof fields rejected; viewer writes denied; at-rest hash/public-response redaction; credential/member revocation; current domain/role and reference checks; admin grant ceiling; no elevated agent role/login; persisted lineage and original credential revocation; independent SQLite connection bootstrap/CAS/revocation races; audit rollback/immutability; named migration atomicity and initialized-row preservation. The race deliberately holds one SQLite writer while a second connection waits, then verifies its cached principal is rejected after revocation commits and no synthetic protected write occurs.
+
+Remaining gates: current default/server checks and Clippy, frontend typecheck, optional owned4341 guarded API fixture. No task/UI integration pass is claimed. Task worker can now integrate the committed helper implementation; full task/UI surface stays separately owned. No live providers/accounts, agent launches, external sends or broad Settings snapshots. Existing fixtures and outputs are preserved.
 
 Initial contract commit `f3c36dc6` is pushed. Draft PR: https://github.com/Adanmohh/codeg/pull/23. Both existing workers received the exact contract path via authorized Herdr prompts (exit0); no additional agents were started.
 
-The root BW-1–18 checklist was read in full. Explicit grant ceiling and immutable agent delegation lineage now extend the contract: admin cannot grant outside its current domains or manage owner/admin identities; agent role is always member; delegating credential revocation is rechecked after persisted-link restoration. This closes the task worker's persistence seam without exposing a caller principal constructor. The first server compilation is running against only `.build/business-identity-target`; implementation and tests are in progress.
+The root BW-1–18 checklist was read in full. Explicit grant ceiling and immutable agent delegation lineage extend the contract: admin cannot grant outside its current domains or manage owner/admin identities; agent role is always member; delegating credential revocation is rechecked after persisted-link restoration. Domain-less agent authorization fails closed. This closes the task worker's persistence seam without exposing a caller principal constructor. All Rust output is isolated in `.build/business-identity-target`.
+
+The test linker reports inherited macOS `__eh_frame` size warning; proc-macro-error2 2.0.1 reports an upstream future-compatibility warning. No dependency upgrade was made. Early unused test imports were removed before the13-test run.
