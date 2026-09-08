@@ -685,7 +685,7 @@ pub(crate) async fn link(
     agent::require_live(&tx, &live).await?;
     let agent_id = row.assignee_id.clone().ok_or(E::Forbidden)?;
     identity::agent_principal(&tx, &ctx.principal, &agent_id).await?;
-    let occupied = tx.query_one(statement("SELECT id FROM business_task_execution WHERE work_task_id = ? AND run_seq = ? AND revoked_at IS NULL",
+    let occupied = tx.query_one(statement("SELECT id FROM business_task_execution WHERE work_task_id = ? AND run_seq = ?",
         vec![live.work_task_id.into(), live.run_seq.into()])).await?;
     if occupied.is_some() {
         return Err(E::Conflict);

@@ -414,3 +414,169 @@ async fn desk_business_reassignment_cancellation_and_new_generation_fence_old_la
         assert!(current.activity.iter().all(|event| event.kind != "note"));
     }
 }
+
+#[tokio::test]
+async fn desk_business_revoked_generation_cannot_be_retargeted_and_fresh_run_keeps_agent_identity()
+{
+    let f = fixture().await;
+    let ctx = ActorContext::authenticated(f.delegator.clone());
+    let revoked = business::store::assign(
+        &f.engine.db.conn,
+        &ctx,
+        dto::AssignInput {
+            task_id: f.task.task.id.clone(),
+            expected_revision: 2,
+            owner_id: f.delegator.member_id().into(),
+            assignee_id: Some(f.agent_id.clone()),
+            reviewer_id: None,
+        },
+    )
+    .await
+    .unwrap();
+    // Even an explicit human re-link cannot reuse this launch, whose in-flight
+    // payloads may have been authored for a different task/revision.
+    let other = business::store::create(
+        &f.engine.db.conn,
+        &ctx,
+        dto::CreateInput {
+            title: "Different customer outcome".into(),
+            notes: String::new(),
+            domain: Domain::Feedback,
+            priority: Default::default(),
+            due_date: None,
+            owner_id: None,
+            assignee_id: Some(f.agent_id.clone()),
+            reviewer_id: None,
+        },
+    )
+    .await
+    .unwrap();
+    assert!(matches!(
+        f.engine
+            .link_business_execution(
+                ActorContext::authenticated(f.delegator.clone()),
+                dto::LinkExecutionInput {
+                    task_id: other.task.id.clone(),
+                    expected_revision: 1,
+                    work_task_id: f.engineering_id,
+                }
+            )
+            .await,
+        Err(identity::IdentityError::Conflict)
+    ));
+    assert!(
+        !call(
+            &f.listener,
+            &f.token,
+            DeskTool::DeskBusinessSubmit,
+            json!({"expectedRevision":1,"body":"Wrong cached customer payload"})
+        )
+        .await
+        .ok
+    );
+    let new_connection = uuid::Uuid::new_v4().to_string();
+    let new_run = relaunch_on(&f.engine, f.engineering_id, &new_connection).await;
+    let (listener, _, token) = bridge(&f.engine, &new_connection).await;
+    let linked = f
+        .engine
+        .link_business_execution(
+            ActorContext::authenticated(f.delegator),
+            dto::LinkExecutionInput {
+                task_id: other.task.id,
+                expected_revision: 1,
+                work_task_id: f.engineering_id,
+            },
+        )
+        .await
+        .unwrap();
+    let new = public(call(&listener, &token, DeskTool::DeskBusinessTask, json!({})).await);
+    assert_eq!(new["task"]["id"], linked.task.id);
+    assert_eq!(new["execution"]["agentMemberId"], f.agent_id);
+    assert_eq!(new["execution"]["runSeq"], new_run);
+    let old = business::store::get(
+        &f.engine.db.conn,
+        &ActorContext::authenticated(f.operator),
+        dto::TaskInput {
+            task_id: revoked.task.id,
+        },
+    )
+    .await
+    .unwrap();
+    assert_eq!(old.task.revision, 3);
+    assert!(old.deliverables.is_empty());
+}
+
+#[tokio::test]
+async fn desk_business_current_delegator_grants_and_agent_revocation_fence_contributions() {
+    for cause in ["viewer", "domain", "agent"] {
+        let f = fixture().await;
+        if cause == "agent" {
+            identities::revoke_member(
+                &f.engine.db.conn,
+                &f.operator,
+                RevokeMemberInput {
+                    organization_id: f.operator.organization_id().into(),
+                    member_id: f.agent_id.clone(),
+                    expected_revision: 1,
+                },
+            )
+            .await
+            .unwrap();
+        } else {
+            identities::update_member(
+                &f.engine.db.conn,
+                &f.operator,
+                UpdateMemberInput {
+                    organization_id: f.operator.organization_id().into(),
+                    member_id: f.delegator.member_id().into(),
+                    expected_revision: 1,
+                    display_name: "Current delegator".into(),
+                    role: if cause == "viewer" {
+                        Role::Viewer
+                    } else {
+                        Role::Manager
+                    },
+                    domains: vec![if cause == "domain" {
+                        Domain::Marketing
+                    } else {
+                        Domain::Feedback
+                    }],
+                },
+            )
+            .await
+            .unwrap();
+        }
+        let read = context(&f).await;
+        if cause == "viewer" {
+            let value = public(read);
+            for capability in ["progress", "comment", "submit", "review"] {
+                assert_eq!(value["task"]["capabilities"][capability], false);
+            }
+        } else {
+            assert_eq!(read.code, Some(DeskError::Denied));
+        }
+        assert_eq!(
+            call(
+                &f.listener,
+                &f.token,
+                DeskTool::DeskBusinessNote,
+                json!({"expectedRevision":2,"body":"Old grants must not write"})
+            )
+            .await
+            .code,
+            Some(DeskError::Denied)
+        );
+        let current = business::store::get(
+            &f.engine.db.conn,
+            &ActorContext::authenticated(f.operator),
+            dto::TaskInput {
+                task_id: f.task.task.id,
+            },
+        )
+        .await
+        .unwrap();
+        assert!(!current.execution.unwrap().active);
+        assert_eq!(current.task.revision, 2);
+        assert_eq!(current.activity.len(), 2);
+    }
+}

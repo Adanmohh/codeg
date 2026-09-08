@@ -73,7 +73,7 @@ CREATE TABLE business_task_execution (
     FOREIGN KEY (organization_id, agent_member_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT,
     FOREIGN KEY (organization_id, linked_by) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT
 );
-CREATE UNIQUE INDEX business_task_one_active_run ON business_task_execution(work_task_id, run_seq) WHERE revoked_at IS NULL;
+CREATE UNIQUE INDEX business_task_one_binding_per_run ON business_task_execution(work_task_id, run_seq);
 CREATE UNIQUE INDEX business_task_one_active_execution ON business_task_execution(organization_id, task_id) WHERE revoked_at IS NULL;
 CREATE TABLE business_task_deliverable (
     id TEXT PRIMARY KEY NOT NULL,
