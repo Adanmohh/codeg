@@ -134,6 +134,18 @@ Cargo commands run from src-tauri with the own
 Inherited proc-macro-error2 future-compatibility warning and test-binary unwind
 warning remain; neither is a new product failure. No broad unrelated Rust retest.
 
+Exact integrated frontend command (113 at that checkpoint; the later3 focus
+regressions are covered by the final25-test run):
+
+```sh
+pnpm exec vitest run src/lib/business/client.test.ts src/components/business \
+  src/components/appearance-provider.test.tsx \
+  src/components/connection/web-connection-guard.test.tsx \
+  src/components/layout/sidebar.test.tsx src/components/ops/ops-flows.test.tsx \
+  src/components/ops/session.test.tsx src/components/ops-intake/bug-workflow.test.tsx \
+  src/components/ops-telegram/settings.test.tsx src/lib/ops-telegram/locator.test.ts
+```
+
 Actual CLI evidence, not production mocks:
 
 | Workflow | Evidence under business-workspace-evidence/ |
@@ -179,7 +191,7 @@ long-frame counts and assistive technology were not assessed.
 
 Open **http://127.0.0.1:4340/business.html**. Static proxy **PID36044** serves own
 out-business-workspace; guarded real task API **PID81950 on4342** owns temporary
-disk SQLite. Named CLI browsers: business-owner4340 **PID85074** (personal Amal
+disk SQLite. Named CLI session hosts: business-owner4340 **PID85074** (personal Amal
 owner) and business-member4340 **PID85139** (personal Samira manager). Exactly two
 named sessions. The fixture remains available for root. Operator setup choice can
 use the **test-only public literal business-tasks-synthetic-operator**. Use People
