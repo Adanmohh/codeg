@@ -368,18 +368,32 @@ pub async fn deny(
     action: &dyn Action,
 ) -> Result<(), DbError> {
     let txn = conn.begin().await?;
+    deny_in_transaction(&txn, task_id, run_seq, proposal_id, actor, action).await?;
+    txn.commit().await?;
+    Ok(())
+}
+
+/// Trusted adapters can add a local binding check in this same writer
+/// transaction. The canonical task/proposal CAS and redaction remain here.
+pub(crate) async fn deny_in_transaction(
+    txn: &DatabaseTransaction,
+    task_id: i32,
+    run_seq: i32,
+    proposal_id: i32,
+    actor: &str,
+    action: &dyn Action,
+) -> Result<(), DbError> {
     task_cas(
-        &txn,
+        txn,
         task_id,
         run_seq,
         WorkTaskStatus::AwaitingInput,
         WorkTaskStatus::AwaitingInput,
     )
     .await?;
-    let row = pending(&txn, task_id, run_seq, proposal_id, actor, action).await?;
-    resolve(&txn, &row, actor, action, "denied", None, None).await?;
-    super::work_task_wait_service::reconcile(&txn, task_id, run_seq).await?;
-    txn.commit().await?;
+    let row = pending(txn, task_id, run_seq, proposal_id, actor, action).await?;
+    resolve(txn, &row, actor, action, "denied", None, None).await?;
+    super::work_task_wait_service::reconcile(txn, task_id, run_seq).await?;
     Ok(())
 }
 

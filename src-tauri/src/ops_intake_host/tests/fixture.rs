@@ -23,7 +23,7 @@ pub(super) fn router(
 }
 const KEY: &str = include_str!("../../ops_intake/fixtures/synthetic-only-private.pem");
 #[derive(Default)]
-pub(super) struct Observed {
+pub(crate) struct Observed {
     pub reads: usize,
     pub posts: usize,
     pub tokens: usize,
@@ -31,7 +31,7 @@ pub(super) struct Observed {
     pub changed: bool,
     pub issues: Vec<serde_json::Value>,
 }
-pub(super) struct Provider {
+pub(crate) struct Provider {
     pub runtime: Arc<HostRuntime>,
     pub origin: String,
     pub seen: Arc<Mutex<Observed>>,

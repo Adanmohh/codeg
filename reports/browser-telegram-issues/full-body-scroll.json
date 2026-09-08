@@ -1,0 +1,6 @@
+{
+  "scrollTop": 685,
+  "scrollHeight": 1261,
+  "clientHeight": 576,
+  "text": "Synthetic audio stops at verse four\n\nSeverity: medium (human-confirmed)\n\nSource: synthetic-hafidh / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAV\nRevision: 831fd48927deb0d18b301d831deb38781f281f19294b9c76c9c3b9b34b40ace6\nTemplate: hafidh-issue-v1\n\n## build\n\n    42\n\nEvidence: c73dbdec-82d3-47c7-ab2d-6a563a2e3f29\nSHA-256: 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef\n\n## screen\n\n    Mushaf reader\n\nEvidence: 9d1cf9e4-29d8-4025-9a27-744043ba3b4f\nSHA-256: cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709\n\n## reciter\n\n    Abdul Basit\n\nEvidence: fa36433e-1021-44c0-bd90-31eee76755c3\nSHA-256: f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae\n\n## log\n\n    audio stopped at verse four\n\nEvidence: 61029d42-8bc5-4fc6-a233-9f3a7d60a03b\nSHA-256: 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef\n\n<!-- hafidh-ops:6c632369ace420ca8f6f4254e66f42c39236d9e22d08946e9b544e936f40fcbc -->\n"
+}

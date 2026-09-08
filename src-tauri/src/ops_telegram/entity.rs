@@ -6,6 +6,7 @@ pub(super) mod config {
         #[sea_orm(primary_key, auto_increment = false)]
         pub account_id: i32,
         pub enabled: bool,
+        pub github_issues_enabled: bool,
         pub channel_id: i32,
         pub private_user_id: String,
         pub channel_sha256: String,
@@ -29,7 +30,7 @@ pub(super) mod notice {
         pub proposal_id: i32,
         pub task_id: i32,
         pub run_seq: i32,
-        pub action_kind: String,
+        pub action_kind: crate::ops_telegram::types::ActionKind,
         pub snapshot_sha256: String,
         pub config_revision: String,
         pub claim_id: String,

@@ -17,6 +17,7 @@ tsconfig.tsbuildinfo
 .next/
 out/
 /out-telegram/
+/out-telegram-issues/
 next-env.d.ts
 
 # Monaco editor local files (copied from node_modules)

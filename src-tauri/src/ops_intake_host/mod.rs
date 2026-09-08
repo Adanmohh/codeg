@@ -2,6 +2,7 @@
 pub mod agent;
 pub mod fix_task;
 pub mod operator;
+pub(crate) mod notice;
 mod process;
 pub mod review;
 mod runtime;
@@ -24,4 +25,4 @@ pub(crate) fn command_error(error: types::HostError) -> crate::app_error::AppCom
 }
 
 #[cfg(test)]
-mod tests;
+pub(crate) mod tests;

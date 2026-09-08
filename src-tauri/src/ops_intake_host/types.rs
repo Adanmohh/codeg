@@ -194,7 +194,7 @@ pub struct ListInput {
     pub product_id: String,
     pub cursor: Option<String>,
 }
-#[derive(Clone, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct SourceInput {
     pub product_id: String,
@@ -287,6 +287,8 @@ pub struct Detail {
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ReviewInput {
+    #[serde(default)]
+    pub review_notice: Option<String>,
     pub source: SourceInput,
     pub proposal_id: i32,
     pub expected_payload: PreparedIssue,
@@ -295,6 +297,8 @@ pub struct ReviewInput {
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct DenyInput {
+    #[serde(default)]
+    pub review_notice: Option<String>,
     pub source: SourceInput,
     pub proposal_id: i32,
     pub expected_payload: PreparedIssue,

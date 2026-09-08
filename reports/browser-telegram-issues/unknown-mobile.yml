@@ -1,0 +1,78 @@
+- generic [active] [ref=f4e1]:
+  - alert [ref=f4e2]
+  - main "Protected Ops review" [ref=f4e3]:
+    - generic [ref=f4e4]:
+      - paragraph [ref=f4e5]: Hafidh Ops desk
+      - button "Open workspace" [ref=f4e7]
+    - generic [ref=f4e9]:
+      - heading "Review GitHub issue" [level=1] [ref=f4e10]
+      - generic [ref=f4e11]:
+        - heading "Source report" [level=2] [ref=f4e12]
+        - paragraph [ref=f4e13]: Synthetic unknown response example
+        - paragraph [ref=f4e14]: Product synthetic-hafidh · TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAW
+      - generic [ref=f4e15]:
+        - heading "Required evidence" [level=2] [ref=f4e16]
+        - generic [ref=f4e17]:
+          - generic [ref=f4e18]:
+            - term [ref=f4e19]: build
+            - definition [ref=f4e20]: "42"
+            - definition [ref=f4e21]: SHA-256 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef
+          - generic [ref=f4e22]:
+            - term [ref=f4e23]: screen
+            - definition [ref=f4e24]: Mushaf reader
+            - definition [ref=f4e25]: SHA-256 cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709
+          - generic [ref=f4e26]:
+            - term [ref=f4e27]: reciter
+            - definition [ref=f4e28]: Abdul Basit
+            - definition [ref=f4e29]: SHA-256 f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae
+          - generic [ref=f4e30]:
+            - term [ref=f4e31]: log
+            - definition [ref=f4e32]: audio stopped at verse four
+            - definition [ref=f4e33]: SHA-256 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef
+      - generic [ref=f4e34]:
+        - heading "Issue draft" [level=2] [ref=f4e35]
+        - paragraph [ref=f4e36]:
+          - text: "Suggestion:"
+          - strong [ref=f4e37]: low
+          - text: severity; other. These are triage guesses. Confirm or change severity below.
+        - group [ref=f4e39]:
+          - generic [ref=f4e40]:
+            - generic [ref=f4e41]: Issue title
+            - textbox "Issue title" [disabled]: "TestFlight draft: Synthetic unknown response example"
+          - generic [ref=f4e42]:
+            - generic [ref=f4e43]: Reproduction and expected behavior
+            - textbox "Reproduction and expected behavior" [disabled] [ref=f4e44]: Synthetic unknown response example
+            - generic [ref=f4e45]: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions.
+          - generic [ref=f4e46]:
+            - generic [ref=f4e47]: Repository labels
+            - textbox "Repository labels" [disabled]: audio
+            - generic [ref=f4e48]: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing.
+          - generic [ref=f4e49]:
+            - text: Human-confirmed severity
+            - combobox "Human-confirmed severity" [disabled] [ref=f4e50]:
+              - option "Not confirmed" [disabled]
+              - option "High" [disabled]
+              - option "Medium" [disabled] [selected]
+              - option "Low" [disabled]
+          - generic [ref=f4e51]:
+            - button "Save issue draft" [disabled]
+            - generic [ref=f4e52]: Draft saved locally
+      - generic [ref=f4e54]:
+        - heading "Exact GitHub issue" [level=2] [ref=f4e55]
+        - generic [ref=f4e56]:
+          - generic [ref=f4e57]:
+            - term [ref=f4e58]: Repository
+            - definition [ref=f4e59]: owner/repo
+          - generic [ref=f4e60]:
+            - term [ref=f4e61]: Title
+            - definition [ref=f4e62]: "TestFlight draft: Synthetic unknown response example"
+          - generic [ref=f4e63]:
+            - term [ref=f4e64]: Labels
+            - definition [ref=f4e65]: audio
+        - group [ref=f4e66]:
+          - generic "Complete issue body" [ref=f4e67] [cursor=pointer]
+          - generic "Exact issue body" [ref=f4e68]: "Synthetic unknown response example Severity: medium (human-confirmed) Source: synthetic-hafidh / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAW Revision: 52bf6f15ab361d0853fcdb8f034136d9929f82d29789cb9b283dad3dc71fcea9 Template: hafidh-issue-v1 ## build 42 Evidence: ca96ed3e-2e1c-4f7a-9485-d508d1960198 SHA-256: 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef ## screen Mushaf reader Evidence: d6070265-2edd-457a-b824-ab596c9af0e6 SHA-256: cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709 ## reciter Abdul Basit Evidence: ce9359de-6820-47ee-acb0-a7ac87f1494f SHA-256: f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae ## log audio stopped at verse four Evidence: 5fcc5b59-9562-4f7e-b24e-c18b5cc3057a SHA-256: 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef <!-- hafidh-ops:fe146548a5c9ec8d94439cf7614c70a486d4a84d59ed55adb2fb8475908bd2fb -->"
+      - generic [ref=f4e74]:
+        - heading "Filing receipt" [level=2] [ref=f4e75]
+        - status [ref=f4e76]: Outcome unknown. GitHub may already have created the issue. Filing again is blocked. Check the existing issue using a read-only reconciliation.
+        - button "Check existing issue" [ref=f4e77]

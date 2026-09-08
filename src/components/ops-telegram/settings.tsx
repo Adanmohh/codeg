@@ -17,7 +17,7 @@ const states: Record<TelegramStatus["state"], string> = {
   missing_token:
     "The selected channel has no available bot token. Save its token in Chat channels; pending proposals remain unchanged.",
   ready:
-    "Notifications are enabled. Pending email proposals are checked by the existing channel scheduler.",
+    "Notifications are enabled. The selected proposal types are checked by the existing channel scheduler.",
 }
 const outcomes: Record<TelegramStatus["notices"][number]["status"], string> = {
   preflight_failed:
@@ -46,9 +46,9 @@ export function TelegramSettings({
           </p>
           <h1 className="text-2xl font-semibold">Review from Telegram</h1>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Receive a private link when an email reply needs your review. Open
-            the protected page to see every recipient and edit the full message.
-            Telegram commands cannot approve an Ops proposal.
+            Receive a private link when an email reply or opted-in GitHub issue
+            needs review. The protected page shows the complete proposed
+            payload. Telegram commands cannot approve an Ops proposal.
           </p>
         </header>
         {resource.loading ? (
@@ -84,6 +84,7 @@ function SettingsForm({
     user: data.configuration?.privateUserId ?? "",
     origin: data.configuration?.reviewOrigin ?? "",
     enabled: data.enabled,
+    githubIssuesEnabled: data.configuration?.githubIssuesEnabled ?? false,
   }
   const [fields, setFields] = useOpsSessionState(
     `edit:telegram:${data.configuration?.revision ?? "new"}`,
@@ -109,6 +110,7 @@ function SettingsForm({
           privateUserId: fields.user,
           reviewOrigin: fields.origin,
           enabled: fields.enabled,
+          githubIssuesEnabled: fields.githubIssuesEnabled,
           expectedRevision: data.configuration?.revision ?? null,
         })
       else if (action === "disable") await telegram.disable()
@@ -216,6 +218,22 @@ function SettingsForm({
           />
           Enable email review notifications for this private recipient
         </label>
+        <label className="flex min-h-11 cursor-pointer items-center gap-3 rounded-lg border p-3 text-sm">
+          <input
+            type="checkbox"
+            className="size-5 accent-primary"
+            checked={fields.githubIssuesEnabled}
+            disabled={busy}
+            onChange={(e) =>
+              update({ ...fields, githubIssuesEnabled: e.target.checked })
+            }
+          />
+          Include GitHub issue reviews for this private recipient
+        </label>
+        <p className="text-xs leading-relaxed text-muted-foreground">
+          GitHub issue notices default off. They require notifications to be
+          enabled above and a current proposal from a configured product.
+        </p>
         {error && <Notice error>{error}</Notice>}
         <div className="flex flex-wrap gap-3">
           <Button
@@ -255,15 +273,18 @@ function SettingsForm({
         </div>
         <p className="text-xs leading-relaxed text-muted-foreground">
           A queue check sends review links only. Telegram delivery never sends
-          email or resolves an approval. Attempted or unconfirmed notifications
-          are not resent automatically.
+          email, files an issue or resolves an approval. Attempted or
+          unconfirmed notifications are not resent automatically.
         </p>
         {data.notices.length ? (
           <ul className="divide-y rounded-lg border">
             {data.notices.map((n) => (
               <li className="space-y-1 p-4" key={n.proposalId}>
                 <p className="text-sm font-medium">
-                  Proposal #{n.proposalId} · Task #{n.taskId} · Run {n.runSeq}
+                  {n.actionKind === "github_issue"
+                    ? "GitHub issue"
+                    : "Email reply"}{" "}
+                  · Proposal #{n.proposalId} · Task #{n.taskId} · Run {n.runSeq}
                 </p>
                 <p className="text-sm leading-relaxed">{outcomes[n.status]}</p>
               </li>

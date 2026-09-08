@@ -10,6 +10,9 @@ use crate::{
 use axum::http::StatusCode;
 use sea_orm_migration::{MigratorTrait, SchemaManager};
 use serde_json::json;
+mod migration;
+mod issues;
+mod issues_browser;
 pub(crate) mod provider;
 use provider::Provider;
 
@@ -39,6 +42,7 @@ async fn settings(
             private_user_id: "123".into(),
             review_origin: "http://127.0.0.1:4323".into(),
             enabled,
+            github_issues_enabled: false,
             expected_revision: None,
         },
     )
@@ -413,6 +417,7 @@ async fn private_preflight_and_channel_configuration_fail_closed_without_any_sen
                 private_user_id: "123".into(),
                 review_origin: configured.review_origin.clone(),
                 enabled: true,
+                github_issues_enabled: false,
                 expected_revision: Some(configured.revision.clone())
             }
         )
