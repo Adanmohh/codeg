@@ -67,3 +67,5 @@ Owner finds the app basic and requests continued work. Reopen visual quality wit
 ## 2026-09-08 — Business-facing owner steering
 
 Owner wants a business development viewpoint and finds the current approach too technical. Reframe the active visual refresh around customers, conversations, owner decisions and actionable work; keep diagnostics in detail and preserve required approval evidence. Founder overview is the interim assumption while optional priority is pending. Do not present nonexistent CRM, revenue or launch features as implemented.
+
+Owner confirms engineering is necessary but must not be the main hero. Business outcomes lead; engineering remains subordinate, accessible support. This confirms the founder-first visual direction without authorizing invented business capabilities.

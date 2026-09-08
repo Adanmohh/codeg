@@ -19,9 +19,9 @@ headings while preserving exact statuses and all workflow behavior.
 Do not imply sales CRM, lead stages, revenue, retention metrics, follow-up
 scheduling or launch publishing already exist. The current data supports
 correspondence, review decisions and work queues. Phase 2 planned launch/social
-work and Phase 3 multi-product scope remain separately described. Owner priority
-among founder overview, sales/growth and customer success is optional/pending;
-continue with founder overview unless steered otherwise.
+work and Phase 3 multi-product scope remain separately described. Owner confirms engineering effort is necessary but cannot be the main hero.
+Business outcomes lead; engineering supports them. Founder-first direction is
+confirmed; no further clarification is required for this visual work.
 
 ## Art direction
 
