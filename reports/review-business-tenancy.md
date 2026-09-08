@@ -1,5 +1,9 @@
 # Independent business tenancy review
 
+The completed first-head evidence below remains frozen at f3b408da. The
+[separate follow-on review](#follow-on-review-29774b50) targets the committed
+platform/epoch/native-preparation change; remaining reviewer probes are in progress.
+
 Review target: `f3b408dae5c724f354763961d79a17a7ae5c86f8`, PR30, tree
 `d3f4cc354ceb7034c0b685b76289c1d3de4513af`, parent contract
 `7516461633c163c2ac683930487e33231e630b0b`. Source base is
@@ -129,3 +133,50 @@ Early report checkpoint `8d935c88d061ca5179fb74ad7f9f2a337aae7a36` was pushed
 and relayed before these probes completed. Both test processes have exited0.
 The final reviewed implementation remains exactly f3b408da; later owner product
 commits require their own source correlation and focused review.
+
+## Follow-on review: 29774b50
+
+Frozen target `29774b50aafc29658a2f48fab1f44d366ed2c8a0`, tree
+`af9265e34f37022cd91142a8ef48ef5801846f9b`, direct parent f3b408da,
+verified through gh api. Own fresh archive is
+`.docs/business-tenancy-review/29774b50/source`; **739/739** tracked Rust/Pi/
+NOTICE/LICENSE blobs match before testing. No uncommitted owner source copied.
+The same owned isolated review target is reused, not B's target or a fixture.
+
+Read the complete follow-on report, contract, diff and changed core/HTTP/native
+source and tests. No new blocking finding established at this source checkpoint.
+The source authority lookup now requires the immutable sidecar epoch to equal
+the active organization's epoch before initial link and later agent checks.
+Original human DelegationGrant storage remains separate. Platform middleware
+requires the real original operator marker; tenant owner roles cannot construct
+that context. Create/reissue/status take the SQLite writer before receipt replay,
+lineage/current-revision validation and atomic changes. Replays omit tokens.
+Last-owner demotion/revocation checks share the member mutation's writer.
+
+Independent unchanged selectors have now passed, all exit0: platform **5/5**
+(0.42s,2m14s compile), exact unlinked-source epoch test **1/1** (0.18s), and
+changed populated-migration test **1/1** (0.15s). Commands use the preceding
+locked/offline/no-default-features/lib pattern and own target. Logs are in this
+head's evidence directory. The platform suite exercises actual protected router
+creation of two tenants in one DB, cross-tenant denial, owner/member versus
+platform separation, settings race, lost-response replay/reissue and concurrent
+last-owner demotion. These seven passes do not yet cover the remaining reviewer
+probes: actual indexed-run epoch rejection, retained authority sidecar/credential
+composite FK, and recovery receipt rollback. Earlier unchanged f3 settings/
+cancellation tests are not repeated without a changed concern.
+
+Native preparation is explicitly **unavailable for production tenant windows**:
+`business_window_context` reports `tenantWindowAvailable:false`; no production
+tenant creator is registered. Read the installed Tauri2.10.2 ACL dispatch,
+public channel producer, private callback producer and fetch source. The ACL
+fetch exemption/global queue and non-macOS/non-iOS private producer conditions
+match the reported gap. MockRuntime app-command tests do not prove cross-window
+channel isolation, physical webview behavior or packaged acceptance.
+
+All seven additional Codeg NOTICE source blobs match the official immutable
+f3813e3f GitHub tree, including task authority, command/auth glue and000010 test.
+Tauri official06374a9 channel blob0b3eb677 and Apache LICENSE blobf433b1a5 match;
+full licence read. No dependency implementation port or lockfile change by review.
+Live own-session hook audit records PostToolUse21535–21537 and
+PreToolUse21542–21544 in this worktree. No fixture, actual store, provider,
+model, engine process, root artifact or product source was changed.
