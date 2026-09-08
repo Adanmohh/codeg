@@ -8,6 +8,7 @@ main **2233cd4366a38f22ca308dcc81191be4489b40e5** and verifies the newly pinned
 contract: **Q2–Q4 fit the UI flow; Q1 remains open**. Implementation still awaits
 root's complete contract acceptance and dispatch. No B endpoint, provider
 connection or passing UI result is claimed by this plan.
+Follow-up draft: [PR27](https://github.com/Adanmohh/codeg/pull/27).
 
 Contract authority: tickets' [PR25 draft at
 85f6001f2fa8f9d33748ceddbf7980ce68942ede](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md).
@@ -101,8 +102,9 @@ shortcut. The link's destination audience is explicit even though private
 passages are not copied into task activity.
 
 A separate durable prepared-target record is unnecessary for this text-free
-link. The pinned transaction checks taskId + expectedTaskRevision + publishToDomain
-against the exact live task, together with candidate/source revisions and grants.
+link. The pinned transaction contract requires checking taskId +
+expectedTaskRevision + publishToDomain against the exact live task, together with
+candidate/source revisions and grants.
 Freeze the authorized existing tasks/get Detail as a local review snapshot;
 changing target or receiving 409 clears confirmation. No private draft text is
 published by link, and its domain must not silently replace the chosen target
@@ -303,3 +305,7 @@ PR26's docs-only report/push/PR creation exited 0 and root merged it. This
 follow-up changes only the contract reconciliation in this report; no source,
 NOTICE, lockfile, protected planning document or fixture is edited by the worker.
 Root retains review/merge authority; Q1 completion remains with tickets/approvals.
+
+Reconciliation checkpoint **57b07ca81257421b9cbb414f7ac456c1bb39ea06** is pushed;
+`git commit`, `git push` and draft PR27 creation exited 0. This final report note
+records that checkpoint and PR; it adds no contract or implementation scope.
