@@ -21,4 +21,6 @@ The complete business scope, FOUNDING, ORCHESTRATOR, STATUS, DECISIONS and all t
 
 Contract checkpoint only: no compile/test result claimed yet. Next: compiling auth/principal/migration checkpoint, early draft PR, identity CRUD/revocation/security regressions, default/server checks and Clippy, frontend typecheck. Task/UI integration uses the published contract. No live providers/accounts, agent launches, external sends or broad Settings snapshots. Existing fixtures and outputs are preserved.
 
-Commit/PR fields will be updated after this initial publication and each implementation checkpoint.
+Initial contract commit `f3c36dc6` is pushed. Draft PR: https://github.com/Adanmohh/codeg/pull/23. Both existing workers received the exact contract path via authorized Herdr prompts (exit0); no additional agents were started.
+
+The root BW-1–18 checklist was read in full. Explicit grant ceiling and immutable agent delegation lineage now extend the contract: admin cannot grant outside its current domains or manage owner/admin identities; agent role is always member; delegating credential revocation is rechecked after persisted-link restoration. This closes the task worker's persistence seam without exposing a caller principal constructor. The first server compilation is running against only `.build/business-identity-target`; implementation and tests are in progress.
