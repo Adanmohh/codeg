@@ -51,7 +51,7 @@ root native and final browser sessions are closed.
 ## Increment B — meeting/feedback to shared tasks
 
 Docs-only preparation is dispatched; no B product or live configuration action
-has started. Draft contract checkpoint `79a922945668a633ea6b5f7e68f9bdc08a0725a3`
+has started. Draft contract checkpoint `85f6001f2fa8f9d33748ceddbf7980ce68942ede`
 is under review. Sources stay private to explicit authorized humans; only exact
 human-reviewed task text is published to a permitted work area. Import must be
 durable/idempotent and use the existing task/identity core without launching an
@@ -69,6 +69,13 @@ diff. This accepts the business interaction plan, not B product or the unfinishe
 backend contract. Q1 setup/capabilities and Q2–Q4 pinned rebase/disclosure,
 recovery and timing/error definitions remain before implementation dispatch.
 [Plan](reports/business-intake-ui-plan.md) · [Root BI acceptance plan](reports/business-intake-acceptance-checklist.md).
+
+Protected access seam `18be55edc276713fc6d46d075baec363245ba285` is reviewed
+and imported: actual-operator setup, explicit binding/history audience, zero
+initial grants, owner-revision/source-refresh fences, staged secret activation
+and strict failure-preserving credential-store mutation. PR25 must reconcile
+this exact seam and pass the bounded final contract review before product dispatch.
+[Access contract](docs/contracts/business-intake-access.md).
 
 All retain separate worktrees, Astra/max and live docs-first hooks; latest
 before/after hook records exit0. Installed pinned source then immutable gh api,
