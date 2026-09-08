@@ -34,7 +34,10 @@ Owner [PR25](https://github.com/Adanmohh/codeg/pull/25) was independently querie
 through `gh api`: draft/open at **670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5**, based on
 `c7f7366fef2d7945cea18d4da1b7594fa3026e1c`. Reviewer branch
 `review/business-intake-contract` starts from accepted
-`4e64476c7ad9161a5e535b5c75f592716d3ca6e2`. Read full FOUNDING, ORCHESTRATOR,
+`b348d7fa011d82f54c3e6e998fc96861cb896af7`, the root report/status commit after
+the source-read base `4e64476c7ad9161a5e535b5c75f592716d3ca6e2`. Final ancestry
+inspection corrected the earlier checkpoint's branch-base label; that inherited
+STATUS change is not a reviewer edit. Read full FOUNDING, ORCHESTRATOR,
 STATUS, DECISIONS, AGENTS, business scope, all three research reports/root
 synthesis and accepted identity/task contracts. This is a documentation boundary
 review, not an audit of a future migration or adapter implementation.
