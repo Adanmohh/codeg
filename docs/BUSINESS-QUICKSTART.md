@@ -1,6 +1,6 @@
 # Working together in Hafidh Ops Desk
 
-This guide describes the Increment A candidate. See [STATUS](../STATUS.md) for
+This guide describes the accepted Increment A shared-work foundation. See [STATUS](../STATUS.md) for
 the current acceptance and packaged-app state.
 
 Start with a piece of work: prepare a customer welcome, review website copy,

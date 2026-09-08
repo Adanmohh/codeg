@@ -1,4 +1,64 @@
-# Final bundled companion acceptance — passed
+# Final N2 bundled companion acceptance — passed
+
+**The final N2 artifact passed the unchanged harness: exit0, 275 assertions,
+zero failures.** This is a new execution against the changed final digest, not
+carried-forward acceptance of the earlier package. Evidence:
+[result-1788889157262-15575.json](business-bundled-companion-evidence/result-1788889157262-15575.json),
+SHA256 `d970effe076fe8b16dd2a49b4eb5a2c4455c22a91e834ddc65d65e491d87a986`.
+
+Root supplied stable window `business-native-n2-f4757d8d` after its normal
+package build exited0: immutable source
+`f4757d8dcd9e62824bfde577a5595a5a2a5e5c7c`, product `3d000874`, package
+`0.30.4`. The actual before/after bundle identity was exactly **21,711,944 bytes**,
+SHA256 **`9c53291347445a6ca80f057b11c59955013998f30bc3a65fa31c3e74bae7b5f5`**.
+Root's separate native app remained outside this probe.
+
+Before execution, read the complete build-source `Cargo.toml` with `git show`,
+exit0. `git diff --exit-code` between pinned recipe source `294fb634` and this
+build source, restricted to all nine paths in the ledger below, exited0.
+The committed `464ae97a` harness remained byte-identical, SHA256
+`9e9fdc9bb2df58e6c6d9f15e3c12dafc74027690f197a01dabf35afe78a16796`;
+no syntax rerun or source modification was needed. Executed exactly once, exit0:
+
+```text
+node reports/business-bundled-companion-evidence/probe.mjs \
+  --binary '/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app/Contents/MacOS/codeg-mcp' \
+  --sha256 9c53291347445a6ca80f057b11c59955013998f30bc3a65fa31c3e74bae7b5f5 \
+  --source f4757d8dcd9e62824bfde577a5595a5a2a5e5c7c \
+  --package-version 0.30.4 \
+  --stable-window business-native-n2-f4757d8d
+```
+
+| Final N2 boundary | Actual result |
+| --- | --- |
+| Help and initialization | Help exit0; both groups returned protocol `2024-11-05`, server `codeg-mcp`, version `0.30.4`; zero stderr bytes. |
+| Discovery and refusal | Exact three intake/ten Desk tools; closed schemas, cached intake descriptions and nonterminal business progress enum. All 26 disabled-tool calls and four nonobject inputs refused locally with `-32602`, zero forwarding. |
+| Scoped synthetic relay | Four reads per group: exact public success, `denied`, `stale` and parked cancellation. Exact UDS envelope; CLI parent label never became forwarded identity. |
+| Cancellation / listener removal | Cancelled reads closed their socket and emitted no result; later discovery worked. Missing listener returned `-32603`, no successful fallback. |
+| Processes / cleanup | Harness PID `15575`; help `15576`, intake `15577`, Desk `15578` all exit0, null signal, no IO error or forced termination. Own `.bpc-KgXqT9` removed, `scratchRemoved:true`. |
+| Artifact | Before/after absolute path, 21,711,944-byte size and complete `9c532913…` digest equal. |
+
+These are **275 assertions, not 275 independent tests**. The unchanged scope and
+limits below apply: a synthetic UDS peer checks transport/error relay, not real
+backend authorization, database scope or the native UI. No Pi, model, provider,
+engine, server or TCP listener was launched by this harness; zero-action counters
+are not an OS-wide monitor. No target, existing fixture, dependency, configuration,
+credential, product source or root NOTICE/LICENSE was changed. Live own-session
+docs-first PreToolUse/PostToolUse records at `1788889191`/`1788889192` show exit0
+in the tickets worktree; session `01a07c1c-d82f-7022-84db-778a438632f1`.
+
+The B docs draft was checkpointed/pushed as
+`79a922945668a633ea6b5f7e68f9bdc08a0725a3` before switching to the owned
+`review/business-integration-regressions` branch for this report/result-only
+handoff. Prior result and paused visual report hashes remain unchanged. Root was
+notified of complete execution/cleanup and release of the stable window. B
+contract preparation resumes separately; no B implementation has run.
+
+## Previous package execution retained — superseded artifact
+
+The following original record describes only digest `90f9fd8e…` at source
+`6cfff7d6`. Its result remains unchanged for provenance; final N2 acceptance is
+the distinct execution above.
 
 **The exact supplied bundled companion passed: command exit0, 275 harness checks, no failures.** Both MCP feature groups completed their synthetic read/refusal/stale/cancellation/missing-listener cases; all children exited0, owned socket state was removed, and before/after artifact hashes matched. Evidence: [result-1788886066203-29071.json](business-bundled-companion-evidence/result-1788886066203-29071.json). This is packaged MCP transport evidence with a synthetic peer. Root owns the separate final app/all-three executable correlation and native AX review. N1 source resolution is recorded in [business-native-review.md](business-native-review.md), pushed as `169015cf3568a1b136b8ebca3d2a1b95cd630057`.
 

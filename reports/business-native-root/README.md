@@ -1,6 +1,6 @@
-# Business native artifact acceptance — in progress
+# Business native artifact acceptance — passed within scope
 
-No final business app is accepted yet. Root prepares and checks artifacts only;
+The final unsigned debug business app is locally accepted at f4757d8d. Root prepares and checks artifacts only;
 product corrections remain worker-authored and independently reviewed.
 
 ## Preparation completed
@@ -166,3 +166,16 @@ existing worker fixture was restarted or changed by these checks.
 N2 runtime is closed within this scope. Final companion evidence and acceptance
 summary remain; prior native human Done4/shared viewer/revocation evidence stays
 valid for unchanged backend/session behavior.
+
+## Final companion closure
+
+The new exact9c532913 artifact passed the unchanged9e9fdc9b harness:275
+assertions, zero failures, clean child exits15576/15577/15578 and removal of
+.bpc-KgXqT9. Before/after21711944 bytes and hash match. Root read the complete
+result-1788889157262-15575.json and independently verified its SHA256
+d970effe076fe8b16dd2a49b4eb5a2c4455c22a91e834ddc65d65e491d87a986.
+Stable window ended after execution; no further build occurred. Scope remains
+MCP transport with a synthetic UDS peer, not repeated live backend authorization.
+Final root server4318 PID97709 remains on the final7e94301b executable; root
+native95325 and owned final CLI browsers are closed. All Increment A local gates
+are complete, with historical package/runtime evidence above preserved.

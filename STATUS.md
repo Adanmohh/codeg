@@ -1,73 +1,74 @@
 # Status — 2026-09-08
 
-**Implementation resumed: visual-first shared business workspace.** Phase 1 functional implementation and prior local validation are complete. Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
+**Increment A is reviewed, merged and locally accepted. Increment B preparation
+is active across all three existing Herdr workers.** Root remains orchestrator-only.
+The accepted business workspace supports shared human/agent tasks, named
+responsibility, role/domain access, conflict recovery and explicit human review.
+Marketing, channels, ads, website and feedback are work areas; connected platform
+adapters and meeting import are not yet implemented.
 
-## Final integration and acceptance loops — active
+## Accepted shared-work foundation
 
-**PR #21 reviewed and merged** at exact head `9f60575906fde0468cfa9f40db77ed868dabb346`, merge `cf735ab92b676078fd01457b261173dc33f803d9`. Product remains `e72cc44b612068e67a3e6dc3bc593f10988ae7ed`; later handoff changes are reports only. Root read the final report/source/NOTICE, clean integration and independent review `fa8b571ae8516e856419fba2f111eec3215c748e`. All three BUI findings are independently closed on the final4346 export: actual contrast/focus/Enter and real409/explicit adoption checks pass. Native entry N1 is independently source-resolved at `3a189d18`.
+Identity PR23 merge `ab46c9d9`, tasks PR22 merge `5541857a`, workspace PR21
+merge `cf735ab9`, native chrome correction PR24 merge `c0ebd3d5` are accepted.
+Final product checkpoint `3d0008747ab1933bf9c1329f8e1b59d949992623`; ordinary
+unsigned debug package built from `f4757d8dcd9e62824bfde577a5595a5a2a5e5c7c`.
+Later root commits contain only documentation/evidence.
 
-All three Increment A product branches are now reviewed and merged: identity PR #23 (`ab46c9d9`), tasks PR #22 (`5541857a`) and workspace PR #21 (`cf735ab9`). Shared identity, human/agent task persistence and the business-first work/people/review UI are integrated. Root remains orchestrator-only. [Business quickstart](docs/BUSINESS-QUICKSTART.md), [acceptance checklist](reports/business-acceptance-checklist.md).
+- Final package exits0; all3 bundled executables match completed debug outputs,
+  all1,017 bundled web files match the export. Final MCP `9c532913` passes275
+  bounded transport assertions, zero failures, clean child exits/cleanup and
+  unchanged before/after hash. Root verified the complete result and digest.
+- Actual macOS WebKit local bootstrap/human Done4 and shared viewer/revocation
+  pass. N1 business entry and N2 chrome are closed. Final connect/bootstrap/
+  workspace clear native buttons and drag;400px setup/workspace and native
+  minimize/hide/reopen pass. Green fullscreen and other desktop OS runtime are
+  outside the executed scope.
+- Final integrated Playwright CLI five cold aliases make zero API/WS requests
+  and show no native chrome in web. A task draft survives400/1280 resize and
+  saves through the real backend. Earlier two-human/shared-state/conflict,
+  viewer/role/revocation, EN/AR12-case baseline and corrected six-case checks
+  remain recorded at their exact sources.
+- Root6194 frontend tests/438 files and final39 affected tests; owner52 N2 tests,
+  independent23 N2 tests; tickets312 backend regressions, identity/task ownership
+  and desktop/server/Clippy gates pass at documented immutable heads. Counts
+  are attributed and scoped, not blanket testing of every possible behavior.
+- Design Studio four sequential specialist passes, independent correction
+  rechecks and root synthesis have no remaining verified finding in scope.
+  Actual native N2 correction loop is included in the final synthesis.
 
-**Remaining Increment A artifact gate:** repeat the bounded companion protocol
-check on final MCP `9c532913`, whose digest changed during the ordinary final
-build. Final native three-state clearance/drag,400px setup/workspace,
-minimize/hide/reopen, integrated Playwright CLI and all3/1,017 hash correlation
-have passed; N2 is closed. Final Design Studio synthesis is updated. Reports
-below retain earlier checkpoints and their exact scope. No live service setup,
-signing/notarization, paid inference or other desktop-platform claim.
+[Quickstart](docs/BUSINESS-QUICKSTART.md) · [18-row acceptance evidence](reports/business-acceptance-checklist.md)
+· [Native build/runtime/hashes](reports/business-native-root/README.md)
+· [Independent N2 review](reports/review-business-native-chrome.md)
+· [Design Studio closure](reports/business-final-root/design-review.md)
+· [Bundled companion](reports/business-bundled-companion.md).
 
-Validation already passed at documented immutable heads: root6194 frontend tests/438 files, final39 affected UI tests, actual multi-session Playwright CLI integration; independent12-case responsive baseline plus six final corrected search cases and own-record conflict recovery; tickets312 BW17 backend regressions; identity/task ownership and both runtime/Clippy gates. Counts and limitations stay in their reports. No whole-business, live provider or paid inference claim. Marketing/channel/ads/website adapters and meeting ingestion remain staged beyond Increment A.
+The app is unsigned and not notarized/distributed. Live service setup, actual
+provider delivery, paid inference and real beta use remain unvalidated. Existing
+worker fixtures are preserved. Root final4318 server PID97709 remains available;
+root native and final browser sessions are closed.
 
-Workers retain Astra/max, docs-first hooks and pinned gh-api borrowing. The historical Luna acknowledgement had zero tool calls and occurred after all PR22 product commits; current displayed Astra/max is verified. Native package and final synthesis results will be appended here.
+## Increment B — meeting/feedback to shared tasks
 
-**Native loop found N2/P2:** actual packaged local workspace places macOS window
-buttons over the brand and its blank top header does not drag the window.
-[Evidence](reports/business-native-root/N2-native-chrome.md). Rebrand is dispatched
-to a separate bounded native-chrome correction, reusing existing titlebar/controls;
-approvals is dispatched on separate `review/business-native-chrome` for independent
-source/session-boundary review, report `reports/review-business-native-chrome.md`.
-Both retain existing panes/worktrees and Astra/max/docs-first/borrow rules. Package build/all1016 web hashes
-and all-three binary/profile hashes pass. Tickets'275 bundled companion checks are accepted at report31cf27ea, with unchanged
-before/after hash. Actual native local bootstrap/human Done4 and shared-server
-viewer/revocation checks pass; N2 chrome correction and final refresh remain.
+Docs-only preparation is dispatched; no B product or live configuration action
+has started. Draft contract checkpoint `79a922945668a633ea6b5f7e68f9bdc08a0725a3`
+is under review. Sources stay private to explicit authorized humans; only exact
+human-reviewed task text is published to a permitted work area. Import must be
+durable/idempotent and use the existing task/identity core without launching an
+agent. A usable protected source-binding/grant setup is part of contract review.
 
-**PR #24 reviewed and merged** at exact report handoff
-`f7a74b67151a75fd05a15910d9cb84d17356e59d`, merge
-`c0ebd3d5bc9414b72411bfff3f8949c9d7b5ca95`. Product remains
-`3d0008747ab1933bf9c1329f8e1b59d949992623`. Root read the complete source,
-NOTICE and final handoff; independent unchanged-archive review passed 23 tests
-with no blocking source finding. Owner52 focused tests, typecheck, scoped lint,
-default desktop check and isolated export pass. Root now rebuilds the ordinary
-package before actual three-state native clearance/drag/400px and final integrated
-Playwright CLI checks. N2 runtime closure remains pending.
+| Existing worker | Branch and bounded deliverable |
+| --- | --- |
+| tickets, wR:p4 | `docs/business-intake-contract`: `docs/contracts/business-intake.md` and `reports/business-intake-contract.md`; closed Fireflies/email/feedback import, claim, candidate and atomic task seams. Final companion handoff is completed separately. |
+| approvals, wR:p3 | `review/business-intake-contract`: `reports/review-business-intake-contract.md`; independent source visibility/publication/transaction review and smallest protected binding/grant API. |
+| rebrand, wR:p2 | `docs/business-intake-ui`: `reports/business-intake-ui-plan.md`; business source→passage→reviewed task flow, readiness/rebase/access recovery and visual/keyboard acceptance plan. |
 
-**N2 actual runtime closed:** final normal package at `f4757d8d` exits0;
-all3 executable/profile hashes and1,017 web files match. Actual macOS
-connect/bootstrap/workspace clear window buttons and drag correctly;400px setup
-and workspace, minimize/hide/reopen pass. Final integrated Playwright CLI five
-cold aliases API0/WS0/no native web chrome, draft400/1280 and real task creation
-pass. Independent N2 review `b33b1a9f` is imported. Final MCP hash changed to
-`9c532913`; tickets is dispatched to repeat its unchanged bounded harness in a
-stable build window before final artifact acceptance. [Native evidence](reports/business-native-root/README.md).
-
-**Next-scope preparation:** existing tickets worker is dispatched to docs-only
-`docs/business-intake-contract` from accepted main, same worktree/pane. Deliverables
-`reports/business-intake-contract.md` and `docs/contracts/business-intake.md` pin
-Increment B meeting/feedback import, source visibility, durable/idempotent
-candidates and explicit human task acceptance/linking. Docs-first/gh-api borrowing,
-Astra/max and preserved fixtures apply. No B product code, provider call or
-configuration action is authorized in this preparation task; root reviews the
-contract after N2 acceptance before implementation dispatch.
-
-**All three next-scope preparation assignments dispatched:** approvals owns
-`review/business-intake-contract`, report `reports/review-business-intake-contract.md`,
-independent source-grant/publication/transaction/claim review and smallest usable
-protected configuration contract. Rebrand owns `docs/business-intake-ui`, report
-`reports/business-intake-ui-plan.md`, concrete business source-to-reviewed-task
-flow and visual/keyboard acceptance plan. Tickets keeps `docs/business-intake-contract`
-and temporarily completes the final companion artifact run before contract
-publication. Existing panes/worktrees, Astra/max/docs-first/borrow rules apply.
-These assignments are docs/review only; no B product or live configuration action.
+All retain separate worktrees, Astra/max and live docs-first hooks; latest
+before/after hook records exit0. Installed pinned source then immutable gh api,
+approved borrowing/NOTICE and preserved paused work apply. Root reviews the
+concrete contract before assigning B implementation. Increment C business
+platform adapters follow the shared-work/import foundation. No new engine or
+unselected Sentry/SigNoz commitment is implied.
 
 ## Earlier Increment A checkpoints — historical
 
