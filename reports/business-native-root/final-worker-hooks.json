@@ -1,0 +1,59 @@
+{
+  "scope": "Latest before/after audit metadata per existing worker, not universal command coverage or root-hook proof",
+  "records": [
+    {
+      "time": 1788888980,
+      "event": "PreToolUse",
+      "exit": 0,
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand",
+      "session_id": "01a07c1c-cf2e-73e1-bbe3-e758c8363042",
+      "context_emitted": false
+    },
+    {
+      "time": 1788888980,
+      "event": "PostToolUse",
+      "exit": 0,
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand",
+      "session_id": "01a07c1c-cf2e-73e1-bbe3-e758c8363042",
+      "context_emitted": false
+    },
+    {
+      "time": 1788888856,
+      "event": "PreToolUse",
+      "exit": 0,
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets",
+      "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+      "context_emitted": false
+    },
+    {
+      "time": 1788888856,
+      "event": "PostToolUse",
+      "exit": 0,
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets",
+      "session_id": "01a07c1c-d82f-7022-84db-778a438632f1",
+      "context_emitted": false
+    },
+    {
+      "time": 1788888981,
+      "event": "PreToolUse",
+      "exit": 0,
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "context_emitted": false
+    },
+    {
+      "time": 1788888982,
+      "event": "PostToolUse",
+      "exit": 0,
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "context_emitted": false
+    }
+  ]
+}

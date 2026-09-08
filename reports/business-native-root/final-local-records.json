@@ -1,0 +1,17 @@
+{
+  "native": {
+    "database": "/tmp/ops-business-native-n2-f4757d8d/codeg-dev.db",
+    "tasks": []
+  },
+  "server": {
+    "database": "/tmp/ops-desk-browser-data/codeg-dev.db",
+    "tasks": [
+      {
+        "id": "b185ffe9-4e94-4d37-9374-3238a5a87a6f",
+        "title": "Final package: customer feedback follow-up",
+        "status": "todo",
+        "revision": 1
+      }
+    ]
+  }
+}
