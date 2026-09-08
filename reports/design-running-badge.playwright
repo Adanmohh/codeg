@@ -14,7 +14,9 @@ async (page) => {
   const themeSetting = await page.evaluate(() => localStorage.getItem("theme"))
   if (themeSetting && themeSetting !== "system") throw Error("Requires existing Follow system preference")
   await page.setViewportSize({ width: 1280, height: 900 })
-  const header = page.getByRole("button", { name: "ops-ui-task-fixture 6 sessions running", exact: true })
+  const group = page.getByRole("button", { name: "Synthetic badge group 6 sessions running", exact: true })
+  const surface = await group.count() ? "group" : "folder"
+  const header = surface === "group" ? group : page.getByRole("button", { name: "ops-ui-task-fixture 6 sessions running", exact: true })
   const badge = header.locator('span[title="6 sessions running"]')
   await badge.waitFor()
   const phase = (await badge.getAttribute("class")).split(" ").includes("text-amber-800") ? "after" : "before"
@@ -84,13 +86,13 @@ async (page) => {
       if (!measurement.visible || measurement.text !== "6" || measurement.srOnly !== "6 sessions running") throw Error("Badge semantics changed")
       if (state === "focus" && (!measurement.focused || !measurement.focusVisible)) throw Error("Keyboard focus missing")
       if (state === "hover" && !measurement.hovered) throw Error("Hover missing")
-      rows.push({ phase, theme, state, ...measurement, aria: await header.ariaSnapshot() })
-      await page.screenshot({ path: `reports/browser-running-badge/${phase}-${theme}-${state}.png` })
+      rows.push({ phase, surface, theme, state, ...measurement, aria: await header.ariaSnapshot() })
+      await page.screenshot({ path: `reports/browser-running-badge/${surface === "group" ? "group-" : ""}${phase}-${theme}-${state}.png` })
     }
   }
   await header.evaluate((el) => el.blur())
   await page.emulateMedia({ colorScheme: "light" })
   const after = await stats()
   if (JSON.stringify(before) !== JSON.stringify(after)) throw Error("Fixture changed")
-  return { phase, viewport: { width: 1280, height: 900 }, themeSetting, before, after, rows }
+  return { phase, surface, viewport: { width: 1280, height: 900 }, themeSetting, before, after, rows }
 }

@@ -22,8 +22,9 @@ const ratio = (fg, bg) => contrastRatio(parseCssColor(fg), parseCssColor(bg))
 const report = {
   source: process.argv[2],
   phase: input.phase,
+  surface: input.surface || "folder",
   method: "Actual Chromium Canvas sRGB pixels, compositing every ancestor background; Design Studio 55c8614 pure contrast and normal-text AA threshold. Canvas uses 8-bit channel rounding.",
-  scope: "Existing 10px folder running-count badge only; rest, pointer hover, keyboard focus, both themes",
+  scope: `Existing 10px ${input.surface || "folder"} running-count badge only; rest, pointer hover, keyboard focus, both themes`,
   ...buildReport(raw, null),
   measurements: input.rows.map((row) => ({
     theme: row.theme,
