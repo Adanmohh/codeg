@@ -5,8 +5,9 @@ Final frontend product source33b9cbcb; accepted main294fb634 (task PR22 merge
 5541857a) integrated as0192ac3f. Only NOTICE required additive conflict resolution;
 tested frontend and live fixture/export remain unchanged.
 Implementation/evidence: reports/business-workspace.md. Backend owners retain
-identity/task/agent authorization and migrations; this frontend adds no Rust
-product code or parallel authentication system.
+identity/task/agent authorization and migrations. The only Rust presentation
+change is the owner-requested fresh native main-window business entry; no
+parallel authentication system or task/engine backend changes.
 
 ## Source and integration
 
@@ -43,6 +44,11 @@ it in the administrator setup choice, initialize an organization and manage
 members. Personal members receive only their server capability context. Native
 business_* commands remain original-operator-only; a desktop member chooses
 shared HTTP access. No OS-native credential isolation certification is inferred.
+
+Fresh native main windows use App("business"). Locked tauri2.10.2 joins that
+path to the application URL and resolves the exported business.html asset.
+Existing main-window focus does not navigate; the explicit engineering link
+remains unchanged. Root owns actual final isolated native startup verification.
 
 Context.capabilities.manageMembers controls People administration.
 **Only Context.capabilities.legacyOperator controls engineering navigation and

@@ -23,7 +23,16 @@ labels the draft base and shows current status/revision/archive state before
 adoption, in English and Arabic. No mutation, permission, CAS or confirmation
 logic changes. Two targeted regressions fail on the prior UI and pass with the
 fix, including the existing write lock and reset human confirmation. Actual
-rendered recheck and final affected gates are pending in this checkpoint.
+rendered recheck is in progress on4346; all37 business client/component tests,
+typecheck, scoped lint and the separate corrected export pass. The original
+comparison omission was reproduced against the real API before this correction.
+
+Native reviewer N1 is also corrected: a fresh main window now starts at
+WebviewUrl::App("business") instead of bypassing it for "workspace". Existing
+window focus retains its current route, and the explicit legacyOperator-only
+engineering link is unchanged. Native/server checks are in progress; root owns
+the final isolated bundle/startup check. No backend fixture is restarted for
+this Rust source change.
 
 ## Result and boundaries
 
@@ -54,7 +63,8 @@ settings/wallpaper/connection providers even with an ambient old operator token.
 closed /api/business POST {input} operations, omit cookies and refuse redirects.
 Native remains operator-only; a desktop member can choose the separate shared
 HTTP connection. Native OS isolation/multi-desktop operation is not claimed from
-browser testing. No Rust product edits, engine/approval changes, new dependencies,
+browser testing. Rust changes are limited to the fresh main-window route and its
+comment. No engine/approval changes, new dependencies,
 lockfile changes, live provider/model calls, credential exposure or deployment.
 
 ## Exact source mapping
@@ -71,6 +81,7 @@ Adanmohh/codeg **4ec04d7282a50529335d724438d42b99a53385a2**.
 | src/app/{layout.tsx,page.tsx,login/page.tsx,workspace/layout.tsx}; src/components/layout/sidebar.tsx | Minimal business default entry and retained authorized engineering navigation. |
 | src/components/{i18n-provider,appearance-provider}.tsx; connection/web-connection-guard.tsx; src/lib/transport/{web-auth,web-transport,tauri-transport,index}.ts; app-error.ts | Local-only provider boundary, typed dedicated HTTP/native client and safe error decoding. |
 | src-tauri/src/web/router.rs; next.config.ts | Static export/rewrite authority; direct .html and trailing-slash verification. |
+| src-tauri/src/lib.rs; commands/windows.rs at0192ac3f | Owner-requested N1 correction changes only fresh main-window App("workspace") to App("business"); existing-window focus remains unchanged. |
 | public/icon.svg | Accepted original Hafidh code-native vector mark; no image service/new asset system. |
 | reports/design-reduced-motion-evidence/server.mjs | Owned synthetic static export/closed loopback proxy, no production server edits. |
 
@@ -115,7 +126,12 @@ Dialog close callbacks suppress default Trigger focus; these controlled business
 modals have no Trigger, so scoped return-focus glue is necessary. The shared
 focus trap remains intact. Node24.19.0/@types-node25.2.2 fs/http types and
 Playwright CLI0.1.18/bundled1.63.0-alpha-2026-08-05 sources/help were read.
-No advertised CLI upgrade. Axum-test17.3.0 local TestServer/response docs ground
+No advertised CLI upgrade. Native entry authority is the actual locked Rust
+tauri2.10.2 (distinct from the JavaScript Tauri API version), manager/webview.rs:415–430
+joining App paths to the application URL, manager/mod.rs:373–424 falling back to
+the path's .html asset, and tauri-utils2.8.2 config.rs:72–124 defining App(PathBuf).
+The export contains business.html; native explicit engineering navigation remains
+in src/components/business/workspace.tsx. Axum-test17.3.0 local TestServer/response docs ground
 static routing verification. All remote research used gh api immutable refs.
 
 Live docs-first audit: session **01a07c1c-cf2e-73e1-bbe3-e758c8363042**, cwd this
@@ -202,6 +218,18 @@ long-frame counts and assistive technology were not assessed.
 [Viewer](business-workspace-evidence/generation2/viewer-task-real.png).
 
 ## Live owned review fixture
+
+**Corrected comparison preview:** http://127.0.0.1:4346/business.html now serves
+frontend095c6164 from .build/business-workspace/conflict-export, static PID12331.
+Served business.html SHA256:
+e6d87b15258951461ef47b02a9f4c7ee9d825ed03cec4316031d4bd7807458d0.
+Index SHA256: b9a322d41f17504dfa4b2d724f48f92b2e10482656e8792eb8df21a30a7415dd.
+4346 initially served the old integrated export for the before capture (PID1233,
+now stopped). Only that static listener was replaced after the capture; the real
+4342 backend/data and frozen4340 export/listener were never restarted/replaced.
+Reload/re-authentication loads the correction. Worker-only new task
+ec9d106d-fa40-4e26-b2dc-612cedd587ad is reserved for the correction check; root
+and independent review records remain untouched.
 
 **Independent review window:** root and approvals are reviewing frozen UI head
 a126730274c8a3dc822345da536eebed1f8dc253 / product33b9cbcb. The URL/export

@@ -981,12 +981,11 @@ mod tauri_app {
                     tauri::async_runtime::spawn(crate::work_task::run_task_engine(engine));
                 }
 
-                // Single-window workspace: ensure the main window exists.
-                // Workspace state (open folders, opened tabs, active tab) is
-                // restored by the frontend via `list_open_folder_details` /
-                // `list_opened_tabs` inside the main window.
+                // Fresh main windows start at the business entry. The explicit
+                // engineering destination restores its own folders and tabs.
+                // Showing an existing main window preserves its current route.
                 if app.get_webview_window("main").is_none() {
-                    let url = tauri::WebviewUrl::App("workspace".into());
+                    let url = tauri::WebviewUrl::App("business".into());
                     let builder = tauri::WebviewWindowBuilder::new(app, "main", url)
                         .title("Hafidh Ops Desk")
                         .inner_size(1260.0, 860.0)
