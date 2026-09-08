@@ -31,6 +31,11 @@ if args[2] == "windows" {
          "name": $0[kCGWindowName as String] ?? "",
          "bounds": $0[kCGWindowBounds as String] ?? [:]]
     })
+} else if args[2] == "restore" {
+    guard let window = children(app).first(where: { attr($0, kAXRoleAttribute) as? String == "AXWindow" }) else { exit(2) }
+    let result = AXUIElementSetAttributeValue(window, kAXMinimizedAttribute as CFString, kCFBooleanFalse)
+    emit(["action": "restore", "result": result.rawValue])
+    if result != .success { exit(1) }
 } else if args[2] == "resize" {
     guard args.count == 5, let w = Double(args[3]), let h = Double(args[4]),
           w >= 400, h >= 600, w <= 1400, h <= 950,
@@ -56,6 +61,7 @@ if args[2] == "windows" {
             if AXValueGetValue(v as! AXValue, .cgSize, &size) { row["width"] = size.width; row["height"] = size.height }
         }
         if let enabled = attr(node, kAXEnabledAttribute) as? Bool { row["enabled"] = enabled }
+        if let minimized = attr(node, kAXMinimizedAttribute) as? Bool { row["minimized"] = minimized }
         if let expanded = attr(node, kAXExpandedAttribute) as? Bool { row["expanded"] = expanded }
         for key in [kAXTitleAttribute, kAXDescriptionAttribute] {
             if let text = attr(node, key) as? String, !text.isEmpty { row[key] = safe(text) }

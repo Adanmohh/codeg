@@ -1,0 +1,141 @@
+{
+  "source": "3d0008747ab1933bf9c1329f8e1b59d949992623",
+  "archive": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-native-chrome/3d000874",
+  "verifiedFiles": 1213,
+  "allMatch": true,
+  "noticePreservesPriorBytes": true,
+  "sharedNodeModules": "Reviewer worktree existing installed node_modules only; no other worker target/cache used.",
+  "fullManifest": {
+    "path": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-native-chrome/archive-verification-full.json",
+    "sha256": "c311880b7697b545b8e1e562369ce3a78f3159671814f9be9aa0a8fcca20190e",
+    "committed": false
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "matches": true
+    },
+    {
+      "path": "NOTICE",
+      "blob": "d97abea788330122338a9d6fe95a7864df30fcb0",
+      "matches": true
+    },
+    {
+      "path": "package.json",
+      "blob": "11e95b8033436665df3d367c44abc3c4888a275a",
+      "matches": true
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "blob": "41c6115683a869129e7a6175b587c59762fb5965",
+      "matches": true
+    },
+    {
+      "path": "src/app/business/layout.tsx",
+      "blob": "29aa8cb5e52253b381a817c56e73abf3a87ffc23",
+      "matches": true
+    },
+    {
+      "path": "src/app/business/page.tsx",
+      "blob": "63676741e6f872c0810ecb58ec5dfb2a9308befd",
+      "matches": true
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "blob": "f0801f2af6e84f3b0953e66fc1590004200655f6",
+      "matches": true
+    },
+    {
+      "path": "src/app/page.tsx",
+      "blob": "0b2d57aab6679e49d925f0a88479a22ea7fd2b44",
+      "matches": true
+    },
+    {
+      "path": "src/components/business/bootstrap.tsx",
+      "blob": "ba8326a2c65886572c7116dc3f16be45caa3e846",
+      "matches": true
+    },
+    {
+      "path": "src/components/business/connect.tsx",
+      "blob": "bfbaf920133ecd9427bea65f5a3a08449767b5cf",
+      "matches": true
+    },
+    {
+      "path": "src/components/business/native-chrome.test.tsx",
+      "blob": "17ffcc4c971fce6af5b24b1b8d0a7f502d8cc419",
+      "matches": true
+    },
+    {
+      "path": "src/components/business/provider-isolation.test.tsx",
+      "blob": "f8dc15f471499d4de828a4090e7ccc12cfb51057",
+      "matches": true
+    },
+    {
+      "path": "src/components/business/session.test.tsx",
+      "blob": "513ec73038bc0f3bbb115df1c80e5287047896d3",
+      "matches": true
+    },
+    {
+      "path": "src/components/business/workspace.tsx",
+      "blob": "9ac7f160e525913698bc6a2dd0f2aa69cf680b95",
+      "matches": true
+    },
+    {
+      "path": "src/components/layout/app-title-bar.tsx",
+      "blob": "c139d99f18a8b67806a045a604d9738aa22cdaab",
+      "matches": true
+    },
+    {
+      "path": "src/components/layout/window-controls.tsx",
+      "blob": "8d8248a3e9b54f5b998873ed6932c0625bb4070a",
+      "matches": true
+    },
+    {
+      "path": "src/hooks/use-media-query.ts",
+      "blob": "0fde6d44df78f650e5e14d82a1445bbb24783af9",
+      "matches": true
+    },
+    {
+      "path": "src/hooks/use-mobile.ts",
+      "blob": "ed459cc436dfec8150c08a5100c269292b8475b3",
+      "matches": true
+    },
+    {
+      "path": "src/hooks/use-platform.ts",
+      "blob": "da2c8303ec44171e1a27293eabae0950d2a6b8aa",
+      "matches": true
+    },
+    {
+      "path": "src/lib/platform.ts",
+      "blob": "de8db7cc2c3e68dd3719fead67708fcbd5342123",
+      "matches": true
+    },
+    {
+      "path": "src/lib/transport/detect.ts",
+      "blob": "80e493b2972affba2a89ff8ccc137ee5213edfdb",
+      "matches": true
+    },
+    {
+      "path": "src/lib/transport/index.ts",
+      "blob": "813c5acf5d964c6f9bf13f24d675df02100a590a",
+      "matches": true
+    },
+    {
+      "path": "src/test-setup.ts",
+      "blob": "b81c1697c7ce3aecf800fdd79efb4a3bf40912df",
+      "matches": true
+    },
+    {
+      "path": "tsconfig.json",
+      "blob": "f651e558c3708e7f939535afbb9a30e87c8c3988",
+      "matches": true
+    },
+    {
+      "path": "vitest.config.ts",
+      "blob": "3cd9d3b5156039f7eb4ee99dbbeb7d45ee8148ce",
+      "matches": true
+    }
+  ],
+  "selectedFileCount": 25
+}

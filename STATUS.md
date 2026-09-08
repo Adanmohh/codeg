@@ -35,6 +35,15 @@ default desktop check and isolated export pass. Root now rebuilds the ordinary
 package before actual three-state native clearance/drag/400px and final integrated
 Playwright CLI checks. N2 runtime closure remains pending.
 
+**N2 actual runtime closed:** final normal package at `f4757d8d` exits0;
+all3 executable/profile hashes and1,017 web files match. Actual macOS
+connect/bootstrap/workspace clear window buttons and drag correctly;400px setup
+and workspace, minimize/hide/reopen pass. Final integrated Playwright CLI five
+cold aliases API0/WS0/no native web chrome, draft400/1280 and real task creation
+pass. Independent N2 review `b33b1a9f` is imported. Final MCP hash changed to
+`9c532913`; tickets is dispatched to repeat its unchanged bounded harness in a
+stable build window before final artifact acceptance. [Native evidence](reports/business-native-root/README.md).
+
 **Next-scope preparation:** existing tickets worker is dispatched to docs-only
 `docs/business-intake-contract` from accepted main, same worktree/pane. Deliverables
 `reports/business-intake-contract.md` and `docs/contracts/business-intake.md` pin

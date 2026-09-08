@@ -1,0 +1,32 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-native-chrome/3d000874
+
+ ✓ src/components/business/provider-isolation.test.tsx > business route provider isolation > isolates / with an ambient operator token and wallpaper enabled
+ ✓ src/components/business/provider-isolation.test.tsx > business route provider isolation > isolates /index.html with an ambient operator token and wallpaper enabled
+ ✓ src/components/business/provider-isolation.test.tsx > business route provider isolation > isolates /business with an ambient operator token and wallpaper enabled
+ ✓ src/components/business/provider-isolation.test.tsx > business route provider isolation > isolates /business/ with an ambient operator token and wallpaper enabled
+ ✓ src/components/business/provider-isolation.test.tsx > business route provider isolation > isolates /business.html with an ambient operator token and wallpaper enabled
+ ✓ src/components/business/provider-isolation.test.tsx > business route provider isolation > keeps private edits mounted while the local language changes across tabs
+ ✓ src/components/business/provider-isolation.test.tsx > business route provider isolation > retains operator providers on /workspace
+ ✓ src/components/business/provider-isolation.test.tsx > business route provider isolation > retains operator providers on /business-other
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > reserves macOS controls and a drag strip in connect
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > reserves macOS controls and a drag strip in bootstrap
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > reserves macOS controls and a drag strip in workspace
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > adds no chrome or native window API to web connect
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > adds no chrome or native window API to web bootstrap
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > adds no chrome or native window API to web workspace
+ ✓ src/components/business/session.test.tsx > business private session boundary > clears private edits and bearer on credential rejection, keeping an unrelated ambient operator slot intact
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > retains existing Win32 controls in connect (mocked OS API)
+ ✓ src/components/business/session.test.tsx > business private session boundary > membership revision change resets private editing state and reflects new read-only access
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > retains existing Win32 controls in bootstrap (mocked OS API)
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > retains existing Win32 controls in workspace (mocked OS API)
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > retains existing Linux x86_64 controls in connect (mocked OS API)
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > retains existing Linux x86_64 controls in bootstrap (mocked OS API)
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > retains existing Linux x86_64 controls in workspace (mocked OS API)
+ ✓ src/components/business/native-chrome.test.tsx > business native window chrome > keeps the private connection draft mounted across native locale rerenders
+
+ Test Files  3 passed (3)
+      Tests  23 passed (23)
+   Start at  20:14:30
+   Duration  1.66s (transform 364ms, setup 355ms, collect 1.53s, tests 796ms, environment 926ms, prepare 136ms)

@@ -1,0 +1,69 @@
+{
+  "review": "N2 business native chrome",
+  "productPr": "https://github.com/Adanmohh/codeg/pull/24",
+  "productCommit": "3d0008747ab1933bf9c1329f8e1b59d949992623",
+  "productBase": "e6eb7b56c76f0f162f5255857c4f8e0ab8f7d804",
+  "reviewBranch": "review/business-native-chrome",
+  "reviewBranchBase": "1f02eb17b1d57f387dc391d5ce27bf59e0f96861",
+  "earlyReviewCommit": "443718f9c061d01f3943d6038834b4700bd45e0a",
+  "verdict": "No blocking source or focused-test findings at the frozen product commit.",
+  "openSourceFindings": [],
+  "independentTests": {
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-native-chrome/3d000874",
+    "command": "node node_modules/vitest/vitest.mjs run src/components/business/native-chrome.test.tsx src/components/business/session.test.tsx src/components/business/provider-isolation.test.tsx --reporter=verbose",
+    "exitCode": 0,
+    "passed": 23,
+    "failed": 0,
+    "skipped": 0,
+    "files": 3,
+    "durationSeconds": 1.66,
+    "suites": {
+      "native-chrome": 13,
+      "session": 2,
+      "provider-isolation": 8
+    },
+    "log": "focused-tests.txt",
+    "unchangedArchiveFilesVerified": 1213,
+    "warning": "Inherited Vite CJS Node API deprecation.",
+    "outputFormatting": {
+      "normalization": "Removed terminal color escapes and trailing empty line for committed text; no test-result text changed.",
+      "rawLogPreserved": "focused-tests.log (ignored)",
+      "rawSha256": "993f12f4f292a12aca73b7d892a439c3e8cb2cf34734509df4a92045ca2686f1",
+      "committedSha256": "47d98ee3ae232d156ec74f544d2342e1239ff71d214ceedbaca72d314624bc1e"
+    }
+  },
+  "sourceChecks": {
+    "stableOuterFrameAndContentSibling": true,
+    "nativeOnlyExistingTitlebar": true,
+    "threeSceneChangesAreHeightOnly": true,
+    "sessionClientAuthAndRustUnchanged": true,
+    "sharedTitlebarControlsHooksEqualPinnedCodeg": true,
+    "existingNoticeBytesPreserved": true,
+    "actualTauriEventTargetDragSemanticsRead": true,
+    "rootRedirectUsesBusinessLayout": true,
+    "transportImportConstructionRemainsLazy": true
+  },
+  "ownerResultsAtFrozenReport": {
+    "passedTests": 52,
+    "files": 6,
+    "typecheckExit": 0,
+    "scopedLintExit": 0,
+    "independentlyRepeated": false,
+    "browserExport": "pending in frozen report"
+  },
+  "nativeAcceptance": {
+    "closedByThisReview": false,
+    "owner": "root",
+    "remaining": "Actual rebuilt macOS traffic-light clearance, blank-area drag and control behavior.",
+    "baselineEvidence": "../business-native-root/N2-native-chrome.md",
+    "baselineProduct": "e72cc44b612068e67a3e6dc3bc593f10988ae7ed",
+    "baselineNativeSource": "6cfff7d64e4d45f84d8cd5a26325b6ad4e1f311f"
+  },
+  "limits": [
+    "New chrome tests use jsdom and mocked platform/window APIs; no real native geometry or movement was executed by this reviewer.",
+    "New locale identity case covers a connection input with a mocked copy hook, not authenticated task editing during hydration.",
+    "Existing provider/session tests run separately from the new layout.",
+    "No new independent browser cold-request trace, build, broad suite or Windows/Linux runtime claim.",
+    "No product edits, fixture/export mutation, new dependency, native launch or live external action."
+  ]
+}

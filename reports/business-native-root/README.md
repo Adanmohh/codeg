@@ -114,3 +114,55 @@ records both000009 and000010 applied; protected real business/context returns200
 operator:true and needsBootstrap:true. Existing Ops database was upgraded, not
 reseeded. `server-upgrade-context.json` records the exact source/identity.
 Final browser check will use the final refreshed root export after N2 acceptance.
+
+## Final N2 package and actual runtime — passed
+
+PR24 merged at exact handoff f7a74b67151a75fd05a15910d9cb84d17356e59d,
+merge c0ebd3d5bc9414b72411bfff3f8949c9d7b5ca95. Product
+3d0008747ab1933bf9c1329f8e1b59d949992623 has independent23/23 source/test
+review b33b1a9f74016a1543750108af5f6f3f8ca0de33; owner52 focused tests,
+typecheck, scoped lint, desktop check and export pass.
+
+Root ordinary unsigned debug build at f4757d8dcd9e62824bfde577a5595a5a2a5e5c7c
+completed exit0, log /tmp/business-n2-root-app-build.log. No product changes
+occurred during compilation. Final bundle-manifest.json correlates all three
+executables with completed debug outputs and all1,017 web files with out,
+zero missing/extra/different. first-bundle-manifest.json preserves the previous
+candidate. Final MCP hash9c532913 differs, so the earlier90f9 artifact run is
+not claimed for this final artifact; a new bounded run is dispatched in stable
+window business-native-n2-f4757d8d.
+
+Actual bundled codeg PID95325/window49887 uses its own backend directory
+/tmp/ops-business-native-n2-f4757d8d. AX route is tauri:/business. Root visually
+inspected connect/bootstrap/workspace at400 and1260 logical pixels: the40px
+caption strip clears the brand and preserves physical macOS controls. Actual
+HID drag moves connect (126,42)→(206,67), bootstrap (126,67)→(206,92), and
+400px workspace (206,92)→(246,102). Native setup at400px successfully creates
+N2 Native Studio/N2 Review Owner using real pointer/keyboard input. n2-*.png,
+AX dumps and n2-runtime-result.json record these results.
+
+Actual yellow-button click minimizes (AXMinimized=true); the test-only helper
+restores AXMinimized=false using the installed SDK's documented writable boolean.
+Actual red-button click hides main, leaving no AXWindow while the app remains
+alive, matching unchanged lib.rs main-window tray policy. System open restores
+the same N2 studio and visible window. Green zoom/fullscreen was not executed.
+No Windows/Linux runtime or complete screen-reader certification. The backend
+directory does not replace the existing WebKit profile. No native log ERROR or
+panic matched. Root stopped only95325 with TERM after acceptance.
+
+The final server binary7e94301b replaces only root-owned4318 process61465 using
+the same upgraded synthetic database. /tmp/business-n2-root-server.log. Actual
+Playwright CLI session root-business-package passed five cold aliases200 with
+zero API/WS requests and no native chrome/drag targets in web. It bootstrapped
+Root Integrated Studio/Root Integration Owner, retained a full task draft at
+400/1280 with no document overflow, and created Final package: customer feedback
+follow-up through the real backend. final-web-check.raw records8 business API
+requests, no blocked outside request and no sockets. The first screenshot caught
+the existing opening transition; it is retained as such, not a settled visual
+claim. A separate read-only sign-in/detail visit captured final-web-task-settled.png
+after500ms; root inspected it. Both owned browser sessions were closed. No
+existing worker fixture was restarted or changed by these checks.
+
+N2 runtime is closed within this scope. Final companion evidence and acceptance
+summary remain; prior native human Done4/shared viewer/revocation evidence stays
+valid for unchanged backend/session behavior.

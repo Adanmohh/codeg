@@ -26,3 +26,11 @@ Positive drag control: after explicit engineering navigation, the same helper
 moves the existing blank titlebar from126,42 to206,67 with pointer1000,62 to
 1080,92. An earlier engineering600 coordinate hit a tab and is excluded from
 that control. Window restored with reverse drag. No unrelated window moved.
+
+## Closure — 2026-09-08
+
+Resolved at product3d000874, reviewed independently at b33b1a9f and merged PR24.
+Actual normal rebuilt package f4757d8d passes three-state clearance/drag,400px
+setup/workspace and native minimize/hide/reopen checks. See README.md and
+n2-runtime-result.json for exact evidence and limits. No remaining verified N2
+finding; green fullscreen and other desktop platforms were not runtime tested.

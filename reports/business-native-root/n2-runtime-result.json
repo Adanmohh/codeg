@@ -1,0 +1,70 @@
+{
+  "buildSource": "f4757d8dcd9e62824bfde577a5595a5a2a5e5c7c",
+  "productSource": "3d0008747ab1933bf9c1329f8e1b59d949992623",
+  "pid": 95325,
+  "windowId": 49887,
+  "route": "tauri:/business",
+  "backendData": "/tmp/ops-business-native-n2-f4757d8d",
+  "states": [
+    "connect",
+    "bootstrap",
+    "workspace"
+  ],
+  "widths": [
+    400,
+    1260
+  ],
+  "drags": [
+    {
+      "state": "connect",
+      "before": {
+        "X": 126,
+        "Y": 42
+      },
+      "after": {
+        "Height": 860,
+        "Width": 1260,
+        "X": 206,
+        "Y": 67
+      }
+    },
+    {
+      "state": "bootstrap",
+      "before": {
+        "X": 126,
+        "Y": 67
+      },
+      "after": {
+        "Height": 860,
+        "Width": 1260,
+        "X": 206,
+        "Y": 92
+      }
+    },
+    {
+      "state": "workspace",
+      "before": {
+        "X": 206,
+        "Y": 92
+      },
+      "after": {
+        "Height": 860,
+        "Width": 400,
+        "X": 246,
+        "Y": 102
+      }
+    }
+  ],
+  "controls": {
+    "minimizedViaActualYellowButton": true,
+    "restoredViaAXMinimizedFalse": true,
+    "redButtonHidesMain": true,
+    "systemReopenRestoresSameWorkspace": true,
+    "zoomFullscreen": "not executed"
+  },
+  "limitations": [
+    "Backend directory isolation is not a fresh WebKit profile or OS sandbox.",
+    "Windows/Linux controls covered by mocked component tests, not platform runtime.",
+    "No model/provider action or broad assistive technology certification."
+  ]
+}

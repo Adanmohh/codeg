@@ -70,3 +70,15 @@ review does not claim18 independent checks or the entire business vision done.
 Method source: Design Studio55c8614dcfff33b4caa5a544b4f1f91877214878,
 installed scripts/merge-findings.mjs and agents/design-reviewer.md read before use.
 Root applied synthesis inline; no additional judge agents or paid flow SDK.
+
+## Native correction loop closure
+
+N2 macOS overlap/inert drag was found by actual packaged interaction after the
+browser audit. Worker product3d000874 reuses pinned shared chrome; independent
+b33b1a9f source review23/23 tests passes. Root rebuilt normal packagef4757d8d
+and visually inspected actual400/1260 connect/bootstrap/workspace. All3 drag
+paths move the window, titlebar clears the brand, minimize and hide/reopen work.
+Final integrated Playwright CLI cold routes/draft/task pass; settled task image
+was inspected separately from the initial animation frame. This closes N2
+without extending prior browser scores to Windows/Linux or fullscreen.
+Evidence: ../business-native-root/README.md and n2-runtime-result.json.

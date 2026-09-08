@@ -1,0 +1,79 @@
+{
+  "auditPath": "/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl",
+  "sessionId": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+  "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+  "matchedRecords": 5601,
+  "counts": {
+    "PreToolUse": 2819,
+    "PostToolUse": 2782
+  },
+  "recentSamples": {
+    "PreToolUse": [
+      {
+        "time": 1788888066,
+        "event": "PreToolUse",
+        "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+        "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+        "exit": 0
+      },
+      {
+        "time": 1788888163,
+        "event": "PreToolUse",
+        "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+        "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+        "exit": 0
+      },
+      {
+        "time": 1788888256,
+        "event": "PreToolUse",
+        "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+        "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+        "exit": 0
+      },
+      {
+        "time": 1788888324,
+        "event": "PreToolUse",
+        "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+        "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+        "exit": 0
+      }
+    ],
+    "PostToolUse": [
+      {
+        "time": 1788888036,
+        "event": "PostToolUse",
+        "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+        "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+        "exit": 0
+      },
+      {
+        "time": 1788888036,
+        "event": "PostToolUse",
+        "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+        "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+        "exit": 0
+      },
+      {
+        "time": 1788888066,
+        "event": "PostToolUse",
+        "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+        "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+        "exit": 0
+      },
+      {
+        "time": 1788888256,
+        "event": "PostToolUse",
+        "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+        "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+        "exit": 0
+      }
+    ]
+  },
+  "scope": "Selected event metadata only; no command bodies, credential values or other sessions.",
+  "codeContext": {
+    "guideExit": 0,
+    "docsExit": 3,
+    "coverage": "approvals.db absent; installed source read directly",
+    "HF_HUB_OFFLINE": "1"
+  }
+}
