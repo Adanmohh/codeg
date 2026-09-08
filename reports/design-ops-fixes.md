@@ -1,6 +1,6 @@
 # Ops locale, RTL and receipt corrections
 
-Complete and ready for root review in draft [PR14](https://github.com/Adanmohh/codeg/pull/14), branch `fix/design-ops`. Final production/evidence SHA is recorded in the closing documentation commit. Sole worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`.
+Complete and ready for root review in draft [PR14](https://github.com/Adanmohh/codeg/pull/14), branch `fix/design-ops`. Production/evidence: **8f0da7d6279ef016d8ff7d4b91cf2fc34b25e8c5**. Final integrated code: **66d164e9fceded954ab3b8d2d0fe6d3a3617dd55**; the closing commit changes report metadata only. Sole worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`.
 
 The four [workorder](design-ops-workorder.md) corrections and root's selected-row contrast follow-up are implemented. No approval/sender/API/DTO/component-prop change, dependency upgrade, live provider action, inference, deployment, extra agent or other-worktree write.
 
@@ -16,6 +16,8 @@ The four [workorder](design-ops-workorder.md) corrections and root's selected-ro
 ## Integration and exact reuse
 
 Clean branch base: **617385194f67b3d9e5aca5d9d29f3b1baeebb070**. Implementation **d20b1f8d** and evidence checkpoint **881f5181e351bbe26dddc738735579d626214f69** were pushed before merge **785393397e5dafc3838b98c6dd1c934d1897f561**, which incorporates accepted main **8f63f89cc159babd51d4900f4b235d9fecdaa923** (PR13/f4da7027 included). Its sole conflict was additive NOTICE text; both complete blocks survived. Rust, locks, Ops/session/API and locale-provider source were unchanged by integration. The own export was rebuilt afterward.
+
+Final merge **66d164e9** incorporates accepted main **180be589487f7b23f656e14325dc614954946596**, including PR12. Only `.gitignore` and NOTICE conflicted: both export additions and complete attribution sections were retained, with **zero deletions** relative to either parent. Reviewed Ops product/API/session and owned fixture source remain identical to **8f0da7d6**. Merged typecheck, diff checks and `git merge-tree --write-tree HEAD origin/main` pass (exit 0). Per root's final instruction, no repeated Rust gates or export rebuild: **4326 continues serving the tested 8f0da7d6 export**, while the branch also contains accepted PR12 source.
 
 | Immutable authority | Exact source files read | Reuse |
 | --- | --- | --- |
@@ -61,6 +63,7 @@ Every final command below exited **0**. Logs remain locally in `reports/` (gitig
 | `pnpm exec vitest run src/components/ops` | **22 passed**: 8 locale/session, 14 flow/receipt. Locale suite first failed 5/8 on baseline, then passed 8/8 |
 | Integrated Vitest selection below | **92 passed**, 11 files; `design-ops-integrated-frontend.log` |
 | `pnpm exec tsc --noEmit` | Pass; `design-ops-integrated-tsc.log` |
+| Post-PR12 `pnpm exec tsc --noEmit` | Pass; `design-ops-main-final-tsc.log` |
 | `pnpm exec eslint` on five changed UI files plus both Ops test files | Pass; `design-ops-integrated-eslint.log` |
 | `CODEG_EXPORT_DIR=out-design-ops pnpm exec next build` | Pass, 33 routes; `design-ops-integrated-build.log` |
 | `cargo check --locked` | Default desktop pass |
@@ -75,7 +78,7 @@ Integrated frontend command:
 pnpm exec vitest run src/components/ops src/components/ops-telegram src/components/ops-intake src/components/settings/system-network-settings.test.tsx src/i18n/messages.test.ts src/lib/transport/web-transport.test.ts src/components/settings/pi-config-panel.test.tsx src/components/layout/status-bar-alerts.test.tsx src/components/chat/agent-setup-notice.test.tsx src/components/conversations/sidebar-section-header.test.tsx
 ```
 
-Rust uses only `.build/intake-host`; [gate script](design-ops-rust-gates.sh) records exact invocations. It passed on d20b1f8d; Rust/locks remained byte-identical after integration, so unrelated Rust tests were not repeated. The final CSS-only follow-up passed the rebuilt export, integrated frontend suite, scoped lint/typecheck and actual contrast checks.
+Rust uses only `.build/intake-host`; [gate script](design-ops-rust-gates.sh) records exact invocations. It passed on d20b1f8d; Rust/locks remained byte-identical through merge 78539339. The later accepted PR12 source arrived intact; its attribution/ignore conflict resolution required no Rust edits, and root explicitly waived repeated Rust gates. The CSS-only follow-up passed the rebuilt export, integrated frontend suite, scoped lint/typecheck and actual contrast checks before that final merge.
 
 Meaningful tests cover initial boot, delayed/failed/superseded bundles, responsive remounts, complete edited payload, colliding backend IDs/base URLs, no private persistence/save/send on locale change, and receipt-only callbacks. Initial harness/type errors were corrected against actual DTOs/Vitest APIs without upgrades.
 
