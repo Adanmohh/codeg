@@ -1,0 +1,85 @@
+{
+  "file": "src/components/ops/proposals-view.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": true,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": true,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": true,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #1e1e1e rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #262626 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #a1a1a1 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #151515 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #c5c5c5 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (extra-font-family): Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-scale-radius): 26px radius off brief + 4px scale."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-scale-spacing): 6px spacing off brief + 4px scale."
+    }
+  ],
+  "probe": {
+    "ok": true,
+    "checked": 21
+  }
+}
+
+SUMMARY src/components/ops/proposals-view.tsx: 8 gap(s) — [med] MEASURED brief violation (off-palette-color): #1e1e1e rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #262626 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #a1a1a1 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #151515 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #c5c5c5 rendered but not in brief palette.  |  [med] MEASURED brief violation (extra-font-family): Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system.  |  [med] MEASURED brief violation (off-scale-radius): 26px radius off brief + 4px scale.  |  [med] MEASURED brief violation (off-scale-spacing): 6px spacing off brief + 4px scale.

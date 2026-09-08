@@ -1,0 +1,25 @@
+{
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "BC6": true,
+      "method": "Real browser offline, real protected API restored; no response interception"
+    },
+    {
+      "BC13": true,
+      "limitation": "Proposal is pending but already stale from controlled revision2; prior accepted unconfigured-fresh approval proof remains separately cited."
+    },
+    {
+      "BC3": true,
+      "localePreserved": true,
+      "direction": {
+        "lang": "ar",
+        "dir": "rtl",
+        "persisted": false,
+        "emailDir": "ltr",
+        "backRotation": "180deg"
+      },
+      "restoredEnglish": true
+    }
+  ]
+}

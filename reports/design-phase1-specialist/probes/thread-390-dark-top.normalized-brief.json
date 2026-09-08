@@ -1,0 +1,108 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#1e1e1e",
+      "#fafafa",
+      "#262626",
+      "#a1a1a1",
+      "#161109",
+      "#171717",
+      "#1d1d1d",
+      "#c5c5c5"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      12,
+      20
+    ],
+    "spacingPx": [
+      4,
+      12,
+      6,
+      8,
+      16,
+      24,
+      20
+    ],
+    "radiiPx": [
+      26,
+      10,
+      14,
+      16777200,
+      6
+    ]
+  },
+  "contrast": {
+    "checked": 27,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 109,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "Synthetic locale review"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- button \"Show Sidebar\"\n- button \"Search\"\n- button \"New Conversation\"\n- button \"Open Settings\"\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - button \"Back to inbox\"\n    - article:\n      - text: \"Open · Thread #2\"\n      - heading \"Synthetic locale review\" [level=1]\n      - paragraph: Reader · reader@example.com\n      - strong: Incoming email\n      - text: reader@example.com\n      - time: 8.9.2026 klo 4.34.36\n      - paragraph: Hello (build 42). Reply to reader@example.com, please. مرحباً، الصوت يتوقف في الشاشة الرئيسية. Build 42.\n      - strong: Private note\n      - text: operator:http\n      - time: 8.9.2026 klo 4.34.36\n      - paragraph: \"ملاحظة تجريبية داخلية: تحقق من Build 42 (reader@example.com).\"\n      - region \"Compose\":\n        - button \"Reply draft\" [pressed]\n        - button \"Private note\"\n        - paragraph: Saved draft · revision 1. Prepare the full reply here. Sending requires a proposal, human review and connected delivery.\n        - text: From · inbox identity\n        - textbox \"From · inbox identity\": support@example.com\n        - text: To\n        - textbox \"To\": reader@example.com\n        - text: Cc\n        - textbox \"Cc\"\n        - text: Bcc · hidden from other recipients\n        - textbox \"Bcc · hidden from other recipients\"\n        - paragraph: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.\n        - text: Subject\n        - textbox \"Subject\": \"Re: Synthetic locale review\"\n        - text: Reply message\n        - textbox \"Reply message\": Original approved body\n        - group:\n          - text: Thread headers · part of the complete payload In-Reply-To · message ID\n          - textbox \"In-Reply-To · message ID\": design-locale@example.com\n          - text: References · one message ID per line\n          - textbox \"References · one message ID per line\": design-locale@example.com\n        - paragraph: Plain text only. Attachments are not supported in this draft.\n        - button \"Save draft\" [disabled]\n        - text: No unsaved changes\n- button \"Quick actions\"\n- button \"6 conversations\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#1e1e1e rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#161109 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#1d1d1d rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c5c5c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}

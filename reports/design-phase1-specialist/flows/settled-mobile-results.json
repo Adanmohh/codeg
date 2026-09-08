@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "name": "intake-missing-390-light",
+      "geometry": {
+        "popupCount": 0,
+        "width": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "name": "intake-invalid-proof-retained-390-light",
+      "geometry": {
+        "popupCount": 0,
+        "width": 390,
+        "documentWidth": 390
+      }
+    },
+    {
+      "retained": "Synthetic content does not include the claimed build",
+      "prepareDisabled": true
+    }
+  ],
+  "method": "Settled unobscured replacements; original mid-dismissal captures retained under attempts; no provider or draft action"
+}

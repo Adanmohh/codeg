@@ -1,0 +1,133 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#f8f8f8",
+      "#0a0a0a",
+      "#171717",
+      "#f5f5f5",
+      "#737373",
+      "#f7f7f7",
+      "#444444"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      12,
+      24
+    ],
+    "spacingPx": [
+      4,
+      12,
+      6,
+      16,
+      32,
+      8
+    ],
+    "radiiPx": [
+      26,
+      10,
+      16777200,
+      6
+    ]
+  },
+  "contrast": {
+    "checked": 21,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 91,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "What needs your attention"
+      },
+      {
+        "level": 2,
+        "text": "Replies to review"
+      },
+      {
+        "level": 2,
+        "text": "Tasks awaiting attention"
+      },
+      {
+        "level": 2,
+        "text": "In progress"
+      },
+      {
+        "level": 2,
+        "text": "Up next"
+      },
+      {
+        "level": 2,
+        "text": "Open correspondence"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- button \"Show Sidebar\"\n- button \"Search\"\n- button \"New Conversation\"\n- button \"Open Settings\"\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - paragraph: Morning desk\n    - heading \"What needs your attention\" [level=1]\n    - paragraph: Current task runs and local inbox queues. Refresh to pick up new activity.\n    - heading \"Replies to review\" [level=2]\n    - paragraph: No pending reply proposals.\n    - heading \"Tasks awaiting attention\" [level=2]\n    - button \"Open task workspace\"\n    - paragraph: No tasks in this queue.\n    - heading \"In progress\" [level=2]\n    - paragraph: No tasks in this queue.\n    - heading \"Up next\" [level=2]\n    - paragraph: No tasks in this queue.\n    - heading \"Open correspondence\" [level=2]\n    - paragraph: No open correspondence. New email will appear after intake is connected.\n- button \"Quick actions\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffffff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f8f8f8 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#171717 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f5f5f5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#737373 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f7f7f7 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#444444 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}

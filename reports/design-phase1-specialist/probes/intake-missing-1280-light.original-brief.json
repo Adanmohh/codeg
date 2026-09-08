@@ -1,0 +1,207 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#fafafa",
+      "#0a0a0a",
+      "#e9eded",
+      "#525252",
+      "#454545",
+      "#faeedc",
+      "#bb4d00",
+      "#e5e5e5",
+      "#fdc700",
+      "#737373",
+      "#245e58",
+      "#f9f9f9",
+      "#f7f7f7",
+      "#f5f5f5",
+      "#444444"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      10,
+      12
+    ],
+    "spacingPx": [
+      8,
+      2,
+      6,
+      7,
+      12,
+      1,
+      10,
+      24,
+      16,
+      4
+    ],
+    "radiiPx": [
+      26,
+      16777200,
+      8,
+      5,
+      14,
+      10,
+      6
+    ]
+  },
+  "contrast": {
+    "checked": 57,
+    "failures": [
+      {
+        "text": "1",
+        "fg": "#bb4d00",
+        "bg": "#faeedc",
+        "ratio": 4.39,
+        "required": 4.5
+      },
+      {
+        "text": "1 session running",
+        "fg": "#bb4d00",
+        "bg": "#faeedc",
+        "ratio": 4.39,
+        "required": 4.5
+      }
+    ]
+  },
+  "motion": {
+    "transitionsCount": 162,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "Bug intake"
+      },
+      {
+        "level": 2,
+        "text": "Source reports"
+      },
+      {
+        "level": 2,
+        "text": "Source report"
+      },
+      {
+        "level": 2,
+        "text": "Required evidence"
+      },
+      {
+        "level": 2,
+        "text": "Issue draft"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": false
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- complementary:\n  - button \"Locate Active Conversation\"\n  - button \"Collapse All Groups\"\n  - button \"View options\"\n  - button \"Ops desk\"\n  - button \"Bug intake\"\n  - button \"New chat ⌘T\"\n  - button \"Automations\"\n  - button \"To-dos\"\n  - button \"Repository panel\"\n  - button \"Infinite Conversations\"\n  - button \"Folders\" [expanded]\n  - button \"New group\"\n  - button \"Import local sessions\"\n  - button \"Clone Repository\"\n  - button \"Open Folder\"\n  - button \"synthetic-project 1 session running\" [expanded]\n  - button \"More options\"\n  - button \"New Conversation\"\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Chat\" [expanded]\n  - button \"New chat\"\n  - text: No chats\n  - button \"Recent\" [expanded]\n  - button \"New Conversation\"\n  - button \"Untitled conversation\"\n  - text: Running\n- separator\n- main:\n  - text: Bug intake\n  - heading \"Bug intake\" [level=1]\n  - paragraph: TestFlight report → reviewed evidence → GitHub issue\n  - button \"Product settings\"\n  - text: Product\n  - combobox \"Product\":\n    - option \"synthetic-hafidh · owner/repo\" [selected]\n    - option \"synthetic-unconfigured · owner/repo\"\n  - button \"Read TestFlight\"\n  - paragraph: Read-only TestFlight intake. In-app feedback is unavailable. A list read does not confirm evidence freshness.\n  - region \"TestFlight reports\":\n    - heading \"Source reports\" [level=2]\n    - 'button \"TestFlight draft: Synthetic audio stops at verse four pending · Build 42\" [pressed]'\n    - 'button \"TestFlight draft: Synthetic unknown response example pending · Build 42\"'\n    - 'button \"TestFlight draft: Synthetic rejected label example pending · Build 42\"'\n  - button \"Reload status\"\n  - status: Source revalidated from Hafidh.\n  - heading \"Source report\" [level=2]\n  - paragraph: Synthetic audio stops at verse four\n  - term: Device\n  - definition: iPhone 16\n  - term: OS version\n  - definition: \"18.2\"\n  - term: App version\n  - definition: Not provided\n  - term: Build\n  - definition: \"42\"\n  - term: Platform\n  - definition: IOS\n  - term: Submitted\n  - definition: 7.9.2026 klo 13.00.00\n  - paragraph: TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAV\n  - paragraph: Revalidated 5.13.09\n  - button \"Refresh source\"\n  - paragraph: A changed source revision resets its evidence and severity confirmation. Saved edits remain available for comparison until you choose the current draft.\n  - heading \"Required evidence\" [level=2]\n  - list \"Evidence checklist\":\n    - listitem: build Required\n    - listitem: screen Required\n    - listitem: reciter Required\n    - listitem: log Required\n  - paragraph: \"Cannot prepare or file: add build, screen, reciter, log evidence.\"\n  - group:\n    - text: Evidence type\n    - combobox \"Evidence type\":\n      - option \"Build\" [selected]\n      - option \"Screen\"\n      - option \"Reciter\"\n      - option \"Log\"\n    - paragraph:\n      - text: TestFlight reports build\n      - strong: \"42\"\n      - text: . Confirm that build in the proof content.\n    - text: Build evidence summary\n    - textbox \"Build evidence summary\"\n    - text: Sanitized proof content\n    - textbox \"Sanitized proof content\"\n    - text: Paste reviewed UTF-8 text, up to 8 KiB, including the exact summary above. Remove names, contact details, credentials and private paths. A URL, screenshot or session ID alone is not a diagnostic log. Captured at (optional)\n    - textbox \"Captured at (optional)\"\n    - text: An actual ISO timestamp, including timezone, when known. Leave blank otherwise.\n    - button \"Attach reviewed proof\"\n  - heading \"Issue draft\" [level=2]\n  - paragraph:\n    - text: \"Suggestion:\"\n    - strong: low\n    - text: severity; audio. These are triage guesses. Confirm or change severity below.\n  - group:\n    - text: Issue title\n    - textbox \"Issue title\": \"TestFlight draft: Synthetic audio stops at verse four\"\n    - text: Reproduction and expected behavior\n    - textbox \"Reproduction and expected behavior\": Synthetic audio stops at verse four\n    - text: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions. Repository labels\n    - textbox \"Repository labels\"\n    - text: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing. Human-confirmed severity\n    - combobox \"Human-confirmed severity\":\n      - option \"Not confirmed\" [selected]\n      - option \"High\"\n      - option \"Medium\"\n      - option \"Low\"\n    - button \"Save issue draft\"\n    - text: Draft saved locally\n  - text: Active triage task\n  - combobox \"Active triage task\":\n    - option \"Choose an active task\" [selected]\n    - option \"#1 · Synthetic triage task\"\n  - button \"Prepare exact issue\" [disabled]\n  - paragraph: Refresh the source, attach all four proofs, confirm severity and save edits before preparing.\n  - separator\n  - button \"New Terminal\"\n  - button \"Hide Terminal (⌘J)\"\n- separator\n- button \"Quick actions\"\n- button \"1 conversations\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"\n- button \"Hide Sidebar (⌘B)\"\n- button \"Search\"\n- button \"Open Settings (⌘,)\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffffff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#e9eded rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#525252 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#454545 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#faeedc rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#bb4d00 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#e5e5e5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fdc700 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#737373 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f9f9f9 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f7f7f7 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f5f5f5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#444444 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "5px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "7px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "1px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "10px spacing off brief + 4px scale"
+    }
+  ]
+}

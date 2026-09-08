@@ -1,0 +1,194 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#1e1e1e",
+      "#fafafa",
+      "#262626",
+      "#151515",
+      "#a1a1a1",
+      "#c5c5c5",
+      "#171717",
+      "#212624",
+      "#9bd4c5",
+      "#252b29",
+      "#b6b6b6",
+      "#c1c1c1",
+      "#3a3014",
+      "#ffd230",
+      "#2e2f2f",
+      "#fdc700"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif",
+      "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      12,
+      10
+    ],
+    "spacingPx": [
+      4,
+      12,
+      6,
+      16,
+      8,
+      2,
+      7,
+      1,
+      10
+    ],
+    "radiiPx": [
+      26,
+      10,
+      16777200,
+      6,
+      8,
+      5
+    ]
+  },
+  "contrast": {
+    "checked": 67,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 166,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)",
+      "cubic-bezier(0.22, 1, 0.36, 1)",
+      "cubic-bezier(0.45, 1.005, 0, 1.005)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 2,
+        "text": "Sidebar"
+      },
+      {
+        "level": 2,
+        "text": "Conversations"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- button \"Hide Sidebar\"\n- button \"Search\"\n- button \"New Conversation\"\n- button \"Open Settings\"\n- dialog \"Sidebar\":\n  - heading \"Sidebar\" [level=2]\n  - complementary:\n    - heading \"Conversations\" [level=2]\n    - button \"Locate Active Conversation\"\n    - button \"Collapse All Groups\"\n    - button \"View options\"\n    - button \"Ops desk\"\n    - button \"Bug intake\"\n    - button \"New chat ⌘T\"\n    - button \"Automations\"\n    - button \"To-dos 1\"\n    - button \"Repository panel\"\n    - button \"Infinite Conversations\"\n    - button \"Folders\" [expanded]\n    - button \"New group\"\n    - button \"Import local sessions\"\n    - button \"Clone Repository\"\n    - button \"Open Folder\"\n    - button \"ops-ui-task-fixture 6 sessions running\" [expanded]\n    - button \"More options\"\n    - button \"New Conversation\"\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Chat\" [expanded]\n    - button \"New chat\"\n    - text: No chats\n    - button \"Recent\" [expanded]\n    - button \"New Conversation\"\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - complementary \"Ticket list\":\n      - text: Email not connected\n      - button \"Pull now\" [disabled]\n      - group: Connect Resend\n      - text: Inbox\n      - combobox \"Inbox\":\n        - option \"Support · support@example.com\" [selected]\n      - text: Ticket status\n      - combobox \"Ticket status\":\n        - option \"All statuses\" [selected]\n        - option \"Open\"\n        - option \"Resolved\"\n        - option \"Pending\"\n        - option \"Snoozed\"\n      - list:\n        - listitem:\n          - button \"Reader Open Synthetic locale review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic recording review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic denied review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic rejected review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic unknown review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic accepted review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open A real local thread 8.9.2026\"\n      - button \"Previous\" [disabled]\n      - button \"Next\" [disabled]\n- button \"Quick actions\"\n- button \"6 conversations\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#1e1e1e rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c5c5c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#171717 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#212624 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#252b29 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#b6b6b6 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c1c1c1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#3a3014 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffd230 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#2e2f2f rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fdc700 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "5px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "7px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "1px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "10px spacing off brief + 4px scale"
+    }
+  ]
+}

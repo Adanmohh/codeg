@@ -1,0 +1,112 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#fafafa",
+      "#222222",
+      "#0e0e0e",
+      "#ff6467",
+      "#121212",
+      "#151515",
+      "#181818",
+      "#262626",
+      "#c5c5c5"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      12
+    ],
+    "spacingPx": [
+      12,
+      4,
+      6,
+      16,
+      2
+    ],
+    "radiiPx": [
+      10,
+      26,
+      16777200,
+      6
+    ]
+  },
+  "contrast": {
+    "checked": 10,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 117,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- separator\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - alert: Failed to fetch\n    - button \"Try again\"\n  - separator\n  - button \"New Terminal\"\n  - button \"Hide Terminal (⌘J)\"\n- separator\n- button \"Quick actions\"\n- button \"6 conversations\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"\n- button \"Show Sidebar (⌘B)\"\n- button \"Search\"\n- button \"Open Settings (⌘,)\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#222222 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#0e0e0e rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ff6467 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#121212 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#181818 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c5c5c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    }
+  ]
+}

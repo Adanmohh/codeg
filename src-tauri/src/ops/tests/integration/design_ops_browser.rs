@@ -37,6 +37,12 @@ async fn example(
 #[tokio::test]
 #[ignore = "manual synthetic Ops design fixture on 4326; own out-design-ops export"]
 async fn ops_design_browser_fixture() {
+    // Manual review isolation only; these overrides are never runtime settings.
+    let port = std::env::var("CODEG_DESIGN_FIXTURE_PORT")
+        .map(|value| value.parse::<u16>().expect("fixture port must be u16"))
+        .unwrap_or(4326);
+    let export =
+        std::env::var("CODEG_DESIGN_FIXTURE_EXPORT").unwrap_or_else(|_| "out-design-ops".into());
     let root = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .unwrap()
@@ -143,16 +149,16 @@ async fn ops_design_browser_fixture() {
     let router = crate::web::router::build_router(
         state,
         DESIGN_TOKEN.into(),
-        root.join("out-design-ops"),
+        root.join(export),
         Arc::new(crate::web::shutdown::ShutdownSignal::new()),
     )
     .layer(Extension(provider.runtime.clone()))
     .merge(stats);
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:4326")
+    let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{port}"))
         .await
         .unwrap();
     println!(
-        "Synthetic Ops design fixture at http://127.0.0.1:4326/workspace; PID {}; state {}",
+        "Synthetic Ops design fixture at http://127.0.0.1:{port}/workspace; PID {}; state {}",
         std::process::id(),
         dir.display()
     );

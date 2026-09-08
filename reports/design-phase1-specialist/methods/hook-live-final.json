@@ -1,0 +1,43 @@
+{
+  "method": "Filtered own session/worktree only; no tool arguments or credential data",
+  "pre": [
+    {
+      "time": 1788835054,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PreToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    },
+    {
+      "time": 1788835069,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PreToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": true
+    }
+  ],
+  "post": [
+    {
+      "time": 1788835053,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PostToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    },
+    {
+      "time": 1788835054,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PostToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    }
+  ]
+}

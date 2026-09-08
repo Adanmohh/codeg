@@ -1,0 +1,124 @@
+{
+  "method": "Same mounted DOM under both preferences. Raw duration-count heuristic remains false; actual lifecycle frames are authoritative for panel travel.",
+  "actualMotionEvidence": "../flows/final-drawer-summary.json",
+  "cases": [
+    {
+      "theme": "light",
+      "pair": [
+        {
+          "stem": "final-drawer-settled-light-no-preference",
+          "checked": 67,
+          "failures": [],
+          "unnamed": 0,
+          "overflow": false,
+          "transitionsCount": 166,
+          "visibleTransitions": 45,
+          "properties": [
+            "all",
+            "color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to",
+            "transform, height, opacity, filter",
+            "opacity"
+          ],
+          "motion": {
+            "transitionsCount": 166,
+            "easings": [
+              "cubic-bezier(0.4, 0, 0.2, 1)",
+              "cubic-bezier(0.22, 1, 0.36, 1)",
+              "cubic-bezier(0.45, 1.005, 0, 1.005)"
+            ],
+            "reducedMotionHandled": true,
+            "reducedMotionEffective": null,
+            "cls": null,
+            "longFrames": null
+          }
+        },
+        {
+          "stem": "final-drawer-settled-light-reduce",
+          "checked": 67,
+          "failures": [],
+          "unnamed": 0,
+          "overflow": false,
+          "transitionsCount": 166,
+          "visibleTransitions": 45,
+          "properties": [
+            "all",
+            "color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to",
+            "none",
+            "opacity"
+          ],
+          "motion": {
+            "transitionsCount": 166,
+            "easings": [
+              "cubic-bezier(0.4, 0, 0.2, 1)",
+              "cubic-bezier(0.22, 1, 0.36, 1)",
+              "cubic-bezier(0.45, 1.005, 0, 1.005)"
+            ],
+            "reducedMotionHandled": true,
+            "reducedMotionEffective": false,
+            "cls": null,
+            "longFrames": null
+          }
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "pair": [
+        {
+          "stem": "final-drawer-settled-dark-no-preference",
+          "checked": 67,
+          "failures": [],
+          "unnamed": 0,
+          "overflow": false,
+          "transitionsCount": 166,
+          "visibleTransitions": 45,
+          "properties": [
+            "all",
+            "color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to",
+            "transform, height, opacity, filter",
+            "opacity"
+          ],
+          "motion": {
+            "transitionsCount": 166,
+            "easings": [
+              "cubic-bezier(0.4, 0, 0.2, 1)",
+              "cubic-bezier(0.22, 1, 0.36, 1)",
+              "cubic-bezier(0.45, 1.005, 0, 1.005)"
+            ],
+            "reducedMotionHandled": true,
+            "reducedMotionEffective": null,
+            "cls": null,
+            "longFrames": null
+          }
+        },
+        {
+          "stem": "final-drawer-settled-dark-reduce",
+          "checked": 67,
+          "failures": [],
+          "unnamed": 0,
+          "overflow": false,
+          "transitionsCount": 166,
+          "visibleTransitions": 45,
+          "properties": [
+            "all",
+            "color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to",
+            "none",
+            "opacity"
+          ],
+          "motion": {
+            "transitionsCount": 166,
+            "easings": [
+              "cubic-bezier(0.4, 0, 0.2, 1)",
+              "cubic-bezier(0.22, 1, 0.36, 1)",
+              "cubic-bezier(0.45, 1.005, 0, 1.005)"
+            ],
+            "reducedMotionHandled": true,
+            "reducedMotionEffective": false,
+            "cls": null,
+            "longFrames": null
+          }
+        }
+      ]
+    }
+  ]
+}

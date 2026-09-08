@@ -1,0 +1,17 @@
+// Remove only this page's three read-response overrides, then restore real lists.
+async (page) => {
+  if (!page.url().startsWith("http://127.0.0.1:4327/")) throw Error("Fixture only")
+  for (const command of ["list_folder_groups", "list_open_folder_details", "list_all_folder_details"]) {
+    await page.unroute(`http://127.0.0.1:4327/api/${command}`)
+  }
+  await page.reload()
+  const folder = page.getByRole("button", { name: "ops-ui-task-fixture 6 sessions running", exact: true })
+  await folder.waitFor()
+  const remainingGroups = await page.locator("button[data-folder-group-id]").count()
+  if (remainingGroups) throw Error("Fixture grouping changed")
+  const stats = await page.evaluate(async () => (await fetch("/api/ops_design_fixture_stats", {
+    headers: { Authorization: "Bearer ops-design-synthetic-operator" },
+  })).json())
+  if (!stats.syntheticOnly || stats.providerRequests !== 4) throw Error("Fixture changed")
+  return { restoredRealServerLists: true, remainingGroups, aria: await folder.ariaSnapshot(), stats }
+}

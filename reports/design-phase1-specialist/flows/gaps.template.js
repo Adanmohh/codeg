@@ -1,0 +1,58 @@
+async (page) => {
+  if (!page.url().startsWith("http://127.0.0.1:4327/")) throw Error("Owned fixture only")
+  const capture=__CAPTURE__
+  const scope=page.getByRole("region",{name:"Ops desk",exact:true}),cases=[],checks=[]
+  const shot=async(name)=>{await page.screenshot({path:`reports/design-phase1-specialist/screenshots/${name}.png`});cases.push({name,raw:await capture(page)})}
+  await page.setViewportSize({width:1280,height:900})
+  await scope.getByRole("button",{name:"Inbox",exact:true}).click()
+  await scope.getByRole("combobox",{name:"Ticket status",exact:true}).selectOption("1")
+  await scope.getByRole("heading",{name:"No threads with this status",exact:true}).waitFor()
+  await shot("empty-filter-1280-dark")
+  await scope.getByRole("combobox",{name:"Ticket status",exact:true}).selectOption("")
+  await scope.getByRole("button",{name:/Reader Open Synthetic locale review/}).waitFor()
+  try {
+    await page.context().setOffline(true)
+    await scope.getByRole("button",{name:"Refresh",exact:true}).click()
+    await scope.getByRole("button",{name:"Try again",exact:true}).waitFor()
+    await shot("network-error-1280-dark")
+  } finally { await page.context().setOffline(false) }
+  await scope.getByRole("button",{name:"Try again",exact:true}).click()
+  await scope.getByRole("button",{name:/Reader Open Synthetic locale review/}).waitFor()
+  await shot("network-recovered-1280-dark")
+  checks.push({BC6:true,method:"Real browser offline, real protected API restored; no response interception"})
+  await scope.locator("summary").filter({hasText:"Manage email connection"}).click()
+  await scope.getByRole("button",{name:"Remove inbox key",exact:true}).click()
+  await scope.getByText("Email not connected",{exact:true}).waitFor()
+  await scope.locator("summary").filter({hasText:"Connect Resend"}).scrollIntoViewIfNeeded()
+  await shot("missing-resend-1280-dark")
+  await scope.getByRole("button",{name:"Approvals",exact:true}).click()
+  await scope.getByRole("button",{name:/Re: Synthetic locale review Task/}).click()
+  await scope.getByText(/Email is not connected|Configure Resend|Resend is not configured/).first().waitFor({timeout:3000}).catch(()=>{})
+  await scope.locator("article").getByRole("button",{name:"Approve and send reply",exact:true}).scrollIntoViewIfNeeded()
+  await shot("missing-resend-stale-review")
+  checks.push({BC13:true,limitation:"Proposal is pending but already stale from controlled revision2; prior accepted unconfigured-fresh approval proof remains separately cited."})
+  await scope.getByRole("button",{name:"Inbox",exact:true}).click()
+  await scope.getByRole("button",{name:/Reader Open Synthetic locale review/}).click()
+  await scope.getByRole("button",{name:"Reply draft",exact:true}).click()
+  await scope.getByLabel("Reply message",{exact:true}).fill("Final locale memory sentinel (not saved).")
+  const settings=page.context().pages().find(p=>p.url().endsWith("4327/settings/appearance"))
+  await settings.goto("http://127.0.0.1:4327/settings/system")
+  await settings.getByRole("combobox").click()
+  await settings.getByRole("option",{name:"Arabic",exact:true}).click()
+  await page.waitForFunction(()=>document.documentElement.lang==="ar")
+  for(const width of [1280,390]) {
+    await page.setViewportSize({width,height:width===390?844:900})
+    if(width===390) await page.keyboard.press("Escape")
+    await scope.locator("article h1").scrollIntoViewIfNeeded()
+    await shot(`rtl-${width}-dark`)
+    if(await scope.getByLabel("Reply message",{exact:true}).inputValue()!=="Final locale memory sentinel (not saved).") throw Error("Locale or remount lost draft")
+  }
+  const direction=await page.evaluate(()=>({lang:document.documentElement.lang,dir:document.documentElement.dir,persisted:Object.values(localStorage).some(v=>v.includes("Final locale memory sentinel")),emailDir:getComputedStyle(document.querySelector('input[id$="-to"]')).direction,backRotation:getComputedStyle([...document.querySelectorAll("button")].find(b=>b.textContent.includes("Back to inbox")).querySelector("svg")).rotate}))
+  await settings.getByRole("combobox").click()
+  await settings.getByRole("option",{name:"الإنجليزية",exact:true}).click()
+  await page.waitForFunction(()=>document.documentElement.lang==="en")
+  if(await scope.getByLabel("Reply message",{exact:true}).inputValue()!=="Final locale memory sentinel (not saved).") throw Error("English return lost draft")
+  await scope.getByLabel("Reply message",{exact:true}).fill("Bounded design draft: all text remains after validation.")
+  checks.push({BC3:true,localePreserved:true,direction,restoredEnglish:true})
+  return {syntheticOnly:true,checks,cases}
+}

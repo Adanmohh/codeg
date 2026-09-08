@@ -1,0 +1,97 @@
+{
+  "file": "src/components/ops-telegram/issue-review.tsx",
+  "surface": {
+    "isButton": false,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": false,
+    "loadingState": true,
+    "hoverState": false,
+    "focusState": false,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": false,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": false,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "high",
+      "msg": "List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data)."
+    },
+    {
+      "sev": "low",
+      "msg": "No hover affordance on interactive element."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #222323 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #0a0a0a rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #fafafa rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #151515 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #171717 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #9bd4c5 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (extra-font-family): Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-scale-radius): 999px radius off brief + 4px scale."
+    },
+    {
+      "sev": "low",
+      "msg": "probe: +1 more brief violations in probe.json"
+    }
+  ],
+  "probe": {
+    "ok": true,
+    "checked": 4
+  }
+}
+
+SUMMARY src/components/ops-telegram/issue-review.tsx: 11 gap(s) — [high] List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data).  |  [low] No hover affordance on interactive element.  |  [med] MEASURED brief violation (off-palette-color): #222323 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #0a0a0a rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #fafafa rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #151515 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #171717 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #9bd4c5 rendered but not in brief palette.  |  [med] MEASURED brief violation (extra-font-family): Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system.  |  [med] MEASURED brief violation (off-scale-radius): 999px radius off brief + 4px scale.  |  [low] probe: +1 more brief violations in probe.json

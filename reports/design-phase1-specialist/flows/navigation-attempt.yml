@@ -1,0 +1,165 @@
+- generic [active]:
+  - alert [ref=e2]
+  - region "Notifications alt+T"
+  - generic [ref=e12]:
+    - generic [ref=e847]:
+      - separator
+      - main [ref=e849]:
+        - generic [ref=e850]:
+          - generic [ref=e853]:
+            - generic [ref=e854]: Ops desk
+            - region "Ops desk" [ref=e859]:
+              - generic [ref=e860]:
+                - navigation "Ops views" [ref=e861]:
+                  - button "Inbox" [ref=e862]
+                  - button "Approvals" [ref=e863]
+                  - button "Morning" [ref=e864]
+                - button "Telegram notifications" [ref=e865]
+                - button "Refresh" [ref=e866]
+              - generic [ref=e869]:
+                - complementary "Ticket list" [ref=e870]:
+                  - generic [ref=e871]:
+                    - generic [ref=e872]:
+                      - generic [ref=e873]:
+                        - generic [ref=e874]: Email not connected
+                        - button "Pull now" [disabled]
+                      - group [ref=e875]:
+                        - generic "Connect Resend" [ref=e876] [cursor=pointer]
+                    - generic [ref=e877]:
+                      - text: Inbox
+                      - combobox "Inbox" [ref=e878]:
+                        - option "Support · support@example.com" [selected]
+                    - generic [ref=e879]:
+                      - text: Ticket status
+                      - combobox "Ticket status" [ref=e880]:
+                        - option "All statuses" [selected]
+                        - option "Open"
+                        - option "Resolved"
+                        - option "Pending"
+                        - option "Snoozed"
+                  - list [ref=e882]:
+                    - listitem [ref=e883]:
+                      - button "Reader Open Synthetic locale review 8.9.2026" [ref=e884]:
+                        - generic [ref=e885]:
+                          - generic [ref=e886]: Reader
+                          - generic [ref=e887]: Open
+                        - generic [ref=e888]: Synthetic locale review
+                        - generic [ref=e889]: 8.9.2026
+                    - listitem [ref=e890]:
+                      - button "Reader Open Synthetic recording review 8.9.2026" [ref=e891]:
+                        - generic [ref=e892]:
+                          - generic [ref=e893]: Reader
+                          - generic [ref=e894]: Open
+                        - generic [ref=e895]: Synthetic recording review
+                        - generic [ref=e896]: 8.9.2026
+                    - listitem [ref=e897]:
+                      - button "Reader Open Synthetic denied review 8.9.2026" [ref=e898]:
+                        - generic [ref=e899]:
+                          - generic [ref=e900]: Reader
+                          - generic [ref=e901]: Open
+                        - generic [ref=e902]: Synthetic denied review
+                        - generic [ref=e903]: 8.9.2026
+                    - listitem [ref=e904]:
+                      - button "Reader Open Synthetic rejected review 8.9.2026" [ref=e905]:
+                        - generic [ref=e906]:
+                          - generic [ref=e907]: Reader
+                          - generic [ref=e908]: Open
+                        - generic [ref=e909]: Synthetic rejected review
+                        - generic [ref=e910]: 8.9.2026
+                    - listitem [ref=e911]:
+                      - button "Reader Open Synthetic unknown review 8.9.2026" [ref=e912]:
+                        - generic [ref=e913]:
+                          - generic [ref=e914]: Reader
+                          - generic [ref=e915]: Open
+                        - generic [ref=e916]: Synthetic unknown review
+                        - generic [ref=e917]: 8.9.2026
+                    - listitem [ref=e918]:
+                      - button "Reader Open Synthetic accepted review 8.9.2026" [ref=e919]:
+                        - generic [ref=e920]:
+                          - generic [ref=e921]: Reader
+                          - generic [ref=e922]: Open
+                        - generic [ref=e923]: Synthetic accepted review
+                        - generic [ref=e924]: 8.9.2026
+                    - listitem [ref=e925]:
+                      - button "Reader Open A real local thread 8.9.2026" [ref=e926]:
+                        - generic [ref=e927]:
+                          - generic [ref=e928]: Reader
+                          - generic [ref=e929]: Open
+                        - generic [ref=e930]: A real local thread
+                        - generic [ref=e931]: 8.9.2026
+                  - generic [ref=e932]:
+                    - button "Previous" [disabled]
+                    - button "Next" [disabled]
+                - article [ref=e934]:
+                  - generic [ref=e935]:
+                    - generic [ref=e936]: "Open · Thread #2"
+                    - heading "Synthetic locale review" [level=1] [ref=e937]
+                    - paragraph [ref=e938]: Reader · reader@example.com
+                  - generic "Conversation messages" [ref=e939]:
+                    - generic [ref=e940]:
+                      - generic [ref=e941]:
+                        - strong [ref=e942]: Incoming email
+                        - generic [ref=e943]: reader@example.com
+                        - time [ref=e944]: 8.9.2026 klo 4.34.36
+                      - paragraph [ref=e946]: Hello (build 42). Reply to reader@example.com, please. مرحباً، الصوت يتوقف في الشاشة الرئيسية. Build 42.
+                    - generic [ref=e947]:
+                      - generic [ref=e948]:
+                        - strong [ref=e953]: Private note
+                        - generic [ref=e954]: operator:http
+                        - time [ref=e955]: 8.9.2026 klo 4.34.36
+                      - paragraph [ref=e957]: "ملاحظة تجريبية داخلية: تحقق من Build 42 (reader@example.com)."
+                    - generic [ref=e958]:
+                      - generic [ref=e959]:
+                        - strong [ref=e964]: Private note
+                        - generic [ref=e965]: operator:http
+                        - time [ref=e966]: 8.9.2026 klo 4.46.25
+                      - paragraph [ref=e968]: Design private note · ملاحظة خاصة. Synthetic only.
+                  - region "Compose" [ref=e969]:
+                    - generic [ref=e970]:
+                      - button "Reply draft" [pressed] [ref=e971]
+                      - button "Private note" [ref=e972]
+                    - paragraph [ref=e973]: Saved draft · revision 2. Prepare the full reply here. Sending requires a proposal, human review and connected delivery.
+                    - generic [ref=e974]:
+                      - generic [ref=e975]:
+                        - text: From · inbox identity
+                        - textbox "From · inbox identity" [ref=e976]: support@example.com
+                      - generic [ref=e977]:
+                        - text: To
+                        - textbox "To" [ref=e978]: reader@example.com
+                      - generic [ref=e979]:
+                        - generic [ref=e980]:
+                          - text: Cc
+                          - textbox "Cc" [ref=e981]: design.cc@example.com
+                        - generic [ref=e982]:
+                          - text: Bcc · hidden from other recipients
+                          - textbox "Bcc · hidden from other recipients" [ref=e983]: design.bcc@example.com
+                      - paragraph [ref=e984]: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.
+                      - generic [ref=e985]:
+                        - text: Subject
+                        - textbox "Subject" [ref=e986]: Design validation draft
+                      - generic [ref=e987]:
+                        - text: Reply message
+                        - textbox "Reply message" [ref=e988]: "Bounded design draft: all text remains after validation."
+                      - group [ref=e989]:
+                        - generic "Thread headers · part of the complete payload" [ref=e990] [cursor=pointer]
+                      - paragraph [ref=e991]: Plain text only. Attachments are not supported in this draft.
+                    - generic [ref=e992]:
+                      - button "Save draft" [disabled]
+                      - generic [ref=e993]: No unsaved changes
+          - separator
+          - generic [ref=e994]:
+            - button "New Terminal" [ref=e996]
+            - button "Hide Terminal (⌘J)" [ref=e997]
+      - separator
+    - generic [ref=e93]:
+      - generic [ref=e94]:
+        - button "Quick actions" [ref=e95]
+        - button "6 conversations" [ref=e680]
+      - generic [ref=e96]:
+        - button "Add Command" [ref=e998]
+        - button "codeg-mcp service" [ref=e999]
+        - button "Alerts" [ref=e1007]
+    - generic [ref=e1012]:
+      - button "Show Sidebar (⌘B)" [ref=e1013]
+      - button "Search" [ref=e1014]
+    - button "Open Settings (⌘,)" [ref=e1020]

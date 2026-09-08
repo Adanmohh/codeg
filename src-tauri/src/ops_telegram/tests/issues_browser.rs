@@ -14,6 +14,11 @@ const TOKEN: &str = "ops-issue-phone-synthetic-operator";
 #[tokio::test]
 #[ignore = "manual synthetic issue phone fixture on 4323; requires own out-telegram-issues export"]
 async fn ops_telegram_issue_browser_fixture() {
+    let port = std::env::var("CODEG_DESIGN_FIXTURE_PORT")
+        .map(|value| value.parse::<u16>().expect("fixture port must be u16"))
+        .unwrap_or(4323);
+    let export = std::env::var("CODEG_DESIGN_FIXTURE_EXPORT")
+        .unwrap_or_else(|_| "out-telegram-issues".into());
     let github = fixtures::fixture::Provider::start().await;
     let (db, source, ctx, d) = fixtures::ready(&github).await;
     let first = issues::proposed(&db, &ctx, &d, &github.runtime)
@@ -35,6 +40,26 @@ async fn ops_telegram_issue_browser_fixture() {
     }
     let telegram = Provider::new().await;
     issues::opted(&db, &telegram).await;
+    let cfg = status(&db.conn, &operator(1), &telegram.runtime)
+        .await
+        .unwrap()
+        .configuration
+        .unwrap();
+    configure(
+        &db.conn,
+        &operator(1),
+        &telegram.runtime,
+        ConfigureInput {
+            channel_id: cfg.channel_id,
+            private_user_id: cfg.private_user_id,
+            review_origin: format!("http://127.0.0.1:{port}"),
+            enabled: true,
+            github_issues_enabled: true,
+            expected_revision: Some(cfg.revision),
+        },
+    )
+    .await
+    .unwrap();
     notify_now(&db.conn, &operator(1), &telegram.runtime)
         .await
         .unwrap();
@@ -52,15 +77,20 @@ async fn ops_telegram_issue_browser_fixture() {
             "<li><a href='/ops-review?notice={}'>{name}</a> · proposal {id}</li>",
             row.id
         ));
-        println!("{name}: http://127.0.0.1:4323/ops-review?notice={}", row.id);
+        println!(
+            "{name}: http://127.0.0.1:{port}/ops-review?notice={}",
+            row.id
+        );
     }
     let dir = tempfile::tempdir().unwrap();
     let state = Arc::new(crate::app_state::AppState::new_for_test(
         db,
         dir.path().into(),
     ));
-    let static_dir =
-        std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../out-telegram-issues");
+    let static_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .join(export);
     assert!(static_dir.join("ops-review.html").is_file());
     let landing=format!("<!doctype html><html lang='en'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Synthetic issue phone fixture</title><main><h1>Synthetic issue phone fixture</h1><p>Loopback providers only. Sign in through the actual protected review page.</p><ul>{links}</ul><p>Operator token for this test-only server: {TOKEN}</p><p>Freshness expires after 15 minutes. The protected fixture refresh endpoint renews only synthetic timestamps.</p></main></html>");
     let seen = github.seen.clone();
@@ -91,9 +121,9 @@ async fn ops_telegram_issue_browser_fixture() {
                 StatusCode::NO_CONTENT
             }
         }));
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:4323")
+    let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{port}"))
         .await
         .unwrap();
-    println!("Synthetic issue phone fixture: http://127.0.0.1:4323/__issue_fixture ; PID={} ; token={TOKEN} ; SQLite=in-memory ; auxiliary data={}",std::process::id(),dir.path().display());
+    println!("Synthetic issue phone fixture: http://127.0.0.1:{port}/__issue_fixture ; PID={} ; token={TOKEN} ; SQLite=in-memory ; auxiliary data={}",std::process::id(),dir.path().display());
     axum::serve(listener, router).await.unwrap();
 }

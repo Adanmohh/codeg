@@ -1,0 +1,188 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#fafafa",
+      "#e9eded",
+      "#0a0a0a",
+      "#245e58",
+      "#e4ebe9",
+      "#525252",
+      "#454545",
+      "#faeedc",
+      "#bb4d00",
+      "#e5e5e5",
+      "#fdc700",
+      "#171717",
+      "#f5f5f5",
+      "#f7f7f7",
+      "#737373",
+      "#eef2f2",
+      "#424343",
+      "#fbfbfb",
+      "#444444"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif",
+      "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      10,
+      12
+    ],
+    "spacingPx": [
+      8,
+      2,
+      6,
+      7,
+      12,
+      1,
+      10,
+      4,
+      16,
+      24
+    ],
+    "radiiPx": [
+      26,
+      16777200,
+      8,
+      5,
+      10,
+      14,
+      6
+    ]
+  },
+  "contrast": {
+    "checked": 100,
+    "failures": [
+      {
+        "text": "6",
+        "fg": "#bb4d00",
+        "bg": "#faeedc",
+        "ratio": 4.39,
+        "required": 4.5
+      },
+      {
+        "text": "6 sessions running",
+        "fg": "#bb4d00",
+        "bg": "#faeedc",
+        "ratio": 4.39,
+        "required": 4.5
+      }
+    ]
+  },
+  "motion": {
+    "transitionsCount": 202,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "Synthetic locale review"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- complementary:\n  - button \"Locate Active Conversation\"\n  - button \"Collapse All Groups\"\n  - button \"View options\"\n  - button \"Ops desk\"\n  - button \"Bug intake\"\n  - button \"New chat ⌘T\"\n  - button \"Automations\"\n  - button \"To-dos 1\"\n  - button \"Repository panel\"\n  - button \"Infinite Conversations\"\n  - button \"Folders\" [expanded]\n  - button \"New group\"\n  - button \"Import local sessions\"\n  - button \"Clone Repository\"\n  - button \"Open Folder\"\n  - button \"ops-ui-task-fixture 6 sessions running\" [expanded]\n  - button \"More options\"\n  - button \"New Conversation\"\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Chat\" [expanded]\n  - button \"New chat\"\n  - text: No chats\n  - button \"Recent\" [expanded]\n  - button \"New Conversation\"\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n  - button \"Untitled conversation\"\n  - text: Running\n- separator\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - complementary \"Ticket list\":\n      - text: Resend key configured\n      - button \"Pull now\"\n      - group: Manage email connection\n      - text: Inbox\n      - combobox \"Inbox\":\n        - option \"Support · support@example.com\" [selected]\n      - text: Ticket status\n      - combobox \"Ticket status\":\n        - option \"All statuses\" [selected]\n        - option \"Open\"\n        - option \"Resolved\"\n        - option \"Pending\"\n        - option \"Snoozed\"\n      - list:\n        - listitem:\n          - button \"Reader Open Synthetic denied review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic rejected review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic unknown review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic accepted review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic recording review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open Synthetic locale review 8.9.2026\"\n        - listitem:\n          - button \"Reader Open A real local thread 8.9.2026\"\n      - button \"Previous\" [disabled]\n      - button \"Next\" [disabled]\n    - article:\n      - text: \"Open · Thread #2\"\n      - heading \"Synthetic locale review\" [level=1]\n      - paragraph: Reader · reader@example.com\n      - strong: Incoming email\n      - text: reader@example.com\n      - time: 8.9.2026 klo 4.34.36\n      - paragraph: Hello (build 42). Reply to reader@example.com, please. مرحباً، الصوت يتوقف في الشاشة الرئيسية. Build 42.\n      - strong: Private note\n      - text: operator:http\n      - time: 8.9.2026 klo 4.34.36\n      - paragraph: \"ملاحظة تجريبية داخلية: تحقق من Build 42 (reader@example.com).\"\n      - region \"Compose\":\n        - button \"Reply draft\" [pressed]\n        - button \"Private note\"\n        - paragraph: Saved draft · revision 1. Prepare the full reply here. Sending requires a proposal, human review and connected delivery.\n        - text: From · inbox identity\n        - textbox \"From · inbox identity\": support@example.com\n        - text: To\n        - textbox \"To\": reader@example.com\n        - text: Cc\n        - textbox \"Cc\"\n        - text: Bcc · hidden from other recipients\n        - textbox \"Bcc · hidden from other recipients\"\n        - paragraph: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.\n        - text: Subject\n        - textbox \"Subject\": \"Re: Synthetic locale review\"\n        - text: Reply message\n        - textbox \"Reply message\": Original approved body\n        - group:\n          - text: Thread headers · part of the complete payload In-Reply-To · message ID\n          - textbox \"In-Reply-To · message ID\": design-locale@example.com\n          - text: References · one message ID per line\n          - textbox \"References · one message ID per line\": design-locale@example.com\n        - paragraph: Plain text only. Attachments are not supported in this draft.\n        - button \"Save draft\" [disabled]\n        - text: No unsaved changes\n  - separator\n  - button \"New Terminal\"\n  - button \"Hide Terminal (⌘J)\"\n- separator\n- button \"Quick actions\"\n- button \"6 conversations\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"\n- button \"Hide Sidebar (⌘B)\"\n- button \"Search\"\n- button \"Open Settings (⌘,)\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#e9eded rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#e4ebe9 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#525252 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#454545 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#faeedc rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#bb4d00 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fdc700 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f7f7f7 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#eef2f2 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#424343 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fbfbfb rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#444444 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "5px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "7px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "1px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "10px spacing off brief + 4px scale"
+    }
+  ]
+}

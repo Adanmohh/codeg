@@ -1,0 +1,50 @@
+Already up to date
+Done in 147ms using pnpm v11.9.0
+▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.7s
+  Running TypeScript ...
+  Collecting page data using 17 workers ...
+  Generating static pages using 17 workers (0/33) ...
+  Generating static pages using 17 workers (8/33)
+  Generating static pages using 17 workers (16/33)
+  Generating static pages using 17 workers (24/33)
+✓ Generating static pages using 17 workers (33/33) in 467.4ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /commit
+├ ○ /import-sessions
+├ ○ /login
+├ ○ /merge
+├ ○ /ops-review
+├ ○ /pet
+├ ○ /pet-panel
+├ ○ /project-boot
+├ ○ /push
+├ ○ /settings
+├ ○ /settings/agents
+├ ○ /settings/appearance
+├ ○ /settings/chat-channels
+├ ○ /settings/experts
+├ ○ /settings/general
+├ ○ /settings/logs
+├ ○ /settings/mcp
+├ ○ /settings/model-providers
+├ ○ /settings/office-tools
+├ ○ /settings/quick-messages
+├ ○ /settings/science
+├ ○ /settings/shortcuts
+├ ○ /settings/skill-packs
+├ ○ /settings/skills
+├ ○ /settings/system
+├ ○ /settings/version-control
+├ ○ /settings/web-service
+├ ○ /stash
+└ ○ /workspace
+
+
+○  (Static)  prerendered as static content

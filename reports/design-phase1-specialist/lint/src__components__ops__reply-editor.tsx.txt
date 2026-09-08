@@ -1,0 +1,62 @@
+{
+  "file": "src/components/ops/reply-editor.tsx",
+  "surface": {
+    "isButton": false,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": false,
+    "hoverState": false,
+    "focusState": true,
+    "activeState": false,
+    "aria": false,
+    "role": false,
+    "emptyState": false,
+    "errorState": false,
+    "motion": false,
+    "responsive": true,
+    "altText": false,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "high",
+      "msg": "List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data)."
+    },
+    {
+      "sev": "med",
+      "msg": "List/grid has no loading/skeleton state (checklist: Loading)."
+    },
+    {
+      "sev": "low",
+      "msg": "No hover affordance on interactive element."
+    }
+  ],
+  "probe": null
+}
+
+SUMMARY src/components/ops/reply-editor.tsx: 3 gap(s) — [high] List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data).  |  [med] List/grid has no loading/skeleton state (checklist: Loading).  |  [low] No hover affordance on interactive element.

@@ -1,0 +1,14 @@
+{
+  "method": "Actual deterministic Design Studio lint output retained. Completion exit0 is not an empty-findings verdict. Source/paint evidence determines whether a flag is actionable.",
+  "rawIndex": "measured-index.json",
+  "runs": { "static": 11, "withMeasuredProbe": 14, "measuredVariants": "7 selected surfaces times original and Canvas-normalized brief" },
+  "classifications": [
+    { "flag": "EvidenceEditor list/grid lacks empty state", "source": "src/components/ops-intake/evidence.tsx:13,60", "result": "Fixed build/screen/reciter/log array, never a dynamic empty list. Each required proof has Missing/Required state; actual no-proof fixture and invalid proof show it. Parent owns request/error lifecycle. Not a product empty-state defect." },
+    { "flag": "IssuePhoneCard list/grid lacks empty state", "source": "src/components/ops-telegram/issue-review.tsx:55,83,108", "result": "Fixed four-field evidence projection. Missing fallback exists, settings loading/error/unavailable handled, host card owns decisions. Actual invalid/used locator and unknown/rejected states captured." },
+    { "flag": "Evidence/phone wrapper lacks hover", "source": "src/components/ops-intake/ui.tsx:7; src/components/ui/button.tsx", "result": "Shared Action→Button supplies actual hover/focus classes; wrapper static scan does not resolve imported primitives. Actual keyboard ring and actionable form screenshots establish behavior." },
+    { "flag": "Morning button lacks disabled state", "source": "src/components/ops/morning-view.tsx:49,126", "result": "These buttons select an existing queue entry synchronously; no in-flight mutation or unmet predicate requires disabling. Parent has load/error/empty states. Actual queue selection opens review." },
+    { "flag": "Measured badge contrast high", "source": "sidebar-conversation-list.tsx:506; sidebar-folder-group-header.tsx:206", "result": "Promoted to real P2/medium after actual paint verification, then fixed by acceptedPR18 and final12-state recheck. Raw high probe flags preserved as baseline. Clipped sr-only duplicate is not another painted defect." },
+    { "flag": "Measured off-palette/family/spacing/radius", "source": "../probes/classification.json", "result": "Original OKLCH-string limitation, paired-dark tokens, alpha compositing, fallback-stack comparison and inherited scale coverage explicitly classified. Original BRIEF/product tokens unchanged; raw694→444 palette flags retained." },
+    { "flag": "Reduced motion effectiveness false", "source": "Design Studio probe.mjs:166; ../probes/final-drawer-measured-summary.json", "result": "Raw duration-count heuristic remains false166→166 after actual travel is suppressed; property-level frames and lifecycle, not count alone, close PR19 finding." }
+  ]
+}

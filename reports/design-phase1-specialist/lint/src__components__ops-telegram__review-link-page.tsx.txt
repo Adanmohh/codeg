@@ -1,0 +1,49 @@
+{
+  "file": "src/components/ops-telegram/review-link-page.tsx",
+  "surface": {
+    "isButton": false,
+    "isInput": false,
+    "isList": false,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": false,
+    "loadingState": true,
+    "hoverState": false,
+    "focusState": false,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": false,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [],
+  "probe": null
+}
+
+SUMMARY src/components/ops-telegram/review-link-page.tsx: 0 gap(s) — no obvious state/a11y gaps

@@ -1,0 +1,152 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#fafafa",
+      "#1d1d1d",
+      "#111111",
+      "#a1a1a1",
+      "#151515",
+      "#161109",
+      "#ffb900",
+      "#9bd4c5",
+      "#181818",
+      "#262626",
+      "#c5c5c5"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      12,
+      24
+    ],
+    "spacingPx": [
+      12,
+      4,
+      6,
+      24,
+      32,
+      8,
+      16,
+      2
+    ],
+    "radiiPx": [
+      10,
+      14,
+      16777200,
+      26,
+      6
+    ]
+  },
+  "contrast": {
+    "checked": 35,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 117,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "What needs your attention"
+      },
+      {
+        "level": 2,
+        "text": "Replies to review"
+      },
+      {
+        "level": 2,
+        "text": "Tasks awaiting attention"
+      },
+      {
+        "level": 2,
+        "text": "In progress"
+      },
+      {
+        "level": 2,
+        "text": "Up next"
+      },
+      {
+        "level": 2,
+        "text": "Open correspondence"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- separator\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - paragraph: Morning desk\n    - heading \"What needs your attention\" [level=1]\n    - paragraph: Current task runs and local inbox queues. Refresh to pick up new activity.\n    - heading \"Replies to review\" [level=2]\n    - list:\n      - listitem:\n        - 'button \"Re: Synthetic locale review Task #1 · Human review required\"'\n    - heading \"Tasks awaiting attention\" [level=2]\n    - button \"Open task workspace\"\n    - list:\n      - listitem:\n        - paragraph: Review email\n        - paragraph: \"Task #1\"\n        - text: Awaiting input\n    - heading \"In progress\" [level=2]\n    - list:\n      - listitem:\n        - paragraph: Review email\n        - paragraph: \"Task #6\"\n        - text: Running\n      - listitem:\n        - paragraph: Review email\n        - paragraph: \"Task #5\"\n        - text: Running\n      - listitem:\n        - paragraph: Review email\n        - paragraph: \"Task #4\"\n        - text: Running\n      - listitem:\n        - paragraph: Review email\n        - paragraph: \"Task #3\"\n        - text: Running\n      - listitem:\n        - paragraph: Review email\n        - paragraph: \"Task #2\"\n        - text: Running\n    - heading \"Up next\" [level=2]\n    - paragraph: No tasks in this queue.\n    - heading \"Open correspondence\" [level=2]\n    - list:\n      - listitem:\n        - 'button \"Synthetic denied review Reader · Thread #7\"'\n      - listitem:\n        - 'button \"Synthetic rejected review Reader · Thread #6\"'\n      - listitem:\n        - 'button \"Synthetic unknown review Reader · Thread #5\"'\n      - listitem:\n        - 'button \"Synthetic accepted review Reader · Thread #4\"'\n      - listitem:\n        - 'button \"Synthetic recording review Reader · Thread #3\"'\n      - listitem:\n        - 'button \"Synthetic locale review Reader · Thread #2\"'\n      - listitem:\n        - 'button \"A real local thread Reader · Thread #1\"'\n  - separator\n  - button \"New Terminal\"\n  - button \"Hide Terminal (⌘J)\"\n- separator\n- button \"Quick actions\"\n- button \"6 conversations\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"\n- button \"Show Sidebar (⌘B)\"\n- button \"Search\"\n- button \"Open Settings (⌘,)\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#1d1d1d rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#111111 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#161109 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffb900 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#181818 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c5c5c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    }
+  ]
+}

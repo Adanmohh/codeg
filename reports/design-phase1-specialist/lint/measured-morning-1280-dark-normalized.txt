@@ -1,0 +1,93 @@
+{
+  "file": "src/components/ops/morning-view.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": false,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": true,
+    "activeState": false,
+    "aria": false,
+    "role": false,
+    "emptyState": true,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": false,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "med",
+      "msg": "Button has no disabled state (checklist: Button → States)."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #1d1d1d rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #111111 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #a1a1a1 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #151515 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #161109 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #ffb900 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #9bd4c5 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #181818 rendered but not in brief palette."
+    },
+    {
+      "sev": "low",
+      "msg": "probe: +6 more brief violations in probe.json"
+    }
+  ],
+  "probe": {
+    "ok": true,
+    "checked": 35
+  }
+}
+
+SUMMARY src/components/ops/morning-view.tsx: 10 gap(s) — [med] Button has no disabled state (checklist: Button → States).  |  [med] MEASURED brief violation (off-palette-color): #1d1d1d rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #111111 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #a1a1a1 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #151515 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #161109 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #ffb900 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #9bd4c5 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #181818 rendered but not in brief palette.  |  [low] probe: +6 more brief violations in probe.json

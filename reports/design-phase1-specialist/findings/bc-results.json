@@ -1,0 +1,235 @@
+{
+  "method": "Sequential flow-validator method by the sole Astra/max reviewer; actual protected Playwright CLI fixtures, no paid flow SDK. Paths relative to this report evidence directory.",
+  "verdict": "18 of 18 bounded checklist assertions pass, with the per-check limits below. This does not certify all product states, native WebView, assistive technology, or live providers.",
+  "productBaseline": "8c2a004d66351d2eb67182843c63dbb3ae2c44fa",
+  "finalProduct": "89fef6fd52e0d6d9ce989c9837fa79ab08dfc4c1",
+  "finalExport": "fcf4a14f8db7412d595bd3e51d87356bef510bb9",
+  "checks": [
+    {
+      "id": "BC-1",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/phone-login-390.png",
+        "screenshots/phone-login-invalid-390.png",
+        "screenshots/phone-login-success-390.png",
+        "flows/phone-login-results.json",
+        "flows/final-login-390-results.json",
+        "flows/final-login-1280-results.json",
+        "screenshots/final-login-390-invalid.png",
+        "screenshots/final-login-1280-invalid.png"
+      ],
+      "observed": "Named Hafidh Ops Desk connection screen; invalid token has visible associated error, aria-invalid/description; retry opens the original issue locator.",
+      "limit": "Separate low main-landmark finding closed by acceptedPR20 and targeted protected390/1280 recheck. Earlier phone locator-login and all other unchanged behavior evidence retained."
+    },
+    {
+      "id": "BC-2",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/navigation-focus-1280-light.png",
+        "screenshots/navigation-focus-1280-dark.png",
+        "flows/navigation-results.json"
+      ],
+      "observed": "Actual selected Ops and keyboard focus: settled 2px inset accent, light RGB36/94/88 and dark RGB155/212/197."
+    },
+    {
+      "id": "BC-3",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/rtl-390-dark.png",
+        "screenshots/rtl-1280-dark.png",
+        "flows/gaps-results.json",
+        "flows/final-drawer-results.json",
+        "screenshots/final-drawer-dark-after-reduce-closed.png",
+        "screenshots/final-drawer-settled-light-reduce.png"
+      ],
+      "observed": "390px document has no horizontal overflow. Actual Arabic settings puts HTML RTL, Back at180deg, email LTR; unsaved reply survives cross-tab locale round trip without localStorage persistence. Final drawer opens, dismisses and returns focus in both themes/preferences with no reduced-motion travel.",
+      "limit": "Root's separately committed seven-field locale round trip supplements this worker's reply-only locale sentinel; physical-device swipe/native WebView not rerun."
+    },
+    {
+      "id": "BC-4",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/thread-1280-dark-top.png",
+        "screenshots/second-thread-1280-dark.png",
+        "screenshots/selection-original-390-dark.png",
+        "screenshots/selection-locale-390-dark.png",
+        "flows/navigation-results.json"
+      ],
+      "observed": "Synthetic locale review and A real local thread have distinct selected rows/headings/histories on desktop and mobile; no customer data invented in production."
+    },
+    {
+      "id": "BC-5",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/private-note-before.png",
+        "screenshots/private-note-after.png",
+        "flows/editor-storage-verification.json"
+      ],
+      "observed": "Private note composer and saved note remain labelled separately from incoming mail. Protected API records private=true; no public outgoing reply was created."
+    },
+    {
+      "id": "BC-6",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/empty-inbox-1280-light.png",
+        "screenshots/empty-filter-1280-dark.png",
+        "screenshots/network-error-1280-dark.png",
+        "screenshots/network-recovered-1280-dark.png",
+        "flows/empty-results.json",
+        "flows/gaps-results.json"
+      ],
+      "observed": "Real zero-inbox fixture offers Add local inbox. Browser offline causes failed load/Try again; restored real network retries successfully. No intercepted response JSON."
+    },
+    {
+      "id": "BC-7",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/thread-1280-light-headers.png",
+        "screenshots/thread-390-light-top.png",
+        "screenshots/thread-390-light-headers.png",
+        "screenshots/thread-390-dark-headers.png",
+        "flows/surfaces-results.json"
+      ],
+      "observed": "Persistent From/To/Cc/Bcc/Subject/Reply labels and full plain text; optional thread headers shown;390px has no horizontal scroll."
+    },
+    {
+      "id": "BC-8",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/draft-invalid-1280-dark.png",
+        "screenshots/draft-saved-1280-dark.png",
+        "flows/editor-storage-verification.json",
+        "flows/editor-poststate.json"
+      ],
+      "observed": "Invalid To shows actionable validation and retains full text. Corrected same draft saves revision2 with all payload fields.",
+      "limit": "Original multi-action CLI result was blank during a native dialog; screenshots, later protected API state and separately repeated discard check supply explicit proof instead of fabricated JSON."
+    },
+    {
+      "id": "BC-9",
+      "verdict": "pass",
+      "evidence": [
+        "flows/discard-dialog.txt",
+        "screenshots/discard-cancel-settled-1280-dark.png",
+        "flows/discard-settled-results.json"
+      ],
+      "observed": "Actual native confirmation followed by CLI dialog-dismiss retains reply and shows settled3px focus on attempted destination. Saved value restored locally without an unrequested save."
+    },
+    {
+      "id": "BC-10",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/review-1280-light-headers.png",
+        "screenshots/review-390-light-top.png",
+        "screenshots/review-390-light-headers.png",
+        "screenshots/review-390-dark-headers.png",
+        "flows/surfaces-results.json"
+      ],
+      "observed": "Pending full-payload card shows From/To/Cc/Bcc/subject/body and thread headers; explicit Approve and send reply action and exact-reply explanation.",
+      "limit": "This final audit does not repeat an email send; accepted PR7/PR10 protected provider flows are separately attributed. Issue phone decisions below are fresh worker runs."
+    },
+    {
+      "id": "BC-11",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/stale-after-draft-save-390-dark.png",
+        "flows/editor-poststate.json",
+        "flows/editor-storage-verification.json"
+      ],
+      "observed": "Controlled draft revision1→2 leaves proposal1 pending/stale; actionable newer-draft alert and disabled old send."
+    },
+    {
+      "id": "BC-12",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/terminal-3-390-dark.png",
+        "screenshots/terminal-4-390-dark.png",
+        "screenshots/terminal-5-390-dark.png",
+        "screenshots/terminal-6-390-dark.png",
+        "flows/decisions-results.json"
+      ],
+      "observed": "Seeded provider-accepted, unknown, failed and denied outcomes have distinct truthful copy; unknown says do not resend and none offers another-send action.",
+      "limit": "These four email terminal states were produced by accepted fixture startup assertions, not four fresh UI sends."
+    },
+    {
+      "id": "BC-13",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/missing-resend-1280-dark.png",
+        "screenshots/missing-resend-stale-review.png",
+        "flows/gaps-results.json"
+      ],
+      "observed": "Removing only synthetic fixture configuration reveals Email not connected/Connect Resend, disabled pull, and no sent claim for pending proposal.",
+      "limit": "The remaining pending proposal is already stale from BC-11; this visual check is not a fresh unconfigured approve-preflight proof. That behavior retains earlier accepted API/browser evidence."
+    },
+    {
+      "id": "BC-14",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/terminal-2-390-dark.png",
+        "screenshots/receipt-finished-1280-dark.png",
+        "flows/decisions-results.json"
+      ],
+      "observed": "Actual Finish recording receipt moves receipt_recorded to sent/provider accepted; recovery action disappears; provider requests4→4. Text distinguishes local recording from sending and recipient delivery."
+    },
+    {
+      "id": "BC-15",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/morning-1280-dark.png",
+        "screenshots/empty-morning-1280-light.png",
+        "screenshots/empty-morning-390-light.png",
+        "flows/surfaces-results.json",
+        "flows/empty-results.json"
+      ],
+      "observed": "Real populated task/reply queues and separate fully empty fixture. Selected pending Morning reply opens its real review card."
+    },
+    {
+      "id": "BC-16",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/intake-missing-1280-light.png",
+        "screenshots/intake-missing-390-light.png",
+        "screenshots/intake-invalid-proof-1280-light.png",
+        "screenshots/intake-invalid-proof-retained-390-light.png",
+        "flows/intake-missing-results.json",
+        "flows/settled-mobile-results.json",
+        "flows/intake-storage-check.json"
+      ],
+      "observed": "Build/screen/reciter/log individually Required, preparation disabled and no approval action. Invalid proof missing its summary is rejected and retained; DB drafts1/proposals0/filings0.",
+      "limit": "First mobile captures were mid-dismissal attempts; final screenshots wait for popup detached and record popupCount0/documentWidth390."
+    },
+    {
+      "id": "BC-17",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/phone-review-390-light-top.png",
+        "screenshots/phone-review-390-light-body.png",
+        "screenshots/phone-review-390-light-decision.png",
+        "screenshots/phone-review-1280-dark-body.png",
+        "screenshots/phone-created-390-dark.png",
+        "screenshots/phone-unknown-focus-390-dark.png",
+        "screenshots/phone-reconciled-390-dark.png",
+        "screenshots/phone-rejected-390-dark.png",
+        "flows/phone-review-results.json",
+        "flows/phone-terminal-results.json"
+      ],
+      "observed": "Exact repository/title/body/labels plus four proofs/hashes and human-confirmed severity. Keyboard approval creates one issue. Unknown→read-only reconciliation adds no POST. Rejection stays distinct. Used link invalidates; Open workspace label matches destination.",
+      "limit": "Local protected fixture with synthetic GitHub/Telegram only. First-frame focus capture is not a pass; subsequent still-pending350ms ring/border captures are authoritative. Remote phone needs reachable protected origin."
+    },
+    {
+      "id": "BC-18",
+      "verdict": "pass",
+      "evidence": [
+        "screenshots/thread-1280-light-top.png",
+        "screenshots/thread-1280-dark-top.png",
+        "screenshots/thread-390-light-top.png",
+        "screenshots/thread-390-dark-top.png",
+        "probes/classification.json"
+      ],
+      "observed": "Inherited Inter hierarchy, neutral/teal paired themes and readable one-pane mobile layout. No decorative metrics/marketing additions or observed horizontal overflow.",
+      "limit": "Retained OKLCH/fallback-stack/composite/radius lint flags are classified explicitly; no global font/theme override or whole-app aesthetic certificate."
+    }
+  ],
+  "firstPointOfFailure": "none in completed assertion runs; superseded harness attempts were element-not-found or ambiguous capture, preserved under attempts and explicitly rechecked",
+  "badgeDrawerExport": "ab771db4dfd1de5b9ac4aaf8206a17e130886dff"
+}

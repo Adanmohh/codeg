@@ -1,0 +1,14 @@
+{
+  "checks": [
+    {
+      "check": "BC-6-empty",
+      "copy": "Inbox\nApprovals\nMorning\nTelegram notifications\nRefresh\nA place for your correspondence\n\nAdd a local inbox to organize real ticket threads, write private notes and prepare replies. Connecting email delivery is a separate step.\n\nInbox name\nInbox email address\nAdd local inbox",
+      "method": "Accepted host fixture EMPTY=1, zero local tickets and no configured products; real protected Ops API"
+    },
+    {
+      "check": "BC-15-empty",
+      "copy": "Inbox\nApprovals\nMorning\nTelegram notifications\nRefresh\n\nMORNING DESK\n\nWhat needs your attention\n\nCurrent task runs and local inbox queues. Refresh to pick up new activity.\n\nReplies to review\n\nNo pending reply proposals.\n\nTasks awaiting attention\nOpen task workspace\n\nNo tasks in this queue.\n\nIn progress\n\nNo tasks in this queue.\n\nUp next\n\nNo tasks in this queue.\n\nOpen correspondence\n\nNo open correspondence. New email will appear after intake is connected."
+    }
+  ],
+  "method": "Real protected empty data, no provider activity or browser response interception"
+}
