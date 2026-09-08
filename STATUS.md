@@ -109,6 +109,15 @@ transaction rollback, real two-connection CAS and queued credential revocation.
 These are owner results; independent review remains at67708b07. Full HTTP/native,
 additional lifecycle and late/uncertain cleanup gates remain pending. B is unmerged.
 
+Tickets' integration handoff `2ef4ee4e` preserves compiling candidate source and
+records a second tenant-epoch requirement: fresh post-resume credentials must not
+revive persisted source observations/previews from the prior tenant epoch. Captured
+Principal checks alone cover only in-flight work. Identity/B owners are coordinating
+the persisted fence; no default epoch or stale-authority refresh is allowed.
+Tickets is assigned remaining synthetic B lifecycle/cleanup probes while awaiting
+a compiling identity head, then separate independent tenancy review. Old fixtures,
+exports, targets and paused work remain preserved.
+
 Earlier import checkpoint is `5de1176beb4778604b26df65f2ec669b0ab7987b`,
 production source `4a194500b76b97aa5caaf9434ce5c1f16e54ea48`. Root verified
 the GitHub head and read the report/seam inventory. Eight source/import HTTP
