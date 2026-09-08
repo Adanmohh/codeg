@@ -590,3 +590,16 @@ packages/react/src/{drawer/popup/DrawerPopup.tsx,internals/useAnimationsFinished
 and docs/src/app/(docs)/react/handbook/animation/page.mdx;
 tailwindlabs/tailwindcss v4.1.18, 6db2a6d637ed12489f9fd5a64ca394d934eb14f4.
 No Base UI or Tailwind implementation is copied or ported.
+
+Business workspace provider isolation (2026)
+=============================================
+Adapts Apache-2.0 Codeg providers from accepted Adanmohh/codeg
+4ec04d7282a50529335d724438d42b99a53385a2:
+src/components/{i18n-provider,appearance-provider}.tsx and
+src/components/connection/web-connection-guard.tsx, with static export routing
+read from src-tauri/src/web/router.rs and next.config.ts. The inherited local
+language/font/theme lifecycle is retained; business member routes omit operator
+API reads and connection subscriptions. New route checks and tests are glue.
+Original xintaofei/codeg v0.30.4 Apache source and LICENSE remain unchanged
+(6f6bd648b206412644842a98d9ffeebf57292bed). No IntroMail/Plane/OpenProject hunk
+or additional third-party dependency is introduced by this provider change.

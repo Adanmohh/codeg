@@ -17,9 +17,10 @@ are supporting destinations, never prerequisites for human work.
 - Preserve all existing engineering routes, Drawer implementation, themes/fonts,
   Ops approval/receipt behavior and backend files. No Rust edits in this branch.
 - Identity contract authority: approvals' `docs/contracts/business-identity.md`.
-  Task contract authority: tickets' `docs/contracts/business-tasks.md`. Neither
-  file is published at this checkpoint. This document requests interfaces; it
-  does not invent endpoint/DTO implementations for them.
+  Task contract authority: tickets' `docs/contracts/business-tasks.md`.
+  Identity is published at `f3c36dc6`; task checkpoint is `cb2e184f`, with concrete
+  operation DTOs following. No second authentication or production response
+  layer is invented.
 
 Identity needs: connection/sign-in and revocation behavior; current organization,
 authenticated principal and server-derived capabilities; authorized human/agent
@@ -38,7 +39,30 @@ and activity; pagination/filter semantics and stable conflict/error codes. An
 accountable human and assigned executor are separate controls. A source or target
 principal appearing in a picker is not an authorization grant. Status and review
 actions must follow the backend's allowed transitions; an agent cannot review
-its own work. Shared work must function without a folder or running agent.
+its own work. Human progress cannot mark work done; a separate human review
+operation does that. Shared work must function without a folder or running agent.
+
+Confirmed wire decisions: organization/member/task IDs are UUID strings. Due date
+is nullable `dueDate`, strictly `YYYY-MM-DD`, a calendar day without an instant,
+timezone conversion or reminder. Use a date input and show the exact day. The
+older task checkpoint's `dueAt`/RFC3339 proposal is superseded by owner direction.
+
+Identity operations use POST `/api/business/*` with `{input: ...}`; the client
+mirrors the published paths and native commands. `Context.capabilities.manageMembers`
+controls administration; **only `legacyOperator`** controls the engineering entry.
+An owner role or engineering domain is insufficient. Native business commands stay
+operator-only; a desktop member uses the separate shared-server HTTP client.
+Personal bearer and drafts remain in memory, scoped to one client/session. The
+client omits cookies, refuses redirects, and clears itself on authentication
+failure. Original operator bootstrap remains useful before any member exists.
+One-time issued credentials are masked by default and intentionally copied or
+revealed; never persisted or exposed in fixtures, snapshots or reports.
+
+Cold `/business`, `/business/` and `/business.html` skip inherited settings,
+wallpaper and operator connection providers, even with an ambient old operator
+token. `/business-other` retains inherited behavior. Server source at the base
+(`web/router.rs:1735`) rewrites extensionless/trailing-slash routes to the export
+and serves `.html` directly; actual browser request verification remains pending.
 
 The client will retain the revision originally edited, keep drafts in memory
 across resize/locale changes, and expose conflicts without silently applying an

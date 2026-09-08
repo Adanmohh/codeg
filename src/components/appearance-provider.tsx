@@ -8,6 +8,8 @@ import {
   useRef,
   useState,
 } from "react"
+import { usePathname } from "next/navigation"
+import { isBusinessPath } from "@/lib/business/route"
 import {
   THEME_COLORS,
   DEFAULT_THEME_COLOR,
@@ -344,6 +346,7 @@ export function AppearanceProvider({
 }: {
   children: React.ReactNode
 }) {
+  const localPreferencesOnly = isBusinessPath(usePathname())
   // 初始值从 DOM 读取（appearance-script.ts 在 hydration 前已经写好），
   // 而不是从 localStorage 读 —— 避免 SSR 与 CSR 不一致导致的双闪烁。
   const [themeColor, setThemeColorState] = useState<ThemeColor>(() => {
@@ -495,17 +498,20 @@ export function AppearanceProvider({
   // keeps that updater free of side effects, which StrictMode double-invokes.
   const zoomLevelRef = useRef(zoomLevel)
 
-  const setZoomLevel = useCallback((zoom: ZoomLevel) => {
-    // Re-applying the current level is not free: it reaches Tauri IPC and an
-    // on-disk SQLite upsert. Holding the key at either end of the range, or
-    // holding reset at 100%, would otherwise write once per repeat forever.
-    if (zoomLevelRef.current === zoom) return
-    zoomLevelRef.current = zoom
-    setZoomLevelState(zoom)
-    document.documentElement.style.fontSize = `${(16 * zoom) / 100}px`
-    syncTrafficLightPosition(zoom)
-    persist(STORAGE_KEY_ZOOM_LEVEL, String(zoom))
-  }, [])
+  const setZoomLevel = useCallback(
+    (zoom: ZoomLevel) => {
+      // Re-applying the current level is not free: it reaches Tauri IPC and an
+      // on-disk SQLite upsert. Holding the key at either end of the range, or
+      // holding reset at 100%, would otherwise write once per repeat forever.
+      if (zoomLevelRef.current === zoom) return
+      zoomLevelRef.current = zoom
+      setZoomLevelState(zoom)
+      document.documentElement.style.fontSize = `${(16 * zoom) / 100}px`
+      if (!localPreferencesOnly) syncTrafficLightPosition(zoom)
+      persist(STORAGE_KEY_ZOOM_LEVEL, String(zoom))
+    },
+    [localPreferencesOnly]
+  )
 
   const stepZoomLevel = useCallback(
     (direction: 1 | -1) => {
@@ -674,6 +680,13 @@ export function AppearanceProvider({
   // 与跨窗口版本戳变更都复用它，确保 URL 生命周期与磁盘状态一致。
   const reloadWorkspaceBackgroundImage = useCallback(async () => {
     const gen = ++reloadGenRef.current
+    if (localPreferencesOnly) {
+      setWorkspaceBgImageUrlState((prev) => {
+        revokeBackgroundObjectUrl(prev)
+        return null
+      })
+      return
+    }
     try {
       const asset = await readWorkspaceBackground()
       // 期间有更新的请求（写/清空/更晚的 reload）→ 丢弃本次过期结果，也不建 blob。
@@ -685,7 +698,7 @@ export function AppearanceProvider({
     } catch {
       // 读盘失败静默（无背景即可）。
     }
-  }, [])
+  }, [localPreferencesOnly])
 
   const setWorkspaceBackgroundImage = useCallback(
     async (imageBase64: string) => {
@@ -732,6 +745,7 @@ export function AppearanceProvider({
 
   // Sync traffic-light position and appearance mode on mount
   useEffect(() => {
+    if (localPreferencesOnly) return
     syncTrafficLightPosition(zoomLevel)
     try {
       syncAppearanceMode(localStorage.getItem("theme") ?? "system")
@@ -739,7 +753,7 @@ export function AppearanceProvider({
       // localStorage unavailable
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [localPreferencesOnly])
 
   // 仅界面字体需要在 mount 时重新解析并应用 --font-sans，吸收跨版本字体目录变更
   // （inline 脚本写入的是旧版本已解析栈，可能与新目录不一致）。仅在确有漂移时才写，
@@ -946,7 +960,7 @@ export function AppearanceProvider({
           zoomLevelRef.current = zoom
           setZoomLevelState(zoom)
           document.documentElement.style.fontSize = `${(16 * zoom) / 100}px`
-          syncTrafficLightPosition(zoom)
+          if (!localPreferencesOnly) syncTrafficLightPosition(zoom)
         }
       }
       // "0" 是合法值，故不做 newValue 真值判断，交给 readBool 处理 null→默认。
@@ -1038,13 +1052,14 @@ export function AppearanceProvider({
         )
       }
       // Sync appearance mode to Tauri DB when changed in another window
-      if (e.key === "theme") {
+      if (e.key === "theme" && !localPreferencesOnly) {
         syncAppearanceMode(e.newValue ?? "system")
       }
     }
     window.addEventListener("storage", onStorage)
     return () => window.removeEventListener("storage", onStorage)
   }, [
+    localPreferencesOnly,
     reloadWorkspaceBackgroundImage,
     resetCustomThemeBaseline,
     resetCustomCssBaseline,

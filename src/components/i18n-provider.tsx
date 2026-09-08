@@ -10,6 +10,8 @@ import {
   useSyncExternalStore,
 } from "react"
 import { NextIntlClientProvider, type AbstractIntlMessages } from "next-intl"
+import { usePathname } from "next/navigation"
+import { isBusinessPath } from "@/lib/business/route"
 import { getFallbackMessages, getMessagesForLocale } from "@/i18n/messages"
 import {
   fromIntlLocale,
@@ -97,6 +99,7 @@ export function AppI18nProvider({
   initialLocale = "en",
   initialMessages,
 }: AppI18nProviderProps) {
+  const localPreferencesOnly = isBusinessPath(usePathname())
   const initialAppLocale = fromIntlLocale(initialLocale)
   const [languageSettings, setLanguageSettingsState] =
     useState<SystemLanguageSettings>({
@@ -151,6 +154,10 @@ export function AppI18nProvider({
     let unlisten: (() => void) | null = null
     let cancelled = false
 
+    if (localPreferencesOnly) {
+      return () => window.removeEventListener("storage", onStorage)
+    }
+
     void import("@tauri-apps/api/event")
       .then(({ listen }) =>
         listen<SystemLanguageSettings>(
@@ -177,10 +184,23 @@ export function AppI18nProvider({
       window.removeEventListener("storage", onStorage)
       disposeTauriListener(unlisten, "I18nProvider.languageSettings")
     }
-  }, [setLanguageSettings])
+  }, [setLanguageSettings, localPreferencesOnly])
 
   useEffect(() => {
     let cancelled = false
+
+    // The member workspace must not read the operator's system configuration.
+    // Keep the same local language preference and message-loading lifecycle.
+    if (localPreferencesOnly) {
+      try {
+        const saved = localStorage.getItem(LANGUAGE_SETTINGS_STORAGE_KEY)
+        if (saved) setLanguageSettings(JSON.parse(saved))
+      } catch {
+        // An invalid/local-storage-disabled preference keeps the current locale.
+      }
+      setLanguageSettingsLoaded(true)
+      return
+    }
 
     getSystemLanguageSettings()
       .then((settings) => {
@@ -199,7 +219,7 @@ export function AppI18nProvider({
     return () => {
       cancelled = true
     }
-  }, [setLanguageSettings])
+  }, [setLanguageSettings, localPreferencesOnly])
 
   const appLocale = useMemo(
     () => resolveAppLocale(languageSettings, systemLocaleCandidates),
@@ -215,6 +235,7 @@ export function AppI18nProvider({
   // tray was built once at app startup with whatever was persisted then,
   // so without this it would stay stale after a language change.
   useEffect(() => {
+    if (localPreferencesOnly) return
     if (typeof window === "undefined") return
     if (!("__TAURI_INTERNALS__" in window)) return
     void import("@/lib/tauri")
@@ -224,7 +245,7 @@ export function AppI18nProvider({
         // (Linux without a status-bar host), and a stale label is a
         // smaller problem than crashing the i18n provider.
       })
-  }, [appLocale])
+  }, [appLocale, localPreferencesOnly])
 
   useEffect(() => {
     if (appLocale === messagesLocale) {

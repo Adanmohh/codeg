@@ -3,6 +3,8 @@
 import { useEffect, useState, useSyncExternalStore } from "react"
 import { Loader2, ShieldAlert } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { usePathname } from "next/navigation"
+import { isBusinessPath } from "@/lib/business/route"
 import {
   AlertDialog,
   AlertDialogContent,
@@ -39,6 +41,13 @@ const RECONNECT_DIALOG_GRACE_MS = 4_000
  * nothing there.
  */
 export function WebConnectionGuard() {
+  // Do not even subscribe: the operator store creates its WebTransport while
+  // resolving a subscription. Business connections own their protected API.
+  if (isBusinessPath(usePathname())) return null
+  return <OperatorWebConnectionGuard />
+}
+
+function OperatorWebConnectionGuard() {
   const t = useTranslations("WebConnection")
   const state = useSyncExternalStore(
     subscribeWebConnection,

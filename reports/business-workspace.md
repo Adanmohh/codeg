@@ -4,7 +4,8 @@ Active, 2026-09-08. Branch `feat/business-workspace`, created from accepted
 `origin/main` at `4ec04d7282a50529335d724438d42b99a53385a2`. Deliver direct human
 task creation/assignment/progress/review and a finished role-based workspace;
 engineering and optional agent conversation remain supporting capabilities.
-UI contract: `docs/contracts/business-ui.md`.
+UI contract: `docs/contracts/business-ui.md`. Early docs commit `cf404c6e`, pushed;
+draft PR [21](https://github.com/Adanmohh/codeg/pull/21).
 
 ## Preserved work and source authority
 
@@ -43,23 +44,38 @@ Apache upstream baseline remains `xintaofei/codeg@v0.30.4`,
 | Read source | Intended reuse |
 | --- | --- |
 | `src/components/ui/{button,input,textarea,dialog}.tsx` | Existing primitives and nested-dialog guards; scoped presentation only. |
-| `src/components/tasks/{board-columns,task-card}.tsx` | Canonical status mapping and task row/card composition; business DTOs stay distinct from engineering-run state. |
+| `src/components/tasks/board-columns.ts`, `task-card.tsx` | Status grouping and task row/card composition; business DTOs stay distinct from engineering-run state. |
 | `src/app/{layout,page,login/page}.tsx`, `src/app/workspace/layout.tsx` | Existing entry/navigation behavior and precise member isolation boundary. |
 | `src/lib/transport/{web-auth,web-connection-store,index}.ts`, `src/components/connection/web-connection-guard.tsx` | Inspect operator transport; never put member credentials into its global token slot. |
 | IntroMail research at `0bd24dfe284b888aa9f602fa1fd00e337ea38874` | Domain guidance only for frontend; no direct IntroMail or Plane/OpenProject source copied. Identified authorization gaps are requirements for backend integration. |
 
-NOTICE will record actual component adaptations with exact paths before product
-handoff. No AGPL/GPL/enterprise source will be ported. No dependency/runtime
-change is planned.
+NOTICE records the inherited provider adaptation. No AGPL/GPL/enterprise source
+is ported. No dependency/runtime change is planned. Read installed React19.2.4
+hooks/types, Next16.1.6 navigation types, Tailwind4.1.18 theme/package,
+next-intl4.8.3 exports, Radix Dialog types and existing primitives,
+@tauri-apps/api2.10.1 invoke/core types, next-themes0.4.6 types,
+TypeScript5.8.3 DOM fetch/clipboard types and Vitest2.1.9/testing-library16.3.2
+test APIs. No newer documentation silently substitutes for these versions.
 
 ## Progress and remaining checks
 
-- Early UI contract prepared; identity and task contracts not published yet.
-  Continue independent composition and source grounding, then wire their actual
-  APIs. No fabricated production DTO/response or second authentication model.
+- Provider isolation implemented for `/business`, trailing slash and direct
+  `/business.html`. Tests include an old operator token and enabled local
+  wallpaper. `/business-other` and `/workspace` retain operator behavior.
+  Current Axum static-file rewrite/source confirms direct export reachability;
+  actual fixture browser/network verification is pending.
+- Identity contract `f3c36dc6` and task checkpoint `cb2e184f` read in their owners'
+  worktrees. Dedicated typed identity client and composition are in progress.
+  Task operation DTOs pending. UUID IDs, all-day `dueDate` and separate human-only
+  completion review are confirmed. Only `legacyOperator`, never a role/domain,
+  permits engineering access. Bootstrap/member setup is included.
 - Own new fixture proposed at 4340 with a separate export and two named CLI
   sessions. Await actual guarded backend fixture contract; other outputs remain
   untouched.
-- Implementation, tests, lint, typecheck, build and browser/design gates pending.
-  No product pass or live configuration claim at this checkpoint.
+- Focused provider and inherited regressions: 22/22 passed, exit 0
+  (`.build/business-workspace/provider-tests.log`). Initial two harness failures
+  used `true` for the inherited boolean preference; source uses `1`. Corrected
+  fixture value, assertions retained. Typecheck exit 0
+  (`.build/business-workspace/typecheck-checkpoint.log`). Implementation continues;
+  final lint/build/browser/design gates pending. No live configuration claim.
 - No live provider/model calls, account setup, credential output or deployment.
