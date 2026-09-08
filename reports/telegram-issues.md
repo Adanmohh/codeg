@@ -7,11 +7,33 @@ Implementation checkpoint, 2026-09-08. Sole writer in
 Contract commit **a7e2e2f3eee3be3e34b0f7006bf8d96bc5f004bb** is pushed.
 Draft PR: **https://github.com/Adanmohh/codeg/pull/12**.
 
-**Current delivery is in progress, not final acceptance.** Accepted PR9 is now
-integrated. The forward migration, closed issue snapshot, decision rechecks,
-default-off issue inclusion and shared phone card are implemented. Telegram
-focused Rust tests: **20 passed, exit 0**. Final protected-provider/browser
-scenarios and both-runtime/Clippy gates remain before handoff.
+**Current delivery is in progress, not final acceptance.** Product checkpoint
+**8ff15d9d** is pushed. Accepted PR9 is integrated. Combined worker Ops suite:
+**178 passed, 4 manual fixtures ignored, exit 0, 10.32s**. Root independently
+reported **175 passed, 3 manual ignored, exit 0, 8.34s** at 8ff15d9d using its own
+target (`/tmp/ops-phone-issues-independent.log`); that is separate evidence.
+The isolated production export, server check, frontend typecheck and 21 focused
+frontend tests passed. Desktop/Clippy and actual protected phone flows continue.
+
+**Active fixture handoff:** 4323 now runs the owned issue fixture, **PID 14341**,
+static **out-telegram-issues**, in-memory SQLite. Open
+`http://127.0.0.1:4323/__issue_fixture`; its three opaque links use the real login
+and protected API. Test-only operator token: **ops-issue-phone-synthetic-operator**.
+The worker is currently mutating these cases; read-only inspection is safe. A
+fresh fixture will be supplied for independent decisions after worker scenarios.
+No scheduler or agent loop runs. Both providers are loopback only. 4320/PID30815
+and its `out/` remain untouched.
+
+Reproduce from this worktree: build with
+`CODEG_EXPORT_DIR=out-telegram-issues pnpm build`, then from `src-tauri/` run
+`CARGO_TARGET_DIR=target-approvals cargo test --locked --no-default-features --lib
+ops_telegram_issue_browser_fixture -- --ignored --nocapture`. The protected
+`GET /__issue_fixture/stats` reports GitHub POST/token/issue counts and Telegram
+sends. Protected `POST /__issue_fixture/refresh` explicitly renews only synthetic
+source/snapshot freshness timestamps, never claims, payloads, receipts or sends.
+Both fixture controls require the synthetic bearer above. They are test code,
+absent from production routes. Remote phone use still requires a configured,
+reachable protected origin; these loopback links validate only local browsing.
 
 ## Implemented checkpoint and exact host contract
 

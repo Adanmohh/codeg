@@ -87,7 +87,7 @@ pub(crate) async fn ready_source(
         .await
         .unwrap();
     let p = product(&db.conn, 1, &source.product_id).await.unwrap();
-    let ctx = start_task(&db, p.binding.folder_id).await;
+    let ctx = start_task(db, p.binding.folder_id).await;
     let mut d = detail.draft;
     for (field, value) in [
         (ops_intake::EvidenceField::Build, "42"),

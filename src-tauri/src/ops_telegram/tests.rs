@@ -12,6 +12,7 @@ use sea_orm_migration::{MigratorTrait, SchemaManager};
 use serde_json::json;
 mod migration;
 mod issues;
+mod issues_browser;
 pub(crate) mod provider;
 use provider::Provider;
 

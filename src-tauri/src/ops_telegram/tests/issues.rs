@@ -2,7 +2,7 @@
 use super::*;
 use crate::ops_intake_host::{self as host, tests as fixtures, types as h};
 
-async fn opted(db: &AppDatabase, provider: &Provider) {
+pub(super) async fn opted(db: &AppDatabase, provider: &Provider) {
     let op = operator(1);
     let cfg = settings(db, &op, &provider.runtime, true)
         .await
@@ -25,13 +25,132 @@ async fn opted(db: &AppDatabase, provider: &Provider) {
     .unwrap();
 }
 
-async fn proposed(
+pub(super) async fn proposed(
     db: &AppDatabase,
     ctx: &crate::ops::agent::RunContext,
     d: &h::Draft,
     runtime: &host::HostRuntime,
 ) -> host::agent::Proposed {
     fixtures::propose_notice(db, ctx, d, runtime).await
+}
+
+#[tokio::test]
+async fn issue_preflight_can_recover_but_ambiguous_delivery_cannot_repeat() {
+    let github = fixtures::fixture::Provider::start().await;
+    let (db, _, ctx, d) = fixtures::ready(&github).await;
+    proposed(&db, &ctx, &d, &github.runtime).await;
+    let provider = Provider::new().await;
+    opted(&db, &provider).await;
+    provider.reply(
+        StatusCode::SERVICE_UNAVAILABLE,
+        json!({"ok":false}),
+        Duration::ZERO,
+    );
+    notify_now(&db.conn, &operator(1), &provider.runtime)
+        .await
+        .unwrap();
+    let before = first_notice(&db).await;
+    assert_eq!(before.status, "preflight_failed");
+    assert_eq!(provider.sends(), 0);
+    provider.reply(
+        StatusCode::OK,
+        json!({"ok":true,"result":{"id":123,"type":"private"}}),
+        Duration::ZERO,
+    );
+    // A wrong sender in a successful response is ambiguous, never accepted.
+    provider.reply(StatusCode::OK,json!({"ok":true,"result":{"message_id":42,"chat":{"id":123,"type":"private"},"from":{"is_bot":false}}}),Duration::ZERO);
+    notify_now(&db.conn, &operator(1), &provider.runtime)
+        .await
+        .unwrap();
+    let after = first_notice(&db).await;
+    assert_eq!(after.id, before.id);
+    assert_ne!(after.claim_id, before.claim_id);
+    assert_eq!(after.status, "unknown");
+    assert!(after.provider_message_id.is_none());
+    notify_now(&db.conn, &operator(1), &provider.runtime)
+        .await
+        .unwrap();
+    assert_eq!(provider.sends(), 1);
+    assert_eq!(github.seen.lock().unwrap().posts, 0);
+}
+
+#[tokio::test]
+async fn email_and_issue_share_one_scan_deadline_and_keep_cancelled_attempts() {
+    let github = fixtures::fixture::Provider::start().await;
+    let (db, _, ctx, d) = fixtures::ready(&github).await;
+    let issue = proposed(&db, &ctx, &d, &github.runtime).await;
+    let (op, key) = seed(&db, 1).await;
+    let email = saved(&db, &op, key).await;
+    let reply = pending(&db, &op, &email).await;
+    let provider = Provider::new().await;
+    opted(&db, &provider).await;
+    provider.reply(
+        StatusCode::OK,
+        json!({"ok":true,"result":{"id":123,"type":"private"}}),
+        Duration::ZERO,
+    );
+    provider.reply(StatusCode::OK, json!({"ok":true}), Duration::from_secs(5));
+    let start = std::time::Instant::now();
+    bounded_scan(
+        &db.conn,
+        &provider.runtime,
+        None,
+        Duration::from_millis(150),
+    )
+    .await
+    .unwrap();
+    assert!(start.elapsed() < Duration::from_secs(2));
+    let first = first_notice(&db).await;
+    assert_eq!(first.proposal_id, issue.proposal_id.unwrap());
+    assert_eq!(first.status, "unknown");
+    assert_eq!(provider.sends(), 1);
+    tick(&db.conn, &provider.runtime).await.unwrap();
+    assert_eq!(provider.sends(), 2);
+    let email = notice::Entity::find()
+        .filter(notice::Column::ProposalId.eq(reply.id))
+        .one(&db.conn)
+        .await
+        .unwrap()
+        .unwrap();
+    assert_eq!(email.status, "sent");
+    assert!(resolve(&db.conn, &op, ResolveInput { notice: email.id })
+        .await
+        .unwrap()
+        .proposal
+        .is_some());
+}
+
+#[tokio::test]
+async fn more_than_twenty_stale_issue_candidates_do_not_starve_the_current_one() {
+    let github = fixtures::fixture::Provider::start().await;
+    let (db, source, ctx, mut d) = fixtures::ready(&github).await;
+    let mut latest = proposed(&db, &ctx, &d, &github.runtime)
+        .await
+        .proposal_id
+        .unwrap();
+    let folder = crate::db::service::work_task_service::get(&db.conn, ctx.task_id)
+        .await
+        .unwrap()
+        .folder_id;
+    for _ in 0..21 {
+        let ctx = fixtures::start_task(&db, folder).await;
+        latest = proposed(&db, &ctx, &d, &github.runtime)
+            .await
+            .proposal_id
+            .unwrap();
+        d = host::operator::detail(&db.conn, &operator(1), source.clone())
+            .await
+            .unwrap()
+            .draft;
+    }
+    let provider = Provider::new().await;
+    opted(&db, &provider).await;
+    notify_now(&db.conn, &operator(1), &provider.runtime)
+        .await
+        .unwrap();
+    assert_eq!(provider.sends(), 1);
+    assert_eq!(first_notice(&db).await.proposal_id, latest);
+    assert_eq!(github.seen.lock().unwrap().posts, 0);
 }
 
 #[test]
