@@ -11,14 +11,14 @@ no product code. Current source of truth: STATUS.md.
 | Received email → thread → draft/note → complete human review → provider receipt | Accepted PR6/7; independent protected-API/loopback Playwright flow and Rust assertions | Live inbox/key not used |
 | Stale/denied/failed/unknown email | Independently exercised UI and durable state tests | No real email sent |
 | Agent token → live task/run → public ticket/draft/proposal | PR8 accepted; independent bridge/extraction/default checks passed | Astra catalogue/provider setup missing; no inference |
-| TestFlight read → human proof → GitHub App issue | Accepted read/filing modules; PR9 host/UI under review | Hafidh admin/App credentials and repository not validated live |
-| Phone notification → login → exact review | PR10 local fixture; independent13 Rust tests/login/stale/full payload passed | Reachable protected origin/private recipient/bot not configured or activated |
+| TestFlight read → human proof → GitHub App issue | Accepted read/filing modules and PR9 protected host/UI; local issue/held-task flow passed | Hafidh admin/App credentials and repository not validated live |
+| Phone notification → login → exact review | PR10 email and PR12 issue fixtures; independent protected approval and no-resend recovery passed | Reachable protected origin/private recipient/bot not configured or activated |
 | Fixed-build note | Existing Tasks plus native reply-draft tools will compose it after actual fix/build evidence | No fix/build on Hafidh or reporter delivery claimed |
 
 ## P1 beta rehearsal
 
 1. Configure the authorized Hafidh read origin, product project and single-repo
-   GitHub App in the host UI once that PR is accepted. Install the pinned Python
+   GitHub App in the accepted host UI. Install the pinned Python
    adapter in its dedicated environment; a packaged app needs a valid host
    CODEG_INTAKE_PYTHON path. Never point an agent at the admin credential.
 2. Read TestFlight, choose the real report and refresh it. Fill only actual
@@ -79,5 +79,5 @@ hafidh-intake0.1.0. All three README installation commands exited0. An
 `env -i .venv/bin/python -I` import check passed for MCPServer, Settings and
 package metadata (mcp2.0.1/httpx0.28.1/pydantic2.12.5). No tracked manifest/lock
 changed, no other environment was modified and no live credential was used.
-The host module will become importable here once its accepted source merges;
-this does not yet validate a native bundle or live backend.
+The accepted host module now imports successfully under the isolated Python
+command. This does not yet validate a native bundle or live backend.
