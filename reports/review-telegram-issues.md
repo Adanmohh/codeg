@@ -1,3 +1,16 @@
+# Acceptance
+
+Accepted PR #12 at `71048a5a6f603476fcf29ef3440fa46f48421e20`, merged as
+`e9ddab88dfc45393aab68de52db8d3848b0bb891`. Final report read completely,
+additional three scan regressions and hydration-gate delta reviewed. Worker178
+Rust/21 frontend tests, both runtime checks/Clippy, typecheck, export and focused
+lint pass. Root actual final-source protected phone flow passes, including
+exactly one create and read-only unknown reconciliation. See
+[browser evidence](browser-issue-independent/README.md). No blocking finding in
+this scope; final integrated design/native validation remains separate.
+
+Historical checkpoint review follows.
+
 # Typed issue phone-review implementation review
 
 In progress, 2026-09-08. Checkpoint
