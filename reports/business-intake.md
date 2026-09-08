@@ -393,3 +393,12 @@ Recovery log SHA256: `fbb04afad9b24ecb1442aeec8975d0fae6163ecf4bfd2e936a3787f84a
 New test file SHA256: `80758fe6708ae1dde4c92ccbf038f10bcf37700b25f2efd98c53c49b1dfac1ce`.
 Paused visual report remains untracked with its original SHA256
 `a2120d9cc87dbb4823b1223e02d377660fff370d846f2fd102fe1eb36599a50d`.
+
+Recovery checkpoint committed/pushed as
+`6513dc1545841af20f4d9d46e8a64ed6aec83cbb`; diff from production e9c63237 contains
+only the report and three test/test-support files. Identity has now supplied the
+first compiling immutable head `f3b408dae5c724f354763961d79a17a7ae5c86f8` (PR30),
+implementing the captured accessor, settings and migration000012. B is preserved
+here while this worker switches to the assigned independent exact-head review.
+Platform/native runtime is not yet exposed at that checkpoint; no acceptance of
+those missing surfaces or of B's future persisted epoch integration is implied.
