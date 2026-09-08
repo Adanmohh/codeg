@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Brief — Next.js 16 static export / React 19 / Tailwind v4 / inherited shadcn UI</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; padding: 2rem; background: #0b0b0c; color: #e7e7ea;
+         font: 15px/1.6 Inter, system-ui, sans-serif; max-width: 60rem; margin-inline: auto; }
+  h1 { font-size: 1.6rem; } h2 { font-size: 1.1rem; margin-top: 2.5rem; letter-spacing: .02em;
+       text-transform: uppercase; color: #9a9aa2; border-bottom: 1px solid #232327; padding-bottom: .4rem; }
+  .swatches { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .swatch { width: 7.5rem; border: 1px solid #232327; border-radius: 8px; overflow: hidden; }
+  .swatch .chip { height: 3.5rem; } .swatch .meta { padding: .4rem .6rem; font: 12px/1.4 ui-monospace, monospace; }
+  .rogue .chip { outline: 2px solid #f87171; outline-offset: -2px; }
+  .ramp div { margin: .35rem 0; } .bars { display: flex; align-items: flex-end; gap: .5rem; }
+  .bars div { background: #4ade80; width: 2rem; } .bars span { font: 11px ui-monospace, monospace; display: block; text-align: center; }
+  .chips { display: flex; gap: .75rem; } .chips div { width: 4rem; height: 4rem; background: #1a1a1e; border: 1px solid #3f3f46; }
+  table { border-collapse: collapse; width: 100%; } td, th { border-bottom: 1px solid #232327; padding: .45rem .6rem; text-align: left; }
+  .gap { border-left: 3px solid #f59e0b; padding: .3rem .8rem; margin: .6rem 0; background: #131316; }
+  .muted { color: #9a9aa2; }
+</style>
+</head>
+<body>
+<script type="application/json" id="design-state">{
+  "version": 1,
+  "mode": "scan",
+  "stack": {
+    "framework": "Next.js 16 static export / React 19",
+    "styling": "Tailwind v4 / inherited shadcn UI"
+  },
+  "tokens": {
+    "colors": {
+      "--background": "#ffffff",
+      "--foreground": "#0a0a0a",
+      "--card": "#ffffff",
+      "--card-foreground": "#0a0a0a",
+      "--popover": "#ffffff",
+      "--popover-foreground": "#0a0a0a",
+      "--primary": "#245e58",
+      "--primary-foreground": "#fafafa",
+      "--secondary": "#f5f5f5",
+      "--secondary-foreground": "#171717",
+      "--muted": "#f5f5f5",
+      "--muted-foreground": "#737373",
+      "--accent": "#f5f5f5",
+      "--accent-foreground": "#171717",
+      "--destructive": "#df2225",
+      "--border": "#e5e5e5",
+      "--input": "#e5e5e5",
+      "--ring": "#245e58",
+      "--chart-1": "#8ec5ff",
+      "--chart-2": "#2b7fff",
+      "--chart-3": "#155dfc",
+      "--chart-4": "#1447e6",
+      "--chart-5": "#193cb8",
+      "--sidebar": "#fafafa",
+      "--sidebar-foreground": "#0a0a0a",
+      "--sidebar-primary": "#245e58",
+      "--sidebar-primary-foreground": "#fafafa",
+      "--sidebar-accent": "#ebebeb",
+      "--sidebar-accent-foreground": "#171717",
+      "--sidebar-border": "#e5e5e5",
+      "--sidebar-ring": "#245e58"
+    },
+    "type": {
+      "families": [
+        "\"Inter Variable\", system-ui, sans-serif"
+      ],
+      "sizesPx": [
+        12,
+        14,
+        16,
+        20,
+        24
+      ]
+    },
+    "spacingPx": [
+      4,
+      8,
+      12,
+      16,
+      24,
+      32
+    ],
+    "radiiPx": [
+      6,
+      8,
+      10,
+      14
+    ]
+  },
+  "surfaces": [
+    {
+      "name": "login-page",
+      "components": [
+        "src/app/login/page.tsx"
+      ],
+      "applies": true
+    },
+    {
+      "name": "navigation",
+      "components": [
+        "src/components/layout/sidebar.tsx"
+      ],
+      "applies": true
+    },
+    {
+      "name": "task-board",
+      "components": [
+        "src/components/tasks/task-card.tsx"
+      ],
+      "applies": true
+    },
+    {
+      "name": "input-field",
+      "components": [
+        "src/components/ui/input.tsx"
+      ],
+      "applies": true
+    },
+    {
+      "name": "tabs",
+      "components": [
+        "src/components/ui/tabs.tsx"
+      ],
+      "applies": true
+    }
+  ],
+  "conventions": [
+    "Hafidh Ops Desk serves the team handling tester bugs and support email. Source of scope: FOUNDING.md P1/P2; this brief does not authorize later social/release phases.",
+    "Inherit codeg components, static query-parameter navigation, Inter UI font and Hafidh primary accent. Keep existing user font/theme choices. Tokens shown are the default neutral light block in src/app/globals.css; dark uses its paired neutral.dark block with primary #9bd4c5. Do not flatten those modes.",
+    "The source scanner was narrowed to src to exclude exported and vendored CSS. Its theme-preset literals and filename-based surface guesses are not confirmed defects; this curated brief scopes the Ops work and records actual component paths.",
+    "Compact operational layout: inbox list, thread, and reply/approval detail; reflow to one readable pane on narrow screens. Distinguish selected rows and unread state without color alone.",
+    "Private note, draft awaiting approval, approved authorization, sent receipt and delivery failure must be visibly distinct. Approval must present exact recipients and complete content; edits require revalidation.",
+    "No decorative metrics or invented customer data in production. Loading, empty, missing configuration, validation error, denied, stale approval and success states must provide a concrete next action.",
+    "Use semantic labels, keyboard navigation, visible focus, dialogs with focus restoration, accessible errors and sufficient contrast. Validate at desktop and narrow mobile widths in light/dark; respect RTL locale direction.",
+    "Use Playwright CLI for real-server browser checks. Mock external providers only in explicitly identified test fixtures. Run Design Studio measured audit, worker fixes and targeted rechecks at completion.",
+    "DERIVED MEASUREMENT COPY ONLY: original BRIEF.html is unchanged; Canvas-normalized opaque light tokens. Paired-dark tokens and alpha composites are classified separately, not silently added to this palette."
+  ],
+  "scenarios": [
+    {
+      "id": "login",
+      "task": "Connect to the isolated local test server",
+      "assertions": [
+        "Invalid token shows an accessible error",
+        "Valid test token opens workspace",
+        "No horizontal overflow at 390px"
+      ]
+    },
+    {
+      "id": "support-reply",
+      "task": "Open a ticket, draft and review a reply",
+      "assertions": [
+        "Private note cannot appear as public reply",
+        "Recipients and text are reviewed together",
+        "Nothing sends before explicit approval",
+        "A stale approval cannot send a changed draft"
+      ]
+    },
+    {
+      "id": "bug-evidence",
+      "task": "Prepare a Hafidh bug for GitHub filing",
+      "assertions": [
+        "Missing build/screen/reciter/log blocks filing",
+        "Suggested severity remains a human-reviewed guess",
+        "External issue creation requires the approval seam"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "priority": 1,
+      "current": "Step 2 email and approval user flows are not yet wired into main",
+      "target": "Working ticket/review flows with explicit configuration and failure states"
+    },
+    {
+      "priority": 2,
+      "current": "Measured browser and Design Studio acceptance for the completed Ops flows remains pending",
+      "target": "Desktop/mobile light/dark flow evidence and resolved actionable audit findings"
+    }
+  ],
+  "inspiration": []
+}</script>
+<div id="brief-root"></div>
+<script>
+(() => {
+  const s = JSON.parse(document.getElementById("design-state").textContent);
+  const el = (t, attrs = {}, ...kids) => { const n = document.createElement(t);
+    for (const [k, v] of Object.entries(attrs)) k === "text" ? n.textContent = v : k === "style" ? n.setAttribute("style", v) : n.setAttribute(k, v);
+    n.append(...kids); return n; };
+  const root = document.getElementById("brief-root");
+  root.append(el("h1", { text: "Design Brief" }),
+    el("p", { class: "muted", text: `mode: ${s.mode} · stack: ${s.stack.framework} / ${s.stack.styling} · schema v${s.version}` }));
+
+  root.append(el("h2", { text: "Colors" }));
+  const sw = el("div", { class: "swatches" });
+  for (const [name, val] of Object.entries(s.tokens.colors)) {
+    if (name === "rogue") continue;
+    sw.append(el("div", { class: "swatch" }, el("div", { class: "chip", style: `background:${val}` }),
+      el("div", { class: "meta", text: `${name} ${val}` })));
+  }
+  for (const val of s.tokens.colors.rogue || [])
+    sw.append(el("div", { class: "swatch rogue" }, el("div", { class: "chip", style: `background:${val}` }),
+      el("div", { class: "meta", text: `ROGUE ${val}` })));
+  root.append(sw);
+
+  root.append(el("h2", { text: "Type" }));
+  const ramp = el("div", { class: "ramp" });
+  for (const fam of s.tokens.type.families)
+    for (const px of s.tokens.type.sizesPx)
+      ramp.append(el("div", { style: `font-family:${fam};font-size:${px}px`, text: `${px}px — ${fam.split(",")[0]} · The quick brown fox` }));
+  root.append(ramp);
+
+  root.append(el("h2", { text: "Spacing" }));
+  const bars = el("div", { class: "bars" });
+  for (const px of s.tokens.spacingPx) bars.append(el("div", { style: `height:${px}px` }, el("span", { text: px })));
+  root.append(bars);
+
+  root.append(el("h2", { text: "Radii" }));
+  const chips = el("div", { class: "chips" });
+  for (const px of s.tokens.radiiPx) chips.append(el("div", { style: `border-radius:${px}px`, title: `${px}px` }));
+  root.append(chips);
+
+  root.append(el("h2", { text: "Surfaces" }));
+  const tbl = el("table", {}, el("tr", {}, el("th", { text: "Surface" }), el("th", { text: "Components" }), el("th", { text: "Applies" })));
+  for (const su of s.surfaces) tbl.append(el("tr", {},
+    el("td", { text: su.name }), el("td", { text: (su.components || []).join(", ") }), el("td", { text: su.applies ? "yes" : "no" })));
+  root.append(tbl);
+
+  root.append(el("h2", { text: "Gaps" }));
+  for (const g of s.gaps) root.append(el("div", { class: "gap", text: `P${g.priority}: ${g.current} → ${g.target}` }));
+
+  root.append(el("h2", { text: "Conventions" }));
+  for (const c of s.conventions) root.append(el("div", { text: "• " + c }));
+
+  root.append(el("h2", { text: "Flow Scenarios" }));
+  for (const sc of s.scenarios) root.append(el("div", {},
+    el("strong", { text: sc.id + ": " }), el("span", { text: sc.task + " — asserts: " + sc.assertions.join("; ") })));
+
+  if ((s.inspiration || []).length) {
+    root.append(el("h2", { text: "Inspiration" }));
+    for (const i of s.inspiration) root.append(el("div", { text: "• " + i }));
+  }
+})();
+</script>
+</body>
+</html>

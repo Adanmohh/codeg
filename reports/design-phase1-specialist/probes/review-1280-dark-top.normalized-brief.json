@@ -1,0 +1,120 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#fafafa",
+      "#262626",
+      "#a1a1a1",
+      "#151a18",
+      "#c1c2c1",
+      "#151515",
+      "#181818",
+      "#c5c5c5"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      12,
+      20
+    ],
+    "spacingPx": [
+      12,
+      4,
+      6,
+      16,
+      24,
+      20,
+      8,
+      2
+    ],
+    "radiiPx": [
+      10,
+      26,
+      16777200,
+      6
+    ]
+  },
+  "contrast": {
+    "checked": 45,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 128,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "Review queue"
+      },
+      {
+        "level": 1,
+        "text": "Pending human review"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- separator\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - complementary \"Proposal queue\":\n      - heading \"Review queue\" [level=1]\n      - paragraph: Pending first, then recent decisions. Approval alone is not delivery.\n      - list:\n        - listitem:\n          - 'button \"Re: Synthetic locale review Task #1 · Run 1 Pending human review\"'\n        - listitem:\n          - 'button \"Reply review #6 Task #6 · Run 1 Denied · not sent\"'\n        - listitem:\n          - 'button \"Reply review #5 Task #5 · Run 1 Not sent · needs attention\"'\n        - listitem:\n          - 'button \"Reply review #4 Task #4 · Run 1 Delivery unconfirmed · do not resend\"'\n        - listitem:\n          - 'button \"Reply review #3 Task #3 · Run 1 Sent · provider accepted\"'\n        - listitem:\n          - 'button \"Reply review #2 Task #2 · Run 1 Provider accepted · recording pending\"'\n    - article:\n      - paragraph: \"Proposal #1 · Task #1 · Run 1 · Support\"\n      - heading \"Pending human review\" [level=1]\n      - button \"Open original thread\"\n      - paragraph: \"Draft #1 · Revision 1. Review all recipients and the complete message below. Edits apply to this approval; the saved draft is not reread for delivery.\"\n      - text: From · inbox identity\n      - textbox \"From · inbox identity\": support@example.com\n      - text: To\n      - textbox \"To\": reader@example.com\n      - text: Cc\n      - textbox \"Cc\"\n      - text: Bcc · hidden from other recipients\n      - textbox \"Bcc · hidden from other recipients\"\n      - paragraph: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.\n      - text: Subject\n      - textbox \"Subject\": \"Re: Synthetic locale review\"\n      - text: Reply message\n      - textbox \"Reply message\": Original approved body\n      - group:\n        - text: Thread headers · part of the complete payload In-Reply-To · message ID\n        - textbox \"In-Reply-To · message ID\": design-locale@example.com\n        - text: References · one message ID per line\n        - textbox \"References · one message ID per line\": design-locale@example.com\n      - paragraph: Plain text only. Attachments are not supported in this draft.\n      - status: Approving sends this exact reply through Resend. Check To, Cc and Bcc before continuing.\n      - button \"Approve and send reply\"\n      - button \"Deny proposal\"\n  - separator\n  - button \"New Terminal\"\n  - button \"Hide Terminal (⌘J)\"\n- separator\n- button \"Quick actions\"\n- button \"6 conversations\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"\n- button \"Show Sidebar (⌘B)\"\n- button \"Search\"\n- button \"Open Settings (⌘,)\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151a18 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c1c2c1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#181818 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c5c5c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    }
+  ]
+}

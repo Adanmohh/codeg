@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#0a0a0a",
+      "#df2225",
+      "#fcfcfc",
+      "#f7f7f7"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14
+    ],
+    "spacingPx": [
+      12,
+      8,
+      6,
+      16
+    ],
+    "radiiPx": [
+      10
+    ]
+  },
+  "contrast": {
+    "checked": 4,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 6,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": false
+    },
+    "snapshot": "- alert\n- main \"Protected Ops review\":\n  - paragraph: Hafidh Ops desk\n  - button \"Open workspace\"\n  - alert: Ops storage is unavailable. Your change was not confirmed\n  - button \"Try again\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#fcfcfc rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f7f7f7 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+- generic [active]:
+  - alert [ref=e2]
+  - region "Notifications alt+T"
+  - generic [ref=e12]:
+    - generic [ref=e780]:
+      - generic [ref=e781]:
+        - button "Show Sidebar" [ref=e782]
+        - button "Search" [ref=e783]
+        - button "New Conversation" [ref=e784]
+      - button "Open Settings" [ref=e787]
+    - main [ref=e789]:
+      - generic [ref=e791]:
+        - generic [ref=e792]: Ops desk
+        - region "Ops desk" [ref=e796]:
+          - generic [ref=e797]:
+            - navigation "Ops views" [ref=e798]:
+              - button "Inbox" [ref=e799]
+              - button "Approvals" [ref=e800]
+              - button "Morning" [ref=e801]
+            - button "Telegram notifications" [ref=e802]
+            - button "Refresh" [ref=e803]
+          - generic [ref=e807]:
+            - button "Back to review queue" [ref=e809]
+            - article [ref=e810]:
+              - generic [ref=e811]:
+                - paragraph [ref=e812]: "Proposal #1 · Task #1 · Run 1 · Support"
+                - heading "Stale · new review needed" [level=1] [ref=e813]
+                - button "Open original thread" [ref=e814]
+              - alert [ref=e815]: A newer draft was saved; request a new proposal
+              - paragraph [ref=e816]: "Draft #1 · Revision 1. Review all recipients and the complete message below. Edits apply to this approval; the saved draft is not reread for delivery."
+              - generic [ref=e817]:
+                - generic [ref=e818]:
+                  - text: From · inbox identity
+                  - textbox "From · inbox identity" [disabled]: support@example.com
+                - generic [ref=e819]:
+                  - text: To
+                  - textbox "To" [disabled]: reader@example.com
+                - generic [ref=e820]:
+                  - generic [ref=e821]:
+                    - text: Cc
+                    - textbox "Cc" [disabled]
+                  - generic [ref=e822]:
+                    - text: Bcc · hidden from other recipients
+                    - textbox "Bcc · hidden from other recipients" [disabled]
+                - paragraph [ref=e823]: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.
+                - generic [ref=e824]:
+                  - text: Subject
+                  - textbox "Subject" [disabled]: "Re: Synthetic locale review"
+                - generic [ref=e825]:
+                  - text: Reply message
+                  - textbox "Reply message" [disabled] [ref=e826]: Original approved body
+                - group [ref=e827]:
+                  - generic "Thread headers · part of the complete payload" [ref=e828] [cursor=pointer]
+                - paragraph [ref=e829]: Plain text only. Attachments are not supported in this draft.
+              - status [ref=e831]: Approving sends this exact reply through Resend. Check To, Cc and Bcc before continuing.
+              - generic [ref=e832]:
+                - button "Approve and send reply" [disabled]
+                - button "Deny proposal" [ref=e833]
+    - generic [ref=e93]:
+      - generic [ref=e94]:
+        - button "Quick actions" [ref=e95]
+        - button "6 conversations" [ref=e680]
+      - generic [ref=e96]:
+        - button "Add Command" [ref=e834]
+        - button "codeg-mcp service" [ref=e835]
+        - button "Alerts" [ref=e843]

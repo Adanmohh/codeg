@@ -1,0 +1,187 @@
+- generic:
+  - alert [ref=e2]
+  - region "Notifications alt+T"
+  - generic [ref=e12]:
+    - generic [ref=e14]:
+      - complementary [ref=e17]:
+        - generic [ref=e21]:
+          - button "Locate Active Conversation" [ref=e22]
+          - button "Collapse All Groups" [ref=e23]
+          - button "View options" [ref=e24]
+        - generic [ref=e25]:
+          - button "Ops desk" [active] [ref=e26]
+          - button "Bug intake" [ref=e31]
+          - button "New chat ⌘T" [ref=e42]:
+            - generic [ref=e46]: New chat
+            - generic [ref=e47]: ⌘T
+          - button "Automations" [ref=e48]
+          - button "To-dos 1" [ref=e114]:
+            - generic [ref=e56]: To-dos
+            - generic [ref=e115]: "1"
+          - button "Repository panel" [ref=e57]
+          - button "Infinite Conversations" [ref=e63]
+        - generic [ref=e119]:
+          - generic [ref=e123]:
+            - button "Folders" [expanded] [ref=e124]
+            - generic [ref=e128]:
+              - button "New group" [ref=e129] [cursor=pointer]
+              - button "Import local sessions" [ref=e134] [cursor=pointer]
+              - button "Clone Repository" [ref=e138] [cursor=pointer]
+              - button "Open Folder" [ref=e144] [cursor=pointer]
+          - generic [ref=e151]:
+            - button "ops-ui-task-fixture 6 sessions running" [expanded] [ref=e152]:
+              - generic [ref=e153]:
+                - generic [ref=e154]: ops-ui-task-fixture
+                - generic "6 sessions running" [ref=e155]: "6"
+            - button "More options" [ref=e160] [cursor=pointer]
+            - button "New Conversation" [ref=e165] [cursor=pointer]
+          - generic [ref=e172]:
+            - button "Untitled conversation" [ref=e173]
+            - generic "Running" [ref=e177]
+          - generic [ref=e184]:
+            - button "Untitled conversation" [ref=e185]
+            - generic "Running" [ref=e189]
+          - generic [ref=e196]:
+            - button "Untitled conversation" [ref=e197]
+            - generic "Running" [ref=e201]
+          - generic [ref=e208]:
+            - button "Untitled conversation" [ref=e209]
+            - generic "Running" [ref=e213]
+          - generic [ref=e220]:
+            - button "Untitled conversation" [ref=e221]
+            - generic "Running" [ref=e225]
+          - generic [ref=e232]:
+            - button "Untitled conversation" [ref=e233]
+            - generic "Running" [ref=e237]
+          - generic [ref=e244]:
+            - button "Chat" [expanded] [ref=e245]
+            - button "New chat" [ref=e249] [cursor=pointer]
+          - generic [ref=e253]: No chats
+          - generic [ref=e259]:
+            - button "Recent" [expanded] [ref=e260]
+            - button "New Conversation" [ref=e264] [cursor=pointer]
+          - generic [ref=e271]:
+            - button "Untitled conversation" [ref=e272]
+            - generic "Running" [ref=e276]
+          - generic [ref=e283]:
+            - button "Untitled conversation" [ref=e284]
+            - generic "Running" [ref=e288]
+          - generic [ref=e295]:
+            - button "Untitled conversation" [ref=e296]
+            - generic "Running" [ref=e300]
+          - generic [ref=e307]:
+            - button "Untitled conversation" [ref=e308]
+            - generic "Running" [ref=e312]
+          - generic [ref=e319]:
+            - button "Untitled conversation" [ref=e320]
+            - generic "Running" [ref=e324]
+          - generic [ref=e331]:
+            - button "Untitled conversation" [ref=e332]
+            - generic "Running" [ref=e336]
+      - separator [ref=e74]
+      - main [ref=e76]:
+        - generic [ref=e77]:
+          - generic [ref=e693]:
+            - generic [ref=e694]: Ops desk
+            - region "Ops desk" [ref=e698]:
+              - generic [ref=e699]:
+                - navigation "Ops views" [ref=e700]:
+                  - button "Inbox" [ref=e701]
+                  - button "Approvals" [ref=e702]
+                  - button "Morning" [ref=e703]
+                - button "Telegram notifications" [ref=e704]
+                - button "Refresh" [ref=e705]
+              - generic [ref=e708]:
+                - complementary "Ticket list" [ref=e709]:
+                  - generic [ref=e710]:
+                    - generic [ref=e711]:
+                      - generic [ref=e712]:
+                        - generic [ref=e713]: Resend key configured
+                        - button "Pull now" [ref=e714]
+                      - group [ref=e715]:
+                        - generic "Manage email connection" [ref=e716] [cursor=pointer]
+                    - generic [ref=e717]:
+                      - text: Inbox
+                      - combobox "Inbox" [ref=e718]:
+                        - option "Support · support@example.com" [selected]
+                    - generic [ref=e719]:
+                      - text: Ticket status
+                      - combobox "Ticket status" [ref=e720]:
+                        - option "All statuses" [selected]
+                        - option "Open"
+                        - option "Resolved"
+                        - option "Pending"
+                        - option "Snoozed"
+                  - list [ref=e722]:
+                    - listitem [ref=e723]:
+                      - button "Reader Open Synthetic denied review 8.9.2026" [ref=e724]:
+                        - generic [ref=e725]:
+                          - generic [ref=e726]: Reader
+                          - generic [ref=e727]: Open
+                        - generic [ref=e728]: Synthetic denied review
+                        - generic [ref=e729]: 8.9.2026
+                    - listitem [ref=e730]:
+                      - button "Reader Open Synthetic rejected review 8.9.2026" [ref=e731]:
+                        - generic [ref=e732]:
+                          - generic [ref=e733]: Reader
+                          - generic [ref=e734]: Open
+                        - generic [ref=e735]: Synthetic rejected review
+                        - generic [ref=e736]: 8.9.2026
+                    - listitem [ref=e737]:
+                      - button "Reader Open Synthetic unknown review 8.9.2026" [ref=e738]:
+                        - generic [ref=e739]:
+                          - generic [ref=e740]: Reader
+                          - generic [ref=e741]: Open
+                        - generic [ref=e742]: Synthetic unknown review
+                        - generic [ref=e743]: 8.9.2026
+                    - listitem [ref=e744]:
+                      - button "Reader Open Synthetic accepted review 8.9.2026" [ref=e745]:
+                        - generic [ref=e746]:
+                          - generic [ref=e747]: Reader
+                          - generic [ref=e748]: Open
+                        - generic [ref=e749]: Synthetic accepted review
+                        - generic [ref=e750]: 8.9.2026
+                    - listitem [ref=e751]:
+                      - button "Reader Open Synthetic recording review 8.9.2026" [ref=e752]:
+                        - generic [ref=e753]:
+                          - generic [ref=e754]: Reader
+                          - generic [ref=e755]: Open
+                        - generic [ref=e756]: Synthetic recording review
+                        - generic [ref=e757]: 8.9.2026
+                    - listitem [ref=e758]:
+                      - button "Reader Open Synthetic locale review 8.9.2026" [ref=e759]:
+                        - generic [ref=e760]:
+                          - generic [ref=e761]: Reader
+                          - generic [ref=e762]: Open
+                        - generic [ref=e763]: Synthetic locale review
+                        - generic [ref=e764]: 8.9.2026
+                    - listitem [ref=e765]:
+                      - button "Reader Open A real local thread 8.9.2026" [ref=e766]:
+                        - generic [ref=e767]:
+                          - generic [ref=e768]: Reader
+                          - generic [ref=e769]: Open
+                        - generic [ref=e770]: A real local thread
+                        - generic [ref=e771]: 8.9.2026
+                  - generic [ref=e772]:
+                    - button "Previous" [disabled]
+                    - button "Next" [disabled]
+                - generic [ref=e774]:
+                  - heading "Select a thread" [level=2] [ref=e778]
+                  - paragraph [ref=e779]: Read the conversation, add a private note or prepare a reply for review.
+          - separator
+          - generic [ref=e90]:
+            - button "New Terminal" [ref=e678]
+            - button "Hide Terminal (⌘J)" [ref=e92]
+      - separator
+    - generic [ref=e93]:
+      - generic [ref=e94]:
+        - button "Quick actions" [ref=e95]
+        - button "6 conversations" [ref=e680]
+      - generic [ref=e96]:
+        - button "Add Command" [ref=e683]
+        - button "codeg-mcp service" [ref=e97]
+        - button "Alerts" [ref=e100]
+    - generic [ref=e105]:
+      - button "Hide Sidebar (⌘B)" [ref=e106]
+      - button "Search" [ref=e107]
+    - button "Open Settings (⌘,)" [ref=e113]

@@ -1,0 +1,9 @@
+- generic [active] [ref=f1e1]:
+  - alert [ref=f1e2]
+  - main "Protected Ops review" [ref=f1e14]:
+    - generic [ref=f1e15]:
+      - paragraph [ref=f1e16]: Hafidh Ops desk
+      - button "Open workspace" [ref=f1e18]
+    - generic [ref=f1e19]:
+      - alert [ref=f1e20]: Ops storage is unavailable. Your change was not confirmed
+      - button "Try again" [ref=f1e21]

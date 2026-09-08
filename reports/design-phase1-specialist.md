@@ -122,3 +122,34 @@ options remain sampled; native checkVisibility excludes closed-details controls.
 Reduced-motion duration counts alone will not be labelled spatial-motion defects:
 property/keyframe and rendered-interaction evidence will distinguish color/border/
 opacity feedback from movement, layout or scrolling.
+
+## Live combined checkpoint
+
+Accepted main **8c2a004d66351d2eb67182843c63dbb3ae2c44fa** integrated as
+**19a698bc1108a5c3dee5018337e6da6eadc27f61**, preserving all source/NOTICE entries.
+`CODEG_EXPORT_DIR=out-design-final pnpm exec next build` exited0 (33 routes).
+Own fixture4327/PID1475 uses `.build/design-ops/2e3036b6-afeb-4e5c-ba19-aa2304e0c921`;
+only ignored test port/export overrides differ from accepted production. Existing
+4320/PID30815,4323/PID45025,4326/PID63050 remained listening unchanged.
+
+Actual CLI `design-phase1`, installed0.1.18, produced17 initial combined
+thread/review/morning captures using real Appearance Light/Dark controls and
+settled classes,1280×900/390×844. Open headers and All statuses option are sampled;
+no Ops contrast failures in this first set. Numeric shell running badge is a
+separate ~4.39 contrast candidate requiring final source/paint verification.
+Terminal fixtures2–6 have correct distinct receipt/failure/unknown/denied copy
+and no second-send action. **Finish recording receipt** completed2 locally,
+provider requests **4→4**, action removed. These6 further captures are retained.
+
+The editor CLI completed invalid validation, cancelled native discard, draft
+save, separate private-note save and stale-review navigation. Its native dialog
+caused the CLI raw-return file to be blank despite later screenshots/actions;
+those results require explicit post-state evidence, not an invented JSON pass.
+Current proposal1 is stale after saved draft revision2; no send occurred.
+
+Current tools: Node24.19.0 runtime, installed @types/node25.2.2 fs signatures,
+TypeScript5.8.3 DOM visibility/selection/Canvas/animation primitives. All new
+measurement glue is report-only. Pure lint ran on11 relevant surfaces, exit0;
+lint completion is not a clean-product verdict. Full `cargo fmt --check` exited1
+on extensive inherited formatting plus one new wrapping line (corrected narrowly);
+no broad formatting was applied. Final source-scoped validation follows.
