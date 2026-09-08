@@ -1,4 +1,4 @@
-// Acceptance-only native pointer input; explicitly supplied owned PID and points.
+// Acceptance-only native pointer input; global HID events guarded by owned active PID.
 // Apple SDK NSRunningApplication.h and CGEvent.h read before use.
 import AppKit
 import CoreGraphics
@@ -30,4 +30,4 @@ if a.count == 6 {
     }
 }
 send(.leftMouseUp, end)
-print("Owned-PID pointer events posted")
+print("Active-owned-app pointer events posted")

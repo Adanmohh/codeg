@@ -31,6 +31,15 @@ if args[2] == "windows" {
          "name": $0[kCGWindowName as String] ?? "",
          "bounds": $0[kCGWindowBounds as String] ?? [:]]
     })
+} else if args[2] == "resize" {
+    guard args.count == 5, let w = Double(args[3]), let h = Double(args[4]),
+          w >= 400, h >= 600, w <= 1400, h <= 950,
+          let window = children(app).first(where: { attr($0, kAXRoleAttribute) as? String == "AXWindow" }) else { exit(2) }
+    var size = CGSize(width: w, height: h)
+    guard let value = AXValueCreate(.cgSize, &size) else { exit(3) }
+    let result = AXUIElementSetAttributeValue(window, kAXSizeAttribute as CFString, value)
+    emit(["action": "resize", "result": result.rawValue])
+    if result != .success { exit(1) }
 } else if args[2] == "dump" {
     var rows: [[String: Any]] = []
     func walk(_ node: AXUIElement, _ path: [Int], _ depth: Int) {
