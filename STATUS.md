@@ -66,8 +66,10 @@ agent. A usable protected source-binding/grant setup is part of contract review.
 **UI planning PR26 reviewed and merged** at exact report head
 `91a69f339e99266b35bb912ae7d1cb155a6acd76`. Root read the full report and final
 diff. This accepts the business interaction plan, not B product or the unfinished
-backend contract. Q1 setup/capabilities and Q2–Q4 pinned rebase/disclosure,
-recovery and timing/error definitions remain before implementation dispatch.
+backend contract. Independent review `ca787542` and UI reconciliation `08824564`
+agree Q2–Q4 rebase/disclosure, recovery and timing/error definitions are coherent
+at `85f6001f`. Q1 setup/capabilities still needs the owner's immutable integrated
+contract and final bounded reviewer closure before implementation dispatch.
 [Plan](reports/business-intake-ui-plan.md) · [Root BI acceptance plan](reports/business-intake-acceptance-checklist.md).
 
 Protected access seam `18be55edc276713fc6d46d075baec363245ba285` is reviewed
