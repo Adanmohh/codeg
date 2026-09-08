@@ -1,0 +1,16 @@
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.63s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 1 test
+Pi Desk browser fixture ready on 127.0.0.1:4324; fresh folder 1
+test work_task::engine::desk::tests::pi_desk_browser_fixture has been running for over 60 seconds
+test work_task::engine::desk::tests::pi_desk_browser_fixture ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3667 filtered out; finished in 267.93s

@@ -55,7 +55,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <main className="flex min-h-screen items-center justify-center bg-background">
       <div className="w-full max-w-sm space-y-6 px-4">
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold tracking-tight">{t("brand")}</h1>
@@ -103,6 +103,6 @@ export default function LoginPage() {
           {t("helpText")}
         </p>
       </div>
-    </div>
+    </main>
   )
 }
