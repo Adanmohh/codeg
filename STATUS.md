@@ -18,7 +18,9 @@ Workers retain Astra/max, docs-first hooks and pinned gh-api borrowing. The hist
 buttons over the brand and its blank top header does not drag the window.
 [Evidence](reports/business-native-root/N2-native-chrome.md). Rebrand is dispatched
 to a separate bounded native-chrome correction, reusing existing titlebar/controls;
-root continues actual human/shared-member checks. Package build/all1016 web hashes
+approvals is dispatched on separate `review/business-native-chrome` for independent
+source/session-boundary review, report `reports/review-business-native-chrome.md`.
+Both retain existing panes/worktrees and Astra/max/docs-first/borrow rules. Package build/all1016 web hashes
 and all-three binary/profile hashes pass. Tickets'275 bundled companion checks are accepted at report31cf27ea, with unchanged
 before/after hash. Actual native local bootstrap/human Done4 and shared-server
 viewer/revocation checks pass; N2 chrome correction and final refresh remain.

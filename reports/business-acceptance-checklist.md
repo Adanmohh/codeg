@@ -33,20 +33,28 @@ contract; changes must be explicit and this checklist reconciled before testing.
 
 ## Integration evidence checkpoint — 2026-09-08
 
-This maps completed evidence and remaining checks; it is not final Increment A
-acceptance. Exact source/commands/limits remain in the linked reports.
+All three Increment A product PRs are reviewed/merged. The first actual native
+package passes core workflows but has N2 window-chrome correction pending.
+This table records scoped evidence, not universal or live-provider certification.
 
-| IDs | Evidence now available | Remaining acceptance |
+| IDs | Accepted evidence | Remaining acceptance |
 | --- | --- | --- |
-| BW-1,5,6 | Accepted [identity review](review-business-identity.md) and [task review](review-business-tasks.md): backend-derived principals, transaction/revocation/reference guards. | Final native invocation coverage is separate. |
-| BW-2,7 | [Root browser integration](business-final-root/README.md): distinct manager and viewer sessions see the same task, human-only creation/progress/review, named audit actor. | Final export identity. |
-| BW-3,4 | Root five cold routes make no API calls; viewer has no editing/engineering controls. Independent identity/router and task tests cover backend denials. | Final native shared-member session; reviewer teardown/revocation checks. |
-| BW-8 | Root actual409/draft retention/adoption and13 correction workflow tests; independent source review covers atomic CAS/audit. | Final corrected export source correlation. |
-| BW-9,10 | Exact R1 review at1ba73e3c:13 independent ownership/bridge/migration/HTTP tests and scoped lifecycle proof. Accepted worker real Pi/process evidence remains separately attributed. | Final packaged companion protocol; no live inference is claimed. |
-| BW-11 | Root preserves calendar2028-02-29 across separate sessions; independent12-frame EN/AR matrix has no page overflow. | Reviewer final rendering synthesis and native view. |
-| BW-12 | Authorized actual lists/search and worker component/page tests. | Independent board/filter/empty/error checks in progress. |
-| BW-13 | Independent12-frame matrix and actual keyboard human review pass. | Two verified search P2s, final focus/motion checks and rechecks. |
-| BW-14,15 | Root viewport draft retention/cold recovery; reviewer actual other-tab locale preserves six edited fields. | Independent identity/revocation/disconnect teardown and recovery. |
-| BW-16 | [Native source review](business-native-review.md):22 fixed commands match registration; fresh-entry N1 resolved at3a189d18. | Actual packaged WebKit owner/shared-member controls. |
-| BW-17 | [Accepted backend regressions](business-integration-regressions.md):312 passed,5 manual fixtures ignored at294fb634. Root full frontend6194 passed atb97e6bd9. | Only affected later correction checks, not an unnecessary broad rerun. |
-| BW-18 | Worker/reviewer Design Studio loops and root inspected before/after conflict evidence. | Final specialist synthesis, fixes closed, package/export hashes and native startup. |
+| BW-1,5,6 | Exact identity/task reviews cover backend principals, transaction/revocation/reference guards. Actual native operator bootstraps isolated organization; shared viewer revocation clears the native session. | N2 does not change this backend contract. |
+| BW-2,7 | Root and independent real personal sessions share named tasks; native local human creates/progresses/reviews Done4 without an engine. | Final refreshed artifact correlation. |
+| BW-3,4 | Five cold routes make no API/WS calls; real backend viewer403/404 and credential legacy/WS denials. Native shared viewer has only read controls and no engineering link. | Native correction must preserve cold web and member boundaries. |
+| BW-8 | Real409/draft retention/explicit adoption independently rechecked on exacte72 export; base/current revision clarity fixed. | No broad repeat required for native-only chrome. |
+| BW-9,10 | Exact R1 review:13 independent ownership/bridge/migration/HTTP tests; accepted real Pi/process evidence. Bundled MCP90f9fd8e passes275 bounded synthetic transport assertions. | Correlate final companion digest; rerun only if artifact changes. No live inference. |
+| BW-11 | Calendar2028-02-29 survives separate sessions; EN/AR12-case matrix no overflow; native shared detail renders2026-10-01. | Final chrome/layout recheck. |
+| BW-12 | Independent actual board/filter/empty/keyboard scrolling and abort/retry; native shared list reads real authorized data. | Preserve business subtree through native wrapper. |
+| BW-13 | Independent full12-case baseline; six final search cases close contrast/focus findings. Measured motion106frames and settled focus pass. | N2 native chrome/drag; final targeted browser recheck. |
+| BW-14,15 | Six drafts survive other-tab locale and viewport changes. Revoked401 clears private state; actual native viewer revoke clears detail and returns useful sign-in. | N2 must not introduce subtree remounts. |
+| BW-16 | Actual macOS WebKit local owner bootstrap/human Done4; separate shared viewer/real tasks/revocation; explicit engineering route and restartbusiness entry pass. | N2 corrected titlebar/native controls plus final package recheck. No Windows/Linux/OS isolation certification. |
+| BW-17 | Tickets312 backend regressions at294fb634; root6194 frontend tests atb97e6bd9 plus39 affected tests at e72; accepted worker both runtime/Clippy gates. | Only affected N2 checks. |
+| BW-18 | Independentfa8b571a and root Design Studio synthesis:zero open browser findings; exact first package all3 binaries/profile and1016 web hashes match. | N2 correction/review/normal package refresh/native evidence and final summary. |
+
+Evidence: [root integration](business-final-root/README.md),
+[root Design Studio synthesis](business-final-root/design-review.md),
+[independent UI review](review-business-workspace.md),
+[native package and workflows](business-native-root/README.md),
+[bundled companion](business-bundled-companion.md),
+[backend regressions](business-integration-regressions.md).
