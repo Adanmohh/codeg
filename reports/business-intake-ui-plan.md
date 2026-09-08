@@ -22,8 +22,12 @@ The serializable draft, passage-only rebase, restricted disclosure, durable
 rediscovery/decision and bounded safe-error contracts are now explicit at this
 pin. The existing authorized task snapshot plus exact target revision/domain
 checks also closes text-free link review without a new preview entity. No UI
-objection remains for Q2–Q4. Protected setup and binding/candidate capabilities
-still depend on approvals' Q1 seam; no role, empty list or client guess fills it.
+objection remains for Q2–Q4. The protected access seam is now published at
+[18be55edc276713fc6d46d075baec363245ba285](https://github.com/Adanmohh/codeg/blob/18be55edc276713fc6d46d075baec363245ba285/docs/contracts/business-intake-access.md),
+but Q1 still awaits its integration with the intake DTOs. Read all 307 lines
+locally, then verified identical `gh api` bytes: SHA256
+**2d3312aa9b85e3f2af5763785b248a6e55ccc06a71c39be8c5962bb505fd4675**.
+No role, empty list or client guess replaces the protected setup contract.
 
 ## Smallest useful B slice
 
@@ -57,7 +61,7 @@ it does not remove the contract's later email/Hafidh obligations.
 
 | Step | Visible content and direct action | Proposed contract operation |
 | --- | --- | --- |
-| 1. Sources | Permitted binding label/kind and truthful readiness. Show last observed date only when returned. Select a bounded, visibly UTC import window; “Import meetings” starts one explicit pull. | `readiness`, `sources/list`, `imports/start` |
+| 1. Sources | Permitted binding label/kind and truthful readiness. Show last observed date only when returned. Select a bounded, visibly UTC import window; “Import meetings” starts one explicit pull. | Canonical `bindings/list/status` at access pin 18be55ed, `sources/list`, `imports/start`; no duplicate readiness endpoint |
 | 2. Import progress | “Reading meetings”, “Waiting to retry”, “Stopped” or “Finished this window”; counts describe this import only. Rediscover permitted unfinished imports after reload, resume explicitly and keep terminal history distinct. | `imports/list/get`, `imports/advance`, `imports/cancel` |
 | 3. Read source | Show source title, observed/local version, access state and a separate private-source notice. Read complete returned plain-text passage blocks. Optional sentence position/time appears only when present and valid. | `sources/get`; explicit record refresh through `imports/start` |
 | 4. Select evidence | Checkbox selection of exact server passages, with selected count and readable selected text. At least one, at most 20 passages / 20,000 combined characters, all from one source version. Reject excess with an explanation; never silently truncate. | `candidates/list/get/create/select`; select can save/rebase passages while preserving a null draft; send IDs, never caller quotations or proof |
@@ -170,14 +174,14 @@ Implementation waits for root acceptance; this docs task can finish with explici
 unresolved dependencies. Backend responses remain the authority.
 Root requires all four to close in the immutable B contract before implementation.
 
-1. **Q1 — open, tickets + approvals: capabilities/setup.** Specify actual
-   BindingSummary.readiness/capabilities and Candidate.capabilities keys, allowed
-   publication domains, and the smallest protected binding/source-owner grant/
-   publication setup route/result with actual-operator authority. At 85f6001f,
-   Import.capabilities={advance,cancel}, accessValidUntil and disclosure are now
-   explicit; these partial closures do not supply the remaining setup seam. A
-   member role or an empty binding list cannot determine setup authority or
-   grant a publication domain.
+1. **Q1 — open integration, tickets + approvals: capabilities/setup.** Access
+   pin 18be55ed closes the operator/member binding projections, grant operations,
+   publication ceilings and protected setup authority. Integrate that canonical
+   list/status in the final intake pin alongside exact Candidate.capabilities,
+   publicationDomains and destination-Read disclosure. At 85f6001f, import flags,
+   accessValidUntil and source disclosure are explicit; source revision
+   nullability before validated detail remains an announced correction. A member
+   role or an empty binding list never determines setup authority or a grant.
 2. **Q2 — closed for UI fit at 85f6001f: rebase/disclosure.** The
    [selection/rebase contract](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md#L230-L262)
    and [explicit DTOs](https://github.com/Adanmohh/codeg/blob/85f6001f2fa8f9d33748ceddbf7980ce68942ede/docs/contracts/business-intake.md#L328-L337)
@@ -209,6 +213,41 @@ Root requires all four to close in the immutable B contract before implementatio
 These are verified documentation agreements, not implemented or tested guarantees.
 The UI-facing work remaining before dispatch is Q1; root still owns full contract
 review, including the atomic task seam and protected setup prerequisites.
+
+**Q1 access review at 18be55ed:** canonical bindings/list returns canManageSetup
+and BindingView; status returns the same checked projection. Only the actual
+operator receives BindingAdmin or protected grant controls. Credential presence
+means local availability, never verified connectivity. Create starts disabled
+with zero grants, even for the named source owner. The operator explicitly sets
+the publication ceiling/retained-task-text acknowledgment, grants named active
+humans and enables use; a source-owner label never grants source access.
+
+Grant confirmation must say “All retained historical versions, including those
+captured before this grant, plus current and future sources imported through this
+binding.” The scope literal is binding_current_and_future_sources but the UI must
+include its full historical meaning. Separate grant rights and publication areas
+remain visible; assignment never changes them. Operator key entry is write-only,
+masked and transient, with no echo, logging or member credential prompt. Setup
+responses and operation receipts reconcile uncertainty; no guessed new binding.
+
+Owner revision drift pauses use. The pinned bindings/update operation
+revalidates the same owner and changes the epoch; fresh source access is then
+required. Changing owner/resource needs a new binding, never silent migration.
+One final UI detail remains to reconcile: the 18be55ed status DTO has no explicit
+owner-drift reason, so false use capabilities alone cannot identify that cause.
+Use a safe final reason or document a generic protected revalidation affordance;
+do not infer the cause or expose private authority revisions. No new endpoint is
+needed. The strict existing-store writer read and staged-secret/DB failure bounds
+are implementation prerequisites, not UI guarantees already tested here.
+
+**Still announced pending the integrated intake pin:** nullable SourceSummary
+revision before first validated detail; explicit candidate select/edit/accept/
+link/discard flags and publicationDomains; withholding PreparedTask without
+destination Read despite fresh source access. Render the initial observation
+without a guessed revision or passage decision; distinguish withheld draft from
+unprepared draft using the final disclosure shape. The access pin also requires
+the source-scoped attempt fence across imports. These refinements fit the flow,
+but are not all fields already present at 85f6001f; Q1 stays open until reconciled.
 
 Email/Hafidh also need the contract's protected mapping and pure projections
 before capture entry points. Public email message selection must exclude private
@@ -293,6 +332,9 @@ dispatcher or authorization path is copied into this plan or future UI seam.
 The reconciliation read all 456 contract lines locally before `gh api` at
 85f6001f; both copies have the SHA256 above, exit 0. Compared the accepted client
 timer/error/native branches directly; no dependency API change is proposed.
+The complete 307-line access seam at 18be55ed was likewise read locally and
+matched against exact-commit `gh api` bytes, exit 0; it is reviewed separately
+from the still-pending integrated intake pin.
 Read the corresponding source-ledger passages without expanding the provider
 survey. `git fetch origin`, ancestry check and `git merge --ff-only origin/main`
 exited 0: the existing docs branch advances from its merged PR26 to 2233cd43.
@@ -307,5 +349,6 @@ NOTICE, lockfile, protected planning document or fixture is edited by the worker
 Root retains review/merge authority; Q1 completion remains with tickets/approvals.
 
 Reconciliation checkpoint **57b07ca81257421b9cbb414f7ac456c1bb39ea06** is pushed;
-`git commit`, `git push` and draft PR27 creation exited 0. This final report note
-records that checkpoint and PR; it adds no contract or implementation scope.
+`git commit`, `git push` and draft PR27 creation exited 0. The follow-up report
+records that checkpoint/PR, the separately pinned access seam and remaining Q1
+integration details; it adds no implementation scope or passing evidence.
