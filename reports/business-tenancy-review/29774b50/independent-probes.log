@@ -1,0 +1,18 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review/29774b50/source/src-tauri)
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 47.77s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-tenancy-review-target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 3 tests
+test business_identity::tests::independent_platform_review::review_297_sidecar_retains_authority_and_grant_across_receipt_retry_and_owner_fks ... ok
+test business_identity::tests::independent_platform_review::review_297_protected_recovery_receipt_rollback_and_lifecycle_replay ... ok
+test work_task::engine::desk::tests::business::independent_tenancy::review_297_indexed_run_rejects_old_entrustment_and_preserves_exact_human_grant ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3714 filtered out; finished in 0.19s
+

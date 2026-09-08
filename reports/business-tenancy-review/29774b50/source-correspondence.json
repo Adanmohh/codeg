@@ -1,0 +1,40 @@
+{
+  "head": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+  "before": {
+    "total": 739,
+    "exact": 739
+  },
+  "after": {
+    "original_total": 739,
+    "unchanged": 737,
+    "changed_test_registrations": [
+      {
+        "path": "src-tauri/src/business_identity/tests.rs",
+        "expected": "460191c69e4d2c2df69947cba73de9c1ea71f534",
+        "actual": "ef4dfa897b9770960d6409aa0cc537058b894e8a",
+        "matches": false
+      },
+      {
+        "path": "src-tauri/src/work_task/desk/business.rs",
+        "expected": "2e1687ba3300ada380805e10d2bbf32210ad61c7",
+        "actual": "7057709328b3add256dc472213df617739a8b811",
+        "matches": false
+      }
+    ],
+    "added_tests": [
+      {
+        "path": "src-tauri/src/business_identity/tests/independent_platform_review.rs",
+        "report_copy": "independent_platform_review.rs",
+        "sha256": "edcc2bc309bf84375098f296dd6ea94d78d499cdb9ee2e79f4eabc1ac9602d47",
+        "copy_matches": true
+      },
+      {
+        "path": "src-tauri/src/work_task/desk/independent_tenancy.rs",
+        "report_copy": "independent_tenancy.rs",
+        "sha256": "173e1aa457ad789de6720637947c46490f4e19eea265013461e0553e8b65fa3f",
+        "copy_matches": true
+      }
+    ]
+  },
+  "production_changes": []
+}
