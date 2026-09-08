@@ -23,7 +23,7 @@ export function BootstrapWorkspace({
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<unknown>(null)
   return (
-    <main className="bg-background h-dvh overflow-y-auto p-6 sm:p-10">
+    <main className="bg-background h-full overflow-y-auto p-6 sm:p-10">
       <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
         <Brand />
         <BusinessPreferences />

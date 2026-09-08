@@ -52,7 +52,7 @@ export function ConnectWorkspace({
     if (await connect(connection)) setToken("")
   }
   return (
-    <main className="bg-background h-dvh overflow-y-auto">
+    <main className="bg-background h-full overflow-y-auto">
       <header className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 sm:px-10 sm:py-6">
         <Brand />
         <BusinessPreferences />
