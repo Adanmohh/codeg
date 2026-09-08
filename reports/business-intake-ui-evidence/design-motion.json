@@ -1,0 +1,15 @@
+{
+  "specialist": "motion-judge",
+  "execution": "method applied inline; no subagent",
+  "scores": {},
+  "findings": [
+    {
+      "surface": "business workbench",
+      "element": "continuous motion and jank",
+      "severity": "low",
+      "check": "BC-15 | continuous smoothness/CLS/long frames not assessed by stills",
+      "fix": "Keep the actual reduced-motion content/overflow result separate from any later filmstrip or continuous motion assessment. No motion product change is justified by missing evidence."
+    }
+  ],
+  "notes": "Actual reduced-motion preference retains visible content/controls and no page overflow. No filmstrip/video/jank evidence exists, so no motion quality score or pass is invented."
+}

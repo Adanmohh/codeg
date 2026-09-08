@@ -1,0 +1,28 @@
+Final product: c1e618dede15368d4af39ac74391f18931b317a5
+Prior scoped primary action correction: fb3004dc09e65b176ded04e3290ad28fa70b588b
+
+pnpm exec vitest run src/components/business/workbench.test.tsx src/components/business/workflow.test.tsx src/components/business-intake/workflow.test.tsx src/components/business/ui.test.tsx src/components/business/settings-editor.test.tsx
+Exit0;50/50,5files,2.94s. primary-contrast-tests.log retained locally.
+
+pnpm exec vitest run src/components/business/workbench.test.tsx src/components/business/workflow.test.tsx
+Exit0;22/22,2files,3.52s after selected-nav-only change. nav-contrast-tests.log.
+
+pnpm exec tsc --noEmit --incremental false
+Exit0 at both corrections. primary-contrast-typecheck.log / nav-contrast-typecheck.log.
+
+pnpm exec eslint src/components/business/ui.tsx
+pnpm exec eslint src/components/business/workspace.tsx
+Each exit0. primary-contrast-lint.log / nav-contrast-lint.log.
+
+env CODEG_EXPORT_DIR=.build/business-intake-ui-contrast NEXT_TELEMETRY_DISABLED=1 pnpm build
+env CODEG_EXPORT_DIR=.build/business-intake-ui-nav NEXT_TELEMETRY_DISABLED=1 pnpm build
+Each exit0,34static routes. primary-contrast-export.log / nav-contrast-export.log.
+Final business.html HTTP/disk SHA2562d3f87ea738e4b191dd77f43373c34f2540e8f8beeba59a81d4542670bb38b1a.
+Owned4350 Node90939; isolated real29774b50 API4353 Rust99613. Other fixtures untouched.
+
+Actual named CLI runs: primary-palette-after0 (18/18>=4.5), workbench-matrix-after0 (12cases/936samples,0contrastfailures), member-views-final0, navigation-matrix0 (12cases,min15.2989), reduced-motion content retained.
+Initial primary-palette-before probe exit1 on ambiguous heading; scoped retry0. Failed raw retained.
+Source lint selector/workspace/workbench each exit0; Workbench empty-state heuristic resolved at its parent boundary, not silently ignored.
+git diff --check / staged diff checks:0.
+Protected founding/orchestration/status/decision docs, global CSS/shared Button and lockfiles differ0 from branch base.
+No Rust product edits, live provider/model/engine/send/configuration or deployment actions.

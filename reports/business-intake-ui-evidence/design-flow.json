@@ -1,0 +1,15 @@
+{
+  "specialist": "flow-validator",
+  "execution": "method applied inline to actual CLI/API evidence; no paid flow runner",
+  "scores": { "functional": 8 },
+  "findings": [
+    {
+      "surface": "business Sources",
+      "element": "integrated private passage/draft/publication/receipt flow",
+      "severity": "med",
+      "check": "BC-4 through BC-11 | not assessed: complete candidate API/fixture handoff pending",
+      "fix": "Use the real integrated protected backend and two coordinated synthetic identities for complete Fireflies/email/Hafidh acceptance; do not substitute mocked production responses."
+    }
+  ],
+  "notes": "Actual human submission,409 draft comparison/adoption and tenant appearance preservation pass; member board/table/read-only settings and genuine unavailable Sources error pass. First product-flow failure: none in those bounded runs. An initial duplicate-heading probe locator was corrected and its failed output retained."
+}
