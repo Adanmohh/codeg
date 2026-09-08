@@ -50,7 +50,9 @@ the checker green. Raw lint still reports token differences (11 light,14 dark):
   its palette lists only light values. Status amber/emerald and destructive
   red800/red300 are deliberate existing Tailwind tokens with measured contrast.
   Alpha/color-mix values and black overlay are existing control treatments, not
-  extra brand palettes. Original flags remain visible for review.
+  extra brand palettes. Direct selected-navigation styles retain rgb(36,94,88)
+  and its0.1-alpha OKLab background; the Canvas alpha inventory's #276258 is not
+  a replacement primary token. Original flags remain visible for review.
 
 The People linter's two loading warnings are source-search false positives:
 `people.tsx` uses `busy`, disabled fields/actions and `copy.saving`; its parent

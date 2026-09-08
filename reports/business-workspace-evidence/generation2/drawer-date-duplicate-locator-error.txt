@@ -5,4 +5,3 @@ Error: locator.waitFor: Error: strict mode violation: getByRole('dialog', { name
 
 Call log:
 [2m  - waiting for getByRole('dialog', { name: 'Check the homepage promise · Synthetic', exact: true }).locator('time[datetime="2026-12-31"]') to be visible[22m
-

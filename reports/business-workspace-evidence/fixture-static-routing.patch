@@ -1,12 +1,9 @@
 --- a/src-tauri/src/business_tasks/tests/fixture.rs
 +++ b/src-tauri/src/business_tasks/tests/fixture.rs
-@@ -12,7 +12,32 @@
- 
- const OPERATOR: &str = "business-tasks-synthetic-operator";
- 
+@@ -14,0 +15,2 @@
 +// Frontend-owned verification only, adapted from accepted business_identity/tests.rs.
 +// Exercise the actual production rewrite/ServeDir stack; no scheduler or providers.
- #[tokio::test]
+@@ -15,0 +18,23 @@
 +async fn business_export_paths_use_real_static_router() {
 +    let directory = tempfile::tempdir().unwrap();
 +    let db = fresh_disk_db(directory.path()).await;
@@ -30,6 +27,3 @@
 +}
 +
 +#[tokio::test]
- #[ignore = "manual guarded task API fixture on loopback4342; no engine or UI claims"]
- async fn business_tasks_browser_fixture() {
-     let directory = tempfile::tempdir().unwrap();

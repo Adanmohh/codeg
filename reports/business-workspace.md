@@ -2,8 +2,9 @@
 
 Branch **feat/business-workspace**; draft [PR21](https://github.com/Adanmohh/codeg/pull/21).
 Frontend implementation and actual protected-API browser checks are complete.
-This checkpoint records the final scoped contrast, motion, focus and confirmation
-copy corrections; the final commit SHA is recorded below after committing.
+Final product source is **33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7**, pushed.
+Later handoff commits contain documentation/evidence cleanup and accepted main
+status integration only; the tested product and live export stay unchanged.
 Root remains reviewer/merger. The task backend is tested at **1ba73e3c** in an
 owned snapshot and is not yet merged into this branch. No production mock layer.
 
@@ -107,7 +108,8 @@ React package/Cargo manifest reads. Audit path:
 ## Verification
 
 Logs are under .build/business-workspace/ in this worktree; final evidence copies
-are under reports/business-workspace-evidence/checks/.
+are under reports/business-workspace-evidence/checks/. Committed transcripts
+normalize terminal color/progress whitespace; original raw logs remain in .build.
 
 | Command/check | Result |
 | --- | --- |
@@ -200,6 +202,16 @@ business_tasks::tests::fixture::business_tasks_browser_fixture -- --ignored
 node reports/business-workspace-evidence/serve.mjs out-business-workspace --backend=4342.
 Only closed business POSTs are forwarded; legacy APIs/WebSockets/outbound are
 blocked. Proxy logs only method/path/status. No credential snapshots/traces.
+
+Final export SHA256: business.html
+37caadb86dd9dbf828eb42ab4bf053303801f1a96cdedc4f4accccc0258b09ac;
+index.html 4ed8eac14e81a0f07a39560ccbef20dda2f9b8dfba90c773015a3423a8a22f5c.
+The static-router test uses BUSINESS_EXPORT_DIR pointing to that own export,
+CARGO_TARGET_DIR pointing to .build/business-gates-target, and the snapshot test
+business_tasks::tests::fixture::business_export_paths_use_real_static_router
+with --locked --offline --no-default-features --lib --jobs4 -- --exact.
+fixture-static-routing.patch uses zero context; reproduce with git apply
+--unidiff-zero after the disk-fixture patch, only inside an isolated snapshot.
 
 ## Limits and preservation
 
