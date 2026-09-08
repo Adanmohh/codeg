@@ -590,3 +590,28 @@ packages/react/src/{drawer/popup/DrawerPopup.tsx,internals/useAnimationsFinished
 and docs/src/app/(docs)/react/handbook/animation/page.mdx;
 tailwindlabs/tailwindcss v4.1.18, 6db2a6d637ed12489f9fd5a64ca394d934eb14f4.
 No Base UI or Tailwind implementation is copied or ported.
+
+Shared organization business tasks (2026)
+========================================
+Adapts xintaofei/codeg v0.30.4, Apache-2.0,
+6f6bd648b206412644842a98d9ffeebf57292bed:
+  src-tauri/src/db/entities/{work_task,work_task_event}.rs
+    (typed states and append-only task activity)
+  src-tauri/src/db/service/work_task_service.rs
+    (conditional updates with events in the same transaction)
+  src-tauri/src/db/migration/m20260801_000001_work_task.rs
+    (task/event entity and migration registration patterns)
+Accepted Adanmohh/codeg 4ec04d7282a50529335d724438d42b99a53385a2:
+  src-tauri/src/ops/{agent,types}.rs
+    (closed input and transaction-rechecked live executor binding)
+  src-tauri/src/db/migration/m20260908_000008_ops_telegram_issues.rs
+    (explicit SQLite migration transaction)
+Business fields and organization/revision glue implement the owner-approved
+docs/BUSINESS-IMPLEMENTATION.md. IntroInnovation/intromail (owner-authorized)
+0bd24dfe284b888aa9f602fa1fd00e337ea38874, backend/app/models.py (Task basic
+title/notes/due/creator fields) and services/task_ops.py / agent/tasks_pack.py
+inform the common human-agent operation boundary. No favorites, relations,
+watchers, source-key or field-journal implementation from its copyleft-source
+research is copied. The source create/PATCH authorization omissions are not
+retained. Original Apache LICENSE and every preceding notice remain in force.
+No GPL/AGPL or additional dependency implementation is imported.
