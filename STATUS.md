@@ -7,18 +7,24 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Area | Current result | Next gate |
 | --- | --- | --- |
 | Foundation: brand, tickets, approvals | Reviewed and merged, PRs #1–3 | Retain combined regressions |
-| Direct Resend transport | Reviewed and merged, PR #6; UI integration accepted in #7 | Combined beta validation |
-| Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
-| Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
+| Direct Resend transport | PRs #6/#7 accepted; protected synthetic provider/browser flows pass | Final design/native gate; live inbox remains unconfigured |
+| Hafidh intake + GitHub App filing module | PRs #5/#9/#12/#15 accepted through operator, phone and agent integration | Final design/native gate; live App/admin access unvalidated |
+| Email UI, drafts, morning, approved delivery | PR #7 accepted, with locale/RTL/receipt corrections in #14; synthetic flows pass | Final combined Design Studio loop |
 | Pi scoped bridge/default | PRs #8 and #15 reviewed and merged; cached reads/native issue proposal, real companion/adapter and protected browser checks pass | Final build; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 host, #12 phone and #15 Pi integration accepted; independent combined178 Ops tests pass | Final beta/native validation |
 | Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
-| Final Design Studio loops | PRs #13 and #14 corrections reviewed and merged; shell, locale, RTL, receipt copy and selected contrast pass | Final integrated specialist review, verify remaining motion/probe candidates |
+| Final Design Studio loops | PRs #13/#14 accepted; PR #18 badge and #19 reduced-motion corrections under review | Both fixes, final integrated specialist PR #16 and root recheck |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
 Historical dispatch/review entries below describe their state at that time;
 the table above is the latest status.
+
+Root final frontend regression passes6158 tests across433 files. Integrated
+backend passes178 Ops and13 Desk-selector tests. Real release companion and
+debug server builds pass; the existing local test database upgraded through
+migration000008. Native executable compilation is running, with final bundle
+packaging after the remaining UI corrections. [Build evidence](reports/native-phase1-build.md).
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
