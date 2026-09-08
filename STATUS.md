@@ -332,3 +332,5 @@ that merge inspection. No product implementation is delegated to root.
 - Ops design correction and Pi P1 bridge workers continue; final combined Design Studio loop and rebuilt native app remain required. No live provider calls or root product changes.
 
 - Approvals dispatched to separate report-only `review/design-phase1`, same worktree/pane, deliverable `reports/design-phase1-specialist.md`. It will map BC1–18, run actual Design Studio methods and CLI on the accepted combined UI after PR14; no product edits or fourth worker. Root retains independent synthesis/fix coordination.
+
+- Pi P1 product `b15f11a7` and accepted-main integration `ae131cf8` reviewed; independent four real bridge/host tests pass, including cache immutability, scoped closed input, human floor and cancellation. Actual adapter discovery/browser and final gates remain. [Review](reports/review-pi-issues.md).
