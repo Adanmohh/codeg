@@ -101,7 +101,15 @@ it remains open for viewing. It contains accepted A, not unfinished B changes.
 
 ## Increment B — meeting/feedback to shared tasks
 
-Latest draft PR28 head is `5de1176beb4778604b26df65f2ec669b0ab7987b`,
+Candidate product `e9c6323760497e7b294282d2746cfe1d9b2774fa` is now published;
+GitHub PR28 head `3b00daa47f9d0088d6b0a11388dbe73984d89beb` differs only by a
+report closeout. Root read the checkpoint report: nine scoped candidate/task-source
+HTTP operations, owner server check and seven publication tests pass, including
+transaction rollback, real two-connection CAS and queued credential revocation.
+These are owner results; independent review remains at67708b07. Full HTTP/native,
+additional lifecycle and late/uncertain cleanup gates remain pending. B is unmerged.
+
+Earlier import checkpoint is `5de1176beb4778604b26df65f2ec669b0ab7987b`,
 production source `4a194500b76b97aa5caaf9434ce5c1f16e54ea48`. Root verified
 the GitHub head and read the report/seam inventory. Eight source/import HTTP
 operations compile; owner reports five new import tests passing for source-wide
