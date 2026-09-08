@@ -11,6 +11,7 @@ use axum::http::StatusCode;
 use sea_orm_migration::{MigratorTrait, SchemaManager};
 use serde_json::json;
 pub(crate) mod provider;
+mod migration;
 use provider::Provider;
 
 async fn settings(

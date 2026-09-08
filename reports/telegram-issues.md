@@ -1,6 +1,6 @@
 # Step 3 — typed GitHub issue phone review
 
-Contract checkpoint, 2026-09-08. Sole writer in
+Migration-test checkpoint, 2026-09-08. Sole writer in
 `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`, new branch
 **feat/step3-telegram-issues**, created clean from accepted origin/main
 **77c88d9c615072a11b6e24224ec954c398b33518**. No additional agents.
@@ -159,6 +159,34 @@ origin; loopback is synthetic browser validation only. No live bot, issue, App
 installation, paid inference, deployment or messages to people.
 
 ## Progress and next step
+
+Owner accepted the complete contract, then explicitly confirmed PR9 accepted at
+**8703e00fae2e1c92e045936b140b83012cfe0f57**, merged as
+**02e3f5d8a15a3fee792cd0625966dee6c500d184**. Checkpoint this preparation before
+integrating accepted main. The earlier unmerged metadata below is historical.
+
+Added three focused, named-forward-migration regressions covering preservation
+of sent/unknown/checking/preflight_failed email notices, failure after table
+replacement, a closed action-kind constraint and refusal of lossy rollback.
+The production migration is intentionally not implemented in this checkpoint;
+the worker's own `target-approvals` red run completed: `cargo test --locked
+--no-default-features --lib ops_telegram::tests::migration -- --nocapture`,
+exit **101**, all three tests fail specifically because the named migration is
+not registered. Output: `reports/telegram-issues-migration-red.log`.
+This establishes the missing implementation; no passing result is claimed.
+Appended the exact accepted PR10 and original Codeg active-enum attribution to
+NOTICE before these source writes. No accepted historical migration was edited.
+
+Installed-source grounding also includes SeaORM active-enum derivation,
+SchemaManager column/index queries, serde **1.0.228** defaulted fields, and
+libsqlite3-sys **0.30.1** bundled SQLite **3.46.0** ALTER TABLE/DROP COLUMN.
+Live hook records for this same session/worktree include PreToolUse and
+PostToolUse **1788826240**, both exit 0; the docs-first source reminder was
+emitted during the pinned-source reads before the test write. No bypass.
+
+Next: complete the red test observation, commit/push this resumable preparation,
+merge the now-authorized accepted main, read the actual host source and NOTICE,
+then implement the forward migration and complete typed host phone flow.
 
 Clean-status check, `git fetch origin`, `git switch -c feat/step3-telegram-issues
 origin/main`, full planning/NOTICE/source reads and immutable gh api metadata

@@ -436,3 +436,21 @@ Pi setup-error display reuses src/lib/app-error.ts::toErrorMessage from Codeg
 v0.30.4 (6f6bd648b206412644842a98d9ffeebf57292bed), verified blob
 9ddaab9e53c9c9c6971f8ad1a32938f364722457. The connection lifecycle and ACP
 context call that existing helper; no new error parser is introduced.
+
+Typed GitHub-issue Telegram extension (2026)
+==========================================
+Independent storage/type glue reuses accepted Adanmohh/codeg PR10 merge
+c3cef09a896308b2501947e5aaafa533e36d9053:
+  src-tauri/src/db/migration/m20260908_000007_ops_telegram.rs
+  src-tauri/src/ops_telegram/{entity,types,mod,tests}.rs
+  src-tauri/src/ops/tests.rs (synthetic proposal/task fixture only)
+Adaptation: forward migration m20260908_000008_ops_telegram_issues,
+closed notice action kinds, explicit default-off issue setting and row-preserving
+upgrade/rollback tests. The original migration and delivery claims are retained.
+The active-enum pattern is from Codeg v0.30.4, Apache-2.0, commit
+6f6bd648b206412644842a98d9ffeebf57292bed:
+  src-tauri/src/db/entities/automation_run.rs
+  (blob 1c55bcde715f5ab6d62c7b7ea91d6c49e76fd3c8).
+Original Apache LICENSE and every preceding attribution remain in force.
+No unaccepted host implementation or new third-party provider client is ported
+by this independent storage/type checkpoint.
