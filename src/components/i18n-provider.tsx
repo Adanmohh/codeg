@@ -250,6 +250,10 @@ export function AppI18nProvider({
 
   const localeReady = appLocale === messagesLocale
   const appReady = languageSettingsLoaded && localeReady
+  const [hasBooted, setHasBooted] = useState(false)
+  useEffect(() => {
+    if (appReady) setHasBooted(true)
+  }, [appReady])
   const activeIntlLocale = toIntlLocale(messagesLocale)
 
   useEffect(() => {
@@ -270,7 +274,9 @@ export function AppI18nProvider({
   return (
     <AppI18nContext.Provider value={contextValue}>
       <NextIntlClientProvider locale={activeIntlLocale} messages={messages}>
-        {appReady ? children : <AppBootLoading />}
+        {/* Only gate the initial boot. Later locale loads must keep workspace
+            navigation and private in-memory edits mounted with the last bundle. */}
+        {appReady || hasBooted ? children : <AppBootLoading />}
       </NextIntlClientProvider>
     </AppI18nContext.Provider>
   )

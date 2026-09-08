@@ -1,6 +1,6 @@
 # Ops locale, direction and review copy corrections
 
-Implementation in progress; no completed validation claim yet.
+The four scoped production corrections are implemented. Browser rechecks and final gates are in progress; this is a reviewable checkpoint, not the final acceptance claim.
 
 - Sole worktree: `/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand`.
 - Branch: `fix/design-ops`, created after a clean check/fetch from accepted main **617385194f67b3d9e5aca5d9d29f3b1baeebb070**. PR9 is accepted at 8703e00f and merged as 02e3f5d8.
@@ -16,7 +16,17 @@ Implementation in progress; no completed validation claim yet.
 
 Owned production seams: `src/components/i18n-provider.tsx`, scoped `src/components/ops/{ops-page,inbox-view,proposals-view,reply-editor}.tsx`. Public component props and backend/API types remain unchanged. The phone owner may continue to reuse `ReviewCard`, `proposalStatus` and `ReplyEditor`; this task changes their presentation only. The phone route and typed issue notification implementation stay with approvals.
 
-Planned test-only addition: an ignored `src-tauri/src/ops/tests/integration/design_ops_browser.rs` fixture, reusing the accepted synthetic provider/store/router helpers, plus its one module declaration. No Rust runtime or migration change is planned.
+The only Rust change is an ignored `src-tauri/src/ops/tests/integration/design_ops_browser.rs` fixture and its one module declaration, reusing accepted synthetic provider/store/router helpers. No Rust runtime, gate, sender, migration, facade or component-prop change.
+
+## Current evidence and fixture access
+
+Baseline Playwright CLI reproduction is in `design-ops-before.raw` and `browser-design-ops/before-*.png`: the separate Settings tab changed English → Arabic, the Ops subtree disappeared, and reopening restored the saved `Original approved body` instead of the unsaved synthetic reply. The mobile Back SVG had no rotation; the accepted receipt also displayed the contradictory no-receipt disclaimer. The before export was built before any product edits; the same loaded baseline browser pages were used for the final captures. Two initial probe attempts needed ordinary sidebar/drawer handling; the completed returned result is the evidence.
+
+The real-editor locale suite first failed **5/8** on the baseline, then passed **8/8** after the boot-latch correction. Initial boot, delayed/failed/superseded locale bundles, reply/private note/complete review, desktop/mobile subtree changes and colliding backend IDs/base URLs are exercised. The focused receipt/session suite passes **22 tests**. An initially unsupported test matcher was replaced with this repository's existing Vitest assertions; nested paragraph markup was corrected to a span. The first type/build attempt caught confusing the existing `DeliveryStatus` DTO with its `status` field; the function and fixtures now use the read DTO's indexed status type and the receipt callback's actual DTO return. No package or lockfile upgrade.
+
+Root can open **http://127.0.0.1:4326/login**, enter the deliberately nonsecret fixture token **ops-design-synthetic-operator**, then open Ops desk. Current owned server PID **63050**, fixture state `.build/design-ops/e0b6e800-4361-442d-963d-c137628b62c9`, export **out-design-ops/**. Its authenticated read-only `/api/ops_design_fixture_stats` returns only synthetic IDs and provider request count. Proposal **1** is reserved for locale/edit checks; **2** is provider-accepted/local-recording-pending, **3** accepted/recorded, **4** unknown, **5** rejected, **6** denied. All four provider requests happened only against the fixture's loopback server during seeding; no runtime engine or inference starts. Please keep proposal 2's recording action untouched until this worker records its no-resend recheck. Other terminal records are safe for read-only review.
+
+Final work remaining: refreshed export and desktop/mobile English/Arabic/restored-English CLI checks, all terminal views and recording-only provider-count assertion, measured Design Studio recheck, desktop/server Clippy/checks and final report/PR update. Existing 4320/4322/4323/4324 exports and state remain untouched.
 
 ## Source authority and attribution
 
@@ -29,7 +39,7 @@ Read the complete current STATUS/workorder/root design review/locale reproductio
 | Accepted Ops UI **756d064f1cc391ed1da32ba90429adef225f080d**, with accepted main **61738519** | `src/components/ops/{session,inbox-view,proposals-view,reply-editor,ops-page}.tsx`, `session.test.tsx`, `ops-flows.test.tsx` | Existing private memory lifetime, exact editor/review props and receipt presentation |
 | Accepted Ops/Telegram fixture source at **617385194f67b3d9e5aca5d9d29f3b1baeebb070** | `src-tauri/src/ops/tests/integration.rs`, `integration/{browser,telegram_browser}.rs` | Real protected routes, SQLite, in-memory secrets and loopback Resend fixture; dedicated port/export only |
 
-Original Apache LICENSE and all existing NOTICE/MIT text will be preserved; the scoped Codeg reuse will be recorded in NOTICE. No AGPL, enterprise or PolyForm source. All remote research, if needed, uses `gh api` at immutable refs; local exact source is first and no latest-source repinning is authorized.
+Original Apache LICENSE and all existing NOTICE/MIT text are preserved; the scoped Codeg reuse is appended in NOTICE. No AGPL, enterprise or PolyForm source. All remote research, if needed, uses `gh api` at immutable refs; local exact source is first and no latest-source repinning is authorized.
 
 ## Docs-first and planned verification
 

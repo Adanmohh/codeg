@@ -71,6 +71,7 @@ export function InboxView({
             </label>
             <select
               id="ops-inbox"
+              dir="auto"
               value={inboxId}
               className="min-h-11 w-full rounded-lg border bg-background px-3 text-base focus-visible:outline-2 focus-visible:outline-ring sm:text-sm"
               onChange={(e) => {
@@ -138,14 +139,17 @@ export function InboxView({
                       }
                     >
                       <span className="flex items-center justify-between gap-3">
-                        <span className="truncate text-sm font-medium">
+                        <span
+                          dir="auto"
+                          className="truncate text-sm font-medium"
+                        >
                           {ticket.contact}
                         </span>
                         <span className="text-xs text-muted-foreground">
                           {statuses[ticket.status]}
                         </span>
                       </span>
-                      <span className="block truncate text-sm">
+                      <span dir="auto" className="block truncate text-sm">
                         {ticket.subject}
                       </span>
                       <span className="block text-xs text-muted-foreground">
@@ -237,7 +241,7 @@ function ThreadView({
     <div className="min-w-0 flex-1 overflow-y-auto">
       <div className="border-b p-2 sm:hidden">
         <Button variant="ghost" className={touchButton} onClick={onBack}>
-          <ArrowLeft aria-hidden="true" />
+          <ArrowLeft className="rtl:rotate-180" aria-hidden="true" />
           Back to inbox
         </Button>
       </div>
@@ -332,11 +336,12 @@ export function ThreadBody({
         <div className="text-xs font-medium text-muted-foreground">
           {statuses[thread.ticket.status]} · Thread #{thread.ticket.id}
         </div>
-        <h1 className="break-words text-xl font-semibold">
+        <h1 dir="auto" className="break-words text-xl font-semibold">
           {thread.ticket.subject}
         </h1>
         <p className="break-all text-sm text-muted-foreground">
-          {thread.ticket.contact} · {thread.contactEmail}
+          <bdi>{thread.ticket.contact}</bdi> ·{" "}
+          <bdi dir="ltr">{thread.contactEmail}</bdi>
         </p>
       </header>
       <div aria-label="Conversation messages" className="space-y-5">
@@ -357,13 +362,13 @@ export function ThreadBody({
                     : "Incoming email"}
                 </strong>
               )}
-              <span>
+              <bdi dir={message.private ? "auto" : "ltr"}>
                 {message.private
                   ? message.author
                   : message.outgoing
                     ? binding.from
                     : thread.contactEmail}
-              </span>
+              </bdi>
               <time dateTime={message.createdAt}>
                 {new Date(message.createdAt).toLocaleString()}
               </time>
@@ -374,7 +379,10 @@ export function ThreadBody({
                 message.private && "border-amber-500/40 bg-amber-500/5"
               )}
             >
-              <p className="whitespace-pre-wrap break-words [overflow-wrap:anywhere]">
+              <p
+                dir="auto"
+                className="whitespace-pre-wrap break-words [overflow-wrap:anywhere]"
+              >
                 {message.content}
               </p>
             </MessageContent>
@@ -434,6 +442,7 @@ export function ThreadBody({
             </label>
             <Textarea
               id="ops-private-note"
+              dir="auto"
               rows={5}
               value={note}
               className="min-h-32 rounded-lg"

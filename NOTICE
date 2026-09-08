@@ -455,3 +455,24 @@ Pi setup-error display reuses src/lib/app-error.ts::toErrorMessage from Codeg
 v0.30.4 (6f6bd648b206412644842a98d9ffeebf57292bed), verified blob
 9ddaab9e53c9c9c6971f8ad1a32938f364722457. The connection lifecycle and ACP
 context call that existing helper; no new error parser is introduced.
+
+Ops locale preservation and directional review presentation
+Source: xintaofei/codeg v0.30.4, Apache-2.0, commit
+6f6bd648b206412644842a98d9ffeebf57292bed.
+Files: src/components/i18n-provider.tsx, src/i18n/messages.ts,
+src/app/layout.tsx and src/components/ui/pagination.tsx.
+Port: the existing i18n provider's initial boot guard gains mount-preservation
+glue for subsequent message loads; Ops Back icons reuse rtl:rotate-180 from
+pagination. Native dir/bdi presentation is applied to the existing Ops editors.
+No provider, session persistence, sender, gate or message-loader replacement.
+
+Accepted local Ops source at Adanmohh/codeg commit
+617385194f67b3d9e5aca5d9d29f3b1baeebb070:
+src/components/ops/{ops-page,inbox-view,proposals-view,reply-editor,session}.tsx,
+src/components/ops/{session,ops-flows}.test.tsx, and
+src-tauri/src/ops/tests/integration.rs with integration/{browser,telegram_browser}.rs.
+The scoped presentation corrections retain those component contracts and the
+backend-keyed memory-only session. The test-only design_ops_browser.rs fixture
+adapts their SQLite, protected router, MemorySecrets and loopback provider setup
+for a separate port/export. The original Apache-2.0 LICENSE and all preceding
+attributions and license text remain in force.

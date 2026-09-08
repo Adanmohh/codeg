@@ -140,9 +140,6 @@ function OpsWorkspace() {
       ) : (
         context.data && (
           <div className="flex min-h-0 flex-1 flex-col">
-            <div className="shrink-0 border-b bg-muted/25 px-4 py-2 text-xs leading-relaxed text-muted-foreground sm:px-6">
-              Account {context.data.accountId} · {context.data.transportMessage}
-            </div>
             {view === "inbox" &&
               (context.data.inboxes.length === 0 ? (
                 <CreateInbox onCreated={context.reload} />
@@ -230,6 +227,7 @@ function CreateInbox({ onCreated }: { onCreated: () => void }) {
             </label>
             <Input
               id="ops-inbox-name"
+              dir="auto"
               className={touchButton}
               autoComplete="off"
               required
@@ -245,6 +243,7 @@ function CreateInbox({ onCreated }: { onCreated: () => void }) {
             </label>
             <Input
               id="ops-inbox-email"
+              dir="ltr"
               className={touchButton}
               type="email"
               required
