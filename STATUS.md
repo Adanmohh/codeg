@@ -79,6 +79,17 @@ it remains open for viewing. It contains accepted A, not unfinished B changes.
 
 ## Increment B — meeting/feedback to shared tasks
 
+Latest draft PR28 head is `5de1176beb4778604b26df65f2ec669b0ab7987b`,
+production source `4a194500b76b97aa5caaf9434ce5c1f16e54ea48`. Root verified
+the GitHub head and read the report/seam inventory. Eight source/import HTTP
+operations compile; owner reports five new import tests passing for source-wide
+ordering, cancellation/expiry, current grants, version/deduplication and bounded
+retry/pagination. The later head adds tests and report only. These tests have not
+been independently rerun; product remains unmerged. Candidate/publication core
+continues with explicit Principal/organization. New native registrations await
+reviewed tenant selection. Both reviewer and UI owner received this exact handoff.
+No fixture or accepted preview changed.
+
 PR25 is reviewed and merged at exact handoff `7f4d4dbc66f3b7487ffcb623769d79c9be2ac044`,
 merge `aa16a9b960ee9d59876a119c47165206f46d10d1`. Frozen contract `670af9ca`
 plus access `18be55ed` has no open contract blockers in independent review
