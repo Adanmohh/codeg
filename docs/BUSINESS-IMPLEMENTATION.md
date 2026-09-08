@@ -102,3 +102,33 @@ No worker edits root STATUS/DECISIONS/founding/design brief. Commit/push early,
 draft PRs to Adanmohh/codeg main, per-task report deliverables. Cross-review after
 handoff, exact-head root acceptance and STATUS update per merge. GPT-6 Astra/max,
 docs-first, gh api immutable refs, no AGPL source and no product code by root.
+
+## Increment B implementation ownership — prepared, not dispatched
+
+Increment A local acceptance is complete at package f4757d8d. B's interaction
+plan is accepted through PR26; PR25 and the protected access seam still require
+final immutable reconciliation/review. The following ownership becomes active
+only when root explicitly dispatches implementation against those accepted pins.
+
+- Tickets owns the single `business_intake` backend module, binding/grant and
+  import/source/candidate persistence, fixed Fireflies reader, narrow task-owned
+  transaction helper extraction, source-safe email/Hafidh projections and shared
+  HTTP/native registration. One new migration will be reserved at dispatch.
+  Reuse the existing credential adapter with the required strict mutation-read
+  seam; do not create a second credential store or identity model. Publish small
+  compiling checkpoints and a report with actual gates; no live provider action.
+- Rebrand owns the business-facing Sources/setup/review flow, typed closed intake
+  client and EN/AR copy. Reuse the accepted session/task/native shell and fields;
+  wire real APIs after their compiling checkpoint. Preserve task Review as the
+  completion-review queue. No fake data/connectivity or exposed job/engine details.
+- Approvals independently reviews committed backend privacy, source/claim fences,
+  credential lifecycle and atomic task seams, then integrated UI/session behavior.
+  Findings return to the product owner; reviewer product edits are not needed.
+  Root reviews source/report and runs independent integrated browser/native gates.
+
+Each uses its existing Herdr pane/worktree on a fresh branch from accepted main,
+Astra/max, live docs-first and installed-source/immutable-gh-api borrowing rules.
+No new runtime/dependency/worker, other-worktree write, fixture replacement or
+live configuration action. Preserve the accepted A package and fixtures until a
+separately coordinated final B build. Root's BI-1–BI-10 acceptance plan and the
+contract B01–B18 are implementation gates, not already-passing B evidence.
