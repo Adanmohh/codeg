@@ -30,3 +30,23 @@ Evidence must record source commit, fixture identity, browser sessions, request
 outcomes and actual limitations. Synthetic tokens only; never capture credential
 values from global Settings. Permission policy may evolve in the identity
 contract; changes must be explicit and this checklist reconciled before testing.
+
+## Integration evidence checkpoint — 2026-09-08
+
+This maps completed evidence and remaining checks; it is not final Increment A
+acceptance. Exact source/commands/limits remain in the linked reports.
+
+| IDs | Evidence now available | Remaining acceptance |
+| --- | --- | --- |
+| BW-1,5,6 | Accepted [identity review](review-business-identity.md) and [task review](review-business-tasks.md): backend-derived principals, transaction/revocation/reference guards. | Final native invocation coverage is separate. |
+| BW-2,7 | [Root browser integration](business-final-root/README.md): distinct manager and viewer sessions see the same task, human-only creation/progress/review, named audit actor. | Final export identity. |
+| BW-3,4 | Root five cold routes make no API calls; viewer has no editing/engineering controls. Independent identity/router and task tests cover backend denials. | Final native shared-member session; reviewer teardown/revocation checks. |
+| BW-8 | Root actual409/draft retention/adoption and13 correction workflow tests; independent source review covers atomic CAS/audit. | Final corrected export source correlation. |
+| BW-9,10 | Exact R1 review at1ba73e3c:13 independent ownership/bridge/migration/HTTP tests and scoped lifecycle proof. Accepted worker real Pi/process evidence remains separately attributed. | Final packaged companion protocol; no live inference is claimed. |
+| BW-11 | Root preserves calendar2028-02-29 across separate sessions; independent12-frame EN/AR matrix has no page overflow. | Reviewer final rendering synthesis and native view. |
+| BW-12 | Authorized actual lists/search and worker component/page tests. | Independent board/filter/empty/error checks in progress. |
+| BW-13 | Independent12-frame matrix and actual keyboard human review pass. | Two verified search P2s, final focus/motion checks and rechecks. |
+| BW-14,15 | Root viewport draft retention/cold recovery; reviewer actual other-tab locale preserves six edited fields. | Independent identity/revocation/disconnect teardown and recovery. |
+| BW-16 | [Native source review](business-native-review.md):22 fixed commands match registration; fresh-entry N1 resolved at3a189d18. | Actual packaged WebKit owner/shared-member controls. |
+| BW-17 | [Accepted backend regressions](business-integration-regressions.md):312 passed,5 manual fixtures ignored at294fb634. Root full frontend6194 passed atb97e6bd9. | Only affected later correction checks, not an unnecessary broad rerun. |
+| BW-18 | Worker/reviewer Design Studio loops and root inspected before/after conflict evidence. | Final specialist synthesis, fixes closed, package/export hashes and native startup. |
