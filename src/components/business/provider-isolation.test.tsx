@@ -66,7 +66,7 @@ beforeEach(() => {
 })
 
 describe("business route provider isolation", () => {
-  it.each(["/business", "/business/", "/business.html"])(
+  it.each(["/", "/index.html", "/business", "/business/", "/business.html"])(
     "isolates %s with an ambient operator token and wallpaper enabled",
     async (pathname) => {
       boundary.pathname = pathname

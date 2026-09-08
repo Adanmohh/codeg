@@ -1,81 +1,129 @@
-# Business workspace — implementation checkpoint
+# Business workspace — active implementation checkpoint
 
-Active, 2026-09-08. Branch `feat/business-workspace`, created from accepted
-`origin/main` at `4ec04d7282a50529335d724438d42b99a53385a2`. Deliver direct human
-task creation/assignment/progress/review and a finished role-based workspace;
-engineering and optional agent conversation remain supporting capabilities.
-UI contract: `docs/contracts/business-ui.md`. Early docs commit `cf404c6e`, pushed;
-draft PR [21](https://github.com/Adanmohh/codeg/pull/21).
+Branch `feat/business-workspace`; draft [PR21](https://github.com/Adanmohh/codeg/pull/21).
+Base `4ec04d7282a50529335d724438d42b99a53385a2`; previous pushed source checkpoint
+`142b600e`. This checkpoint implements the frontend against the published identity
+and task contracts. It is **not runtime UI acceptance**: real guarded task fixture,
+two-session browser evidence and final Design Studio checks are still pending.
 
-## Preserved work and source authority
+## Implemented behavior
 
-Tracked state was clean before switching. The untracked research report was
-byte-identical to main and would collide; its original was moved, without
-overwriting, to ignored
-`.build/rebrand-paused-checkpoints/20260908-business-resume/research-intromail-shared-work.md`
-(SHA256 `d4d99598d10870b55e0700f439e49df86a57255a2c01e0ae00b7cf04b523a7a0`).
-`reports/visual-workspace.md` stays untracked and unchanged. Existing 4326 fixture,
-`out-design-ops/` and browser remain untouched; no new fixture launched yet.
+The default entry opens a branded business workspace. A separate in-memory
+connection signs into the shared server or explicitly connects the local native
+operator. Original operators can bootstrap an organization; authorized owners and
+admins can manage human/agent members and issue/revoke personal credentials.
+One-time secrets remain masked until intentional reveal/copy and disappear on
+closing the credential surface. Agent directory entries cannot receive sign-in
+credentials. Existing operator login and engineering routes remain available;
+only the server's `legacyOperator` capability displays the engineering entry.
 
-Read current BUSINESS-IMPLEMENTATION, FOUNDING, ORCHESTRATOR, STATUS, DECISIONS,
-AGENTS, the three research reports and design BRIEF. Business resumption
-supersedes the paused narrow visual scope. No protected planning documents edited.
+My work, shared work and review support list/board views, server filters and
+50-record pagination. Direct task creation and detail expose human ownership,
+human/agent execution, nullable reviewer, calendar-only due date, notes,
+deliverables, public activity and capability-controlled mutations. Progress has
+only todo/in_progress/review; completion uses the distinct human review operation.
+Null reviewer means any currently authorized human reviewer. Review displays the
+actual saved revision and current deliverable. Existing execution links are
+subordinate detail and do not launch an engine.
 
-Docs-first live audit includes PreToolUse and PostToolUse records for session
-`01a07c1c-cf2e-73e1-bbe3-e758c8363042`, worktree `rebrand`, after separate reads of
-`node_modules/react/package.json` and `src-tauri/Cargo.toml`. Hooks stay enabled.
-React installed version is 19.2.4. Code-context offline guide retrieval exited 0;
-dependency retrieval exited 3 because `rebrand.db` is absent. No new corpus,
-package or model was installed. Relevant guidance: installed-version authority,
-one route per job, precise staging and existing source reuse. No extra agents.
+Conflicts preserve the edited draft and original revision, lock writes, and
+require loading/comparing the current version before explicit adoption. Ambiguous
+create failures do not automatically retry. Locale/viewport changes preserve
+private drafts; disconnect, authentication failure or membership revision change
+unmount the private workspace and discard late responses. Errors use safe fixed
+copy instead of raw backend/provider bodies.
 
-Applied Design Studio art-direction/frontend-design/checklist methods. Direction,
-token inheritance, mobile composition and self-critique are in the UI contract.
-Source analysis confirms `/workspace` mounts privileged engineering providers;
-restricted business members need a separate protected business surface, retaining
-shared UI primitives and minimal navigation seams.
+Cold `/business`, `/business/`, `/business.html`, `/` and `/index.html` omit legacy
+settings/wallpaper/operator-connection reads, even with an ambient old operator
+token. `/business-other` and `/workspace` retain inherited behavior. The business
+client uses only the fixed `/api/business` POST envelope, omits cookies, refuses
+redirects and never reads/writes the legacy bearer store. Local desktop business
+commands remain operator-only; member HTTP credentials use the separate client.
 
-## Initial source-to-adaptation map
+## Source-to-adaptation map and authority
 
-All local source below read at `Adanmohh/codeg@4ec04d7282a50529335d724438d42b99a53385a2`;
-Apache upstream baseline remains `xintaofei/codeg@v0.30.4`,
-`6f6bd648b206412644842a98d9ffeebf57292bed`.
-
-| Read source | Intended reuse |
+| Exact source read | Adaptation |
 | --- | --- |
-| `src/components/ui/{button,input,textarea,dialog}.tsx` | Existing primitives and nested-dialog guards; scoped presentation only. |
-| `src/components/tasks/board-columns.ts`, `task-card.tsx` | Status grouping and task row/card composition; business DTOs stay distinct from engineering-run state. |
-| `src/app/{layout,page,login/page}.tsx`, `src/app/workspace/layout.tsx` | Existing entry/navigation behavior and precise member isolation boundary. |
-| `src/lib/transport/{web-auth,web-connection-store,index}.ts`, `src/components/connection/web-connection-guard.tsx` | Inspect operator transport; never put member credentials into its global token slot. |
-| IntroMail research at `0bd24dfe284b888aa9f602fa1fd00e337ea38874` | Domain guidance only for frontend; no direct IntroMail or Plane/OpenProject source copied. Identified authorization gaps are requirements for backend integration. |
+| `Adanmohh/codeg@4ec04d7282a50529335d724438d42b99a53385a2`: `src/components/ui/{button,input,textarea,dialog,drawer}.tsx` | Existing imported controls, modal focus/dismissal and shared Drawer; scoped business composition, no new UI system. |
+| Same commit: `src/components/tasks/{board-columns.ts,task-card.tsx}`, `src/components/ops/session.tsx` | Status list/board presentation and keyed in-memory editing lifetime; separate business DTOs. |
+| Same commit: `src/app/{layout.tsx,page.tsx,login/page.tsx,workspace/layout.tsx}`, `src/components/layout/sidebar.tsx` | Minimal business entry/navigation and inherited engineering access. |
+| Same commit: `src/components/{i18n-provider,appearance-provider}.tsx`, `src/components/connection/web-connection-guard.tsx`, `src/lib/transport/{web-auth,web-transport,tauri-transport,index}.ts`, `src/lib/app-error.ts` | Local-only provider boundary; isolated typed HTTP/native client and safe command-error decoding. |
+| Same commit: `src-tauri/src/web/router.rs`, `next.config.ts` | Read-only static-export routing authority, including direct `.html`; actual server/browser verification remains pending. |
+| Identity `861fb0ef4394d4980a19ba375bb4c1f3f218d39b`, accepted `c911c406`, merged `ab46c9d9`: `docs/contracts/business-identity.md`, `src-tauri/src/business_identity/{types,mod,store}.rs` | Exact UUID/camelCase inputs, member grant limits, protected owner credential semantics and transport-only legacy capability. |
+| Tasks `bf4309f5abdb077fd8e1a8e42db4861dadcda24b`: `docs/contracts/business-tasks.md`, `src-tauri/src/business_tasks/{types,policy,validation}.rs`; activity/HTTP checkpoint `76bb6909511016a11e864abe19d4ffd493aafa0c`, `store.rs` and handlers | Exact operation DTOs, nullable all-day date/reviewer, public activity fields and task capabilities. New combined `1e8b5250` is reported by its owner; runtime integration pending. |
 
-NOTICE records the inherited provider adaptation. No AGPL/GPL/enterprise source
-is ported. No dependency/runtime change is planned. Read installed React19.2.4
-hooks/types, Next16.1.6 navigation types, Tailwind4.1.18 theme/package,
-next-intl4.8.3 exports, Radix Dialog types and existing primitives,
-@tauri-apps/api2.10.1 invoke/core types, next-themes0.4.6 types,
-TypeScript5.8.3 DOM fetch/clipboard types and Vitest2.1.9/testing-library16.3.2
-test APIs. No newer documentation silently substitutes for these versions.
+Inherited Apache baseline: `xintaofei/codeg@v0.30.4`,
+`6f6bd648b206412644842a98d9ffeebf57292bed`. NOTICE appends the exact frontend
+adaptation and preserves all earlier licenses/entries. The Hafidh vector mark is
+the accepted original `public/icon.svg`. IntroMail research at
+`0bd24dfe284b888aa9f602fa1fd00e337ea38874` supplies domain guidance only; no
+IntroMail, Plane, OpenProject, AGPL/GPL or provenance-uncertain implementation is
+copied into this frontend. No dependency or lockfile change.
 
-## Progress and remaining checks
+Read complete BUSINESS-IMPLEMENTATION, FOUNDING, ORCHESTRATOR, STATUS, DECISIONS,
+AGENTS, the three research reports, root's 18-item acceptance checklist and design
+BRIEF. Applied code-context and Design Studio art-direction/frontend-design/
+checklist methods. Offline guide retrieval exited 0; installed-doc retrieval
+exited 3 because `rebrand.db` is absent. No corpus/model/package installation.
+Relevant retrieved guidance: installed-version authority, precise staging,
+existing-source reuse and one route per job. No invented repository rule.
 
-- Provider isolation implemented for `/business`, trailing slash and direct
-  `/business.html`. Tests include an old operator token and enabled local
-  wallpaper. `/business-other` and `/workspace` retain operator behavior.
-  Current Axum static-file rewrite/source confirms direct export reachability;
-  actual fixture browser/network verification is pending.
-- Identity contract `f3c36dc6` and task checkpoint `cb2e184f` read in their owners'
-  worktrees. Dedicated typed identity client and composition are in progress.
-  Task operation DTOs pending. UUID IDs, all-day `dueDate` and separate human-only
-  completion review are confirmed. Only `legacyOperator`, never a role/domain,
-  permits engineering access. Bootstrap/member setup is included.
-- Own new fixture proposed at 4340 with a separate export and two named CLI
-  sessions. Await actual guarded backend fixture contract; other outputs remain
-  untouched.
-- Focused provider and inherited regressions: 22/22 passed, exit 0
-  (`.build/business-workspace/provider-tests.log`). Initial two harness failures
-  used `true` for the inherited boolean preference; source uses `1`. Corrected
-  fixture value, assertions retained. Typecheck exit 0
-  (`.build/business-workspace/typecheck-checkpoint.log`). Implementation continues;
-  final lint/build/browser/design gates pending. No live configuration claim.
-- No live provider/model calls, account setup, credential output or deployment.
+Local API authority: React19.2.4 hooks/types, Next16.1.6 navigation/build help,
+Tailwind4.1.18 theme.css, next-intl4.8.3 provider exports, next-themes0.4.6,
+@tauri-apps/api2.10.1 invoke/core types, radix-ui1.6.0 Dialog types,
+@base-ui/react1.7.0 Drawer Root/Popup types, lucide-react0.563.0 declarations,
+TypeScript5.8.3 DOM/Intl types, Vitest2.1.9 and Testing Library React16.3.2.
+Playwright CLI0.1.18 help and skill read; no update installed. All remote source
+reads use `gh api` immutable refs, not latest-library substitution.
+
+Docs-first audit still contains live PreToolUse/PostToolUse for session
+`01a07c1c-cf2e-73e1-bbe3-e758c8363042`, this worktree, following separate
+`cat node_modules/react/package.json` and `cat src-tauri/Cargo.toml` reads.
+Hooks remain enabled; no bypass or global configuration change.
+
+## Validation at this checkpoint
+
+| Command / evidence | Exit and result |
+| --- | --- |
+| `pnpm exec vitest run src/lib/business/client.test.ts src/components/business src/components/appearance-provider.test.tsx src/components/connection/web-connection-guard.test.tsx src/components/layout/sidebar.test.tsx` | 0; 75/75 across 7 files, `.build/business-workspace/checkpoint-tests.log`. |
+| `pnpm exec tsc --noEmit` | 0; `checkpoint-typecheck.log`. |
+| Scoped `pnpm exec eslint` on business files, root/login/sidebar and provider seams | 0, no warnings; `checkpoint-lint.log`. |
+| `CODEG_EXPORT_DIR=out-business-workspace NEXT_TELEMETRY_DISABLED=1 pnpm build` | 0; 34 static pages including business. `build.log`. This build predates the final activity/unknown-member presentation adjustment; final export rebuild pending integration. |
+| `git diff --check`, lockfile diff | 0; no lockfile changes. |
+
+Behavioral tests cover dedicated bearer transport, unsafe origins, cookies and
+redirect denial, native command mapping, authentication teardown/late responses,
+cold-route legacy isolation, membership downgrade clearing private state, viewer
+restrictions, capability-only engineering access, human creation/review,
+calendar-day roundtrip, nullable reviewer, locale draft retention, stale CAS
+comparison, masked one-time credentials and public plaintext activity allowlists.
+Synthetic DTOs/fetch stubs exist only in unit tests, never production fallbacks.
+Initial test-only harness issues (inherited boolean `1`, unsupported Testing
+Library `exact` option and narrowed locale type) were corrected without weakening
+assertions. Connect hydration was aligned with installed React's external-store
+pattern; final lint/typecheck pass. No browser result is inferred from these tests.
+
+## Remaining work and concrete limits
+
+1. Push this frontend checkpoint, integrate accepted identity main while preserving
+   all attribution, then integrate the accepted task backend when available.
+2. Launch only the owned guarded fixture on **4340** with
+   `out-business-workspace/` and two CLI sessions `business-owner4340` /
+   `business-member4340`. Backend owner has reserved 4342; no other fixture is
+   modified. Need the published real task fixture/static-export setup contract.
+3. Complete actual protected task/member UI flows, 390/768/1280 light/dark/RTL,
+   focus/reduced-motion/long-content checks and measured Design Studio review.
+   Rebuild after integration and record exact tested head; no API-only acceptance.
+4. New business copy currently has English and Arabic. The other eight existing
+   app locales retain their global preferences and use English business copy;
+   this limitation is explicit, not a claim of ten-language translation coverage.
+   Credentials/drafts intentionally do not persist across reloads. The directory
+   follows the backend's 500-member cap.
+
+Preservation: paused `reports/visual-workspace.md` stays untracked and unchanged
+(SHA256 `ded5a851409095dc40fffff7f778f668f79a614aa4040a1bb0349c81b0f5768e`).
+The byte-identical colliding research copy was preserved under ignored
+`.build/rebrand-paused-checkpoints/20260908-business-resume/` (SHA256
+`d4d99598d10870b55e0700f439e49df86a57255a2c01e0ae00b7cf04b523a7a0`).
+Existing 4326 fixture/export/browser and all other worker outputs remain untouched.
+No backend edits, live provider/model calls, secret outputs, new agents or deployment.

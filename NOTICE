@@ -603,3 +603,24 @@ API reads and connection subscriptions. New route checks and tests are glue.
 Original xintaofei/codeg v0.30.4 Apache source and LICENSE remain unchanged
 (6f6bd648b206412644842a98d9ffeebf57292bed). No IntroMail/Plane/OpenProject hunk
 or additional third-party dependency is introduced by this provider change.
+
+Business organization workspace (2026)
+========================================
+Presentation and connection glue reuse Apache-2.0 Codeg source from accepted
+Adanmohh/codeg 4ec04d7282a50529335d724438d42b99a53385a2:
+src/components/ui/{button,input,textarea,dialog,drawer}.tsx;
+src/components/tasks/{board-columns.ts,task-card.tsx};
+src/components/ops/session.tsx; src/components/layout/sidebar.tsx;
+src/app/{layout.tsx,page.tsx,login/page.tsx,workspace/layout.tsx};
+src/lib/transport/{web-auth,web-transport,tauri-transport,index}.ts and
+src/lib/app-error.ts. Existing controls and Drawer are imported unchanged;
+the business route adds a dedicated typed client and private editing lifetime.
+The original Hafidh vector mark reuses the accepted public/icon.svg. The original
+xintaofei/codeg v0.30.4 Apache LICENSE is retained, immutable upstream commit
+6f6bd648b206412644842a98d9ffeebf57292bed.
+Business identity and task DTOs follow the separately attributed accepted/new
+backend contracts at 861fb0ef4394d4980a19ba375bb4c1f3f218d39b and
+bf4309f5abdb077fd8e1a8e42db4861dadcda24b; public task activity was read at
+76bb6909511016a11e864abe19d4ffd493aafa0c. No IntroMail/Plane/OpenProject
+implementation, AGPL/GPL-derived hunk or new third-party dependency is copied
+into this frontend. All existing source and license notices remain unchanged.

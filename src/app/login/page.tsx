@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { isDesktop } from "@/lib/platform"
 import { afterLoginPath } from "@/lib/ops-telegram/locator"
+import { useBusinessCopy } from "@/lib/business/copy"
 
 export default function LoginPage() {
+  const business = useBusinessCopy()
   const router = useRouter()
   const t = useTranslations("LoginPage")
   const [token, setToken] = useState("")
@@ -102,6 +104,12 @@ export default function LoginPage() {
         <p className="text-center text-xs text-muted-foreground">
           {t("helpText")}
         </p>
+        <a
+          href="/business"
+          className="focus-visible:ring-ring flex min-h-11 items-center justify-center rounded-lg text-sm text-primary underline underline-offset-4 outline-none focus-visible:ring-2"
+        >
+          {business.signIn}
+        </a>
       </div>
     </main>
   )

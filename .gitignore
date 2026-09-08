@@ -18,6 +18,7 @@ tsconfig.tsbuildinfo
 out/
 /out-telegram/
 /out-design-ops/
+/out-business-workspace/
 /out-telegram-issues/
 next-env.d.ts
 

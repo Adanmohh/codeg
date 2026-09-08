@@ -18,9 +18,10 @@ are supporting destinations, never prerequisites for human work.
   Ops approval/receipt behavior and backend files. No Rust edits in this branch.
 - Identity contract authority: approvals' `docs/contracts/business-identity.md`.
   Task contract authority: tickets' `docs/contracts/business-tasks.md`.
-  Identity is published at `f3c36dc6`; task checkpoint is `cb2e184f`, with concrete
-  operation DTOs following. No second authentication or production response
-  layer is invented.
+  Identity wire/implementation is `861fb0ef` (accepted `c911c406`, main
+  `ab46c9d9`); fixed task DTOs are `bf4309f5`, public activity/HTTP source
+  `76bb6909`, and combined task checkpoint `1e8b5250`. No second authentication
+  or production response layer is invented.
 
 Identity needs: connection/sign-in and revocation behavior; current organization,
 authenticated principal and server-derived capabilities; authorized human/agent
@@ -58,14 +59,14 @@ failure. Original operator bootstrap remains useful before any member exists.
 One-time issued credentials are masked by default and intentionally copied or
 revealed; never persisted or exposed in fixtures, snapshots or reports.
 
-Cold `/business`, `/business/` and `/business.html` skip inherited settings,
+Cold `/business`, `/business/`, `/business.html`, `/` and `/index.html` skip inherited settings,
 wallpaper and operator connection providers, even with an ambient old operator
 token. `/business-other` retains inherited behavior. Server source at the base
 (`web/router.rs:1735`) rewrites extensionless/trailing-slash routes to the export
 and serves `.html` directly; actual browser request verification remains pending.
 
-The client will retain the revision originally edited, keep drafts in memory
-across resize/locale changes, and expose conflicts without silently applying an
+The implemented client retains the revision originally edited and keeps drafts in memory
+across resize/locale changes. It exposes conflicts without silently applying an
 old draft over a fresh revision. Refresh, inspect current values, then explicit
 resubmission. Session/organization changes clear private state and discard late
 responses. Errors never render raw provider/server bodies. No mocked production
@@ -116,3 +117,37 @@ APIs. Actual 390/768/1280 light/dark, RTL, keyboard/focus and long content check
 Focused behavioral tests, lint, typecheck and an owned static export precede the
 final Design Studio measured review. Backend implementation/gates remain with
 their owners; this report will record exact integrated revisions.
+
+## Implemented operation boundary
+
+`src/lib/business/identity.ts` and `tasks.ts` mirror the owners' exact DTOs;
+`client.ts` sends POST `{input}` to closed operation paths, with native
+`business_*` / `business_tasks_*` commands. Task IDs are inside input, never URL
+segments. Update/assign replacement fields send explicit nulls; no caller-supplied
+actor/organization override is added to task operations. List uses `shared`/`mine`,
+page/domain/status/query/archived and returned `{tasks,page,hasMore,canCreate}`.
+Detail uses returned `{task,activity,deliverables,execution}`. Per-task capabilities
+govern edit/assign/progress/comment/submit/review/cancel/archive/link-execution;
+the backend revalidates authority on every mutation. There is no `done` progress
+option, agent review control or automatic execution launch.
+
+Nullable reviewer is explicitly **any currently authorized human reviewer**.
+Activity renders only the pinned public payload fields as plaintext and resolves
+names through the authorized directory; unknown fields are not JSON-dumped.
+Missing directory entries display an unavailable person, without guessing kind.
+Conflict recovery keeps the original edited revision until the operator explicitly
+loads/compares and adopts current data. An ambiguous create is not auto-retried.
+
+A native operator may choose the local workspace. Desktop members use the same
+separate HTTP client as web members, not legacy remote-connection storage.
+Original operator reuse is an intentional same-origin sign-in action only.
+A role/domain never grants legacy entry. One-time credential values stay in
+component memory, masked in DOM by default and cleared on close/disconnect.
+Session/principal/membership revision changes reset private editing state; locale
+and viewport changes do not. Reload requires signing in again.
+
+Current validation is 75 focused tests, typecheck and scoped lint passing; export
+build succeeded before the latest activity presentation addition. Actual runtime
+and browser checks remain pending real task fixture integration. English/Arabic
+business copy is supplied; other existing locales use English business copy.
+The fresh export is ignored and reserved; no 4340 process/browser is running yet.
