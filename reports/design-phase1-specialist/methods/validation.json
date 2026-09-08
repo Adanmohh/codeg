@@ -1,7 +1,7 @@
 {
   "worker": "sole review/design-phase1 worker; own target-approvals and out-design-final",
-  "finalProduct": "2fb837977bc8584c5a5ccbe640e2ffe490ab0609",
-  "exportHead": "ab771db4dfd1de5b9ac4aaf8206a17e130886dff",
+  "finalProduct": "89fef6fd52e0d6d9ce989c9837fa79ab08dfc4c1",
+  "exportHead": "fcf4a14f8db7412d595bd3e51d87356bef510bb9",
   "checks": [
     {
       "command": "CODEG_EXPORT_DIR=out-design-final pnpm exec next build",
@@ -98,9 +98,28 @@
       "command": "Design Studio select-judges.mjs for Ops and phone; design-lint.mjs for11 static surfaces and14 original/derived measured cases",
       "exit": 0,
       "result": "Actual selector JSON and lint files committed. Exit0 means analysis completed, not no flags."
+    },
+    {
+      "command": "CODEG_EXPORT_DIR=out-design-final pnpm exec next build",
+      "exit": 0,
+      "head": "fcf4a14f8db7412d595bd3e51d87356bef510bb9",
+      "result": "Targeted PR20 static refresh after later semantic-tag acceptance;33 routes, prior checks remain valid, no broad gate reruns",
+      "log": "login-refresh-build.txt"
+    },
+    {
+      "command": "playwright-cli -s=design-phase1-login --raw run-code --filename=reports/design-phase1-specialist/flows/final-login.js",
+      "exit": 0,
+      "runs": 2,
+      "result": "Fresh guarded browser each390/1280;main1,401/200,provider4→4,guards0;both closed"
+    },
+    {
+      "command": "playwright-cli -s=design-phase1 close",
+      "exit": 0,
+      "result": "Only own main review browser closed;all owned and earlier fixture listeners preserved"
     }
   ],
   "manualFixtures": "All four owned ignored tests compiled, passed startup assertions and remain serving; they have no completed test-suite exit. Fixture compilation/startup logs stay locally ignored. No broad retest after accepted frontend-only fixes, per owner instruction.",
   "attempts": "Hidden-sidebar selector timeout exit1, earlier label-selector failures, blank native-dialog result and first-frame focus/drawer captures retained. Corrected successful executions are distinguished from those attempts.",
-  "rootAttributed": "Owner reports8376d5c0 final packaging docs:82 focused tests and actual4318 final drawer/focus/empty checks pass; native isolated Step1 DB migrated through008 without panic and1006 bundled web files match its export. These are root evidence, not worker-run claims."
+  "rootAttributed": "Owner reports8376d5c0 final packaging docs:82 focused tests and actual4318 final drawer/focus/empty checks pass; native isolated Step1 DB migrated through008 without panic and1006 bundled web files match its export. These are root evidence, not worker-run claims.",
+  "badgeDrawerExport": "ab771db4dfd1de5b9ac4aaf8206a17e130886dff"
 }

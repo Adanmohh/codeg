@@ -1,15 +1,10 @@
 {
   "specialist": "a11y-auditor",
-  "scores": { "accessibility": 8, "states": 9 },
-  "findings": [
-    {
-      "surface": "connection page",
-      "element": "src/app/login/page.tsx:61",
-      "severity": "low",
-      "check": "Main landmark presence: the actual login page uses outer div and phone-login-invalid-390 probe records main=false. The single form otherwise has associated token label/error and successful retry.",
-      "fix": "Replace the outer connection-content div with main; retain existing controls, styles and retry/locator behavior. Root assigned a separate fix/design-login-landmark worker; keep open until its accepted targeted browser recheck."
-    }
-  ],
+  "scores": {
+    "accessibility": 8,
+    "states": 9
+  },
+  "findings": [],
   "resolved": [
     {
       "finding": "P2 small running-badge text contrast",
@@ -24,7 +19,20 @@
       "merge": "4611d025ba49790adbda780e8d6d44c20e75a9fe",
       "evidence": "../flows/final-drawer-summary.json; ../flows/final-drawer-settled-results.json; ../probes/final-drawer-measured-summary.json",
       "result": "Both themes at390px: reduced open/Escape/outside have0 transform-animation frames and0 intermediate x frames; transition-property none. Normal450/400ms travel remains. Mounted/detached lifecycle and focus return pass. Closed/open endpoint jump is not animated travel. Same-DOM count166→166 still makes generic DS heuristic false; raw retained and classified."
+    },
+    {
+      "finding": "Low login main landmark",
+      "productCommit": "66849a91c7a6bdb5105215bbabd70e659ddb36f4",
+      "acceptedHandoff": "bbec6ede04d8fcf9a8964b584cb9566d55974e29",
+      "merge": "ff31938066e79abcf438bf793504ae1527a58358",
+      "integratedHead": "fcf4a14f8db7412d595bd3e51d87356bef510bb9",
+      "element": "src/app/login/page.tsx:58",
+      "evidence": [
+        "../flows/final-login-390-results.json",
+        "../flows/final-login-1280-results.json"
+      ],
+      "result": "Actual own4327 protected API, fresh CLI browser per viewport: exactly one native/accessibility main encloses heading/form/error; masked named input, empty disabled submit,401 without token storage, keyboard retry200 to workspace. Guards all0, provider4→4. Existing prior flow/contrast/motion evidence unchanged."
     }
   ],
-  "notes": "Final accepted product2fb83797, exportab771db4; baseline71 captures retained and four final settled probes add268 ranked text samples, zero contrast/unnamed/overflow failures in those final samples. No whole-app WCAG/native screen-reader claim. Immediate tabFocus in lifecycle JSON is focus placement only; settled350ms screenshots/probes establish actual paint. Old motion/badge baselines remain intact."
+  "notes": "Final accepted product2fb83797, exportab771db4; baseline71 captures retained and four final settled probes add268 ranked text samples, zero contrast/unnamed/overflow failures in those final samples. No whole-app WCAG/native screen-reader claim. Immediate tabFocus in lifecycle JSON is focus placement only; settled350ms screenshots/probes establish actual paint. Old motion/badge baselines remain intact. PR20 is now accepted and independently rechecked here at390/1280. No remaining open finding in covered states; accessibility score retains stated screen-reader/cross-browser coverage limits."
 }

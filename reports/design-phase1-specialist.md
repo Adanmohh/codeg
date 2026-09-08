@@ -1,9 +1,8 @@
 # Phase 1 Design Studio specialist review
 
 2026-09-08. **BC-1–18 pass within the documented synthetic browser scope. Both
-verified P2 findings are fixed and rechecked on the final combined export.
-One low login-landmark finding remains open pending its assigned correction.**
-No remaining blocking design finding was established in the covered states.
+verified P2 findings and the low login-landmark finding are fixed and rechecked
+on accepted source. No open product finding remains in the covered states.**
 Root owns final acceptance and packaging.
 
 Sole Astra/max worker, branch **review/design-phase1**, worktree
@@ -11,9 +10,13 @@ Sole Astra/max worker, branch **review/design-phase1**, worktree
 **https://github.com/Adanmohh/codeg/pull/16**. No extra agents, product fixes,
 root planning edits, paid flow SDK, live sends or model calls.
 
-Final accepted product **2fb837977bc8584c5a5ccbe640e2ffe490ab0609**; combined
-export/merge **ab771db4dfd1de5b9ac4aaf8206a17e130886dff**, pushed. Earlier evidence
-checkpoints:5e137304,08c3cf5e,43eff896,89e94faa,ce8aae7f,ebf551c0.
+Final accepted main **89fef6fd52e0d6d9ce989c9837fa79ab08dfc4c1**, integrated as
+**fcf4a14f8db7412d595bd3e51d87356bef510bb9**. Its only product change since
+**2fb837977bc8584c5a5ccbe640e2ffe490ab0609** is PR20's two login tags.
+Badge/drawer export **ab771db4dfd1de5b9ac4aaf8206a17e130886dff** and synthesis
+checkpoint **5adc03ee** were pushed before the targeted login integration.
+Earlier historical evidence checkpoints:5e137304,08c3cf5e,43eff896,89e94faa,
+ce8aae7f,ebf551c0.
 PR14 integration **19a698bc1108a5c3dee5018337e6da6eadc27f61** was based on
 **8c2a004d**. Its unchanged Ops/phone behavior supplies retained functional
 captures; the final export rechecks PR18/19's changed badge/drawer surfaces.
@@ -30,7 +33,7 @@ in [the evidence directory](design-phase1-specialist/).
 | --- | ---: | --- |
 | States |9 |Real empty, failed load/retry, missing configuration, stale and terminal states. |
 | Feedback |9 |Saved/error text retained; clear send/recording semantics and receipts. |
-| Accessibility |8 |Labels, keyboard flows and settled rings; low landmark remains, no assistive-technology certification. |
+| Accessibility |8 |Labels, landmarks, keyboard flows and settled rings verified; assistive-technology/cross-browser coverage remains limited. |
 | Responsive |9 |1280/390 light/dark and actual RTL/back/email direction; no observed horizontal overflow. |
 | Visual/tokens |8 |Inherited Inter/neutral/teal hierarchy; scan limitations classified without unrelated restyling. |
 
@@ -43,7 +46,8 @@ Structured outputs: [BC verdicts](design-phase1-specialist/findings/bc-results.j
 [accessibility](design-phase1-specialist/findings/a11y-final.json),
 [flow](design-phase1-specialist/findings/flow-validator.json),
 [merged findings](design-phase1-specialist/findings/merged.json),
-[verification](design-phase1-specialist/findings/verifier-final.json).
+[verification](design-phase1-specialist/findings/verifier-final.json),
+[reviewer synthesis](design-phase1-specialist/findings/reviewer.json).
 
 ## Findings and accepted corrections
 
@@ -75,16 +79,21 @@ Popup detachment, keyboard entry and returned focus pass, document390px.
 [summary](design-phase1-specialist/flows/final-drawer-summary.json),
 [settled focus](design-phase1-specialist/flows/final-drawer-settled-results.json).
 
-**Open low — login content lacks a main landmark.**
-`src/app/login/page.tsx:61` wraps the single connection form in a div; the actual
-probe records main=false. Reproduce by opening `/login` and inspecting landmarks.
-Required fix: change the outer content tag to main, retaining classes, controls,
-error/retry and locator behavior. Root independently verified and assigned
-`fix/design-login-landmark` to another worker. Keep open until accepted targeted
-recheck. This one-form page has no competing navigation and passes BC-1.
+**Resolved low — login main landmark.** Baseline `/login` source/probe had
+main=false. Accepted product **66849a91c7a6bdb5105215bbabd70e659ddb36f4**,
+handoff **bbec6ede04d8fcf9a8964b584cb9566d55974e29**, merge
+**ff31938066e79abcf438bf793504ae1527a58358**, changes only the outer div tags to
+main at `src/app/login/page.tsx:58`. After refreshing only owned out-design-final,
+fresh guarded CLI browsers at **390×844 and1280×800** each find exactly one native
+and accessibility main enclosing the heading, form and error. Empty submission
+is disabled; real401 retains associated error and stores no token; keyboard
+retry returns200 and reaches workspace. Guards0, provider4→4. Both browsers closed.
+[390 results](design-phase1-specialist/flows/final-login-390-results.json),
+[1280 results](design-phase1-specialist/flows/final-login-1280-results.json).
 
-Impact-per-effort follow-up: that single low correction. The two larger fixes
-are closed; no invented second/third open issue. Earlier loop findings now have
+No remaining impact-per-effort product fix is established; no invented top-three
+list. All three findings retain their baselines and resolution evidence.
+Earlier loop findings now have
 actual labels, Ops focus, truthful terminal copy, RTL/back/email direction and
 reply locale-preservation evidence. Root's separately committed seven-field
 locale round trip supplements this worker's reply sentinel; it is not claimed
@@ -207,15 +216,17 @@ Owner reviewed them before commit. No dependency/lockfile/migration/runtime
 change. Fixture DBs and build outputs stay outside commits.
 
 [Commands/exits and logs](design-phase1-specialist/methods/validation.json):
-final combined `CODEG_EXPORT_DIR=out-design-final pnpm exec next build` **exit0**,
-33 routes. Earlier desktop/server locked cargo checks, frontend tsc and correctly
+combined `CODEG_EXPORT_DIR=out-design-final pnpm exec next build` **exit0**,
+33 routes. The later accepted login-only semantic correction required one owned
+static refresh, also **exit0**, followed only by its two targeted login flows.
+Earlier desktop/server locked cargo checks, frontend tsc and correctly
 scoped desktop/server Clippy all **exit0**; all three final fixture files pass
 scoped rustfmt. Initial Clippy omitted test-utils for integration tests (**101**),
 then corrected runtime command passed. Whole-tree fmt found inherited differences
 (**1**); no broad formatting. Inherited proc-macro future-compatibility and debug
 sidecar-placeholder warnings remain disclosed; no native bundle claim here.
 
-Final folder/group/motion/settled CLI and pure merge/probe commands **exit0**.
+Final folder/group/motion/settled/login CLI and pure merge/probe commands **exit0**.
 Ignored fixtures compiled/passed startup assertions but remain serving, not
 completed test suites. No broad repetition after accepted frontend fixes, per
 owner instruction. Root reports82 focused tests, actual4318 motion/focus/empty
@@ -232,7 +243,7 @@ mutations. Existing4320/PID30815 `out/`,4323/PID45025 `out-telegram-issues` and
 | --- | --- | --- |
 |4327/1475 |`ops-design-synthetic-operator` |Provider4; draft1revision2, proposal1pending/stale, receipt2finished; key removed. |
 |4328/46726 |`ops-issue-phone-synthetic-operator` |All three locators consumed; GitHubPosts3/issues2/token exchanges1, Telegram3. |
-|4329/77051 |`ops-intake-synthetic-operator` |Missing proofs; draft1/proposals0/filings0; invalid proof remains browser-local. |
+|4329/77051 |`ops-intake-synthetic-operator` |Missing proofs; draft1/proposals0/filings0; invalid attempt retained in evidence, no proof stored. |
 |4330/83330 |`ops-intake-synthetic-operator` |EMPTY=1 variant; zero inbox/task/queue data. |
 
 4327 DB: `.build/design-ops/2e3036b6-afeb-4e5c-ba19-aa2304e0c921`.
@@ -256,7 +267,9 @@ intake_host_browser_fixture;4330 also uses OPS_INTAKE_FIXTURE_EMPTY=1. Choose
 a free owned port for any new instance; never run defaults over an existing
 owner. Root may inspect current fixtures. No fresh pending issue locator remains,
 so future decisions require a separate new fixture, not replay. These completed
-checks need no reseed.
+checks need no reseed. Own CLI sessions design-phase1 and design-phase1-login
+are closed; all seven listeners were rechecked unchanged in
+[fixture-listeners.txt](design-phase1-specialist/methods/fixture-listeners.txt).
 
 Limits: Chromium emulation only; no screen-reader session, iOS WebKit/physical
 touch certification or document-start CLS/long-frame capture. Remote phone use
