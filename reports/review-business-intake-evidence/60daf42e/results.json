@@ -1,0 +1,76 @@
+{
+  "sourceHead": "60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d",
+  "base": "086eee485e6f40a8b02ea77c9dbeefe315c81596",
+  "reviewerBranch": "review/business-intake",
+  "scope": "Strict credential mutation-read and task transaction extraction only; no B endpoints yet",
+  "independent": true,
+  "commandTemplate": "cargo test --locked --offline --no-default-features --lib SELECTOR --target-dir /Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/target -j 4",
+  "tests": [
+    {
+      "selector": "intake_store_",
+      "archive": "60daf42e",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 0.02
+    },
+    {
+      "selector": "intake_task_",
+      "archive": "60daf42e",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 0.16
+    },
+    {
+      "selector": "real_business_router_derives_actor_rejects_spoofs_and_returns_revision_conflicts",
+      "archive": "60daf42e",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "seconds": 0.07
+    },
+    {
+      "selector": "independent_intake_",
+      "archive": "60daf42e-probes",
+      "exit": 101,
+      "passed": 0,
+      "failed": 2,
+      "ignored": 0,
+      "seconds": 0.03,
+      "addition": "Reviewer tests only; published patch, product source unmodified"
+    }
+  ],
+  "finding": {
+    "id": "R1",
+    "severity": "P2",
+    "state": "open",
+    "file": "src-tauri/src/keyring_store.rs",
+    "line": 103,
+    "observedModes": {
+      "existingRead": "0600",
+      "strictRead": "0644",
+      "rejectedSet": "0644",
+      "rejectedDelete": "0644"
+    },
+    "malformedBytesPreserved": true,
+    "temporaryResidue": false
+  },
+  "limits": [
+    "No full intake access/claims/source/provider/receipt or UI consumers at this head",
+    "Actual protected router uses axum-test mock HTTP, not a listening server or browser E2E",
+    "No native OS keyring, real credential store, fixture or provider accessed",
+    "No desktop/server/companion/Clippy gate repeated by reviewer"
+  ],
+  "sha256": {
+    "60daf42e-intake-store.log": "1308cfd00849347830d58f8774e3f46c0025679d96800b0d44cdbaeace0b7fc2",
+    "60daf42e-intake-task.log": "a500a0f18e3e91df48f4817216a42d215189a3bdfa4836eabf8ed0e674ca17fa",
+    "60daf42e-protected-router.log": "ea0b127965cc02058ca5689aeb034147f55f6bc165922bce7ec07ed5ac78f1b7",
+    "60daf42e-independent-permissions.log": "627ee47538ac5f965d2262db247fe09f5560a6ba20b4df970fc873e7a085a516",
+    "60daf42e-independent-permissions.patch": "c4b1ac07db4c6195d96770cf00d4228d5d8e111d962ee91ab0136c7e335cb2d3",
+    "60daf42e-source-verification.json": "68cfa1e7992c518ba949e6ac776d1d57d3939a2896d956f3c4add434d09485fb"
+  }
+}

@@ -1,0 +1,40 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/60daf42e-probes/src-tauri)
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 49s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 2 tests
+test keyring_store::independent_intake_mode_probes::independent_intake_strict_reader_preserves_legacy_hardening ... FAILED
+test keyring_store::independent_intake_mode_probes::independent_intake_rejected_mutation_hardens_without_replacing_bytes ... FAILED
+
+failures:
+
+---- keyring_store::independent_intake_mode_probes::independent_intake_strict_reader_preserves_legacy_hardening stdout ----
+
+thread 'keyring_store::independent_intake_mode_probes::independent_intake_strict_reader_preserves_legacy_hardening' (67142381) panicked at src/keyring_store.rs:474:9:
+assertion `left == right` failed: strict read must retain the existing pre-read 0600 hardening
+  left: 420
+ right: 384
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- keyring_store::independent_intake_mode_probes::independent_intake_rejected_mutation_hardens_without_replacing_bytes stdout ----
+
+thread 'keyring_store::independent_intake_mode_probes::independent_intake_rejected_mutation_hardens_without_replacing_bytes' (67142380) panicked at src/keyring_store.rs:491:9:
+assertion `left == right` failed: rejected set and delete must still retain permission hardening
+  left: [420, 420]
+ right: [384, 384]
+
+
+failures:
+    keyring_store::independent_intake_mode_probes::independent_intake_rejected_mutation_hardens_without_replacing_bytes
+    keyring_store::independent_intake_mode_probes::independent_intake_strict_reader_preserves_legacy_hardening
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 3708 filtered out; finished in 0.03s
+
+error: test failed, to rerun pass `--lib`
