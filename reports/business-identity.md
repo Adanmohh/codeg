@@ -1,0 +1,69 @@
+# Business identity implementation
+
+Business identity is implemented and validated on `feat/business-identity`, based on accepted `4ec04d7282a50529335d724438d42b99a53385a2`. Production source is frozen at `861fb0ef4394d4980a19ba375bb4c1f3f218d39b`; fixture and browser evidence are committed/pushed at `05e1ab7043eeadab753dbb2c6c6922661fff5c42`, and registration patch at `c435d153`. Subsequent report edits change no production source. [Draft PR23](https://github.com/Adanmohh/codeg/pull/23) remains open for root acceptance. The published interface is [business-identity.md](../docs/contracts/business-identity.md).
+
+Individual revocable member credentials, role/domain checks and transaction-compatible principals are available through a separate business router and native owner commands. All 13 focused backend tests, both runtime checks/Clippy and frontend typecheck pass. Actual guarded Chromium API checks pass in two independent browser sessions (21 plus 5 assertions); these exercise the production identity API, not the separately owned task/workspace UI. Migration000009 and the shared registration patch are delivered here; task000010 and frontend implementation remain with their assigned workers.
+
+The complete business scope, FOUNDING, ORCHESTRATOR, STATUS, DECISIONS and all three research reports were read before changes. The task worker's `cb2e184f` contract was read directly. Source authorization gaps are addressed by current org/member/credential and destination-reference checks in the same writer transaction; assignment and caller actor fields provide no authority.
+
+## Preservation and docs evidence
+
+- Tracked work was clean before branch creation. `git fetch origin`, exact base resolution and `git switch -c feat/business-identity origin/main`: exit0.
+- The sole colliding untracked research report was byte-compared with accepted main (cmp exit0) and moved intact to ignored `.playwright-cli/checkpoints/business-identity/research-meeting-orchestration.md`. Its identical main copy is now tracked. Paused visual baseline, `.build/`, `out-design-final/` and existing fixtures remain untouched.
+- Separate full installed reads: React19.2.4 package.json and src-tauri/Cargo.toml. code-context offline guide exit0 using `/Users/mohamedadan/projects/rag-skills/.venv/bin/python`, HF_HUB_OFFLINE=1. Applicable corpus rule: B2B invite-only auth, no public enrollment. No approvals-specific installed-doc corpus exists (docs lookup exit3); direct installed crate sources are the authority, not claimed RAG coverage.
+- Live docs-first hook evidence for this session `01a07c1c-d3a3-7c22-a5b6-cedce2970d8d`, own cwd: PreToolUse Bash at1788854101 and PostToolUse Bash at1788853884, exit0, in `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl`. Hooks remain enabled.
+- Local pinned sources read: rand_core0.6.4 OsRng/try_fill_bytes, sha2 0.10.9 Digest, base64 0.22.1 URL_SAFE_NO_PAD, Axum0.8.8 from_fn/Extension, SeaORM1.1.19 transaction. No installs or lockfile changes.
+
+## Source mapping
+
+- IntroMail `0bd24dfe284b888aa9f602fa1fd00e337ea38874`, `backend/app/services/mcp/auth.py`, blob `1faab9205afa2a65c02ff284b12c867c0b85ba99`: opaque random bearer, SHA-256 storage, revoke and server-derived principal into business_identity. Read through gh api, including history at introduction `13be7b092b6bec9db48e1ac3b71fcdc7493f1fc5`; no identified copyleft provenance in this auth file. Private owner authorization applies per FOUNDING. `backend/app/security.py` blob `deda3cda6ec2883822876153a37fc5ebd4b89640` read as reference only; no JWT/password implementation port.
+- Accepted Codeg `4ec04d7282a50529335d724438d42b99a53385a2`: web/auth.rs blob `861ad112be52f682e319255ae3173c65b1aa1cef`, web/handlers/ops.rs `ed2bf828943d0fc538b0e30a71175e42fcbfac11`, commands/ops.rs `03b869d1b2c67ec99e7527c6f8377c75111b4606`, migration008 `abcf6ce3d2bd95a4017c2ee98c6d99da30dbd6f0`: existing protected transport, dual-runtime wrapper and transactional migration style. Under retained Codeg Apache-2.0 attribution; product NOTICE mapping will be appended with implementation.
+
+## Checks and remaining work
+
+The first independently usable identity implementation is ready for source review: separate business bearer auth, operator-only atomic bootstrap, member management, individual credential issue/revoke, domain/role permissions, immutable identity audit, and private delegation lineage. HTTP/native wrappers share the same core. No provider/client/engine authority is exposed to member credentials.
+
+Current checks (own target only):
+
+| Command | Result | Evidence |
+|---|---|---|
+| `cargo check --locked --no-default-features --bin codeg-server` | exit0, 53.90s | `/tmp/business-identity-server-check.log` |
+| Same server check against frozen final production source | exit0, 6.42s | `/tmp/business-identity-server-check-final.log` |
+| `cargo check --locked` | exit0, 1m13s, default native runtime | `/tmp/business-identity-desktop-check.log` |
+| `cargo clippy --locked --no-default-features --bin codeg-server --lib -- -D warnings` | exit0, 35.78s | `/tmp/business-identity-server-clippy.log` |
+| `cargo clippy --locked --all-targets --features test-utils -- -D warnings` | exit0, 1m12s, default runtime plus test targets | `/tmp/business-identity-desktop-clippy.log` |
+| `pnpm exec tsc --noEmit` | exit0, TypeScript5.8.3 | `/tmp/business-identity-typecheck.log` |
+| `cargo test --locked --no-default-features --lib business_identity::tests -- --nocapture` | exit0, 13 passed, 0 failed, 0 ignored, 0.66s test runtime | `/tmp/business-identity-tests.log` |
+| Initial smaller identity selector before additional cases | exit0, 3 passed | `/tmp/business-identity-tests-checkpoint.log`; superseded by13 |
+| `git diff --check` | exit0 | own working tree |
+| `cargo test --locked --no-default-features --lib business_identity::tests::fixture --no-run --message-format=json` | exit0, 37.64s; compiled manual fixture, did not run a suite | `/tmp/business-identity-fixture-build.log`, `/tmp/business-identity-fixture-artifacts.jsonl` |
+| Playwright CLI first browser API script | exit0,21 assertions | `business-identity-evidence/browser-a.json` |
+| Playwright CLI independent second browser script | exit0,5 assertions | `business-identity-evidence/browser-b.json` |
+
+The 13 tests cover actual full-router anonymous/member/owner-credential bootstrap denial; all three member roles denied legacy HTTP and WebSocket paths; original operator health preserved; spoof fields rejected; viewer writes denied; at-rest hash/public-response redaction; credential/member revocation; current domain/role and reference checks; admin grant ceiling; no elevated agent role/login; persisted lineage and original credential revocation; independent SQLite connection bootstrap/CAS/revocation races; audit rollback/immutability; named migration atomicity and initialized-row preservation. The race deliberately holds one SQLite writer while a second connection waits, then verifies its cached principal is rejected after revocation commits and no synthetic protected write occurs.
+
+No identity implementation gate remains pending. Task worker has integrated the committed helper and applied the supplied registration patch in its own branch; its combined task checks and full task/UI acceptance are separate. No live providers/accounts, agent launches, external sends or broad Settings snapshots occurred. Existing fixtures and outputs are preserved. Frontend product code is unchanged, so no new export overwrote a running fixture output.
+
+Initial contract commit `f3c36dc6` is pushed. Draft PR: https://github.com/Adanmohh/codeg/pull/23. Both existing workers received the exact contract path via authorized Herdr prompts (exit0); no additional agents were started.
+
+The root BW-1–18 checklist was read in full. Explicit grant ceiling and immutable agent delegation lineage extend the contract: admin cannot grant outside its current domains or manage owner/admin identities; agent role is always member; delegating credential revocation is rechecked after persisted-link restoration. Domain-less agent authorization fails closed. This closes the task worker's persistence seam without exposing a caller principal constructor. All Rust output is isolated in `.build/business-identity-target`.
+
+The test linker reports inherited macOS `__eh_frame` size warning; proc-macro-error2 2.0.1 reports an upstream future-compatibility warning. Default compilation wrote the existing build.rs zero-byte sidecar placeholder in this worktree, as documented by Step0; no native package is claimed. No dependency upgrade was made. Early unused test imports were removed before the 13-test run.
+
+## Guarded manual fixture (test-only addition)
+
+`business_identity::tests::fixture::business_identity_browser_fixture` is ignored by normal suites. It uses a fresh in-memory DB and the actual protected identity router on `127.0.0.1:4341`, with an outer guard allowing only `/api/business/*`, `/api/health` and the explicit test landing `/__business_fixture`. Every other path is blocked. No provider/agent/scheduler starts. Legacy auth is independently tested against the full unguarded application router in the 13-test suite; the fixture guard is not claimed as that authentication proof. It does not read or overwrite any old static export. Port4341 was free at initial listener check; previous4327–4330 and root fixtures remain untouched.
+
+The public, test-only operator constant is `business-identity-synthetic-operator`. New synthetic member credentials were minted through protected APIs in browser memory; test output contains only IDs/status/assertions, no tokens or hashes. The two CLI scripts in `reports/business-identity-evidence/` are API validation glue, not a business workspace UI. Playwright CLI0.1.18 with installed Playwright1.63.0-alpha-2026-08-05 source/types/help was read; no update was installed. Fixture exact source mapping is appended to NOTICE.
+
+The fixture is running at http://127.0.0.1:4341/__business_fixture, owned PID **29883**, log `/tmp/business-identity-fixture.log`; exec session29947 launched the compiled test executable directly, so no Cargo build lock is held by the listener. The launch command is in [the evidence README](business-identity-evidence/README.md). Browser sessions `identity-api-a-4341` (PID32309) and `identity-api-b-4341` (PID32750) are both closed, exit0. Fixture mutations are now free for root; no further worker mutation/reseed is planned.
+
+Browser A passed21 real fetch assertions: anonymous denial, original-operator bootstrap, named individual credentials, server-derived identity, no-store responses, viewer directory read and forbidden writes, bootstrap/actor/org/domain denial, legacy health denial with original operator preserved, simultaneous HTTP edits with one409 and stable conflict key, redacted credential metadata, revocation401 and unaffected second credential. Browser B passed5 assertions using another independently minted member credential and browser context, reading the first browser's permitted directory records. Both observed the same org `c572d07f-cb43-4349-9d63-f83a10190de0` with distinct member IDs. No response JSON was mocked; off-origin guard saw zero external requests. No local/session storage was written.
+
+The first CLI attempt failed before API work because the run-code sandbox does not expose the Node `URL` global. The original attempt is retained as `browser-a-attempt1.txt` (exit1); the guard was corrected to an exact loopback-origin string prefix using the read route contract, then both scripts passed. This was evidence glue only, with no product correction. Fresh hook records are committed in `business-identity-evidence/hooks.json` (own PreToolUse1788856751/PostToolUse1788856597, exit0); hooks were never disabled.
+
+Shared task registration glue is supplied as `docs/contracts/business-tasks-registration.patch`, generated against immutable task transport checkpoint `76bb6909`, which includes identity861fb0ef. Complete HTTP/native/mod/migration sources were read through git show. Exact blobs: business_tasks/http.rs `f19bed281849971763a87269831aab5c063b13ea`, commands/business_tasks.rs `9d6891843fa2a72b60e745ce0dd11c17663fd0bb`, migration000010 `7eeee212c0bb11443342d901fa4ccea2fe2d82f2`. Four-file patch registers library/native modules, migration,12 commands and the task router before existing business auth. `git apply --check docs/contracts/business-tasks-registration.patch`: exit0. Task worker applies and compiles with its committed module; this PR remains independently compiling and contains no unaccepted task source. The earlier bf4309f5 lacked the committed wrappers and was not used to invent their API.
+
+## Acceptance limits
+
+This completes the identity boundary and its own evidence, not all BW-1–18 integration criteria. Human task completion, assigned-agent run fencing, task/source visibility, cold business UI avoiding legacy providers, member-switch/locale edit safety and final visual/native acceptance remain with their module owners and root integration. Identity helpers deliberately require those resource/live-run checks; the grant alone cannot substitute for them. Member directory is bounded at500 entries. Credentials remain valid until explicitly revoked; no public enrollment, password/email recovery, provider credential access, hosted multi-tenancy or same-user OS sandbox is claimed. Root planning docs, brief and lockfiles have no diff from the accepted base. Paused reports, ignored build data and all earlier fixtures remain preserved.
