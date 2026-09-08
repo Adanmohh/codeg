@@ -23,3 +23,12 @@ mobile drawer open/close recheck. No new navigation system or settings mutation.
 Keep this high accessibility finding open until the worker correction is
 reviewed and verified. The original five corrections also await final measured
 light/dark evidence and exact-head acceptance.
+
+## Independent menu correction recheck
+
+Root reviewed the working SettingsShell correction and verified it through actual
+CLI4324: named Navigation, 44px target, real drawer open/Escape close, unchanged
+route and no overflow. Provider/Model/Thinking/API Key names also passed.
+[Evidence](browser-shell-independent/README.md). The menu finding is resolved
+in the working change; final commit and worker gates are still required before
+PR acceptance. Root closed its session and released the worker fixture.
