@@ -1,5 +1,21 @@
 # Status — 2026-09-08
 
+PR30 final tenancy handoff `d3a176d2287c23b649cd1d266cb1a9187bbcc0bb` is
+reviewed and its report/evidence imported. Product source is unchanged from
+`29774b50`; owner reports desktop business46 passed/2 manual ignored, server44
+passed/2 ignored, server/companion checks, both `-D warnings` Clippy modes and
+frontend typecheck all exit0. Root verified the committed validation report's
+739/739 source correspondence and final logs. Tickets' independent follow-on
+review `62080dbd` is separately attributed (seven passes); three additional
+probes remain pending. This closes the bounded backend/platform/settings/native
+mock scope for review, not full tenant acceptance.
+
+Production restricted tenant windows remain unavailable because Tauri's channel
+data path is not fully window-scoped; generated ACL/MockRuntime results do not
+close that gate. Combined B000011-before-000012 migration, persisted B epochs,
+same-database tenant provisioning and full CLI/event/file/child isolation remain
+open. No fixture, app preview, export, credential, bundle or target changed.
+
 Owner final desktop `business_` run at unchanged `29774b50` reports46 passes,
 2 manual fixtures ignored, exit0, including generated553-command ACL and real
 command/session MockRuntime checks. Server/companion check also reports exit0.
