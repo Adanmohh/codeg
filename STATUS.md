@@ -19,8 +19,9 @@ buttons over the brand and its blank top header does not drag the window.
 [Evidence](reports/business-native-root/N2-native-chrome.md). Rebrand is dispatched
 to a separate bounded native-chrome correction, reusing existing titlebar/controls;
 root continues actual human/shared-member checks. Package build/all1016 web hashes
-and all-three binary/profile hashes pass. Tickets reports275 bundled companion
-checks pass with unchanged before/after hash; final report review follows.
+and all-three binary/profile hashes pass. Tickets'275 bundled companion checks are accepted at report31cf27ea, with unchanged
+before/after hash. Actual native local bootstrap/human Done4 and shared-server
+viewer/revocation checks pass; N2 chrome correction and final refresh remain.
 
 ## Earlier Increment A checkpoints — historical
 

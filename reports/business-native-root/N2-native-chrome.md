@@ -21,3 +21,8 @@ layout, scoped identity/state/draft lifetime and explicit engineering navigation
 Rebrand owns product changes in a new branch/PR from accepted main. Root will
 repeat actual native startup/chrome/drag plus affected browser checks after merge.
 No new auth/engine/domain behavior or new dependency is requested.
+
+Positive drag control: after explicit engineering navigation, the same helper
+moves the existing blank titlebar from126,42 to206,67 with pointer1000,62 to
+1080,92. An earlier engineering600 coordinate hit a tab and is excluded from
+that control. Window restored with reverse drag. No unrelated window moved.

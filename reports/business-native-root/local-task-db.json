@@ -1,0 +1,103 @@
+{
+  "business_organization": [
+    {
+      "id": "b5a8c9df-39b8-4eb8-abf5-cf8c66b10f9f",
+      "singleton": 1,
+      "name": "Synthetic Native Studio",
+      "created_at": "2026-09-08T16:52:50.260259+00:00"
+    }
+  ],
+  "business_member": [
+    {
+      "id": "9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe",
+      "organization_id": "b5a8c9df-39b8-4eb8-abf5-cf8c66b10f9f",
+      "display_name": "Native Review Owner",
+      "kind": "human",
+      "role": "owner",
+      "domains_json": "[\"marketing\",\"channels\",\"ads\",\"website\",\"feedback\",\"engineering\"]",
+      "status": "active",
+      "revision": 1,
+      "operator_owner": 1,
+      "created_at": "2026-09-08T16:52:50.260259+00:00",
+      "updated_at": "2026-09-08T16:52:50.260259+00:00"
+    }
+  ],
+  "business_task": [
+    {
+      "id": "5dad33f4-cb4c-4861-9969-d99ed9f1bf6f",
+      "organization_id": "b5a8c9df-39b8-4eb8-abf5-cf8c66b10f9f",
+      "title": "Native acceptance: customer welcome brief",
+      "notes": "Prepare a clear first step for a new customer. Native synthetic acceptance only.",
+      "domain": "marketing",
+      "status": "done",
+      "priority": "normal",
+      "due_date": null,
+      "owner_id": "9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe",
+      "assignee_id": "9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe",
+      "creator_id": "9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe",
+      "reviewer_id": null,
+      "revision": 4,
+      "current_deliverable_id": null,
+      "current_execution_id": null,
+      "created_at": "2026-09-08T16:54:52.128057+00:00",
+      "updated_at": "2026-09-08T16:56:08.588117+00:00",
+      "archived_at": null
+    }
+  ],
+  "business_task_activity": [
+    {
+      "id": "7678b372-436a-4059-8417-76115de5251a",
+      "organization_id": "b5a8c9df-39b8-4eb8-abf5-cf8c66b10f9f",
+      "task_id": "5dad33f4-cb4c-4861-9969-d99ed9f1bf6f",
+      "revision": 1,
+      "kind": "created",
+      "actor_id": "9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe",
+      "actor_name": "Native Review Owner",
+      "actor_kind": "human",
+      "payload_json": "{\"assigneeId\":\"9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe\",\"domain\":\"marketing\",\"dueDate\":null,\"ownerId\":\"9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe\",\"reviewerId\":null,\"title\":\"Native acceptance: customer welcome brief\"}",
+      "created_at": "2026-09-08T16:54:52.128057+00:00"
+    },
+    {
+      "id": "f23e3deb-3b17-4a4c-8620-8e10eea03a92",
+      "organization_id": "b5a8c9df-39b8-4eb8-abf5-cf8c66b10f9f",
+      "task_id": "5dad33f4-cb4c-4861-9969-d99ed9f1bf6f",
+      "revision": 2,
+      "kind": "progressed",
+      "actor_id": "9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe",
+      "actor_name": "Native Review Owner",
+      "actor_kind": "human",
+      "payload_json": "{\"from\":\"todo\",\"to\":\"in_progress\"}",
+      "created_at": "2026-09-08T16:55:10.626616+00:00"
+    },
+    {
+      "id": "07b200e9-f1bb-4b85-bb41-5556c17835c7",
+      "organization_id": "b5a8c9df-39b8-4eb8-abf5-cf8c66b10f9f",
+      "task_id": "5dad33f4-cb4c-4861-9969-d99ed9f1bf6f",
+      "revision": 3,
+      "kind": "progressed",
+      "actor_id": "9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe",
+      "actor_name": "Native Review Owner",
+      "actor_kind": "human",
+      "payload_json": "{\"from\":\"in_progress\",\"to\":\"review\"}",
+      "created_at": "2026-09-08T16:55:27.485144+00:00"
+    },
+    {
+      "id": "dba1bc00-1693-4a45-af3e-bb07ea79234e",
+      "organization_id": "b5a8c9df-39b8-4eb8-abf5-cf8c66b10f9f",
+      "task_id": "5dad33f4-cb4c-4861-9969-d99ed9f1bf6f",
+      "revision": 4,
+      "kind": "reviewed",
+      "actor_id": "9be9656e-a9eb-4bbf-b7b4-1538d6e6e4fe",
+      "actor_name": "Native Review Owner",
+      "actor_kind": "human",
+      "payload_json": "{\"comment\":\"Native review: the welcome brief is ready for the team.\",\"decision\":\"accept\",\"deliverableId\":null,\"reviewedRevision\":3}",
+      "created_at": "2026-09-08T16:56:08.588117+00:00"
+    }
+  ],
+  "business_task_deliverable": [],
+  "business_task_execution": [],
+  "migrations": [
+    "m20260908_000009_business_identity",
+    "m20260908_000010_business_tasks"
+  ]
+}

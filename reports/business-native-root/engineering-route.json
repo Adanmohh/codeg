@@ -1,0 +1,15 @@
+[
+  {
+    "AXDescription": "Hafidh Ops Desk",
+    "enabled": true,
+    "expanded": false,
+    "height": 860,
+    "path": "0.0.0.0.0",
+    "role": "AXWebArea",
+    "route": "/workspace",
+    "scheme": "tauri",
+    "width": 1260,
+    "x": 126,
+    "y": 42
+  }
+]
