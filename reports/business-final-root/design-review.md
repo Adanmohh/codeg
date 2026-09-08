@@ -10,7 +10,8 @@ installed Design Studio merge-findings script independently. Audited against
 imported unchanged from `fa8b571ae8516e856419fba2f111eec3215c748e`;
 product `e72cc44b612068e67a3e6dc3bc593f10988ae7ed` is accepted through
 PR21 head `9f60575906fde0468cfa9f40db77ed868dabb346`, merge `cf735ab9`.
-Actual packaged native acceptance remains separate and in progress.
+Actual packaged native acceptance is complete at f4757d8d; the N2 closure
+section below records the separate native correction loop and limits.
 
 | Dimension | Judgment /10 |
 | --- | --- |

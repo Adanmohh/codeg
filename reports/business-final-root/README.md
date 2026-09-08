@@ -1,6 +1,11 @@
 # Root business workspace integration review
 
-In progress. UI product `33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7`,
+Increment A local acceptance is complete at final package f4757d8d;
+[final native/browser/artifact evidence](../business-native-root/README.md) and
+[acceptance checklist](../business-acceptance-checklist.md) record the closure.
+The following original integration checkpoint is preserved at its exact source.
+
+UI product `33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7`,
 reviewed through the rebrand-owned static export on loopback4340 and actual
 guarded Rust API on4342, product `1ba73e3c`. The latter is now accepted main
 via PR22 merge `5541857a`. No production response mocking, provider or model

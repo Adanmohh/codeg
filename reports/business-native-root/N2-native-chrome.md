@@ -1,4 +1,7 @@
-# N2/P2 — business route lacks native window chrome
+# N2/P2 — native window chrome, resolved
+
+**Current verdict: closed at product3d000874 with actual rebuilt runtime
+evidence.** See the closure below. The original finding is preserved.
 
 Actual packaged macOS run from6cfff7d6 (producte72), PID27415/window49837.
 `local-workspace.png` shows native traffic lights over the brand mark; connect
