@@ -8,13 +8,15 @@ Owner requests best assumptions and delivery; conversation is optional. [Impleme
 
 Identity worker `wR:p3` is now dispatched to independent review of committed task PR #22, with `reports/review-business-tasks.md` as deliverable. The task owner continues implementation and the workspace owner continues UI integration; no new worker was started.
 
-### Task review blocker — R1 / P1
+### Task review — R1 / P1 resolved at `1ba73e3c`
 
 Independent review checkpoint `592618ec` examines PR #22 head `76bb6909`. Root confirmed the source finding: execution linking proves a run is live but does not prove authorization for its organization/business scope and assigned business agent. PR #22 remains blocked pending a trusted source-run binding check, negative unrelated-run and valid-binding tests, and independent review of the committed fix. This is a source-established finding in an unfinished branch, not a claim of a deployed exploit. The reviewer continues lifecycle/schema/provenance review; the task owner is implementing corrections.
 
 Independent review evidence advanced to `6138e10e` (verified local and GitHub branch head). Reviewer ran unchanged `1e8b5250`: 10 task-core and 4 engine-bridge tests passed; root inspected both logs. Reviewer reports 723 source files match target blobs and no additional blocking schema/visibility/revocation/CAS finding. The per-generation binding change at `f83bf6c8` does not close R1; source entrustment and its focused re-review remain required.
 
 R1 fix candidate `1ba73e3c` is pushed: separate protected-operator source entrustment, exact task/agent/run ownership and pre-link revision checks, with root-only agent identity. Root reviewed the central source changes. Worker reports 34 combined business tests passing (2 manual fixtures ignored); independent exact-head ownership re-review is dispatched. R1 remains open until that review passes; final runtime/companion and guarded API gates continue.
+
+**Current R1 verdict: resolved at `1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5`.** Independent reviewer passed 5 ownership, 6 bridge and 2 migration/HTTP tests on that unchanged archive; root inspected all three logs. Reviewer reports 726 source blobs match the frozen commit and no additional blocking finding in this bounded review. Final review report is being published. Earlier open-R1 entries above are historical; PR #22 remains unmerged pending its final runtime/companion/API gates and acceptance review.
 
 ## Research during ideation
 
