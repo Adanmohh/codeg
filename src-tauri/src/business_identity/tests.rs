@@ -4,6 +4,7 @@ use base64::{engine::general_purpose::URL_SAFE_NO_PAD, Engine as _};
 use sea_orm::{ConnectionTrait, DatabaseConnection};
 use serde_json::{json, Value};
 use std::sync::Arc;
+mod fixture;
 mod policy;
 mod transactions;
 
