@@ -11,7 +11,7 @@ contains Step1 and must not be treated as the final app.
   exit0,2m11s optimized build. Real arm64 companion staged at
   `src-tauri/binaries/codeg-mcp-aarch64-apple-darwin`. No dependency/lock change.
   Log `/tmp/ops-phase1-sidecar-build.log`.
-- Root locked standalone server/companion debug build is running. Native app
+- Root locked standalone server/companion debug build passed (details below). Native app
   packaging follows final UI fixes and Design Studio rechecks. No signing,
   notarization, distribution, live credentials or production-data launch.
 
@@ -27,3 +27,14 @@ Screenshot `reports/browser-phase1-final/backend-upgrade-intake.png`.
 Static UI is still the earlier root export; final design/native export remains
 pending. Logs `/tmp/ops-phase1-server-build.log`,
 `/tmp/ops-phase1-server-startup.log`. No live provider/configuration write.
+
+## Native executable checkpoint
+
+`CARGO_NET_OFFLINE=true CARGO_BUILD_JOBS=4 cargo build --locked --bin codeg`
+passed, exit0,1m53s, at root ecce0442 (accepted Pi product, documentation only
+since2e0711d4). Log `/tmp/ops-phase1-native-binary-build.log`. The debug linker
+warns that the unwind section exceeds16MB and may affect exception-handling
+performance; inherited proc-macro-error2 future compatibility also remains.
+This compiles the real desktop runtime, but does not replace the existing
+bundle or establish a final frontend export. Packaging and isolated native
+startup remain pending the UI corrections.
