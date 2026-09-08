@@ -91,6 +91,11 @@ unchanged draft preservation after source import, human edit/CAS, revoked proof,
 stable Pi deny and cancel/peer-abort. The pagination test first used an invalid
 non-SHA source revision; accepted host validation rejected it. Correcting that
 synthetic fixture to a valid different SHA yields 6/6, exit 0.
+Implementation checkpoint `0d18f665` is pushed. Default desktop check passed;
+Clippy identified a redundant reference in the manual browser fixture, corrected
+without an allowance. Final runtime/Clippy sequence is running. Root separately
+reports its earlier four-test run at `ae131cf8`; the additional source-revision
+and revoked-evidence cases here are this worker's newer evidence.
 Frontend and strict Node typechecks and the isolated Next16.1.6 static export
 (`src-tauri/target/pi-issues-export`) pass, exit 0. Before this merge, real
 companion/extension Vitest passed 19/19 and the extracted-assets actual installed

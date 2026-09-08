@@ -185,7 +185,7 @@ async fn pi_issues_browser_fixture() {
     let response: BrokerResponse = read_frame(&mut client).await.unwrap();
     let proposed = succeeded(serde_json::from_value(response.outcome).unwrap());
     assert_eq!(proposed["status"], "pending");
-    let expected = serde_json::to_value(&draft.prepared.as_ref().unwrap()).unwrap();
+    let expected = serde_json::to_value(draft.prepared.as_ref().unwrap()).unwrap();
     let rows = ops_proposal::Entity::find()
         .all(&engine.db.conn)
         .await
