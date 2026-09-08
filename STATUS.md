@@ -1,6 +1,10 @@
 # Status — 2026-09-08
 
-**Phase 1 local implementation and validation are complete.** Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
+**Visual refresh active following owner feedback that the app looks basic.** Phase 1 functional implementation and prior local validation are complete. Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
+
+## Visual refresh — active
+
+Direction: [Hafidh dispatch desk](docs/design/VISUAL-DIRECTION.md). The earlier functional/design pass is retained as baseline; new visual acceptance remains open. Reviewer dispatched in Herdr wR:p3; two UI implementation assignments follow the shared direction. Root remains orchestrator-only.
 
 ## Current position
 

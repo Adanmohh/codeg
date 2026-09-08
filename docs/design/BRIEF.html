@@ -126,6 +126,25 @@
         "src/components/ui/tabs.tsx"
       ],
       "applies": true
+    },
+    {
+      "name": "ops-workspace",
+      "components": [
+        "src/components/ops/ops-page.tsx",
+        "src/components/ops/morning-view.tsx",
+        "src/components/ops/inbox-view.tsx",
+        "src/components/ops/proposals-view.tsx"
+      ],
+      "applies": true
+    },
+    {
+      "name": "evidence-review",
+      "components": [
+        "src/components/ops-intake/bug-workflow-page.tsx",
+        "src/components/ops-intake/issue-review.tsx",
+        "src/components/ops-telegram/issue-review.tsx"
+      ],
+      "applies": true
     }
   ],
   "conventions": [
@@ -136,7 +155,8 @@
     "Private note, draft awaiting approval, approved authorization, sent receipt and delivery failure must be visibly distinct. Approval must present exact recipients and complete content; edits require revalidation.",
     "No decorative metrics or invented customer data in production. Loading, empty, missing configuration, validation error, denied, stale approval and success states must provide a concrete next action.",
     "Use semantic labels, keyboard navigation, visible focus, dialogs with focus restoration, accessible errors and sufficient contrast. Validate at desktop and narrow mobile widths in light/dark; respect RTL locale direction.",
-    "Use Playwright CLI for real-server browser checks. Mock external providers only in explicitly identified test fixtures. Run Design Studio measured audit, worker fixes and targeted rechecks at completion."
+    "Use Playwright CLI for real-server browser checks. Mock external providers only in explicitly identified test fixtures. Run Design Studio measured audit, worker fixes and targeted rechecks at completion.",
+    "Owner-authorized visual refresh: follow docs/design/VISUAL-DIRECTION.md. Dispatch-desk composition, clear work hierarchy and correspondence-to-decision sheet; preserve existing themes/fonts and all approved workflow semantics."
   ],
   "scenarios": [
     {
@@ -171,13 +191,13 @@
   "gaps": [
     {
       "priority": 1,
-      "current": "Step 2 email and approval user flows are not yet wired into main",
-      "target": "Working ticket/review flows with explicit configuration and failure states"
+      "current": "Owner finds the accepted functional UI visually basic: empty Morning is a long text column; workspace hierarchy and list/detail finish need development.",
+      "target": "Coherent dispatch-desk visual refresh with before/after evidence across populated and empty states."
     },
     {
       "priority": 2,
-      "current": "Measured browser and Design Studio acceptance for the completed Ops flows remains pending",
-      "target": "Desktop/mobile light/dark flow evidence and resolved actionable audit findings"
+      "current": "New visual refresh has not been implemented or audited.",
+      "target": "Final Design Studio aesthetic/a11y/flow review, root CLI checks and refreshed app."
     }
   ],
   "inspiration": []

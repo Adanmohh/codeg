@@ -59,3 +59,7 @@ Owner requests continuing as far as possible autonomously, beyond the original S
 ## 2026-09-07 — Step 2 verified contracts
 
 Use the actual `MCPServer` API at the mandated MCP Python SDK v2.0.1; its old FastMCP import is a deliberate failure stub, independently verified through gh api. This corrects the founding document’s scaffold name without changing the source pin or scope. Intake stays read-only against existing Hafidh GET routes; missing in-app/diagnostic read APIs are reported unavailable, not simulated as live integration. UI/draft, email and intake migrations reserve suffixes 000003/000004/000005 respectively.
+
+## 2026-09-08 — Owner-authorized visual refresh
+
+Owner finds the app basic and requests continued work. Reopen visual quality with the dispatch-desk direction in docs/design/VISUAL-DIRECTION.md. Preserve accepted workflows, user themes/fonts, source/borrow rules and local-only testing. Root orchestrates two implementation workers and one independent report-only reviewer through existing Herdr topic tabs. No new service choice or Phase 2 feature is implied; Sentry versus SigNoz remains undecided.
