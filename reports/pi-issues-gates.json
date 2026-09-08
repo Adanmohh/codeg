@@ -1,0 +1,42 @@
+[
+  {
+    "gate": "desktop-check",
+    "command": "cargo check --locked",
+    "exit": 0
+  },
+  {
+    "gate": "desktop-clippy",
+    "command": "cargo clippy --locked --all-targets --features test-utils -- -D warnings",
+    "exit": 0
+  },
+  {
+    "gate": "server-check",
+    "command": "cargo check --locked --no-default-features --bin codeg-server --bin codeg-mcp",
+    "exit": 0
+  },
+  {
+    "gate": "server-clippy",
+    "command": "cargo clippy --locked --no-default-features --bin codeg-server --bin codeg-mcp --lib -- -D warnings",
+    "exit": 0
+  },
+  {
+    "gate": "server-desk-tests",
+    "command": "cargo test --locked --no-default-features --lib desk_",
+    "exit": 0
+  },
+  {
+    "gate": "host-tests",
+    "command": "cargo test --locked --no-default-features --lib ops_intake_host::",
+    "exit": 0
+  },
+  {
+    "gate": "desktop-desk-tests",
+    "command": "cargo test --locked --features test-utils --lib desk_",
+    "exit": 0
+  },
+  {
+    "gate": "companion-build",
+    "command": "cargo build --locked --no-default-features --bin codeg-mcp",
+    "exit": 0
+  }
+]

@@ -120,7 +120,7 @@ pub struct SourceRef {
     pub ulid: String,
 }
 impl SourceRef {
-    pub(super) fn validate(&self) -> Result<(), IntakeError> {
+    pub(crate) fn validate(&self) -> Result<(), IntakeError> {
         if !identifier(&self.product_id) || !ulid(&self.ulid) {
             return Err(IntakeError::InvalidPayload);
         }

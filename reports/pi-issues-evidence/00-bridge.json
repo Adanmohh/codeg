@@ -1,0 +1,123 @@
+{
+  "cachedCalls": [
+    {
+      "cachedRecords": 3,
+      "inAppAvailable": false,
+      "operatorAction": "An operator imports or refreshes sources in Bug intake. Use cached get for each source's freshness and human-prepared draft revision.",
+      "productId": "synthetic-95d4e964-1bb9-45a2-a7e7-9c99edab49bc",
+      "semantics": "Cached TestFlight data only. No upstream request or freshness update. Triage suggestions are guesses; a human must confirm severity and evidence."
+    },
+    {
+      "items": [
+        {
+          "cache": {
+            "maxAgeSeconds": 900,
+            "operatorAction": null,
+            "state": "fresh",
+            "verifiedAt": 1788831561
+          },
+          "draft": {
+            "confirmedSeverity": "medium",
+            "draftId": "15643c76-563f-42e3-a05d-3f208e4973b1",
+            "labels": [
+              "audio"
+            ],
+            "matchesSourceRevision": true,
+            "preparedForCurrentRun": true,
+            "revision": 14,
+            "title": "TestFlight draft: Synthetic audio stops at verse four"
+          },
+          "title": "TestFlight draft: Synthetic audio stops at verse four",
+          "ulid": "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+        },
+        {
+          "cache": {
+            "maxAgeSeconds": 900,
+            "operatorAction": "Ask an operator to refresh this source in Bug intake before proposing.",
+            "state": "unverified",
+            "verifiedAt": null
+          },
+          "draft": null,
+          "title": "TestFlight draft: Synthetic unknown response example",
+          "ulid": "01ARZ3NDEKTSV4RRFFQ69G5FAW"
+        },
+        {
+          "cache": {
+            "maxAgeSeconds": 900,
+            "operatorAction": "Ask an operator to refresh this source in Bug intake before proposing.",
+            "state": "unverified",
+            "verifiedAt": null
+          },
+          "draft": null,
+          "title": "TestFlight draft: Synthetic rejected label example",
+          "ulid": "01ARZ3NDEKTSV4RRFFQ69G5FAX"
+        }
+      ],
+      "nextPage": null,
+      "operatorAction": null,
+      "productId": "synthetic-95d4e964-1bb9-45a2-a7e7-9c99edab49bc",
+      "semantics": "Cached TestFlight data only. No upstream request or freshness update. Triage suggestions are guesses; a human must confirm severity and evidence."
+    },
+    {
+      "feedback": {
+        "appVersion": null,
+        "buildNumber": "42",
+        "description": "Synthetic audio stops at verse four",
+        "device": "iPhone 16",
+        "locale": "en",
+        "osVersion": "18.2",
+        "platform": "IOS",
+        "sourceStatus": "pending",
+        "submittedAt": "2026-09-07T10:00:00+00:00",
+        "suggestedSeverity": "low",
+        "suggestedTags": [
+          "audio"
+        ]
+      },
+      "item": {
+        "cache": {
+          "maxAgeSeconds": 900,
+          "operatorAction": null,
+          "state": "fresh",
+          "verifiedAt": 1788831561
+        },
+        "draft": {
+          "confirmedSeverity": "medium",
+          "draftId": "15643c76-563f-42e3-a05d-3f208e4973b1",
+          "labels": [
+            "audio"
+          ],
+          "matchesSourceRevision": true,
+          "preparedForCurrentRun": true,
+          "revision": 14,
+          "title": "TestFlight draft: Synthetic audio stops at verse four"
+        },
+        "title": "TestFlight draft: Synthetic audio stops at verse four",
+        "ulid": "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+      },
+      "productId": "synthetic-95d4e964-1bb9-45a2-a7e7-9c99edab49bc",
+      "semantics": "Cached TestFlight data only. No upstream request or freshness update. Triage suggestions are guesses; a human must confirm severity and evidence."
+    }
+  ],
+  "cachedReadsMintedFreshness": false,
+  "cachedReadsRequestedUpstream": false,
+  "companionTools": [
+    "hafidh_feedback_get",
+    "hafidh_feedback_list",
+    "hafidh_intake_status"
+  ],
+  "nativeInput": {
+    "draftId": "15643c76-563f-42e3-a05d-3f208e4973b1",
+    "expectedRevision": 14
+  },
+  "nativeResult": {
+    "draftId": "15643c76-563f-42e3-a05d-3f208e4973b1",
+    "labels": [
+      "audio"
+    ],
+    "proposalId": 1,
+    "status": "pending",
+    "submittedRevision": 14,
+    "title": "TestFlight draft: Synthetic audio stops at verse four"
+  }
+}

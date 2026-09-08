@@ -51,6 +51,32 @@ export const inputSchemas = {
     { draftId: id, expectedRevision: id },
     closed
   ),
+  desk_propose_issue: Type.Object(
+    {
+      draftId: Type.String({
+        minLength: 1,
+        maxLength: 100,
+        pattern: "^[a-zA-Z0-9_-]+$",
+      }),
+      expectedRevision: id,
+    },
+    closed
+  ),
+  hafidh_feedback_list: Type.Object(
+    { page: Type.Optional(Type.Integer({ minimum: 0, maximum: 10000 })) },
+    closed
+  ),
+  hafidh_feedback_get: Type.Object(
+    {
+      ulid: Type.String({
+        pattern: "^[0-7][0-9A-HJKMNP-TV-Z]{25}$",
+        minLength: 26,
+        maxLength: 26,
+      }),
+    },
+    closed
+  ),
+  hafidh_intake_status: Type.Object({}, closed),
 } as const
 
 export type DeskTool = keyof typeof inputSchemas
@@ -59,7 +85,16 @@ export type DeskCall = {
   [K in DeskTool]: { tool: K; input: DeskInputs[K] }
 }[DeskTool]
 
-export const DESK_TOOLS = Object.keys(inputSchemas) as DeskTool[]
+export const HAFIDH_READ_TOOLS = [
+  "hafidh_feedback_list",
+  "hafidh_feedback_get",
+  "hafidh_intake_status",
+] as const
+export type HafidhReadTool = (typeof HAFIDH_READ_TOOLS)[number]
+export type NativeDeskTool = Exclude<DeskTool, HafidhReadTool>
+export const DESK_TOOLS = (Object.keys(inputSchemas) as DeskTool[]).filter(
+  (name): name is NativeDeskTool => name.startsWith("desk_")
+)
 export function isDeskTool(value: string): value is DeskTool {
   return Object.prototype.hasOwnProperty.call(inputSchemas, value)
 }
@@ -108,6 +143,11 @@ export type DeskErrorCode =
   | "stale"
   | "invalid_input"
   | "storage"
+  | "product_missing"
+  | "ambiguous_product"
+  | "cache_expired"
+  | "evidence_required"
+  | "severity_required"
 export type DeskResponse =
   | { ok: true; value: unknown }
   | { ok: false; code: DeskErrorCode }
@@ -137,6 +177,11 @@ export function parseResponse(frame: unknown): DeskResponse {
               Type.Literal("stale"),
               Type.Literal("invalid_input"),
               Type.Literal("storage"),
+              Type.Literal("product_missing"),
+              Type.Literal("ambiguous_product"),
+              Type.Literal("cache_expired"),
+              Type.Literal("evidence_required"),
+              Type.Literal("severity_required"),
             ]),
           },
           closed

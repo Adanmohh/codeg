@@ -5,7 +5,7 @@ import { mkdir, rm } from "node:fs/promises"
 import { resolve } from "node:path"
 import { createRequire } from "node:module"
 import { createServer, type Server, type Socket } from "node:net"
-import { DESK_TOOLS } from "./protocol.ts"
+import { DESK_TOOLS, HAFIDH_READ_TOOLS } from "./protocol.ts"
 
 const require = createRequire(import.meta.url)
 const scratch = resolve("integrations/pi-desk/process-fixtures.log")
@@ -35,131 +35,165 @@ afterEach(async () => {
   await rm(scratch, { recursive: true, force: true })
 })
 
-it("real codeg-mcp exposes only Desk tools and cancels a parked native request", async () => {
-  const path = resolve(`.pi-mcp-${process.pid}.log`)
-  await rm(path, { force: true })
-  const requests: Array<Record<string, unknown>> = []
-  let parked!: () => void
-  let closed!: () => void
-  const parkedRequest = new Promise<void>((done) => {
-    parked = done
-  })
-  const closedRequest = new Promise<void>((done) => {
-    closed = done
-  })
-  const server = createServer((socket) => {
-    sockets.push(socket)
-    let bytes = Buffer.alloc(0)
-    socket.on("data", (chunk) => {
-      bytes = Buffer.concat([bytes, Buffer.from(chunk)])
-      if (bytes.length < 4 || bytes.length < bytes.readUInt32LE(0) + 4) return
-      const request = JSON.parse(bytes.subarray(4).toString())
-      requests.push(request)
-      if (request.request.tool === "desk_thread") {
-        socket.once("close", closed)
-        parked()
-        return
-      }
-      const body = Buffer.from(
-        JSON.stringify({ outcome: { ok: false, code: "stale" } })
-      )
-      const prefix = Buffer.alloc(4)
-      prefix.writeUInt32LE(body.length)
-      socket.end(Buffer.concat([prefix, body]))
+it.each(["desk", "intake"] as const)(
+  "real codeg-mcp exposes only %s tools and cancels a parked native request",
+  async (features) => {
+    const parkedTool =
+      features === "desk" ? "desk_thread" : "hafidh_feedback_get"
+    const contextTool =
+      features === "desk" ? "desk_context" : "hafidh_intake_status"
+    const path = resolve(`.pi-mcp-${process.pid}.log`)
+    await rm(path, { force: true })
+    const requests: Array<Record<string, unknown>> = []
+    let parked!: () => void
+    let closed!: () => void
+    const parkedRequest = new Promise<void>((done) => {
+      parked = done
     })
-  })
-  servers.push(server)
-  await new Promise<void>((done, reject) => {
-    server.once("error", reject)
-    server.listen(path, done)
-  })
-  const child = spawn(
-    resolve("src-tauri/target/debug/codeg-mcp"),
-    [
-      "--features",
-      "desk",
-      "--parent-connection-id",
-      "untrusted-command-label",
-      "--socket-path",
-      path,
-      "--token",
-      "fixture-launch-token",
-    ],
-    { stdio: "pipe", env: { NODE_ENV: "test", PATH: process.env.PATH } }
-  )
-  children.push(child)
-  const replies = new Map<number, Record<string, unknown>>()
-  const waiters = new Map<number, (reply: Record<string, unknown>) => void>()
-  createInterface({ input: child.stdout }).on("line", (line) => {
-    const reply = JSON.parse(line)
-    replies.set(reply.id, reply)
-    waiters.get(reply.id)?.(reply)
-  })
-  function send(
-    id: number,
-    method: string,
-    params?: unknown
-  ): Promise<Record<string, unknown>> {
-    return new Promise((done, reject) => {
-      const timer = setTimeout(
-        () => reject(new Error("companion RPC timed out")),
-        5000
-      )
-      waiters.set(id, (reply) => {
-        clearTimeout(timer)
-        done(reply)
+    const closedRequest = new Promise<void>((done) => {
+      closed = done
+    })
+    const server = createServer((socket) => {
+      sockets.push(socket)
+      let bytes = Buffer.alloc(0)
+      socket.on("data", (chunk) => {
+        bytes = Buffer.concat([bytes, Buffer.from(chunk)])
+        if (bytes.length < 4 || bytes.length < bytes.readUInt32LE(0) + 4) return
+        const request = JSON.parse(bytes.subarray(4).toString())
+        requests.push(request)
+        if (request.request.tool === parkedTool) {
+          socket.once("close", closed)
+          parked()
+          return
+        }
+        const body = Buffer.from(
+          JSON.stringify({ outcome: { ok: false, code: "stale" } })
+        )
+        const prefix = Buffer.alloc(4)
+        prefix.writeUInt32LE(body.length)
+        socket.end(Buffer.concat([prefix, body]))
       })
-      child.stdin.write(
-        JSON.stringify({ jsonrpc: "2.0", id, method, params }) + "\n"
-      )
     })
+    servers.push(server)
+    await new Promise<void>((done, reject) => {
+      server.once("error", reject)
+      server.listen(path, done)
+    })
+    const child = spawn(
+      resolve("src-tauri/target/debug/codeg-mcp"),
+      [
+        "--features",
+        features,
+        "--parent-connection-id",
+        "untrusted-command-label",
+        "--socket-path",
+        path,
+        "--token",
+        "fixture-launch-token",
+      ],
+      { stdio: "pipe", env: { NODE_ENV: "test", PATH: process.env.PATH } }
+    )
+    children.push(child)
+    const replies = new Map<number, Record<string, unknown>>()
+    const waiters = new Map<number, (reply: Record<string, unknown>) => void>()
+    createInterface({ input: child.stdout }).on("line", (line) => {
+      const reply = JSON.parse(line)
+      replies.set(reply.id, reply)
+      waiters.get(reply.id)?.(reply)
+    })
+    function send(
+      id: number,
+      method: string,
+      params?: unknown
+    ): Promise<Record<string, unknown>> {
+      return new Promise((done, reject) => {
+        const timer = setTimeout(
+          () => reject(new Error("companion RPC timed out")),
+          5000
+        )
+        waiters.set(id, (reply) => {
+          clearTimeout(timer)
+          done(reply)
+        })
+        child.stdin.write(
+          JSON.stringify({ jsonrpc: "2.0", id, method, params }) + "\n"
+        )
+      })
+    }
+    expect((await send(1, "initialize")).error).toBeUndefined()
+    const list = (await send(2, "tools/list")).result as {
+      tools: Array<{
+        name: string
+        description: string
+        inputSchema: { additionalProperties: boolean }
+      }>
+    }
+    expect(list.tools.map((tool) => tool.name).sort()).toEqual(
+      [...(features === "desk" ? DESK_TOOLS : HAFIDH_READ_TOOLS)].sort()
+    )
+    if (features === "intake") {
+      for (const tool of list.tools) {
+        expect(tool.description.toLowerCase()).toContain("cached")
+        expect(tool.inputSchema.additionalProperties).toBe(false)
+      }
+      for (const name of [
+        "desk_propose_issue",
+        "desk_save_reply",
+        "delegate_to_agent",
+        "configure",
+        "refresh",
+        "approve",
+        "execute",
+      ]) {
+        expect(
+          (await send(50, "tools/call", { name, arguments: {} })).error
+        ).toBeDefined()
+      }
+      expect(requests).toHaveLength(0)
+    }
+    expect(
+      (await send(3, "tools/call", { name: "approve", arguments: {} })).error
+    ).toBeDefined()
+    const result = (
+      await send(4, "tools/call", { name: contextTool, arguments: {} })
+    ).result as { isError: boolean; content: Array<{ text: string }> }
+    expect(result.isError).toBe(true)
+    expect(JSON.parse(result.content[0].text)).toEqual({
+      ok: false,
+      code: "stale",
+    })
+    expect(requests[0]).toEqual({
+      kind: "desk",
+      token: "fixture-launch-token",
+      request: { tool: contextTool, input: {} },
+    })
+    child.stdin.write(
+      JSON.stringify({
+        jsonrpc: "2.0",
+        id: 20,
+        method: "tools/call",
+        params: {
+          name: parkedTool,
+          arguments:
+            features === "desk"
+              ? { inboxId: 1, conversationId: 2 }
+              : { ulid: "01ARZ3NDEKTSV4RRFFQ69G5FAV" },
+        },
+      }) + "\n"
+    )
+    await parkedRequest
+    child.stdin.write(
+      JSON.stringify({
+        jsonrpc: "2.0",
+        method: "notifications/cancelled",
+        params: { requestId: 20 },
+      }) + "\n"
+    )
+    await closedRequest
+    await send(21, "tools/list")
+    expect(replies.has(20)).toBe(false)
   }
-  expect((await send(1, "initialize")).error).toBeUndefined()
-  const list = (await send(2, "tools/list")).result as {
-    tools: Array<{ name: string }>
-  }
-  expect(list.tools.map((tool) => tool.name).sort()).toEqual(
-    [...DESK_TOOLS].sort()
-  )
-  expect(
-    (await send(3, "tools/call", { name: "approve", arguments: {} })).error
-  ).toBeDefined()
-  const result = (
-    await send(4, "tools/call", { name: "desk_context", arguments: {} })
-  ).result as { isError: boolean; content: Array<{ text: string }> }
-  expect(result.isError).toBe(true)
-  expect(JSON.parse(result.content[0].text)).toEqual({
-    ok: false,
-    code: "stale",
-  })
-  expect(requests[0]).toEqual({
-    kind: "desk",
-    token: "fixture-launch-token",
-    request: { tool: "desk_context", input: {} },
-  })
-  child.stdin.write(
-    JSON.stringify({
-      jsonrpc: "2.0",
-      id: 20,
-      method: "tools/call",
-      params: {
-        name: "desk_thread",
-        arguments: { inboxId: 1, conversationId: 2 },
-      },
-    }) + "\n"
-  )
-  await parkedRequest
-  child.stdin.write(
-    JSON.stringify({
-      jsonrpc: "2.0",
-      method: "notifications/cancelled",
-      params: { requestId: 20 },
-    }) + "\n"
-  )
-  await closedRequest
-  await send(21, "tools/list")
-  expect(replies.has(20)).toBe(false)
-})
+)
 
 it("real pi 0.85.1 RPC discovers Desk and the isolated installed adapter without a model call", async () => {
   await mkdir(scratch, { recursive: true })

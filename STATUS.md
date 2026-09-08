@@ -1,24 +1,30 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. Typed P1 phone review is also accepted. Pi P1 bridge integration, final combined Design Studio review and native build remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. Typed P1 phone review is also accepted. Pi P1 bridge is accepted. Final combined Design Studio fixes/review and native build remain.
 
 ## Current position
 
 | Area | Current result | Next gate |
 | --- | --- | --- |
 | Foundation: brand, tickets, approvals | Reviewed and merged, PRs #1–3 | Retain combined regressions |
-| Direct Resend transport | Reviewed and merged, PR #6; UI integration accepted in #7 | Combined beta validation |
-| Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
-| Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
-| Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
-| Bug workflow host/UI | PR #9 reviewed and merged; independent 167 integrated Rust tests plus host/Python/frontend and protected CLI checks pass | Pi cached reads/proposal and typed phone integration |
+| Direct Resend transport | PRs #6/#7 accepted; protected synthetic provider/browser flows pass | Final design/native gate; live inbox remains unconfigured |
+| Hafidh intake + GitHub App filing module | PRs #5/#9/#12/#15 accepted through operator, phone and agent integration | Final design/native gate; live App/admin access unvalidated |
+| Email UI, drafts, morning, approved delivery | PR #7 accepted, with locale/RTL/receipt corrections in #14; synthetic flows pass | Final combined Design Studio loop |
+| Pi scoped bridge/default | PRs #8 and #15 reviewed and merged; cached reads/native issue proposal, real companion/adapter and protected browser checks pass | Final build; live Astra/pi-acp configuration unavailable |
+| Bug workflow host/UI | PR #9 host, #12 phone and #15 Pi integration accepted; independent combined178 Ops tests pass | Final beta/native validation |
 | Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
-| Final Design Studio loops | PRs #13 and #14 corrections reviewed and merged; shell, locale, RTL, receipt copy and selected contrast pass | Final integrated specialist review, verify remaining motion/probe candidates |
+| Final Design Studio loops | PRs #13/#14/#18/#19 corrections accepted, including both badges and reduced motion | Final integrated specialist PR #16, root recheck and native bundle |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
 Historical dispatch/review entries below describe their state at that time;
 the table above is the latest status.
+
+Root final frontend regression passes6158 tests across433 files. Integrated
+backend passes178 Ops and13 Desk-selector tests. Real release companion and
+debug server builds pass; the existing local test database upgraded through
+migration000008. Native executable compilation is running, with final bundle
+packaging after the remaining UI corrections. [Build evidence](reports/native-phase1-build.md).
 
 - Fork: https://github.com/Adanmohh/codeg
 - Project root: `/Users/mohamedadan/projects/ops-desk`
@@ -340,3 +346,50 @@ that merge inspection. No product implementation is delegated to root.
 - PR #14 accepted at `e7f89b611e8a229fb557f03efb9627001fc06372`, merged as `b7186ba65b2155bdba695ea6364f3ac267fbc51c`. Full final report, source, attribution/ignore-only merge resolutions and typecheck reviewed. Independent22 tests and actual complete seven-field review/reply/note locale CLI pass; worker92 frontend tests, runtime/Clippy/export gates and468 scoped text measurements pass at their documented heads.
 - Selected metadata improves4.2→8.66 light/9.76 dark. Visible threading inputs pass; closed-details probe artifacts and literal OKLCH/composite mismatches are documented. Remaining reduced-motion candidate needs property/behavior verification in the final review. [Review](reports/review-design-ops.md).
 - Final design reviewer is unblocked to integrate accepted UI and export separately. Pi P1 implementation/real companion/browser verification continues. Final integrated native build remains pending.
+
+## Full frontend regression follow-up
+
+Root full `pnpm test` at8c2a004d: **6156 passed,2 failed**,431/433 files pass,
+25.49s. Both failures expect old visible codeg branding in Forge wrong-host and
+OpenCode malformed-permission messages; current translations say Hafidh Ops Desk.
+Rebrand dispatched to separate `fix/rebrand-test-expectations`, report
+`reports/rebrand-test-expectations.md`, preserving behavioral assertions and
+all product code. Root will rerun the full suite after exact-head review/merge.
+Final combined design review and Pi bridge validation continue.
+
+- PR #17 test-only rebrand correction accepted at `da61360474314fb0ed26eb55dc6ef170e6754ee9`, merged as `cc77846154964872287c0dde35b3fb60819b3260`. Root reviewed all three literal expected-brand updates and the full report; behavior assertions remain. Worker84 focused tests/lint/typecheck pass. One unrelated Forge timing failure occurred before/after, then passed unchanged alone and in the full focused retry; it is documented, not claimed fixed. Root full-suite rerun is running.
+
+- Root full frontend rerun at `cc778461` passes **6158/6158 tests,433/433 files**, exit0,25.81s. Log `/tmp/ops-phase1-frontend-tests-final.log`. The previously transient Forge case also passes in this unchanged full run. No assertion was weakened and no product edit was needed.
+
+- Root final integrated Pi-branch backend checkpoint `cd2a29fb`:178 Ops tests/5 manual ignored and13 Desk-selector tests/3 manual ignored pass, exit0. All six P1 regressions included. Worker actual companion/adapter19+1 and human-denial browser fixture pass with zero GitHub creates/token requests; final report acceptance remains.
+
+- Final Design Studio loop verified an inherited10px running-session badge at4.38:1 light contrast. Root independently confirmed actual DOM/Canvas composite. Rebrand dispatched `fix/design-running-badge`, same worktree/pane, report `reports/design-running-badge.md`; smallest token correction plus actual light/dark/hover/focus recheck. Root locale browser closed and4326 export released to its owner; data/provider counts preserved.
+
+## Pi P1 bridge accepted
+
+- PR #15 accepted at `c17ce81fd206f7694691f9d274f38ef3692bba20`, merged as `2e0711d45b0c72114428557f0b8738f8b667e0e3`. Complete final report/source/NOTICE and clean integration reviewed. Root178 Ops/13 Desk tests, worker both runtime checks/Clippy,19 process and actual extracted adapter1/1 pass. Real companion cached reads preserve freshness/provider counts; exact native proposal remains human-gated; actual CLI denial files nothing. [Review](reports/review-pi-issues.md).
+- Remaining local gate: final Design Studio badge/reduced-motion follow-ups and combined native/server artifacts. No live model/provider/configuration claim.
+
+- Final Design Studio movement finding verified from real frames: mobile sidebar
+  still translates341.5px with a450ms transform transition while reduce=true.
+  Tickets dispatched separate `fix/design-reduced-motion`, same worktree/pane,
+  report `reports/design-reduced-motion.md`: scoped drawer correction preserving
+  normal animation, focus and dismissal, plus actual preference/frame rechecks.
+  Rebrand handles badge contrast; approvals continues final audit. Three workers.
+- Root started real release companion preparation from accepted Pi main for the
+  final native build. No signed/distributed artifact or live provider action.
+
+- PR #19 reduced-motion correction accepted at `edd8add757b69d6f368cf813f14aae1f1d738eb2`,
+  merged as `4611d025ba49790adbda780e8d6d44c20e75a9fe`. Root reviewed popup-only
+  source, pinned attribution, actual before/after frames, nested/swipe/focus
+  evidence and final report. Worker39 tests/lint/typecheck/export pass; reduced
+  motion removes automatic travel and normal animation remains. [Review](reports/review-design-reduced-motion.md).
+  Final badge integration, combined audit and native packaging remain.
+
+- PR #18 accepted at `6aefaa59c72f3aa5f2d9dd284cea0d365a111e05`, merged as
+  `a8663104f97dd5728fab3a8594bb94841d54533e`. Root verified NOTICE-only integration,
+  both live badge changes, full report and worker43 tests/lint/export/typecheck.
+  Independent actual CLI six-state folder recheck passes: light6.19 rest/focus,
+  5.29 hover; dark9.09/6.94, provider4→4. Group fixture evidence also passes.
+  [Review](reports/review-design-running-badge.md). All known product corrections
+  are accepted; final audit and packaged-app/browser gates continue.

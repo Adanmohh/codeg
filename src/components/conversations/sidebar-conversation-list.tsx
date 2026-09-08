@@ -493,10 +493,9 @@ const FolderHeader = memo(function FolderHeader({
                       group, and nothing at all when none are. Amber (not the
                       primary tint the old total-count chip used) is the same
                       "running" semantic the conversation cards spin in amber, so
-                      the two read as one signal. amber-700 (not the card's
-                      amber-600) carries the light-mode fill: at 0.625rem this is
-                      small text, and amber-600 on the tinted surface lands near
-                      3:1 — under the AA floor amber-700 (~4.7:1) clears. */}
+                      the two read as one signal. Use amber-800 for this
+                      0.625rem text to clear the 4.5:1 AA floor on the light
+                      sidebar and its hover fill. */}
                   {runningCount > 0 && (
                     <span
                       title={t("runningCountBadge", { count: runningCount })}
@@ -504,7 +503,7 @@ const FolderHeader = memo(function FolderHeader({
                         "inline-flex shrink-0 items-center justify-center",
                         "h-[0.9375rem] min-w-[1rem] rounded-[0.3125rem] px-[0.25rem]",
                         "text-[0.625rem] font-semibold leading-none tabular-nums",
-                        "bg-amber-500/12 text-amber-700",
+                        "bg-amber-500/12 text-amber-800",
                         "dark:bg-amber-400/15 dark:text-amber-300"
                       )}
                     >

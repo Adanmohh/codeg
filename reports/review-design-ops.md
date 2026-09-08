@@ -54,3 +54,14 @@ report2.27/2.66; root requested direct settled-theme style/screenshot verificati
 to distinguish real native-control contrast from a color-probe artifact. Empty
 control samples may be excluded only with evidence. Current summary is not a
 clean contrast pass; final acceptance remains pending these checks.
+
+## Final combined loop: running badge follow-up
+
+A separate inherited shell badge remains below small-text contrast. Root actual
+Playwright/Canvas on4326:10px foregroundRGB(187,77,0),12% amber composited over
+sidebarRGB(250,250,250) givesRGB(249.64,237.60,219.61),ratio4.375. This is a
+real BC-2/18 a11y finding, distinct from literal OKLCH comparison artifacts.
+Rebrand owns new `fix/design-running-badge`, report `design-running-badge.md`,
+small inherited-token correction and light/dark/hover/focus CLI rechecks.
+Root closed its locale browser and released4326's owned export for this check;
+provider/data state remains unchanged.

@@ -1,0 +1,20 @@
+[
+  {
+    "path": [
+      "CSSLayerBlockRule",
+      "(hover: hover)",
+      "(color:color-mix(in lab, red, red))",
+      ".group-hover\\/recent-more\\:bg-\\[color-mix\\(in_oklab\\,var\\(--sidebar-accent\\)\\,var\\(--sidebar-foreground\\)_2\\%\\)\\]:is(:where(.group\\/recent-more):hover *)"
+    ],
+    "css": ".group-hover\\/recent-more\\:bg-\\[color-mix\\(in_oklab\\,var\\(--sidebar-accent\\)\\,var\\(--sidebar-foreground\\)_2\\%\\)\\]:is(:where(.group\\/recent-more):hover *) { background-color: color-mix(in oklab,var(--sidebar-accent),var(--sidebar-foreground)2%); }"
+  },
+  {
+    "path": [
+      "CSSLayerBlockRule",
+      "(hover: hover)",
+      "(color:color-mix(in lab, red, red))",
+      ".hover\\:bg-\\[color-mix\\(in_oklab\\,var\\(--sidebar-accent\\)\\,var\\(--sidebar-foreground\\)_2\\%\\)\\]:hover"
+    ],
+    "css": ".hover\\:bg-\\[color-mix\\(in_oklab\\,var\\(--sidebar-accent\\)\\,var\\(--sidebar-foreground\\)_2\\%\\)\\]:hover { background-color: color-mix(in oklab,var(--sidebar-accent),var(--sidebar-foreground)2%); }"
+  }
+]

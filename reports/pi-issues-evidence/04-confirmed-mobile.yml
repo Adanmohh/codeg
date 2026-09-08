@@ -1,0 +1,174 @@
+- generic:
+  - alert [ref=e7]
+  - region "Notifications alt+T"
+  - generic [ref=e17]:
+    - generic [ref=e393]:
+      - generic [ref=e394]:
+        - button "Show Sidebar" [ref=e713]
+        - button "Search" [ref=e396]
+        - button "New Conversation" [ref=e397]
+      - button "Open Settings" [ref=e400]
+    - main [ref=e565]:
+      - generic [ref=e567]:
+        - generic [ref=e568]: Bug intake
+        - generic [ref=e572]:
+          - generic [ref=e573]:
+            - generic [ref=e574]:
+              - heading "Bug intake" [level=1] [ref=e575]
+              - paragraph [ref=e576]: TestFlight report → reviewed evidence → GitHub issue
+            - button "Product settings" [ref=e577]
+          - generic [ref=e578]:
+            - generic [ref=e579]:
+              - generic [ref=e581]:
+                - text: Product
+                - combobox "Product" [ref=e582]:
+                  - option "synthetic-95d4e964-1bb9-45a2-a7e7-9c99edab49bc · owner/repo" [selected]
+              - button "Read TestFlight" [ref=e583]
+            - paragraph [ref=e584]: Read-only TestFlight intake. In-app feedback is unavailable. A list read does not confirm evidence freshness.
+            - generic [ref=e586]:
+              - generic [ref=e587]:
+                - button "Back to reports" [ref=e588]
+                - button "Reload status" [ref=e589]
+              - status [ref=e590]: Source revalidated from Hafidh.
+              - generic [ref=e591]:
+                - heading "Source report" [level=2] [ref=e592]
+                - paragraph [ref=e593]: Synthetic audio stops at verse four
+                - generic [ref=e594]:
+                  - generic [ref=e595]:
+                    - term [ref=e596]: Device
+                    - definition [ref=e597]: iPhone 16
+                  - generic [ref=e598]:
+                    - term [ref=e599]: OS version
+                    - definition [ref=e600]: "18.2"
+                  - generic [ref=e601]:
+                    - term [ref=e602]: App version
+                    - definition [ref=e603]: Not provided
+                  - generic [ref=e604]:
+                    - term [ref=e605]: Build
+                    - definition [ref=e606]: "42"
+                  - generic [ref=e607]:
+                    - term [ref=e608]: Platform
+                    - definition [ref=e609]: IOS
+                  - generic [ref=e610]:
+                    - term [ref=e611]: Submitted
+                    - definition [ref=e612]: 7.9.2026 klo 13.00.00
+                - paragraph [ref=e613]: TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAV
+                - generic [ref=e614]:
+                  - paragraph [ref=e615]: Revalidated 4.41.15
+                  - button "Refresh source" [ref=e616]
+                - paragraph [ref=e617]: A changed source revision resets its evidence and severity confirmation. Saved edits remain available for comparison until you choose the current draft.
+              - generic [ref=e618]:
+                - heading "Required evidence" [level=2] [ref=e619]
+                - list "Evidence checklist" [ref=e620]:
+                  - listitem [ref=e621]:
+                    - text: build
+                    - generic [ref=e622]: Attached
+                  - listitem [ref=e623]:
+                    - text: screen
+                    - generic [ref=e624]: Attached
+                  - listitem [ref=e625]:
+                    - text: reciter
+                    - generic [ref=e626]: Attached
+                  - listitem [ref=e627]:
+                    - text: log
+                    - generic [ref=e628]: Attached
+                - group [ref=e630]:
+                  - generic [ref=e631]:
+                    - text: Evidence type
+                    - combobox "Evidence type" [disabled] [ref=e632]:
+                      - option "Build" [disabled] [selected]
+                      - option "Screen" [disabled]
+                      - option "Reciter" [disabled]
+                      - option "Log" [disabled]
+                  - paragraph [ref=e633]:
+                    - text: TestFlight reports build
+                    - strong [ref=e634]: "42"
+                    - text: . Confirm that build in the proof content.
+                  - generic [ref=e635]:
+                    - generic [ref=e636]: Build evidence summary
+                    - textbox "Build evidence summary" [disabled]
+                  - generic [ref=e637]:
+                    - generic [ref=e638]: Sanitized proof content
+                    - textbox "Sanitized proof content" [disabled] [ref=e639]
+                    - generic [ref=e640]: Paste reviewed UTF-8 text, up to 8 KiB, including the exact summary above. Remove names, contact details, credentials and private paths. A URL, screenshot or session ID alone is not a diagnostic log.
+                  - generic [ref=e641]:
+                    - generic [ref=e642]: Captured at (optional)
+                    - textbox "Captured at (optional)" [disabled]
+                    - generic [ref=e643]: An actual ISO timestamp, including timezone, when known. Leave blank otherwise.
+                  - button "Replace reviewed proof" [disabled]
+                - generic [ref=e644]:
+                  - generic [ref=e645]:
+                    - term [ref=e646]: build
+                    - definition [ref=e647]: "42"
+                    - definition [ref=e648]: SHA-256 7aa14970f58dc9dd2acfb8ac96589ca733cf94654dff6a92e57bee994040957a
+                  - generic [ref=e649]:
+                    - term [ref=e650]: screen
+                    - definition [ref=e651]: Mushaf reader
+                    - definition [ref=e652]: SHA-256 4fa71e2eba91d3fded78e09eeef88966b1c33a5aa8f719cf17fbb9895b6a2532
+                  - generic [ref=e653]:
+                    - term [ref=e654]: reciter
+                    - definition [ref=e655]: Abdul Basit
+                    - definition [ref=e656]: SHA-256 15d632a277f08bb05d4922e08681ac21540fc609d175fc99a5167050f1c21d7a
+                  - generic [ref=e657]:
+                    - term [ref=e658]: log
+                    - definition [ref=e659]: Playback stopped at verse four
+                    - definition [ref=e660]: SHA-256 7c77bb532f3da0b9cbbe7ffb5e7dcf1ebeaad011158f74eaf19901afa1a70453
+              - generic [ref=e661]:
+                - heading "Issue draft" [level=2] [ref=e662]
+                - paragraph [ref=e663]:
+                  - text: "Suggestion:"
+                  - strong [ref=e664]: low
+                  - text: severity; audio. These are triage guesses. Confirm or change severity below.
+                - group [ref=e666]:
+                  - generic [ref=e667]:
+                    - generic [ref=e668]: Issue title
+                    - textbox "Issue title" [disabled]: "TestFlight draft: Synthetic audio stops at verse four"
+                  - generic [ref=e669]:
+                    - generic [ref=e670]: Reproduction and expected behavior
+                    - textbox "Reproduction and expected behavior" [disabled] [ref=e671]: Synthetic audio stops at verse four
+                    - generic [ref=e672]: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions.
+                  - generic [ref=e673]:
+                    - generic [ref=e674]: Repository labels
+                    - textbox "Repository labels" [disabled]: audio
+                    - generic [ref=e675]: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing.
+                  - generic [ref=e676]:
+                    - text: Human-confirmed severity
+                    - combobox "Human-confirmed severity" [disabled] [ref=e677]:
+                      - option "Not confirmed" [disabled]
+                      - option "High" [disabled]
+                      - option "Medium" [disabled] [selected]
+                      - option "Low" [disabled]
+                  - generic [ref=e678]:
+                    - button "Save issue draft" [disabled]
+                    - generic [ref=e679]: Draft saved locally
+                - status [ref=e680]: A proposal is waiting for review. Deny it before changing the draft, then request a new proposal.
+              - generic [ref=e681]:
+                - heading "Exact GitHub issue" [level=2] [ref=e682]
+                - generic [ref=e683]:
+                  - generic [ref=e684]:
+                    - term [ref=e685]: Repository
+                    - definition [ref=e686]: owner/repo
+                  - generic [ref=e687]:
+                    - term [ref=e688]: Title
+                    - definition [ref=e689]: "TestFlight draft: Synthetic audio stops at verse four"
+                  - generic [ref=e690]:
+                    - term [ref=e691]: Labels
+                    - definition [ref=e692]: audio
+                - group [ref=e693]:
+                  - generic "Complete issue body" [ref=e694] [cursor=pointer]
+                  - generic "Exact issue body" [ref=e695]: "Synthetic audio stops at verse four Severity: medium (human-confirmed) Source: synthetic-95d4e964-1bb9-45a2-a7e7-9c99edab49bc / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAV Revision: 5ba2a305f6239ec5ceb08e5678f1ba424920e179ff2b806090fc6a35f61a3afd Template: hafidh-issue-v1 ## build 42 Evidence: 4c4005eb-6dce-4f28-96d7-bb948fdee5bd SHA-256: 7aa14970f58dc9dd2acfb8ac96589ca733cf94654dff6a92e57bee994040957a ## screen Mushaf reader Evidence: acff1aa5-859f-46b7-91c3-90bd6abcdad3 SHA-256: 4fa71e2eba91d3fded78e09eeef88966b1c33a5aa8f719cf17fbb9895b6a2532 ## reciter Abdul Basit Evidence: 9141c2c9-c61d-49fc-bfc4-a1e7fb00765c SHA-256: 15d632a277f08bb05d4922e08681ac21540fc609d175fc99a5167050f1c21d7a ## log Playback stopped at verse four Evidence: da10401d-1452-46ca-80c9-58e63136bf9f SHA-256: 7c77bb532f3da0b9cbbe7ffb5e7dcf1ebeaad011158f74eaf19901afa1a70453 <!-- hafidh-ops:42dbd7583d7ec8c781144911058e92e7bc4917bdb0fddcaf7c36547d5ccac9c0 -->"
+                - generic [ref=e696]:
+                  - generic [ref=e697]:
+                    - checkbox "I reviewed this exact repository, title, body and labels. File this issue." [checked] [active] [ref=e698]
+                    - text: I reviewed this exact repository, title, body and labels. File this issue.
+                  - generic [ref=e699]:
+                    - button "Approve and file issue" [ref=e714]
+                    - button "Deny proposal" [ref=e700]
+    - generic [ref=e98]:
+      - generic [ref=e99]:
+        - button "Quick actions" [ref=e100]
+        - button "1 conversations" [ref=e257]
+      - generic [ref=e101]:
+        - button "Add Command" [ref=e701]
+        - button "codeg-mcp service" [ref=e702]
+        - button "Alerts" [ref=e710]

@@ -203,7 +203,7 @@ export const SidebarFolderGroupHeader = memo(function SidebarFolderGroupHeader({
                   "inline-flex shrink-0 items-center justify-center",
                   "h-[0.9375rem] min-w-[1rem] rounded-[0.3125rem] px-[0.25rem]",
                   "text-[0.625rem] font-semibold leading-none tabular-nums",
-                  "bg-amber-500/12 text-amber-700",
+                  "bg-amber-500/12 text-amber-800",
                   "dark:bg-amber-400/15 dark:text-amber-300"
                 )}
               >

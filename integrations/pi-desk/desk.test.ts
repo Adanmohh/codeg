@@ -8,8 +8,13 @@ import {
   type ApprovalDecision,
   type ApprovalRequest,
 } from "./broker.ts"
-import { installDesk } from "./index.ts"
-import { snapshotCall, type DeskCall, type DeskResponse } from "./protocol.ts"
+import { cachedIntakeConfig, installDesk } from "./index.ts"
+import {
+  HAFIDH_READ_TOOLS,
+  snapshotCall,
+  type DeskCall,
+  type DeskResponse,
+} from "./protocol.ts"
 import {
   MAX_FRAME_BYTES,
   socketTransport,
@@ -135,7 +140,7 @@ function request(overrides: Partial<ApprovalRequest> = {}) {
     serverName: "hafidh",
     originalToolName: "hafidh_feedback_get",
     prefixedToolName: "hafidh_hafidh_feedback_get",
-    args: { source_ref: "fixture" },
+    args: { ulid: "01ARZ3NDEKTSV4RRFFQ69G5FAV" },
     origin: "proxy",
     claim(candidate) {
       if (handler) return false
@@ -154,6 +159,69 @@ function request(overrides: Partial<ApprovalRequest> = {}) {
 }
 
 describe("adapter broker contract (pi-mcp-adapter 2.32.1 regression patterns)", () => {
+  it("bounds all cached read inputs before IO and rejects identity, refresh and proof fields", async () => {
+    for (const [tool, args] of [
+      ["hafidh_feedback_list", { page: -1 }],
+      [
+        "hafidh_feedback_get",
+        { ulid: "01ARZ3NDEKTSV4RRFFQ69G5FAV", refresh: true },
+      ],
+      ["hafidh_intake_status", { accountId: 1 }],
+      ["hafidh_feedback_get", { ulid: "../../private" }],
+    ] as const) {
+      let calls = 0
+      const fixture = request({ originalToolName: tool, args })
+      claimApproval(
+        fixture.req,
+        {
+          async call() {
+            calls++
+            return context
+          },
+        },
+        new AbortController().signal
+      )
+      expect(await fixture.decide()).toBe("deny")
+      expect(calls).toBe(0)
+    }
+    expect(
+      snapshotCall("desk_propose_issue", {
+        draftId: "human-draft",
+        expectedRevision: 2,
+      }).input
+    ).toEqual({ draftId: "human-draft", expectedRevision: 2 })
+    for (const input of [
+      { draftId: "human-draft", expectedRevision: 0 },
+      { draftId: "human-draft", expectedRevision: 1.5 },
+      { draftId: "human-draft", expectedRevision: 1, proofs: {} },
+      { draftId: "human-draft", expectedRevision: 1, actor: "operator" },
+      { draftId: "", expectedRevision: 1 },
+    ])
+      expect(() => snapshotCall("desk_propose_issue", input)).toThrow(
+        "Desk input is invalid"
+      )
+  })
+  it("configures only the fixed cached companion with no provider configuration or mutation tools", () => {
+    const config = cachedIntakeConfig({
+      CODEG_DESK_COMPANION: "/owned/codeg-mcp",
+      CODEG_DESK_SOCKET: "/owned/bridge",
+      CODEG_DESK_TOKEN: "synthetic-only",
+      HAFIDH_COMMAND: "arbitrary",
+      HAFIDH_TOKEN: "never-copy",
+    })
+    expect(Object.keys(config.mcpServers)).toEqual(["hafidh"])
+    const server = config.mcpServers.hafidh
+    expect(server.command).toBe("/owned/codeg-mcp")
+    expect(server.args?.slice(0, 2)).toEqual(["--features", "intake"])
+    expect(server.directTools).toEqual(HAFIDH_READ_TOOLS)
+    expect(server.includeTools).toEqual(HAFIDH_READ_TOOLS)
+    expect(server.exposeResources).toBe(false)
+    expect(server.approveTools).toBe(true)
+    expect(JSON.stringify(config)).not.toContain("never-copy")
+    expect(
+      cachedIntakeConfig({ CODEG_DESK_COMPANION: "relative" }).mcpServers
+    ).toEqual({})
+  })
   it("claims synchronously, allows only once, and checks the live bridge on every call", async () => {
     let calls = 0
     for (let i = 0; i < 2; i++) {
@@ -242,7 +310,7 @@ describe("adapter broker contract (pi-mcp-adapter 2.32.1 regression patterns)", 
       )
       const decision = fixture.decide()
       if (abort) controller.abort()
-      else fixture.req.args.source_ref = "changed"
+      else fixture.req.args.ulid = "01ARZ3NDEKTSV4RRFFQ69G5FAW"
       release(context)
       expect(await decision).toBe("deny")
     }

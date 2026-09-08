@@ -7,10 +7,13 @@ import {
 } from "./broker.ts"
 import {
   DESK_TOOLS,
+  HAFIDH_READ_TOOLS,
   inputSchemas,
   isDeskTool,
   snapshotCall,
 } from "./protocol.ts"
+import { isAbsolute } from "node:path"
+import type { McpConfig } from "pi-mcp-adapter/types"
 import { socketTransport, type DeskTransport } from "./transport.ts"
 
 const descriptions = {
@@ -23,6 +26,8 @@ const descriptions = {
     "Save a reply draft using its expected revision (0 creates). This never sends mail.",
   desk_propose_reply:
     "Submit the exact saved draft revision for human review. This never approves or sends mail.",
+  desk_propose_issue:
+    "Propose an existing human-prepared issue draft/revision for human review. Use the cached Hafidh reads to choose it. Current host source freshness, evidence, severity and live task scope are required. Missing/ambiguous product bindings require operator configuration; expired sources require operator refresh. No import, evidence creation, approval or filing.",
 }
 
 export function installDesk(pi: ExtensionAPI, transport?: DeskTransport): void {
@@ -90,13 +95,17 @@ export function installDesk(pi: ExtensionAPI, transport?: DeskTransport): void {
     description:
       "Show Desk bridge and required Astra setup status (no model request)",
     async handler(_args, ctx) {
+      const tools = pi.getAllTools().map((tool) => tool.name)
+      const discovered = HAFIDH_READ_TOOLS.filter((name) =>
+        tools.includes(name)
+      )
       const ready =
         transport &&
         ctx.model?.id === "gpt-6-astra" &&
         ctx.thinkingLevel === "max"
       ctx.ui.notify(
         ready
-          ? "Desk bridge configured; capabilities are checked against the live task on every call."
+          ? `Desk bridge configured; capabilities are checked against the live task on every call. Cached intake tools discovered: ${discovered.join(", ") || "none; check the companion installation"}.`
           : "Desk setup required: live task bridge and a configured gpt-6-astra model with max reasoning. No fallback is selected.",
         ready ? "info" : "warning"
       )
@@ -155,12 +164,54 @@ export default async function deskExtension(pi: ExtensionAPI): Promise<void> {
   const adapterPath = process.env.CODEG_DESK_ADAPTER
   if (!adapterPath) return
   const adapter = await import(adapterPath)
-  const config = {
-    // The accepted host's scoped companion read facade will be the only
-    // server added here. Never accept a Hafidh command, key or args from the
-    // generic agent environment; the host owns the provider process/credentials.
-    mcpServers: {},
-    settings: { approveTools: true, directTools: false },
-  }
+  const config = cachedIntakeConfig(process.env)
   await adapter.createMcpAdapter({ config })(pi)
+}
+
+/** Only prepare_at's overwritten launch values configure this fixed companion.
+ * The endpoint is local host IPC; there is no Hafidh provider secret or command.
+ */
+export function cachedIntakeConfig(env: NodeJS.ProcessEnv): McpConfig {
+  const {
+    CODEG_DESK_COMPANION: companion,
+    CODEG_DESK_SOCKET: socket,
+    CODEG_DESK_TOKEN: token,
+  } = env
+  const configured = companion && isAbsolute(companion) && socket && token
+  return {
+    mcpServers: configured
+      ? {
+          hafidh: {
+            command: companion,
+            args: [
+              "--features",
+              "intake",
+              "--parent-connection-id",
+              "token-bound-intake",
+              "--socket-path",
+              socket,
+              "--token",
+              token,
+            ],
+            env: { CODEG_PI_DESK_LAUNCH: "", CODEG_TOKEN: "" },
+            literalEnv: true,
+            lifecycle: "eager",
+            toolPrefix: "none",
+            includeTools: [...HAFIDH_READ_TOOLS],
+            directTools: [...HAFIDH_READ_TOOLS],
+            exposeResources: false,
+            approveTools: true,
+            debug: false,
+            requestTimeoutMs: 10000,
+          },
+        }
+      : {},
+    settings: {
+      approveTools: true,
+      directTools: false,
+      autoAuth: false,
+      sampling: false,
+      elicitation: false,
+    },
+  }
 }
