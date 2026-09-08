@@ -3,9 +3,15 @@
 Owner: tickets; docs-only branch `docs/business-intake-contract`, based on accepted
 main `c7f7366fef2d7945cea18d4da1b7594fa3026e1c`. This prepares the bounded
 meeting/feedback increment in `docs/BUSINESS-IMPLEMENTATION.md`. Root reviews
-this contract before implementation ownership. Existing task/identity semantics
+this contract before implementation dispatch. Existing task/identity semantics
 remain authoritative; no provider, configuration or model action is authorized
 by this document.
+
+The canonical [protected setup/access contract at
+18be55edc276713fc6d46d075baec363245ba285](https://github.com/Adanmohh/codeg/blob/18be55edc276713fc6d46d075baec363245ba285/docs/contracts/business-intake-access.md)
+is part of this handoff, read completely and reconciled below. It defines the
+eight binding/grant operations and their DTOs once. This document owns import,
+candidate and task-decision contracts; it does not fork that access schema.
 
 ## Fixed boundaries
 
@@ -48,6 +54,27 @@ link write, or copying task validation/INSERT SQL into intake, is not acceptable
 Link-to-existing similarly needs task-owned revision/capability validation and a
 typed source-link activity seam; it is not engineering `link-execution`.
 
+Task owner (tickets) supplies the following narrow **proposed**, crate-only
+transaction seams during implementation; no public operation is replaced:
+
+- Validate/normalize CreateInput into the explicit PreparedTask response using
+  the existing metadata, Create/Assign and active-reference rules on the supplied
+  transaction. Preview cannot read a foreign destination/member first.
+- Create from that same input under the supplied writer transaction, rechecking
+  all current rules; no cached preview object is an authorization token. Retain
+  one initial created activity/revision, not a second source-link revision during
+  creation. The private link/decision commits alongside it in intake.
+- Read current authorized task Detail in a supplied read/write transaction for
+  link/recovery disclosure, rather than opening an independent source/task read.
+- Link one opaque local source-link ID to an existing task with expected task
+  revision and domain, current human edit capability, one typed source_linked
+  activity/CAS and existing review invalidation. No private source fields accepted.
+
+Helpers never acquire/commit their own transaction, accept a serialized identity
+or construct Operator. Public task wrappers continue to own their existing
+transaction and call the extracted logic. Intake owns source/grant/decision
+validation and the outer atomic commit; task core owns task policy/reference SQL.
+
 ## Verified adapter boundary
 
 Independently reread official Fireflies adapter queries, transport and MIT licence
@@ -80,8 +107,7 @@ No source URL is fetched or rendered as an automatically followed link.
 
 Local limits proposed for B1: 50 list rows/page, five pages/window, explicit UTC
 fromDate/toDate no more than 31 days apart, one HTTP read/advance, **12 seconds per
-provider read and 15 seconds for the complete core request**. This supersedes the
-initial draft's 30-second provider timeout. Keep the existing business client's
+provider read and 15 seconds for the complete core request**. Keep the existing business client's
 20-second timeout, a 2 MiB response cap and no redirects/ambient proxy credentials. These
 are application limits, not a verified provider SLA. Store a frozen date window
 and offset; the source gives no snapshot/order/updated-since guarantee. Show
@@ -101,28 +127,82 @@ human source owner, approved provider scope, credential-store reference or exact
 legacy account/inbox/product mapping, enabled flag and monotonic binding epoch.
 It is created/changed only by actual protected operator transport with current
 identity authorization. A role named owner is not that transport. Configuration
-and grant-management implementation is a separately assigned prerequisite;
-missing binding/purpose/access remains a visible setup gap, never a fallback to
-Ops account1 or the first product. This preparation performs no configuration.
+and grant management are part of B1 delivery, owned by tickets in
+`business_intake::access` under the independently proposed protected setup seam.
+Approvals independently reviews that seam's authorization. Tickets owns shared
+HTTP/native registration per root's prepared B ownership. No alternate Principal,
+role or token class is introduced.
+Missing binding/purpose/access remains a visible setup gap with an actual operator
+setup path, never a fallback to Ops account1 or the first product. This preparation
+performs no configuration.
 
 Fireflies B1 scans use `mine:true` for the explicitly bound provider principal;
 raw transcript IDs can only refresh records discovered in that permitted scope.
 Credential validation checks the same stored provider principal. Different key
-ownership requires explicit rebind/epoch change. Shared/team-wide discovery is
+ownership requires disabling the old binding and creating a new one with fresh
+grants; in-place reassociation is prohibited. Shared/team-wide discovery is
 outside this first bounded adapter. No local member mapping is inferred from an
 email address, participant, speaker name, domain membership or task assignment.
 
-Each source has explicit human grants: read, import/refresh, triage and permitted
-publication destination domains, plus revocation/expiry and revision. Initially
-only the configured human source owner can read/triage; publication destinations
-default empty until explicitly authorized for task planning. Grant recipients
-must be active same-org humans permitted for the source domain. No broad org or
-agent grant, and no blanket transcript sharing. Source ownership itself does not
-grant another domain or the right to assign/review tasks.
+B1 grants are explicit per `(binding,human)` and cover all retained historical
+versions (including those captured before the grant), current sources and future
+imports through that exact binding. The required wire scope literal is
+`binding_current_and_future_sources`; operator confirmation must state all three
+parts of its scope. No source is automatically shared with the organization. This replaces
+the initial draft's implicit first-owner/per-source grant assumption. A newly
+created binding is disabled with **zero grants**, including for its named human
+source owner. Operator explicitly grants read/import/triage and publication
+domains, then enables it; no role, source assignment or label gives those rights.
+A per-meeting audience is not advertised until a separate policy exists.
+
+Read recipients must be active same-org humans with source-domain Read; import
+or triage also requires current Contribute and implies read. Publication requires
+read+triage, current destination Create and inclusion in both the binding's
+publication ceiling and the individual's explicit grant. Nonempty binding
+publication destinations require retainedTaskText=true. Viewers receive read
+only; agents receive no B1 grants. Grant expiry/revocation and binding/access
+epoch are rechecked on every use; task Assign/Review rules remain independent.
+
+Successful setup privately pins ownerAuthorityRevision. Every use and claim
+activation checks that same immutable owner is an active human with source-domain
+Contribute and exactly that member revision. Any drift, including change-away-and-
+back or a rename, pauses use. Actual operator bindings/update must revalidate the
+same owner and advance the binding revision/access epoch; fresh access is then
+required. Changing owner/domain/resource needs a new binding and new grants.
+An owner's membership authority is separate from each request's original
+credential lineage; both applicable checks remain. Source ownership grants nothing.
+For an otherwise authorized binding, owner/resource drift uses the safe
+binding_unavailable reason below. A member gets an operator handoff; an actual
+setup-capable operator can open bindings/status, inspect grants and revalidate
+the same owner through bindings/update. The UI may use a generic “Review access
+and setup” action when effective capabilities are unavailable; it must not
+invent a role-based repair or expose the private pinned owner revision.
+
+Historical passages/drafts require the current binding grant and current fresh
+source access, exactly like current passages. Archived grants and retained rows
+are not authority. Revocation hides every retained version; separately reviewed
+public task text is retained under the explicit publication policy. Disabled old
+bindings keep history without promising disclosure or automatic migration.
+
+Tickets owns the setup/storage prerequisite in the single intake module/migration
+and the narrow existing keyring_store strict writer-read correction, with approvals
+reviewing the authority boundary. Only a genuinely missing server token file may
+start empty: unreadable/malformed stores must fail set/delete without changing
+original bytes or unrelated entries under the existing process-local write lock.
+The current read_tokens_at/change_token_at path does not yet provide that behavior.
+
+The access contract's staged-secret lifecycle is mandatory: unique backend-only
+reference and bounded attempt first; write-only secret storage; fixed provider
+identity validation; then writer revalidation and activation. Never overwrite an
+active key. Reject blank/malformed/mismatched user_id and the pinned auth_failed
+sentinel. Ambiguous commits are reconciled before cleanup; delete only proven
+unreferenced staged/retired entries. SQLite and native keyring/server token file
+are separate resources, so crashes may leave protected orphan references.
+No cross-process store-atomicity claim or independent intake credential store.
 
 | Operation | Required current authority, all conditions intersect |
 | --- | --- |
-| Readiness/list/detail/passages | Human Principal, identity Read in source domain, active binding and explicit source read grant. Hidden sources and foreign IDs return not-found; counts/search paginate only visible records. |
+| Source list/detail/passages | Human Principal, identity Read in source domain, active binding and explicit binding read grant. Hidden sources and foreign IDs return not-found; counts/search paginate only visible records. Setup list/status has the separate protected projection below. |
 | Start/advance/cancel an import | Human Contribute in source domain plus source/binding import grant; original requester and each actual advancing human are separately audited. Viewers and agents cannot import. |
 | Candidate create/edit/discard | Human Contribute plus source triage/read grant. Preview/edit also validates the selected destination and references before exposing its task/member data. |
 | Accept as new task | All source conditions, fresh exact snapshot, explicit permitted publication domain, and task core Create/Assign/reference rules using the same live Principal. |
@@ -138,7 +218,10 @@ it does not, acceptance/link is unavailable. Source ACL revocation suppresses
 future source disclosure; it cannot recall text a human already read. It does
 not silently rewrite/delete separately accepted task text or completed work.
 
-Readiness is local and layered: binding `missing | disabled | configured`;
+Readiness has one definition: binding setup is BindingSummary.enabled plus
+credentialState (`missing | present`), not a second readiness/connected enum.
+An empty permitted binding list is explicit missing/unavailable setup; use
+canManageSetup for the actual setup action. Source readiness is separately
 access `unverified | fresh | expired | denied`; content `missing | available |
 unsupported`; summary `missing | empty | available | unsupported`, with nullable
 sanitized `providerSummaryStatus`. “Available” means a validated observation,
@@ -147,13 +230,18 @@ string; unverified enum semantics are not turned into success. Missing/empty
 summary differ. Human candidates may use validated transcript passages even
 while a summary is absent; no inferred action or automatic model extraction.
 
-Before detail refresh begins, invalidate its access freshness. Successful detail
+Before detail refresh begins, invalidate its access freshness and increment a
+source-scoped attempt fence across all imports. Successful detail
 validation can restore it; timeout, cancellation, deny or schema failure cannot
 resurrect the old successful observation. Local B1 publication freshness is at
-most 300 seconds, additionally bounded by known source/grant expiry. Every final
-decision rechecks current binding/grant epoch, source revision and identity in
+most 300 seconds, additionally bounded by known source/grant expiry. Every
+accept/link rechecks current binding/grant epoch, source revision and identity in
 the writer transaction. Already in-flight provider reads cannot be recalled;
-revocation prevents their result from being committed/disclosed afterward.
+revocation prevents their result from being committed/disclosed afterward. Final
+commit also compares that source attempt fence and the pre-read content revision;
+an older read from another otherwise valid import cannot replace a newer result.
+List discovery never grants detail freshness. Source revision is null until the
+first valid detail version; source ID and attempt fence exist before that read.
 
 ## Durable records and claims — proposed schema responsibilities
 
@@ -176,6 +264,16 @@ Do not merge sources across connections automatically. The same external meeting
 may have separate access provenance through two bindings; show a possible
 duplicate only if both are visible and let the human link existing work. This
 limits duplicate guarantees to a binding, not global semantic deduplication.
+
+The candidate's prepared access epoch is the binding's global monotonic epoch,
+not an authority copied from its editor's individual grant. Editor/requester IDs
+remain audit history. Another human may decide using their own current Principal
+and current grants, with all task Create/Assign rules still applied. Grant changes
+advance that global epoch, fencing every older preview and pending claim.
+requiresRebase is true when either its content revision or prepared access epoch
+differs from current authority, even if a grant change leaves content unchanged.
+Computing that flag on read does not mutate a candidate. Select/edit pins the
+current epoch and increments candidate revision in its checked transaction.
 
 Claims borrow the local SQLite writer/CAS/claim-ID discipline, not IntroMail's
 process-local dispatcher. `begin_write` precedes auth and claim reads. Claim a
@@ -294,16 +392,16 @@ up to 256 characters without controls, passed as GraphQL variables only.
 
 | Operation | Input | Result |
 | --- | --- | --- |
-| readiness | `{}` | `{bindings: BindingSummary[]}` for permitted bindings only; missing setup is explicit |
+| bindings/list, bindings/status | Exact closed inputs/results in protected access seam | BindingList/BindingView; single setup/readiness entry, no duplicate readiness route |
 | sources/list | `{bindingId:Id,page?:0}` | `{items:SourceSummary[],page,hasMore}`; 50 locally visible rows/page |
 | sources/get | `{sourceId:Id}` | SourceDetail; protected passages only with current fresh read access |
 | imports/start | `{operationId,bindingId,selection}` | Import; selection is `{kind:"window",fromDate,toDate}` for Fireflies or `{kind:"record",sourceId}` for explicit refresh |
 | imports/capture | `{operationId,bindingId,ref:LegacyRef}` | Import for already stored email/Hafidh record; no upstream pull |
-| imports/list | `{bindingId:Id,view?:"unfinished",page?:0}` | `{items:Import[],page,hasMore}`; view unfinished/all, current read+import grant, 50 visible rows/page |
+| imports/list | `{bindingId:Id,view?:ImportView,page?:Page}` | `{items:Import[],page,hasMore}`; default view unfinished/page0, current read+import grant, 50 visible rows/page |
 | imports/get | `{importId:Id}` | Import; current read+import grant required, original requester identity alone gives no right; no hidden counts |
 | imports/advance | `{operationId,importId,expectedRevision:Rev}` | Import; one due step/current Principal; owned live lease reports busy |
 | imports/cancel | `{operationId,importId,expectedRevision:Rev}` | Import; fences queued/in-flight steps |
-| candidates/list | `{sourceId:Id,state?:"pending",page?:0}` | `{items:Candidate[],page,hasMore}`, 50 visible rows/page; state is one of four candidate states |
+| candidates/list | `{sourceId:Id,state?:CandidateState,page?:Page}` | `{items:Candidate[],page,hasMore}`, default pending/page0, 50 visible rows/page |
 | candidates/get | `{candidateId:Id}` | CandidateDetail and authorized current-source state |
 | candidates/create | `{operationId,sourceId,expectedSourceRevision:Rev,passageIds:Id[]}` | Extra Candidate, no task, for deliberate additional work |
 | candidates/select | `{operationId,candidateId,expectedRevision:Rev,expectedSourceRevision:Rev,passageIds:Id[]}` | CandidateDetail; explicit passage-only selection/rebase, preserving nullable prepared draft |
@@ -313,9 +411,19 @@ up to 256 characters without controls, passed as GraphQL variables only.
 | candidates/discard | `{operationId,candidateId,expectedRevision:Rev}` | Decision; no task and no deletion of source/history |
 | tasks/sources | `{taskId:Id}` | `{links:SourceLinkView[]}` after task read authorization; inaccessible source is only an opaque linkId/restricted label |
 
-`BindingSummary={id,kind,label,domain,readiness,capabilities}`; no origin/key,
-provider principal, account/product configuration or credential reference.
-`SourceSummary={id,bindingId,kind,title,revision,observedAt:null|instant,
+ImportView is the closed union `unfinished | all`, default unfinished.
+CandidateState is `pending | accepted | linked | discarded`, default pending
+for the list filter. Page is a nonnegative u32 integer, default0; no strings,
+negative or fractional values. Every page/count is filtered by current authority.
+
+BindingList/BindingView/BindingSummary and all eight setup/grant operations are
+defined once in the linked protected access contract at18be55ed. The operator projection is separate
+from source-use rights. Member BindingSummary has only safe identity/label,
+revision/epoch, enabled, credential presence and effective
+`{read,import,triage,publicationDomains}`; no endpoint/key, provider principal,
+account/product configuration or secret reference. A setup-capable operator
+without a read grant sees its setup projection, never source content/counts.
+`SourceSummary={id,bindingId,kind,title,revision:null|Rev,observedAt:null|instant,
 accessValidUntil:null|instant,access,content,summary,
 providerSummaryStatus:null|string,requiresRefresh}`.
 `SourceDetail={source:SourceSummary,disclosure,passages:Passage[],candidateCount}`; stale
@@ -329,11 +437,28 @@ end:null|number}`. Limit selection to 20 same-source/version passages and bounde
 assigneeId:null|Id,reviewerId:null|Id}` is an explicit serialized response and
 stored preview; existing Rust CreateInput is not Serialize. All fields are
 present, normalized with existing task validation and explicit resolved defaults.
+Normalization resolves documented defaults; it does not paraphrase, silently clip
+or rewrite the reviewed title/notes, nor reinterpret the calendar due date.
 `disclosure` is `fresh | metadata_only`; metadata-only always returns passages=[]
 and draft/ownerSuggestion/dueSuggestion=null, even if text is retained privately.
-`Candidate={id,sourceId,revision,sourceRevision,state,requiresRebase,disclosure,
+`Candidate={id,sourceId,revision,sourceRevision,state,origin,requiresRebase,disclosure,
 hasPreparedDraft:boolean,draft:null|PreparedTask,ownerSuggestion:null|string,
 dueSuggestion:null|string,capabilities}`; suggestion text max240 characters.
+origin is `source_review | human_selection`; owner/date suggestion strings are
+human annotations only, never verified provider ownership/date. A fresh read
+also withholds PreparedTask if the caller cannot currently Read its destination
+domain; hasPreparedDraft stays true and draft is null. No hidden member/target
+data is recovered from the saved preview merely through a source read grant.
+Candidate capabilities are `{select,edit,accept,link,discard,publicationDomains}`:
+booleans plus an array of currently permitted destination domains. Select
+requires fresh read+triage and pending state; edit/link also need at least one
+currently permitted publication domain. Accept/link require requiresRebase=false
+and the current prepared access epoch. Accept additionally requires a
+current permitted PreparedTask and all Create/Assign/reference checks. Link means
+the human may start target selection; final target edit/domain/CAS checks still
+apply. Discard requires current read+triage and pending state, but no freshness
+or task destination. Terminal candidate mutation flags are false. Publication
+domains come from current binding/human-grant/identity intersection, not a form.
 `CandidateDetail={candidate,passages,source:SourceSummary,decision:null|Decision}`.
 `Decision={id,candidateId,fromRevision,sourceRevision,kind,actorId,
 task:DecisionTask,createdAt}`; source-authorized audience only. DecisionTask is
@@ -367,6 +492,7 @@ never raw GraphQL/SQL/input/token/correlation data.
 | Reason | Existing AppErrorCode / HTTP when returned as an error |
 | --- | --- |
 | binding_missing, binding_disabled, credential_unavailable | configuration_missing /422 |
+| binding_unavailable | configuration_invalid /422; an authorized binding needs operator revalidation, without exposing owner/config details |
 | source_expired, rebase_required, import_busy, retry_later | already_exists /409 |
 | source_denied, publication_not_allowed | permission_denied /403 |
 | unsupported_schema, provider_unavailable, request_timeout | network_error /500 |
@@ -401,8 +527,17 @@ expired host snapshot remain explicit. B capture/read never calls list/refresh,
 sets verified_at, mints issue evidence or changes an existing source receipt.
 Only the already authorized operator host flow can refresh upstream Hafidh.
 Required pure projection/access helpers do not exist for business members yet;
-the host owner must expose them under the new checked binding, not through an
+tickets must add them inside the existing host boundary under the new checked
+binding, not through an
 impersonated Pi RunContext or by broadening existing operator routes.
+
+The accepted access contract also requires a trusted monotonic legacy
+configuration-change signal, including change-away-and-back. Current-field hashes
+or product/inbox IDs alone cannot prove unchanged authority. Tickets owns minimal
+checked resolver/projection/invalidation glue in the existing host boundary,
+subject to independent review; capture is enabled only once it is present and tested.
+This is an explicit B email/Hafidh implementation dependency, not an existing API
+or a reason to replace the complete Fireflies setup/import/task slice with mocks.
 
 Business source links are distinct from `ops_intake_host_fix`, whose existing
 engineering handoff requires a confirmed GitHub receipt and folder binding.
@@ -426,7 +561,7 @@ no source disclosure to that agent path; Astra/max and stable Pi policy stay int
 | B07 Duplicate page/detail and response loss | Same source/version/seed candidate; repeated accept with identical operationId produces one task/decision/created activity. |
 | B08 Source edit and A→B→A | Monotonic revisions, pending draft retained and explicit rebase; old acceptance rejected even when hash matches an older version. Terminal decisions/work unchanged. |
 | B09 Offset shifts/cap/resume | Duplicate IDs converge, coverage reports partial/capped honestly; crash after page commit resumes persisted position/detail work. No claimed lossless sync. |
-| B10 Competing claims/expired late worker | At most one accepted step commit; stale attempt cannot persist or advance after reclaim/cancel/expiry. |
+| B10 Competing claims/expired late worker | At most one accepted step commit; stale attempt cannot persist or advance after reclaim/cancel/expiry. Two distinct imports compare one source refresh fence; an older response never overwrites the newer observation. |
 | B11 Revocation during provider await | Old credential/member/grant/binding epoch fails final writer recheck; no committed source/publication; already in-flight read is disclosed as a limit. |
 | B12 Restart and lost response | imports/list rediscovers jobs only under current grants; CandidateDetail returns terminal decision and redacts inaccessible task target. No reconstructed Principal, browser-stored secret source or automatic provider action. |
 | B13 Accept/edit/source-refresh race | One winning revision; rejected transaction changes zero task/link/decision/activity rows. Crash after commit returns deduplicated receipt. |

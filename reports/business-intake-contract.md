@@ -1,9 +1,10 @@
 # Business intake contract preparation
 
-**Docs-only; Increment B is not implemented.** Contract and source review are
-prepared; protected binding/grant/publication API coordination with approvals
-and the source-review flow with rebrand are the remaining acceptance prerequisite.
-No product implementation is authorized by this handoff.
+**Docs-only; Increment B is not implemented.** The closed contract is ready for
+the final bounded consistency review. It incorporates accepted access seam
+`18be55edc276713fc6d46d075baec363245ba285` by immutable reference and closes
+Q1–Q4 without a second setup schema, credential store or identity model.
+Product work still requires root's exact contract acceptance and dispatch.
 
 Branch `docs/business-intake-contract`, accepted base
 `c7f7366fef2d7945cea18d4da1b7594fa3026e1c`;
@@ -31,23 +32,43 @@ Deliverable: [business-intake.md](../docs/contracts/business-intake.md).
   public wrapper. Intake must not duplicate auth/SQL or call create then link in
   separate transactions. Existing-task links need the task-owned edit/CAS/activity
   seam and review invalidation, without engineering execution linkage.
-- Approvals owns the concrete protected-operator binding/grant/publication
-  prerequisite proposal; rebrand owns review-flow contract preparation. Both are
-  docs-only. Their exact committed seam will be reconciled here before final
-  contract handoff. Missing setup alone is not the planned B delivery.
+- The accepted protected access seam supplies all eight setup/grant operations:
+  disabled creation with zero grants, explicit historical/current/future binding
+  audience, pinned ownerAuthorityRevision, same-provider staged credential
+  rotation, and new binding on resource/domain/owner changes. Tickets owns the
+  single backend/migration, task/credential/host helpers and registration at later
+  dispatch; rebrand owns UI and approvals independent review. Missing setup
+  alone is not the planned B delivery.
 
 The contract defines closed HTTP/native operations, null/default behavior,
 date-only deadlines, readiness/error distinctions, source-safe DTOs and **18
 planned synthetic acceptance cases**. No case has been executed in this docs task.
 
 Read rebrand's complete interaction plan at
-`99cecbac3e8eab1da6f977ec649d8c874e668ab9` and root's complete BI-1–BI-10 plan
+`99cecbac3e8eab1da6f977ec649d8c874e668ab9`, its later reconciliation
+`57b07ca81257421b9cbb414f7ac456c1bb39ea06`, and root's complete BI-1–BI-10 plan
 at `650be3025c25386649bc906f6bed335abafcb011`. Closed the proposed passage-only
 rebase/null-draft disclosure, durable import/terminal-decision rediscovery and
 12-second read/15-second backend bound beneath the existing 20-second client.
 Text-free link uses the existing task Detail and exact target ID/revision/domain
-CAS; no durable target-preview entity. Binding/setup/publication and associated
-capabilities still await the independent protected seam before final handoff.
+CAS; no durable target-preview entity. Final binding setup/readiness uses the
+access contract's BindingList/View/Summary only, with no duplicate readiness
+endpoint. Candidate/import capabilities, publication domains and nullable source
+revision are explicit. Source-refresh fences apply across distinct imports.
+
+Read the complete access contract and reviewer report via local git show at
+`18be55edc276713fc6d46d075baec363245ba285`; no uncommitted doc is the final
+authority. Also read root's complete prepared B ownership in
+docs/BUSINESS-IMPLEMENTATION.md at `eecc7142a1132b70401a708806279dadee902755`.
+All of that work remains docs-only; the prepared ownership is not dispatch.
+
+One concrete prerequisite came from this worker's full keyring_store source
+read: its mutation read maps errors to an empty map. The existing adapter needs
+a strict writer-read under its current lock before B staged set/delete; malformed
+or unreadable storage must preserve original bytes and unrelated credentials.
+Approvals independently confirmed and included it in the accepted seam. This
+is a future synthetic failure-preservation gate, not an executed exploit or
+claim that SQLite and keyring/file updates become atomic.
 
 ## Verified sources
 
@@ -68,6 +89,7 @@ Exact inspected files and intended reuse:
 | `ops/mod.rs`, `ops/store.rs`, `ops/agent.rs`, `db/service/ticket_service/mod.rs` | Operator account and public message filtering. Scope account/inbox is routing, not member authentication. Never serialize full operator thread or impersonate agent RunContext. |
 | `ops_intake_host/store.rs`, `ops_intake_host/operator.rs`, `ops_intake_host/types.rs`, `ops_intake_host/agent.rs`, `ops_intake_host/fix_task.rs` | Exact account/product/folder mapping, host-only refresh, cached public projection and existing issue-receipt engineering link. Member-safe projection helpers do not yet exist. |
 | `ops/delivery.rs`, `ops_telegram/mod.rs` (claim and post-await paths) | Claim UUID/config-revision checks and immutable receipt discipline. Read jobs need separate records; preserve no-resend and approval behavior. |
+| `keyring_store.rs` (complete file) | Native OS keyring/server private token file, process-local writer lock and exact unsafe error-to-empty mutation-read behavior. Reuse with the narrow strict writer-read prerequisite; no separate store. |
 | `integrations/hafidh-intake/src/hafidh_intake/client.py`, `integrations/hafidh-intake/src/hafidh_intake/schemas.py`, `integrations/hafidh-intake/README.md` (repo root paths) | Bounded GET-only client, normalized source digest excluding fetched time, strict ULID/private-field projection and process-local cursors. No durable-cursor or upstream fine-grained-token claim. |
 | `LICENSE`, `NOTICE` (repo root) | Preserve existing Apache/owner-approved/MIT attributions and exclusions. No edits in this docs task. |
 
@@ -75,6 +97,7 @@ Key exact blobs: identity mod `22a99cae327682b04fbcced34cf5ce19f6120dad`;
 task store `d48fdf1e85feb4410dbff51e8a671d6c9d525691`;
 ticket service `17b3f26b54281a87b0d0f23f823437e1d6dc7e96`;
 host store `bb016b603412ebb22a0f5ef44252b7397b9eb0e0`;
+keyring store `29fc3fb38280338aa26939c45f80ef9aefc2a394`;
 Hafidh client `d2a9b205c30c51ced13ff7733914466a3935b4ad`;
 root NOTICE `9731e731cea397b607ba76aa60021a0422a1f337`.
 
@@ -135,7 +158,7 @@ ground the proposed seams.
 | --- | --- |
 | Existing venv `code_context.py guide ... --project codeg`, `HF_HUB_OFFLINE=1` | Exit0; mostly other-project rules. Applied installed-version/source-first rule; no Codeg-specific rule or delegation requirement invented. |
 | Same tool `docs ... --repo <tickets>` | Exit3: tickets.db absent. No ingestion/install or fabricated corpus coverage. |
-| Local Cargo/lock and installed SeaORM transaction source | Read SeaORM 1.1.19 writer/commit/drop/ConnectionTrait; pinned reqwest 0.12.28, serde 1.0.228, serde_json 1.0.149, sha2 0.10.9, tokio 1.49.0. No dependency/lock change. |
+| Local Cargo/lock and installed SeaORM transaction source | Read SeaORM 1.1.19 writer/commit/drop/ConnectionTrait; pinned reqwest 0.12.28, serde 1.0.228, serde_json 1.0.149, sha2 0.10.9, tokio 1.49.0; existing keyring 3.6.3/SQLx SQLite 0.8.6 verified in lock. No dependency/lock change. |
 | Installed `gh api --help`, PR-create help, Git help; fetch/switch/add/commit/push/PR25 create | Successful authorized docs branch/checkpoint operations; switch usage help exits 129 by convention. |
 | `gh api` commit/tree/content reads at the immutable refs above | Successful inspected content; public-api-ff lookup 404/exit1 explicitly retained as a coverage gap. No provider endpoints called. |
 | Local Fireflies/n8n dependency search | Exit1/no installed package found; not adopted. Two initial guessed file lookups failed (Hafidh models.py / split ticket entities); actual schemas.py and nested ops_ticket.rs located, relevant source reread. No API claim rests on those guesses. |
