@@ -2,6 +2,13 @@
 
 Status: compiling Sources plus shared-workbench frontend checkpoint on `feat/business-intake-ui`, based on accepted
 `a40b03393a466672060066ae6e0e8c9054a2349d`. No integrated B runtime or browser pass is claimed.
+Current product: **9f16a4292eeec1d81ab376f1f35055beabf85600**, pushed to
+[draft PR29](https://github.com/Adanmohh/codeg/pull/29). Its own 34-route export
+passes and is served on loopback4350, PID21549. Tests41/41, typecheck and scoped
+lint pass. Actual protected B/two-user and settings/native-tenant runtime
+validation remains pending backend handoff. This is a source checkpoint,
+not product or design acceptance.
+
 The accepted A workspace, native chrome, paused visual checkpoint and existing
 fixtures/exports are preserved. This worker owns frontend glue only; tickets
 owns Rust, protected registrations, migration 000011 and all provider access.
@@ -452,3 +459,79 @@ tab closure. No passing checks were weakened. Public baseline B session at
 390×844/dark/Arabic returned direction=rtl, overflow=false and fixture calls=[];
 PNG evidence is public-before-1280-light.png and public-before-390-dark-ar.png.
 These are cold-entry captures of b9, not the new shell's rendered acceptance.
+
+
+## Current corrected export and next native seam
+
+Product9f16a4292eeec1d81ab376f1f35055beabf85600 export:
+`.build/business-intake-ui-9f16a429`, business.html SHA256
+`fc4809a927c5024388eeba94aec39cff245e2e5b35aaa3f70af7de0d68b8e610`.
+`CODEG_EXPORT_DIR=.build/business-intake-ui-9f16a429 NEXT_TELEMETRY_DISABLED=1 pnpm build`
+passed exit0 (34 static routes). This owned 4350 listener is now PID21549,
+exec55235, using the same closed synthetic guard/proxy target4351. Previous
+owned Node50065 was verified by its exact command/port and gracefully stopped;
+both old exports are retained. No other fixture/process/browser was changed.
+
+The two own CLI sessions reloaded this exact export: /business and
+/business.html returned fixture export=business-intake-ui-9f16a429 and calls=[];
+both had no document overflow, the 390px Arabic view remained RTL, and the web
+route had no native drag chrome. Protected4351/upstream4352 still had no listener
+at the last read. These checks establish cold-entry isolation only, not the new
+shell's authenticated visual review or full B behavior. PNG before evidence is
+explicitly the retained b9 public connection surface.
+
+Approvals' native refinement is recorded: generic Tauri window plugin controls
+accept a target label, so the restricted tenant window must not receive those
+plugins/global events. Future custom tenant chrome will use its closed
+business_window_control seam with actual invoking window and only
+close/minimize/toggle_maximize/is_maximized/start_dragging, no caller label.
+Window-context/session-handle DTOs and real bridge registration remain pending;
+trusted host chrome is untouched and native system decorations remain the safe
+fallback. This worker made no identity/backend/native change or readiness claim.
+
+Remaining immediate dependencies are tickets' exact protected synthetic4351
+handoff (including candidate decisions/email/Hafidh projections) and approvals'
+closed settings/platform/native transport. UI can consume their committed DTOs;
+no guessed endpoint, ambient native owner fallback or live provider/config action.
+The shared-shell/source checkpoint is already pushed for independent review.
+
+## Native availability and settings preparation checkpoint
+
+Approvals' published `29774b50aafc29658a2f48fab1f44d366ed2c8a0` contract and
+`business_identity/{http,settings,types,store}.rs` were read at that immutable
+commit. Its native context explicitly reports `tenantWindowAvailable:false`.
+The native host now offers only the original local operator path; its personal
+HTTP form is absent, and both the submit handler and client constructor reject
+HTTP sessions before retaining a credential or making a request. Browser
+personal sign-in remains unchanged. Existing native chrome/window controls are
+untouched. This frontend prevention does not claim native tenant isolation.
+
+The formerly accepted native personal-draft test is superseded by the new
+product boundary: it now verifies local-only EN/AR entry and stable chrome.
+A separate browser test retains the same private-token DOM/locale assertion.
+The client regression verifies no HTTP/invoke, no member-token storage and no
+replacement of the ambient operator slot. Original native command and browser
+session rejection/member-revision tests still pass.
+
+Standalone `settings-editor.tsx`, `settings.ts` and `settings-copy.ts` prepare
+the exact closed settings DTO and EN/AR editor. It is not yet imported by the
+workspace and makes no production request. It accepts a supplied protected
+get/update interface, sends only expectedRevision plus the four settings
+fields, retains drafts across locale changes, compares current revision after
+409/response loss, requires explicit adoption, ignores an unmounted response,
+and refuses to apply another organization's response. Backend authority remains
+required; no role inference, CSS injection, global token write or mocked
+production response. The newly published actual settings transport is the next
+wiring step.
+
+Checks: **36/36 focused tests, exit0** (client14, native chrome14, session2,
+settings6); `pnpm exec tsc --noEmit --incremental false` exit0; scoped ESLint
+exit0/no warnings. The initial settings-only typecheck found an overly broad
+test locale type, and lint identified a cleanup ref warning; both were fixed
+without relaxing assertions. Full sanitized commands/output are in
+[business-intake-ui-evidence/native-settings-checkpoint.txt](business-intake-ui-evidence/native-settings-checkpoint.txt).
+The live hook audit again includes this session/worktree's PreToolUse and
+PostToolUse (lines21441 and21440). Local installed @tauri-apps/api2.10.1
+core.js provides the actual isTauri/invoke contract. No build or browser
+acceptance of these new changes is claimed yet; 4350 still serves the preserved
+9f16a429 export/PID21549 and both owned public-entry browser sessions remain.

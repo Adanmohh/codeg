@@ -841,3 +841,19 @@ references, not copied dependency code. W3C ARIA Practices tabs/table docs at
 7e4034b262bc0d25332e330d8a582aaf34113829 are documentation references only.
 No Edublend, Payload, AGPL/GPL or other third-party source is ported.
 Original Apache-2.0 LICENSE and all preceding attribution remain intact.
+
+Business native entry and scoped-settings editor preparation (2026):
+Adapts Apache-2.0 Codeg src/components/business/{connect,native-chrome.test,
+task-detail,ui}.tsx and src/lib/business/{client,copy}.ts at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d. The native host retains its original
+local-operator path; personal HTTP sign-in is offered only in browsers while
+restricted tenant windows are unavailable. The settings editor reuses explicit
+CAS comparison/adoption and private in-memory draft patterns. Closed DTOs are
+transcribed from src-tauri/src/business_identity/{types,settings,store,http}.rs
+and docs/contracts/business-tenancy.md at
+29774b50aafc29658a2f48fab1f44d366ed2c8a0 (Apache-2.0); no backend code is ported.
+Installed @tauri-apps/api2.10.1 core.js isTauri/invoke, React19.2.4,
+@types/react19.2.13, TypeScript5.8.3 and Testing Library16.3.2/Vitest2.1.9
+are source/type references only. No dependency or vendor implementation,
+Edublend proprietary source, or AGPL/GPL source is copied.
+Original Apache-2.0 LICENSE and every preceding attribution remain intact.

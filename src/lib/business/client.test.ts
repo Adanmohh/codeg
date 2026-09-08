@@ -2,10 +2,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { createBusinessClient, workspaceOrigin } from "./client"
 
 const fetcher = vi.fn()
-const native = vi.hoisted(() => ({ invoke: vi.fn() }))
-vi.mock("@tauri-apps/api/core", () => ({ invoke: native.invoke }))
+const native = vi.hoisted(() => ({ invoke: vi.fn(), isTauri: vi.fn() }))
+vi.mock("@tauri-apps/api/core", () => native)
 beforeEach(() => {
   vi.clearAllMocks()
+  native.isTauri.mockReturnValue(false)
   vi.stubGlobal("fetch", fetcher)
   localStorage.clear()
 })
@@ -19,6 +20,17 @@ const response = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status })
 
 describe("separate business credential client", () => {
+  it("rejects personal HTTP access in an operator native host before any transport call", () => {
+    native.isTauri.mockReturnValue(true)
+    localStorage.setItem("codeg_token", "synthetic_original_operator")
+    expect(() => createBusinessClient(memberConnection)).toThrow("forbidden")
+    expect(fetcher).not.toHaveBeenCalled()
+    expect(native.invoke).not.toHaveBeenCalled()
+    expect(localStorage.getItem("codeg_token")).toBe(
+      "synthetic_original_operator"
+    )
+    expect(JSON.stringify(localStorage)).not.toContain(memberConnection.token)
+  })
   it("uses the isolated intake envelope and dedicated native command without legacy transport", async () => {
     fetcher.mockResolvedValueOnce(
       response({ items: [], canManageSetup: false, page: 0, hasMore: false })

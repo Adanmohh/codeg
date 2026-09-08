@@ -149,6 +149,10 @@ const english = {
   existingOperator: "Use this browser’s administrator connection",
   localDesk: "Use this desktop’s local workspace",
   localLabel: "Local desktop",
+  nativeLocalHint:
+    "Open the original local organization with this desktop's operator access.",
+  nativeMemberBrowser:
+    "To use personal organization access, open your workspace's HTTPS address in a web browser. Personal sign-in is not available in this desktop window.",
   bootstrapTitle: "Start with your organization.",
   bootstrapHint:
     "Create the shared workspace and name its first accountable owner. Then add people and agents.",
@@ -385,6 +389,10 @@ const arabic: BusinessCopy = {
   existingOperator: "استخدام اتصال المسؤول المحفوظ في هذا المتصفح",
   localDesk: "استخدام مساحة سطح المكتب المحلية",
   localLabel: "سطح المكتب المحلي",
+  nativeLocalHint:
+    "افتح المؤسسة المحلية الأصلية بصلاحيات مشغّل سطح المكتب هذا.",
+  nativeMemberBrowser:
+    "لاستخدام وصولك الشخصي إلى المؤسسة، افتح عنوان HTTPS لمساحة عملك في متصفح ويب. تسجيل الدخول الشخصي غير متاح في نافذة سطح المكتب هذه.",
   bootstrapTitle: "ابدأ بمؤسستك.",
   bootstrapHint:
     "أنشئ مساحة العمل المشتركة وحدد مالكها الأول، ثم أضف الأشخاص والوكلاء.",

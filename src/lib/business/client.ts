@@ -1,3 +1,4 @@
+import { isTauri } from "@tauri-apps/api/core"
 import { extractAppCommandError } from "@/lib/app-error"
 import type { IdentityOperations } from "./identity"
 import type { TaskOperations } from "./tasks"
@@ -114,6 +115,12 @@ export function createBusinessClient(
   connection: BusinessConnection,
   onUnauthorized: () => void = () => {}
 ) {
+  // The native host has operator capabilities. Personal HTTP sessions belong
+  // in a browser until the backend can create a restricted tenant window.
+  // Reject before retaining a bearer or making any request, even if an old
+  // hydrated form submits. Native isolation remains a backend responsibility.
+  if (connection.kind === "http" && isTauri())
+    throw new BusinessError("forbidden")
   const native = connection.kind === "native"
   const origin =
     connection.kind === "http" ? workspaceOrigin(connection.address) : ""
