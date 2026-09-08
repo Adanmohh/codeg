@@ -354,3 +354,5 @@ Final combined design review and Pi bridge validation continue.
 - PR #17 test-only rebrand correction accepted at `da61360474314fb0ed26eb55dc6ef170e6754ee9`, merged as `cc77846154964872287c0dde35b3fb60819b3260`. Root reviewed all three literal expected-brand updates and the full report; behavior assertions remain. Worker84 focused tests/lint/typecheck pass. One unrelated Forge timing failure occurred before/after, then passed unchanged alone and in the full focused retry; it is documented, not claimed fixed. Root full-suite rerun is running.
 
 - Root full frontend rerun at `cc778461` passes **6158/6158 tests,433/433 files**, exit0,25.81s. Log `/tmp/ops-phase1-frontend-tests-final.log`. The previously transient Forge case also passes in this unchanged full run. No assertion was weakened and no product edit was needed.
+
+- Root final integrated Pi-branch backend checkpoint `cd2a29fb`:178 Ops tests/5 manual ignored and13 Desk-selector tests/3 manual ignored pass, exit0. All six P1 regressions included. Worker actual companion/adapter19+1 and human-denial browser fixture pass with zero GitHub creates/token requests; final report acceptance remains.

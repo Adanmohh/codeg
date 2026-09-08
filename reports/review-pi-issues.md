@@ -22,3 +22,15 @@ regressions. No acceptance before real companion/adapter and browser evidence.
   ran zero tests; it is not counted and was replaced with `desk_issues_`.
 
 Final worker runtime/companion/process/browser gates and exact head remain.
+
+## Independent final integrated backend checkpoint
+
+At `cd2a29fb`, root combined server/library Ops passes **178 tests,5 manual
+fixtures ignored**, exit0,10.09s; `desk::` selector passes **13 tests,3 manual
+fixtures ignored**, exit0,0.75s. This includes all six new P1 cases, with
+source-revision preservation and revoked-evidence checks. Logs:
+`/tmp/ops-phase1-integrated-rust.log`, `/tmp/ops-phase1-integrated-desk.log`.
+Worker's broader Desk selector19 and actual companion/adapter19+1 remain
+separately attributed. Root inspected final native-proposal browser images
+and provider counts; human denial produced no GitHub POST/token request.
+Manual worker fixture shut down cleanly,1 passed/exit0,384.54s.
