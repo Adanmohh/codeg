@@ -1,0 +1,352 @@
+{
+  "originalBriefUnchanged": true,
+  "derivedBrief": "BRIEF.measurement.html; Canvas-converted opaque LIGHT token colors only, original conventions/families/radii retained",
+  "counts": {
+    "cases": 71,
+    "textSamples": 2188,
+    "originalFlags": {
+      "off-palette-color": 694,
+      "extra-font-family": 79,
+      "off-scale-spacing": 124,
+      "off-scale-radius": 76
+    },
+    "normalizedFlags": {
+      "off-palette-color": 444,
+      "extra-font-family": 79,
+      "off-scale-spacing": 124,
+      "off-scale-radius": 76
+    }
+  },
+  "classifications": [
+    {
+      "category": "OKLCH string comparison",
+      "source": "Design Studio 55c8614d scripts/intake-scan.mjs:51 and lab/tools/probe.mjs:62",
+      "conclusion": "canonHex expands/lowercases strings only. BRIEF OKLCH tokens and rendered RGB hex are not comparable until Canvas conversion. No product color correction follows from that mismatch."
+    },
+    {
+      "category": "paired dark",
+      "source": "src/app/globals.css:136; BRIEF conventions",
+      "examples": [
+        "--muted #262626",
+        "--muted-foreground #a1a1a1",
+        "--primary #9bd4c5"
+      ],
+      "conclusion": "Explicitly inherited paired dark tokens, absent from the light-only palette inventory. Retained flags are schema coverage limits."
+    },
+    {
+      "category": "alpha composite",
+      "source": "src/components/ui/{button,input,textarea}.tsx; src/components/ops/{inbox-view,ui}.tsx; raw colorEvidence/chain",
+      "examples": [
+        "#1e1e1e bg-muted/70 over dark",
+        "#151515 bg-input/30 over dark",
+        "#eef2f2 bg-primary/8 over white",
+        "#fffaf2 private-note amber500/5 over white",
+        "#fbfbfb read-only:bg-muted/40"
+      ],
+      "conclusion": "Final paint combines existing token alpha with actual backdrop. These composed values are not separate authored tokens. Each raw has its CSS/classes/backdrop; 8-bit Canvas alpha quantization may shift a channel by 1."
+    },
+    {
+      "category": "font family scanner mismatch",
+      "source": "BRIEF type.families; src/app/globals.css:18; Design Studio lab/tools/probe.mjs:70",
+      "conclusion": "Brief records a short Inter Variable fallback STACK. Probe accepts a matching whole stack or primary in its brief set, but does not extract primary from brief stacks. Actual Inter Variable with platform fallbacks is the inherited intended font; no font swap indicated."
+    },
+    {
+      "category": "spacing/radius scan coverage",
+      "source": "src/app/globals.css:1017-1031; shared shadcn controls and explicit running badge",
+      "conclusion": "6/10/14/18/22/26px radii and 6px control gaps arise from inherited rem multipliers/spacing, not an added style system. Brief scan plus 4px heuristic is not exhaustive. The 5px badge radius is an explicit inherited class; no layout problem established from arithmetic alone."
+    },
+    {
+      "category": "real contrast",
+      "source": "sidebar-conversation-list.tsx:507; sidebar-folder-group-header.tsx:206; Tailwind4.1.18 theme.css amber tokens",
+      "conclusion": "Amber700 on amber500/12 yields 4.39 for 10px text. This is a real finding despite inherited token provenance. The sr-only duplicate is not a second painted defect. Root fix/recheck required."
+    }
+  ],
+  "selectedEmptyValueEvidence": [
+    {
+      "file": "discard-cancel-settled-1280-dark.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "intake-invalid-proof-1280-light.raw.json",
+      "selectedText": "Not confirmed",
+      "inViewport": false,
+      "disabled": false,
+      "labels": [
+        "Human-confirmed severityNot confirmedHighMediumLow"
+      ]
+    },
+    {
+      "file": "intake-invalid-proof-1280-light.raw.json",
+      "selectedText": "Choose an active task",
+      "inViewport": false,
+      "disabled": false,
+      "labels": [
+        "Active triage taskChoose an active task#1 · Synthetic triage task"
+      ]
+    },
+    {
+      "file": "intake-invalid-proof-retained-390-light.raw.json",
+      "selectedText": "Not confirmed",
+      "inViewport": false,
+      "disabled": false,
+      "labels": [
+        "Human-confirmed severityNot confirmedHighMediumLow"
+      ]
+    },
+    {
+      "file": "intake-invalid-proof-retained-390-light.raw.json",
+      "selectedText": "Choose an active task",
+      "inViewport": false,
+      "disabled": false,
+      "labels": [
+        "Active triage taskChoose an active task#1 · Synthetic triage task"
+      ]
+    },
+    {
+      "file": "intake-missing-1280-light.raw.json",
+      "selectedText": "Not confirmed",
+      "inViewport": false,
+      "disabled": false,
+      "labels": [
+        "Human-confirmed severityNot confirmedHighMediumLow"
+      ]
+    },
+    {
+      "file": "intake-missing-1280-light.raw.json",
+      "selectedText": "Choose an active task",
+      "inViewport": false,
+      "disabled": false,
+      "labels": [
+        "Active triage taskChoose an active task#1 · Synthetic triage task"
+      ]
+    },
+    {
+      "file": "intake-missing-390-light.raw.json",
+      "selectedText": "Not confirmed",
+      "inViewport": false,
+      "disabled": false,
+      "labels": [
+        "Human-confirmed severityNot confirmedHighMediumLow"
+      ]
+    },
+    {
+      "file": "intake-missing-390-light.raw.json",
+      "selectedText": "Choose an active task",
+      "inViewport": false,
+      "disabled": false,
+      "labels": [
+        "Active triage taskChoose an active task#1 · Synthetic triage task"
+      ]
+    },
+    {
+      "file": "missing-resend-1280-dark.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "navigation-focus-1280-dark.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "navigation-focus-1280-light.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "network-recovered-1280-dark.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "rtl-1280-dark.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "thread-1280-dark-headers.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "thread-1280-dark-top.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "thread-1280-light-headers.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    },
+    {
+      "file": "thread-1280-light-top.raw.json",
+      "selectedText": "All statuses",
+      "inViewport": true,
+      "disabled": false,
+      "labels": [
+        "Ticket status"
+      ]
+    }
+  ],
+  "closedDetailsEvidence": {
+    "count": 56,
+    "incorrectlyPainted": [],
+    "examples": [
+      {
+        "file": "discard-cancel-settled-1280-dark.raw.json",
+        "labels": [
+          "Resend API key"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "discard-cancel-settled-1280-dark.raw.json",
+        "labels": [
+          "In-Reply-To · message ID"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "discard-cancel-settled-1280-dark.raw.json",
+        "labels": [
+          "References · one message ID per line"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "empty-filter-1280-dark.raw.json",
+        "labels": [
+          "Replacement API key"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "empty-filter-1280-dark.raw.json",
+        "labels": [
+          "In-Reply-To · message ID"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "empty-filter-1280-dark.raw.json",
+        "labels": [
+          "References · one message ID per line"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "missing-resend-1280-dark.raw.json",
+        "labels": [
+          "Resend API key"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "missing-resend-1280-dark.raw.json",
+        "labels": [
+          "In-Reply-To · message ID"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "missing-resend-1280-dark.raw.json",
+        "labels": [
+          "References · one message ID per line"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "missing-resend-stale-review.raw.json",
+        "labels": [
+          "In-Reply-To · message ID"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "missing-resend-stale-review.raw.json",
+        "labels": [
+          "References · one message ID per line"
+        ],
+        "painted": false,
+        "inViewport": false
+      },
+      {
+        "file": "motion-no-preference-closed.raw.json",
+        "labels": [
+          "In-Reply-To · message ID"
+        ],
+        "painted": false,
+        "inViewport": false
+      }
+    ]
+  },
+  "motion": {
+    "method": "Design Studio probe.mjs:166 threshold applied to paired actual CLI captures; no browser SDK launcher",
+    "baseline": 173,
+    "reduced": 173,
+    "visibleBaseline": 52,
+    "visibleReduced": 52,
+    "reducedMotionEffective": false,
+    "propertiesUnderReduce": [
+      "all",
+      "color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to",
+      "transform, height, opacity, filter",
+      "opacity"
+    ],
+    "interpretation": "Raw threshold is preserved. Nonspatial color/border/opacity transitions do not independently prove a spatial-motion defect. Actual drawer rAF/keyframes in flows/motion-frames.json establish the 341.5px/450ms finding."
+  },
+  "measurementLimits": [
+    "Viewport samples, not whole-page WCAG conformance",
+    "Group opacity, disabled controls, background images and filters excluded explicitly",
+    "Clipped sr-only text is retained in baseline raw; visually verified badge counted once",
+    "No screen-reader session, WebKit/iOS native run or document-start CLS/long-frame measurement",
+    "HTML themes and font settings remain user choices; raw lint flags preserved"
+  ]
+}

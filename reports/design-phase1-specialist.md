@@ -242,3 +242,36 @@ Fresh fixture4329 uses the original accepted host seed, isolated disk data
 token `ops-intake-synthetic-operator` and out-design-final. Launch uses the same
 environment as4328 with port4329 and ignored `intake_host_browser_fixture`.
 Startup compiled in38.67s and remains listening. Exact PID/checks follow.
+
+## Checklist evidence completion checkpoint
+
+All18 checklist IDs now have actual CLI evidence on the accepted combined
+behavior baseline, with exact fixture/provider limits to be retained in the
+final matrix. Missing-proof UI on4329/PID77051 identifies build/screen/reciter/
+log, disables preparation, rejects a proof whose content omits its summary,
+and retains text. Read-only SQLite counts are drafts1/proposals0/filings0.
+The accepted EMPTY=1 fixture runs on4330/PID83330 with disk data
+`.build/intake-host/browser-b7cab94e-05e7-450a-af9f-144b3c8306ca`: actual empty
+inbox/setup and morning queues are captured, with no provider activity.
+
+BC-2 light/dark Ops navigation has settled2px inset accent focus. BC-4 has two
+real selected mobile histories. BC-9 native confirm/dismiss was repeated using
+separate CLI commands; the retained unsaved composer and settled3px ring are
+captured, then the saved text was restored locally without saving. Provider4→4.
+Original mid-dismissal proof screenshots are now under `attempts/`; replacements
+record popupCount0 and width/documentWidth390. No artifact is promoted to a
+product defect or a passing unobscured frame.
+
+The71 baseline captures have2188 text samples. Canvas-normalized brief comparison
+retains444 off-palette flags versus694 authored-string flags, plus inherited
+font/spacing/radius flags. Classification is source-backed in
+`probes/classification.json`, with raw results retained. Eighteen visible
+empty-valued selects include selected text;56 closed-details field records
+correctly have checkVisibility=false. Numeric badge failures remain the only
+verified text-contrast finding in these states. No whole-app conformance claim.
+
+PR19 accepted handoff **edd8add7**, merged **4611d025**; PR18 accepted handoff
+**6aefaa59**, merged **a8663104**. Both product corrections are now authorized for
+integration. Next: one final combined export, targeted badge/motion rechecks,
+final sequential-method synthesis and draft PR handoff. Existing fixtures and
+their data remain outside commits.

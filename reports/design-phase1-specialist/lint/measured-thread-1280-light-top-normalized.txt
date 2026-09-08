@@ -1,0 +1,97 @@
+{
+  "file": "src/components/ops/inbox-view.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": true,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": true,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": true,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "high",
+      "msg": "MEASURED contrast fail: \"6\" #bb4d00 on #faeedc = 4.39 (needs 4.5) — WCAG 1.4.3."
+    },
+    {
+      "sev": "high",
+      "msg": "MEASURED contrast fail: \"6 sessions running\" #bb4d00 on #faeedc = 4.39 (needs 4.5) — WCAG 1.4.3."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #e9eded rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #e4ebe9 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #525252 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #454545 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #faeedc rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #bb4d00 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #fdc700 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #f7f7f7 rendered but not in brief palette."
+    },
+    {
+      "sev": "low",
+      "msg": "probe: +14 more brief violations in probe.json"
+    }
+  ],
+  "probe": {
+    "ok": true,
+    "checked": 106
+  }
+}
+
+SUMMARY src/components/ops/inbox-view.tsx: 11 gap(s) — [high] MEASURED contrast fail: "6" #bb4d00 on #faeedc = 4.39 (needs 4.5) — WCAG 1.4.3.  |  [high] MEASURED contrast fail: "6 sessions running" #bb4d00 on #faeedc = 4.39 (needs 4.5) — WCAG 1.4.3.  |  [med] MEASURED brief violation (off-palette-color): #e9eded rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #e4ebe9 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #525252 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #454545 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #faeedc rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #bb4d00 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #fdc700 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #f7f7f7 rendered but not in brief palette.  |  [low] probe: +14 more brief violations in probe.json

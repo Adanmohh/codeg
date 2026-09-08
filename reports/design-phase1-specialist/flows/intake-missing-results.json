@@ -1,0 +1,13 @@
+{
+  "checks": [
+    {
+      "check": "BC-16",
+      "missing": "Build\nRequired\nScreen\nRequired\nReciter\nRequired\nLog\nRequired",
+      "prepareDisabled": true,
+      "error": "Proof needs sanitized UTF-8 content up to 8 KiB containing the exact evidence summary. Check the build number, capture time and session ID. URLs and private paths are not proof.",
+      "retained": "Synthetic content does not include the claimed build",
+      "noApproveButton": true
+    }
+  ],
+  "method": "Fresh accepted host fixture4329, protected UI and synthetic Hafidh GET; invalid sanitized-proof submission; no prepare/propose/file"
+}

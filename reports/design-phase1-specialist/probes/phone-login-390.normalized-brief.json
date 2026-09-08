@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#0a0a0a",
+      "#737373",
+      "#fafafa",
+      "#245e58"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      24,
+      14,
+      12
+    ],
+    "spacingPx": [
+      24,
+      8,
+      16
+    ],
+    "radiiPx": [
+      8
+    ]
+  },
+  "contrast": {
+    "checked": 5,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 5,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "Hafidh Ops Desk"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": false,
+      "nav": false
+    },
+    "snapshot": "- alert\n- heading \"Hafidh Ops Desk\" [level=1]\n- paragraph: Enter your access token to connect to the desktop app\n- text: Access Token\n- textbox \"Access Token\"\n- button \"Connect\" [disabled]\n- paragraph: Find your token in the desktop app under Settings → Web Service",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    }
+  ]
+}

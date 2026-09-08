@@ -1,0 +1,84 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#fafafa",
+      "#a1a1a1",
+      "#151515"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      24
+    ],
+    "spacingPx": [
+      12,
+      8,
+      6,
+      48,
+      16
+    ],
+    "radiiPx": [
+      10
+    ]
+  },
+  "contrast": {
+    "checked": 5,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 6,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "This review link is no longer current"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": false
+    },
+    "snapshot": "- alert\n- main \"Protected Ops review\":\n  - paragraph: Hafidh Ops desk\n  - button \"Open workspace\"\n  - heading \"This review link is no longer current\" [level=1]\n  - paragraph: The proposal or recipient settings may have changed, or a decision was already recorded. Open the Ops workspace to check the current queue. This link cannot approve or send anything.\n  - button \"Check link again\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#fafafa",
+      "#ebebeb",
+      "#0a0a0a",
+      "#525252",
+      "#454545",
+      "#171717",
+      "#f5f5f5",
+      "#737373",
+      "#f7f7f7",
+      "#245e58",
+      "#444444"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      12,
+      20
+    ],
+    "spacingPx": [
+      8,
+      2,
+      6,
+      7,
+      12,
+      1,
+      4,
+      24,
+      32,
+      20,
+      16
+    ],
+    "radiiPx": [
+      26,
+      16777200,
+      8,
+      10,
+      6
+    ]
+  },
+  "contrast": {
+    "checked": 25,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 149,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "A place for your correspondence"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- complementary:\n  - button \"Locate Active Conversation\"\n  - button \"Collapse All Groups\"\n  - button \"View options\"\n  - button \"Ops desk\"\n  - button \"Bug intake\"\n  - button \"New chat ⌘T\"\n  - button \"Automations\"\n  - button \"To-dos\"\n  - button \"Repository panel\"\n  - button \"Infinite Conversations\"\n  - button \"Folders\" [expanded]\n  - button \"New group\"\n  - button \"Import local sessions\"\n  - button \"Clone Repository\"\n  - button \"Open Folder\"\n  - button \"synthetic-project\" [expanded]\n  - button \"More options\"\n  - button \"New Conversation\"\n  - text: No conversations\n  - button \"Chat\" [expanded]\n  - button \"New chat\"\n  - text: No chats\n  - button \"Recent\" [expanded]\n  - button \"New Conversation\"\n  - text: No recent conversations\n- separator\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - heading \"A place for your correspondence\" [level=1]\n    - paragraph: Add a local inbox to organize real ticket threads, write private notes and prepare replies. Connecting email delivery is a separate step.\n    - text: Inbox name\n    - textbox \"Inbox name\"\n    - text: Inbox email address\n    - textbox \"Inbox email address\"\n    - button \"Add local inbox\" [disabled]\n  - separator\n  - button \"New Terminal\"\n  - button \"Hide Terminal (⌘J)\"\n- separator\n- button \"Quick actions\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"\n- button \"Hide Sidebar (⌘B)\"\n- button \"Search\"\n- button \"Open Settings (⌘,)\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#525252 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#454545 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f7f7f7 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#444444 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "7px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "1px spacing off brief + 4px scale"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "checks": [
+    {
+      "geometry": {
+        "popupCount": 0,
+        "width": 390,
+        "documentWidth": 390
+      }
+    }
+  ],
+  "method": "Detached popup, settled empty mobile replacement; no mutation"
+}

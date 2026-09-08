@@ -1,0 +1,28 @@
+{
+  "specialist": "a11y-auditor",
+  "scores": { "accessibility": 7, "states": 9 },
+  "findings": [
+    {
+      "surface": "mobile workspace sidebar",
+      "element": "src/components/ui/drawer.tsx:339; src/app/workspace/layout.tsx:648",
+      "severity": "med",
+      "check": "Reduced-motion preference: actual drawer rAF samples still travel x=-333.5 to8 over450ms, with transform keyframes, under reduce. Evidence: flows/motion-frames.json. P2; root assigned PR19.",
+      "fix": "Suppress spatial transitions under reduced motion while preserving close/presence and normal lifecycle; recheck after accepted integration."
+    },
+    {
+      "surface": "light sidebar running count",
+      "element": "src/components/conversations/sidebar-conversation-list.tsx:507; src/components/conversations/sidebar-folder-group-header.tsx:206",
+      "severity": "med",
+      "check": "Small-text contrast: measured10px amber700 on amber500/12 is4.39<4.5. Root independently confirmed~4.4. Numeric badge is visible; sr-only duplicate entries are not separate painted findings. P2; root assigned PR18.",
+      "fix": "Raise foreground/background composite contrast in both badge implementations while preserving the paired dark treatment; verify actual paint."
+    },
+    {
+      "surface": "connection page",
+      "element": "src/app/login/page.tsx:61",
+      "severity": "low",
+      "check": "Main landmark: source uses outer div; actual phone-login-invalid-390 probe has main=false. Labels, error association and retry work. This one-form page has no competing navigation, so this is nonblocking structural follow-up.",
+      "fix": "Use a main landmark for the connection content in a future assigned accessibility pass."
+    }
+  ],
+  "notes": "Baseline at accepted product8c2a004d plus test-only fixtures; PR18/19 recheck pending. No unnamed controls or horizontal overflow in the captured Ops/phone states. This is not a whole-app WCAG certificate. First-frame phone focus and mid-dismissal mobile captures were rejected as passing evidence and replaced by settled ring/geometry proof. Raw lint severity is an input, not automatic product severity."
+}

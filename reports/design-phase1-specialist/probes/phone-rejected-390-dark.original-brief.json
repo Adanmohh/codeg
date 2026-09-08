@@ -1,0 +1,110 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#fafafa",
+      "#151515",
+      "#181818",
+      "#222323"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14
+    ],
+    "spacingPx": [
+      16,
+      24,
+      12
+    ],
+    "radiiPx": [
+      14,
+      10,
+      999
+    ]
+  },
+  "contrast": {
+    "checked": 4,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 10,
+    "easings": [
+      "ease, ease, ease, ease, ease, ease",
+      "ease, ease, ease",
+      "ease, ease, ease, ease"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "Review GitHub issue"
+      },
+      {
+        "level": 2,
+        "text": "Source report"
+      },
+      {
+        "level": 2,
+        "text": "Required evidence"
+      },
+      {
+        "level": 2,
+        "text": "Issue draft"
+      },
+      {
+        "level": 2,
+        "text": "Exact GitHub issue"
+      },
+      {
+        "level": 2,
+        "text": "Filing receipt"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": false
+    },
+    "snapshot": "- alert\n- main \"Protected Ops review\":\n  - paragraph: Hafidh Ops desk\n  - button \"Open workspace\"\n  - heading \"Review GitHub issue\" [level=1]\n  - heading \"Source report\" [level=2]\n  - paragraph: Synthetic rejected label example\n  - paragraph: Product synthetic-hafidh · TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAX\n  - heading \"Required evidence\" [level=2]\n  - term: build\n  - definition: \"42\"\n  - definition: SHA-256 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef\n  - term: screen\n  - definition: Mushaf reader\n  - definition: SHA-256 cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709\n  - term: reciter\n  - definition: Abdul Basit\n  - definition: SHA-256 f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae\n  - term: log\n  - definition: audio stopped at verse four\n  - definition: SHA-256 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef\n  - heading \"Issue draft\" [level=2]\n  - paragraph:\n    - text: \"Suggestion:\"\n    - strong: low\n    - text: severity; other. These are triage guesses. Confirm or change severity below.\n  - group:\n    - text: Issue title\n    - textbox \"Issue title\" [disabled]: \"TestFlight draft: Synthetic rejected label example\"\n    - text: Reproduction and expected behavior\n    - textbox \"Reproduction and expected behavior\" [disabled]: Synthetic rejected label example\n    - text: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions. Repository labels\n    - textbox \"Repository labels\" [disabled]: audio\n    - text: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing. Human-confirmed severity\n    - combobox \"Human-confirmed severity\" [disabled]:\n      - option \"Not confirmed\" [disabled]\n      - option \"High\" [disabled]\n      - option \"Medium\" [disabled] [selected]\n      - option \"Low\" [disabled]\n    - button \"Save issue draft\" [disabled]\n    - text: Draft saved locally\n  - heading \"Exact GitHub issue\" [level=2]\n  - term: Repository\n  - definition: owner/repo\n  - term: Title\n  - definition: \"TestFlight draft: Synthetic rejected label example\"\n  - term: Labels\n  - definition: audio\n  - group: \"Complete issue body Synthetic rejected label example Severity: medium (human-confirmed) Source: synthetic-hafidh / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAX Revision: b6a38f4bfd72e1287a06bf4279c0dd7737f3b5b930a3498ce356882fb5f78256 Template: hafidh-issue-v1 ## build 42 Evidence: feb395ef-4366-4ff3-b4f4-8474e621b236 SHA-256: 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef ## screen Mushaf reader Evidence: aa3418a9-0efd-43e6-b27f-1afdf71869a2 SHA-256: cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709 ## reciter Abdul Basit Evidence: 76de56b3-605b-4cb3-8339-7d762d3d5bd0 SHA-256: f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae ## log audio stopped at verse four Evidence: a6534fef-015b-4736-85a6-fcf5790681d8 SHA-256: 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef <!-- hafidh-ops:5a57e092588b1af413d75dac92a7fc5720098e6d23ee0833a73b68945f01272f -->\"\n  - heading \"Filing receipt\" [level=2]\n  - status: GitHub rejected this attempt. No issue was confirmed. Correct the draft or configuration, then request a new human-reviewed proposal.",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#181818 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#222323 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "999px radius off brief + 4px scale"
+    }
+  ]
+}

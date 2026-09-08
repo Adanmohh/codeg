@@ -1,0 +1,122 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#222323",
+      "#0a0a0a",
+      "#a1a1a1",
+      "#fafafa",
+      "#151515",
+      "#171717",
+      "#9bd4c5"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      14
+    ],
+    "spacingPx": [
+      24,
+      16,
+      12,
+      6
+    ],
+    "radiiPx": [
+      999,
+      14,
+      10
+    ]
+  },
+  "contrast": {
+    "checked": 8,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 12,
+    "easings": [
+      "ease, ease, ease, ease, ease, ease",
+      "ease, ease, ease",
+      "ease, ease, ease, ease",
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "Review GitHub issue"
+      },
+      {
+        "level": 2,
+        "text": "Source report"
+      },
+      {
+        "level": 2,
+        "text": "Required evidence"
+      },
+      {
+        "level": 2,
+        "text": "Issue draft"
+      },
+      {
+        "level": 2,
+        "text": "Exact GitHub issue"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": false
+    },
+    "snapshot": "- alert\n- main \"Protected Ops review\":\n  - paragraph: Hafidh Ops desk\n  - button \"Open workspace\"\n  - heading \"Review GitHub issue\" [level=1]\n  - heading \"Source report\" [level=2]\n  - paragraph: Synthetic audio stops at verse four\n  - paragraph: Product synthetic-hafidh · TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAV\n  - heading \"Required evidence\" [level=2]\n  - term: build\n  - definition: \"42\"\n  - definition: SHA-256 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef\n  - term: screen\n  - definition: Mushaf reader\n  - definition: SHA-256 cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709\n  - term: reciter\n  - definition: Abdul Basit\n  - definition: SHA-256 f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae\n  - term: log\n  - definition: audio stopped at verse four\n  - definition: SHA-256 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef\n  - heading \"Issue draft\" [level=2]\n  - paragraph:\n    - text: \"Suggestion:\"\n    - strong: low\n    - text: severity; audio. These are triage guesses. Confirm or change severity below.\n  - group:\n    - text: Issue title\n    - textbox \"Issue title\" [disabled]: \"TestFlight draft: Synthetic audio stops at verse four\"\n    - text: Reproduction and expected behavior\n    - textbox \"Reproduction and expected behavior\" [disabled]: Synthetic audio stops at verse four\n    - text: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions. Repository labels\n    - textbox \"Repository labels\" [disabled]: audio\n    - text: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing. Human-confirmed severity\n    - combobox \"Human-confirmed severity\" [disabled]:\n      - option \"Not confirmed\" [disabled]\n      - option \"High\" [disabled]\n      - option \"Medium\" [disabled] [selected]\n      - option \"Low\" [disabled]\n    - button \"Save issue draft\" [disabled]\n    - text: Draft saved locally\n  - status: A proposal is waiting for review. Deny it before changing the draft, then request a new proposal.\n  - heading \"Exact GitHub issue\" [level=2]\n  - term: Repository\n  - definition: owner/repo\n  - term: Title\n  - definition: \"TestFlight draft: Synthetic audio stops at verse four\"\n  - term: Labels\n  - definition: audio\n  - group: \"Complete issue body Synthetic audio stops at verse four Severity: medium (human-confirmed) Source: synthetic-hafidh / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAV Revision: 831fd48927deb0d18b301d831deb38781f281f19294b9c76c9c3b9b34b40ace6 Template: hafidh-issue-v1 ## build 42 Evidence: 489c1189-cec7-44f9-aced-1f72e2dfd83a SHA-256: 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef ## screen Mushaf reader Evidence: 271dafc3-437c-4966-ad50-1746d736419b SHA-256: cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709 ## reciter Abdul Basit Evidence: bbdf338c-861d-47af-ba80-becb4da20f1f SHA-256: f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae ## log audio stopped at verse four Evidence: 714c0400-f169-4ba3-bb31-82889ee108c8 SHA-256: 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef <!-- hafidh-ops:6c632369ace420ca8f6f4254e66f42c39236d9e22d08946e9b544e936f40fcbc -->\"\n  - checkbox \"I reviewed this exact repository, title, body and labels. File this issue.\"\n  - text: I reviewed this exact repository, title, body and labels. File this issue.\n  - button \"Approve and file issue\" [disabled]\n  - button \"Deny proposal\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#222323 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#171717 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "999px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}
