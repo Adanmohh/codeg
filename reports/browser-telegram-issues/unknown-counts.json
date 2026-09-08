@@ -1,0 +1,22 @@
+{
+  "stats": {
+    "githubIssues": 2,
+    "githubPosts": 2,
+    "githubTokens": 1,
+    "telegramSends": 3
+  },
+  "buttons": [
+    {
+      "text": "Open workspace",
+      "disabled": false
+    },
+    {
+      "text": "Save issue draft",
+      "disabled": true
+    },
+    {
+      "text": "Check existing issue",
+      "disabled": false
+    }
+  ]
+}

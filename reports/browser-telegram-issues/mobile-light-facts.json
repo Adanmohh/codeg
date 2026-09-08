@@ -1,0 +1,28 @@
+{
+  "width": 390,
+  "documentWidth": 390,
+  "theme": "light",
+  "privateTesterVisible": false,
+  "buttons": [
+    {
+      "text": "Open workspace",
+      "disabled": false,
+      "height": 44
+    },
+    {
+      "text": "Save issue draft",
+      "disabled": true,
+      "height": 44
+    },
+    {
+      "text": "Approve and file issue",
+      "disabled": true,
+      "height": 44
+    },
+    {
+      "text": "Deny proposal",
+      "disabled": false,
+      "height": 44
+    }
+  ]
+}

@@ -115,6 +115,7 @@ async fn configuration_secrets_are_write_only_and_unconfigured_filing_stays_pend
             &human(),
             &provider.runtime,
             ReviewInput {
+                review_notice: None,
                 source: source.clone(),
                 proposal_id: p.proposal_id.unwrap(),
                 expected_payload: p.prepared.clone(),
@@ -290,6 +291,7 @@ async fn approval_rejects_tamper_newer_draft_expired_proof_and_read_only_policy(
                 &human(),
                 &provider.runtime,
                 ReviewInput {
+                    review_notice: None,
                     source,
                     proposal_id: p.proposal_id.unwrap(),
                     expected_payload: p.prepared,
@@ -333,6 +335,7 @@ async fn response_lost_stays_unknown_blocks_repeat_and_reconciles_the_same_issue
     .await
     .unwrap();
     let input = || ReviewInput {
+        review_notice: None,
         source: source.clone(),
         proposal_id: p.proposal_id.unwrap(),
         expected_payload: p.prepared.clone(),

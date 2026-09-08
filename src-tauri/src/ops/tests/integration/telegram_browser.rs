@@ -107,6 +107,7 @@ async fn ops_telegram_browser_fixture() {
             private_user_id: "123".into(),
             review_origin: "http://127.0.0.1:4323".into(),
             enabled: true,
+            github_issues_enabled: false,
             expected_revision: None,
         },
     )

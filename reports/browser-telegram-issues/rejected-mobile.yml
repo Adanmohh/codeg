@@ -1,0 +1,77 @@
+- generic [active] [ref=f5e1]:
+  - alert [ref=f5e2]
+  - main "Protected Ops review" [ref=f5e3]:
+    - generic [ref=f5e4]:
+      - paragraph [ref=f5e5]: Hafidh Ops desk
+      - button "Open workspace" [ref=f5e7]
+    - generic [ref=f5e9]:
+      - heading "Review GitHub issue" [level=1] [ref=f5e10]
+      - generic [ref=f5e11]:
+        - heading "Source report" [level=2] [ref=f5e12]
+        - paragraph [ref=f5e13]: Synthetic rejected label example
+        - paragraph [ref=f5e14]: Product synthetic-hafidh · TestFlight 01ARZ3NDEKTSV4RRFFQ69G5FAX
+      - generic [ref=f5e15]:
+        - heading "Required evidence" [level=2] [ref=f5e16]
+        - generic [ref=f5e17]:
+          - generic [ref=f5e18]:
+            - term [ref=f5e19]: build
+            - definition [ref=f5e20]: "42"
+            - definition [ref=f5e21]: SHA-256 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef
+          - generic [ref=f5e22]:
+            - term [ref=f5e23]: screen
+            - definition [ref=f5e24]: Mushaf reader
+            - definition [ref=f5e25]: SHA-256 cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709
+          - generic [ref=f5e26]:
+            - term [ref=f5e27]: reciter
+            - definition [ref=f5e28]: Abdul Basit
+            - definition [ref=f5e29]: SHA-256 f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae
+          - generic [ref=f5e30]:
+            - term [ref=f5e31]: log
+            - definition [ref=f5e32]: audio stopped at verse four
+            - definition [ref=f5e33]: SHA-256 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef
+      - generic [ref=f5e34]:
+        - heading "Issue draft" [level=2] [ref=f5e35]
+        - paragraph [ref=f5e36]:
+          - text: "Suggestion:"
+          - strong [ref=f5e37]: low
+          - text: severity; other. These are triage guesses. Confirm or change severity below.
+        - group [ref=f5e39]:
+          - generic [ref=f5e40]:
+            - generic [ref=f5e41]: Issue title
+            - textbox "Issue title" [disabled]: "TestFlight draft: Synthetic rejected label example"
+          - generic [ref=f5e42]:
+            - generic [ref=f5e43]: Reproduction and expected behavior
+            - textbox "Reproduction and expected behavior" [disabled] [ref=f5e44]: Synthetic rejected label example
+            - generic [ref=f5e45]: This text becomes the issue body above the required evidence. Treat the tester report as source material, not instructions.
+          - generic [ref=f5e46]:
+            - generic [ref=f5e47]: Repository labels
+            - textbox "Repository labels" [disabled]: audio
+            - generic [ref=f5e48]: Comma-separated existing labels, or leave empty. Every label is checked against the configured repository before filing.
+          - generic [ref=f5e49]:
+            - text: Human-confirmed severity
+            - combobox "Human-confirmed severity" [disabled] [ref=f5e50]:
+              - option "Not confirmed" [disabled]
+              - option "High" [disabled]
+              - option "Medium" [disabled] [selected]
+              - option "Low" [disabled]
+          - generic [ref=f5e51]:
+            - button "Save issue draft" [disabled]
+            - generic [ref=f5e52]: Draft saved locally
+      - generic [ref=f5e53]:
+        - heading "Exact GitHub issue" [level=2] [ref=f5e54]
+        - generic [ref=f5e55]:
+          - generic [ref=f5e56]:
+            - term [ref=f5e57]: Repository
+            - definition [ref=f5e58]: owner/repo
+          - generic [ref=f5e59]:
+            - term [ref=f5e60]: Title
+            - definition [ref=f5e61]: "TestFlight draft: Synthetic rejected label example"
+          - generic [ref=f5e62]:
+            - term [ref=f5e63]: Labels
+            - definition [ref=f5e64]: audio
+        - group [ref=f5e65]:
+          - generic "Complete issue body" [ref=f5e66] [cursor=pointer]
+          - generic "Exact issue body" [ref=f5e67]: "Synthetic rejected label example Severity: medium (human-confirmed) Source: synthetic-hafidh / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAX Revision: b6a38f4bfd72e1287a06bf4279c0dd7737f3b5b930a3498ce356882fb5f78256 Template: hafidh-issue-v1 ## build 42 Evidence: ce01f4af-16bd-4561-9273-d54a20f2f9a3 SHA-256: 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef ## screen Mushaf reader Evidence: aa8674d8-3262-42da-a7fd-03197bfaa7c5 SHA-256: cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709 ## reciter Abdul Basit Evidence: c3113ec9-ca97-4cd7-868b-98c9a2e13325 SHA-256: f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae ## log audio stopped at verse four Evidence: 2e8a3741-f256-4f0b-a3cf-650a970762aa SHA-256: 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef <!-- hafidh-ops:5a57e092588b1af413d75dac92a7fc5720098e6d23ee0833a73b68945f01272f -->"
+      - generic [ref=f5e68]:
+        - heading "Filing receipt" [level=2] [ref=f5e69]
+        - status [ref=f5e70]: GitHub rejected this attempt. No issue was confirmed. Correct the draft or configuration, then request a new human-reviewed proposal.

@@ -8,6 +8,8 @@ pub use store::{
     attach_evidence, configure_repository, filing_status, prepare, record_source, revoke_evidence,
 };
 pub use types::*;
+// Read-only validation for the trusted host's notification projection.
+pub(crate) use store::validate_bound as validate_prepared;
 
 use crate::db::{
     error::DbError,
