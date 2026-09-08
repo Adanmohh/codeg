@@ -1,0 +1,446 @@
+[
+  {
+    "name": "workspace-1280-light-en",
+    "width": 1280,
+    "contrast": {
+      "checked": 39,
+      "failures": [
+        {
+          "text": "Find a task",
+          "fg": "#737373",
+          "bg": "#f7f7f7",
+          "ratio": 4.43,
+          "required": 4.5
+        }
+      ]
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "Language",
+        "text": "English",
+        "valuePresent": true
+      },
+      {
+        "label": "Appearance",
+        "text": "Light",
+        "valuePresent": true
+      },
+      {
+        "label": "Area of work",
+        "text": "All areas",
+        "valuePresent": false
+      },
+      {
+        "label": "Status",
+        "text": "All statuses",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 10
+  },
+  {
+    "name": "workspace-768-light-en",
+    "width": 768,
+    "contrast": {
+      "checked": 23,
+      "failures": [
+        {
+          "text": "Find a task",
+          "fg": "#737373",
+          "bg": "#f7f7f7",
+          "ratio": 4.43,
+          "required": 4.5
+        }
+      ]
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "Language",
+        "text": "English",
+        "valuePresent": true
+      },
+      {
+        "label": "Appearance",
+        "text": "Light",
+        "valuePresent": true
+      },
+      {
+        "label": "Area of work",
+        "text": "All areas",
+        "valuePresent": false
+      },
+      {
+        "label": "Status",
+        "text": "All statuses",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 8
+  },
+  {
+    "name": "workspace-390-light-en",
+    "width": 390,
+    "contrast": {
+      "checked": 23,
+      "failures": [
+        {
+          "text": "Find a task",
+          "fg": "#737373",
+          "bg": "#f7f7f7",
+          "ratio": 4.43,
+          "required": 4.5
+        }
+      ]
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "Language",
+        "text": "English",
+        "valuePresent": true
+      },
+      {
+        "label": "Appearance",
+        "text": "Light",
+        "valuePresent": true
+      },
+      {
+        "label": "Area of work",
+        "text": "All areas",
+        "valuePresent": false
+      },
+      {
+        "label": "Status",
+        "text": "All statuses",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 7
+  },
+  {
+    "name": "workspace-1280-dark-en",
+    "width": 1280,
+    "contrast": {
+      "checked": 39,
+      "failures": []
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "Language",
+        "text": "English",
+        "valuePresent": true
+      },
+      {
+        "label": "Appearance",
+        "text": "Dark",
+        "valuePresent": true
+      },
+      {
+        "label": "Area of work",
+        "text": "All areas",
+        "valuePresent": false
+      },
+      {
+        "label": "Status",
+        "text": "All statuses",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 14
+  },
+  {
+    "name": "workspace-768-dark-en",
+    "width": 768,
+    "contrast": {
+      "checked": 23,
+      "failures": []
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "Language",
+        "text": "English",
+        "valuePresent": true
+      },
+      {
+        "label": "Appearance",
+        "text": "Dark",
+        "valuePresent": true
+      },
+      {
+        "label": "Area of work",
+        "text": "All areas",
+        "valuePresent": false
+      },
+      {
+        "label": "Status",
+        "text": "All statuses",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 12
+  },
+  {
+    "name": "workspace-390-dark-en",
+    "width": 390,
+    "contrast": {
+      "checked": 23,
+      "failures": []
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "Language",
+        "text": "English",
+        "valuePresent": true
+      },
+      {
+        "label": "Appearance",
+        "text": "Dark",
+        "valuePresent": true
+      },
+      {
+        "label": "Area of work",
+        "text": "All areas",
+        "valuePresent": false
+      },
+      {
+        "label": "Status",
+        "text": "All statuses",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 11
+  },
+  {
+    "name": "workspace-1280-light-ar",
+    "width": 1280,
+    "contrast": {
+      "checked": 39,
+      "failures": [
+        {
+          "text": "البحث عن مهمة",
+          "fg": "#737373",
+          "bg": "#f7f7f7",
+          "ratio": 4.43,
+          "required": 4.5
+        }
+      ]
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "اللغة",
+        "text": "العربية",
+        "valuePresent": true
+      },
+      {
+        "label": "المظهر",
+        "text": "فاتح",
+        "valuePresent": true
+      },
+      {
+        "label": "مجال العمل",
+        "text": "كل المجالات",
+        "valuePresent": false
+      },
+      {
+        "label": "الحالة",
+        "text": "كل الحالات",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 10
+  },
+  {
+    "name": "workspace-768-light-ar",
+    "width": 768,
+    "contrast": {
+      "checked": 23,
+      "failures": [
+        {
+          "text": "البحث عن مهمة",
+          "fg": "#737373",
+          "bg": "#f7f7f7",
+          "ratio": 4.43,
+          "required": 4.5
+        }
+      ]
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "اللغة",
+        "text": "العربية",
+        "valuePresent": true
+      },
+      {
+        "label": "المظهر",
+        "text": "فاتح",
+        "valuePresent": true
+      },
+      {
+        "label": "مجال العمل",
+        "text": "كل المجالات",
+        "valuePresent": false
+      },
+      {
+        "label": "الحالة",
+        "text": "كل الحالات",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 8
+  },
+  {
+    "name": "workspace-390-light-ar",
+    "width": 390,
+    "contrast": {
+      "checked": 23,
+      "failures": [
+        {
+          "text": "البحث عن مهمة",
+          "fg": "#737373",
+          "bg": "#f7f7f7",
+          "ratio": 4.43,
+          "required": 4.5
+        }
+      ]
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "اللغة",
+        "text": "العربية",
+        "valuePresent": true
+      },
+      {
+        "label": "المظهر",
+        "text": "فاتح",
+        "valuePresent": true
+      },
+      {
+        "label": "مجال العمل",
+        "text": "كل المجالات",
+        "valuePresent": false
+      },
+      {
+        "label": "الحالة",
+        "text": "كل الحالات",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 8
+  },
+  {
+    "name": "workspace-1280-dark-ar",
+    "width": 1280,
+    "contrast": {
+      "checked": 39,
+      "failures": []
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "اللغة",
+        "text": "العربية",
+        "valuePresent": true
+      },
+      {
+        "label": "المظهر",
+        "text": "داكن",
+        "valuePresent": true
+      },
+      {
+        "label": "مجال العمل",
+        "text": "كل المجالات",
+        "valuePresent": false
+      },
+      {
+        "label": "الحالة",
+        "text": "كل الحالات",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 14
+  },
+  {
+    "name": "workspace-768-dark-ar",
+    "width": 768,
+    "contrast": {
+      "checked": 23,
+      "failures": []
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "اللغة",
+        "text": "العربية",
+        "valuePresent": true
+      },
+      {
+        "label": "المظهر",
+        "text": "داكن",
+        "valuePresent": true
+      },
+      {
+        "label": "مجال العمل",
+        "text": "كل المجالات",
+        "valuePresent": false
+      },
+      {
+        "label": "الحالة",
+        "text": "كل الحالات",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 12
+  },
+  {
+    "name": "workspace-390-dark-ar",
+    "width": 390,
+    "contrast": {
+      "checked": 23,
+      "failures": []
+    },
+    "unnamed": 0,
+    "headingBreaks": 0,
+    "selected": [
+      {
+        "label": "اللغة",
+        "text": "العربية",
+        "valuePresent": true
+      },
+      {
+        "label": "المظهر",
+        "text": "داكن",
+        "valuePresent": true
+      },
+      {
+        "label": "مجال العمل",
+        "text": "كل المجالات",
+        "valuePresent": false
+      },
+      {
+        "label": "الحالة",
+        "text": "كل الحالات",
+        "valuePresent": false
+      }
+    ],
+    "briefFlags": 12
+  }
+]

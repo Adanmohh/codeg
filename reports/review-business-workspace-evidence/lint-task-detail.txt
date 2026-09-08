@@ -1,0 +1,49 @@
+{
+  "file": ".build/review-business-workspace/a1267302/src/components/business/task-detail.tsx",
+  "surface": {
+    "isButton": false,
+    "isInput": true,
+    "isList": false,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": false,
+    "focusState": true,
+    "activeState": false,
+    "aria": false,
+    "role": false,
+    "emptyState": false,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": false,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": false,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [],
+  "probe": null
+}
+
+SUMMARY .build/review-business-workspace/a1267302/src/components/business/task-detail.tsx: 0 gap(s) — no obvious state/a11y gaps

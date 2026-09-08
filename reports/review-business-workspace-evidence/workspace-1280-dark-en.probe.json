@@ -1,0 +1,138 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#171717",
+      "#fafafa",
+      "#a1a1a1",
+      "#9bd4c5",
+      "#252b29",
+      "#262626",
+      "#151515",
+      "#181818",
+      "#222222",
+      "#1b1b1b",
+      "#ffd230",
+      "#2e2415"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      16,
+      12,
+      14,
+      36
+    ],
+    "spacingPx": [
+      20,
+      12,
+      36,
+      4,
+      239,
+      40,
+      8,
+      16,
+      6,
+      32
+    ],
+    "radiiPx": [
+      14,
+      33554400,
+      18,
+      10
+    ]
+  },
+  "contrast": {
+    "checked": 39,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 12,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "My work"
+      },
+      {
+        "level": 2,
+        "text": "Synthetic review: customer welcome brief"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- complementary:\n  - paragraph: Hafidh\n  - paragraph: Ops Desk\n  - paragraph: Workspace\n  - paragraph: Hafidh Studio · Synthetic\n  - navigation \"Workspace\":\n    - button \"My work\"\n    - button \"Shared work\"\n    - button \"Review\"\n    - button \"People & agents\"\n  - combobox \"Language\":\n    - option \"English\" [selected]\n    - option \"简体中文\"\n    - option \"繁體中文\"\n    - option \"日本語\"\n    - option \"한국어\"\n    - option \"Español\"\n    - option \"Deutsch\"\n    - option \"Français\"\n    - option \"Português\"\n    - option \"العربية\"\n  - combobox \"Appearance\":\n    - option \"Device appearance\"\n    - option \"Light\"\n    - option \"Dark\" [selected]\n  - text: Synthetic review · Maya · Manager\n  - paragraph: Manager · Connected\n  - button \"Disconnect\"\n- main:\n  - paragraph: Workspace\n  - heading \"My work\" [level=1]\n  - paragraph: What you own and what’s assigned to you.\n  - button \"Create task\"\n  - textbox \"Find a task\"\n  - button \"Find a task\"\n  - button \"Refresh\"\n  - combobox \"Area of work\":\n    - option \"All areas\" [selected]\n    - option \"Marketing\"\n    - option \"Feedback\"\n  - combobox \"Status\":\n    - option \"All statuses\" [selected]\n    - option \"To do\"\n    - option \"In progress\"\n    - option \"Review\"\n    - option \"Done\"\n    - option \"Cancelled\"\n  - checkbox \"Archived\"\n  - text: Archived\n  - button \"List\" [pressed]\n  - button \"Board\"\n  - paragraph: 1 tasks loaded\n  - list:\n    - listitem:\n      - 'button \"Review Marketing · Normal Synthetic review: customer welcome brief Accountable owner Synthetic review · Maya · Manager Assigned to Synthetic review · Noura · Member 2026-10-01\"':\n        - text: Review Marketing · Normal\n        - 'heading \"Synthetic review: customer welcome brief\" [level=2]'\n        - text: Accountable owner Synthetic review · Maya · Manager Assigned to Synthetic review · Noura · Member\n        - time: 2026-10-01",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#252b29 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#181818 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#222222 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#1b1b1b rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffd230 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#2e2415 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "18px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "239px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ]
+}
