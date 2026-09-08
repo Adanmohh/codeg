@@ -53,6 +53,16 @@ Astra/max and preserved fixtures apply. No B product code, provider call or
 configuration action is authorized in this preparation task; root reviews the
 contract after N2 acceptance before implementation dispatch.
 
+**All three next-scope preparation assignments dispatched:** approvals owns
+`review/business-intake-contract`, report `reports/review-business-intake-contract.md`,
+independent source-grant/publication/transaction/claim review and smallest usable
+protected configuration contract. Rebrand owns `docs/business-intake-ui`, report
+`reports/business-intake-ui-plan.md`, concrete business source-to-reviewed-task
+flow and visual/keyboard acceptance plan. Tickets keeps `docs/business-intake-contract`
+and temporarily completes the final companion artifact run before contract
+publication. Existing panes/worktrees, Astra/max/docs-first/borrow rules apply.
+These assignments are docs/review only; no B product or live configuration action.
+
 ## Earlier Increment A checkpoints — historical
 
 ## Autonomous implementation — resumed
