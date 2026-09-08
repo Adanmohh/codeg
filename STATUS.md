@@ -25,6 +25,15 @@ and all-three binary/profile hashes pass. Tickets'275 bundled companion checks a
 before/after hash. Actual native local bootstrap/human Done4 and shared-server
 viewer/revocation checks pass; N2 chrome correction and final refresh remain.
 
+**Next-scope preparation:** existing tickets worker is dispatched to docs-only
+`docs/business-intake-contract` from accepted main, same worktree/pane. Deliverables
+`reports/business-intake-contract.md` and `docs/contracts/business-intake.md` pin
+Increment B meeting/feedback import, source visibility, durable/idempotent
+candidates and explicit human task acceptance/linking. Docs-first/gh-api borrowing,
+Astra/max and preserved fixtures apply. No B product code, provider call or
+configuration action is authorized in this preparation task; root reviews the
+contract after N2 acceptance before implementation dispatch.
+
 ## Earlier Increment A checkpoints — historical
 
 ## Autonomous implementation — resumed
