@@ -132,6 +132,7 @@ async fn tenancy_migration_preserves_populated_ids_hashes_history_and_fk_after_f
         .iter()
         .find(|m| m.name() == "m20260908_000012_business_tenancy")
         .unwrap();
+    conn.execute_unprepared("INSERT INTO business_task (id,organization_id,title,domain,owner_id,creator_id,created_at,updated_at) VALUES ('retained-task','original','Retained business work','feedback','owner','owner','now','now'); INSERT INTO business_task_activity (id,organization_id,task_id,revision,kind,actor_id,actor_name,actor_kind,payload_json,created_at) VALUES ('task-history','original','retained-task',1,'created','owner','Owner','human','{}','now');").await.unwrap();
     assert!(migration.up(&manager).await.is_err());
     assert!(!manager
         .has_table("business_tenancy_metadata")
@@ -170,6 +171,23 @@ async fn tenancy_migration_preserves_populated_ids_hashes_history_and_fk_after_f
     migration.up(&manager).await.unwrap();
     let org = store::organization(&conn).await.unwrap().unwrap();
     assert_eq!(org.id, "original");
+    let retained = conn
+        .query_one(store::statement(
+            "SELECT title,revision FROM business_task WHERE id='retained-task'",
+            vec![],
+        ))
+        .await
+        .unwrap()
+        .unwrap();
+    assert_eq!(
+        retained.try_get::<String>("", "title").unwrap(),
+        "Retained business work"
+    );
+    assert_eq!(retained.try_get::<i64>("", "revision").unwrap(), 1);
+    assert!(conn
+        .execute_unprepared("DELETE FROM business_task_activity")
+        .await
+        .is_err());
     let kept = conn
         .query_one(store::statement(
             "SELECT token_hash FROM business_credential WHERE id='credential'",

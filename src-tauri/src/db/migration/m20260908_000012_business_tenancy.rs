@@ -134,6 +134,7 @@ INSERT INTO business_tenant_settings (organization_id,settings_json)
 CREATE TABLE business_platform_receipt (
  operation_id TEXT PRIMARY KEY NOT NULL,
  input_hash TEXT NOT NULL CHECK (length(input_hash)=64),
+ authority TEXT NOT NULL DEFAULT 'legacy_operator' CHECK(authority='legacy_operator'),
  action TEXT NOT NULL CHECK(action IN ('tenant_created','tenant_status_changed','owner_credential_reissued')),
  organization_id TEXT NOT NULL REFERENCES business_organization(id) ON DELETE RESTRICT,
  result_json TEXT NOT NULL CHECK (json_valid(result_json)),
@@ -143,12 +144,26 @@ CREATE TRIGGER business_platform_receipt_no_update BEFORE UPDATE ON business_pla
  BEGIN SELECT RAISE(ABORT,'Platform receipt is immutable'); END;
 CREATE TRIGGER business_platform_receipt_no_delete BEFORE DELETE ON business_platform_receipt
  BEGIN SELECT RAISE(ABORT,'Platform receipt is immutable'); END;
+CREATE UNIQUE INDEX business_credential_tenant_identity ON business_credential(organization_id,member_id,id);
 CREATE TABLE business_provisioning_owner (
  organization_id TEXT PRIMARY KEY NOT NULL REFERENCES business_organization(id) ON DELETE RESTRICT,
  member_id TEXT NOT NULL,
- credential_id TEXT NOT NULL REFERENCES business_credential(id) ON DELETE RESTRICT,
- FOREIGN KEY(organization_id,member_id) REFERENCES business_member(organization_id,id) ON DELETE RESTRICT
+ credential_id TEXT NOT NULL,
+ FOREIGN KEY(organization_id,member_id) REFERENCES business_member(organization_id,id) ON DELETE RESTRICT,
+ FOREIGN KEY(organization_id,member_id,credential_id) REFERENCES business_credential(organization_id,member_id,id) ON DELETE RESTRICT
 );
 CREATE TRIGGER business_provisioning_owner_identity_immutable BEFORE UPDATE OF organization_id,member_id ON business_provisioning_owner
  BEGIN SELECT RAISE(ABORT,'Provisioning owner is immutable'); END;
+CREATE TABLE business_execution_authority_epoch (
+ authority_id TEXT PRIMARY KEY NOT NULL REFERENCES business_task_execution_authority(id) ON DELETE RESTRICT,
+ authorization_epoch INTEGER NOT NULL CHECK(authorization_epoch>0)
+);
+INSERT INTO business_execution_authority_epoch SELECT id,1 FROM business_task_execution_authority;
+CREATE TRIGGER business_execution_capture_epoch AFTER INSERT ON business_task_execution_authority
+ BEGIN INSERT INTO business_execution_authority_epoch (authority_id,authorization_epoch)
+ SELECT NEW.id,authorization_epoch FROM business_organization WHERE id=NEW.organization_id AND status='active'; END;
+CREATE TRIGGER business_execution_epoch_no_update BEFORE UPDATE ON business_execution_authority_epoch
+ BEGIN SELECT RAISE(ABORT,'Execution authority epoch is immutable'); END;
+CREATE TRIGGER business_execution_epoch_no_delete BEFORE DELETE ON business_execution_authority_epoch
+ BEGIN SELECT RAISE(ABORT,'Execution authority epoch is retained'); END;
 "#;

@@ -32,7 +32,7 @@ pub(super) async fn authority<C: ConnectionTrait>(
     live: &LiveExecution,
 ) -> Result<execution_authority::Model, E> {
     let source = execution_authority::Model::find_by_statement(statement(
-        "SELECT * FROM business_task_execution_authority WHERE work_task_id = ? AND run_seq = ?",
+        "SELECT a.* FROM business_task_execution_authority a JOIN business_execution_authority_epoch e ON e.authority_id=a.id JOIN business_organization o ON o.id=a.organization_id AND o.status='active' AND o.authorization_epoch=e.authorization_epoch WHERE a.work_task_id = ? AND a.run_seq = ?",
         vec![live.work_task_id.into(), live.run_seq.into()],
     ))
     .one(conn)
@@ -48,6 +48,70 @@ pub(super) async fn authority<C: ConnectionTrait>(
         return Err(E::Forbidden);
     }
     Ok(source)
+}
+
+#[cfg(test)]
+mod tenancy_tests {
+    use super::*;
+    use crate::business_identity::{platform, store as identities, types::*};
+    #[tokio::test]
+    async fn tenancy_unlinked_source_authority_epoch_cannot_resurrect_after_resume() {
+        let db = crate::db::test_helpers::fresh_in_memory_db().await;
+        let op = crate::business_tasks::tests::initialize(&db.conn).await;
+        let agent = identities::create_member(
+            &db.conn,
+            &op,
+            CreateMemberInput {
+                organization_id: op.organization_id().into(),
+                display_name: "Scoped agent".into(),
+                kind: MemberKind::Agent,
+                role: Role::Member,
+                domains: vec![Domain::Feedback],
+            },
+        )
+        .await
+        .unwrap();
+        let detail=crate::business_tasks::store::create(&db.conn,&crate::business_tasks::ActorContext::authenticated(op.clone()),serde_json::from_value(serde_json::json!({"title":"Epoch-scoped run","domain":"feedback","assigneeId":agent.id})).unwrap()).await.unwrap();
+        let row = model(&db.conn, op.organization_id(), &detail.task.id)
+            .await
+            .unwrap();
+        // Synthetic trusted source record: isolate the authority lookup/epoch
+        // contract. Existing engine ownership suites exercise real live indexing.
+        let insert = |id: &str, run: i32| {
+            statement("INSERT INTO business_task_execution_authority (id,organization_id,task_id,domain,task_revision,work_task_id,run_seq,connection_id,agent_member_id,agent_key,entrusted_by,created_at) VALUES (?,?,?,'feedback',1,1,?,'root',?,'pi',?,'now')",vec![id.into(),op.organization_id().into(),row.id.clone().into(),run.into(),agent.id.clone().into(),op.member_id().into()])
+        };
+        db.conn.execute(insert("old", 1)).await.unwrap();
+        let live = |seq| LiveExecution {
+            work_task_id: 1,
+            run_seq: seq,
+            connection_id: "root".into(),
+            agent_key: "pi".into(),
+        };
+        assert!(authority(&db.conn, &row, &live(1)).await.is_ok());
+        let p = platform::PlatformContext::from_operator(&crate::web::auth::AuthenticatedOperator);
+        for (revision, status) in [
+            (1, OrganizationStatus::Suspended),
+            (2, OrganizationStatus::Active),
+        ] {
+            platform::status(
+                &db.conn,
+                &p,
+                platform::StatusInput {
+                    operation_id: uuid::Uuid::new_v4().to_string(),
+                    organization_id: op.organization_id().into(),
+                    expected_revision: revision,
+                    expected_authorization_epoch: revision,
+                    status,
+                },
+            )
+            .await
+            .unwrap();
+            assert!(authority(&db.conn, &row, &live(1)).await.is_err());
+        }
+        db.conn.execute(insert("new", 2)).await.unwrap();
+        assert!(authority(&db.conn, &row, &live(2)).await.is_ok());
+        assert!(db.conn.execute_unprepared("UPDATE business_execution_authority_epoch SET authorization_epoch=3 WHERE authority_id='old'").await.is_err());
+    }
 }
 
 /// Same current task/folder checks as accepted Ops RunContext, without its

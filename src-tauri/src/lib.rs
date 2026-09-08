@@ -402,6 +402,7 @@ mod tauri_app {
             .manage(ConnectionManager::new())
             .manage(TerminalManager::new())
             .manage(ChatChannelManager::new())
+            .manage(crate::business_identity::native::NativeSessions::default())
             .manage(windows::SettingsWindowState::new())
             .manage(windows::CommitWindowState::new())
             .manage(windows::MergeWindowState::new())
@@ -1046,6 +1047,9 @@ mod tauri_app {
             })
             .on_window_event(|window, event| {
                 let label = window.label().to_string();
+                if matches!(event,tauri::WindowEvent::Destroyed) {
+                    if let Some(sessions)=window.app_handle().try_state::<crate::business_identity::native::NativeSessions>() {sessions.clear_window(&label);}
+                }
 
                 if (label == "settings" || label.starts_with("remote-settings-"))
                     && matches!(
@@ -1183,6 +1187,17 @@ mod tauri_app {
                 }
             })
             .invoke_handler(tauri::generate_handler![
+                crate::commands::business_tenancy::business_window_context,
+                crate::commands::business_tenancy::business_window_control,
+                crate::commands::business_tenancy::business_session_open,
+                crate::commands::business_tenancy::business_session_close,
+                crate::commands::business_tenancy::business_settings_get,
+                crate::commands::business_tenancy::business_settings_update,
+                crate::commands::business_tenancy::business_platform_context,
+                crate::commands::business_tenancy::business_platform_tenants_list,
+                crate::commands::business_tenancy::business_platform_tenants_create,
+                crate::commands::business_tenancy::business_platform_tenants_status,
+                crate::commands::business_tenancy::business_platform_tenants_reissue_owner_credential,
                 conversations::list_conversations,
                 conversations::get_conversation,
                 conversations::list_all_conversations,

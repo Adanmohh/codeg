@@ -817,3 +817,28 @@ its public-domain LICENSE.md blob f68a6c175f0b72086c313a9dbd9f2ec8d87525dd
 was verified through gh api. No SQLite/dependency implementation is copied.
 No Edublend proprietary source is ported. No AGPL/GPL source is used.
 Original Codeg Apache-2.0 LICENSE and all preceding notices remain.
+
+Business tenancy platform and prepared native command boundary (2026):
+Additional Apache-2.0 Codeg source at the same f3813e3f accepted base:
+src-tauri/src/web/auth.rs (861ad112be52f682e319255ae3173c65b1aa1cef),
+business_identity/http.rs (a79a91897dcb1ffd63984ee2c048755815a4e02c),
+commands/business_identity.rs (94dd1f09972a6926fcc83e919b45c9ab76db64b4),
+commands/business_tasks.rs (d3462865c1a1eb6fc350c027bda400a788f24912),
+business_tasks/agent.rs (cbf8747d8de7bd119633c6ad6e810b9c95c12706), and
+build.rs (09e74bc16ffb30cd2d5954f50ea3bc2b78f34c75).
+The000010 migration-prefix regression adapts business_tasks/tests/transactions.rs
+(e57515ad02f4afbf181c04ca0592d4d618266003) at that same source.
+Destinations: closed platform.rs/platform_http.rs, existing credential mint
+extraction, native.rs/native_acl.rs, commands/business_tenancy.rs, same-core
+command wrappers and execution authority epoch lookup. Test scaffolding follows
+the accepted identity HTTP and transaction fixtures, not a new framework.
+Installed tauri2.10.2/tauri-build2.5.5/tauri-utils2.8.2 sources are API references:
+app manifest generation, runtime ACL resolution, MockRuntime IPC testing and
+injected caller-window operations. Tauri package source pin
+06374a902a50d2bd8b8d85593623ad16ac32325a; crates/tauri/src/ipc/channel.rs
+blob0b3eb6778920a1fbd34b20beab9d6ee294b078f2 and LICENSE_APACHE-2.0
+blobf433b1a53f5b830a205fd2df78e2b34974656c7b verified via gh api.
+The channel source identifies an unresolved native-isolation prerequisite;
+it is not ported or patched. tauri?/test only exposes the already locked
+framework's test helpers through existing test-utils; no new dependency/version.
+Original Codeg Apache-2.0 LICENSE and preceding notices remain intact.

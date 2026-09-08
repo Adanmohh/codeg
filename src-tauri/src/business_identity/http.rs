@@ -1,4 +1,5 @@
 //! Separate business-only bearer middleware. Never mounted over legacy routes.
+use super::settings;
 use super::{operator_principal, store, types::*, IdentityError, Principal};
 use crate::app_state::AppState;
 use axum::{
@@ -164,6 +165,19 @@ input_handler!(
     RevokeCredentialInput,
     Credential
 );
+input_handler!(
+    settings_update,
+    settings::update,
+    settings::UpdateSettingsInput,
+    settings::SettingsView
+);
+async fn settings_get(
+    Extension(state): Extension<Arc<AppState>>,
+    Extension(principal): Extension<Principal>,
+    Json(_): Json<Input<Empty>>,
+) -> Result<Json<settings::SettingsView>, IdentityError> {
+    settings::get(&state.db.conn, &principal).await.map(Json)
+}
 
 pub(crate) fn router(state: Arc<AppState>, operator_token: String) -> Router {
     let routes = Router::new()
@@ -176,6 +190,8 @@ pub(crate) fn router(state: Arc<AppState>, operator_token: String) -> Router {
         .route("/credentials/issue", post(credentials_issue))
         .route("/credentials/list", post(credentials_list))
         .route("/credentials/revoke", post(credentials_revoke))
+        .route("/settings/get", post(settings_get))
+        .route("/settings/update", post(settings_update))
         .merge(crate::business_tasks::http::router());
     // Identity and task routes share this same business authentication layer.
     Router::new().nest(

@@ -168,6 +168,7 @@ pub(crate) async fn resolve_credential<C: ConnectionTrait>(
         member_id: row.try_get("", "member_id")?,
         authority: Authority::Credential(row.try_get("", "id")?),
         authorization_epoch: row.try_get("", "authorization_epoch")?,
+        native_session_active: None,
     };
     super::current_human(conn, &principal).await?;
     Ok(principal)
@@ -398,6 +399,9 @@ pub async fn update_member(
     if target.operator_owner || target.status != MemberStatus::Active {
         return Err(E::Forbidden);
     }
+    if target.role == Role::Owner && input.role != Role::Owner {
+        retain_owner(&tx, &target).await?;
+    }
     grant_ceiling(&actor, target.kind, input.role, &input.domains)?;
     let changed = tx.execute(statement(
         "UPDATE business_member SET display_name = ?, role = ?, domains_json = ?, revision = revision + 1, updated_at = ? WHERE organization_id = ? AND id = ? AND revision = ? AND status = 'active'",
@@ -451,6 +455,7 @@ pub async fn revoke_member(
     if target.status == MemberStatus::Revoked {
         return Ok(target);
     }
+    retain_owner(&tx, &target).await?;
     let timestamp = now();
     let changed = tx.execute(statement(
         "UPDATE business_member SET status = 'revoked', revision = revision + 1, updated_at = ? WHERE organization_id = ? AND id = ? AND revision = ?",
@@ -479,7 +484,7 @@ pub async fn revoke_member(
 }
 
 const CREDENTIAL_COLUMNS: &str = "id, organization_id, member_id, label, created_at, revoked_at";
-async fn credential<C: ConnectionTrait>(
+pub(super) async fn credential<C: ConnectionTrait>(
     conn: &C,
     org: &str,
     credential_id: &str,
@@ -511,26 +516,50 @@ pub async fn issue_credential(
     if target.kind != MemberKind::Human || target.status != MemberStatus::Active {
         return Err(E::Forbidden);
     }
-    let mut bytes = [0u8; 32];
-    OsRng.try_fill_bytes(&mut bytes).map_err(|_| E::Random)?;
-    let token = format!("bdm_{}", URL_SAFE_NO_PAD.encode(bytes));
-    let token_hash = format!("{:x}", Sha256::digest(token.as_bytes()));
-    let credential_id = id();
-    tx.execute(statement(
-        "INSERT INTO business_credential (id, organization_id, member_id, token_hash, label, created_at) VALUES (?, ?, ?, ?, ?, ?)",
-        vec![credential_id.clone().into(), input.organization_id.clone().into(), input.member_id.into(), token_hash.into(), label.into(), now().into()],
-    )).await?;
+    let issued = mint_credential(&tx, &input.organization_id, &input.member_id, &label).await?;
     event(
         &tx,
         &input.organization_id,
         &actor.id,
         "credential_issued",
-        &credential_id,
+        &issued.credential.id,
     )
     .await?;
-    let credential = credential(&tx, &input.organization_id, &credential_id).await?;
     tx.commit().await?;
-    Ok(IssuedCredential { credential, token })
+    Ok(issued)
+}
+
+// Shared existing opaque credential primitive; caller owns authorization and
+// the surrounding writer transaction. Platform provisioning never impersonates
+// a tenant Principal to issue its initial credential.
+pub(super) async fn mint_credential<C: ConnectionTrait>(
+    conn: &C,
+    org: &str,
+    member_id: &str,
+    label: &str,
+) -> Result<IssuedCredential, E> {
+    let mut bytes = [0u8; 32];
+    OsRng.try_fill_bytes(&mut bytes).map_err(|_| E::Random)?;
+    let token = format!("bdm_{}", URL_SAFE_NO_PAD.encode(bytes));
+    let token_hash = format!("{:x}", Sha256::digest(token.as_bytes()));
+    let credential_id = id();
+    conn.execute(statement("INSERT INTO business_credential (id,organization_id,member_id,token_hash,label,created_at) VALUES (?,?,?,?,?,?)",vec![credential_id.clone().into(),org.into(),member_id.into(),token_hash.into(),label.into(),now().into()])).await?;
+    Ok(IssuedCredential {
+        credential: credential(conn, org, &credential_id).await?,
+        token,
+    })
+}
+async fn retain_owner<C: ConnectionTrait>(conn: &C, target: &Member) -> Result<(), E> {
+    if target.kind == MemberKind::Human
+        && target.role == Role::Owner
+        && target.status == MemberStatus::Active
+    {
+        let other=conn.query_one(statement("SELECT id FROM business_member WHERE organization_id=? AND id!=? AND kind='human' AND role='owner' AND status='active' LIMIT 1",vec![target.organization_id.clone().into(),target.id.clone().into()])).await?;
+        if other.is_none() {
+            return Err(E::Forbidden);
+        }
+    }
+    Ok(())
 }
 pub async fn list_credentials(
     conn: &DatabaseConnection,

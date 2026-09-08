@@ -6,6 +6,13 @@
 use sea_orm::{ConnectionTrait, DatabaseConnection, DatabaseTransaction, TransactionTrait};
 
 pub(crate) mod http;
+#[cfg(any(feature = "tauri-runtime", test))]
+pub mod native;
+#[cfg(any(feature = "tauri-runtime", test))]
+#[allow(dead_code)] // Also compiled by build.rs to derive the application ACL.
+pub(crate) mod native_acl;
+pub mod platform;
+pub(crate) mod platform_http;
 pub mod settings;
 pub mod store;
 pub mod types;
@@ -65,6 +72,7 @@ pub struct Principal {
     member_id: String,
     authority: Authority,
     authorization_epoch: i64,
+    native_session_active: Option<std::sync::Arc<std::sync::atomic::AtomicBool>>,
 }
 
 /// Opaque lineage for trusted task-link storage; contains IDs, never a bearer.
@@ -142,6 +150,7 @@ pub(crate) async fn agent_principal_from_binding<C: ConnectionTrait>(
         member_id: grant.delegator_id,
         authority,
         authorization_epoch,
+        native_session_active: None,
     };
     agent_principal(conn, &delegator, agent_member_id).await
 }
@@ -184,6 +193,13 @@ async fn current_human<C: ConnectionTrait>(
     conn: &C,
     principal: &Principal,
 ) -> Result<Member, IdentityError> {
+    if principal
+        .native_session_active
+        .as_ref()
+        .is_some_and(|active| !active.load(std::sync::atomic::Ordering::SeqCst))
+    {
+        return Err(IdentityError::Unauthorized);
+    }
     let org = store::organization_by_id(conn, principal.organization_id())
         .await?
         .filter(|org| {
@@ -291,6 +307,7 @@ pub(crate) async fn agent_principal<C: ConnectionTrait>(
         member_id: agent.id,
         authority: Authority::Agent(Box::new(delegator.clone())),
         authorization_epoch: delegator.authorization_epoch(),
+        native_session_active: None,
     })
 }
 
@@ -307,5 +324,6 @@ pub(crate) async fn operator_principal<C: ConnectionTrait>(
         member_id: member.id,
         authority: Authority::Operator,
         authorization_epoch: org.authorization_epoch,
+        native_session_active: None,
     })
 }
