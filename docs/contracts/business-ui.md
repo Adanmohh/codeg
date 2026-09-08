@@ -159,7 +159,10 @@ e72cc44b; its business.html disk/HTTP SHA256 is
 c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54.
 Actual search EN/AR390/768/1280 light/dark checks pass12/12:10.78/7.07 contrast,
 visible44px Refresh focus and successful Enter queries. Corrected comparison has
-its own real409/adopt/save evidence; independent targeted recheck is underway.
+its own real409/adopt/save evidence. Independent final recheck reports PASS at
+the same source/hash: six contrast/focus/Enter cases and its own real409 base1
+versus current Review3, exact retained draft, explicit adoption/save4 and stale
+review invalidation. BUI-R1/R2/R3 are closed; root owns final merge/native startup.
 Frozen frontend proxy4340 PID36044 retains out-business-workspace. Backend4342 PID81950 is
 the frontend worker's guarded1ba73e3c snapshot with a fresh temporary disk DB;
 test-only fixture patches preserve all production source. Earlier own PID21431

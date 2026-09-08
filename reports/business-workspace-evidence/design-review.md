@@ -93,9 +93,13 @@ Arabic business copy are implemented; other app locales use English business cop
 The manual fixture uses real protected APIs but remains synthetic and guarded.
 
 Accepted task integration and owned final gates are complete. The independent
-reviewer is performing targeted checks on the published e72 export; root owns
-the final verdict and actual packaged native startup. Broader localization remains
-future scope. No unrelated product expansion was made.
+reviewer reports final targeted PASS on the e72 export/hash c029f99d: six own
+width/theme/EN-AR cases give10.7805:1 light/7.0679:1 dark, visible settled Refresh
+focus and Enter200. Its own real409 clearly shows base1/current Review3, preserves
+the exact draft and requires explicit adoption/save4 while invalidating stale
+review. BUI-R1/R2/R3 are closed. This records the delivered independent verdict;
+the reviewer owns its final evidence publication. Root owns merge and actual
+packaged native startup. Broader localization remains future scope.
 
 Local learning: a state variant can outrank an ordinary reduced-motion utility;
 measure the actual dialog, not dormant global scroll timelines. Controlled Radix

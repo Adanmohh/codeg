@@ -3,9 +3,10 @@
 Branch **feat/business-workspace**; draft [PR21](https://github.com/Adanmohh/codeg/pull/21).
 Implementation, owned browser checks and final gates are complete at product
 **e72cc44b612068e67a3e6dc3bc593f10988ae7ed**. The corrected export is live on
-**4346, PID60964**; the original review export on4340 is preserved. Root remains
-reviewer/merger; the independent final targeted browser verdict and root's actual
-packaged native startup are separate acceptance gates, not claimed here.
+**4346, PID60964**; the original review export on4340 is preserved. The independent
+reviewer reports final targeted **PASS**, closing BUI-R1/R2/R3. Root remains
+reviewer/merger and owns actual packaged native startup; that separate gate is
+not claimed from browser or compile evidence.
 
 Accepted task PR22 merge **5541857a125678dfb604f542693d9c82dfe5441e** is integrated
 from main **294fb634b1833ebb13c4223484624e595598235b** as
@@ -90,8 +91,18 @@ search-measure.js, search-{before,after}.raw.json and search-summary.json under
 business-workspace-evidence/. The pure summarize-search.mjs calls the installed
 Design Studio helpers at55c8614dcfff33b4caa5a544b4f1f91877214878, lab/tools/probe.mjs;
 no browser launcher/tool implementation is copied. This is a targeted correction
-review, not a new whole-page score. The independent reviewer is rechecking its
-own records on the corrected export.
+review, not a new whole-page score.
+
+**Independent final recheck: PASS.** The reviewer confirmed e72cc44b and served
+business.html hash c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54.
+Six reviewer-owned width/theme/English-Arabic cases measured 10.7805:1 light and
+7.0679:1 dark, visible settled Refresh focus and Enter200. Its own-record real409
+showed draft base revision1 against current Review/revision3, retained the exact
+draft and saved revision4 only after explicit adoption; stale review was
+invalidated. BUI-R1/R2/R3 are closed. This records the reviewer-delivered result;
+its final report/evidence publication is owned by that reviewer. These six cases
+are separate from the worker's12, not additional full-matrix coverage. All
+fixtures remain available and unchanged by this documentation update.
 
 ## Exact source mapping
 
