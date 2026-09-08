@@ -204,3 +204,41 @@ Landing: `http://127.0.0.1:4328/__issue_fixture`; token is synthetic-only
 server and loopback providers, no intercepted approval JSON. Controlled
 `/__issue_fixture/refresh` changes only fixture freshness timestamps. Earlier
 4320/4323/4326 and4327 remain unchanged by this setup. Phone decisions follow.
+
+Before the next fixture edit: BC-16 needs a fresh unprepared source, while4328
+now preserves completed exact issue decisions. Apply only the same test port/
+export overrides to accepted `ops_intake_host/tests/browser.rs`, then use free
+loopback4329/out-design-final. Its existing seeded database, synthetic upstream,
+protected human API and fixture-only proposer remain unchanged; no agent engine
+or live provider starts. This third test-only adaptation avoids resetting4328
+or touching4320's `out/`. It also permits the existing explicitly empty variant
+on a further free loopback port if needed. No product source correction here.
+
+## Phone decisions and settled focus
+
+At source **89e94faa**, actual4328 invalid login exposed associated
+`aria-invalid=true` / `aria-describedby=login-error`, retry retained the locator,
+and successful login opened the complete issue/evidence projection. Four
+viewport/theme combinations captured top/body/decision crops. Keyboard approval
+of FAV recorded **GitHub posts0→1, issues0→1, Telegram3→3**. Reload made the used
+link unavailable; **Open workspace** reached `/workspace`, matching its label.
+FAW then exercised unknown and read-only reconciliation: posts1→2 for approval,
+then2→2 during reconciliation; Telegram stayed3. FAX's deliberately rejected
+attempt reached posts3 while issues stayed2. No live providers or JSON interception.
+
+Do not count `phone-confirmed-keyboard-390-dark.png` as a visible-focus pass:
+its first-frame shadow is transparent despite `:focus-visible=true`. Preserved
+baseline identifies the sampling error. Subsequent **still-pending**, pre-decision
+FAW/FAX captures waited350ms. Both measured a3px ring with alpha0.5 and
+RGB155,212,197 border, and the actual screenshot visibly shows the ring.
+Use `screenshots/phone-{unknown,rejected}-focus-390-dark.png` plus
+`flows/phone-terminal-results.json` as settled focus evidence. Their decisions
+happened only after those captures. No pseudo-class-only pass is claimed.
+An earlier exact-label lookup included nested option text; corrected to the
+actual accessible combobox name, with the failed selector output preserved.
+
+Fresh fixture4329 uses the original accepted host seed, isolated disk data
+`.build/intake-host/browser-4bbf0d5d-383a-4fba-84e3-8fdf60d7ec12`, synthetic-only
+token `ops-intake-synthetic-operator` and out-design-final. Launch uses the same
+environment as4328 with port4329 and ignored `intake_host_browser_fixture`.
+Startup compiled in38.67s and remains listening. Exact PID/checks follow.

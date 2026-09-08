@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "name": "unknown",
+      "before": {
+        "githubIssues": 1,
+        "githubPosts": 1,
+        "githubTokens": 1,
+        "telegramSends": 3
+      },
+      "after": {
+        "githubIssues": 2,
+        "githubPosts": 2,
+        "githubTokens": 1,
+        "telegramSends": 3
+      },
+      "focused": {
+        "text": "Approve and file issue",
+        "focusVisible": true,
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+        "border": "rgb(155, 212, 197)"
+      },
+      "receipt": "Filing receipt\nOutcome unknown. GitHub may already have created the issue. Filing again is blocked. Check the existing issue using a read-only reconciliation.\nCheck existing issue"
+    },
+    {
+      "name": "read-only issue reconciliation",
+      "before": {
+        "githubIssues": 2,
+        "githubPosts": 2,
+        "githubTokens": 1,
+        "telegramSends": 3
+      },
+      "after": {
+        "githubIssues": 2,
+        "githubPosts": 2,
+        "githubTokens": 1,
+        "telegramSends": 3
+      }
+    },
+    {
+      "name": "rejected",
+      "before": {
+        "githubIssues": 2,
+        "githubPosts": 2,
+        "githubTokens": 1,
+        "telegramSends": 3
+      },
+      "after": {
+        "githubIssues": 2,
+        "githubPosts": 3,
+        "githubTokens": 1,
+        "telegramSends": 3
+      },
+      "focused": {
+        "text": "Approve and file issue",
+        "focusVisible": true,
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+        "border": "rgb(155, 212, 197)"
+      },
+      "receipt": "Filing receipt\nGitHub rejected this attempt. No issue was confirmed. Correct the draft or configuration, then request a new human-reviewed proposal."
+    }
+  ],
+  "method": "Real protected issue decisions and read-only reconciliation, accepted loopback fixtures only; no request interception"
+}

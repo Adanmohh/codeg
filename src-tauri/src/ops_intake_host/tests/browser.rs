@@ -10,6 +10,10 @@ use std::{path::PathBuf, sync::Arc};
 #[tokio::test]
 #[ignore = "manual Playwright CLI fixture, own loopback port 4322"]
 async fn intake_host_browser_fixture() {
+    let port = std::env::var("CODEG_DESIGN_FIXTURE_PORT")
+        .map(|value| value.parse::<u16>().expect("fixture port must be u16"))
+        .unwrap_or(4322);
+    let export = std::env::var("CODEG_DESIGN_FIXTURE_EXPORT").unwrap_or_else(|_| "out".into());
     let dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("../.build/intake-host")
         .join(format!("browser-{}", uuid::Uuid::new_v4()));
@@ -96,14 +100,17 @@ async fn intake_host_browser_fixture() {
             }
         },
     );
-    let static_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../out");
+    let static_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .unwrap()
+        .join(export);
     let router = fixture::router(state, provider.runtime.clone(), static_dir)
         .route("/_fixture/source", controls);
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:4322")
+    let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{port}"))
         .await
         .unwrap();
     println!(
-        "Synthetic intake fixture: http://127.0.0.1:4322 ; token={} ; data={}",
+        "Synthetic intake fixture: http://127.0.0.1:{port} ; token={} ; data={}",
         fixture::TOKEN,
         dir.display()
     );

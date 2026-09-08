@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "check": "BC-1",
+      "invalid": {
+        "invalid": "true",
+        "description": "login-error",
+        "error": "Invalid token. Please check and try again."
+      },
+      "retryWorked": true,
+      "fixtureSetup": {
+        "before": {
+          "githubIssues": 0,
+          "githubPosts": 0,
+          "githubTokens": 0,
+          "telegramSends": 3
+        },
+        "refresh": 204
+      },
+      "after": {
+        "githubIssues": 0,
+        "githubPosts": 0,
+        "githubTokens": 0,
+        "telegramSends": 3
+      },
+      "realProtectedAPI": true
+    }
+  ],
+  "method": "Actual invalid/valid human login; controlled freshness only; no provider decisions or request interception"
+}

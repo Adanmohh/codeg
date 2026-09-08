@@ -1,0 +1,36 @@
+async (page) => {
+  if (!page.url().startsWith("http://127.0.0.1:4329/")) throw Error("Owned fixture only")
+  const capture = __CAPTURE__, cases = [], checks = []
+  const shot = async name => {
+    await page.screenshot({ path: `reports/design-phase1-specialist/screenshots/${name}.png` })
+    cases.push({ name, raw: await capture(page) })
+  }
+  await page.setViewportSize({ width: 1280, height: 900 })
+  await page.getByLabel("Access Token", { exact: true }).fill("ops-intake-synthetic-operator")
+  await page.getByRole("button", { name: "Connect", exact: true }).click()
+  await page.getByRole("button", { name: "Bug intake", exact: true }).click()
+  const scope = page.getByTestId("bug-workflow")
+  await scope.getByRole("button", { name: "Read TestFlight", exact: true }).click()
+  await scope.getByRole("button", { name: /Synthetic audio stops at verse four/ }).click()
+  await scope.getByRole("button", { name: "Refresh source", exact: true }).click()
+  await scope.getByText("Source revalidated from Hafidh.", { exact: true }).waitFor()
+  await scope.getByRole("heading", { name: "Required evidence", exact: true }).scrollIntoViewIfNeeded()
+  await shot("intake-missing-1280-light")
+  const missing = await scope.getByLabel("Evidence checklist", { exact: true }).innerText()
+  const prepare = scope.getByRole("button", { name: "Prepare exact issue", exact: true })
+  if (!(await prepare.isDisabled())) throw Error("Missing proof can prepare")
+  await scope.getByLabel("Build evidence summary", { exact: true }).fill("42")
+  await scope.getByLabel("Sanitized proof content", { exact: true }).fill("Synthetic content does not include the claimed build")
+  await scope.getByRole("button", { name: "Attach reviewed proof", exact: true }).click()
+  await scope.getByRole("alert").waitFor()
+  await scope.getByRole("alert").scrollIntoViewIfNeeded()
+  await shot("intake-invalid-proof-1280-light")
+  checks.push({ check: "BC-16", missing, prepareDisabled: await prepare.isDisabled(), error: await scope.getByRole("alert").innerText(), retained: await scope.getByLabel("Sanitized proof content", { exact: true }).inputValue(), noApproveButton: await scope.getByRole("button", { name: "Approve and file issue", exact: true }).count() === 0 })
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.keyboard.press("Escape")
+  await scope.getByRole("heading", { name: "Required evidence", exact: true }).scrollIntoViewIfNeeded()
+  await shot("intake-missing-390-light")
+  await scope.getByLabel("Sanitized proof content", { exact: true }).scrollIntoViewIfNeeded()
+  await shot("intake-invalid-proof-retained-390-light")
+  return { cases, checks, method: "Fresh accepted host fixture4329, protected UI and synthetic Hafidh GET; invalid sanitized-proof submission; no prepare/propose/file" }
+}
