@@ -69,3 +69,7 @@ Owner finds the app basic and requests continued work. Reopen visual quality wit
 Owner wants a business development viewpoint and finds the current approach too technical. Reframe the active visual refresh around customers, conversations, owner decisions and actionable work; keep diagnostics in detail and preserve required approval evidence. Founder overview is the interim assumption while optional priority is pending. Do not present nonexistent CRM, revenue or launch features as implemented.
 
 Owner confirms engineering is necessary but must not be the main hero. Business outcomes lead; engineering remains subordinate, accessible support. This confirms the founder-first visual direction without authorizing invented business capabilities.
+
+## 2026-09-08 — Business domains and shared human/agent work
+
+Owner explicitly adds marketing, channels, ads import/management, website and feedback, with engineering features backing them. Tasks must support humans and agents across both domains. Record target structure and gaps in docs/BUSINESS-WORKSPACE.md; reuse the existing task engine and approval seam after a schema audit, not a parallel business-task engine. Current visual workers continue their bounded real-surface refresh. Broader integrations and workflow additions will be separate reviewed tasks; no fake dashboard metrics or empty module claims.

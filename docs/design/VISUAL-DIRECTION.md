@@ -1,8 +1,10 @@
 # Visual refresh — Hafidh founder desk
 
 Owner request, 2026-09-08: the app looks basic; continue improving autonomously.
-This reopens visual quality after the bounded Phase 1 functional acceptance. It
-adds no service, backend workflow, dependency, paid asset or later-phase feature.
+This visual work reopens quality after the bounded Phase 1 functional acceptance.
+Its current worker PRs add no service/backend/dependency. The owner separately
+expands the overall product in docs/BUSINESS-WORKSPACE.md; do not misrepresent
+those future capabilities as implemented in this visual pass.
 The existing 8.1 score was scoped to correctness and measured operational UI;
 it is not evidence that the visual finish satisfied the owner.
 

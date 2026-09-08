@@ -232,3 +232,7 @@ everything the fork already runs to reach the small part that is missing. Ship P
 by **2026-09-21**; the biggest risk to the **2026-11-02** launch remains
 untouched by any of this — **consent/privacy and store presence**, which no
 tooling can shorten.
+
+## 8. Owner amendment — business workspace, 2026-09-08
+
+The owner expands the product to marketing, channel management, pulling and managing ads, website work and feedback, backed by engineering features. Shared task management serves humans and agents in both business and engineering. Business outcomes lead the main experience; engineering is supporting capability. [Business workspace scope](docs/BUSINESS-WORKSPACE.md) records current gaps, shared-work requirements and staged delivery. This supersedes the narrow engineering-first presentation; previous phase estimates must be revisited. Existing borrowing, audit, human review and local-test boundaries remain.
