@@ -102,3 +102,22 @@ editing correctly invalidated the earlier review to in_progress. A final
 text locator matched both detail and activity and was narrowed to the first
 visible detail; no mutation was repeated. This completes root's bounded
 conflict-correction browser check; the broader independent UI audit continues.
+
+## Final search correction review
+
+Root reviewed `e72cc44b612068e67a3e6dc3bc593f10988ae7ed` source/NOTICE and
+independently ran an unchanged archive:39 tests/5files pass, exit0,1.80s
+(`/tmp/root-business-corrections-e72cc44b.log`). Coverage is workflow15,
+client11, provider isolation8, UI3 and session2. The scoped placeholder override
+preserves global Input; tabIndex-1 skips the redundant clipped submit while
+EN/AR Enter submission remains covered. No new dependency or backend behavior.
+
+Root independently verified4346's final `.build/business-workspace/review-export`:
+served and on-disk business.html both SHA256
+`c029f99d5c92e677c97f2ebe45f4bd185746b73e84e77912a683e1d92de55a54`,
+nodePID60964, guarded backend4342. Tracked src/src-tauri/NOTICE matched e72
+at inspection. Root recomputed contrast from the worker's12 measured Canvas
+samples:10.72 light and7.07 dark; each case records44px visible Refresh focus,
+Enter200 and no page overflow. This is review of worker measurements, not a
+second root browser matrix. The independent reviewer is performing its own
+targeted final-export closure. Root's conflict browser is now closed.
