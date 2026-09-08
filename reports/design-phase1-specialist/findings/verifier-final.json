@@ -1,0 +1,13 @@
+{
+  "method": "Same reviewer applied finding-verifier sequentially; root independently reproduced assigned defects. No extra agents.",
+  "highFindings": 0,
+  "verification": [
+    { "candidate": "badge correction only covers one implementation", "verdict": "refuted after final recheck", "evidence": "Final actual folder and explicitly simulated group DOM both render amber800;12 state ratios pass. Actual3 list RPC responses restored and provider unchanged. Exact source both registrations inspected." },
+    { "candidate": "drawer still moves under reduce because x-range remains341.5px and duration450ms", "verdict": "refuted after final recheck", "evidence": "Raw starts closed then appears at final x8, with no intermediate x/transform animation under reduce; computed transition-property none. Closing detaches next frame. Normal trajectory has43 intermediate opening frames and38 closing frames, so the instrument detects real motion." },
+    { "candidate": "reducedMotionEffective=false remains a product blocker", "verdict": "measurement heuristic limit", "evidence": "DS counts elements with duration>0 even when property none and treats every color/opacity transition alike. Final identical DOM166→166,45 visible; actual drawer travel is suppressed. Raw result not overwritten to true." },
+    { "candidate": "phone approval or drawer child has no visible focus", "verdict": "capture timing artifact, settled verification passes", "evidence": "Initial immediate focus snapshots retained without a visual-pass claim. Pending phone350ms ring/border screenshots and final drawer350ms actual3px ring show visible paint; root confirmed phone timing." },
+    { "candidate": "mobile invalid-proof capture proves persistent occlusion", "verdict": "capture timing artifact", "evidence": "Original58px dismissal sliver retained in attempts; settled replacement records drawer popupCount0,width390,documentWidth390 and preserves invalid text." },
+    { "candidate": "login lacks main landmark", "verdict": "verified low; separately assigned", "evidence": "Source outer div and actual main=false. One-form page with no competing navigation, labels/error/retry functional. Keep open pending separate acceptance/recheck." }
+  ],
+  "baselineClassification": "verifier-baseline.json and ../probes/classification.json retain palette/token and raw motion refutations"
+}

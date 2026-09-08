@@ -1,277 +1,267 @@
 # Phase 1 Design Studio specialist review
 
-In-progress measured checkpoint, 2026-09-08. **Not final integrated design acceptance.**
-Sole report-only worker in `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`,
-branch **review/design-phase1**, created clean from accepted main
-**c36c4a2cc63fcdb84419b294076acae469b4f588**. PR12 is merged as
-**e9ddab88dfc45393aab68de52db8d3848b0bb891**. No product or root planning edits.
+2026-09-08. **BC-1–18 pass within the documented synthetic browser scope. Both
+verified P2 findings are fixed and rechecked on the final combined export.
+One low login-landmark finding remains open pending its assigned correction.**
+No remaining blocking design finding was established in the covered states.
+Root owns final acceptance and packaging.
 
-Audited against `docs/design/BRIEF.html`, schema1 scan mode, and the existing
-stable **BC-1–18** checklist. Selected methods: **aesthetic-judge, a11y-auditor,
-flow-validator**, followed by reviewer synthesis and high-finding self-verification.
-The actual selector outputs are in `design-phase1-specialist/methods/`. Methods
-are applied **sequentially by this one Astra/max worker**, not independent agents.
-No additional agents or paid flow SDK. Root independently synthesizes/verifies and
-assigns any required fixes; this report does not authorize product changes.
+Sole Astra/max worker, branch **review/design-phase1**, worktree
+`/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`; draft
+**https://github.com/Adanmohh/codeg/pull/16**. No extra agents, product fixes,
+root planning edits, paid flow SDK, live sends or model calls.
 
-## Boundaries and current dependency
+Final accepted product **2fb837977bc8584c5a5ccbe640e2ffe490ab0609**; combined
+export/merge **ab771db4dfd1de5b9ac4aaf8206a17e130886dff**, pushed. Earlier evidence
+checkpoints:5e137304,08c3cf5e,43eff896,89e94faa,ce8aae7f,ebf551c0.
+PR14 integration **19a698bc1108a5c3dee5018337e6da6eadc27f61** was based on
+**8c2a004d**. Its unchanged Ops/phone behavior supplies retained functional
+captures; the final export rechecks PR18/19's changed badge/drawer surfaces.
 
-- Wait for PR14 acceptance before final integrated export. Its locale/RTL/receipt
-  and selected-row contrast corrections are not accepted at this starting commit.
-- Existing4320/PID30815 and `out/`, plus4323/PID45025 and `out-telegram-issues`,
-  remain unchanged. Root browser `ops-issue-independent` is open on4323. Created
-  and unknown locators are consumed; rejected is pending. Only read-only review,
-  viewport/theme emulation, snapshots and DOM measurements are allowed there.
-  No configure/save/approve/deny/reconcile/refresh-control/reseed/provider writes.
-- After PR14 is accepted, merge accepted main and use separate **out-design-final**.
-  Any owned4327 fixture setup/writer action will be coordinated first. No reuse
-  or overwrite of another fixture's DB, listener or static export.
-- Prior accepted CLI/provider results will be cited as prior evidence. Current
-  audit observations and remaining evidence gaps will be labelled separately.
+## Methods and verdict
 
-## Initial BC reconciliation
+Applied the actual **aesthetic-judge, a11y-auditor and flow-validator methods
+sequentially**, followed by design-reviewer synthesis and inline finding-verifier.
+These are one worker's methods, not independent delegated judges. Actual selector
+outputs, pure lint/probe analysis and mechanically merged findings are committed
+in [the evidence directory](design-phase1-specialist/).
 
-These are work items, not fresh passes. The full prior implementation/review
-artifacts will be reconciled before verdicts; backend tests alone cannot satisfy
-screenshot/focus requirements.
+| Dimension | Score /10 | Basis |
+| --- | ---: | --- |
+| States |9 |Real empty, failed load/retry, missing configuration, stale and terminal states. |
+| Feedback |9 |Saved/error text retained; clear send/recording semantics and receipts. |
+| Accessibility |8 |Labels, keyboard flows and settled rings; low landmark remains, no assistive-technology certification. |
+| Responsive |9 |1280/390 light/dark and actual RTL/back/email direction; no observed horizontal overflow. |
+| Visual/tokens |8 |Inherited Inter/neutral/teal hierarchy; scan limitations classified without unrelated restyling. |
 
-| Check | Prior evidence / current review work |
+Design-weighted verdict: **8.1/10** using Design8×40%, Usability8.75×30%,
+Creativity7×20%, Content9×10%. The operational list/detail system is coherent;
+this is not an award-level novelty or whole-application conformance claim.
+
+Structured outputs: [BC verdicts](design-phase1-specialist/findings/bc-results.json),
+[aesthetic](design-phase1-specialist/findings/aesthetic-judge.json),
+[accessibility](design-phase1-specialist/findings/a11y-final.json),
+[flow](design-phase1-specialist/findings/flow-validator.json),
+[merged findings](design-phase1-specialist/findings/merged.json),
+[verification](design-phase1-specialist/findings/verifier-final.json).
+
+## Findings and accepted corrections
+
+**Resolved P2 — both running-count badges.** Baseline10px amber700 text measured
+4.39:1 on the actual composite. Exact locations:
+`src/components/conversations/sidebar-conversation-list.tsx:506` and
+`src/components/conversations/sidebar-folder-group-header.tsx:206`.
+Accepted handoff **6aefaa59c72f3aa5f2d9dd284cea0d365a111e05**, merge
+**a8663104f97dd5728fab3a8594bb94841d54533e**, uses inherited amber800 ink.
+Both implementations now measure **6.187 rest/focus,5.287 hover light** and
+**9.090 rest/focus,6.944 hover dark**, all above4.5.
+[Actual12-state evidence](design-phase1-specialist/flows/final-badge-summary.json).
+Folder uses the real protected API. Group uses explicitly labelled frontend-only
+overlays of three read-list responses. Cleanup restores real lists, no DB writes,
+remainingGroups0, provider4→4. Settled screenshots show actual2px focus rings.
+
+**Resolved P2 — large sidebar travel under reduced motion.** Baseline rAF
+evidence proved341.5px travel over450ms under reduce. Exact source:
+`src/components/ui/drawer.tsx:339,349`. Accepted handoff
+**edd8add757b69d6f368cf813f14aae1f1d738eb2**, merge
+**4611d025ba49790adbda780e8d6d44c20e75a9fe**, adds
+`motion-reduce:transition-none`. Both final themes have **zero transform-animation
+frames and zero intermediate x frames** during open/Escape/outside dismissal.
+Normal motion retains450ms opening/400ms closing with43 intermediate opening
+and38 intermediate closing frames. Reduce still has closed/open endpoints and
+computed duration values; property **none** prevents animated travel.
+Popup detachment, keyboard entry and returned focus pass, document390px.
+[Raw frames](design-phase1-specialist/flows/final-drawer-results.json),
+[summary](design-phase1-specialist/flows/final-drawer-summary.json),
+[settled focus](design-phase1-specialist/flows/final-drawer-settled-results.json).
+
+**Open low — login content lacks a main landmark.**
+`src/app/login/page.tsx:61` wraps the single connection form in a div; the actual
+probe records main=false. Reproduce by opening `/login` and inspecting landmarks.
+Required fix: change the outer content tag to main, retaining classes, controls,
+error/retry and locator behavior. Root independently verified and assigned
+`fix/design-login-landmark` to another worker. Keep open until accepted targeted
+recheck. This one-form page has no competing navigation and passes BC-1.
+
+Impact-per-effort follow-up: that single low correction. The two larger fixes
+are closed; no invented second/third open issue. Earlier loop findings now have
+actual labels, Ops focus, truthful terminal copy, RTL/back/email direction and
+reply locale-preservation evidence. Root's separately committed seven-field
+locale round trip supplements this worker's reply sentinel; it is not claimed
+as this worker's own seven-field run.
+
+## BC-1–18 evidence
+
+[bc-results.json](design-phase1-specialist/findings/bc-results.json) contains the
+per-assertion verdict, exact screenshots/results and limits. First point of
+failure in completed assertion runs: **none**. Superseded harness attempts remain
+identified below. Result/screenshot names in this table are beneath the evidence
+directory's flows/ and screenshots/ directories.
+
+| Check | Actual observation / evidence |
 | --- | --- |
-| BC-1 connection | PR10 login label/error correction and PR12 actual protected phone login passed; remeasure final1280/390 label, focus, error and retry. |
-| BC-2 navigation/focus | PR13 six shell/Pi corrections accepted; check actual selected Ops and focused destination light/dark, beyond static names. |
-| BC-3 mobile/RTL | PR14 pending; final Arabic drawer/back/content direction and cross-tab locale preservation require accepted export. |
-| BC-4 ticket selection | Earlier populated thread flows exist; verify two ticket selections and clear selected-row ink after PR14. |
-| BC-5 private note | Prior protected API/provider pass recorded note separation; check exact before/after labels, not only successful save. |
-| BC-6 empty/failure | Prior fixture states exist; identify empty and actual failed-load retry evidence and avoid treating mocked JSON as full E2E. |
-| BC-7 full composer | Earlier editable To/Cc/Bcc/body review passed; final labels and mobile top/bottom crops remain to inspect. |
-| BC-8 saved/invalid draft | Need evidence of actionable validation retaining unsaved text in the same composer, not only saved state. |
-| BC-9 unsaved/focus | Breakpoint preservation accepted; PR14 locale fix pending. Need visible focus after cancelling discard, plus retained content. |
-| BC-10 exact email review | Prior complete payload/human floor and edited send passed; final copy/presentation still to assess. |
-| BC-11 stale | Earlier stale send-disabled state passed; retain identified controlled revision evidence. |
-| BC-12 terminal states | Prior denied/sent/failed/unknown flows passed; final PR14 receipt copy must be checked in real post-interaction states. |
-| BC-13 missing configuration | Prior unconfigured proposal preservation and form exist; verify current next action and no sent implication. |
-| BC-14 finish recording | Root PR10 actual Finish recording passed with unchanged email/Telegram counts; inspect its screenshots and final copy after PR14. |
-| BC-15 morning | Prior four-running/zero-pending view exists; locate both empty/populated and selected destination evidence. |
-| BC-16 missing issue evidence | Accepted host validators and UI flow exist; inspect all missing-field and disabled filing states. |
-| BC-17 exact issue | PR12 worker and independent root phone proof/payload/keyboard-created/unknown-read-only flows passed; current4323 decisions stay untouched. |
-| BC-18 operational layout | Prior1280/390 light/dark captures exist; final integrated layout, Inter hierarchy and no overflow still require measurement. |
+| BC-1 |390px invalid login, associated error and protected retry retaining issue locator; phone-login-results.json. |
+| BC-2 |Selected Ops and settled light/dark2px keyboard ring; navigation-results.json. |
+| BC-3 |390px final drawer lifecycle; actual Arabic RTL/Back180°/emailLTR and reply locale round trip; gaps-results.json. |
+| BC-4 |Two desktop/mobile selected headings and histories; second-thread-1280-dark.png and both mobile selection captures. |
+| BC-5 |Private note before/after, private=true and no public outgoing reply; editor-storage-verification.json. |
+| BC-6 |Actual empty inbox/setup and filter; browser offline failure and real retry; empty-results.json/gaps-results.json. |
+| BC-7 |Persistent From/To/Cc/Bcc/subject/body labels and full open headers in1280/390 light/dark crops. |
+| BC-8 |Invalid To retains body; corrected same draft saves revision2; screenshots and protected post-state. |
+| BC-9 |Native confirmation/dismissal, retained reply and settled3px focus; discard-dialog.txt/discard-settled-results.json. |
+| BC-10 |Complete pending payload and explicit Approve and send reply; full review crops. No email send repeated in this audit. |
+| BC-11 |Controlled revision1→2 makes pending proposal stale and disables old send; editor-poststate.json. |
+| BC-12 |Four seeded accepted/unknown/failed/denied states, distinct copy and no another-send action; decisions-results.json. |
+| BC-13 |Synthetic key removal reveals Connect Resend and no sent claim. Pending proposal is already stale; not a fresh unconfigured approve-preflight test. |
+| BC-14 |Actual Finish recording receipt removes action, provider4→4; terminal-2-390-dark.png/receipt-finished-1280-dark.png. |
+| BC-15 |Actual populated and fully empty Morning; selected real review destination; surfaces-results.json/empty-results.json. |
+| BC-16 |Four missing proofs, disabled preparation, invalid proof retained; settled mobile captures, DB drafts1/proposals0/filings0. |
+| BC-17 |Exact repository/title/body/labels/four proofs plus human confirmation; actual created/unknown/read-only reconciliation/rejected and used-link invalidation. |
+| BC-18 |1280/390 light/dark Inter/neutral operational layout, one readable mobile pane, no decorative metrics or observed overflow. |
 
-## Old findings to reconcile
+Fresh4328 phone counters: created **GitHubPosts0→1,issues0→1**; unknown attempt
+**posts1→2,issues1→2**, then read-only reconciliation **posts2→2**; rejection
+**posts2→3,issues stay2**. Telegram stays3 throughout. All provider traffic is
+loopback and no approval JSON is intercepted. Exact payload/proof hashes are
+in phone-review-results.json. Open workspace reaches `/workspace`, matching
+its corrected label. Earlier accepted email send/preflight evidence is cited
+as prior evidence rather than silently counted as fresh UI decisions.
 
-Read complete `reports/design-loop-1/{review,README,locale-edit-loss}.md`.
-Loop1 has seven findings: locale edit loss; unnamed terminal/empty-alert controls;
-sidebar/status contrast; login label/error association; RTL/back/content direction;
-internal account-prefix copy; contradictory terminal receipt copy.
-PR13 resolves accepted shell findings; PR10 resolves login; PR14 owns remaining
-locale/RTL/copy and selected-row contrast. These acceptance statements are not a
-substitute for current measured observations. No empty findings list is offered
-as a final pass. Ambiguous probe candidates must be refuted before promotion.
+## Palette, motion and evidence quality
 
-## Grounding and exact methods
+Original `docs/design/BRIEF.html` remains unchanged. Actual Design Studio
+canonHex only lowercases/expands hex; it cannot convert authored OKLCH.
+The labelled [measurement copy](design-phase1-specialist/probes/BRIEF.measurement.html)
+uses **actual browser Canvas** to normalize original opaque light tokens. Dark
+and composite values are not silently added to make lint pass.
 
-Read complete FOUNDING, ORCHESTRATOR, STATUS, DECISIONS, AGENTS, brief and BC
-checklist before report work. Read actual Design Studio command, four specialist
-and finding-verifier definitions, brief-checklist/flow validation method and
-selector/merge/lint/probe source. Local Design Studio immutable commit:
-**55c8614dcfff33b4caa5a544b4f1f91877214878**. Applicable checklist and aura references
-are being read; the project's restrained operational brief takes precedence over
-marketing/art-direction examples.
+The71 baseline captures contain2188 ranked text samples. Original palette flags
+**694** become **444** after Canvas conversion; family79, spacing124 and radius76
+flags remain. [Classification](design-phase1-specialist/probes/classification.json)
+retains raw evidence and exact source. Dark muted#262626, foreground#a1a1a1 and
+primary#9bd4c5 are inherited pairs in globals.css:136. Actual alpha composites
+include dark muted/70 #1e1e1e, input/30 #151515, light primary/8 #eef2f2 and
+private-note amber/5 #fffaf2. They depend on the backdrop, not separate tokens.
+Inter fallback-stack comparison and inherited rem radii/6px gaps are scan-coverage
+limits. Real badge contrast was still promoted and fixed despite inherited
+provenance. No product tokens were changed to satisfy string comparison.
 
-Code-context uses existing rag-skills `.venv/bin/python` and **HF_HUB_OFFLINE=1**.
-Guide returned headed Playwright CLI verification, concrete route/done states and
-other-project guidance; it does not override this report-only borrowing scope.
-Docs query **exit3**, absent `data/code/approvals.db`; no fabricated coverage,
-ingest/download or environment change. Separate pinned reads confirm React19.2.4
-and current Cargo manifest; before measurement glue, read installed DOM/Node/
-Playwright types. All remote research remains gh api at immutable refs. Existing
-product source pins/NOTICE are retained; report-tool provenance will be recorded
-beside any adapted evidence glue, with no new product port.
+All **18 painted empty-valued select samples** include selected option text,
+including All statuses. **56 closed-details field records** use checkVisibility;
+none was counted as painted. Disabled/group-opacity/image/filter exclusions
+are explicit. Clipped sr-only badge duplicates remain raw but are not distinct
+painted defects.
 
-Live hook audit has this own session **01a07c1c-d3a3-7c22-a5b6-cedce2970d8d** and
-exact approvals cwd, PreToolUse **1788830299** and Pre/Post **1788830300**, exit0.
-No hook bypass or credential printing. Only fixture-only synthetic auth is used.
+Baseline duration counts **173→173** made the generic reduced-motion flag false.
+Final same-DOM counts are **166→166** in both themes,45 visible nodes; the same
+heuristic still returns **false**. It counts duration even with property none
+and includes color/border/opacity feedback. Actual rAF/lifecycle evidence closes
+the large-motion defect; the heuristic is not rewritten to true. Four final
+settled probes add **268 text samples, zero contrast/unnamed/overflow failures**.
+[Final measured summary](design-phase1-specialist/probes/final-drawer-measured-summary.json).
 
-## Commands and progress
+The11 static and14 measured lint runs completed exit0; that does not mean no
+flags. [Lint classification](design-phase1-specialist/lint/classification.json)
+explains fixed four-proof arrays, imported Action/Button states and synchronous
+Morning navigation using actual source and rendered behavior.
 
-- Clean status, `git fetch origin`, `git switch -c review/design-phase1 origin/main`:
-  exit0. Base SHA above. Existing listener/static output not changed by branch switch.
-- Both pure `select-judges.mjs <page> --page --flows` commands: exit0, select
-  aesthetic-judge/a11y-auditor/flow-validator. Actual JSON committed beside report.
-- Docs-first full source reads: exit0. RAG docs gap: exit3 as above.
-- Deterministic component lint, CLI measurements, sequential specialist JSON,
-  merged findings, scores and full branch/PR handoff are next. No final browser,
-final-export, contrast or comprehensive BC pass is claimed at this checkpoint.
+Original phone first-frame focus had transparent shadow and **is not a pass**.
+Subsequent still-pending350ms screenshots show a3px ring and opaque mint border;
+root confirmed the timing artifact. Final drawer child focus likewise uses
+settled350ms paint, not immediate pseudo-class alone. Original58px mobile drawer
+sliver/empty dismissal captures remain under [attempts](design-phase1-specialist/attempts/).
+Replacements wait for popup detached and record popupCount0/documentWidth390.
+The blank native-dialog result is backed by actual screenshots/protected state
+and a separately repeated confirm flow. A final hidden-sidebar locator timeout
+is retained; explicitly opening the sidebar corrected the harness setup.
 
-## Accepted integration and fixture preparation
+## Grounding, source mapping and validation
 
-Preparation commit **5e137304** pushed; draft **https://github.com/Adanmohh/codeg/pull/16**.
-Root accepted PR14 at **e7f89b611e8a229fb557f03efb9627001fc06372** and merged
-**b7186ba65b2155bdba695ea6364f3ac267fbc51c**. Integration/export is now authorized.
-Before committing any fixture changes: the planned test-only adaptation adds
-explicit port/static-directory environment overrides to the two existing ignored
-browser fixtures (`integration/design_ops_browser.rs` and
-`ops_telegram/tests/issues_browser.rs`). Both still bind literal loopback; defaults
-remain their original4326/4323 exports. This worker will use4327/out-design-final,
-run independent email and issue fixtures, own their PIDs/data, and preserve all
-existing fixtures. No engine, scheduler, live keyring/provider or runtime API change.
+Read complete founding/orchestrator/status/decisions/AGENTS, brief, BC checklist,
+loop1 reports and actual Design Studio method/probe/lint/reviewer files.
+Design Studio **0.8.0 @55c8614dcfff33b4caa5a544b4f1f91877214878**, MIT.
+[Report NOTICE](design-phase1-specialist/NOTICE.md) records exact source-to-glue
+paths, commits/blobs and full MIT attribution. Root NOTICE entries are preserved;
+no new product port or AGPL/enterprise source. Codeg's founding
+**v0.30.4 /6f6bd648b206412644842a98d9ffeebf57292bed** pin remains unchanged.
 
-Raw palette/motion candidates are retained. A report-only Canvas conversion of
-the original brief produces a labelled measurement copy; paired dark tokens and
-alpha composites get separate source-backed classification. Empty-valued select
-options remain sampled; native checkVisibility excludes closed-details controls.
-Reduced-motion duration counts alone will not be labelled spatial-motion defects:
-property/keyframe and rendered-interaction evidence will distinguish color/border/
-opacity feedback from movement, layout or scrolling.
+Installed reads: React19.2.4, Next16.1.6, Tailwind4.1.18, Base UI1.7.0 popup and
+useAnimationsFinished lifecycle; TypeScript5.8.3 DOM Canvas/visibility/animation;
+Node24.19.0 with @types/node25.2.2 fs; Playwright CLI0.1.18 and
+core1.63.0-alpha-2026-08-05 locator/route/fulfill/unroute types. Local source
+preceded evidence glue. Remote research uses gh api immutable refs, with no
+borrowed-version upgrades; no latest-doc fetch was needed for these local APIs.
 
-## Live combined checkpoint
+Code-context guide used existing rag-skills `.venv/bin/python`, **HF_HUB_OFFLINE=1**,
+and returned headed CLI/concrete-done guidance. Docs retrieval **exit3**:
+data/code/approvals.db absent. No fabricated corpus coverage, download or ingest.
+Live own-session **01a07c1c-d3a3-7c22-a5b6-cedce2970d8d** Pre/Post hook evidence:
+[hook-live-final.json](design-phase1-specialist/methods/hook-live-final.json).
+No hook disabled/bypassed.
 
-Accepted main **8c2a004d66351d2eb67182843c63dbb3ae2c44fa** integrated as
-**19a698bc1108a5c3dee5018337e6da6eadc27f61**, preserving all source/NOTICE entries.
-`CODEG_EXPORT_DIR=out-design-final pnpm exec next build` exited0 (33 routes).
-Own fixture4327/PID1475 uses `.build/design-ops/2e3036b6-afeb-4e5c-ba19-aa2304e0c921`;
-only ignored test port/export overrides differ from accepted production. Existing
-4320/PID30815,4323/PID45025,4326/PID63050 remained listening unchanged.
+Only three **test-only** source adapters differ from accepted main: existing
+ignored email design, issue-phone and intake-host fixtures. They add explicit
+port/export overrides, preserve defaults and literal127.0.0.1 binding, and bind
+issue review_origin to the chosen port using existing typed configuration.
+Owner reviewed them before commit. No dependency/lockfile/migration/runtime
+change. Fixture DBs and build outputs stay outside commits.
 
-Actual CLI `design-phase1`, installed0.1.18, produced17 initial combined
-thread/review/morning captures using real Appearance Light/Dark controls and
-settled classes,1280×900/390×844. Open headers and All statuses option are sampled;
-no Ops contrast failures in this first set. Numeric shell running badge is a
-separate ~4.39 contrast candidate requiring final source/paint verification.
-Terminal fixtures2–6 have correct distinct receipt/failure/unknown/denied copy
-and no second-send action. **Finish recording receipt** completed2 locally,
-provider requests **4→4**, action removed. These6 further captures are retained.
+[Commands/exits and logs](design-phase1-specialist/methods/validation.json):
+final combined `CODEG_EXPORT_DIR=out-design-final pnpm exec next build` **exit0**,
+33 routes. Earlier desktop/server locked cargo checks, frontend tsc and correctly
+scoped desktop/server Clippy all **exit0**; all three final fixture files pass
+scoped rustfmt. Initial Clippy omitted test-utils for integration tests (**101**),
+then corrected runtime command passed. Whole-tree fmt found inherited differences
+(**1**); no broad formatting. Inherited proc-macro future-compatibility and debug
+sidecar-placeholder warnings remain disclosed; no native bundle claim here.
 
-The editor CLI completed invalid validation, cancelled native discard, draft
-save, separate private-note save and stale-review navigation. Its native dialog
-caused the CLI raw-return file to be blank despite later screenshots/actions;
-those results require explicit post-state evidence, not an invented JSON pass.
-Current proposal1 is stale after saved draft revision2; no send occurred.
+Final folder/group/motion/settled CLI and pure merge/probe commands **exit0**.
+Ignored fixtures compiled/passed startup assertions but remain serving, not
+completed test suites. No broad repetition after accepted frontend fixes, per
+owner instruction. Root reports82 focused tests, actual4318 motion/focus/empty
+checks, isolated native migration through008 and1006 bundled files matching its
+export in docs commit **8376d5c0**; those are **root-attributed**, not worker-run.
 
-Current tools: Node24.19.0 runtime, installed @types/node25.2.2 fs signatures,
-TypeScript5.8.3 DOM visibility/selection/Canvas/animation primitives. All new
-measurement glue is report-only. Pure lint ran on11 relevant surfaces, exit0;
-lint completion is not a clean-product verdict. Full `cargo fmt --check` exited1
-on extensive inherited formatting plus one new wrapping line (corrected narrowly);
-no broad formatting was applied. Final source-scoped validation follows.
+## Fixture handoff and limits
 
-## Verified findings checkpoint — source 43eff896
+Owned fixtures all use **out-design-final** and remain running after documented
+mutations. Existing4320/PID30815 `out/`,4323/PID45025 `out-telegram-issues` and
+4326/PID63050 `out-design-ops` remain untouched/listening.
 
-**P2 / medium — reduced-motion sidebar still travels 341.5px.** At390×844,
-set `prefers-reduced-motion: reduce`, then activate **Show Sidebar**. Actual
-requestAnimationFrame evidence records x=-333.5→8, width331.5, height828,
-`transform` animation, and the same450ms transition as no-preference (97 frames
-each, scrollY stays0). A large navigation panel still slides despite the setting.
-Exact source: `src/components/ui/drawer.tsx:339` supplies
-`transition-[transform,height,opacity,filter] duration-450`; line349 supplies the
-starting/ending transforms; `src/app/workspace/layout.tsx:648` uses the left
-drawer with85% mobile width. The current reduced-motion CSS does not cover it.
-Required fix: suppress this spatial transition under reduced motion while
-preserving normal transitions and drawer close/presence behavior. Root owns
-assignment; no product edit here. Raw control transition counts are retained;
-color/border/opacity transitions alone are not the basis of this finding.
-Evidence: `flows/motion-frames.json`, `flows/motion-summary.json`,
-`screenshots/drawer-{no-preference,reduce}-390.png` beneath this report directory.
+| Owned port/PID | Synthetic-only token | Current state |
+| --- | --- | --- |
+|4327/1475 |`ops-design-synthetic-operator` |Provider4; draft1revision2, proposal1pending/stale, receipt2finished; key removed. |
+|4328/46726 |`ops-issue-phone-synthetic-operator` |All three locators consumed; GitHubPosts3/issues2/token exchanges1, Telegram3. |
+|4329/77051 |`ops-intake-synthetic-operator` |Missing proofs; draft1/proposals0/filings0; invalid proof remains browser-local. |
+|4330/83330 |`ops-intake-synthetic-operator` |EMPTY=1 variant; zero inbox/task/queue data. |
 
-**P2 / medium — light running-count badge is below the small-text floor.**
-At1280px the visible10px count uses Canvas RGB187,77,0 on composited250,238,220,
-ratio4.39<4.5. Source: `sidebar-conversation-list.tsx:507` and the same inherited
-class combination in `sidebar-folder-group-header.tsx:206`: amber700 ink over
-amber500/12. Root independently measured ~4.4 on4326 and assigned a narrow fix.
-The raw probe also samples its clipped `sr-only` equivalent; those duplicate
-entries are retained but are not separate painted-text defects. This contrast
-finding is separate from the OKLCH/hex palette comparison limitation. Baseline
-light probes and screenshot are preserved for recheck after accepted integration.
-
-Desktop `cargo check --locked`, server `cargo check --locked --no-default-features
---bin codeg-server`, and `pnpm exec tsc --noEmit` all exited0 against the combined
-source. Final review work continues; these are not a complete design verdict.
-
-## Owned phone fixture4328
-
-Owner authorized separate4328 to preserve4327. Test-only
-`ops_telegram/tests/issues_browser.rs` now accepts the same explicit port/export
-overrides, retains literal loopback binding and original defaults, and configures
-its synthetic review origin to the selected port. No runtime/product change.
-It compiled and passed startup assertions (Telegram3, GitHub posts0), then remains
-serving as **PID46726**, in-memory SQLite with auxiliary temp directory
+4327 DB: `.build/design-ops/2e3036b6-afeb-4e5c-ba19-aa2304e0c921`.
+4329 DB: `.build/intake-host/browser-4bbf0d5d-383a-4fba-84e3-8fdf60d7ec12`.
+4330 DB: `.build/intake-host/browser-b7cab94e-05e7-450a-af9f-144b3c8306ca`.
+4328 SQLite is in-memory, auxiliary directory
 `/var/folders/6k/w2fh6wy167726g5nr9zm_ph80000gn/T/.tmpLemf4y`.
 
-From `src-tauri`, the exact launch is
-`CODEG_OPS_ACCOUNT_ID=1 CODEG_DESIGN_FIXTURE_PORT=4328 CODEG_DESIGN_FIXTURE_EXPORT=out-design-final CARGO_TARGET_DIR=target-approvals CARGO_BUILD_JOBS=4 cargo test --locked --no-default-features --lib ops_telegram_issue_browser_fixture -- --ignored --nocapture`.
-This is a long-running ignored fixture, not a completed test-suite exit.
-Landing: `http://127.0.0.1:4328/__issue_fixture`; token is synthetic-only
-`ops-issue-phone-synthetic-operator`. Actual protected phone checks use this own
-server and loopback providers, no intercepted approval JSON. Controlled
-`/__issue_fixture/refresh` changes only fixture freshness timestamps. Earlier
-4320/4323/4326 and4327 remain unchanged by this setup. Phone decisions follow.
+Launch pattern from this worktree's src-tauri:
 
-Before the next fixture edit: BC-16 needs a fresh unprepared source, while4328
-now preserves completed exact issue decisions. Apply only the same test port/
-export overrides to accepted `ops_intake_host/tests/browser.rs`, then use free
-loopback4329/out-design-final. Its existing seeded database, synthetic upstream,
-protected human API and fixture-only proposer remain unchanged; no agent engine
-or live provider starts. This third test-only adaptation avoids resetting4328
-or touching4320's `out/`. It also permits the existing explicitly empty variant
-on a further free loopback port if needed. No product source correction here.
+```sh
+CODEG_OPS_ACCOUNT_ID=1 CODEG_DESIGN_FIXTURE_PORT=4327 \
+CODEG_DESIGN_FIXTURE_EXPORT=out-design-final \
+CARGO_TARGET_DIR=target-approvals CARGO_BUILD_JOBS=4 \
+cargo test --locked --no-default-features --lib \
+ops_design_browser_fixture -- --ignored --nocapture
+```
 
-## Phone decisions and settled focus
+Use4328 plus ops_telegram_issue_browser_fixture, or4329 plus
+intake_host_browser_fixture;4330 also uses OPS_INTAKE_FIXTURE_EMPTY=1. Choose
+a free owned port for any new instance; never run defaults over an existing
+owner. Root may inspect current fixtures. No fresh pending issue locator remains,
+so future decisions require a separate new fixture, not replay. These completed
+checks need no reseed.
 
-At source **89e94faa**, actual4328 invalid login exposed associated
-`aria-invalid=true` / `aria-describedby=login-error`, retry retained the locator,
-and successful login opened the complete issue/evidence projection. Four
-viewport/theme combinations captured top/body/decision crops. Keyboard approval
-of FAV recorded **GitHub posts0→1, issues0→1, Telegram3→3**. Reload made the used
-link unavailable; **Open workspace** reached `/workspace`, matching its label.
-FAW then exercised unknown and read-only reconciliation: posts1→2 for approval,
-then2→2 during reconciliation; Telegram stayed3. FAX's deliberately rejected
-attempt reached posts3 while issues stayed2. No live providers or JSON interception.
-
-Do not count `phone-confirmed-keyboard-390-dark.png` as a visible-focus pass:
-its first-frame shadow is transparent despite `:focus-visible=true`. Preserved
-baseline identifies the sampling error. Subsequent **still-pending**, pre-decision
-FAW/FAX captures waited350ms. Both measured a3px ring with alpha0.5 and
-RGB155,212,197 border, and the actual screenshot visibly shows the ring.
-Use `screenshots/phone-{unknown,rejected}-focus-390-dark.png` plus
-`flows/phone-terminal-results.json` as settled focus evidence. Their decisions
-happened only after those captures. No pseudo-class-only pass is claimed.
-An earlier exact-label lookup included nested option text; corrected to the
-actual accessible combobox name, with the failed selector output preserved.
-
-Fresh fixture4329 uses the original accepted host seed, isolated disk data
-`.build/intake-host/browser-4bbf0d5d-383a-4fba-84e3-8fdf60d7ec12`, synthetic-only
-token `ops-intake-synthetic-operator` and out-design-final. Launch uses the same
-environment as4328 with port4329 and ignored `intake_host_browser_fixture`.
-Startup compiled in38.67s and remains listening. Exact PID/checks follow.
-
-## Checklist evidence completion checkpoint
-
-All18 checklist IDs now have actual CLI evidence on the accepted combined
-behavior baseline, with exact fixture/provider limits to be retained in the
-final matrix. Missing-proof UI on4329/PID77051 identifies build/screen/reciter/
-log, disables preparation, rejects a proof whose content omits its summary,
-and retains text. Read-only SQLite counts are drafts1/proposals0/filings0.
-The accepted EMPTY=1 fixture runs on4330/PID83330 with disk data
-`.build/intake-host/browser-b7cab94e-05e7-450a-af9f-144b3c8306ca`: actual empty
-inbox/setup and morning queues are captured, with no provider activity.
-
-BC-2 light/dark Ops navigation has settled2px inset accent focus. BC-4 has two
-real selected mobile histories. BC-9 native confirm/dismiss was repeated using
-separate CLI commands; the retained unsaved composer and settled3px ring are
-captured, then the saved text was restored locally without saving. Provider4→4.
-Original mid-dismissal proof screenshots are now under `attempts/`; replacements
-record popupCount0 and width/documentWidth390. No artifact is promoted to a
-product defect or a passing unobscured frame.
-
-The71 baseline captures have2188 text samples. Canvas-normalized brief comparison
-retains444 off-palette flags versus694 authored-string flags, plus inherited
-font/spacing/radius flags. Classification is source-backed in
-`probes/classification.json`, with raw results retained. Eighteen visible
-empty-valued selects include selected text;56 closed-details field records
-correctly have checkVisibility=false. Numeric badge failures remain the only
-verified text-contrast finding in these states. No whole-app conformance claim.
-
-PR19 accepted handoff **edd8add7**, merged **4611d025**; PR18 accepted handoff
-**6aefaa59**, merged **a8663104**. Both product corrections are now authorized for
-integration. Next: one final combined export, targeted badge/motion rechecks,
-final sequential-method synthesis and draft PR handoff. Existing fixtures and
-their data remain outside commits.
+Limits: Chromium emulation only; no screen-reader session, iOS WebKit/physical
+touch certification or document-start CLS/long-frame capture. Remote phone use
+requires a configured reachable protected origin; loopback links prove only
+synthetic flow. Same-user filesystem trust is not a hostile-process sandbox.
+Expected unavailable Git/stream/Pi fixture diagnostics mean no clean-console
+claim. Provider acceptance does not prove recipient delivery. This is specialist
+evidence for root synthesis, not whole-app WCAG or final native design acceptance.

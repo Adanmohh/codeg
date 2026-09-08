@@ -1,0 +1,389 @@
+{
+  "productCommit": "2fb837977bc8584c5a5ccbe640e2ffe490ab0609",
+  "before": {
+    "acceptedProposalId": 3,
+    "deniedProposalId": 6,
+    "inboxId": 1,
+    "pendingConversationId": 2,
+    "pendingProposalId": 1,
+    "providerRequests": 4,
+    "recordingProposalId": 2,
+    "rejectedProposalId": 5,
+    "syntheticOnly": true,
+    "unknownProposalId": 4
+  },
+  "after": {
+    "acceptedProposalId": 3,
+    "deniedProposalId": 6,
+    "inboxId": 1,
+    "pendingConversationId": 2,
+    "pendingProposalId": 1,
+    "providerRequests": 4,
+    "recordingProposalId": 2,
+    "rejectedProposalId": 5,
+    "syntheticOnly": true,
+    "unknownProposalId": 4
+  },
+  "cases": [
+    {
+      "theme": "light",
+      "preference": "reduce",
+      "phases": {
+        "open": {
+          "frames": 92,
+          "present": 92,
+          "transformFrames": 0,
+          "intermediateX": 0,
+          "xRange": [
+            -333.5,
+            8
+          ],
+          "properties": [
+            "none"
+          ],
+          "durations": [
+            "0.45s"
+          ]
+        },
+        "escape": {
+          "frames": 91,
+          "present": 1,
+          "transformFrames": 0,
+          "intermediateX": 0,
+          "xRange": [
+            -333.5,
+            -333.5
+          ],
+          "properties": [
+            "none"
+          ],
+          "durations": [
+            "0.4s"
+          ]
+        },
+        "outside": {
+          "frames": 91,
+          "present": 1,
+          "transformFrames": 0,
+          "intermediateX": 0,
+          "xRange": [
+            -333.5,
+            -333.5
+          ],
+          "properties": [
+            "none"
+          ],
+          "durations": [
+            "0.4s"
+          ]
+        }
+      },
+      "geometry": {
+        "x": 8,
+        "y": 8,
+        "width": 331.5,
+        "height": 828,
+        "pageWidth": 390,
+        "viewport": 390
+      },
+      "openedFocus": {
+        "tag": "DIV",
+        "slot": "drawer-popup",
+        "label": "SidebarConversationsOps deskBug intakeNew chat⌘TAutomationsTo-dos1Repository pan",
+        "inDrawer": true,
+        "focusVisible": true,
+        "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(90.952 0 -0.0000119209) 0px 0px 0px 1px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px"
+      },
+      "tabFocus": {
+        "tag": "BUTTON",
+        "slot": "button",
+        "label": "Locate Active Conversation",
+        "inDrawer": true,
+        "focusVisible": true,
+        "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 3px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0 0 0 / 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "returnedFocus": {
+        "tag": "BUTTON",
+        "slot": "button",
+        "label": "Show Sidebar",
+        "inDrawer": false,
+        "focusVisible": true,
+        "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "outsideDismissed": true
+    },
+    {
+      "theme": "light",
+      "preference": "no-preference",
+      "phases": {
+        "open": {
+          "frames": 92,
+          "present": 92,
+          "transformFrames": 54,
+          "intermediateX": 43,
+          "xRange": [
+            -333.5,
+            8
+          ],
+          "properties": [
+            "transform, height, opacity, filter"
+          ],
+          "durations": [
+            "0.45s"
+          ]
+        },
+        "escape": {
+          "frames": 91,
+          "present": 49,
+          "transformFrames": 49,
+          "intermediateX": 38,
+          "xRange": [
+            -333.5,
+            8
+          ],
+          "properties": [
+            "transform, height, opacity, filter"
+          ],
+          "durations": [
+            "0.4s"
+          ]
+        },
+        "outside": {
+          "frames": 91,
+          "present": 50,
+          "transformFrames": 50,
+          "intermediateX": 38,
+          "xRange": [
+            -333.5,
+            8
+          ],
+          "properties": [
+            "transform, height, opacity, filter"
+          ],
+          "durations": [
+            "0.4s"
+          ]
+        }
+      },
+      "geometry": {
+        "x": 8,
+        "y": 8,
+        "width": 331.5,
+        "height": 828,
+        "pageWidth": 390,
+        "viewport": 390
+      },
+      "openedFocus": {
+        "tag": "DIV",
+        "slot": "drawer-popup",
+        "label": "SidebarConversationsOps deskBug intakeNew chat⌘TAutomationsTo-dos1Repository pan",
+        "inDrawer": true,
+        "focusVisible": true,
+        "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(90.952 0 -0.0000119209) 0px 0px 0px 1px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px"
+      },
+      "tabFocus": {
+        "tag": "BUTTON",
+        "slot": "button",
+        "label": "Locate Active Conversation",
+        "inDrawer": true,
+        "focusVisible": true,
+        "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 3px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0 0 0 / 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "returnedFocus": {
+        "tag": "BUTTON",
+        "slot": "button",
+        "label": "Show Sidebar",
+        "inDrawer": false,
+        "focusVisible": true,
+        "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "outsideDismissed": true
+    },
+    {
+      "theme": "dark",
+      "preference": "reduce",
+      "phases": {
+        "open": {
+          "frames": 92,
+          "present": 92,
+          "transformFrames": 0,
+          "intermediateX": 0,
+          "xRange": [
+            -333.5,
+            8
+          ],
+          "properties": [
+            "none"
+          ],
+          "durations": [
+            "0.45s"
+          ]
+        },
+        "escape": {
+          "frames": 91,
+          "present": 1,
+          "transformFrames": 0,
+          "intermediateX": 0,
+          "xRange": [
+            -333.5,
+            -333.5
+          ],
+          "properties": [
+            "none"
+          ],
+          "durations": [
+            "0.4s"
+          ]
+        },
+        "outside": {
+          "frames": 91,
+          "present": 1,
+          "transformFrames": 0,
+          "intermediateX": 0,
+          "xRange": [
+            -333.5,
+            -333.5
+          ],
+          "properties": [
+            "none"
+          ],
+          "durations": [
+            "0.4s"
+          ]
+        }
+      },
+      "geometry": {
+        "x": 8,
+        "y": 8,
+        "width": 331.5,
+        "height": 828,
+        "pageWidth": 390,
+        "viewport": 390
+      },
+      "openedFocus": {
+        "tag": "DIV",
+        "slot": "drawer-popup",
+        "label": "SidebarConversationsOps deskBug intakeNew chat⌘TAutomationsTo-dos1Repository pan",
+        "inDrawer": true,
+        "focusVisible": true,
+        "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(100 0 0 / 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px"
+      },
+      "tabFocus": {
+        "tag": "BUTTON",
+        "slot": "button",
+        "label": "Locate Active Conversation",
+        "inDrawer": true,
+        "focusVisible": true,
+        "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 3px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0 0 0 / 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "returnedFocus": {
+        "tag": "BUTTON",
+        "slot": "button",
+        "label": "Show Sidebar",
+        "inDrawer": false,
+        "focusVisible": true,
+        "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "outsideDismissed": true
+    },
+    {
+      "theme": "dark",
+      "preference": "no-preference",
+      "phases": {
+        "open": {
+          "frames": 91,
+          "present": 91,
+          "transformFrames": 55,
+          "intermediateX": 43,
+          "xRange": [
+            -333.5,
+            8
+          ],
+          "properties": [
+            "transform, height, opacity, filter"
+          ],
+          "durations": [
+            "0.45s"
+          ]
+        },
+        "escape": {
+          "frames": 91,
+          "present": 48,
+          "transformFrames": 48,
+          "intermediateX": 38,
+          "xRange": [
+            -333.49957275390625,
+            8
+          ],
+          "properties": [
+            "transform, height, opacity, filter"
+          ],
+          "durations": [
+            "0.4s"
+          ]
+        },
+        "outside": {
+          "frames": 91,
+          "present": 49,
+          "transformFrames": 49,
+          "intermediateX": 38,
+          "xRange": [
+            -333.4996643066406,
+            8
+          ],
+          "properties": [
+            "transform, height, opacity, filter"
+          ],
+          "durations": [
+            "0.4s"
+          ]
+        }
+      },
+      "geometry": {
+        "x": 8,
+        "y": 8,
+        "width": 331.5,
+        "height": 828,
+        "pageWidth": 390,
+        "viewport": 390
+      },
+      "openedFocus": {
+        "tag": "DIV",
+        "slot": "drawer-popup",
+        "label": "SidebarConversationsOps deskBug intakeNew chat⌘TAutomationsTo-dos1Repository pan",
+        "inDrawer": true,
+        "focusVisible": true,
+        "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(100 0 0 / 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px"
+      },
+      "tabFocus": {
+        "tag": "BUTTON",
+        "slot": "button",
+        "label": "Locate Active Conversation",
+        "inDrawer": true,
+        "focusVisible": true,
+        "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 3px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0 0 0 / 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "returnedFocus": {
+        "tag": "BUTTON",
+        "slot": "button",
+        "label": "Show Sidebar",
+        "inDrawer": false,
+        "focusVisible": true,
+        "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+        "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      },
+      "outsideDismissed": true
+    }
+  ]
+}

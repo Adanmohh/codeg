@@ -1,0 +1,26 @@
+{
+  "deduped": [
+    {
+      "surface": "connection page",
+      "element": "src/app/login/page.tsx:61",
+      "severity": "low",
+      "check": "Main landmark presence: the actual login page uses outer div and phone-login-invalid-390 probe records main=false. The single form otherwise has associated token label/error and successful retry.",
+      "fix": "Replace the outer connection-content div with main; retain existing controls, styles and retry/locator behavior. Root assigned a separate fix/design-login-landmark worker; keep open until its accepted targeted browser recheck.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    }
+  ],
+  "top3": [
+    {
+      "surface": "connection page",
+      "element": "src/app/login/page.tsx:61",
+      "severity": "low",
+      "check": "Main landmark presence: the actual login page uses outer div and phone-login-invalid-390 probe records main=false. The single form otherwise has associated token label/error and successful retry.",
+      "fix": "Replace the outer connection-content div with main; retain existing controls, styles and retry/locator behavior. Root assigned a separate fix/design-login-landmark worker; keep open until its accepted targeted browser recheck.",
+      "specialists": [
+        "a11y-auditor"
+      ]
+    }
+  ]
+}

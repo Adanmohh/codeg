@@ -1,0 +1,106 @@
+{
+  "worker": "sole review/design-phase1 worker; own target-approvals and out-design-final",
+  "finalProduct": "2fb837977bc8584c5a5ccbe640e2ffe490ab0609",
+  "exportHead": "ab771db4dfd1de5b9ac4aaf8206a17e130886dff",
+  "checks": [
+    {
+      "command": "CODEG_EXPORT_DIR=out-design-final pnpm exec next build",
+      "cwd": "worktree root",
+      "exit": 0,
+      "head": "ab771db4dfd1de5b9ac4aaf8206a17e130886dff",
+      "result": "One final combined export after PR18/19 acceptance; Next16.1.6,33 static routes, TypeScript build step passed",
+      "log": "combined-build.txt"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "cwd": "worktree root",
+      "exit": 0,
+      "head": "accepted8c2a004d integration plus test-only fixture preparation",
+      "log": "tsc.txt"
+    },
+    {
+      "command": "CARGO_TARGET_DIR=target-approvals CARGO_BUILD_JOBS=4 cargo check --locked",
+      "cwd": "src-tauri",
+      "exit": 0,
+      "head": "accepted8c2a004d integration plus test-only fixture preparation",
+      "log": "desktop-check.txt"
+    },
+    {
+      "command": "CARGO_TARGET_DIR=target-approvals CARGO_BUILD_JOBS=4 cargo check --locked --no-default-features --bin codeg-server",
+      "cwd": "src-tauri",
+      "exit": 0,
+      "head": "accepted8c2a004d integration plus test-only fixture preparation",
+      "log": "server-check.txt"
+    },
+    {
+      "command": "CARGO_TARGET_DIR=target-approvals CARGO_BUILD_JOBS=4 cargo clippy --locked --all-targets --features test-utils -- -D warnings",
+      "cwd": "src-tauri",
+      "exit": 0,
+      "head": "same accepted integration; before third manual fixture port override",
+      "log": "clippy-desktop.txt"
+    },
+    {
+      "command": "CARGO_TARGET_DIR=target-approvals CARGO_BUILD_JOBS=4 cargo clippy --locked --no-default-features --bin codeg-server --lib -- -D warnings",
+      "cwd": "src-tauri",
+      "exit": 0,
+      "head": "same accepted integration",
+      "log": "clippy-server-runtime.txt"
+    },
+    {
+      "command": "cargo clippy --locked --no-default-features --lib --tests -- -D warnings",
+      "cwd": "src-tauri with own target",
+      "exit": 101,
+      "result": "Incorrect invocation includes integration tests without required test-utils helpers; corrected runtime invocation above passes. Original local log reports/design-phase1-clippy-server.log retained. Not classified as a product finding."
+    },
+    {
+      "command": "cargo fmt --check",
+      "cwd": "src-tauri",
+      "exit": 1,
+      "result": "Inherited formatting differences; one new wrapping line corrected narrowly. No broad formatting. Local reports/design-phase1-fmt.log retained."
+    },
+    {
+      "command": "rustfmt --check --edition 2021 src-tauri/src/ops/tests/integration/design_ops_browser.rs src-tauri/src/ops_telegram/tests/issues_browser.rs src-tauri/src/ops_intake_host/tests/browser.rs",
+      "exit": 0,
+      "result": "All three final test-only fixture adapters scoped formatting passes."
+    },
+    {
+      "command": "playwright-cli -s=design-phase1 --raw run-code --filename=reports/design-phase1-specialist/flows/final-badge.js",
+      "exit": 0,
+      "runs": 2,
+      "result": "Folder and labelled group fixture:12 actual painted states; all>4.5; provider4→4."
+    },
+    {
+      "command": "playwright-cli -s=design-phase1 --raw run-code --filename=reports/design-phase1-specialist/flows/final-group-{setup,cleanup}.js",
+      "exit": 0,
+      "result": "Two separate sequential commands;3 read-response overlays removed, actual remainingGroups0."
+    },
+    {
+      "command": "playwright-cli -s=design-phase1 --raw run-code --filename=reports/design-phase1-specialist/flows/final-drawer.js",
+      "exit": 0,
+      "result": "4 theme/preference cases, each actual open/Escape/outside rAF trace; reduced spatial travel suppressed; focus/lifecycle intact."
+    },
+    {
+      "command": "playwright-cli -s=design-phase1 --raw run-code --filename=reports/design-phase1-specialist/flows/final-drawer-settled.js",
+      "exit": 0,
+      "result": "Settled350ms actual keyboard ring;4 same-DOM probes;268 text samples,0 contrast/unnamed/overflow failures."
+    },
+    {
+      "command": "node reports/design-phase1-specialist/probes/final-motion.mjs",
+      "exit": 0,
+      "result": "Pure DS report/threshold applied to CLI captures;166→166 heuristic false retained, actual no-travel result separately grounded."
+    },
+    {
+      "command": "node /Users/mohamedadan/projects/design-studio/scripts/merge-findings.mjs reports/design-phase1-specialist/findings/aesthetic-judge.json reports/design-phase1-specialist/findings/a11y-final.json reports/design-phase1-specialist/findings/flow-validator.json --out reports/design-phase1-specialist/findings/merged.json",
+      "exit": 0,
+      "result": "Actual mechanical merge; no paid SDK/agent delegation."
+    },
+    {
+      "command": "Design Studio select-judges.mjs for Ops and phone; design-lint.mjs for11 static surfaces and14 original/derived measured cases",
+      "exit": 0,
+      "result": "Actual selector JSON and lint files committed. Exit0 means analysis completed, not no flags."
+    }
+  ],
+  "manualFixtures": "All four owned ignored tests compiled, passed startup assertions and remain serving; they have no completed test-suite exit. Fixture compilation/startup logs stay locally ignored. No broad retest after accepted frontend-only fixes, per owner instruction.",
+  "attempts": "Hidden-sidebar selector timeout exit1, earlier label-selector failures, blank native-dialog result and first-frame focus/drawer captures retained. Corrected successful executions are distinguished from those attempts.",
+  "rootAttributed": "Owner reports8376d5c0 final packaging docs:82 focused tests and actual4318 final drawer/focus/empty checks pass; native isolated Step1 DB migrated through008 without panic and1006 bundled web files match its export. These are root evidence, not worker-run claims."
+}

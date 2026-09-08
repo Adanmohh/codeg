@@ -1,0 +1,197 @@
+{
+  "productCommit": "2fb837977bc8584c5a5ccbe640e2ffe490ab0609",
+  "exportCommit": "ab771db4dfd1de5b9ac4aaf8206a17e130886dff",
+  "method": "Actual Playwright CLI/Canvas; folder real protected API, group explicitly frontend-only read-response fixture",
+  "surfaces": [
+    {
+      "surface": "folder",
+      "before": {
+        "acceptedProposalId": 3,
+        "deniedProposalId": 6,
+        "inboxId": 1,
+        "pendingConversationId": 2,
+        "pendingProposalId": 1,
+        "providerRequests": 4,
+        "recordingProposalId": 2,
+        "rejectedProposalId": 5,
+        "syntheticOnly": true,
+        "unknownProposalId": 4
+      },
+      "after": {
+        "acceptedProposalId": 3,
+        "deniedProposalId": 6,
+        "inboxId": 1,
+        "pendingConversationId": 2,
+        "pendingProposalId": 1,
+        "providerRequests": 4,
+        "recordingProposalId": 2,
+        "rejectedProposalId": 5,
+        "syntheticOnly": true,
+        "unknownProposalId": 4
+      },
+      "rows": [
+        {
+          "theme": "light",
+          "state": "rest",
+          "fg": "rgb(151, 60, 0)",
+          "bg": "rgb(250, 238, 220)",
+          "sizePx": 10,
+          "focusVisible": false,
+          "focusShadow": "none",
+          "contrast": 6.187307209975116,
+          "required": 4.5
+        },
+        {
+          "theme": "light",
+          "state": "hover",
+          "fg": "rgb(151, 60, 0)",
+          "bg": "rgb(233, 221, 202)",
+          "sizePx": 10,
+          "focusVisible": false,
+          "focusShadow": "none",
+          "contrast": 5.286656414680524,
+          "required": 4.5
+        },
+        {
+          "theme": "light",
+          "state": "focus",
+          "fg": "rgb(151, 60, 0)",
+          "bg": "rgb(250, 238, 220)",
+          "sizePx": 10,
+          "focusVisible": true,
+          "focusShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(36, 94, 88) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "contrast": 6.187307209975116,
+          "required": 4.5
+        },
+        {
+          "theme": "dark",
+          "state": "rest",
+          "fg": "rgb(255, 210, 48)",
+          "bg": "rgb(58, 47, 20)",
+          "sizePx": 10,
+          "focusVisible": false,
+          "focusShadow": "none",
+          "contrast": 9.090051362034052,
+          "required": 4.5
+        },
+        {
+          "theme": "dark",
+          "state": "hover",
+          "fg": "rgb(255, 210, 48)",
+          "bg": "rgb(76, 65, 37)",
+          "sizePx": 10,
+          "focusVisible": false,
+          "focusShadow": "none",
+          "contrast": 6.94372940934494,
+          "required": 4.5
+        },
+        {
+          "theme": "dark",
+          "state": "focus",
+          "fg": "rgb(255, 210, 48)",
+          "bg": "rgb(58, 47, 20)",
+          "sizePx": 10,
+          "focusVisible": true,
+          "focusShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(155, 212, 197) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "contrast": 9.090051362034052,
+          "required": 4.5
+        }
+      ]
+    },
+    {
+      "surface": "group",
+      "before": {
+        "acceptedProposalId": 3,
+        "deniedProposalId": 6,
+        "inboxId": 1,
+        "pendingConversationId": 2,
+        "pendingProposalId": 1,
+        "providerRequests": 4,
+        "recordingProposalId": 2,
+        "rejectedProposalId": 5,
+        "syntheticOnly": true,
+        "unknownProposalId": 4
+      },
+      "after": {
+        "acceptedProposalId": 3,
+        "deniedProposalId": 6,
+        "inboxId": 1,
+        "pendingConversationId": 2,
+        "pendingProposalId": 1,
+        "providerRequests": 4,
+        "recordingProposalId": 2,
+        "rejectedProposalId": 5,
+        "syntheticOnly": true,
+        "unknownProposalId": 4
+      },
+      "rows": [
+        {
+          "theme": "light",
+          "state": "rest",
+          "fg": "rgb(151, 60, 0)",
+          "bg": "rgb(250, 238, 220)",
+          "sizePx": 10,
+          "focusVisible": false,
+          "focusShadow": "none",
+          "contrast": 6.187307209975116,
+          "required": 4.5
+        },
+        {
+          "theme": "light",
+          "state": "hover",
+          "fg": "rgb(151, 60, 0)",
+          "bg": "rgb(233, 221, 202)",
+          "sizePx": 10,
+          "focusVisible": false,
+          "focusShadow": "none",
+          "contrast": 5.286656414680524,
+          "required": 4.5
+        },
+        {
+          "theme": "light",
+          "state": "focus",
+          "fg": "rgb(151, 60, 0)",
+          "bg": "rgb(250, 238, 220)",
+          "sizePx": 10,
+          "focusVisible": true,
+          "focusShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(36, 94, 88) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "contrast": 6.187307209975116,
+          "required": 4.5
+        },
+        {
+          "theme": "dark",
+          "state": "rest",
+          "fg": "rgb(255, 210, 48)",
+          "bg": "rgb(58, 47, 20)",
+          "sizePx": 10,
+          "focusVisible": false,
+          "focusShadow": "none",
+          "contrast": 9.090051362034052,
+          "required": 4.5
+        },
+        {
+          "theme": "dark",
+          "state": "hover",
+          "fg": "rgb(255, 210, 48)",
+          "bg": "rgb(76, 65, 37)",
+          "sizePx": 10,
+          "focusVisible": false,
+          "focusShadow": "none",
+          "contrast": 6.94372940934494,
+          "required": 4.5
+        },
+        {
+          "theme": "dark",
+          "state": "focus",
+          "fg": "rgb(255, 210, 48)",
+          "bg": "rgb(58, 47, 20)",
+          "sizePx": 10,
+          "focusVisible": true,
+          "focusShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(155, 212, 197) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "contrast": 9.090051362034052,
+          "required": 4.5
+        }
+      ]
+    }
+  ]
+}
