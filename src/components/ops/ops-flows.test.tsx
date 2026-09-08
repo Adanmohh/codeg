@@ -7,7 +7,12 @@ import {
   waitFor,
 } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
-import { ops, type OpsContext, type Proposal } from "@/lib/ops/api"
+import {
+  ops,
+  type DeliveryStatus,
+  type OpsContext,
+  type Proposal,
+} from "@/lib/ops/api"
 import { ReviewCard, proposalStatus } from "./proposals-view"
 import { useOpsResource } from "./use-ops-resource"
 import {
@@ -183,6 +188,119 @@ describe("Ops review component (mocked facade, not E2E)", () => {
         },
       })
     ).toBe("Sent · provider accepted")
+  })
+  it.each([
+    ["sent", /Provider acceptance does not confirm recipient delivery/],
+    ["receipt_recorded", /it does not send again/],
+    ["failed", /The provider did not accept this reply/],
+    ["not_sent", /This attempt stopped before sending/],
+    ["unknown", /Reconcile the provider outcome first/],
+    ["reserved", /Do not resend this proposal/],
+    ["sending", /Do not resend this proposal/],
+  ] as [DeliveryStatus["status"], RegExp][])(
+    "explains actual %s receipt state without a contradictory decision disclaimer",
+    async (status, explanation) => {
+      const terminal: Proposal = {
+        ...proposal,
+        status: "approved",
+        payload: null,
+        delivery: {
+          id: 1,
+          proposalId: 1,
+          status,
+          messageId: "synthetic@example.com",
+          providerId:
+            status === "sent" || status === "receipt_recorded"
+              ? "synthetic-receipt"
+              : null,
+          error: status === "sent" ? null : "Synthetic backend detail",
+          updatedAt: proposal.createdAt,
+        },
+      }
+      render(<ReviewCard {...props()} proposal={terminal} />)
+      await screen.findByText(explanation)
+      expect(
+        screen.queryByText(
+          /No delivery receipt is implied|This decision has no recorded delivery receipt/
+        )
+      ).not.toBeInTheDocument()
+      expect(
+        screen.queryByRole("button", { name: /Approve and send|Deny proposal/ })
+      ).not.toBeInTheDocument()
+      expect(
+        screen.queryByRole("button", { name: "Finish recording receipt" }) !==
+          null
+      ).toBe(status === "receipt_recorded")
+      expect(ops.approve).not.toHaveBeenCalled()
+    }
+  )
+  it("keeps denial and an approval without a receipt distinct", async () => {
+    const { rerender } = render(
+      <ReviewCard
+        {...props()}
+        proposal={{ ...proposal, status: "denied", payload: null }}
+      />
+    )
+    await screen.findByRole("heading", { name: "Denied · not sent" })
+    expect(
+      screen.getByText(/private reply content has been redacted/)
+    ).toBeInTheDocument()
+    rerender(
+      <ReviewCard
+        {...props()}
+        proposal={{ ...proposal, status: "approved", payload: null }}
+      />
+    )
+    await screen.findByRole("heading", {
+      name: "Approved · delivery unconfirmed",
+    })
+    expect(
+      screen.getByText(/This decision has no recorded delivery receipt/)
+    ).toBeInTheDocument()
+    expect(
+      screen.queryByRole("button", {
+        name: /Approve and send|Finish recording/,
+      })
+    ).not.toBeInTheDocument()
+  })
+  it("finishes recording through the receipt-only callback once, without approving or sending again", async () => {
+    let finish!: (value: DeliveryStatus) => void
+    vi.mocked(ops.reconcileReceipt).mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve
+        })
+    )
+    const callbacks = props()
+    const recorded: Proposal = {
+      ...proposal,
+      status: "approved",
+      payload: null,
+      delivery: {
+        id: 1,
+        proposalId: 1,
+        status: "receipt_recorded",
+        messageId: "synthetic@example.com",
+        providerId: "synthetic-receipt",
+        error: "Synthetic local insert failed",
+        updatedAt: proposal.createdAt,
+      },
+    }
+    render(<ReviewCard {...callbacks} proposal={recorded} />)
+    const button = await screen.findByRole("button", {
+      name: "Finish recording receipt",
+    })
+    fireEvent.click(button)
+    fireEvent.click(button)
+    expect(ops.reconcileReceipt).toHaveBeenCalledTimes(1)
+    expect(ops.reconcileReceipt).toHaveBeenCalledWith(proposal.id)
+    expect(callbacks.onResolved).not.toHaveBeenCalled()
+    await act(async () =>
+      finish({ ...recorded.delivery!, status: "sent", error: null })
+    )
+    expect(callbacks.onResolved).toHaveBeenCalledOnce()
+    expect(ops.approve).not.toHaveBeenCalled()
+    expect(ops.deny).not.toHaveBeenCalled()
   })
 })
 

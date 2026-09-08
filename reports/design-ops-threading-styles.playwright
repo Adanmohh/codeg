@@ -1,0 +1,52 @@
+async (page) => {
+  const workspace = page.context().pages().find(p => p.url().endsWith('/workspace'))
+  const appearance = page.context().pages().find(p => p.url().endsWith('/settings/appearance'))
+  if (!workspace?.url().startsWith('http://127.0.0.1:4326/') || !appearance) throw Error('Owned fixture only')
+  await appearance.getByRole('combobox').first().click()
+  await appearance.getByRole('option', { name: 'Dark', exact: true }).click()
+  await workspace.waitForFunction(() => document.documentElement.classList.contains('dark') && document.documentElement.style.colorScheme === 'dark')
+  await workspace.waitForTimeout(400)
+  await workspace.setViewportSize({ width: 1280, height: 900 })
+  await workspace.getByRole('button', { name: 'Inbox', exact: true }).click()
+  await workspace.getByRole('button', { name: 'Reply draft', exact: true }).click()
+  const facts = []
+  for (const view of ['thread', 'review']) {
+    if (view === 'review') {
+      await workspace.getByRole('button', { name: 'Approvals', exact: true }).click()
+      await workspace.getByRole('button', { name: /Re: Synthetic locale review Task/ }).click()
+    }
+    const details = workspace.locator('article details')
+    const inspect = async state => {
+      const fields = []
+      for (const label of ['In-Reply-To · message ID', 'References · one message ID per line']) {
+        const input = workspace.getByLabel(label, { exact: true })
+        const visible = await input.isVisible()
+        const measured = await input.evaluate(el => {
+          const style = getComputedStyle(el)
+          return {
+            value: el.value, color: style.color, background: style.backgroundColor,
+            ancestors: [...function* () { for (let p = el.parentElement; p; p = p.parentElement) yield p }()].map(p => ({ tag: p.tagName, background: getComputedStyle(p).backgroundColor })),
+            detailsOpen: el.closest('details').open,
+            nativeVisibility: el.checkVisibility(),
+            rects: el.getClientRects().length, disabled: el.disabled,
+            theme: document.documentElement.className,
+            colorScheme: document.documentElement.style.colorScheme,
+            preference: localStorage.getItem('theme'),
+          }
+        })
+        fields.push({ label, visible, ...measured })
+      }
+      facts.push({ view, state, fields })
+    }
+    if (await details.getAttribute('open') !== null) await details.locator('summary').click()
+    await inspect('closed')
+    await details.locator('summary').scrollIntoViewIfNeeded()
+    await workspace.screenshot({ path: `reports/browser-design-ops/threading-${view}-dark-closed.png` })
+    await details.locator('summary').click()
+    await workspace.waitForTimeout(400)
+    await workspace.getByLabel('References · one message ID per line').scrollIntoViewIfNeeded()
+    await inspect('open')
+    await workspace.screenshot({ path: `reports/browser-design-ops/threading-${view}-dark-open.png` })
+  }
+  return { syntheticOnly: true, realAppearanceSetting: 'dark', facts }
+}

@@ -1,0 +1,177 @@
+{
+  "surface": "Pending human review",
+  "viewport": "desktop",
+  "theme": "dark",
+  "scope": "Ops thread/review only; inherited shell is outside this measurement",
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#fafafa",
+      "#0a0a0a",
+      "#262626",
+      "#a1a1a1",
+      "#151a18",
+      "#181818",
+      "#151515",
+      "#4b4b4b",
+      "#111111",
+      "#171717",
+      "#9bd4c5",
+      "#3b1c1d"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      12,
+      14,
+      16,
+      20
+    ],
+    "spacingPx": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      20,
+      24
+    ],
+    "radiiPx": [
+      10
+    ]
+  },
+  "contrast": {
+    "checked": 50,
+    "failures": [
+      {
+        "text": "sentinel.parent@example.com",
+        "fg": "#0a0a0a",
+        "bg": "#4b4b4b",
+        "ratio": 2.27,
+        "required": 4.5
+      },
+      {
+        "text": "sentinel.first@example.com\nsentinel.parent@example.com",
+        "fg": "#0a0a0a",
+        "bg": "#4b4b4b",
+        "ratio": 2.27,
+        "required": 4.5
+      }
+    ]
+  },
+  "motion": {
+    "transitionsCount": 16,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": null,
+    "reducedMotionEffective": false,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "snapshot": "- region \"Ops desk\":\n  - navigation \"Ops views\":\n    - button \"Inbox\"\n    - button \"Approvals\"\n    - button \"Morning\"\n  - button \"Telegram notifications\"\n  - button \"Refresh\"\n  - complementary \"Proposal queue\":\n    - heading \"Review queue\" [level=1]\n    - paragraph: Pending first, then recent decisions. Approval alone is not delivery.\n    - list:\n      - listitem:\n        - 'button \"Re: Synthetic locale review Task #1 · Run 1 Pending human review\"'\n      - listitem:\n        - 'button \"Reply review #6 Task #6 · Run 1 Denied · not sent\"'\n      - listitem:\n        - 'button \"Reply review #5 Task #5 · Run 1 Not sent · needs attention\"'\n      - listitem:\n        - 'button \"Reply review #4 Task #4 · Run 1 Delivery unconfirmed · do not resend\"'\n      - listitem:\n        - 'button \"Reply review #3 Task #3 · Run 1 Sent · provider accepted\"'\n      - listitem:\n        - 'button \"Reply review #2 Task #2 · Run 1 Provider accepted · recording pending\"'\n  - article:\n    - paragraph: \"Proposal #1 · Task #1 · Run 1 · Support\"\n    - heading \"Pending human review\" [level=1]\n    - button \"Open original thread\"\n    - paragraph: \"Draft #1 · Revision 1. Review all recipients and the complete message below. Edits apply to this approval; the saved draft is not reread for delivery.\"\n    - text: From · inbox identity\n    - textbox \"From · inbox identity\": support@example.com\n    - text: To\n    - textbox \"To\": sentinel.reader@example.com, second@example.com\n    - text: Cc\n    - textbox \"Cc\": sentinel.cc@example.com\n    - text: Bcc · hidden from other recipients\n    - textbox \"Bcc · hidden from other recipients\": sentinel.bcc@example.com\n    - paragraph: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.\n    - text: Subject\n    - textbox \"Subject\": مراجعة Private sentinel mobile dark (42)\n    - text: Reply message\n    - textbox \"Reply message\": \"Private sentinel mobile dark: complete review (42).\"\n    - group: Thread headers · part of the complete payload\n    - paragraph: Plain text only. Attachments are not supported in this draft.\n    - status: Approving sends this exact reply through Resend. Check To, Cc and Bcc before continuing.\n    - button \"Approve and send reply\"\n    - button \"Deny proposal\"",
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#fafafa rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151a18 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#181818 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#4b4b4b rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#111111 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#171717 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#3b1c1d rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    }
+  ],
+  "targetsUnder44": [],
+  "inputsUnder16": [
+    {
+      "name": "From · inbox identity",
+      "size": "14px"
+    },
+    {
+      "name": "To",
+      "size": "14px"
+    },
+    {
+      "name": "Cc",
+      "size": "14px"
+    },
+    {
+      "name": "Bcc · hidden from other recipients",
+      "size": "14px"
+    },
+    {
+      "name": "Subject",
+      "size": "14px"
+    },
+    {
+      "name": "Reply message",
+      "size": "14px"
+    },
+    {
+      "name": "In-Reply-To · message ID",
+      "size": "14px"
+    },
+    {
+      "name": "References · one message ID per line",
+      "size": "14px"
+    }
+  ],
+  "horizontalOverflow": false,
+  "viewportOverflow": false
+}

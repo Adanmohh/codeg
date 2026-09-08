@@ -1,0 +1,89 @@
+{
+  "file": "src/components/ops/proposals-view.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": true,
+    "activeState": false,
+    "aria": true,
+    "role": false,
+    "emptyState": true,
+    "errorState": true,
+    "motion": false,
+    "responsive": true,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": false,
+    "tabpanelRole": false,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": true,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #0a0a0a rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #ffffff rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #171717 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #f5f5f5 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #737373 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #eef2f2 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #434444 rendered but not in brief palette."
+    },
+    {
+      "sev": "med",
+      "msg": "MEASURED brief violation (off-palette-color): #f7f7f7 rendered but not in brief palette."
+    },
+    {
+      "sev": "low",
+      "msg": "probe: +6 more brief violations in probe.json"
+    }
+  ],
+  "probe": {
+    "ok": true,
+    "checked": 48
+  }
+}
+
+SUMMARY src/components/ops/proposals-view.tsx: 9 gap(s) — [med] MEASURED brief violation (off-palette-color): #0a0a0a rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #ffffff rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #171717 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #f5f5f5 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #737373 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #eef2f2 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #434444 rendered but not in brief palette.  |  [med] MEASURED brief violation (off-palette-color): #f7f7f7 rendered but not in brief palette.  |  [low] probe: +6 more brief violations in probe.json

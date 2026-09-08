@@ -1,6 +1,6 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. Typed P1 phone review is also accepted. Pi P1 bridge integration, final Design Studio fixes and combined native build remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. Typed P1 phone review is also accepted. Pi P1 bridge integration, final combined Design Studio review and native build remain.
 
 ## Current position
 
@@ -13,7 +13,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 reviewed and merged; independent 167 integrated Rust tests plus host/Python/frontend and protected CLI checks pass | Pi cached reads/proposal and typed phone integration |
 | Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
-| Final Design Studio loops | PR #13 shell/Pi corrections reviewed and merged; six scoped findings resolved | PR #14 locale/RTL/copy browser acceptance and final integrated review |
+| Final Design Studio loops | PRs #13 and #14 corrections reviewed and merged; shell, locale, RTL, receipt copy and selected contrast pass | Final integrated specialist review, verify remaining motion/probe candidates |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
@@ -332,3 +332,11 @@ that merge inspection. No product implementation is delegated to root.
 - Ops design correction and Pi P1 bridge workers continue; final combined Design Studio loop and rebuilt native app remain required. No live provider calls or root product changes.
 
 - Approvals dispatched to separate report-only `review/design-phase1`, same worktree/pane, deliverable `reports/design-phase1-specialist.md`. It will map BC1–18, run actual Design Studio methods and CLI on the accepted combined UI after PR14; no product edits or fourth worker. Root retains independent synthesis/fix coordination.
+
+- Pi P1 product `b15f11a7` and accepted-main integration `ae131cf8` reviewed; independent four real bridge/host tests pass, including cache immutability, scoped closed input, human floor and cancellation. Actual adapter discovery/browser and final gates remain. [Review](reports/review-pi-issues.md).
+
+## Ops design corrections accepted
+
+- PR #14 accepted at `e7f89b611e8a229fb557f03efb9627001fc06372`, merged as `b7186ba65b2155bdba695ea6364f3ac267fbc51c`. Full final report, source, attribution/ignore-only merge resolutions and typecheck reviewed. Independent22 tests and actual complete seven-field review/reply/note locale CLI pass; worker92 frontend tests, runtime/Clippy/export gates and468 scoped text measurements pass at their documented heads.
+- Selected metadata improves4.2→8.66 light/9.76 dark. Visible threading inputs pass; closed-details probe artifacts and literal OKLCH/composite mismatches are documented. Remaining reduced-motion candidate needs property/behavior verification in the final review. [Review](reports/review-design-ops.md).
+- Final design reviewer is unblocked to integrate accepted UI and export separately. Pi P1 implementation/real companion/browser verification continues. Final integrated native build remains pending.
