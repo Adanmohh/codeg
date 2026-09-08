@@ -2,7 +2,9 @@
 
 Review is in progress, frozen to tickets' published draft
 **79a922945668a633ea6b5f7e68f9bdc08a0725a3**, draft [PR25](https://github.com/Adanmohh/codeg/pull/25).
-The owner's final consistency/source ledger remains pending. **No implementation
+The owner has also published amendment **85f6001f2fa8f9d33748ceddbf7980ce68942ede**;
+its final consistency read and reconciliation with the access seam are pending.
+**No implementation
 or runtime acceptance is claimed.** This review changes no product, configuration,
 dependency, provider, build target, export or fixture.
 
@@ -41,12 +43,31 @@ not an implemented boundary.
 
 ## Remaining bounded review
 
-The important prerequisite is a closed, protected binding/grant/publication API.
-The draft currently reserves its implementation separately. Review will specify
-the smallest callable operator contract and transaction interfaces needed to make
-B usable, including first-owner import grants, scope/credential rebind fencing,
-publication ceilings and revocation. Configuration alone cannot grant disclosure
-or turn an ordinary owner credential into operator authority.
+The concrete proposal is now [business-intake-access.md](../docs/contracts/business-intake-access.md):
+closed operator setup/list/status/create/update/disable and explicit grant
+upsert/revoke, immutable binding identity, publication ceilings, staged secret
+activation and same-transaction helper ownership. Root accepted an explicit
+binding-wide audience for B1, including retained historical versions and current/
+future imports; no source-owner/assignment inference or grant is created implicitly.
+Current fresh access still gates historical disclosure. The named owner's member
+revision is pinned and rechecked, with protected revalidation after any drift.
+Credential-store writes are
+separate from SQLite; failure/uncertain commit/late write and rebind fences are
+specified without a global credential-store rewrite.
+
+The existing server `keyring_store.rs` blob
+`29fc3fb38280338aa26939c45f80ef9aefc2a394`, lines 80–117, turns read/parse failures
+into an empty map before a set/delete writes the whole map. Tickets identified
+this prerequisite; this review independently read the exact paths. A strict
+writer-read under the existing process-local lock must fail without replacing
+unreadable/corrupt stores; only a true missing file may start empty. This is an
+explicit B prerequisite and future failure-preservation gate, not a product fix
+or executed test in this review.
+
+Independent source review also calls for a source-scoped refresh fence across
+distinct imports, not merely each import's own attempt lease. The older response
+from import A must not overwrite a newer source observation committed by import B.
+The proposal includes this requirement and its eventual regression.
 
 Also inspect operation-receipt/claim recovery, current actor versus original
 requester history, source freshness races, publication/link receipts and existing
