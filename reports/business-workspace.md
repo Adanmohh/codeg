@@ -189,6 +189,25 @@ long-frame counts and assistive technology were not assessed.
 
 ## Live owned review fixture
 
+**Independent review window:** root and approvals are reviewing frozen UI head
+a126730274c8a3dc822345da536eebed1f8dc253 / product33b9cbcb. The URL/export
+below stays frozen while accepted task main is integrated in this branch. Root
+may read existing records; approvals may create two uniquely named Synthetic
+review members and new tasks for its own draft/review flows. Existing Amal,
+Samira and previously captured tasks remain reserved for read-only comparison.
+No frontend-worker fixture mutations are in progress. New verification builds
+will use a separate ignored export and will not replace this live export.
+
+Reviewer setup: open **Administrator access**, select **Original administrator
+token**, enter the public fixture-only literal below, then Connect. Organization
+already exists. In People & agents, create a human Member and human Manager with
+the required task areas (e.g. Marketing/Website/Feedback), and intentionally issue
+each a personal access token through its member detail. Use those two personal
+accounts in the reviewer's own CLI sessions; keep issued values only in memory,
+masked except during intentional transfer, and out of snapshots/reports/storage.
+All new review data is confined to this temporary synthetic backend. No existing
+worker browser session needs to be attached or changed.
+
 Open **http://127.0.0.1:4340/business.html**. Static proxy **PID36044** serves own
 out-business-workspace; guarded real task API **PID81950 on4342** owns temporary
 disk SQLite. Named CLI session hosts: business-owner4340 **PID85074** (personal Amal
