@@ -437,6 +437,72 @@ describe("typed local IPC", () => {
 })
 
 describe("Pi mutable hook boundary", () => {
+  it("keeps business contributions scoped, revisioned, nonterminal and exact after mutable hooks", async () => {
+    for (const [tool, input] of [
+      ["desk_business_task", { taskId: "another-task" }],
+      ["desk_business_progress", { expectedRevision: 2, status: "done" }],
+      ["desk_business_progress", { expectedRevision: 2, status: "cancelled" }],
+      ["desk_business_note", { expectedRevision: 0, body: "note" }],
+      [
+        "desk_business_submit",
+        { expectedRevision: 2, body: "draft", actor: "human" },
+      ],
+      [
+        "desk_business_submit",
+        { expectedRevision: 2, body: "x".repeat(20001) },
+      ],
+    ] as const)
+      expect(() => snapshotCall(tool, input)).toThrow()
+
+    const tools = new Map<
+      string,
+      { execute: (...args: unknown[]) => Promise<{ isError?: boolean }> }
+    >()
+    const events = new Map<string, () => void>()
+    let release!: (outcome: DeskResponse) => void
+    const calls: DeskCall[] = []
+    installDesk(
+      {
+        events: { on() {} },
+        on(name: string, handler: () => void) {
+          events.set(name, handler)
+        },
+        registerCommand() {},
+        registerTool(tool: { name: string }) {
+          tools.set(tool.name, tool as never)
+        },
+      } as unknown as ExtensionAPI,
+      {
+        call(call) {
+          calls.push(call)
+          return new Promise((done) => {
+            release = done
+          })
+        },
+      }
+    )
+    const execute = tools.get("desk_business_submit")!.execute
+    expect(
+      (
+        await execute("forged", {
+          expectedRevision: 2,
+          body: "draft",
+          approve: true,
+        })
+      ).isError
+    ).toBe(true)
+    expect(calls).toHaveLength(0)
+    const input = { expectedRevision: 2, body: "Exact deliverable" }
+    const pending = execute("submission", input)
+    input.body = "Late replacement"
+    events.get("session_shutdown")!()
+    release({ ok: true, value: { revision: 3 } })
+    expect((await pending).isError).toBe(true)
+    expect(calls[0]).toEqual({
+      tool: "desk_business_submit",
+      input: { expectedRevision: 2, body: "Exact deliverable" },
+    })
+  })
   it("rejects caller identity, header injection and unexpected draft fields", () => {
     expect(() => snapshotCall("desk_context", { accountId: 4 })).toThrow()
     expect(() =>

@@ -625,6 +625,63 @@ bf4309f5abdb077fd8e1a8e42db4861dadcda24b; public task activity was read at
 implementation, AGPL/GPL-derived hunk or new third-party dependency is copied
 into this frontend. All existing source and license notices remain unchanged.
 
+Shared organization business tasks (2026)
+========================================
+Adapts xintaofei/codeg v0.30.4, Apache-2.0,
+6f6bd648b206412644842a98d9ffeebf57292bed:
+  src-tauri/src/db/entities/{work_task,work_task_event}.rs
+    (typed states and append-only task activity)
+  src-tauri/src/db/service/work_task_service.rs
+    (conditional updates with events in the same transaction)
+  src-tauri/src/db/migration/m20260801_000001_work_task.rs
+    (task/event entity and migration registration patterns)
+Accepted Adanmohh/codeg 4ec04d7282a50529335d724438d42b99a53385a2:
+  src-tauri/src/ops/{agent,types}.rs
+    (closed input and transaction-rechecked live executor binding)
+  src-tauri/src/db/migration/m20260908_000008_ops_telegram_issues.rs
+    (explicit SQLite migration transaction)
+Business fields and organization/revision glue implement the owner-approved
+docs/BUSINESS-IMPLEMENTATION.md. IntroInnovation/intromail (owner-authorized)
+0bd24dfe284b888aa9f602fa1fd00e337ea38874, backend/app/models.py (Task basic
+title/notes/due/creator fields), backend/app/services/task_ops.py and
+backend/app/services/agent/tasks_pack.py
+inform the common human-agent operation boundary. No favorites, relations,
+watchers, source-key or field-journal implementation from its copyleft-source
+research is copied. The source create/PATCH authorization omissions are not
+retained. Original Apache LICENSE and every preceding notice remain in force.
+No GPL/AGPL or additional dependency implementation is imported.
+
+The business task HTTP/native and scoped contribution bridge reuse accepted
+Adanmohh/codeg 4ec04d7282a50529335d724438d42b99a53385a2,
+src-tauri/src/{work_task/desk.rs,work_task/engine.rs,acp/desk.rs},
+src-tauri/src/acp/delegation/{listener,companion,transport}.rs, and their
+task/listener cancellation tests. Private authenticated principal helpers are
+the owner-written business_identity module at
+861fb0ef4394d4980a19ba375bb4c1f3f218d39b. They preserve the original human
+credential lineage; no operator identity is minted from an executor ID.
+The existing Pi MIT extension adds four closed business contribution DTOs using
+the same pi0.85.1 d981de1229ef899957bbe968bc8dcda02a21f477 extension
+types/runner/example patterns already attributed above. The pi-mcp-adapter MIT
+broker and three cached-read restriction remain unchanged. All original
+Mario Zechner/Nico Bailon MIT notices and LICENSE remain intact.
+
+The task-only manual loopback fixture adapts the accepted identity fixture
+src-tauri/src/business_identity/tests/fixture.rs at
+05e1ab7043eeadab753dbb2c6c6922661fff5c42, under this product's Apache-2.0
+LICENSE. It uses its own synthetic database/port and the real protected task
+router, with no engine or provider startup. Source entrustment and exact
+business-agent ownership checks are new authorization glue over the same
+Codeg lifecycle mutex and identity writer transaction; no additional upstream
+task, authorization or workflow implementation is copied.
+The task browser evidence scripts adapt the accepted
+reports/business-identity-evidence/{browser-api,browser-second-session}.js
+at d9882b68b268b516b1d1a24031862a022a797899, Apache-2.0, as test orchestration
+only. Installed Playwright CLI0.1.18 / Playwright1.63.0-alpha-2026-08-05 types
+are API references; no dependency implementation is copied or upgraded.
+The extracted Pi process fixture uses pi-mcp-adapter2.32.1 index.ts:642-680 at
+10a45367e033a32026987a75d6f401e37340c86f as a lifecycle reference: eager
+initialization completes asynchronously. Bounded polling verifies real tool
+registration without changing adapter source or making a model request.
 
 Business member identity boundary (2026)
 ========================================

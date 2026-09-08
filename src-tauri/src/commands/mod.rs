@@ -5,6 +5,7 @@ pub mod automation;
 pub mod background;
 pub mod backup;
 pub mod business_identity;
+pub mod business_tasks;
 pub mod canvas;
 pub mod chat_authoring;
 pub mod chat_channel;

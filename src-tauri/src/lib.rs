@@ -18,6 +18,7 @@ pub mod app_state;
 pub mod automation;
 pub mod backgrounds;
 pub mod business_identity;
+pub mod business_tasks;
 pub mod chat_channel;
 pub mod commands;
 pub mod db;
@@ -1563,6 +1564,19 @@ mod tauri_app {
                 token_usage_commands::token_usage_status,
                 token_usage_commands::token_usage_sync,
             work_task_commands::work_task_list,
+            crate::commands::business_tasks::business_tasks_list,
+            crate::commands::business_tasks::business_tasks_get,
+            crate::commands::business_tasks::business_tasks_create,
+            crate::commands::business_tasks::business_tasks_update,
+            crate::commands::business_tasks::business_tasks_assign,
+            crate::commands::business_tasks::business_tasks_progress,
+            crate::commands::business_tasks::business_tasks_note,
+            crate::commands::business_tasks::business_tasks_submit,
+            crate::commands::business_tasks::business_tasks_review,
+            crate::commands::business_tasks::business_tasks_cancel,
+            crate::commands::business_tasks::business_tasks_archive,
+            crate::commands::business_tasks::business_tasks_link_execution,
+            crate::commands::business_tasks::business_tasks_entrust_execution,
             crate::commands::ops::ops_context,
             crate::commands::business_identity::business_context,
             crate::commands::business_identity::business_bootstrap,

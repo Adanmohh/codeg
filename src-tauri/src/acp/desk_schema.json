@@ -280,5 +280,97 @@
       "properties": {},
       "additionalProperties": false
     }
+  },
+  {
+    "name": "desk_business_task",
+    "description": "Read the public business task linked to this live run. No caller task, actor, credential or organization; missing/revoked linkage requires human recovery.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "desk_business_progress",
+    "description": "Update this linked task at its expected revision to todo, in_progress or review. No done/cancelled or approval; current assignment, delegating credential and live run are required.",
+    "inputSchema": {
+      "type": "object",
+      "required": [
+        "expectedRevision",
+        "status"
+      ],
+      "properties": {
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "status": {
+          "anyOf": [
+            {
+              "const": "todo",
+              "type": "string"
+            },
+            {
+              "const": "in_progress",
+              "type": "string"
+            },
+            {
+              "const": "review",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "desk_business_note",
+    "description": "Append a public note on this linked task at its expected revision. Backend authorship only; no provider action.",
+    "inputSchema": {
+      "type": "object",
+      "required": [
+        "expectedRevision",
+        "body"
+      ],
+      "properties": {
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "desk_business_submit",
+    "description": "Submit an exact public deliverable on this linked task for human review at its expected revision. No approval, completion or external action.",
+    "inputSchema": {
+      "type": "object",
+      "required": [
+        "expectedRevision",
+        "body"
+      ],
+      "properties": {
+        "expectedRevision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20000
+        }
+      },
+      "additionalProperties": false
+    }
   }
 ]
