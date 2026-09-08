@@ -892,3 +892,15 @@ Installed Tailwind CSS4.1.18 manifest/source and the accepted @container /
 @[20rem] source pattern are the API authority. No dependency source, new
 runtime or AGPL/GPL code is ported. Original Apache-2.0 LICENSE and every
 preceding attribution section remain intact.
+
+Business primary-action contrast correction (2026):
+src/components/business/ui.tsx reuses the paired neutral/blue/violet semantic
+colors from src/app/globals.css and Button/Action variants from
+src/components/ui/button.tsx and src/components/business/ui.tsx at
+Adanmohh/codeg a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0).
+The business wrapper reduces the inherited primary hover fade and selects an
+existing scoped foreground for measured Blue/Violet failures. It changes no
+global token, default shared Button, role, action or API behavior. Installed
+Tailwind CSS4.1.18 opacity utilities and React19.2.4 context are references;
+no dependency implementation or AGPL/GPL source is copied. Original LICENSE
+and every preceding attribution remain intact.

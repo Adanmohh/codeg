@@ -31,11 +31,22 @@ export function Action({
   type = "button",
   ...props
 }: ComponentProps<typeof Button>) {
+  const appearance = useWorkspaceAppearance()
+  const primary = !props.variant || props.variant === "default"
   return (
     <Button
       type={type}
       className={cn(
         "min-h-11 rounded-xl px-4 motion-reduce:transition-none",
+        // The inherited 80% hover fade loses text contrast on light presets.
+        // Use existing scoped colors: Blue's background works in both modes;
+        // light Violet needs its dark foreground on the brighter primary fill.
+        primary && "hover:bg-primary/95",
+        primary && appearance.palette === "blue" && "text-background",
+        primary &&
+          appearance.palette === "violet" &&
+          !appearance.dark &&
+          "text-foreground",
         props.variant === "destructive" &&
           "text-red-800 focus-visible:border-red-800 focus-visible:ring-red-800 dark:text-red-300 dark:focus-visible:border-red-300 dark:focus-visible:ring-red-300",
         className
