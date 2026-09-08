@@ -141,6 +141,7 @@ function TaskEditor({
   const [conflicted, setConflicted] = useState(false)
   const [current, setCurrent] = useState<TaskDetail | null>(null)
   const [discard, setDiscard] = useState(false)
+  const [pendingSource, setPendingSource] = useState<SourceSummary | null>(null)
   const [confirm, setConfirm] = useState<"cancel" | "archive" | null>(null)
   const task = detail.task
   const cap = task.capabilities
@@ -162,7 +163,26 @@ function TaskEditor({
   const locked = busy || conflicted || !!current
   function close() {
     if (busy) return
+    setPendingSource(null)
     if (dirty) setDiscard(true)
+    else onClose()
+  }
+  function openSource(source: SourceSummary) {
+    if (busy || !onSource) return
+    if (dirty) {
+      setPendingSource(source)
+      setDiscard(true)
+    } else onSource(source)
+  }
+  function stay() {
+    setDiscard(false)
+    setPendingSource(null)
+  }
+  function discardAndLeave() {
+    if (busy) return
+    setDiscard(false)
+    setPendingSource(null)
+    if (pendingSource && onSource) onSource(pendingSource)
     else onClose()
   }
   function failed(caught: unknown) {
@@ -568,7 +588,12 @@ function TaskEditor({
       )}
       <ActivityList detail={detail} members={members} />
       {onSource && (
-        <TaskSources taskId={task.id} client={client} onSource={onSource} />
+        <TaskSources
+          taskId={task.id}
+          client={client}
+          disabled={busy}
+          onSource={openSource}
+        />
       )}
       <details className="border-t pt-3">
         <summary className="focus-visible:ring-ring flex min-h-11 cursor-pointer items-center rounded-lg text-sm font-medium outline-none focus-visible:ring-2">
@@ -747,13 +772,13 @@ function TaskEditor({
         <Modal
           title={copy.discardTitle}
           description={copy.discardHint}
-          onClose={() => setDiscard(false)}
+          onClose={stay}
         >
           <div className="flex flex-wrap justify-end gap-3">
-            <Action variant="outline" onClick={() => setDiscard(false)}>
+            <Action variant="outline" onClick={stay}>
               {copy.stay}
             </Action>
-            <Action variant="destructive" onClick={onClose}>
+            <Action variant="destructive" onClick={discardAndLeave}>
               {copy.discardDraft}
             </Action>
           </div>

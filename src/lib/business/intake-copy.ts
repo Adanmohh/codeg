@@ -130,6 +130,12 @@ const english = {
   draftHint:
     "Write the task that should be shared. Saving here does not publish it or assign work.",
   unprepared: "Passages selected; task not prepared yet.",
+  noDestination:
+    "No task destination is available with your current source and task permissions.",
+  scopeConflict:
+    "This source operation changed or its revision is no longer current. Load its latest state before trying again.",
+  scopeMissing:
+    "This source or source operation is unavailable with your current access.",
   withheldDraft:
     "A prepared draft exists, but its contents are withheld by current source or destination access.",
   saveDraft: "Save private draft",
@@ -352,6 +358,10 @@ const arabic: IntakeCopy = {
   draft: "مسودة مهمة خاصة",
   draftHint: "اكتب المهمة المراد مشاركتها. الحفظ هنا لا ينشرها ولا يسند عملًا.",
   unprepared: "حُددت المقاطع ولم تُعد المهمة بعد.",
+  noDestination: "لا تتاح وجهة للمهمة بصلاحيات المصدر والمهام الحالية.",
+  scopeConflict:
+    "تغيّرت عملية المصدر أو لم تعد نسختها حالية. حمّل الحالة الأحدث قبل المحاولة مجددًا.",
+  scopeMissing: "المصدر أو عملية المصدر غير متاح بصلاحياتك الحالية.",
   withheldDraft:
     "توجد مسودة معدّة، لكن محتواها محجوب بصلاحية المصدر أو الوجهة الحالية.",
   saveDraft: "حفظ المسودة الخاصة",

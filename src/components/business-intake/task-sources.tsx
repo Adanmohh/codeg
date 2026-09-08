@@ -12,10 +12,12 @@ export function TaskSources({
   taskId,
   client,
   onSource,
+  disabled = false,
 }: {
   taskId: string
   client: BusinessClient
   onSource: (source: SourceSummary) => void
+  disabled?: boolean
 }) {
   const copy = useIntakeCopy()
   const common = useBusinessCopy()
@@ -81,6 +83,7 @@ export function TaskSources({
               {link.accessible && link.source ? (
                 <Action
                   variant="outline"
+                  disabled={disabled}
                   className="h-auto min-h-11 max-w-full whitespace-normal text-start"
                   onClick={() => {
                     if (link.source) onSource(link.source)

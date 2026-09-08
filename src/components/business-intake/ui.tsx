@@ -34,6 +34,21 @@ export function IntakeError({
         {children}
       </div>
     )
+  if (
+    error instanceof BusinessError &&
+    (error.kind === "conflict" || error.kind === "missing")
+  )
+    return (
+      <div
+        role="alert"
+        className="border-border bg-muted/50 space-y-3 rounded-xl border p-4 text-sm leading-relaxed"
+      >
+        <p>
+          {error.kind === "conflict" ? copy.scopeConflict : copy.scopeMissing}
+        </p>
+        {children}
+      </div>
+    )
   return <ErrorNotice error={error}>{children}</ErrorNotice>
 }
 

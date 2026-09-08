@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { BusinessError, type BusinessClient } from "@/lib/business/client"
 import type { CandidateDetail, IntakeImport } from "@/lib/business/intake"
 import { BusinessWorkspace } from "@/components/business/workspace"
+import { TaskDetailDialog } from "@/components/business/task-detail"
 import {
   context,
   detail as taskDetail,
@@ -616,6 +617,59 @@ describe("business Sources privacy and exact human decisions", () => {
       screen.getByRole("button", { name: /Synthetic customer conversation/ })
     )
     expect(open).toHaveBeenCalledWith(read.source)
+  })
+  it("keeps an unsaved task brief until source navigation is explicitly confirmed", async () => {
+    const reading = source()
+    intake.mockResolvedValue({
+      links: [
+        {
+          linkId: "synthetic-source-link",
+          accessible: true,
+          source: reading.source,
+        },
+      ],
+    })
+    const open = vi.fn()
+    const close = vi.fn()
+    const detail = taskDetail()
+    render(
+      wrapper(
+        <TaskDetailDialog
+          taskId={detail.task.id}
+          initial={detail}
+          client={client}
+          actor={member}
+          members={[member]}
+          onClose={close}
+          onChanged={onChanged}
+          onSource={open}
+        />
+      )
+    )
+    fireEvent.click(screen.getByRole("button", { name: "Edit task" }))
+    fireEvent.change(screen.getByLabelText("Brief"), {
+      target: { value: "Synthetic unsaved task brief" },
+    })
+    fireEvent.click(screen.getByText("Source references"))
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: /Synthetic customer conversation/,
+      })
+    )
+    expect(open).not.toHaveBeenCalled()
+    expect(close).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole("button", { name: "Keep editing" }))
+    expect(screen.getByLabelText("Brief")).toHaveValue(
+      "Synthetic unsaved task brief"
+    )
+    fireEvent.click(
+      screen.getByRole("button", { name: /Synthetic customer conversation/ })
+    )
+    fireEvent.click(screen.getByRole("button", { name: "Discard my draft" }))
+    expect(open).toHaveBeenCalledTimes(1)
+    expect(open).toHaveBeenCalledWith(reading.source)
+    expect(close).not.toHaveBeenCalled()
+    expect(tasks).not.toHaveBeenCalled()
   })
 })
 

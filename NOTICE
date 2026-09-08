@@ -809,3 +809,14 @@ dependency implementation is copied. React19.2.4/@types-react19.2.13,
 TypeScript5.8.3, Next16.1.6, Tailwind4.1.18 and Vitest2.1.9 installed source,
 types and CLI help are API references only. Original Codeg Apache-2.0 LICENSE
 and all preceding attribution remain unchanged.
+
+Business Sources synthetic export fixture (test evidence only):
+reports/business-intake-ui-evidence/serve.mjs adapts Apache-2.0
+reports/business-workspace-evidence/serve.mjs at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d. It restricts the listener to the owned
+loopback4350 and forwards only the closed business/intake and human-task calls
+to the separately guarded synthetic backend4351. No engine/legacy API or
+WebSocket forwarding, credential/body logging, provider implementation or
+production server change. Node24.19.0 and installed @types/node25.2.2 existing
+http/fs/path definitions are references; no newer-only API is introduced.
+Original Apache-2.0 LICENSE and every prior attribution remain intact.

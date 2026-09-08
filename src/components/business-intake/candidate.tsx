@@ -135,7 +135,12 @@ export function CandidateReview({
     JSON.stringify(selection) !==
     JSON.stringify(detail.passages.map((passage) => passage.id))
   const locked =
-    busy || unknown || conflicted || current !== null || decision !== null
+    !active ||
+    busy ||
+    unknown ||
+    conflicted ||
+    current !== null ||
+    decision !== null
   const readySelection =
     visible &&
     validPassages(reading.passages, selection, reading.source.revision)
@@ -471,6 +476,12 @@ export function CandidateReview({
         <p className="text-muted-foreground text-sm leading-relaxed">
           {copy.draftHint}
         </p>
+        {!authoritative.candidate.hasPreparedDraft && (
+          <p className="text-sm">{copy.unprepared}</p>
+        )}
+        {cap.publicationDomains.length === 0 && (
+          <p className="text-muted-foreground text-sm">{copy.noDestination}</p>
+        )}
       </header>
       {error != null && <IntakeError error={error} />}
       {unknown && (

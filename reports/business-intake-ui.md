@@ -1,6 +1,6 @@
 # Business Sources implementation
 
-Status: wired frontend checkpoint on `feat/business-intake-ui`, based on accepted
+Status: compiling wired frontend checkpoint on `feat/business-intake-ui`, based on accepted
 `a40b03393a466672060066ae6e0e8c9054a2349d`. No B runtime or browser pass is claimed.
 The accepted A workspace, native chrome, paused visual checkpoint and existing
 fixtures/exports are preserved. This worker owns frontend glue only; tickets
@@ -93,18 +93,18 @@ docs exit 3 because the rebrand installed-doc corpus is absent. This is a
 coverage limitation, not a successful dependency-doc retrieval; local installed
 source supplies the API grounding. No corpus/dependency install or upgrade.
 
-Tickets reports contract unchanged and an upcoming immutable DTO/API checkpoint.
-Its current uncommitted `business_intake/types.rs` and `error.rs` were read as
-provisional transcription, not accepted implementation evidence. They match the
-closed route/DTO plan, including explicit `PreparedTask`, nullable initial source
-revision, metadata-only disclosure, candidate flags and safe reasons. The
-frontend will reconcile against the first committed typed checkpoint before
-claiming integrated runtime validation.
+Tickets' immutable DTO checkpoint `9a4c8c882cec938665bc233b4d658d8de019ccfd`
+matches the frontend transcription. Its later setup checkpoint `67708b07`
+reports eight bindings/grants HTTP/native operations exposed through the existing
+Principal boundary. Source/import/candidate routes are not exposed at that
+checkpoint. This report does not claim an integrated endpoint or fixture pass.
 
 Reviewer preparation: `599aa1e6b74c0841ab2753dd58c806cae0c83dcd`,
 `reports/review-business-intake.md`. No browser or fixture is active for B.
-Proposed new owned UI port: **4350**; backend/reviewer ports within 4351–4353
-must be coordinated before launch. No old listener, export or browser is changed.
+Root reserved owned UI **4350**, tickets' protected synthetic backend **4351**
+and synthetic upstream **4352**. No B listener/browser has started here. Exact
+registered backend source and synthetic access must be coordinated before launch.
+No old listener, export or browser is changed.
 
 ## Checks and remaining work
 
@@ -112,12 +112,13 @@ must be coordinated before launch. No old listener, export or browser is changed
 - `git fetch origin`, fresh branch creation: exit 0.
 - Contract local/immutable GH byte checks: both hashes match, exit 0.
 - Installed-source reads and live hook audit inspection: exit 0.
-- Product tests/typecheck/lint/export/browser checks: not yet run for B.
+- Frontend focused tests, typecheck, scoped lint and first isolated export pass;
+  exact commands and scope appear below. Real B browser/API checks remain pending.
 
-Remaining: implement typed client and real source/task composition; reconcile
-backend checkpoint; focused privacy/CAS/receipt/role tests; isolated export;
-guarded real protected API fixtures with two synthetic users; actual Playwright
-CLI and measured Design Studio checks. Fireflies is the first complete slice;
+Remaining: reconcile executable backend checkpoint; guarded real protected API
+fixtures with two synthetic users; actual Playwright CLI and measured Design
+Studio checks, including the expanded main-workspace design scope below.
+Fireflies is the first complete slice;
 email and Hafidh remain obligations through the backend's safe projections.
 No live configuration, provider/model/engine action, send or deployment is
 authorized by these fixture checks.
@@ -140,7 +141,8 @@ for those two implementation mistakes; no target or dependency was upgraded.
 
 ## Wired composition checkpoint
 
-Client source is pushed at `13e6b516`. The new composition is reachable from
+Client source is pushed at `13e6b516`; wired product checkpoint is
+`f6a326c986f80ac53ae478c7e76a243d60d9610e`. The composition is reachable from
 **Business → Sources**, with My work, Shared work and Review retained in their
 existing order and role boundaries. Source calls are not preloaded on My work.
 `SourcesWorkspace` stays in the existing private session lifetime after first
@@ -174,7 +176,8 @@ Focused checkpoint checks:
 - `tsc --noEmit --incremental false`: exit 0 after fixing the new test helper's locale union and removing unsupported Testing Library ByRole `exact` options. The prior test-harness typecheck exited 2; expectations were retained.
 - Scoped ESLint across changed frontend source and tests: exit 0, zero warnings. Initial composition checks caught a missing existing Person fallback prop and an impure render/effect clock update; both were corrected using the inherited control contract and expiry callback.
 - No Rust/backend, dependency, lockfile, theme, session or native chrome edit.
-- Guarded backend/real browser/export/Design Studio acceptance remains pending.
+- First isolated export passed; guarded backend/real browser/Design Studio
+  acceptance remains pending.
 
 Reproducible logs are under `reports/business-intake-ui-evidence/`. Unit fixture
 records and responses are explicitly synthetic and excluded from product
@@ -184,3 +187,67 @@ an isolated export and real protected API4351 validation when tickets publishes
 its executable checkpoint. Fireflies, email and Hafidh controls use only their
 accepted operations; no enabled invented provider endpoint or synthetic product
 response was introduced.
+
+## Navigation and preview preparation checkpoint
+
+Source-reference navigation now uses the existing task editor's unsaved-change
+confirmation. Keep editing retains the exact private brief; only explicit
+discard opens the source, and a pending task mutation disables that navigation.
+A focused regression verifies no task write occurs. Candidate mutation controls
+also stay disabled while their source parent is checking current access. Source
+errors use source-specific safe copy, and an unprepared candidate with no
+permitted destination has an explicit state instead of a blank preparation area.
+
+`vitest run src/components/business-intake/workflow.test.tsx
+src/components/business/workflow.test.tsx`: **32/32 pass**, exit 0, including
+17 intake cases and 15 existing task cases. The first added-test run had one
+test-harness failure from an incorrect expected button label; it was corrected
+against existing `copy.ts` without weakening the behavior assertions.
+`tsc --noEmit --incremental false`: exit 0. Scoped ESLint for the changed intake
+components, task detail and intake copy: exit 0, zero warnings. `git diff --check`
+and the fixture's `node --check`: exit 0. These checks do not replace the pending
+actual API, rendered contrast/focus or two-user recovery validation.
+
+First export of unchanged product `f6a326c9`:
+`CODEG_EXPORT_DIR=.build/business-intake-ui-export NEXT_TELEMETRY_DISABLED=1 pnpm build`,
+exit 0, 34 static routes. `business.html` SHA256:
+`8b94b44e1efc663354c48d8461ab216b8eff96cf44ce5085cf0ec80993a463ba`.
+It predates the navigation correction and is **not** advertised as a corrected
+or accepted preview. No browser or backend was used for that build.
+
+Prepared, not launched: `reports/business-intake-ui-evidence/serve.mjs` serves
+only an owned export on loopback4350 and proxies the closed identity, human-task
+and intake operations to the separately guarded backend4351. It rejects legacy
+APIs, engine operations and WebSockets, and records only method/path/status.
+No response mocking, credentials/body logging or synthetic production state.
+Node syntax check passed; this does not establish backend readiness.
+
+## Expanded design workorder
+
+Owner steering now includes the existing business sidebar/navigation, tabs,
+list, board and task detail as well as Sources. Human/agent shared work and
+business decisions lead; engineering remains accessible in its accepted
+authorized context. This intake checkpoint is published before visual reshaping
+so its behavior remains independently reviewable.
+
+Next design pass will use Design Studio art-direction, checklist and measured
+audit methods across one coherent workspace, with real Playwright CLI before/
+after captures. Unit tests alone are not design acceptance. Root is publishing
+the concrete direction and reconciling tokens; existing user fonts/themes and
+native chrome remain authoritative meanwhile. No fake metrics, unsupported
+modules, new dependencies or global palette replacement.
+
+Tenant customization is a future validated presentation input: tenant brand,
+theme, permitted navigation/default view and role presets must remain separate
+from personal preferences and transport authority. Business-scoped presentation
+primitives should accept that contract without importing it into authentication
+or storing member credentials. There is no fake tenant switcher, arbitrary
+tenant JS/CSS, client-only isolation or invented config response. Root/approvals
+own the tenant boundary contract; this frontend will consume the accepted shape.
+
+The source-lint outputs under evidence are preliminary heuristic checks. The
+candidate scan's list/hover findings require inspecting the actual state and
+inherited Action styles; they are not a measured contrast or interaction verdict.
+`design-checklist.md` records pending observable gates. The accepted preview and
+all previous outputs stay unchanged until a corrected, explicitly identified
+synthetic preview is ready.
