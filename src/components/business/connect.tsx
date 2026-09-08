@@ -53,22 +53,22 @@ export function ConnectWorkspace({
   }
   return (
     <main className="bg-background h-dvh overflow-y-auto">
-      <header className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 px-6 py-6 sm:px-10">
+      <header className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 sm:px-10 sm:py-6">
         <Brand />
         <BusinessPreferences />
       </header>
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-10 pb-16 md:grid-cols-[minmax(0,1fr)_minmax(0,440px)] md:items-center md:gap-16 md:pt-20">
+      <div className="mx-auto grid max-w-6xl gap-6 px-6 pt-4 pb-10 md:grid-cols-[minmax(0,1fr)_minmax(0,440px)] md:items-center md:gap-16 md:pt-20 md:pb-16">
         <section className="min-w-0">
-          <p className="text-primary mb-5 text-sm font-semibold">
+          <p className="text-primary mb-3 text-sm font-semibold md:mb-5">
             {copy.workspace}
           </p>
-          <h1 className="max-w-xl text-4xl leading-[1.16] font-semibold tracking-tight sm:text-5xl">
+          <h1 className="max-w-xl text-3xl leading-[1.16] font-semibold tracking-tight sm:text-5xl">
             {copy.signInTitle}
           </h1>
-          <p className="text-muted-foreground mt-6 max-w-md text-base leading-relaxed">
+          <p className="text-muted-foreground mt-3 max-w-md text-sm leading-relaxed md:mt-6 md:text-base">
             {copy.signInLead}
           </p>
-          <div className="border-border mt-9 flex flex-wrap gap-x-6 gap-y-3 border-t pt-6 text-sm">
+          <div className="border-border mt-9 hidden flex-wrap gap-x-6 gap-y-3 border-t pt-6 text-sm md:flex">
             <span>{copy.owner}</span>
             <ArrowRight
               className="text-muted-foreground size-4 rtl:rotate-180"

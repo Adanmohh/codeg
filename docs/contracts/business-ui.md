@@ -151,3 +151,22 @@ build succeeded before the latest activity presentation addition. Actual runtime
 and browser checks remain pending real task fixture integration. English/Arabic
 business copy is supplied; other existing locales use English business copy.
 The fresh export is ignored and reserved; no 4340 process/browser is running yet.
+
+### R1 source-ownership alignment and actual fixture
+
+Task contract `1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5` adds
+`tasks/entrust-execution`, with the same `{taskId,expectedRevision,workTaskId}`
+input and native `business_tasks_entrust_execution`. The engineering detail shows
+this control only with server `legacyOperator` and an assigned agent. The human
+must explicitly confirm source ownership, then link separately using the returned
+revision. No auto-link or engine launch. Role-owner membership alone never shows
+entrustment; the backend remains authoritative. Any intervening edit invalidates
+the entrusted source revision and requires a new execution generation.
+
+The owned 4340 export guard is now running, with the real task fixture on4342.
+The task owner's initial listener closed after its own proof; an unchanged
+`git archive` snapshot of `1ba73e3c` was compiled in this worker's ignored build
+directory and started with a fresh in-memory database. This does not integrate
+unaccepted backend product code into the branch. Original 4326 and all other
+worktree outputs remain untouched. Two named CLI sessions are open; initial real
+context returned `needsBootstrap=true`. Task/member UI flows are next.

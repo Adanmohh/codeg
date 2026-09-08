@@ -612,6 +612,7 @@ export function BusinessWorkspace({
           client={client}
           actor={actor}
           members={members}
+          legacyOperator={context.capabilities.legacyOperator}
           onClose={() => setSelected(null)}
           onChanged={() => void reload()}
         />

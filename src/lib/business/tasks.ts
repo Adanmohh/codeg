@@ -109,6 +109,7 @@ export interface TaskOperations {
   cancel: DetailOperation<RevisionInput>
   archive: DetailOperation<RevisionInput & { archived: boolean }>
   "link-execution": DetailOperation<RevisionInput & { workTaskId: number }>
+  "entrust-execution": DetailOperation<RevisionInput & { workTaskId: number }>
 }
 export function personFor(
   id: string | null,

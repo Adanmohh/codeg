@@ -53,6 +53,80 @@ beforeEach(() => {
 })
 
 describe("visual business task workflow", () => {
+  it.each([false, true])(
+    "source entrustment requires legacyOperator=%s and linking stays a separate revisioned action",
+    async (legacyOperator) => {
+      const agent = {
+        ...member,
+        id: "44444444-4444-4444-8444-444444444444",
+        kind: "agent" as const,
+        role: "member" as const,
+        displayName: "Synthetic brief agent",
+      }
+      const task = detail()
+      task.task.assigneeId = agent.id
+      task.task.capabilities.linkExecution = true
+      tasks.mockImplementation(async (operation) => ({
+        ...task,
+        task: {
+          ...task.task,
+          revision: operation === "entrust-execution" ? 2 : 3,
+        },
+      }))
+      render(
+        wrapper(
+          <TaskDetailDialog
+            taskId={task.task.id}
+            initial={task}
+            client={client}
+            actor={member}
+            members={[member, agent]}
+            legacyOperator={legacyOperator}
+            onClose={vi.fn()}
+            onChanged={vi.fn()}
+          />
+        )
+      )
+      fireEvent.click(screen.getByText("Engineering detail"))
+      expect(
+        screen.queryByText("Authorize this execution source") !== null
+      ).toBe(legacyOperator)
+      if (!legacyOperator) {
+        expect(tasks).not.toHaveBeenCalled()
+        return
+      }
+      const entrust = screen.getByRole("button", {
+        name: "Authorize this execution source",
+      })
+      expect(entrust).toBeDisabled()
+      fireEvent.change(
+        screen.getByLabelText("Existing engineering task number"),
+        { target: { value: "17" } }
+      )
+      fireEvent.click(screen.getByLabelText(/I confirm this execution belongs/))
+      fireEvent.click(entrust)
+      await waitFor(() =>
+        expect(tasks).toHaveBeenCalledWith("entrust-execution", {
+          taskId: task.task.id,
+          expectedRevision: 1,
+          workTaskId: 17,
+        })
+      )
+      expect(tasks).toHaveBeenCalledTimes(1)
+      expect(entrust).toBeDisabled()
+      fireEvent.click(
+        screen.getByRole("button", { name: "Link existing engineering work" })
+      )
+      await waitFor(() =>
+        expect(tasks).toHaveBeenCalledWith("link-execution", {
+          taskId: task.task.id,
+          expectedRevision: 2,
+          workTaskId: 17,
+        })
+      )
+      expect(tasks).toHaveBeenCalledTimes(2)
+    }
+  )
   it("shows public note/review content as text and ignores unknown activity payload fields", () => {
     const saved = detail()
     const actor = {

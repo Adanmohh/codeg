@@ -125,6 +125,21 @@ describe("separate business credential client", () => {
       input: {},
     })
     expect(fetcher).not.toHaveBeenCalled()
+    await client.tasks("entrust-execution", {
+      taskId: "synthetic-task",
+      expectedRevision: 4,
+      workTaskId: 17,
+    })
+    expect(native.invoke).toHaveBeenLastCalledWith(
+      "business_tasks_entrust_execution",
+      {
+        input: {
+          taskId: "synthetic-task",
+          expectedRevision: 4,
+          workTaskId: 17,
+        },
+      }
+    )
     client.close()
   })
 })

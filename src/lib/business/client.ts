@@ -84,6 +84,7 @@ const commands = {
   "tasks/cancel": "business_tasks_cancel",
   "tasks/archive": "business_tasks_archive",
   "tasks/link-execution": "business_tasks_link_execution",
+  "tasks/entrust-execution": "business_tasks_entrust_execution",
 } as const satisfies Record<
   keyof IdentityOperations | `tasks/${keyof TaskOperations}`,
   string

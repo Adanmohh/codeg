@@ -662,3 +662,13 @@ adds a strict path guard and has no provider, scheduler or engine startup.
 reports/business-identity-evidence/browser-*.js is test orchestration glue using
 the installed Playwright CLI0.1.18 and Playwright1.63.0-alpha-2026-08-05 API;
 no Playwright implementation is copied and no packages are installed/upgraded.
+
+Business workspace browser fixture glue extends the existing Apache-2.0
+reports/design-reduced-motion-evidence/server.mjs at accepted Adanmohh/codeg
+4ec04d7282a50529335d724438d42b99a53385a2. Its own static export listener permits
+only closed business operations to the guarded loopback task fixture; no legacy
+proxy, WebSocket forwarding, credential logging or production server change.
+The UI's separate source-entrustment operation follows the task owner's fixed
+contract and exact HTTP/native wrappers at
+1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5. No backend implementation is ported
+or edited by this frontend branch. All preceding attribution remains unchanged.

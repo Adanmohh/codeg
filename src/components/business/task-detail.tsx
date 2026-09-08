@@ -41,6 +41,7 @@ export function TaskDetailDialog({
   client,
   actor,
   members,
+  legacyOperator = false,
   onClose,
   onChanged,
 }: {
@@ -49,6 +50,7 @@ export function TaskDetailDialog({
   client: BusinessClient
   actor: Member
   members: Member[]
+  legacyOperator?: boolean
   onClose: () => void
   onChanged: () => void
 }) {
@@ -92,6 +94,7 @@ export function TaskDetailDialog({
       client={client}
       actor={actor}
       members={members}
+      legacyOperator={legacyOperator}
       onClose={onClose}
       onChanged={onChanged}
     />
@@ -103,6 +106,7 @@ function TaskEditor({
   client,
   actor,
   members,
+  legacyOperator,
   onClose,
   onChanged,
 }: {
@@ -110,6 +114,7 @@ function TaskEditor({
   client: BusinessClient
   actor: Member
   members: Member[]
+  legacyOperator: boolean
   onClose: () => void
   onChanged: () => void
 }) {
@@ -123,6 +128,7 @@ function TaskEditor({
   const [reviewNote, setReviewNote] = useState("")
   const [reviewed, setReviewed] = useState(false)
   const [workTask, setWorkTask] = useState("")
+  const [entrustConfirmed, setEntrustConfirmed] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<unknown>(null)
   const [conflicted, setConflicted] = useState(false)
@@ -131,6 +137,13 @@ function TaskEditor({
   const [confirm, setConfirm] = useState<"cancel" | "archive" | null>(null)
   const task = detail.task
   const cap = task.capabilities
+  const assignedAgent = members.find(
+    (person) => person.id === task.assigneeId && person.kind === "agent"
+  )
+  const validWorkTask =
+    Number.isInteger(Number(workTask)) &&
+    Number(workTask) >= 1 &&
+    Number(workTask) <= 2147483647
   const revision = { taskId: task.id, expectedRevision: task.revision }
   const dirty =
     JSON.stringify(fields) !== JSON.stringify(fieldsOf(task)) ||
@@ -162,6 +175,7 @@ function TaskEditor({
       const saved = await operation()
       setDetail(saved)
       setReviewed(false)
+      setEntrustConfirmed(false)
       setFields(fieldsOf(saved.task))
       setAssignment(assignmentOf(saved.task))
       after()
@@ -188,6 +202,7 @@ function TaskEditor({
     if (mode !== "assign") setAssignment(assignmentOf(current.task))
     setDetail(current)
     setReviewed(false)
+    setEntrustConfirmed(false)
     if (!keepDraft) {
       setFields(fieldsOf(current.task))
       setAssignment(assignmentOf(current.task))
@@ -540,7 +555,7 @@ function TaskEditor({
               {copy.noExecution}
             </p>
           )}
-          {cap.linkExecution && (
+          {cap.linkExecution && assignedAgent && (
             <form
               className="space-y-3"
               onSubmit={(event) => {
@@ -564,7 +579,10 @@ function TaskEditor({
                     max={2147483647}
                     step={1}
                     value={workTask}
-                    onChange={(event) => setWorkTask(event.target.value)}
+                    onChange={(event) => {
+                      setWorkTask(event.target.value)
+                      setEntrustConfirmed(false)
+                    }}
                     className="min-h-11 rounded-xl"
                     disabled={locked}
                     required
@@ -572,10 +590,46 @@ function TaskEditor({
                   />
                 )}
               </Field>
+              {legacyOperator && (
+                <div className="space-y-3 rounded-xl border p-4">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {copy.entrustHint}
+                  </p>
+                  <label className="flex min-h-11 items-start gap-3 text-sm leading-relaxed">
+                    <input
+                      type="checkbox"
+                      className="accent-primary mt-1 size-4 shrink-0"
+                      checked={entrustConfirmed}
+                      onChange={(event) =>
+                        setEntrustConfirmed(event.target.checked)
+                      }
+                      disabled={locked || !validWorkTask}
+                    />
+                    <span>
+                      {copy.entrustConfirm}{" "}
+                      <bdi>{assignedAgent.displayName}</bdi>.
+                    </span>
+                  </label>
+                  <Action
+                    variant="outline"
+                    disabled={locked || !validWorkTask || !entrustConfirmed}
+                    onClick={() =>
+                      void mutate(() =>
+                        client.tasks("entrust-execution", {
+                          ...revision,
+                          workTaskId: Number(workTask),
+                        })
+                      )
+                    }
+                  >
+                    {copy.entrustExecution}
+                  </Action>
+                </div>
+              )}
               <Action
                 type="submit"
                 variant="outline"
-                disabled={locked || !workTask}
+                disabled={locked || !validWorkTask}
               >
                 {copy.linkExecution}
               </Action>

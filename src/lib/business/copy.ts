@@ -91,6 +91,7 @@ const english = {
     "Your draft is kept here. Load the current task and compare before saving again.",
   loadCurrent: "Load current task",
   currentVersion: "Current saved version",
+  savedVersion: "Saved version",
   keepDraft: "Use my draft with this version",
   discardDraft: "Discard my draft",
   unsaved: "Unsaved changes",
@@ -103,7 +104,7 @@ const english = {
     "Check your connection, then try again. Unsaved work stays in this window.",
   forbidden: "Your access does not allow this action.",
   notFound: "This task is unavailable or you no longer have access.",
-  invalid: "Check the task fields and try again.",
+  invalid: "Check the entered information and try again.",
   signIn: "Sign in to your workspace",
   signInHint:
     "Use the personal access your organization administrator provided.",
@@ -213,7 +214,13 @@ const english = {
   linkExecution: "Link existing engineering work",
   workTaskId: "Existing engineering task number",
   linkHint:
-    "Link an already active execution for the assigned agent. This does not launch a conversation or model.",
+    "An administrator must first authorize this active execution for the current saved task and assigned agent. Linking does not start a conversation or model.",
+  entrustExecution: "Authorize this execution source",
+  executionEntrusted: "Authorized engineering source",
+  entrustConfirm:
+    "I confirm this execution belongs to this task and its assigned agent:",
+  entrustHint:
+    "Only the original administrator can authorize an existing execution. Linking is a separate action. Any intervening task edit requires a new execution generation; neither action starts work.",
   noExecution:
     "No engineering execution is linked. People can complete this work directly.",
   sourceVersion: "Revision",
@@ -310,6 +317,7 @@ const arabic: BusinessCopy = {
     "مسودتك محفوظة هنا. حمّل المهمة الحالية وقارنها قبل الحفظ مجددًا.",
   loadCurrent: "تحميل المهمة الحالية",
   currentVersion: "النسخة المحفوظة الحالية",
+  savedVersion: "النسخة المحفوظة",
   keepDraft: "استخدام مسودتي مع هذه النسخة",
   discardDraft: "تجاهل مسودتي",
   unsaved: "تغييرات غير محفوظة",
@@ -322,7 +330,7 @@ const arabic: BusinessCopy = {
     "تحقق من الاتصال وحاول مجددًا. يبقى العمل غير المحفوظ في هذه النافذة.",
   forbidden: "صلاحياتك لا تسمح بهذا الإجراء.",
   notFound: "المهمة غير متاحة أو لم يعد لديك إذن بالوصول إليها.",
-  invalid: "تحقق من حقول المهمة وحاول مجددًا.",
+  invalid: "تحقق من البيانات المدخلة وحاول مجددًا.",
   signIn: "تسجيل الدخول إلى مساحة عملك",
   signInHint: "استخدم بيانات الوصول الشخصية التي زوّدك بها مسؤول مؤسستك.",
   server: "عنوان مساحة العمل",
@@ -426,7 +434,13 @@ const arabic: BusinessCopy = {
   executionInactive: "لم يعد هذا التنفيذ نشطًا.",
   linkExecution: "ربط عمل هندسي قائم",
   workTaskId: "رقم المهمة الهندسية القائمة",
-  linkHint: "اربط تنفيذًا نشطًا للوكيل المكلّف. لا يبدأ هذا محادثة أو نموذجًا.",
+  linkHint:
+    "يجب أن يأذن مسؤول النظام أولًا بهذا التنفيذ النشط للمهمة المحفوظة الحالية والوكيل المكلّف. لا يبدأ الربط محادثة أو نموذجًا.",
+  entrustExecution: "الإذن بمصدر التنفيذ هذا",
+  executionEntrusted: "أذن بالمصدر الهندسي",
+  entrustConfirm: "أؤكد أن هذا التنفيذ يخص هذه المهمة ووكيلها المكلّف:",
+  entrustHint:
+    "مسؤول النظام الأصلي وحده يستطيع الإذن بتنفيذ قائم. الربط إجراء منفصل. أي تعديل لاحق للمهمة يتطلب جيل تنفيذ جديدًا؛ ولا يبدأ أي من الإجراءين العمل.",
   noExecution:
     "لا يوجد تنفيذ هندسي مرتبط. يستطيع الأشخاص إنجاز هذا العمل مباشرةً.",
   sourceVersion: "النسخة",

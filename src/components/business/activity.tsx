@@ -109,7 +109,7 @@ function Change({
     return (
       <details className="mt-2">
         <summary className="focus-visible:ring-ring flex min-h-11 cursor-pointer items-center rounded-lg text-sm outline-none focus-visible:ring-2">
-          {copy.currentVersion} · {copy.sourceVersion} {entry.revision}
+          {copy.savedVersion} · {copy.sourceVersion} {entry.revision}
         </summary>
         <Plain>{text("title")}</Plain>
         {text("notes") && <Plain>{text("notes")}</Plain>}
@@ -152,6 +152,7 @@ export function ActivityList({
     cancelled: copy.cancelled,
     archived: copy.archived,
     execution_linked: copy.executionLinked,
+    execution_entrusted: copy.executionEntrusted,
   }
   return (
     <section className="space-y-4 border-t pt-5">

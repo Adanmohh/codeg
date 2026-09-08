@@ -127,3 +127,56 @@ The byte-identical colliding research copy was preserved under ignored
 `d4d99598d10870b55e0700f439e49df86a57255a2c01e0ae00b7cf04b523a7a0`).
 Existing 4326 fixture/export/browser and all other worker outputs remain untouched.
 No backend edits, live provider/model calls, secret outputs, new agents or deployment.
+
+## Integration and first browser checkpoint
+
+Frontend implementation `79cfe080` is pushed. Accepted identity/main through
+`a670163d` was merged as **`0e5eb3e7`**, pushed. Only additive NOTICE conflicted;
+both complete append sections and original attribution were preserved. A local
+resolution script initially misparsed the equals separator; corrected from the
+two parent notices and amended the unpublished merge before push. The inherited
+registration patch contains a trailing-space context line; it was preserved.
+Identity integration typecheck and isolated export build exited0.
+
+Actual CLI connection evidence is in `reports/business-workspace-evidence/`.
+All five entry paths returned200 and rendered with **zero API calls**, including
+ambient old operator token/wallpaper. Initial mobile capture put sign-in too low;
+the scoped mobile introduction is now compact and selects are16px. Six after
+captures cover390/768/1280, light/dark and Arabic RTL, with no horizontal overflow,
+44px fields, visible keyboard focus and sign-in within the390px capture. Invalid
+connection copy now describes entered information instead of task fields.
+`connection-after.json` records actual values. The unavailable state came from
+the disconnected fixture guard, not a simulated production success.
+
+Probe corrections are retained honestly: initial error locator also matched
+Next's route announcer, so it was scoped to the sign-in region; reduced motion
+correctly sets `transition-property:none` despite an inert0.15s duration; source
+formatting added a leading semicolon incompatible with CLI function-expression
+input, removed from test scripts. No product behavior was weakened. The task
+owner's4342 listener then closed before my login completed; that timeout is
+preserved, not counted as passing integration.
+
+Current real fixture: source snapshot
+`.build/business-workspace/task-fixture-1ba73e3c/`, byte-unchanged archive of
+**`1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5`** (`src-tauri`, Pi bundled source,
+LICENSE/NOTICE), own target `.build/business-fixture-target/`. `cargo test
+--locked --offline --manifest-path <snapshot>/src-tauri/Cargo.toml
+--no-default-features --lib --jobs4
+business_tasks::tests::fixture::business_tasks_browser_fixture -- --ignored
+--exact --nocapture` compiled in2m55s and now runs the ignored guarded fixture,
+PID21431 on4342, in-memory SQLite, no engine/provider. Known linker unwind-table
+and proc-macro-error2 future-compatibility warnings remain. This is an owned test
+snapshot, not a product merge or backend edit. Proxy PID8485 on4340 runs
+`node reports/business-workspace-evidence/serve.mjs out-business-workspace
+--backend=4342`, with closed operations and no header/body logging. Browser PIDs
+85074 (`business-owner4340`) and85139 (`business-member4340`) are owned here.
+Initial actual UI sign-in returns a real context needing bootstrap.
+
+R1 frontend alignment follows the new explicit operator-only entrust endpoint;
+it stays under engineering detail, requires confirmation and never auto-links.
+The subsequent link uses the newly returned task revision. An owner-role member
+does not get this control. Focused client/workflow tests now23/23 pass, typecheck
+and scoped lint exit0 (`entrust-*.log`); earlier12 session/workflow tests also
+passed after mobile corrections. Entrust export rebuild exited0. Real task UI,
+source-binding failure display, member flows and measured Design Studio acceptance
+remain in progress. The task backend is not yet accepted/main-integrated here.

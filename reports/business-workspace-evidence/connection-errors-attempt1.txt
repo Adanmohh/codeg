@@ -1,0 +1,7 @@
+### Error
+Error: locator.waitFor: Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+    1) <div role="alert" class="border-destructive/25 bg-destructive/5 flex gap-3 rounded-xl border p-4 text-sm">…</div> aka getByRole('region', { name: 'Sign in to your workspace' }).getByRole('alert')
+    2) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+Call log:
+[2m  - waiting for getByRole('alert') to be visible[22m
