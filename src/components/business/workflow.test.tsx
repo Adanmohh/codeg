@@ -231,14 +231,15 @@ describe("visual business task workflow", () => {
   it("locks a stale metadata draft until the user loads and explicitly adopts the current revision", async () => {
     const original = detail()
     const current = detail()
-    current.task.revision = 2
+    current.task.revision = 3
+    current.task.status = "review"
     current.task.title = "Changed by another person"
     tasks
       .mockRejectedValueOnce(new BusinessError("conflict"))
       .mockResolvedValueOnce(current)
       .mockImplementation(async (_operation, input) => ({
         ...current,
-        task: { ...current.task, ...input, revision: 3 },
+        task: { ...current.task, ...input, revision: 4 },
       }))
     render(
       wrapper(
@@ -263,21 +264,96 @@ describe("visual business task workflow", () => {
     expect(screen.getByLabelText("Task title")).toHaveValue("My pending title")
     fireEvent.click(screen.getByRole("button", { name: "Load current task" }))
     await screen.findByText("Changed by another person")
+    const base = screen.getByRole("group", {
+      name: "Your draft's base version",
+    })
+    expect(within(base).getByText("To do")).toBeVisible()
+    expect(within(base).getByText("Revision 1")).toBeVisible()
+    const saved = screen.getByRole("region", {
+      name: "Current saved version",
+    })
+    expect(within(saved).getByText("Review")).toBeVisible()
+    expect(within(saved).getByText("Revision 3")).toBeVisible()
     expect(screen.getByRole("button", { name: "Save changes" })).toBeDisabled()
+    fireEvent.click(screen.getByRole("button", { name: "Save changes" }))
+    expect(tasks).toHaveBeenCalledTimes(2)
     fireEvent.click(
       screen.getByRole("button", { name: "Use my draft with this version" })
     )
+    expect(
+      screen.queryByRole("group", { name: "Your draft's base version" })
+    ).toBeNull()
+    expect(screen.getByText("Revision 3")).toBeVisible()
     fireEvent.click(screen.getByRole("button", { name: "Save changes" }))
     await waitFor(() =>
       expect(tasks).toHaveBeenLastCalledWith(
         "update",
         expect.objectContaining({
-          expectedRevision: 2,
+          expectedRevision: 3,
           title: "My pending title",
           dueDate: "2026-09-08",
         })
       )
     )
+  })
+  it("requires a new human confirmation after comparing and adopting a changed review", async () => {
+    const original = detail()
+    original.task.status = "review"
+    original.task.revision = 7
+    original.task.capabilities.review = true
+    const current = {
+      ...original,
+      task: { ...original.task, revision: 9 },
+    }
+    tasks
+      .mockRejectedValueOnce(new BusinessError("conflict"))
+      .mockResolvedValueOnce(current)
+      .mockResolvedValueOnce({
+        ...current,
+        task: { ...current.task, status: "done", revision: 10 },
+      })
+    render(
+      wrapper(
+        <TaskDetailDialog
+          taskId={original.task.id}
+          initial={original}
+          client={client}
+          actor={member}
+          members={[member]}
+          onClose={vi.fn()}
+          onChanged={vi.fn()}
+        />
+      )
+    )
+    const confirmation = screen.getByLabelText(
+      "I have reviewed this task and its current deliverable."
+    )
+    fireEvent.click(confirmation)
+    fireEvent.click(screen.getByRole("button", { name: "Accept work" }))
+    await screen.findByText("This task changed while you were editing.")
+    fireEvent.click(screen.getByRole("button", { name: "Load current task" }))
+    const saved = await screen.findByRole("region", {
+      name: "Current saved version",
+    })
+    expect(within(saved).getByText("Revision 9")).toBeVisible()
+    expect(screen.getByRole("button", { name: "Accept work" })).toBeDisabled()
+    fireEvent.click(
+      screen.getByRole("button", { name: "Use my draft with this version" })
+    )
+    expect(confirmation).not.toBeChecked()
+    expect(screen.getByRole("button", { name: "Accept work" })).toBeDisabled()
+    expect(tasks).toHaveBeenCalledTimes(2)
+    fireEvent.click(confirmation)
+    fireEvent.click(screen.getByRole("button", { name: "Accept work" }))
+    await waitFor(() =>
+      expect(tasks).toHaveBeenLastCalledWith("review", {
+        taskId: original.task.id,
+        expectedRevision: 9,
+        decision: "accept",
+        comment: "",
+      })
+    )
+    expect(tasks).toHaveBeenCalledTimes(3)
   })
   it("completion requires the separate human review operation on the displayed revision", async () => {
     const review = detail()

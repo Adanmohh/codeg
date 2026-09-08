@@ -747,3 +747,14 @@ c606ac88e9556bb8284dc28ce647938c921d5a59. It is applied only to the frontend
 worker's ignored fixture snapshot to check its own exported HTML through the
 unchanged production static router. No backend product source is ported or edited.
 Installed axum-test17.3.0 APIs are references, not copied dependency code.
+
+Business conflict comparison clarification (2026):
+Reuses the Apache-2.0 business workspace at Adanmohh/codeg
+33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7:
+src/components/business/{task-detail,ui,workflow.test}.tsx and
+src/lib/business/copy.ts. Presentation glue labels the preserved draft's base
+and displays the current saved status/revision using the existing StatusBadge;
+the read, adoption, revision and human-confirmation behavior is unchanged.
+React19.2.4/@types-react19.2.13 and Testing Library16.3.2 installed types are API
+references. No dependency implementation is copied. Original Codeg Apache-2.0
+LICENSE and every preceding attribution remain unchanged.

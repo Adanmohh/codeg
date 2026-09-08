@@ -90,6 +90,7 @@ const english = {
   conflictHint:
     "Your draft is kept here. Load the current task and compare before saving again.",
   loadCurrent: "Load current task",
+  draftBase: "Your draft's base version",
   currentVersion: "Current saved version",
   savedVersion: "Saved version",
   keepDraft: "Use my draft with this version",
@@ -319,6 +320,7 @@ const arabic: BusinessCopy = {
   conflictHint:
     "مسودتك محفوظة هنا. حمّل المهمة الحالية وقارنها قبل الحفظ مجددًا.",
   loadCurrent: "تحميل المهمة الحالية",
+  draftBase: "النسخة التي تستند إليها مسودتك",
   currentVersion: "النسخة المحفوظة الحالية",
   savedVersion: "النسخة المحفوظة",
   keepDraft: "استخدام مسودتي مع هذه النسخة",

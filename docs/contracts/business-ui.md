@@ -1,8 +1,9 @@
 # Business workspace UI contract — implemented Increment A
 
 Owner: rebrand; branch **feat/business-workspace**, draft PR21.
-Final product source33b9cbcb; accepted main ebb553de integrated as0cdf255e
-(STATUS-only; tested product/export unchanged).
+Final frontend product source33b9cbcb; accepted main294fb634 (task PR22 merge
+5541857a) integrated as0192ac3f. Only NOTICE required additive conflict resolution;
+tested frontend and live fixture/export remain unchanged.
 Implementation/evidence: reports/business-workspace.md. Backend owners retain
 identity/task/agent authorization and migrations; this frontend adds no Rust
 product code or parallel authentication system.
@@ -17,8 +18,9 @@ product code or parallel authentication system.
   c911c406/mainab46c9d9. Accepted identity main integrated as0e5eb3e7.
 - Task: fixed DTOsbf4309f5; production contracts/types/handlers tested at
   **1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5**, including R1 source entrustment.
-  The actual API fixture runs that production source; its task branch remains a
-  dependency until root accepts/merges it. No mocked production task responses.
+  Accepted atc3af4494 and merged as5541857a, now integrated here. The actual API
+  fixture runs the same accepted runtime; its only later source difference is a
+  test-only tool-discovery readiness wait. No mocked production task responses.
 
 ## Navigation and authentication
 

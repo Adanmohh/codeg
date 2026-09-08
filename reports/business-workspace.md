@@ -2,15 +2,28 @@
 
 Branch **feat/business-workspace**; draft [PR21](https://github.com/Adanmohh/codeg/pull/21).
 Frontend implementation and actual protected-API browser checks are complete.
-Final product source is **33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7**, pushed.
+The frozen browser-reviewed source is **33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7**.
 Later handoff commits contain documentation/evidence cleanup and accepted main
 status integration only; the tested product and live export stay unchanged.
-Root remains reviewer/merger. The task backend is tested at **1ba73e3c** in an
-owned snapshot and is not yet merged into this branch. No production mock layer.
-Accepted main **ebb553defcc254187aafc1677279d67c56e3d2ad** is integrated as
-**0cdf255eb421d8ca52c4d9258662dd9998e7466a**. Its only incoming change was
-root STATUS.md; product, NOTICE and the exported/tested source are identical to
-33b9cbcb. No redundant product gates were rerun for that status-only integration.
+Root remains reviewer/merger. Accepted task PR22 **5541857a125678dfb604f542693d9c82dfe5441e**
+is integrated from main **294fb634b1833ebb13c4223484624e595598235b** as
+**0192ac3f33dff82fae424bd30b797b14044f4197**, pushed. The only conflict was an
+additive NOTICE insertion; both complete attribution blocks remain. Frontend
+source is identical to33b9cbcb and backend/Pi source is identical to accepted main.
+The live fixture's tested1ba73e3c runtime matches the accepted task runtime;
+the intervening backend delta is a test-only asynchronous discovery wait.
+Merged frontend validation passes: 6,194 tests / 438 files, typecheck, scoped lint
+and a separate 34-page export. The review fixture and its export remain frozen.
+No production mock layer.
+
+Independent review identified a recovery-clarity issue: after a real conflict,
+the header showed the draft's old status/revision without identifying it as old,
+and the loaded comparison omitted the current status/revision. The scoped fix
+labels the draft base and shows current status/revision/archive state before
+adoption, in English and Arabic. No mutation, permission, CAS or confirmation
+logic changes. Two targeted regressions fail on the prior UI and pass with the
+fix, including the existing write lock and reset human confirmation. Actual
+rendered recheck and final affected gates are pending in this checkpoint.
 
 ## Result and boundaries
 
@@ -67,7 +80,8 @@ src-tauri/src/business_identity/{types,mod,store}.rs. Accepted main through
 a670163d was integrated as **0e5eb3e7**; both complete NOTICE sections retained.
 
 Task DTO authority: **bf4309f5abdb077fd8e1a8e42db4861dadcda24b**, then tested
-R1 source **1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5**;
+R1 source **1ba73e3c90eb6e76d8ad7f0a79852dd2c86587e5**, accepted atc3af4494
+and merged as5541857a;
 docs/contracts/business-tasks.md, business_tasks/{types,policy,validation,store}.rs
 and HTTP/native wrappers. Public activity fields were read at76bb6909. No actor
 or org override, new auth boundary, or unapproved backend endpoint was invented.
@@ -250,10 +264,11 @@ fixture-static-routing.patch uses zero context; reproduce with git apply
 
 ## Limits and preservation
 
-Task1ba73e3c is a tested dependency snapshot, not an accepted-main merge. Main
-ebb553de is integrated. Identity is integrated; root must accept/
-integrate the task backend and review the exact UI head before declaring combined
-Increment A accepted. Entrust success with a real running agent is intentionally
+Identity and task backend are integrated from accepted main294fb634. Root must
+review/accept the exact UI head before declaring combined Increment A accepted.
+The independent review uses the frozen33b9cbcb frontend and matching accepted
+backend runtime; integration has not changed either live fixture artifact.
+Entrust success with a real running agent is intentionally
 not exercised: no model launches. Browser guard/static router tests do not claim
 a production server deployment or native-window certification.
 

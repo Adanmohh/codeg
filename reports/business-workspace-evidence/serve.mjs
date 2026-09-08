@@ -9,6 +9,9 @@ const root = resolve(process.argv[2])
 const backend = process.argv[3] === "--backend=4342" ? 4342 : null
 if (process.argv[3] && !backend)
   throw Error("Only guarded loopback4342 is allowed")
+const port = process.argv[4] === "--port=4346" ? 4346 : 4340
+if (process.argv[4] && port !== 4346)
+  throw Error("Only owned preview ports4340/4346 are allowed")
 const operations = new Set([
   "context",
   "bootstrap",
@@ -56,7 +59,7 @@ function finish(res, status, body, contentType = "text/plain") {
   res.end(body)
 }
 const server = createServer(async (req, res) => {
-  const url = new URL(req.url, "http://127.0.0.1:4340")
+  const url = new URL(req.url, `http://127.0.0.1:${port}`)
   const path = url.pathname
   if (path === "/__business_fixture" && req.method === "GET") {
     finish(
@@ -65,7 +68,7 @@ const server = createServer(async (req, res) => {
       JSON.stringify({
         synthetic: true,
         backendPort: backend,
-        export: "out-business-workspace",
+        export: process.argv[2],
         calls,
       }),
       "application/json"
@@ -147,14 +150,14 @@ server.on("connection", (socket) => {
   socket.on("close", () => sockets.delete(socket))
 })
 server.on("upgrade", (_req, socket) => socket.destroy())
-server.listen(4340, "127.0.0.1", () =>
+server.listen(port, "127.0.0.1", () =>
   console.log(
     JSON.stringify({
       synthetic: true,
-      port: 4340,
+      port,
       pid: process.pid,
       backendPort: backend,
-      export: "out-business-workspace",
+      export: process.argv[2],
       credentialsLogged: false,
     })
   )

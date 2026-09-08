@@ -218,7 +218,16 @@ function TaskEditor({
   }
   return (
     <Modal title={task.title} onClose={close} wide>
-      <div className="flex flex-wrap items-center gap-3">
+      <div
+        className="flex flex-wrap items-center gap-3"
+        role={conflicted ? "group" : undefined}
+        aria-label={conflicted ? copy.draftBase : undefined}
+      >
+        {conflicted && (
+          <span className="text-muted-foreground basis-full text-xs font-medium">
+            {copy.draftBase}
+          </span>
+        )}
         <StatusBadge status={task.status} />
         <span className="text-muted-foreground text-xs">
           {copy[task.domain]} · {copy[task.priority]}
@@ -245,8 +254,22 @@ function TaskEditor({
         </Action>
       )}
       {current && (
-        <section className="bg-muted/40 space-y-4 rounded-xl border p-4">
+        <section
+          className="bg-muted/40 space-y-4 rounded-xl border p-4"
+          aria-label={copy.currentVersion}
+        >
           <h3 className="font-semibold">{copy.currentVersion}</h3>
+          <div className="flex flex-wrap items-center gap-3">
+            <StatusBadge status={current.task.status} />
+            {current.task.archivedAt && (
+              <span className="text-muted-foreground text-xs">
+                {copy.archived}
+              </span>
+            )}
+            <span className="text-muted-foreground text-xs tabular-nums">
+              {copy.sourceVersion} {current.task.revision}
+            </span>
+          </div>
           <p className="text-sm font-medium">
             <bdi>{current.task.title}</bdi>
           </p>
