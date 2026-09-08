@@ -30,6 +30,13 @@ unfinished. Tickets is dispatched to independent exact-head review on separate
 `review/business-tenancy`, deliverable `reports/review-business-tenancy.md`, after
 preserving B. No product merge or native/tenant acceptance is implied.
 
+Tickets has started `review/business-tenancy` from accepted main, freezing
+`f3b408da` in its own source archive and new `.docs/business-tenancy-review-target`.
+B is checkpointed at `15bb402b`; paused visual work is preserved. The active
+review covers migration connection/FK/receipt recovery, retained data, captured
+and legacy epochs, settings authority/CAS and original mapping. Platform/native
+and actual two-tenant provisioning await their implementation checkpoints.
+
 Owner explicitly wants the engineering workspace's richness for business users:
 chat and terminal AI, tabs and split panes alongside shared tasks, tables, boards,
 data visualization and content calendars. A separate simplified business dashboard
