@@ -1,0 +1,35 @@
+{
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "id": 2,
+      "copy": "Proposal #2 · Task #2 · Run 1 · Support\n\nProvider accepted · recording pending\nOpen original thread\n\nResend accepted this reply. Finish recording receipt saves the accepted reply in the thread; it does not send again. Provider acceptance does not confirm recipient delivery.\nProvider accepted this reply; local thread recording is pending. Do not resend\n\nMessage ID\nops-3ea6eeb3-1c94-4909-a652-0243c81f458a@example.com\nProvider receipt\n9f423193-b1b1-46ca-8c8d-112a8d3b9248\nFinish recording receipt",
+      "offersAnotherSend": false
+    },
+    {
+      "id": 3,
+      "copy": "Proposal #3 · Task #3 · Run 1 · Support\n\nSent · provider accepted\nOpen original thread\n\nResend accepted this reply and it is recorded in the thread. Provider acceptance does not confirm recipient delivery.\n\nMessage ID\nops-de6fadf8-21ca-4257-b16e-77af0e5421cf@example.com\nProvider receipt\n9d119742-2011-44f7-b97d-337ed6f68dbd",
+      "offersAnotherSend": false
+    },
+    {
+      "id": 4,
+      "copy": "Proposal #4 · Task #4 · Run 1 · Support\n\nDelivery unconfirmed · do not resend\nOpen original thread\n\nDelivery is unconfirmed. Do not resend this proposal or create another delivery key. Reconcile the provider outcome first.\nDelivery outcome is unknown. Do not resend or create a new delivery key; reconcile with the provider first\n\nMessage ID\nops-6298f33d-4e87-4aa9-844c-01d1319c0440@example.com",
+      "offersAnotherSend": false
+    },
+    {
+      "id": 5,
+      "copy": "Proposal #5 · Task #5 · Run 1 · Support\n\nNot sent · needs attention\nOpen original thread\n\nThe provider did not accept this reply. Open the original thread, correct the problem and prepare a new proposal for review.\nProvider did not accept this reply. Correct configuration or payload and prepare a new reviewed draft\n\nMessage ID\nops-b5f75868-a581-4ff5-9c86-11cef73b8eab@example.com",
+      "offersAnotherSend": false
+    },
+    {
+      "id": 6,
+      "copy": "Proposal #6 · Task #6 · Run 1 · Support\n\nDenied · not sent\nOpen original thread\n\nThis proposal was denied. Its private reply content has been redacted from the review record.",
+      "offersAnotherSend": false
+    },
+    {
+      "BC14": true,
+      "providerBefore": 4,
+      "providerAfter": 4
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Phase 1 Design Studio specialist review
 
-Preparation checkpoint, 2026-09-08. **Not final integrated design acceptance.**
+In-progress measured checkpoint, 2026-09-08. **Not final integrated design acceptance.**
 Sole report-only worker in `/Users/mohamedadan/projects/_worktrees/ops-desk/approvals`,
 branch **review/design-phase1**, created clean from accepted main
 **c36c4a2cc63fcdb84419b294076acae469b4f588**. PR12 is merged as
@@ -112,7 +112,7 @@ explicit port/static-directory environment overrides to the two existing ignored
 browser fixtures (`integration/design_ops_browser.rs` and
 `ops_telegram/tests/issues_browser.rs`). Both still bind literal loopback; defaults
 remain their original4326/4323 exports. This worker will use4327/out-design-final,
-run email then issue fixture sequentially, own their PIDs/data, and preserve all
+run independent email and issue fixtures, own their PIDs/data, and preserve all
 existing fixtures. No engine, scheduler, live keyring/provider or runtime API change.
 
 Raw palette/motion candidates are retained. A report-only Canvas conversion of
@@ -153,3 +153,54 @@ measurement glue is report-only. Pure lint ran on11 relevant surfaces, exit0;
 lint completion is not a clean-product verdict. Full `cargo fmt --check` exited1
 on extensive inherited formatting plus one new wrapping line (corrected narrowly);
 no broad formatting was applied. Final source-scoped validation follows.
+
+## Verified findings checkpoint — source 43eff896
+
+**P2 / medium — reduced-motion sidebar still travels 341.5px.** At390×844,
+set `prefers-reduced-motion: reduce`, then activate **Show Sidebar**. Actual
+requestAnimationFrame evidence records x=-333.5→8, width331.5, height828,
+`transform` animation, and the same450ms transition as no-preference (97 frames
+each, scrollY stays0). A large navigation panel still slides despite the setting.
+Exact source: `src/components/ui/drawer.tsx:339` supplies
+`transition-[transform,height,opacity,filter] duration-450`; line349 supplies the
+starting/ending transforms; `src/app/workspace/layout.tsx:648` uses the left
+drawer with85% mobile width. The current reduced-motion CSS does not cover it.
+Required fix: suppress this spatial transition under reduced motion while
+preserving normal transitions and drawer close/presence behavior. Root owns
+assignment; no product edit here. Raw control transition counts are retained;
+color/border/opacity transitions alone are not the basis of this finding.
+Evidence: `flows/motion-frames.json`, `flows/motion-summary.json`,
+`screenshots/drawer-{no-preference,reduce}-390.png` beneath this report directory.
+
+**P2 / medium — light running-count badge is below the small-text floor.**
+At1280px the visible10px count uses Canvas RGB187,77,0 on composited250,238,220,
+ratio4.39<4.5. Source: `sidebar-conversation-list.tsx:507` and the same inherited
+class combination in `sidebar-folder-group-header.tsx:206`: amber700 ink over
+amber500/12. Root independently measured ~4.4 on4326 and assigned a narrow fix.
+The raw probe also samples its clipped `sr-only` equivalent; those duplicate
+entries are retained but are not separate painted-text defects. This contrast
+finding is separate from the OKLCH/hex palette comparison limitation. Baseline
+light probes and screenshot are preserved for recheck after accepted integration.
+
+Desktop `cargo check --locked`, server `cargo check --locked --no-default-features
+--bin codeg-server`, and `pnpm exec tsc --noEmit` all exited0 against the combined
+source. Final review work continues; these are not a complete design verdict.
+
+## Owned phone fixture4328
+
+Owner authorized separate4328 to preserve4327. Test-only
+`ops_telegram/tests/issues_browser.rs` now accepts the same explicit port/export
+overrides, retains literal loopback binding and original defaults, and configures
+its synthetic review origin to the selected port. No runtime/product change.
+It compiled and passed startup assertions (Telegram3, GitHub posts0), then remains
+serving as **PID46726**, in-memory SQLite with auxiliary temp directory
+`/var/folders/6k/w2fh6wy167726g5nr9zm_ph80000gn/T/.tmpLemf4y`.
+
+From `src-tauri`, the exact launch is
+`CODEG_OPS_ACCOUNT_ID=1 CODEG_DESIGN_FIXTURE_PORT=4328 CODEG_DESIGN_FIXTURE_EXPORT=out-design-final CARGO_TARGET_DIR=target-approvals CARGO_BUILD_JOBS=4 cargo test --locked --no-default-features --lib ops_telegram_issue_browser_fixture -- --ignored --nocapture`.
+This is a long-running ignored fixture, not a completed test-suite exit.
+Landing: `http://127.0.0.1:4328/__issue_fixture`; token is synthetic-only
+`ops-issue-phone-synthetic-operator`. Actual protected phone checks use this own
+server and loopback providers, no intercepted approval JSON. Controlled
+`/__issue_fixture/refresh` changes only fixture freshness timestamps. Earlier
+4320/4323/4326 and4327 remain unchanged by this setup. Phone decisions follow.

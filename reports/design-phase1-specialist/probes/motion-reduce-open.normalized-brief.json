@@ -1,0 +1,203 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#0a0a0a",
+      "#1e1e1e",
+      "#222222",
+      "#fafafa",
+      "#262626",
+      "#a1a1a1",
+      "#151515",
+      "#ff6467",
+      "#121212",
+      "#c5c5c5",
+      "#171717",
+      "#212624",
+      "#9bd4c5",
+      "#252b29",
+      "#b6b6b6",
+      "#c1c1c1",
+      "#3a3014",
+      "#ffd230",
+      "#2e2f2f",
+      "#fdc700"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif",
+      "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace"
+    ],
+    "fontSizesPx": [
+      16,
+      14,
+      12,
+      20,
+      10
+    ],
+    "spacingPx": [
+      4,
+      12,
+      6,
+      8,
+      16,
+      20,
+      2,
+      7,
+      1,
+      10
+    ],
+    "radiiPx": [
+      26,
+      10,
+      16777200,
+      6,
+      8,
+      5
+    ]
+  },
+  "contrast": {
+    "checked": 58,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 173,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)",
+      "cubic-bezier(0.22, 1, 0.36, 1)",
+      "cubic-bezier(0.45, 1.005, 0, 1.005)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "headings": [
+      {
+        "level": 1,
+        "text": "Stale · new review needed"
+      },
+      {
+        "level": 2,
+        "text": "Sidebar"
+      },
+      {
+        "level": 2,
+        "text": "Conversations"
+      }
+    ],
+    "headingOrderBreaks": 0,
+    "landmarks": {
+      "main": true,
+      "nav": true
+    },
+    "snapshot": "- alert\n- region \"Notifications alt+T\"\n- button \"Hide Sidebar\"\n- button \"Search\"\n- button \"New Conversation\"\n- button \"Open Settings\"\n- dialog \"Sidebar\":\n  - heading \"Sidebar\" [level=2]\n  - complementary:\n    - heading \"Conversations\" [level=2]\n    - button \"Locate Active Conversation\"\n    - button \"Collapse All Groups\"\n    - button \"View options\"\n    - button \"Ops desk\"\n    - button \"Bug intake\"\n    - button \"New chat ⌘T\"\n    - button \"Automations\"\n    - button \"To-dos 1\"\n    - button \"Repository panel\"\n    - button \"Infinite Conversations\"\n    - button \"Folders\" [expanded]\n    - button \"New group\"\n    - button \"Import local sessions\"\n    - button \"Clone Repository\"\n    - button \"Open Folder\"\n    - button \"ops-ui-task-fixture 6 sessions running\" [expanded]\n    - button \"More options\"\n    - button \"New Conversation\"\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Chat\" [expanded]\n    - button \"New chat\"\n    - text: No chats\n    - button \"Recent\" [expanded]\n    - button \"New Conversation\"\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n    - button \"Untitled conversation\"\n    - text: Running\n- main:\n  - text: Ops desk\n  - region \"Ops desk\":\n    - navigation \"Ops views\":\n      - button \"Inbox\"\n      - button \"Approvals\"\n      - button \"Morning\"\n    - button \"Telegram notifications\"\n    - button \"Refresh\"\n    - button \"Back to review queue\"\n    - article:\n      - paragraph: \"Proposal #1 · Task #1 · Run 1 · Support\"\n      - heading \"Stale · new review needed\" [level=1]\n      - button \"Open original thread\"\n      - alert: A newer draft was saved; request a new proposal\n      - paragraph: \"Draft #1 · Revision 1. Review all recipients and the complete message below. Edits apply to this approval; the saved draft is not reread for delivery.\"\n      - text: From · inbox identity\n      - textbox \"From · inbox identity\" [disabled]: support@example.com\n      - text: To\n      - textbox \"To\" [disabled]: reader@example.com\n      - text: Cc\n      - textbox \"Cc\" [disabled]\n      - text: Bcc · hidden from other recipients\n      - textbox \"Bcc · hidden from other recipients\" [disabled]\n      - paragraph: Use plain email addresses, separated by commas. All recipients above are part of the reviewed reply.\n      - text: Subject\n      - textbox \"Subject\" [disabled]: \"Re: Synthetic locale review\"\n      - text: Reply message\n      - textbox \"Reply message\" [disabled]: Original approved body\n      - group: Thread headers · part of the complete payload\n      - paragraph: Plain text only. Attachments are not supported in this draft.\n      - status: Approving sends this exact reply through Resend. Check To, Cc and Bcc before continuing.\n      - button \"Approve and send reply\" [disabled]\n      - button \"Deny proposal\"\n- button \"Quick actions\"\n- button \"6 conversations\"\n- button \"Add Command\"\n- button \"codeg-mcp service\"\n- button \"Alerts\"",
+    "unnamedInteractive": 0
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#1e1e1e rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#222222 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#262626 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#a1a1a1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#151515 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ff6467 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#121212 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c5c5c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#212624 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9bd4c5 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#252b29 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#b6b6b6 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#c1c1c1 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#3a3014 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffd230 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#2e2f2f rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fdc700 rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "26px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "5px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "7px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "1px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "10px spacing off brief + 4px scale"
+    }
+  ]
+}
