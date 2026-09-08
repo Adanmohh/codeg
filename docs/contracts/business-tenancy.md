@@ -1,6 +1,6 @@
 # Business tenancy contract
 
-Owner: approvals, `feat/business-tenancy`, base `f3813e3f1edb521f1d1b20d0b372643acc4123a5`. Implements the accepted [architecture](../../reports/business-multitenancy-review.md), frozen at `af00c956787142f900384f7ba6b34ebbc005eb88`. This initial publication fixes the helper/DTO contract for parallel workers; compiling checkpoints and executed gates belong in [the report](../../reports/business-tenancy.md).
+Owner: approvals, `feat/business-tenancy`, branch point `a4cda9d1ab0753b9941e5810f083e20422990395`; reused product source remains `f3813e3f1edb521f1d1b20d0b372643acc4123a5` (the intervening root commit is docs only). Implements the accepted [architecture](../../reports/business-multitenancy-review.md), frozen at `af00c956787142f900384f7ba6b34ebbc005eb88`. This initial publication fixes the helper/DTO contract for parallel workers; compiling checkpoints and executed gates belong in [the report](../../reports/business-tenancy.md).
 
 ## Identity and epochs
 
