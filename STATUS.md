@@ -1,7 +1,7 @@
 # Status — 2026-09-08
 
 **Increment A is reviewed, merged and locally accepted. Increment B preparation
-is active across all three existing Herdr workers.** Root remains orchestrator-only.
+has an accepted contract; implementation dispatch is starting.** Root remains orchestrator-only.
 The accepted business workspace supports shared human/agent tasks, named
 responsibility, role/domain access, conflict recovery and explicit human review.
 Marketing, channels, ads, website and feedback are work areas; connected platform
@@ -50,9 +50,11 @@ root native and final browser sessions are closed.
 
 ## Increment B — meeting/feedback to shared tasks
 
-Docs-only preparation is dispatched; no B product or live configuration action
-has started. Draft contract checkpoint `85f6001f2fa8f9d33748ceddbf7980ce68942ede`
-is under review. Sources stay private to explicit authorized humans; only exact
+PR25 is reviewed and merged at exact handoff `7f4d4dbc66f3b7487ffcb623769d79c9be2ac044`,
+merge `aa16a9b960ee9d59876a119c47165206f46d10d1`. Frozen contract `670af9ca`
+plus access `18be55ed` has no open contract blockers in independent review
+`2a765db2`; root read the complete reconciliation and report changes. No B tests
+or live configuration action are claimed. Sources stay private to explicit authorized humans; only exact
 human-reviewed task text is published to a permitted work area. Import must be
 durable/idempotent and use the existing task/identity core without launching an
 agent. A usable protected source-binding/grant setup is part of contract review.
@@ -69,14 +71,14 @@ diff. This accepts the business interaction plan, not B product or the unfinishe
 backend contract. Independent review `ca787542` and UI reconciliation `08824564`
 agree Q2–Q4 rebase/disclosure, recovery and timing/error definitions are coherent
 at `85f6001f`. Q1 setup/capabilities still needs the owner's immutable integrated
-contract and final bounded reviewer closure before implementation dispatch.
+contract; this is now closed by PR25 and independent review `2a765db2`.
 [Plan](reports/business-intake-ui-plan.md) · [Root BI acceptance plan](reports/business-intake-acceptance-checklist.md).
 
 Protected access seam `18be55edc276713fc6d46d075baec363245ba285` is reviewed
 and imported: actual-operator setup, explicit binding/history audience, zero
 initial grants, owner-revision/source-refresh fences, staged secret activation
 and strict failure-preserving credential-store mutation. PR25 must reconcile
-this exact seam and pass the bounded final contract review before product dispatch.
+this exact seam; its bounded final contract review is complete.
 [Access contract](docs/contracts/business-intake-access.md).
 
 All retain separate worktrees, Astra/max and live docs-first hooks; latest
