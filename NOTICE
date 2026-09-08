@@ -796,3 +796,18 @@ React19.2.4, @types/react19.2.13, Next16.1.6, Tailwind4.1.18 and
 tauri2.10.2 drag.js (official06374a902a50d2bd8b8d85593623ad16ac32325a)
 is a drag-contract reference; no dependency implementation is copied.
 Original Apache LICENSE and every preceding attribution remain intact.
+
+Business intake transaction prerequisites (2026):
+Extend accepted Apache-2.0 Codeg at Adanmohh/codeg
+086eee485e6f40a8b02ea77c9dbeefe315c81596:
+src-tauri/src/keyring_store.rs, blob29fc3fb38280338aa26939c45f80ef9aefc2a394;
+src-tauri/src/business_tasks/store.rs, blobd48fdf1e85feb4410dbff51e8a671d6c9d525691;
+src-tauri/src/business_tasks/types.rs, blob6d6c4b8c9555d09ea19d57c9fa329eb548832cc3;
+src-tauri/src/business_tasks/tests.rs, blob4c7e6000a5881f979dd2bd1b0d13c88d9e1bf49a.
+The existing private credential lock/atomic-rename path now rejects malformed
+or unreadable mutation reads. Task creation/reference/CAS/audit primitives are
+extracted for one outer intake writer transaction, retaining every existing
+human/agent rule. Opaque source-link activity contains no private source text.
+The earlier approved IntroMail task mapping and all exclusions remain unchanged;
+no additional IntroMail, GPL or AGPL code is copied. Installed SeaORM1.1.19 and
+SQLx SQLite0.8.6 transaction sources are API references only, not code ports.

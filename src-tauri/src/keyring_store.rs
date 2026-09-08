@@ -100,11 +100,28 @@ fn read_tokens_at(path: &std::path::Path) -> std::collections::HashMap<String, S
 }
 
 #[cfg(not(feature = "tauri-runtime"))]
+fn read_tokens_for_write(
+    path: &std::path::Path,
+) -> Result<std::collections::HashMap<String, String>, String> {
+    // Only a genuinely absent store starts empty. In particular, malformed or
+    // unreadable existing bytes must never become a replacement empty map.
+    // The caller holds TOKEN_WRITE_LOCK across this read and the atomic write.
+    let contents = match std::fs::read_to_string(path) {
+        Ok(contents) => contents,
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+            return Ok(std::collections::HashMap::new());
+        }
+        Err(_) => return Err("credential store unavailable".to_owned()),
+    };
+    serde_json::from_str(&contents).map_err(|_| "credential store unavailable".to_owned())
+}
+
+#[cfg(not(feature = "tauri-runtime"))]
 fn change_token_at(path: &std::path::Path, key: String, value: Option<&str>) -> Result<(), String> {
     let _guard = TOKEN_WRITE_LOCK
         .lock()
         .map_err(|_| "credential store unavailable".to_string())?;
-    let mut tokens = read_tokens_at(path);
+    let mut tokens = read_tokens_for_write(path)?;
     match value {
         Some(value) => {
             tokens.insert(key, value.to_string());
@@ -242,6 +259,46 @@ pub fn delete_channel_token(channel_id: i32) -> Result<(), String> {
 #[cfg(all(test, not(feature = "tauri-runtime")))]
 mod tests {
     use super::*;
+
+    #[test]
+    fn intake_store_mutation_preserves_malformed_and_unreadable_stores() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("tokens.json");
+        for bytes in [
+            b"{\"unrelated\":\"synthetic\",broken".as_slice(),
+            b"{\"unrelated\":42}",
+            b"\xff",
+        ] {
+            std::fs::write(&path, bytes).unwrap();
+            for value in [Some("synthetic-staged"), None] {
+                assert!(change_token_at(&path, token_key("intake-staged"), value).is_err());
+                assert_eq!(std::fs::read(&path).unwrap(), bytes);
+                assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 1);
+            }
+        }
+        std::fs::remove_file(&path).unwrap();
+        std::fs::create_dir(&path).unwrap();
+        let retained = path.join("retained");
+        std::fs::write(&retained, b"synthetic-preserved").unwrap();
+        for value in [Some("synthetic-staged"), None] {
+            assert!(change_token_at(&path, token_key("intake-staged"), value).is_err());
+            assert_eq!(std::fs::read(&retained).unwrap(), b"synthetic-preserved");
+        }
+    }
+
+    #[test]
+    fn intake_store_missing_file_and_staged_cleanup_preserve_other_entries() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("tokens.json");
+        change_token_at(&path, token_key("unrelated"), Some("synthetic-original")).unwrap();
+        change_token_at(&path, token_key("intake-staged"), Some("synthetic-staged")).unwrap();
+        change_token_at(&path, token_key("intake-staged"), None).unwrap();
+        let tokens = read_tokens_for_write(&path).unwrap();
+        assert_eq!(tokens.len(), 1);
+        assert_eq!(tokens[&token_key("unrelated")], "synthetic-original");
+        #[cfg(unix)]
+        assert_eq!(mode_bits(&path), 0o600);
+    }
 
     #[test]
     fn concurrent_inbox_and_channel_updates_preserve_every_credential() {
