@@ -17,6 +17,10 @@ pub enum DeskTool {
     DeskSaveReply,
     DeskProposeReply,
     DeskProposeIssue,
+    DeskBusinessTask,
+    DeskBusinessProgress,
+    DeskBusinessNote,
+    DeskBusinessSubmit,
     HafidhFeedbackList,
     HafidhFeedbackGet,
     HafidhIntakeStatus,
@@ -31,6 +35,10 @@ impl DeskTool {
             "desk_save_reply" => Some(Self::DeskSaveReply),
             "desk_propose_reply" => Some(Self::DeskProposeReply),
             "desk_propose_issue" => Some(Self::DeskProposeIssue),
+            "desk_business_task" => Some(Self::DeskBusinessTask),
+            "desk_business_progress" => Some(Self::DeskBusinessProgress),
+            "desk_business_note" => Some(Self::DeskBusinessNote),
+            "desk_business_submit" => Some(Self::DeskBusinessSubmit),
             "hafidh_feedback_list" => Some(Self::HafidhFeedbackList),
             "hafidh_feedback_get" => Some(Self::HafidhFeedbackGet),
             "hafidh_intake_status" => Some(Self::HafidhIntakeStatus),
@@ -40,6 +48,10 @@ impl DeskTool {
 
     pub fn is_cached_read(self) -> bool {
         matches!(self, Self::HafidhFeedbackList | Self::HafidhFeedbackGet | Self::HafidhIntakeStatus)
+    }
+
+    pub fn is_business(self) -> bool {
+        matches!(self, Self::DeskBusinessTask | Self::DeskBusinessProgress | Self::DeskBusinessNote | Self::DeskBusinessSubmit)
     }
 }
 
@@ -99,7 +111,7 @@ mod tests {
             "tool": "desk_context", "input": {}, "actor": "operator"
         })).is_err());
         let schema: Value = serde_json::from_str(SCHEMA).unwrap();
-        assert_eq!(schema.as_array().unwrap().len(), 9);
+        assert_eq!(schema.as_array().unwrap().len(), 13);
         for tool in schema.as_array().unwrap() {
             assert!(DeskTool::from_name(tool["name"].as_str().unwrap()).is_some());
             assert_eq!(tool["inputSchema"]["additionalProperties"], false);
