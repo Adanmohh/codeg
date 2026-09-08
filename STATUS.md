@@ -1,5 +1,14 @@
 # Status — 2026-09-08
 
+**Restricted native tenant windows remain unavailable pending a complete IPC
+boundary.** Root verified that Tauri2.10.2's private `Channel::from_callback_fn`
+queues large replies without the channel interceptor. The inspected protocol
+caller uses this path under non-macOS/non-iOS channel-response conditions; this
+does not establish that fallback executing on the current Mac. It does rule out
+interceptor-only coverage as the complete cross-platform design. Backend/platform/
+settings implementation and bounded ACL tests continue; existing native platform
+preview is unchanged. No dependency/vendor change or native isolation pass.
+
 Native tenant isolation has an additional open prerequisite: installed Tauri2.10.2
 exempts channel-data fetch from ACL and fetches from an app-global queue without
 a window check. Root verified the named installed source. Approvals is researching
