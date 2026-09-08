@@ -13,6 +13,14 @@ shared workspace and tenant UI. Closed settings/helper DTOs must be published
 before dependent integration; execution isolation remains a separate gate.
 No new worker, production merge, fixture migration or native acceptance is implied.
 
+Draft PR30 contract checkpoint `7516461633c163c2ac683930487e33231e630b0b`
+is verified via GitHub and read in full. Root accepts the closed helper/DTO contract
+for implementation: read-only captured authorization epoch, persisted B freshness
+fences, platform-only provisioning/recovery, settings CAS and restricted native
+session/ACL requirements. Settings default to neutral palette, split layout and
+tasks; appearance is scoped to the tenant workspace. P2/P4 received the contract.
+No compiling product or runtime pass is claimed by this documentation checkpoint.
+
 Owner explicitly wants the engineering workspace's richness for business users:
 chat and terminal AI, tabs and split panes alongside shared tasks, tables, boards,
 data visualization and content calendars. A separate simplified business dashboard
