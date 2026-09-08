@@ -144,21 +144,9 @@ export const SidebarSectionHeader = memo(function SidebarSectionHeader({
           className={cn(
             "group flex h-full w-full items-center gap-[0.375rem] px-[0.5rem]",
             "rounded-md outline-none select-none",
-            // Lighter than the folder name, but on the SAME base token
-            // (`sidebar-foreground`) — not `muted-foreground`. Both labels are
-            // 0.875rem/normal, so an earlier "looks a different size" was pure
-            // contrast: a lighter/lower-contrast token reads as smaller. Same
-            // family keeps perceived size matched.
-            //
-            // /50 ≈ 3.7:1 (light) / ~5.1:1 (dark). In light mode this is BELOW the
-            // 4.5:1 WCAG AA bar for 14px body text, but clears the 3:1 large-text /
-            // UI-component bar. Deliberate, user-approved: these are redundant
-            // secondary section labels (the list beneath them is self-evident), so
-            // the 3:1 bar is the one held here. /60 was the AA floor; the user
-            // asked for lighter still and accepted the 3:1 tradeoff. Don't drop
-            // below /45 (~3.1:1) without revisiting — that breaches 3:1 too. Hover
-            // deepens to /80 for a clear interactive affordance.
-            "text-sidebar-foreground/50 transition-colors duration-150",
+            // Section labels are 14px normal text: keep the inherited
+            // sidebar ink with enough opacity for the 4.5:1 text threshold.
+            "text-sidebar-foreground/70 transition-colors duration-150",
             "hover:text-sidebar-foreground/80",
             "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
           )}

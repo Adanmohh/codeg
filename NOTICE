@@ -455,3 +455,21 @@ Pi setup-error display reuses src/lib/app-error.ts::toErrorMessage from Codeg
 v0.30.4 (6f6bd648b206412644842a98d9ffeebf57292bed), verified blob
 9ddaab9e53c9c9c6971f8ad1a32938f364722457. The connection lifecycle and ACP
 context call that existing helper; no new error parser is introduced.
+
+Shell accessibility and Pi setup presentation extend xintaofei/codeg v0.30.4
+(6f6bd648b206412644842a98d9ffeebf57292bed):
+src/components/terminal/terminal-tab-bar.tsx;
+src/components/layout/{status-bar,status-bar-alerts}.tsx;
+src/components/conversations/{sidebar-section-header,sidebar-conversation-list,
+conversation-detail-panel}.tsx; src/components/settings/pi-config-panel.tsx;
+src/components/ui/{button,input,select}.tsx and src/i18n/messages/*.json.
+The shared chat/agent-setup-notice.tsx extracts the existing composer setup
+message/actions and reuses the existing Button and translated labels. Form
+associations use the installed React useId and Radix SelectTrigger contracts.
+New code is presentation glue and regression fixtures. The original Codeg
+Apache-2.0 LICENSE and all preceding attribution remain unchanged.
+
+The same scoped accessibility follow-up extends Codeg v0.30.4
+src/components/settings/settings-shell.tsx at the immutable commit above,
+using the existing translated Navigation label and AppTitleBar size override.
+Drawer navigation, dismissal and settings persistence are unchanged.

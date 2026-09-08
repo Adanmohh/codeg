@@ -1460,6 +1460,10 @@
       "failed": "プラグイン操作に失敗しました"
     },
     "pi": {
+      "deskTitle": "Pi Desk の設定",
+      "deskRequirements": "Desk の起動には pi 0.85.1、pi-mcp-adapter 2.32.1、および max 推論に対応した設定済みの gpt-6-astra モデルが必要です。",
+      "deskNextStep": "既存の Pi クライアントでこのモデルを設定してから、新しい会話を開始して再試行してください。アダプターの PASS 判定では、Desk モデルの準備状況やプロバイダーへのアクセスは確認されません。",
+      "deskThinkingHint": "Desk は起動時に推論を max に設定します。他の Pi セッションの設定は引き続きここで保存できます。",
       "configManagement": "Pi 設定",
       "configDescription": "Pi はモデルプロバイダーの API キーで認証します。キーは ~/.pi/agent/auth.json に、モデル選択は settings.json に書き込まれます。",
       "providerLabel": "プロバイダー",

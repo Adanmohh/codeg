@@ -1460,6 +1460,10 @@
       "failed": "插件操作失败"
     },
     "pi": {
+      "deskTitle": "Pi Desk 设置",
+      "deskRequirements": "启动 Desk 需要 pi 0.85.1、pi-mcp-adapter 2.32.1，以及已配置且支持 max 推理的 gpt-6-astra 模型。",
+      "deskNextStep": "请在现有 Pi 客户端中配置此模型，然后新建对话重试。适配器的 PASS 检查不代表 Desk 模型已就绪或可访问提供商。",
+      "deskThinkingHint": "Desk 启动时会设置 max 推理。此处仍可保存其他 Pi 会话的偏好设置。",
       "configManagement": "Pi 配置",
       "configDescription": "Pi 通过模型提供方的 API Key 鉴权。Key 写入 ~/.pi/agent/auth.json，模型选择写入 settings.json。",
       "providerLabel": "提供方",

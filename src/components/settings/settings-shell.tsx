@@ -148,6 +148,7 @@ function isWindowsRuntime(): boolean {
 
 export function SettingsShell({ children }: SettingsShellProps) {
   const t = useTranslations("SettingsShell")
+  const tNavigation = useTranslations("Folder.statusBar.quickActions.groups")
   const pathname = usePathname()
   const router = useRouter()
   const normalizedPathname = normalizePath(pathname)
@@ -230,12 +231,16 @@ export function SettingsShell({ children }: SettingsShellProps) {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-background text-foreground">
       <AppTitleBar
+        className={isMobile ? "h-12" : undefined}
         left={
           isMobile ? (
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8"
+              className="h-11 w-11"
+              aria-label={tNavigation("navigation")}
+              aria-expanded={navOpen}
+              aria-haspopup="dialog"
               onClick={() => setNavOpen(true)}
             >
               <Menu className="h-4 w-4" />

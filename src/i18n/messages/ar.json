@@ -1460,6 +1460,10 @@
       "failed": "فشلت عملية الإضافة"
     },
     "pi": {
+      "deskTitle": "إعداد Pi Desk",
+      "deskRequirements": "يتطلب تشغيل Desk الإصدار pi 0.85.1 والإصدار pi-mcp-adapter 2.32.1 ونموذج gpt-6-astra مُعدًّا لدعم الاستدلال بمستوى max.",
+      "deskNextStep": "أعدّ هذا النموذج في عميل Pi الحالي، ثم ابدأ محادثة جديدة لإعادة المحاولة. لا يتحقق فحص PASS للمحوّل من جاهزية النموذج لـ Desk أو من إمكانية الوصول إلى المزوّد.",
+      "deskThinkingHint": "يضبط Desk مستوى الاستدلال على max عند التشغيل. يمكنك الاستمرار في حفظ تفضيلات جلسات Pi الأخرى هنا.",
       "configManagement": "إعدادات Pi",
       "configDescription": "يصادق Pi عبر مفتاح API لمزوّد النموذج. يُكتب المفتاح في ~/.pi/agent/auth.json واختيار النموذج في settings.json.",
       "providerLabel": "المزوّد",

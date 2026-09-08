@@ -1,0 +1,99 @@
+- generic:
+  - alert [ref=f1e1]
+  - region "Notifications alt+T"
+  - generic [ref=f1e2]:
+    - generic [ref=f1e514]:
+      - generic [ref=f1e515]:
+        - button "Show Sidebar" [ref=f1e516]
+        - button "Search" [ref=f1e517]
+        - button "New Conversation" [ref=f1e518]
+      - generic [ref=f1e520]:
+        - button "Toggle Terminal" [ref=f1e521]
+        - button "Toggle Auxiliary Panel" [ref=f1e522]
+        - button "Open Settings" [ref=f1e523]
+    - main [ref=f1e525]:
+      - generic [ref=f1e530]:
+        - generic [ref=f1e531]:
+          - generic [ref=f1e532]:
+            - button "fresh-desk-workspace" [ref=f1e533]
+            - generic "New Conversation" [ref=f1e537]
+          - button "More actions" [ref=f1e539]
+        - generic [ref=f1e555]:
+          - generic [ref=f1e557]:
+            - heading "What would you like to do today?" [level=1] [ref=f1e558]
+            - generic [ref=f1e559]:
+              - tablist [ref=f1e560]:
+                - tab "Code Development" [selected] [ref=f1e561]
+                - tab "Office Work" [ref=f1e562]
+                - tab "Scientific Research" [ref=f1e563]
+              - tabpanel "Code Development" [ref=f1e564]:
+                - generic [ref=f1e565]:
+                  - button "Brainstorming Explore intent & requirements before building" [ref=f1e566]:
+                    - generic [ref=f1e572]: Brainstorming
+                    - generic [ref=f1e573]: Explore intent & requirements before building
+                  - button "Systematic Debugging Find the root cause before proposing fixes" [ref=f1e574]:
+                    - generic [ref=f1e587]: Systematic Debugging
+                    - generic [ref=f1e588]: Find the root cause before proposing fixes
+                  - button "Writing Skills Create, edit & verify reusable skills" [ref=f1e589]:
+                    - generic [ref=f1e598]: Writing Skills
+                    - generic [ref=f1e599]: Create, edit & verify reusable skills
+                - generic [ref=f1e600]:
+                  - button "Show previous skills" [disabled]
+                  - generic [ref=f1e602]:
+                    - button "Writing Plans" [ref=f1e603]
+                    - button "Executing Plans" [ref=f1e611]
+                    - button "Subagent-Driven Development" [ref=f1e619]
+                    - button "Dispatching Parallel Agents" [ref=f1e627]
+                    - button "Using Git Worktrees" [ref=f1e637]
+                    - button "Test-Driven Development" [ref=f1e646]
+                    - button "Verification Before Completion" [ref=f1e653]
+                    - button "Requesting Code Review" [ref=f1e661]
+                    - button "Receiving Code Review" [ref=f1e670]
+                    - button "Finishing a Development Branch" [ref=f1e679]
+                    - button "Using Superpowers" [ref=f1e688]
+                  - button "Show more skills" [ref=f1e696]
+            - generic [ref=f1e701]:
+              - button "Pi Pi" [pressed] [ref=f1e703] [cursor=pointer]:
+                - img "Pi" [ref=f1e706]
+                - generic [ref=f1e711]: Pi
+              - button [ref=f1e713] [cursor=pointer]:
+                - img "Claude Code" [ref=f1e716]
+                - generic: Claude Code
+              - button [ref=f1e719] [cursor=pointer]:
+                - img "Codex" [ref=f1e722]
+                - generic: Codex
+              - button [ref=f1e725] [cursor=pointer]:
+                - img "Gemini CLI" [ref=f1e728]
+                - generic: Gemini CLI
+              - button [ref=f1e732] [cursor=pointer]:
+                - img "OpenClaw" [ref=f1e735]
+                - generic: OpenClaw
+              - button [ref=f1e743] [cursor=pointer]:
+                - img "OpenCode" [ref=f1e746]
+                - generic: OpenCode
+              - button [ref=f1e749] [cursor=pointer]:
+                - img "Cline" [ref=f1e752]
+                - generic: Cline
+              - button "More agents (8)" [active] [ref=f1e756] [cursor=pointer]
+            - generic [ref=f1e763]:
+              - generic [ref=f1e764]:
+                - textbox "Send a message..." [ref=f1e767]:
+                  - paragraph [ref=f1e768]: Send a message...
+                - generic [ref=f1e769]:
+                  - generic [ref=f1e770]:
+                    - button "Add" [disabled]
+                  - generic [ref=f1e771]:
+                    - button "Send" [disabled]
+              - generic [ref=f1e772]:
+                - generic [ref=f1e773]:
+                  - button "fresh-desk-workspace" [ref=f1e774]
+                  - button "fix/design-shell" [ref=f1e776]
+                - 'button "Agent connection: Disconnected" [ref=f1e779]'
+          - paragraph [ref=f1e791]: Right-click a tab and pick Split Right or Split Down to keep two conversations open in their own panes.
+    - generic [ref=f1e355]:
+      - button "Quick actions" [ref=f1e357]
+      - generic [ref=f1e358]:
+        - button "Add Command" [ref=f1e792]
+        - button "codeg-mcp service" [ref=f1e793]
+        - button "Alerts" [ref=f1e801]:
+          - generic [ref=f1e804]: "3"
