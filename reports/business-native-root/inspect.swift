@@ -41,6 +41,11 @@ if args[2] == "windows" {
             if let text = attr(node, key) as? String, !text.isEmpty { row[key] = safe(text) }
         }
         if role == "AXStaticText", let text = attr(node, kAXValueAttribute) as? String { row["text"] = safe(text) }
+        if role == "AXWebArea", let url = attr(node, kAXURLAttribute) as? URL {
+            // Record only route identity, never URL credentials/query/fragment.
+            row["route"] = url.path
+            row["scheme"] = url.scheme ?? ""
+        }
         rows.append(row)
         for (index, child) in children(node).enumerated() { walk(child, path + [index], depth + 1) }
     }
