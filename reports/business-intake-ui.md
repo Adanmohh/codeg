@@ -224,6 +224,10 @@ Node syntax check passed; this does not establish backend readiness.
 
 ## Expanded design workorder
 
+Compiling intake/navigation checkpoint before reshaping:
+`b9a7607f` (pushed to draft PR29). The source remains reviewable independently
+of the following presentation pass.
+
 Owner steering now includes the existing business sidebar/navigation, tabs,
 list, board and task detail as well as Sources. Human/agent shared work and
 business decisions lead; engineering remains accessible in its accepted
@@ -251,3 +255,101 @@ inherited Action styles; they are not a measured contrast or interaction verdict
 `design-checklist.md` records pending observable gates. The accepted preview and
 all previous outputs stay unchanged until a corrected, explicitly identified
 synthetic preview is ready.
+
+### Owner correction: one rich shared workspace
+
+The owner explicitly supersedes a separate lightweight business dashboard.
+The existing engineering workbench is the common foundation: rich tabs and split
+panes, chat and AI terminal as first-class business tools, alongside task
+list/board/detail and structured data. Tenant/role tailor tools and data; they
+must not remove the workspace's power by definition. The earlier compact
+dashboard composition is superseded before product edits. Product remains
+b9a7607f7d2d3651501672c6020ff167af8fc70e.
+
+Direction: **One workbench, many kinds of work**. World: conversation, terminal,
+source passage, work brief, deliverable and human sign-off. Reuse the engineering
+shell's compact chrome, tab strip, stable pane geometry and contextual tools;
+business tasks and Sources become real working surfaces in that vocabulary.
+Existing semantic colors, configured UI font and native caption geometry remain.
+No calendar, visualization data, execution authority or provider readiness is
+claimed merely because its eventual surface has been discussed.
+
+    organization / navigation       work tabs / focused pane controls
+    work / sources / people         +------------------+------------------+
+    permitted tools                 | tasks / sources  | detail / AI work |
+                                    | list or board    | authorized pane  |
+                                    +------------------+------------------+
+    personal preferences            terminal / contextual tools when authorized
+
+This diagram is a composition plan, not an assertion that member AI execution
+or a terminal route already exists. Calendar/content planning remains future
+capability with no enabled placeholder navigation. Structured lists/boards use
+real task data; future charts must disclose their real loaded scope.
+
+### Exact shared-shell source assessment
+
+All paths below are existing Apache Codeg source read at accepted
+a40b03393a466672060066ae6e0e8c9054a2349d; no proprietary or AGPL implementation
+is copied. The original v0.30.4 attribution remains. The table distinguishes
+reusable presentation from runtime that cannot be mounted for a member.
+
+| Exact source / observed implementation | Shared-shell plan |
+| --- | --- |
+| src/app/workspace/layout.tsx: sidebar/center/aux horizontal panels, workspace/terminal vertical panels; KeptMountedSurface combines inert/hidden state with OverlayHostHiddenProvider | Extract/reuse the stable presentation slots and visibility rule. Keep original operator provider composition intact until an authorized scoped adapter exists; do not wrap a member in that provider tree. |
+| src/components/ui/resizable.tsx; installed react-resizable-panels@2.1.9 README and PanelGroup/PanelResizeHandle types | Reuse the existing panel controls and keyboard resize contract. Give conditional panels stable IDs/order; keep B arrangements in the existing private session lifetime. Do not enable default localStorage autosave for source/task drafts. |
+| src/lib/tab-group-layout.ts (pure immutable split/remove/resize/rect functions); conversation-detail-panel.tsx stable sibling group rendering around lines2591/2754 | Reuse the split-tree model and stable group keys. Resizing/orientation changes must not reparent a live editor or lose its draft; adapting a pane is not recreating a task/agent engine. |
+| src/components/tabs/{tab-bar,tab-item}.tsx | Reuse the tab chrome and callback-driven interaction. Separate its conversation-specific descriptor/status and global store reads from generic task/source panes; never force a task UUID into a conversation/folder DTO. Preserve close, pin, selection, split and narrow focus semantics through the shared presentation boundary. |
+| src/contexts/workbench-route-context.tsx, src/components/workbench/workbench-content.tsx | Reuse explicit registered surfaces and leave guards. That existing provider also mounts OpsSessionBoundary, so direct import is not an isolated member route. Keep B's private audience/receipt and dirty guards when adapting content slots. |
+| src/contexts/tab-context.tsx, src/stores/tab-store.ts | Current lifecycle hydrates/saves legacy opened_tabs, subscribes global events and injects ACP. Layout state uses global workspace:tab-groups:v1; these are not tenant/member-scoped authority. Reuse pure operations/presentation, not this singleton's persistence or ambient connection for members. |
+| src/contexts/terminal-context.tsx, src/components/terminal/terminal-view.tsx, src/lib/api.ts:terminalSpawn | Current terminal provider loads global terminal settings/subscriptions, and the view calls legacy spawn/write/resize/kill. An adapted terminal needs a typed scoped transport supplied by the backend contract before it can be enabled for an ordinary business member. |
+| src-tauri/src/web/handlers/terminal.rs, web/router.rs | Existing terminal spawn accepts working directory/shell/initial command and injects operator credential environment; routes/events are protected by the legacy operator boundary. This is intentional operator behavior, not a tenant terminal API. Link hiding or a role label cannot turn it into one. |
+
+Concrete implementation order:
+
+1. Retain compiling B content/client checkpoint.
+2. Introduce controlled common chrome/pane slots from the approved sources,
+   keeping legacy provider/runtime behavior unchanged.
+3. Place real task and Sources work in those slots with stable in-memory editors
+   and explicit close guards.
+4. Wire first-class conversation/terminal slots only to the accepted tenant
+   execution contract.
+5. Run actual two-session and measured390/768/1280 EN/AR light/dark/pane/focus/
+   resize loops. No dummy chat, terminal success output, fake tenant selector or
+   provider launch for a screenshot.
+
+Backend needs to settle: server-derived tenant selection and principal context;
+tenant-owned execution roots and tools; per-terminal/conversation create/read/
+write/subscribe/close authority; secret/provider environment isolation; output
+ownership and revocation; tenant-admin versus platform-operator setup. These are
+backend prerequisites, not proposed URLs or a second frontend auth system.
+Tenant presentation can later consume only validated brand/theme/navigation/
+default-view presets, separately from personal preferences. Arbitrary tenant
+JS/CSS and client-side isolation are excluded.
+
+Root's architecture research pins are edu-blend
+735e7695a44ab6e5dbda521c822f3a3809f289c8 (proprietary inspiration only; no source
+republication) and Payload54a0e3d24015b2e9c565bd7e695be1ec7184662e (MIT).
+Approvals owns the architecture report/authority contract; neither source has
+been copied here, and this UI report does not independently certify its isolation.
+
+Local code-context's workflow and custom-UI rules support meaningful pane jobs
+and actual design iteration. Its cross-project DB/delegation advice does not
+override assigned ownership. W3C ARIA Practices main was resolved via gh api
+to7e4034b262bc0d25332e330d8a582aaf34113829; exact
+content/patterns/{tabs,table}/*-pattern.html was read. Full tab focus/panel
+semantics are required, and a visual table does not justify incomplete grid
+roles. These are documentation references, not copied implementation or a
+founding source upgrade. Self-critique: preserve workspace capability and the
+auth boundary together; a simplified dashboard or an unrestricted legacy shell
+would each fail the owner's corrected requirement.
+
+### Latest backend integration status
+
+Tickets' PR28 handoff is5de1176beb4778604b26df65f2ec669b0ab7987b, production
+4a194500b76b97aa5caaf9434ce5c1f16e54ea48. The exact committed http.rs was read:
+eight source/import operations now join the eight setup operations under the
+existing Principal middleware, and their names match the closed TS client.
+Candidate decisions and task-source references are not exposed in this router
+yet. Native source/import additions are explicitly held for reviewed tenant
+selection. No native readiness or independent backend acceptance is inferred;
+no manual4351/4352 listener handoff has occurred here.
