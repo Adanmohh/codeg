@@ -293,3 +293,33 @@ boundaries. Edublend/Payload source has not been copied into this implementation
 
 Candidate production checkpoint: `e9c6323760497e7b294282d2746cfe1d9b2774fa`, pushed
 to draft PR28. Earlier import regressions/report: `5de1176beb4778604b26df65f2ec669b0ab7987b`.
+
+## Tenant epoch integration handoff
+
+Read the full accepted identity/settings proposal at
+`af00c956787142f900384f7ba6b34ebbc005eb88` through immutable gh api. Root assigned
+approvals sole identity/platform/settings/native ownership and forward migration000012;
+this worker retains B/migration000011 and will independently review the published
+tenancy head on a separate branch. B is committed and tracked clean before that
+transition; the paused visual report remains untracked and preserved.
+
+Direct helper coordination requested from identity: a read-only accessor for the
+Principal's **captured** authorizationEpoch. Current B clones/passes the same
+Principal across provider reads and final writer; it must never reconstruct or
+refresh it. Current identity authorization can then reject old in-flight work on
+suspension/resumption. A second, distinct persistence requirement remains: B source
+observations, candidate previews and staged/attempted work currently pin the binding
+access epoch only. A freshly authenticated post-resume Principal must not accept
+an older observation/preview solely because that binding epoch did not change.
+B needs an explicit captured tenant-epoch fence in retained storage or an agreed
+monotonic binding invalidation seam. No epoch=1/default fallback is implemented.
+Migration000011→000012 registration/retention must preserve both owners' records;
+no existing fixture is migrated. This new-target gap is not a failure of the
+separately pinned pre-tenancy runtime tests and is not claimed implemented yet.
+
+New native command registration and tenant-owned connection administration remain
+pending the actual identity/session helper checkpoint. Platform entrustment of
+legacy account/inbox/product/host resources must remain a separate capability;
+no automatic grants, resource reassignment or stored-credential reconstruction.
+The rich tenant workspace does not gain legacy session reads, files, global events,
+terminal, child delegation or arbitrary CLI authority through this B checkpoint.
