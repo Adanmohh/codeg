@@ -13,7 +13,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Pi scoped bridge/default | PRs #8 and #15 reviewed and merged; cached reads/native issue proposal, real companion/adapter and protected browser checks pass | Final build; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 host, #12 phone and #15 Pi integration accepted; independent combined178 Ops tests pass | Final beta/native validation |
 | Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
-| Final Design Studio loops | PRs #13/#14 accepted; PR #18 badge and #19 reduced-motion corrections under review | Both fixes, final integrated specialist PR #16 and root recheck |
+| Final Design Studio loops | PRs #13/#14/#19 accepted; PR #18 folder/group badges under final integration review | Badge fix, final integrated specialist PR #16 and root recheck |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
@@ -378,3 +378,10 @@ Final combined design review and Pi bridge validation continue.
   Rebrand handles badge contrast; approvals continues final audit. Three workers.
 - Root started real release companion preparation from accepted Pi main for the
   final native build. No signed/distributed artifact or live provider action.
+
+- PR #19 reduced-motion correction accepted at `edd8add757b69d6f368cf813f14aae1f1d738eb2`,
+  merged as `4611d025ba49790adbda780e8d6d44c20e75a9fe`. Root reviewed popup-only
+  source, pinned attribution, actual before/after frames, nested/swipe/focus
+  evidence and final report. Worker39 tests/lint/typecheck/export pass; reduced
+  motion removes automatic travel and normal animation remains. [Review](reports/review-design-reduced-motion.md).
+  Final badge integration, combined audit and native packaging remain.

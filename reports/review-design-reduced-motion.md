@@ -1,4 +1,4 @@
-# Reduced-motion correction — review in progress
+# Reduced-motion correction — accepted
 
 Root inspected PR19 product `cebce09d0df73205277d59c7048e733cc4b588f4`.
 The three-line popup-only addition applies `motion-reduce:transition-none`.
@@ -25,5 +25,13 @@ Structured before/after frame evidence independently inspected by root:
 - Both preferences preserve331.5×828 geometry inside390×844, Escape returns
   focus to Show Sidebar, and outside click dismisses. Guard counts are all0.
 
-Worker final nested/swipe checks, relevant regression results, report and exact
-head are pending. Root final integrated browser recheck follows acceptance.
+Complete report and final gates reviewed. Worker39 existing tests, lint,
+typecheck and production exports pass. Both preferences preserve nested-menu
+Escape without closing the parent and direct touch tracking; reduce releases
+without animation while normal release remains animated. Actual closed image
+shows restored visible focus. The owned manual fixture passed and shut down;
+both4324/4325 listeners closed. Root inspected the report-only delta after the
+validated product and accepted exact handoff
+`edd8add757b69d6f368cf813f14aae1f1d738eb2`, merged as
+`4611d025ba49790adbda780e8d6d44c20e75a9fe`.
+Root final integrated browser recheck follows the remaining badge acceptance.
