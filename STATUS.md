@@ -63,6 +63,13 @@ agent. A usable protected source-binding/grant setup is part of contract review.
 | approvals, wR:p3 | `review/business-intake-contract`: `reports/review-business-intake-contract.md`; independent source visibility/publication/transaction review and smallest protected binding/grant API. |
 | rebrand, wR:p2 | `docs/business-intake-ui`: `reports/business-intake-ui-plan.md`; business source→passage→reviewed task flow, readiness/rebase/access recovery and visual/keyboard acceptance plan. |
 
+**UI planning PR26 reviewed and merged** at exact report head
+`91a69f339e99266b35bb912ae7d1cb155a6acd76`. Root read the full report and final
+diff. This accepts the business interaction plan, not B product or the unfinished
+backend contract. Q1 setup/capabilities and Q2–Q4 pinned rebase/disclosure,
+recovery and timing/error definitions remain before implementation dispatch.
+[Plan](reports/business-intake-ui-plan.md) · [Root BI acceptance plan](reports/business-intake-acceptance-checklist.md).
+
 All retain separate worktrees, Astra/max and live docs-first hooks; latest
 before/after hook records exit0. Installed pinned source then immutable gh api,
 approved borrowing/NOTICE and preserved paused work apply. Root reviews the
