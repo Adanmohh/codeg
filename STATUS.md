@@ -1,10 +1,10 @@
 # Status — 2026-09-08
 
-**Implementation paused for product ideation; source research active.** Phase 1 functional implementation and prior local validation are complete. Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
+**Implementation paused for product ideation; source comparison complete.** Phase 1 functional implementation and prior local validation are complete. Steps 0–3 and the final Design Studio correction loops are reviewed and merged. The unsigned macOS debug app builds and starts successfully. Live service setup and real beta use remain unvalidated.
 
 ## Research during ideation
 
-Owner clarified a role-based desktop workspace with shared tasks for humans and agents throughout the organization, and meeting/note sources such as Fireflies feeding task orchestration. Three workers are researching Intromail shared work, meeting ingestion and role/work-platform alternatives using gh api; product work remains paused. [Source research checkpoint](reports/business-workspace-research.md).
+Owner clarified a role-based desktop workspace with shared tasks for humans and agents throughout the organization, and meeting/note sources such as Fireflies feeding task orchestration. Three workers completed gh api source reviews of Intromail shared work, meeting ingestion and role/work-platform alternatives. Root reviewed all three reports. Recommendation: keep the desktop/executor; add shared organization tasks, real ownership/permissions and durable ingestion, then role-specific business capabilities. No product changes or live actions were performed during research. Product work remains paused. [Source findings and proposed direction](reports/business-workspace-research.md).
 
 ## Expanded business scope — planned, not complete
 
