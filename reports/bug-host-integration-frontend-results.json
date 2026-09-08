@@ -1,0 +1,20 @@
+{
+  "head": "11d703c5e5ee51021f6cb59bed27adaf269cafb5",
+  "checks": [
+    {
+      "name": "typecheck",
+      "command": "pnpm exec tsc --noEmit",
+      "exit": 0,
+      "elapsed_seconds": 10.09,
+      "log": "reports/bug-host-integration-typecheck.log"
+    },
+    {
+      "name": "frontend-tests",
+      "command": "pnpm exec vitest run src/components/ops-intake src/components/ops src/components/ops-telegram src/lib/ops-telegram src/lib/transport/web-transport.test.ts",
+      "exit": 0,
+      "elapsed_seconds": 1.8,
+      "log": "reports/bug-host-integration-frontend-tests.log",
+      "passed": 32
+    }
+  ]
+}
