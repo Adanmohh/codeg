@@ -1,5 +1,15 @@
 # Status — 2026-09-08
 
+Native tenant isolation has an additional open prerequisite: installed Tauri2.10.2
+exempts channel-data fetch from ACL and fetches from an app-global queue without
+a window check. Root verified the named installed source. Approvals is researching
+the existing channel interceptor for addressed-webview delivery; this is not yet
+a verified closure. Direct cross-window denial and ordered host/tenant stream
+positive controls are required, including large/raw payloads and delivery failure.
+Window controls must target the invoking window. Reviewer is notified; backend
+identity/settings work continues. No vendor change, runtime exploit or accepted-A
+regression claim is made.
+
 ## Current owner direction — shared rich workspace and multiple tenants
 
 Final architecture contract `af00c956787142f900384f7ba6b34ebbc005eb88`
