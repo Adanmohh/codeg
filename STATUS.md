@@ -17,8 +17,8 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 
 The macOS unsigned debug app now contains all accepted Phase1 product changes;
 build and isolated native startup/migration checks pass. [Artifact and evidence](reports/native-phase1-build.md).
-Final integrated design report acceptance and one newly verified login-landmark
-correction remain; the bundle will be refreshed after that semantic change. No live email,
+Final integrated design report acceptance and the bundle refresh remain;
+the login-landmark correction is accepted. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
 Historical dispatch/review entries below describe their state at that time;
 the table above is the latest status.
@@ -403,3 +403,9 @@ Final combined design review and Pi bridge validation continue.
   `reports/design-login-landmark.md`. Small semantic correction only; actual
   CLI single-landmark/form/error/retry checks and relevant existing gates.
   Other final design evidence remains valid; refresh the bundle after acceptance.
+
+- PR #20 login landmark accepted at `bbec6ede04d8fcf9a8964b584cb9566d55974e29`,
+  merged as `ff31938066e79abcf438bf793504ae1527a58358`. Root reviewed the complete
+  report and two-tag diff; worker15 existing tests/lint/typecheck/export and
+  actual protected390/1280 invalid-token/keyboard-retry checks pass. [Review](reports/review-design-login-landmark.md).
+  Final specialist targeted recheck and native/export refresh are in progress.
