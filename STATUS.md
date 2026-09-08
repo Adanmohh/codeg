@@ -1,6 +1,6 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. Typed P1 phone review is also accepted. Pi P1 bridge integration, final combined Design Studio review and native build remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications and the bug-workflow host are reviewed and merged. Typed P1 phone review is also accepted. Pi P1 bridge is accepted. Final combined Design Studio fixes/review and native build remain.
 
 ## Current position
 
@@ -10,8 +10,8 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Direct Resend transport | Reviewed and merged, PR #6; UI integration accepted in #7 | Combined beta validation |
 | Hafidh intake + GitHub App filing module | Reviewed and merged, PR #5 | Authenticated operator bug workflow |
 | Email UI, drafts, morning, approved delivery | PR #7 reviewed and merged; independent 22 Rust + 7 component tests and full synthetic provider CLI flow pass | Pi/P1 integration and final Design Studio loop |
-| Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
-| Bug workflow host/UI | PR #9 reviewed and merged; independent 167 integrated Rust tests plus host/Python/frontend and protected CLI checks pass | Pi cached reads/proposal and typed phone integration |
+| Pi scoped bridge/default | PRs #8 and #15 reviewed and merged; cached reads/native issue proposal, real companion/adapter and protected browser checks pass | Final build; live Astra/pi-acp configuration unavailable |
+| Bug workflow host/UI | PR #9 host, #12 phone and #15 Pi integration accepted; independent combined178 Ops tests pass | Final beta/native validation |
 | Telegram and beta validation | PRs #10 and #12 reviewed and merged; email and issue protected phone flows pass, including no-resend reconciliation | Final integrated beta/native checks |
 | Final Design Studio loops | PRs #13 and #14 corrections reviewed and merged; shell, locale, RTL, receipt copy and selected contrast pass | Final integrated specialist review, verify remaining motion/probe candidates |
 
@@ -358,3 +358,8 @@ Final combined design review and Pi bridge validation continue.
 - Root final integrated Pi-branch backend checkpoint `cd2a29fb`:178 Ops tests/5 manual ignored and13 Desk-selector tests/3 manual ignored pass, exit0. All six P1 regressions included. Worker actual companion/adapter19+1 and human-denial browser fixture pass with zero GitHub creates/token requests; final report acceptance remains.
 
 - Final Design Studio loop verified an inherited10px running-session badge at4.38:1 light contrast. Root independently confirmed actual DOM/Canvas composite. Rebrand dispatched `fix/design-running-badge`, same worktree/pane, report `reports/design-running-badge.md`; smallest token correction plus actual light/dark/hover/focus recheck. Root locale browser closed and4326 export released to its owner; data/provider counts preserved.
+
+## Pi P1 bridge accepted
+
+- PR #15 accepted at `c17ce81fd206f7694691f9d274f38ef3692bba20`, merged as `2e0711d45b0c72114428557f0b8738f8b667e0e3`. Complete final report/source/NOTICE and clean integration reviewed. Root178 Ops/13 Desk tests, worker both runtime checks/Clippy,19 process and actual extracted adapter1/1 pass. Real companion cached reads preserve freshness/provider counts; exact native proposal remains human-gated; actual CLI denial files nothing. [Review](reports/review-pi-issues.md).
+- Remaining local gate: final Design Studio badge/reduced-motion follow-ups and combined native/server artifacts. No live model/provider/configuration claim.

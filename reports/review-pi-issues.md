@@ -1,3 +1,17 @@
+# Acceptance
+
+PR #15 accepted at `c17ce81fd206f7694691f9d274f38ef3692bba20`, merged as
+`2e0711d45b0c72114428557f0b8738f8b667e0e3`. Final178-line report read completely,
+exact immutable attribution retained, pagination bound correction and two added
+revision/proof tests reviewed. No blocking source finding. Independent combined
+178 Ops/13 Desk tests, worker desktop/server/companion checks/Clippy,19 actual
+extension/process and1 extracted-assets discovery pass. Actual synthetic CLI
+review/denial and graceful fixture shutdown pass with zero issue/token requests.
+Root inspected final screenshots/raw counts; no duplicate root browser fixture
+or live inference is claimed. Final design/native gates remain separately open.
+
+Historical checkpoints follow.
+
 # Pi P1 bridge review
 
 In progress,2026-09-08. Productb15f11a7 and clean additive accepted-main
