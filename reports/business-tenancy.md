@@ -1,0 +1,15 @@
+# Business tenancy implementation
+
+Current milestone: fixed helper/settings contract published; implementation and runtime acceptance pending. Branch `feat/business-tenancy`, accepted base `f3813e3f1edb521f1d1b20d0b372643acc4123a5`. [Contract](../docs/contracts/business-tenancy.md) defines the captured epoch accessor, closed settings/defaults, platform provisioning/recovery and native enforcement boundary. No new tenant runtime pass is claimed at this checkpoint.
+
+Scope: migration000012, existing business identity authority, typed platform/settings endpoints and native ACL/session bridge. Tickets retains unmerged000011/B rows; rebrand consumes settings/UI contract. B async work must retain the captured Principal and fence persisted observations/previews by its epoch. Legacy host CLI and source entrustment remain separate gates.
+
+Before work: prior `review/business-intake` branch tracked-clean and fully pushed. Switched from accepted main; `.build/`, `out-design-final/` and `reports/visual-refresh-baseline.md` preserved untracked, all prior fixtures/targets/previews untouched. No source from uncommitted B copied.
+
+Docs-first: separate `cat node_modules/react/package.json` and `cat src-tauri/Cargo.toml` exit0; React19.2.4 and installed Rust pins read. Full governing docs previously read, accepted intervening STATUS/DECISIONS changes read; full af00 architecture and identity contract read. Local code-context guide exit0 (Atomic per-task staging relevant; other-project per-tenant DB rule is not this accepted shared-DB policy). Docs retrieval exit3: `/data/code/approvals.db` absent; no coverage claimed, actual installed types used. Live hook audit `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl` contains own session `01a07c1c-d3a3-7c22-a5b6-cedce2970d8d`, own cwd, PostToolUse20715/20716 and PreToolUse20725–20728 before edits.
+
+Source mapping: existing Codeg Apache `business_identity/{mod,store,types,http}.rs`, commands, migration000009/000010, protected web auth and theme-presets at accepted base; existing attributed IntroMail token adaptation unchanged. Installed SeaORM1.1.19 transaction/connection types, SQLx0.8.6 pool/SQLite transaction sources, Tauri2.10.2 ACL resolver and tauri-build2.5.5 app manifest source read. Precise changed-file/blob NOTICE mapping follows product checkpoint. Edublend was architecture-only research; no proprietary port.
+
+Planned gates (not passes): real two-tenant same-DB positives/negatives; retained populated migration and failure rollback; provisioning replay/loss/reissue; suspend/resume stale Principal/grant/async epochs; last owner and grant ceilings; settings CAS; protected original-token/member routers; native direct privileged invoke denial with allowed controls; both runtime checks/Clippy and relevant existing A tests. No existing fixture migrations, providers, account actions or paid calls.
+
+Commit SHA and draft PR URL will be appended after publishing this checkpoint. Final source/check results and remaining limits will replace this opening at handoff.
