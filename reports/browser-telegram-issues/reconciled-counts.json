@@ -1,0 +1,9 @@
+{
+  "stats": {
+    "githubIssues": 2,
+    "githubPosts": 2,
+    "githubTokens": 1,
+    "telegramSends": 3
+  },
+  "text": "unknown response example\nLabels\naudio\nComplete issue body\nSynthetic unknown response example\n\nSeverity: medium (human-confirmed)\n\nSource: synthetic-hafidh / testflight / 01ARZ3NDEKTSV4RRFFQ69G5FAW\nRevision: 52bf6f15ab361d0853fcdb8f034136d9929f82d29789cb9b283dad3dc71fcea9\nTemplate: hafidh-issue-v1\n\n## build\n\n    42\n\nEvidence: ca96ed3e-2e1c-4f7a-9485-d508d1960198\nSHA-256: 480ed438a232c9f1b2879d4f9298fe472a7e234256c496e08319c59264860aef\n\n## screen\n\n    Mushaf reader\n\nEvidence: d6070265-2edd-457a-b824-ab596c9af0e6\nSHA-256: cc28df66c78903a3fcdc8c96cb9ed09137d2a08dbfad1d0c27a7aed2767a1709\n\n## reciter\n\n    Abdul Basit\n\nEvidence: ce9359de-6820-47ee-acb0-a7ac87f1494f\nSHA-256: f9367e9fb86a904031cc946fe1a65593e9b605e0c93135d0058acf1debae6aae\n\n## log\n\n    audio stopped at verse four\n\nEvidence: 5fcc5b59-9562-4f7e-b24e-c18b5cc3057a\nSHA-256: 008f46bbb422476c8bf557d96ab7566f098ce50daa3bc99b14dc97263de1aaef\n\n<!-- hafidh-ops:fe146548a5c9ec8d94439cf7614c70a486d4a84d59ed55adb2fb8475908bd2fb -->\n\nFiling receipt\n\nCreated issue #2 in owner/repo.\n\nA fix still needs its own task and human review. Build notes and a tester email are separate drafts; filing an issue does not release a build or send a message."
+}

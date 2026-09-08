@@ -1,0 +1,10 @@
+- generic [active] [ref=f2e1]:
+  - alert [ref=f2e2]
+  - main "Protected Ops review" [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - paragraph [ref=f2e5]: Hafidh Ops desk
+      - button "Open workspace" [ref=f2e7]
+    - generic [ref=f2e9]:
+      - heading "This review link is no longer current" [level=1] [ref=f2e10]
+      - paragraph [ref=f2e11]: The proposal or recipient settings may have changed, or a decision was already recorded. Open the Ops workspace to check the current queue. This link cannot approve or send anything.
+      - button "Check link again" [ref=f2e12]
