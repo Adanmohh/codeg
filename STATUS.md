@@ -8,7 +8,13 @@
 
 All three Increment A product branches are now reviewed and merged: identity PR #23 (`ab46c9d9`), tasks PR #22 (`5541857a`) and workspace PR #21 (`cf735ab9`). Shared identity, human/agent task persistence and the business-first work/people/review UI are integrated. Root remains orchestrator-only. [Business quickstart](docs/BUSINESS-QUICKSTART.md), [acceptance checklist](reports/business-acceptance-checklist.md).
 
-**Remaining local gates:** ordinary unsigned Tauri packaging, all-three executable and web export hash correlation, isolated actual WebKit local/shared-member workflows, bundled companion protocol and final root Design Studio synthesis. Root starts the normal final package build now. Tickets' report-only harness `464ae97a` is syntax checked and waits for the final absolute bundled executable/hash/source and stable build window. Rebrand remains available for actual native findings; approvals completed its independent UI review and closed only its own browsers. Existing fixtures are preserved.
+**Remaining Increment A artifact gate:** repeat the bounded companion protocol
+check on final MCP `9c532913`, whose digest changed during the ordinary final
+build. Final native three-state clearance/drag,400px setup/workspace,
+minimize/hide/reopen, integrated Playwright CLI and all3/1,017 hash correlation
+have passed; N2 is closed. Final Design Studio synthesis is updated. Reports
+below retain earlier checkpoints and their exact scope. No live service setup,
+signing/notarization, paid inference or other desktop-platform claim.
 
 Validation already passed at documented immutable heads: root6194 frontend tests/438 files, final39 affected UI tests, actual multi-session Playwright CLI integration; independent12-case responsive baseline plus six final corrected search cases and own-record conflict recovery; tickets312 BW17 backend regressions; identity/task ownership and both runtime/Clippy gates. Counts and limitations stay in their reports. No whole-business, live provider or paid inference claim. Marketing/channel/ads/website adapters and meeting ingestion remain staged beyond Increment A.
 
