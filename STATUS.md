@@ -1,6 +1,6 @@
 # Status — 2026-09-08
 
-Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Bug-workflow and Telegram final reviews continue autonomously. P1 bridge/phone integration, final Design Studio fixes and combined native build remain.
+Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. Step 2 email UI, delivery and pi email bridge are reviewed and merged. Telegram email notifications are reviewed and merged; bug-workflow integration review continues autonomously. P1 bridge/phone integration, final Design Studio fixes and combined native build remain.
 
 ## Current position
 
@@ -13,7 +13,7 @@ Step 0 and Step 1 complete: all three foundation PRs are reviewed and merged. St
 | Pi scoped bridge/default | PR #8 reviewed and merged; independent Rust, extension/process, setup and browser-default checks pass | P1 cached reads/issue proposal follow-on; live Astra/pi-acp configuration unavailable |
 | Bug workflow host/UI | PR #9 independent17 Rust,9 isolated Python,8 frontend tests and protected CLI review/held-task checks pass | Worker resolving additive registration conflicts with accepted Telegram/Pi, then integration gates/exact-head acceptance |
 | Telegram and beta validation | PR #10 reviewed and merged; independent13 Rust/11 frontend tests, phone edited approval and receipt-only recovery pass | Typed P1 issue extension, final integrated beta/native checks |
-| Final Design Studio loops | Preliminary sequential seven-finding review committed; independent specialist active; shell fixes queued | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
+| Final Design Studio loops | Preliminary seven-finding review and PR #11 specialist report accepted; shell/Pi fixes active | Required locale preservation, shell/a11y/RTL/copy fixes and integrated rechecks |
 
 The macOS debug app bundle currently contains Step 1 only. No live email,
 GitHub issue, Telegram message, App installation or deployment has been performed.
@@ -291,3 +291,10 @@ was instructed to commit its report checkpoint, merge acceptedmain in its own
 branch, preserve all host/Pi/Telegram entries and migration order005→006→007,
 then rerun affected integration gates. Root worktree remains unchanged by
 that merge inspection. No product implementation is delegated to root.
+
+## Combined integration and follow-on contract review
+
+- Accepted main at `026fedb1` passes locked server/companion compilation and frontend typecheck together with Pi and Telegram. The local browser server and native bundle still require a rebuilt integrated artifact.
+- PR #12 typed issue phone-review contract read completely and accepted as a plan. It retains host-owned exact-payload review, opaque authenticated links, default-off issue inclusion, one bounded notification scan and durable no-resend states. Actual implementation and phone checks remain pending.
+- PR #9 worker integrated accepted main as `11d703c5`; root inspected the five additive registration resolutions and migration order 000005 → 000006 → 000007. Integrated gates and final exact-head acceptance remain required.
+- Tickets is implementing all five verified shell/Pi design findings. Rebrand has a separate Ops locale/RTL/copy workorder reserved after host acceptance.
