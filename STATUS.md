@@ -86,8 +86,8 @@ coverage), one manual fixture ignored. Root has not independently run these test
 Two temporary unused-helper warnings remain before intake consumers are wired;
 this is not final Clippy or end-to-end B acceptance. Product is unmerged.
 
-**Open P2 at `60daf42e`: strict credential reader skips existing pre-read Unix
-0600 hardening.** Independent synthetic probes fail 2/2: a valid strict read and
+**P2 R1 closed at `74bde8b6`: strict credential reads retain pre-read Unix
+0600 hardening.** At original `60daf42e`, independent synthetic probes failed 2/2: a valid strict read and
 rejected malformed set/delete retain0644, while the old-reader control becomes0600.
 Root read the frozen source, test-only patch and failure log and confirmed the
 source regression. Tickets is assigned to reuse the existing hardening under the
@@ -101,8 +101,14 @@ verification summary. Root read the report/results and verified all six recorded
 evidence digests. Correction `74bde8b6f1aeee135122cf52f78746eec36c6602` is now
 pushed to draft PR28: shared hardening runs before both readers, with a regular-file
 guard that preserves directory-failure fixtures. Root read the complete fix/report;
-owner reports all10 credential-store tests passing. R1 remains pending independent
-execution of the original probes and unchanged store/task/router checks at this fix.
+owner reports all10 credential-store tests passing. Independent closure
+`435b1c046ed0dc0d889e2b47c1527196ffa823e0` passes all eight requested checks at
+the immutable fix: three store, two task, one protected-router and the identical
+two original reviewer probes. All733 source blobs match. Root imported closure
+evidence, verified all seven new and six preserved old digests, read the passing
+log results and independently compared the added test bodies as identical.
+No open finding remains in reviewed prerequisite/schema scope. Full B remains
+unmerged and unaccepted pending access/import/publication/UI and final gates.
 
 DTO/schema checkpoint `9a4c8c882cec938665bc233b4d658d8de019ccfd` is also under
 review. Root read its complete types/migration/error/tests/registration/NOTICE

@@ -1,0 +1,18 @@
+Independent business intake permission correction review
+
+The additional tests in 74bde8b6-independent-permissions.patch are byte-identical
+to the reviewer tests published against 60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d.
+Original test adaptation and attribution: ../60daf42e/NOTICE.
+
+The correction under test is Adanmohh/codeg immutable commit
+74bde8b6f1aeee135122cf52f78746eec36c6602, src-tauri/src/keyring_store.rs,
+blob 2973118cb2a47eabfca9fb0b3413fd534e91aba8.
+
+Codeg
+Copyright its contributors. Based on xintaofei/codeg v0.30.4,
+commit 6f6bd648b206412644842a98d9ffeebf57292bed.
+Licensed under Apache-2.0; original license: ../../../LICENSE.
+Existing product attributions remain in ../../../NOTICE, unchanged by this fix.
+
+The reviewer patch only appends synthetic temporary-file tests. No product
+implementation, real credential store, native keyring or fixture is changed.

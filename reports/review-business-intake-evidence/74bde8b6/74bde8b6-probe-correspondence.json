@@ -1,0 +1,9 @@
+{
+  "reviewerTestsUnchanged": true,
+  "sourceFailureHead": "60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d",
+  "fixHead": "74bde8b6f1aeee135122cf52f78746eec36c6602",
+  "additionalTestsSha256": "33fd516f1979aba67699d79c0d24fdaad5f1b6b88b776cbe3f422fea55716d55",
+  "originalPatchSha256": "c4b1ac07db4c6195d96770cf00d4228d5d8e111d962ee91ab0136c7e335cb2d3",
+  "fixPatchSha256": "8b7339ede5a373cd690cebebae82d8422d4aac389281ec46e3400669653caf22",
+  "onlyAddedTestsFile": "src-tauri/src/keyring_store.rs"
+}
