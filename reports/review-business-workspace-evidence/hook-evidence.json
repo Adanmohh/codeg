@@ -1,0 +1,53 @@
+{
+  "filter": "own session/worktree only; no command payloads",
+  "records": [
+    {
+      "time": 1788883666,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PreToolUse",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "time": 1788883666,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PostToolUse",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "time": 1788883714,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PreToolUse",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "time": 1788883715,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PreToolUse",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "time": 1788883715,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PostToolUse",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "time": 1788883715,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PreToolUse",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "time": 1788883715,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PostToolUse",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    },
+    {
+      "time": 1788883715,
+      "session_id": "01a07c1c-d3a3-7c22-a5b6-cedce2970d8d",
+      "event": "PreToolUse",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals"
+    }
+  ]
+}

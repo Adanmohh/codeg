@@ -1,0 +1,111 @@
+{
+  "source": "33b9cbcb63d3023e3ccd36a21f9cb9e4e2e425b7",
+  "method": "Original BRIEF unchanged; actual browser Canvas normalization only. Exact-string tool warnings preserved in all probe JSONs.",
+  "categories": [
+    {
+      "kind": "off-palette neutral/accent composites",
+      "examples": [
+        "#e4ebe9",
+        "#f7f7f7",
+        "#f4f4f4",
+        "#fcfcfc"
+      ],
+      "classification": "Expected derived backgrounds, not independent rogue tokens",
+      "source": [
+        "src/components/business/workspace.tsx:260 bg-primary/10",
+        "src/components/ui/input.tsx:11 bg-input/30",
+        "src/components/business/workspace.tsx:450 bg-muted/50",
+        "src/components/business/work-list.tsx:77 bg-muted/30"
+      ],
+      "qualification": "Search placeholder over this valid composite still fails contrast; BUI-R2 retained."
+    },
+    {
+      "kind": "dark palette",
+      "examples": [
+        "#9bd4c5",
+        "#a1a1a1",
+        "#151515",
+        "#181818",
+        "#222222",
+        "#1d1d1d",
+        "#262626"
+      ],
+      "classification": "Inherited paired-dark tokens and alpha composites compared against a light-only scan palette",
+      "source": [
+        "src/app/globals.css:136 neutral dark",
+        "src/app/globals.css:171 fallback dark",
+        "raw captures tokens/colorEvidence ancestor chains"
+      ]
+    },
+    {
+      "kind": "semantic review palette",
+      "examples": [
+        "#973c00",
+        "#fef4e5",
+        "#ffd230",
+        "#33291a"
+      ],
+      "classification": "Intentional semantic status icon/text with paired light/dark treatment; measured contrast passes for these sampled labels",
+      "source": [
+        "src/components/business/ui.tsx:103 statusClasses amber-800/amber-300 + amber-500/10"
+      ]
+    },
+    {
+      "kind": "extra-font-family",
+      "example": "Inter Variable",
+      "classification": "Scan alias mismatch: actual existing self-hosted Inter variable family, not a new family added by this UI",
+      "source": [
+        "src/app/globals.css:6 import @fontsource-variable/inter",
+        "src/app/globals.css:18 font-sans",
+        "installed @fontsource-variable/inter5.3.0 index.css font-family Inter Variable"
+      ],
+      "qualification": "Arabic glyph fallback/linguistic quality is not certified from computed family strings."
+    },
+    {
+      "kind": "18px radius",
+      "classification": "Existing radius multiplier; not arbitrary new radius",
+      "source": [
+        "src/app/globals.css:45 --radius .625rem",
+        "src/app/globals.css:1029 --radius-2xl = radius*1.8",
+        "src/components/business/work-list.tsx:74 rounded-2xl"
+      ]
+    },
+    {
+      "kind": "239px auto spacing",
+      "classification": "Computed flex auto margin, not authored fixed spacing",
+      "source": [
+        "src/components/business/workspace.tsx:269 mt-auto navigation footer"
+      ]
+    },
+    {
+      "kind": "6px spacing",
+      "classification": "Consistent existing Tailwind1.5 icon-label gap; no isolated off-grid margin",
+      "source": [
+        "src/components/business/ui.tsx:120 gap-1.5"
+      ]
+    }
+  ],
+  "staticLint": [
+    {
+      "surface": "task-form",
+      "rawFlags": 4,
+      "classification": "File-local heuristics miss shared Action/controlClass focus/hover and treat mapped select options as a loading list. Form is mounted with directory data, has explicit Unassigned option and disabled fields. Actual creation/draft/cancel and empty search pass. No new defect established by these flags."
+    },
+    {
+      "surface": "people",
+      "rawFlags": 2,
+      "classification": "busy/setBusy plus disabled and saving copy implement request feedback but regex searches loading/pending. Directory loading is in workspace parent. Source evidence only for privileged member-management mutations; this reviewer did not replay all owner administration UI."
+    },
+    {
+      "surface": "connect/workspace/task-detail",
+      "rawFlags": 0,
+      "classification": "Static lint passes did not catch the two measured search defects; browser evidence controls verdict."
+    }
+  ],
+  "measurementLimits": [
+    "Canvas rounds channels to8-bit sRGB; broad margins required and all reported contrast failures are below threshold before any rounding-to-pass.",
+    "Raw collector includes sr-only direct text because checkVisibility does not account for clip-path; named controls count is not visible-focus proof. Search tab stop independently checked with geometry and settled screenshot.",
+    "Snapshots alone do not certify all screen reader behavior, native OS focus or performance.",
+    "Unchanged memory files not present at .claude/agent-memory/design-reviewer; task learnings are retained in this report path rather than creating out-of-scope memory."
+  ]
+}

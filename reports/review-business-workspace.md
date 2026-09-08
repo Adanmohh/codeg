@@ -44,7 +44,25 @@ N1/P2 fresh native launch was discovered by the tickets reviewer and confirmed/a
 
 ## Bounded work remaining before reviewer verdict
 
-The12-frame overview matrix is complete. Remaining: finish actual keyboard review decision; check board/filters/empty/error and viewer/revocation/identity teardown with only owned records; measure settled dialog/drawer focus and actual reduced-motion behavior; classify raw palette/lint exceptions against source; produce the four sequential specialist JSONs and BW coverage with explicit limits. Then target the corrected search/conflict export only. No additional whole-suite run, native package claim, fixture restart or product implementation is planned here.
+**Baseline work complete; only the corrected-export search/conflict recheck and final synthesis remain.** The12-frame matrix, actual keyboard review decision, board/filter/empty/error, viewer/revocation teardown, settled focus, reduced-motion frames, palette/lint classification and all four sequential specialist outputs are preserved. No matrix/suite rerun or further baseline expansion is planned. Rebrand's explicit final4346 path/hash handoff is required before binding browser evidence to e72cc44b; the older095c-only preview does not prove the search correction.
+
+The latest pushed source correction is `e72cc44b612068e67a3e6dc3bc593f10988ae7ed`, resolved/read through gh api. It applies `placeholder:text-foreground/80 dark:placeholder:text-muted-foreground` only to business search and `tabIndex={-1}` only to its hidden submit. Enter submission and API/state logic remain unchanged. EN/AR keyboard regressions exercise Tab-to-Refresh and trimmed Enter query; source/NOTICE look correct. Root independently passed39 focused tests/5files at this exact head; no duplicate suite was run here.
+
+## Completed baseline synthesis
+
+`review-decision.raw` proves real keyboard human review: initially disabled Accept, explicit confirmation, visible settled3px ring, Enter → review request expectedRevision5 → Done/revision6, named Maya actor, exact deliverable binding, execution:null. `review-decision.probe.json` measures39 samples with zero contrast failures; closed Deliverable input is correctly excluded by checkVisibility.
+
+`revoke-private-session.raw` records own credential revocation200, next note401 and complete private draft/dialog teardown. `viewer-flow-retry.raw`, `viewer-settled.raw` and `viewer-api-denial.raw` prove view-only UI, representative real403 writes and a404 for the feedback-only sample. The first viewer screenshot was caught during dialog entrance; preserve it as an attempt and use **viewer-detail-settled-390-light.png** (opacity1, no active animation) as the visual verdict. A separate initial locator attempt matched both legitimate Shared work buttons; it is retained, not a product defect.
+
+`workspace-flows.raw` records real filters/empty recovery and a390 board with bounded350px viewport/1364px content and keyboard scroll40px. One list request was deliberately aborted by the reviewer guard, then the real retry recovered; this is labelled transport-failure simulation. No fake API responses or provider state were used.
+
+`motion-summary.json`, `drawer-motion.raw` and eight ordered filmstrip PNGs record53 frames per preference. Normal opening has23 intermediate positions/28 animated frames; reduce has zero intermediate positions/zero active animations. The initial hidden transform and final location are endpoints, not smooth reduced travel. Escape removes the popup and restores its trigger; Arabic drawer opens right at x62/width320 within390px. Settled Close/My work/Shared work keyboard rings are visible in `drawer-keyboard-settled.raw` and step PNGs. Earlier immediate focus captures are not the verdict. CLS, continuous smoothness and long-frame timing were not instrumented.
+
+Design Studio results: `aesthetic-judge.json`, `a11y-auditor.json`, `flow-validator.json`, `motion-judge.json`, mechanically merged as `merged-baseline.json`. They were applied sequentially, not by independent agents. `bw-coverage.json` maps all18 BW checks to executed evidence, carried-forward backend review and root/native limits; it deliberately makes no blanket18/18 pass claim.
+
+The visible workspace gives business work, people, responsibility and human review the main hierarchy; engineering details are subordinate. Its calm grid, consistent surfaces and rationed accent read as a coherent task workspace. This is not a verdict on unimplemented business integrations or a finished CRM. `measurement-classification.json` retains and explains palette/composite/dark, Inter Variable alias, inherited18px radius, flex-auto239px spacing and6px icon-gap flags with exact source. The real4.43 search failure remains separate. The original brief and all product tokens are unchanged.
+
+Live docs-first evidence in `hook-evidence.json` contains this session/worktree's PreToolUse and PostToolUse records only; command payloads are omitted. Missing Design Studio project memory and the absent code-context dependency corpus are explicit limits. Test/tool adaptation attributions and exact blobs are in the evidence NOTICE.
 
 ## Pending independent evidence
 

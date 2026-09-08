@@ -1,0 +1,19 @@
+{
+  "specialist": "flow-validator",
+  "phase": "baseline33b9cbcb",
+  "scores": {
+    "functional": 8.5
+  },
+  "findings": [
+    {
+      "id": "BUI-R1",
+      "surface": "Task conflict recovery",
+      "element": "src/components/business/task-detail.tsx:247",
+      "severity": "low",
+      "priority": "P3",
+      "check": "Current saved version assertion | wrong-state-rendered: current Review/revision3 is absent while header says To do/revision1",
+      "fix": "Label draft base and current status/revision before adoption; source095c6164 and root rendered corrected4346 passed, reviewer final-export recheck pending."
+    }
+  ],
+  "notes": "Actual CLI with real protected API, no paid flow SDK. Cold5 paths, two members, human create/progress/submit/review, retained409 draft, explicit adoption, other-tab locale6fields, viewer restrictions, revoked401 cleanup, board/filter/empty/error retry verified. Harness-only failures preserved and rerun with corrected locators/assumptions; not mislabelled product failures. No live execution, provider send or cross-organization server fixture."
+}

@@ -29,9 +29,35 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
 `connect-reviewer.js` adapts the credential-in-memory test orchestration from
 `reports/business-workspace-evidence/member-connect.js` at accepted review target
 `a126730274c8a3dc822345da536eebed1f8dc253`, blob
 `0e54c8a47fc187b57fb4bb62afcc028041cd87e1` (Codeg, Apache-2.0).
 Only synthetic setup names and reviewer assertions changed; no live credential is
 embedded, persisted or reported. The fixture operator literal is public test data.
+
+The embedded Canvas brief normalization in `matrix.js` adapts the Apache-2.0
+`reports/design-phase1-specialist/probes/normalize-brief.js` at the same a126
+source, blob `8146af12cc4bcb7277399f2da9beeddda04b419a`. It changes the input
+delivery to a read-only JSON argument; original BRIEF is unchanged.
+
+Exact Design Studio55c8614 tool/method blobs used without copying runtime code:
+
+| File | Blob |
+| --- | --- |
+| scripts/brief.mjs | f0320ff468ac219b009f26bdee2de46cebb24a2b |
+| scripts/design-lint.mjs | a5b26491665c8dd4fababcd9d9ffbcfa33d8f4f3 |
+| scripts/select-judges.mjs | 3e2a6ca6ebc0d429e369a268c67c136c17b8ec89 |
+| scripts/merge-findings.mjs | 1a230f2d157b2733174f814250f951516a0df302 |
+| agents/aesthetic-judge.md | 085979ab893cafdc4d78c50ce6a4eca5f870bb09 |
+| agents/a11y-auditor.md | b73facb885fca451d7cc716ced93dd6feb3feb29 |
+| agents/flow-validator.md | 2f1cfd089acce45de3315a247d2bb512643c098c |
+| agents/motion-judge.md | db3ab48d568480b00e2ba0aa8e5c00197ba79752 |
+| agents/design-reviewer.md | 6cb08cc97c704b0ae5eda49ad94b246582fe62d0 |
+
+Local installed API references: React19.2.4, Playwright CLI0.1.18 with
+playwright-core1.63.0-alpha-2026-08-05, @types/node25.2.2 fs.d.ts, and existing
+@fontsource-variable/inter5.3.0 index.css (OFL-1.1 font, no font code copied).
+All specialist methods were applied sequentially by this reviewer; no agents,
+MCP browser, paid flow SDK, dependency installation or live service was used.
