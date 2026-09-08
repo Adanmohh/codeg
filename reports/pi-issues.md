@@ -3,7 +3,9 @@
 Work in progress on `feat/step3-pi-issues`, sole tickets worktree. Base is accepted
 main `f4da70275932fcb527e9bd86946f740b3be515e5`, including PR13 merge
 `783bfb9cd9caf9546f6ef9effc067f5c904fc6be` and accepted PR9 host. No PR12 source
-is copied. Draft PR and exact implementation/validation heads will be recorded here.
+is copied. Draft PR: https://github.com/Adanmohh/codeg/pull/15.
+Initial contract commit `70ed832a` is pushed. Implementation and exact final
+validation heads will be recorded here.
 
 ## Contract and ownership
 
@@ -64,7 +66,23 @@ PostToolUse evidence will be recorded with final bounded safe-field audit output
 
 Clean check, `git fetch origin main` and new branch creation exited 0. Installed
 `git switch -h` exits 129 for help; `gh api --help` and `gh pr create --help` exit 0.
-No implementation tests have been run in this branch yet. Planned gates: scoped
+Initial server/companion check and strict Node typecheck pass (exit 0). The first
+four full-path P1 bridge tests pass (exit 0): cached/no-write states, closed and
+foreign/ambiguous inputs, exact payload/pending floor/stable Pi deny, and the
+cancel-writer/peer-abort race. Extension unit tests pass 16/16 (exit 0). An initial
+Rust test compile required an explicit `Option<(Arc<DelegationListener>, String)>`
+fixture annotation; no product gate was waived.
+
+Implementation now projects cache state and public draft metadata without proof
+objects or rendered evidence-bearing body, calls the accepted host proposal seam,
+and registers an `intake` companion feature independent of native Desk mutations.
+Two one-line visibility changes reuse `ops::agent::require_live` and
+`ops_intake::SourceRef::validate`; neither changes validation semantics. Host
+`notice.rs` and shared host registrations remain untouched. The generated fixed
+companion environment overrides caller runtime plumbing. `/desk-status` reports
+actual registered read-tool names for no-inference discovery checks.
+
+Remaining gates: scoped
 host/bridge cancellation and freshness regressions, actual fixed companion and
 installed adapter/extracted-assets discovery, strict Node/frontend typechecks,
 desktop/server/companion checks and Clippy, and synthetic protected proposal

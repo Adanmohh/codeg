@@ -10,6 +10,8 @@ use std::collections::BTreeMap;
 pub enum HostError {
     #[error("not_configured")]
     NotConfigured,
+    #[error("ambiguous_product")]
+    AmbiguousProduct,
     #[error("adapter_missing")]
     AdapterMissing,
     #[error("access_denied")]

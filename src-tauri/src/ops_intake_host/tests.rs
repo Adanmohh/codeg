@@ -148,7 +148,7 @@ async fn filed(provider: &fixture::Provider) -> (crate::db::AppDatabase, SourceI
     (db, source, detail)
 }
 
-fn record() -> Record {
+pub(super) fn record() -> Record {
     serde_json::from_value(json!({
         "schema_version":1,"source_ref":{"product_id":"synthetic-hafidh","source":"testflight","ulid":"01ARZ3NDEKTSV4RRFFQ69G5FAV","external_id":"asc-1"},
         "source_revision":"a".repeat(64),"fetched_at":chrono::Utc::now().to_rfc3339(),
