@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react"
 import { Button } from "@/components/ui/button"
 import { ReviewCard } from "@/components/ops/proposals-view"
 import { InboxView } from "@/components/ops/inbox-view"
@@ -13,12 +13,18 @@ import { getCodegToken, redirectToCodegLogin } from "@/lib/transport/web-auth"
 import { isDesktop } from "@/lib/platform"
 import { IssuePhoneCard } from "./issue-review"
 
+// Same hydration gate as the existing AppToaster: browser APIs are read only
+// after the server and initial hydration snapshots have agreed.
+const subscribeNever = () => () => {}
+const onClient = () => true
+const onServer = () => false
+
 export function ReviewLinkPage({ notice }: { notice: string | null }) {
-  const [authenticated, setAuthenticated] = useState(false)
+  const mounted = useSyncExternalStore(subscribeNever, onClient, onServer)
+  const authenticated = mounted && (isDesktop() || !!getCodegToken())
   useEffect(() => {
-    if (!isDesktop() && !getCodegToken()) redirectToCodegLogin()
-    else setAuthenticated(true)
-  }, [])
+    if (mounted && !authenticated) redirectToCodegLogin()
+  }, [mounted, authenticated])
   return authenticated ? (
     <ReviewContent notice={notice} />
   ) : (

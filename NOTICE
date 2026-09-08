@@ -491,6 +491,11 @@ src-tauri/src/db/service/ops_approvals/mod.rs at PR10 merge
 c3cef09a896308b2501947e5aaafa533e36d9053, extracting only its existing
 transaction body for atomic local checks. Shared phone-card component tests reuse
 src/components/ops-intake/bug-workflow.test.tsx at the accepted PR9 head above.
+The phone page's client-only boot guard reuses Codeg v0.30.4
+src/components/ui/app-toaster.tsx at 6f6bd648b206412644842a98d9ffeebf57292bed
+(blob 44c4e1e4553bb6209fa9a3a38e71d7909975aec1), Apache-2.0:
+its useSyncExternalStore hydration gate replaces an effect-driven state update.
+Operator token retrieval, login redirect and protected API enforcement are reused.
 
 Shell accessibility and Pi setup presentation extend xintaofei/codeg v0.30.4
 (6f6bd648b206412644842a98d9ffeebf57292bed):
