@@ -1,6 +1,6 @@
 # Business Sources implementation
 
-Status: implementation in progress on `feat/business-intake-ui`, based on accepted
+Status: wired frontend checkpoint on `feat/business-intake-ui`, based on accepted
 `a40b03393a466672060066ae6e0e8c9054a2349d`. No B runtime or browser pass is claimed.
 The accepted A workspace, native chrome, paused visual checkpoint and existing
 fixtures/exports are preserved. This worker owns frontend glue only; tickets
@@ -137,3 +137,50 @@ passage revisions and date-only task values. Client-checkpoint typecheck
 `Object.hasOwn` use to the installed ES2020 `hasOwnProperty.call` API and adding
 the new client method to the native test fixture. The first typecheck exited 2
 for those two implementation mistakes; no target or dependency was upgraded.
+
+## Wired composition checkpoint
+
+Client source is pushed at `13e6b516`. The new composition is reachable from
+**Business → Sources**, with My work, Shared work and Review retained in their
+existing order and role boundaries. Source calls are not preloaded on My work.
+`SourcesWorkspace` stays in the existing private session lifetime after first
+visit; leaving its view hides private content while locale changes keep drafts.
+Returning rechecks source/candidate access before disclosure. Source references
+on ordinary tasks are fetched only when their disclosure control is opened.
+
+| New target | Reused source / final responsibility |
+| --- | --- |
+| `src/components/business-intake/{workspace,source-review}.tsx` | Existing business workspace list, paging, generation guards and safe private scope; canonical bindings/status plus cached sources/candidates |
+| `candidate.tsx`, `task-target.tsx` | Existing task-detail explicit revision comparison; existing metadata/assignment fields; saved `PreparedTask` audience review or authorized target TaskDetail + CAS, never ordinary create |
+| `setup.tsx` | Existing business Field/Modal/Action controls; operator-projected setup, masked write-only key, disabled zero-grant creation, explicit all-history/current/future grant confirmation |
+| `imports.tsx` | Existing isolated client and safe request lifetime; explicit bounded steps, full coverage/failure/status, exact operation replay after uncertainty |
+| `task-sources.tsx`, `ui.tsx` | Existing disclosure controls, Person and semantic styles; inaccessible link redaction, bounded literal passages, calendar date display and expiry-only clock |
+| `src/lib/business/intake-copy.ts` | Full EN/AR source/setup/import/audience/recovery copy using the existing locale provider and fonts |
+| Existing `business/{workspace,task-detail}.tsx` | Additive Sources navigation and lazy authorized source-reference seam; native layout, authentication and task mutations unchanged |
+
+The immutable Rust DTO checkpoint now read is
+`9a4c8c882cec938665bc233b4d658d8de019ccfd`,
+`src-tauri/src/business_intake/types.rs`, SHA256
+`e5fd8008c589be894ff0315aba07c3fe7d8292778d1c58fad71af0820be72e9c`.
+Its closed input/output fields match the frontend transcription, including the
+resource union, write-only credential variants, nullable revision, grant nulls,
+`hasPreparedDraft`, candidate flags and DecisionTask redaction. HTTP/native
+operation registration is **not yet exposed at that backend head**; method names
+remain grounded in the accepted contract until tickets publishes registrations.
+
+Focused checkpoint checks:
+
+- `vitest run src/components/business-intake/workflow.test.tsx src/components/business src/lib/business`: **73 passed / 8 files**, exit 0. Sixteen new workflow cases cover exact private save/accept payload, date/null preservation, full audience confirmation, locale/view draft continuity, source expiry/revocation, destination draft withholding, lost-response receipt recovery, conflict comparison/adoption, passage-only rebase/text-free link, stale discard through the real parent, late target rejection, lazy reference redaction, setup consent and exact import replay. Existing session/provider/native/task tests also pass.
+- `tsc --noEmit --incremental false`: exit 0 after fixing the new test helper's locale union and removing unsupported Testing Library ByRole `exact` options. The prior test-harness typecheck exited 2; expectations were retained.
+- Scoped ESLint across changed frontend source and tests: exit 0, zero warnings. Initial composition checks caught a missing existing Person fallback prop and an impure render/effect clock update; both were corrected using the inherited control contract and expiry callback.
+- No Rust/backend, dependency, lockfile, theme, session or native chrome edit.
+- Guarded backend/real browser/export/Design Studio acceptance remains pending.
+
+Reproducible logs are under `reports/business-intake-ui-evidence/`. Unit fixture
+records and responses are explicitly synthetic and excluded from product
+imports. No new listener/browser is running, and no old fixture is changed.
+The next independent-review target is this committed composition, followed by
+an isolated export and real protected API4351 validation when tickets publishes
+its executable checkpoint. Fireflies, email and Hafidh controls use only their
+accepted operations; no enabled invented provider endpoint or synthetic product
+response was introduced.

@@ -17,6 +17,8 @@ import { Action, ErrorNotice, Field, Modal, Person, StatusBadge } from "./ui"
 import { AssignmentFields, MetadataFields } from "./task-form"
 import { DueDay } from "./work-list"
 import { ActivityList } from "./activity"
+import { TaskSources } from "@/components/business-intake/task-sources"
+import type { SourceSummary } from "@/lib/business/intake"
 
 function fieldsOf(task: Task): TaskFields {
   return {
@@ -44,6 +46,7 @@ export function TaskDetailDialog({
   legacyOperator = false,
   onClose,
   onChanged,
+  onSource,
 }: {
   taskId: string
   initial?: TaskDetail
@@ -53,6 +56,7 @@ export function TaskDetailDialog({
   legacyOperator?: boolean
   onClose: () => void
   onChanged: () => void
+  onSource?: (source: SourceSummary) => void
 }) {
   const copy = useBusinessCopy()
   const [detail, setDetail] = useState<TaskDetail | null>(initial ?? null)
@@ -97,6 +101,7 @@ export function TaskDetailDialog({
       legacyOperator={legacyOperator}
       onClose={onClose}
       onChanged={onChanged}
+      onSource={onSource}
     />
   )
 }
@@ -109,6 +114,7 @@ function TaskEditor({
   legacyOperator,
   onClose,
   onChanged,
+  onSource,
 }: {
   initial: TaskDetail
   client: BusinessClient
@@ -117,6 +123,7 @@ function TaskEditor({
   legacyOperator: boolean
   onClose: () => void
   onChanged: () => void
+  onSource?: (source: SourceSummary) => void
 }) {
   const copy = useBusinessCopy()
   const [detail, setDetail] = useState(initial)
@@ -560,6 +567,9 @@ function TaskEditor({
         </>
       )}
       <ActivityList detail={detail} members={members} />
+      {onSource && (
+        <TaskSources taskId={task.id} client={client} onSource={onSource} />
+      )}
       <details className="border-t pt-3">
         <summary className="focus-visible:ring-ring flex min-h-11 cursor-pointer items-center rounded-lg text-sm font-medium outline-none focus-visible:ring-2">
           {copy.execution}

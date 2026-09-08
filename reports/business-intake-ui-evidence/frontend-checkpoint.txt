@@ -1,0 +1,21 @@
+Command: vitest run src/components/business-intake/workflow.test.tsx src/components/business src/lib/business
+Exit: 0
+
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/lib/business/intake.test.ts (3 tests) 2ms
+ ✓ src/lib/business/client.test.ts (13 tests) 11ms
+ ✓ src/components/business/provider-isolation.test.tsx (8 tests) 84ms
+ ✓ src/components/business/ui.test.tsx (3 tests) 240ms
+ ✓ src/components/business/session.test.tsx (2 tests) 281ms
+ ✓ src/components/business/native-chrome.test.tsx (13 tests) 512ms
+ ✓ src/components/business-intake/workflow.test.tsx (16 tests) 530ms
+ ✓ src/components/business/workflow.test.tsx (15 tests) 601ms
+
+ Test Files  8 passed (8)
+      Tests  73 passed (73)
+   Start at  22:18:16
+   Duration  1.87s (transform 763ms, setup 1.22s, collect 3.19s, tests 2.26s, environment 3.07s, prepare 370ms)
+

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { useLocale } from "next-intl"
 import {
   ArrowRight,
+  BookOpen,
   CircleCheck,
   LayoutGrid,
   List,
@@ -51,8 +52,13 @@ import { WorkList } from "./work-list"
 import { People } from "./people"
 import { CreateTask } from "./task-form"
 import { TaskDetailDialog } from "./task-detail"
+import {
+  SourcesWorkspace,
+  type SourceEntry,
+} from "@/components/business-intake/workspace"
+import { useIntakeCopy } from "@/lib/business/intake-copy"
 
-type View = "mine" | "shared" | "review" | "people"
+type View = "mine" | "shared" | "review" | "people" | "sources"
 export function BusinessWorkspace({
   client,
   context,
@@ -65,10 +71,14 @@ export function BusinessWorkspace({
   disconnect: () => void
 }) {
   const copy = useBusinessCopy()
+  const intakeCopy = useIntakeCopy()
   const locale = useLocale()
   const actor = context.member!
   const organizationId = context.organization!.id
   const [view, setView] = useState<View>("mine")
+  const [sourcesVisited, setSourcesVisited] = useState(false)
+  const [sourceEntry, setSourceEntry] = useState<SourceEntry | null>(null)
+  const entryRead = useCallback(() => setSourceEntry(null), [])
   const [mode, setMode] = useState<"list" | "board">("list")
   const [domain, setDomain] = useState<BusinessDomain | "">("")
   const [status, setStatus] = useState<BusinessStatus | "">("")
@@ -140,7 +150,9 @@ export function BusinessWorkspace({
       archived,
     }
     void Promise.all([
-      view === "people" ? Promise.resolve(null) : client.tasks("list", input),
+      view === "people" || view === "sources"
+        ? Promise.resolve(null)
+        : client.tasks("list", input),
       client.identity("members/list", { organizationId }),
     ])
       .then(([tasks, directory]) => {
@@ -212,6 +224,7 @@ export function BusinessWorkspace({
     { id: "mine", title: copy.myWork, icon: ListTodo },
     { id: "shared", title: copy.sharedWork, icon: Users },
     { id: "review", title: copy.review, icon: CircleCheck },
+    { id: "sources", title: intakeCopy.sources, icon: BookOpen },
     { id: "people", title: copy.team, icon: Users },
   ] as const
   const title = navItems.find((item) => item.id === view)!.title
@@ -222,6 +235,7 @@ export function BusinessWorkspace({
         ? copy.reviewHint
         : copy.sharedWorkHint
   function navigate(next: View) {
+    if (next === "sources") setSourcesVisited(true)
     setView(next)
     setStatus("")
     setArchived(false)
@@ -336,7 +350,7 @@ export function BusinessWorkspace({
                 members={members}
                 reload={reload}
               />
-            ) : (
+            ) : view === "sources" ? null : (
               <>
                 <header className="mb-8 flex flex-wrap items-end justify-between gap-5">
                   <div className="min-w-0">
@@ -555,7 +569,18 @@ export function BusinessWorkspace({
                 )}
               </>
             )}
-            {loading && (
+            {sourcesVisited && (
+              <SourcesWorkspace
+                client={client}
+                actor={actor}
+                members={members}
+                active={view === "sources"}
+                entry={sourceEntry}
+                onEntryRead={entryRead}
+                onTask={(id) => setSelected({ id })}
+              />
+            )}
+            {loading && view !== "sources" && (
               <p role="status" className="text-muted-foreground py-6 text-sm">
                 {copy.loading}
               </p>
@@ -617,6 +642,11 @@ export function BusinessWorkspace({
           legacyOperator={context.capabilities.legacyOperator}
           onClose={() => setSelected(null)}
           onChanged={() => void reload()}
+          onSource={(source) => {
+            setSelected(null)
+            setSourceEntry({ sourceId: source.id, bindingId: source.bindingId })
+            navigate("sources")
+          }}
         />
       )}
     </div>
