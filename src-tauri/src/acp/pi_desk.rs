@@ -330,7 +330,7 @@ mod tests {
                 }
             }
         }).await.unwrap();
-        for tool in ["hafidh_feedback_list", "hafidh_feedback_get", "hafidh_intake_status"] {
+        for tool in ["hafidh_feedback_list", "hafidh_feedback_get", "hafidh_intake_status", "desk_business_task", "desk_business_progress", "desk_business_note", "desk_business_submit"] {
             assert!(notice.contains(tool), "actual extracted companion discovery: {notice}");
         }
         // Exercise the shipped wrapper, not only rpcRefusal's unit fixture.

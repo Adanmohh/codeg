@@ -5,6 +5,8 @@ import { Check } from "typebox/value"
 const closed = { additionalProperties: false } as const
 const id = Type.Integer({ minimum: 1, maximum: 2147483647 })
 const revision = Type.Integer({ minimum: 0, maximum: 2147483647 })
+const taskRevision = Type.Integer({ minimum: 1, maximum: 9007199254740991 })
+const taskText = Type.String({ minLength: 1, maxLength: 20000 })
 const header = Type.String({ maxLength: 998, pattern: "^[^\\r\\n\\u0000]*$" })
 const nullableHeader = Type.Union([header, Type.Null()])
 const addresses = Type.Array(header, { maxItems: 50 })
@@ -26,6 +28,26 @@ export const replySchema = Type.Object(
 )
 
 export const inputSchemas = {
+  desk_business_task: Type.Object({}, closed),
+  desk_business_progress: Type.Object(
+    {
+      expectedRevision: taskRevision,
+      status: Type.Union([
+        Type.Literal("todo"),
+        Type.Literal("in_progress"),
+        Type.Literal("review"),
+      ]),
+    },
+    closed
+  ),
+  desk_business_note: Type.Object(
+    { expectedRevision: taskRevision, body: taskText },
+    closed
+  ),
+  desk_business_submit: Type.Object(
+    { expectedRevision: taskRevision, body: taskText },
+    closed
+  ),
   desk_context: Type.Object({}, closed),
   desk_tickets: Type.Object(
     {

@@ -17,6 +17,14 @@ import type { McpConfig } from "pi-mcp-adapter/types"
 import { socketTransport, type DeskTransport } from "./transport.ts"
 
 const descriptions = {
+  desk_business_task:
+    "Read the public business task assigned and linked to this live run, including current revision and deliverables. No cross-task search or private source data; missing/revoked linkage requires a human to link an existing execution.",
+  desk_business_progress:
+    "Update only this linked business task to todo, in_progress or review at its current expected revision. Done and cancellation are unavailable; only an authorized human can accept review. Revoked delegation or stale run/revision requires reload.",
+  desk_business_note:
+    "Append a public work note to this linked business task at its expected revision. The backend supplies authorship. This never approves work or acts on a provider.",
+  desk_business_submit:
+    "Submit an exact public deliverable for human review on this linked business task at its expected revision. This cannot accept review, complete the task or perform an external action.",
   desk_context:
     "Read this live task's Desk account and inboxes. No credentials.",
   desk_tickets: "List public tickets in a Desk inbox for this live task.",
@@ -99,13 +107,16 @@ export function installDesk(pi: ExtensionAPI, transport?: DeskTransport): void {
       const discovered = HAFIDH_READ_TOOLS.filter((name) =>
         tools.includes(name)
       )
+      const business = DESK_TOOLS.filter(
+        (name) => name.startsWith("desk_business_") && tools.includes(name)
+      )
       const ready =
         transport &&
         ctx.model?.id === "gpt-6-astra" &&
         ctx.thinkingLevel === "max"
       ctx.ui.notify(
         ready
-          ? `Desk bridge configured; capabilities are checked against the live task on every call. Cached intake tools discovered: ${discovered.join(", ") || "none; check the companion installation"}.`
+          ? `Desk bridge configured; capabilities are checked against the live task on every call. Cached intake tools discovered: ${discovered.join(", ") || "none; check the companion installation"}. Linked work tools: ${business.join(", ") || "unavailable"}.`
           : "Desk setup required: live task bridge and a configured gpt-6-astra model with max reasoning. No fallback is selected.",
         ready ? "info" : "warning"
       )

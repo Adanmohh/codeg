@@ -175,9 +175,9 @@ pub(crate) fn router(state: Arc<AppState>, operator_token: String) -> Router {
         .route("/members/revoke", post(members_revoke))
         .route("/credentials/issue", post(credentials_issue))
         .route("/credentials/list", post(credentials_list))
-        .route("/credentials/revoke", post(credentials_revoke));
-    // Merge the separately owned relative /tasks router HERE, before this
-    // shared auth layer, once the task module is integrated.
+        .route("/credentials/revoke", post(credentials_revoke))
+        .merge(crate::business_tasks::http::router());
+    // Identity and task routes share this same business authentication layer.
     Router::new().nest(
         "/business",
         routes.layer(middleware::from_fn(move |req, next| {

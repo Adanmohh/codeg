@@ -1,8 +1,8 @@
 //! Business vocabulary over Codeg's existing typed task-state pattern.
 //! See NOTICE for the Apache source mapping; these are not executor states.
+pub use crate::business_identity::Domain as TaskDomain;
 use sea_orm::entity::prelude::*;
 use serde::{Deserialize, Serialize};
-pub use crate::business_identity::Domain as TaskDomain;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, EnumIter, DeriveActiveEnum, Serialize, Deserialize)]
 #[sea_orm(rs_type = "String", db_type = "String(StringLen::None)")]
@@ -20,7 +20,9 @@ pub enum TaskStatus {
     Cancelled,
 }
 
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, EnumIter, DeriveActiveEnum, Serialize, Deserialize)]
+#[derive(
+    Clone, Copy, Debug, Default, PartialEq, Eq, EnumIter, DeriveActiveEnum, Serialize, Deserialize,
+)]
 #[sea_orm(rs_type = "String", db_type = "String(StringLen::None)")]
 #[serde(rename_all = "snake_case")]
 pub enum TaskPriority {

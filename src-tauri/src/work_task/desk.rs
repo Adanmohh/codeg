@@ -75,6 +75,7 @@ impl TaskEngine {
     ) -> Result<crate::business_tasks::types::Detail, crate::business_identity::IdentityError> {
         use crate::business_identity::IdentityError as E;
         let _binding = self.request_lock.lock().await;
+        crate::business_tasks::store::check_link(&self.db.conn, &ctx, &input).await?;
         let row = work_task_service::get_model(&self.db.conn, input.work_task_id).await.map_err(|_| E::NotFound)?;
         let root = row.connection_id.as_deref().ok_or(E::Conflict)?;
         let (row, agent_key) = self.desk_scope(root).await.map_err(|_| E::Conflict)?;
@@ -164,6 +165,16 @@ impl TaskEngine {
         request: DeskCall,
     ) -> Result<Value, DeskError> {
         let (task, agent_id) = self.desk_scope(connection).await?;
+        if request.tool.is_business() {
+            // Business work needs no mailbox account. Resolve the private
+            // generation mapping before entering the common authorized core.
+            let live = crate::business_tasks::agent::LiveExecution {
+                work_task_id: task.id, run_seq: task.run_seq,
+                connection_id: task.connection_id.ok_or(DeskError::Stale)?,
+                agent_key: agent_id,
+            };
+            return crate::business_tasks::agent::call(&self.db.conn, live, request).await;
+        }
         let ctx = agent::RunContext {
             account_id: agent::account_id().map_err(|_| DeskError::Unavailable)?,
             task_id: task.id,
@@ -173,6 +184,7 @@ impl TaskEngine {
         };
         let db = &self.db.conn;
         match request.tool {
+            DeskTool::DeskBusinessTask | DeskTool::DeskBusinessProgress | DeskTool::DeskBusinessNote | DeskTool::DeskBusinessSubmit => Err(DeskError::Denied),
             DeskTool::HafidhIntakeStatus => value(intake::cached_status(db, &ctx, input(request.input)?).await.map_err(intake_error)?),
             DeskTool::HafidhFeedbackList => value(intake::cached_list(db, &ctx, input(request.input)?).await.map_err(intake_error)?),
             DeskTool::HafidhFeedbackGet => value(intake::cached_get(db, &ctx, input(request.input)?).await.map_err(intake_error)?),

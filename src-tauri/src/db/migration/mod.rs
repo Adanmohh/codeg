@@ -53,6 +53,7 @@ mod m20260908_000006_ops_intake_host;
 mod m20260908_000007_ops_telegram;
 mod m20260908_000008_ops_telegram_issues;
 mod m20260908_000009_business_identity;
+mod m20260908_000010_business_tasks;
 pub struct Migrator;
 
 #[async_trait::async_trait]
@@ -112,6 +113,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20260908_000007_ops_telegram::Migration),
             Box::new(m20260908_000008_ops_telegram_issues::Migration),
             Box::new(m20260908_000009_business_identity::Migration),
+            Box::new(m20260908_000010_business_tasks::Migration),
         ]
     }
 }

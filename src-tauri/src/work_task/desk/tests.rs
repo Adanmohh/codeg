@@ -23,6 +23,8 @@ use std::{path::Path, sync::Arc, time::Duration};
 
 #[path = "issues.rs"]
 mod issues;
+#[path = "business.rs"]
+mod business;
 
 struct EngineAccess {
     engine: Arc<TaskEngine>,

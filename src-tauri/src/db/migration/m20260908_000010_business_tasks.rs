@@ -34,7 +34,9 @@ CREATE TABLE business_task (
     FOREIGN KEY (organization_id, owner_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT,
     FOREIGN KEY (organization_id, assignee_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT,
     FOREIGN KEY (organization_id, creator_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT,
-    FOREIGN KEY (organization_id, reviewer_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT
+    FOREIGN KEY (organization_id, reviewer_id) REFERENCES business_member(organization_id, id) ON DELETE RESTRICT,
+    FOREIGN KEY (organization_id, id, current_deliverable_id) REFERENCES business_task_deliverable(organization_id, task_id, id) ON DELETE RESTRICT,
+    FOREIGN KEY (organization_id, id, current_execution_id) REFERENCES business_task_execution(organization_id, task_id, id) ON DELETE RESTRICT
 );
 CREATE INDEX business_task_queue ON business_task(organization_id, archived_at, domain, status, updated_at DESC, id);
 CREATE INDEX business_task_assignee ON business_task(organization_id, assignee_id);
@@ -116,12 +118,17 @@ BEGIN SELECT RAISE(ABORT, 'Business execution lineage is retained'); END;
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         let tx = manager.get_connection().begin().await?;
-        let row = tx.query_one(sea_orm::Statement::from_string(
-            sea_orm::DbBackend::Sqlite,
-            "SELECT COUNT(*) AS count FROM business_task".to_owned(),
-        )).await?.ok_or_else(|| DbErr::Custom("Cannot inspect business tasks".into()))?;
+        let row = tx
+            .query_one(sea_orm::Statement::from_string(
+                sea_orm::DbBackend::Sqlite,
+                "SELECT COUNT(*) AS count FROM business_task".to_owned(),
+            ))
+            .await?
+            .ok_or_else(|| DbErr::Custom("Cannot inspect business tasks".into()))?;
         if row.try_get::<i64>("", "count")? != 0 {
-            return Err(DbErr::Custom("Cannot remove business tasks and retained history".into()));
+            return Err(DbErr::Custom(
+                "Cannot remove business tasks and retained history".into(),
+            ));
         }
         tx.execute_unprepared("DROP TABLE business_task_deliverable; DROP TABLE business_task_execution; DROP TABLE business_task_activity; DROP TABLE business_task;").await?;
         tx.commit().await

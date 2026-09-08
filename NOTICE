@@ -616,6 +616,20 @@ research is copied. The source create/PATCH authorization omissions are not
 retained. Original Apache LICENSE and every preceding notice remain in force.
 No GPL/AGPL or additional dependency implementation is imported.
 
+The business task HTTP/native and scoped contribution bridge reuse accepted
+Adanmohh/codeg 4ec04d7282a50529335d724438d42b99a53385a2,
+src-tauri/src/{work_task/desk.rs,work_task/engine.rs,acp/desk.rs},
+src-tauri/src/acp/delegation/{listener,companion,transport}.rs, and their
+task/listener cancellation tests. Private authenticated principal helpers are
+the owner-written business_identity module at
+861fb0ef4394d4980a19ba375bb4c1f3f218d39b. They preserve the original human
+credential lineage; no operator identity is minted from an executor ID.
+The existing Pi MIT extension adds four closed business contribution DTOs using
+the same pi0.85.1 d981de1229ef899957bbe968bc8dcda02a21f477 extension
+types/runner/example patterns already attributed above. The pi-mcp-adapter MIT
+broker and three cached-read restriction remain unchanged. All original
+Mario Zechner/Nico Bailon MIT notices and LICENSE remain intact.
+
 Business member identity boundary (2026)
 ========================================
 Owner-authorized IntroInnovation/intromail at the unchanged FOUNDING pin
