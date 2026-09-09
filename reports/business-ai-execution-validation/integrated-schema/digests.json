@@ -1,0 +1,16 @@
+{
+  "baseCommit": "b73940560a69748f6774f41eb1a8de44e7c4c11f",
+  "changedProductFile": "src-tauri/src/business_execution/tests.rs",
+  "changedProductSha256": "3885fa6dfcaac60be118bbccf1b449f7f0ac0274c56548e68b7058068935dd14",
+  "log": "tests.log",
+  "logSha256": "adab474c63542e411377f1681c952ac2dc2a92819111144ffb93126700a096dd",
+  "command": "cargo test --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --lib business_execution::tests",
+  "target": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target",
+  "exitCode": 0,
+  "passed": 4,
+  "failed": 0,
+  "ignored": 0,
+  "runtimeSeconds": 0.30,
+  "compileSeconds": 122,
+  "scope": "Integrated B migrations and E1 schema/closed wire only; no runtime execution acceptance"
+}

@@ -15,14 +15,26 @@ All three existing Herdr workers were resumed and observed working. Rebrand and
 approvals show Astra/max. Tickets' actual picker had drifted to Luna/low despite
 Astra status metadata; root restored and visually verified Astra/max before its
 new implementation assignment. No historical authored-turn claim is made.
-Tickets must publish its preserved combined B migration checkpoint; approvals
-reviews that exact source with its existing target; rebrand resumes E1 client/
-parser and shared workspace glue. No new worker, fixture or user-browser action.
+Tickets published the preserved combined B checkpoint at
+177d0f3e2b426d65de9573ba534ac8c11f9250f7, verified independently through gh api.
+Root read the complete added test diff, verified test/log digests and unchanged
+migrations10–13/LICENSE against accepted B. Its four schema passes are owner
+evidence, not an independent runtime verdict. Evidence-only successor
+25badf45db086c3dd33d841d55175f724108c6cc adds four accepted B epoch passes and
+locked/offline server check exit0; root verified both log digests and the report-
+only diff. Product remains177d0f3e2. Tickets explicitly released the build window
+with no own Cargo process. Approvals freezes177 and is now authorized for bounded
+independent tests in its existing target, coordinating start/release with tickets.
+Disk5.7GiB is observed capacity, not a reservation. No new worker, target, fixture
+or user-browser action. Full E1 runtime/assets/task publication remain incomplete.
 
-Two narrower hook limits remain explicit: rebrand has a package_unresolved edit
-rejection after source reads, under resolver investigation; a hash command naming
-the engine path is mistakenly treated as a reader invocation. Neither is called
-fixed or bypassed. General research, coordination and review execution are usable.
+Two narrower hook limits remain explicit. Rebrand's package_unresolved is traced
+to the existing tsconfig @/* local alias, which the hook treats as an invalid
+package. Its 18 unchanged parser tests pass, but three type errors cannot yet be
+edited through that gate. A hash command naming the engine is also mistakenly
+treated as a reader invocation. [Bounded maintenance follow-up](reports/docs-first-alias-followup.md)
+records source evidence and required regressions; neither issue is called fixed
+or bypassed. General research, coordination and review execution are usable.
 
 Reviewer final4355 evidence is published at
 c0c7e522600a94bcf33674f640d5f3665cffd39b. Root fetched and read the complete immutable
