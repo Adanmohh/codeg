@@ -39,12 +39,14 @@ export function SessionConversation({
   session,
   references,
   onGuard,
+  onFiles,
   initialDraft = "",
 }: {
   client: ExecutionClient
   session: SessionSummary
   references: PromptReference[]
   onGuard?: (guard: PromptGuard) => void
+  onFiles?: () => void
   initialDraft?: string
 }) {
   const copy = useExecutionCopy()
@@ -223,6 +225,11 @@ export function SessionConversation({
       className="flex min-h-full min-w-0 flex-col"
     >
       <header className="space-y-3 border-b p-4 sm:p-5">
+        {onFiles && (
+          <Action variant="outline" onClick={onFiles}>
+            {copy.documents}
+          </Action>
+        )}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="min-w-0 text-lg font-semibold">
             <bdi>{current.title}</bdi>

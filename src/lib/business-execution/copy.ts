@@ -117,6 +117,64 @@ const english = {
     "Current task contribution permission is required to start a session.",
   profileReady: "Ready",
   profileBlocked: "Needs setup",
+  documents: "Documents & assets",
+  documentsHint:
+    "Keep exact file versions with this task. Importing a file does not share it or complete the work.",
+  loadingAssets: "Checking saved files…",
+  findFiles: "Find a saved file",
+  searchFiles: "Search files",
+  noFiles: "No retained files for this task yet.",
+  noMatchingFiles: "No saved files match this search.",
+  fileVersions: "Saved versions",
+  version: "Version",
+  privateVersion: "Private version",
+  sharedVersion: "Previously submitted to this task",
+  privatePreviewUnavailable:
+    "This version has no supported text preview. A download is offered only when current file access permits it.",
+  selectVersion: "Select this version for review",
+  removeVersion: "Remove from selection",
+  selectedVersions: "Selected file versions",
+  sessionOutput: "Files from this session",
+  outputHint:
+    "Inspect files from the session's own workspace, then retain a selected file. No file is imported automatically.",
+  checkOutput: "Check session files",
+  noOutputs: "No available files were returned for this session.",
+  outputChanged: "Changed — check files again",
+  outputUnsupported: "Cannot retain this file",
+  retainOutput: "Retain file",
+  importTitle: "Retain this session file",
+  retainedTitle: "File title",
+  importDestination: "Save as",
+  newAsset: "A new saved file",
+  addVersion: "Add a version to",
+  importHint:
+    "The service copies and verifies this exact output revision. The retained version stays private until a separate submission.",
+  moreFiles: "More saved files",
+  moreVersions: "More versions",
+  moreOutputs: "More session files",
+  submission: "Submit selected files",
+  submissionBody: "Note for the reviewer",
+  reviewSubmission: "Review files and audience",
+  submissionAudience: "Destination audience",
+  audienceHint:
+    "These exact versions and your note will be visible to everyone with access to this task in this area of work. The private conversation and unselected versions are not included.",
+  confirmSubmission:
+    "I have reviewed these exact file versions, the note and this task's audience.",
+  submitFiles: "Submit files for human review",
+  submitted:
+    "The selected versions were submitted for human review. They are not approved or marked done.",
+  openTask: "Open task",
+  recheckSelection: "Recheck current files and task",
+  selectionLimit:
+    "Select 1–16 exact versions and use at most 20,000 characters in the note.",
+  selectionChanged:
+    "The selection or note changed. Review the exact files and current task audience again.",
+  waitingImport:
+    "This import is not confirmed. Keep this selection and check the original receipt; no file will be imported again automatically.",
+  waitingSubmission:
+    "This submission is not confirmed. Its exact versions, note and task revision are kept here. Check the original receipt before another submission.",
+  assetUnavailable:
+    "This version is no longer available under your current access. Check the files again.",
 }
 export type ExecutionCopy = typeof english
 const arabic: ExecutionCopy = {
@@ -228,6 +286,63 @@ const arabic: ExecutionCopy = {
     "يلزم امتلاك صلاحية المساهمة الحالية في المهمة لبدء جلسة.",
   profileReady: "جاهز",
   profileBlocked: "يحتاج إلى إعداد",
+  documents: "المستندات والملفات",
+  documentsHint:
+    "احتفظ بنسخ محددة من الملفات مع هذه المهمة. الاحتفاظ بملف لا يشاركه ولا يُكمل العمل.",
+  loadingAssets: "جارٍ التحقق من الملفات المحفوظة…",
+  findFiles: "البحث عن ملف محفوظ",
+  searchFiles: "البحث في الملفات",
+  noFiles: "لا توجد ملفات محتفظ بها لهذه المهمة بعد.",
+  noMatchingFiles: "لا توجد ملفات محفوظة تطابق هذا البحث.",
+  fileVersions: "النسخ المحفوظة",
+  version: "النسخة",
+  privateVersion: "نسخة خاصة",
+  sharedVersion: "قُدّمت سابقًا إلى هذه المهمة",
+  privatePreviewUnavailable:
+    "لا تتوفر معاينة نصية مدعومة لهذه النسخة. يتاح التنزيل فقط عندما تسمح صلاحيات الوصول الحالية.",
+  selectVersion: "اختيار هذه النسخة للمراجعة",
+  removeVersion: "إزالة من الاختيار",
+  selectedVersions: "نسخ الملفات المختارة",
+  sessionOutput: "ملفات هذه الجلسة",
+  outputHint:
+    "اطّلع على ملفات مساحة هذه الجلسة ثم احتفظ بملف تختاره. لا يُحتفظ بأي ملف تلقائيًا.",
+  checkOutput: "التحقق من ملفات الجلسة",
+  noOutputs: "لم تُرجع هذه الجلسة ملفات متاحة.",
+  outputChanged: "تغيّر — تحقق من الملفات مجددًا",
+  outputUnsupported: "لا يمكن الاحتفاظ بهذا الملف",
+  retainOutput: "الاحتفاظ بالملف",
+  importTitle: "الاحتفاظ بملف الجلسة هذا",
+  retainedTitle: "عنوان الملف",
+  importDestination: "الحفظ كـ",
+  newAsset: "ملف محفوظ جديد",
+  addVersion: "إضافة نسخة إلى",
+  importHint:
+    "تنسخ الخدمة مراجعة المخرج المحددة وتتحقق منها. تبقى النسخة المحتفظ بها خاصة حتى تُقدَّم بشكل منفصل.",
+  moreFiles: "المزيد من الملفات المحفوظة",
+  moreVersions: "المزيد من النسخ",
+  moreOutputs: "المزيد من ملفات الجلسة",
+  submission: "تقديم الملفات المختارة",
+  submissionBody: "ملاحظة للمراجع",
+  reviewSubmission: "مراجعة الملفات والجمهور",
+  submissionAudience: "الجمهور المستهدف",
+  audienceHint:
+    "ستظهر هذه النسخ المحددة وملاحظتك لكل من لديه وصول إلى هذه المهمة في مجال العمل هذا. لا تشمل المشاركة المحادثة الخاصة أو النسخ غير المختارة.",
+  confirmSubmission: "راجعت نسخ الملفات المحددة والملاحظة وجمهور هذه المهمة.",
+  submitFiles: "تقديم الملفات للمراجعة البشرية",
+  submitted:
+    "قُدّمت النسخ المختارة للمراجعة البشرية. لم تُعتمد ولم تُعلَّم كمكتملة.",
+  openTask: "فتح المهمة",
+  recheckSelection: "التحقق من الملفات والمهمة الحالية",
+  selectionLimit:
+    "اختر من نسخة إلى ١٦ نسخة محددة، واكتب ملاحظة لا تتجاوز ٢٠٬٠٠٠ حرف.",
+  selectionChanged:
+    "تغيّر الاختيار أو الملاحظة. راجع الملفات المحددة وجمهور المهمة الحالي مجددًا.",
+  waitingImport:
+    "لم يتأكد الاحتفاظ بالملف بعد. أبقِ هذا الاختيار وتحقق من سجل الاستلام الأصلي. لن يُعاد الاحتفاظ بالملف تلقائيًا.",
+  waitingSubmission:
+    "لم يتأكد هذا التقديم بعد. حُفظت نسخه المحددة وملاحظته ومراجعة المهمة هنا. تحقق من سجل الاستلام الأصلي قبل تقديم آخر.",
+  assetUnavailable:
+    "لم تعد هذه النسخة متاحة بصلاحياتك الحالية. تحقق من الملفات مجددًا.",
 }
 export function useExecutionCopy(): ExecutionCopy {
   return useLocale() === "ar" ? arabic : english

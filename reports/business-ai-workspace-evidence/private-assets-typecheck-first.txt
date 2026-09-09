@@ -1,0 +1,4 @@
+Already up to date
+Done in 150ms using pnpm v11.9.0
+src/lib/business-execution/assets.ts(167,5): error TS2322: Type 'string | null' is not assignable to type '"unavailable" | null'.
+  Type 'string' is not assignable to type '"unavailable"'.

@@ -36,6 +36,7 @@ interface CommonProps {
   taskId: string
   originalOperator: boolean
   onGuard: (guard: PromptGuard) => void
+  onFiles?: (taskId: string, sessionId: string | null) => void
 }
 function safeTaskError(error: unknown) {
   if (
@@ -69,6 +70,7 @@ function TaskAiLoader({
   taskId,
   onOpen,
   onGuard,
+  onFiles,
 }: CommonProps & { onOpen: (session: SessionIntent) => void }) {
   const copy = useExecutionCopy()
   const [reload, setReload] = useState(0)
@@ -134,6 +136,11 @@ function TaskAiLoader({
         <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
           {copy.aiHint}
         </p>
+        {onFiles && (
+          <Action variant="outline" onClick={() => onFiles(taskId, null)}>
+            {copy.documents}
+          </Action>
+        )}
       </header>
       {!current && (
         <p role="status" className="text-sm">
@@ -608,6 +615,7 @@ function SessionLoader({
   taskId,
   sessionId,
   onGuard,
+  onFiles,
 }: CommonProps & { sessionId: string }) {
   const copy = useExecutionCopy()
   const [result, setResult] = useState<{
@@ -660,6 +668,7 @@ function SessionLoader({
       client={result.scope}
       session={result.session}
       onGuard={onGuard}
+      onFiles={onFiles ? () => onFiles(taskId, sessionId) : undefined}
       references={[
         {
           label: `${result.task.title} (${copy.savedTaskRevision}: ${result.task.revision})`,

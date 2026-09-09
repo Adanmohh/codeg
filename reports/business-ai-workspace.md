@@ -2,7 +2,9 @@
 
 Current branch: `feat/business-ai-workspace`; draft
 [PR33](https://github.com/Adanmohh/codeg/pull/33). Accepted shell base is
-`f988700db6975364d35b80125af12bfe2d5baac3`. Conversation product checkpoint
+`f988700db6975364d35b80125af12bfe2d5baac3`. Guarded session entry is pushed as
+`45d7fb2f5`; this checkpoint adds the private task file workflow described below.
+Conversation product checkpoint
 `b125aec9e5703508ac7f6948d0d2db134534c90d` is pushed. This next checkpoint adds
 the original-operator browser entry, explicit start/continue and guarded session
 tabs to that existing workbench; it does not enable a backend or prove a runner.
@@ -38,12 +40,79 @@ the existing registered-close seam; no lint suppression or hook maintenance.
 Earlier diagnostic logs remain. TypeScript, React and test-library installed
 references are unchanged from the grounding recorded below.
 
-Remaining implementation: private output/import/version selection and exact
-audience-confirmed publication, then the existing xterm presentation after exact
+The private Documents & assets work area is now mounted through the same guarded
+tabs from the task AI workspace or a saved conversation. Search and opaque pages
+load actual typed retained-file metadata; checking session output is explicit and
+does not import it. Exact output ID/revision and a proposed title define the import.
+Adding a version also rechecks current addVersion capability and the captured
+asset revision. The title bound is240 Unicode characters from validation.rs at
+`d0d56a36399d81be23787891177752022c91edf6`; no caller path/hash/provenance is sent.
+
+An import retains a private immutable version and does not select it for review.
+Current assets/get metadata gates escaped Markdown/text preview and verified inert
+Blob download; exact-version pagination does not silently follow a moving latest
+pointer. Unsupported/large text and office/deck previews show an explicit gap.
+Selecting1–16 versions starts a separate submission draft. Review fetches current
+task and every exact version, compares the retained hash/size/type, then shows
+current domain audience, owner/assignee/reviewer, status and task revision. The
+human checkbox confirms that exact selection/note/audience. Changing the note or
+selection invalidates it. The existing task writer remains the only publication,
+review and status authority; this UI does not call legacy submit/progress/review
+to manufacture a completed result.
+
+Import uncertainty keeps the captured request and permits receipt lookup only.
+Once that receipt is confirmed, it recovers metadata through the contract's exact
+same-operation import replay; it does not guess which ID the opaque receipt target
+represents. Pending/missing/uncertain receipts never reimport. Submit uncertainty
+uses the original receipt plus tasks/get to locate its exact historical deliverable;
+it does not repeat assets/submit. This target mapping is read from publication.rs
+atd0d56a36. Known failed receipts require explicit selection review. Behavior for
+backend refusals that do not retain a failed receipt still needs the operational
+handoff: the UI conservatively keeps unresolved intent, without inferring a retry
+from a missing receipt. Private access denial clears file content/actions; tab
+closure aborts reads and disposes verified handles. Same-scope locale/tab changes
+retain task, prompt and submission drafts in memory.
+
+| Managed-file gate | Result; evidence under business-ai-workspace-evidence |
+| --- | --- |
+| Closed private asset parser | 11/11, exit0; private-assets-parser-first.txt |
+| File/import/submission components plus integrated task/session tabs and existing conversation | 49/49, exit0; managed-assets-final.txt (17 managed,12 entry,9 conversation,11 parser) |
+| Existing public selected-file reader and cold provider isolation | 15/15, exit0; private-assets-public-boundary-regressions.txt |
+| Normal `pnpm exec tsc --noEmit --incremental false` | exit0; private-assets-typecheck-final.txt |
+| Scoped ESLint over E1 library/components and affected BusinessWorkspace | exit0; private-assets-lint-final.txt |
+
+The first managed component run was13/14: Testing Library's default whitespace
+normalizer did not match the exact multiline preview string. Installed DOM10.4.1
+matches.js was read; the existing public-reader test's exact PRE.textContent
+assertion now verifies every byte of displayed text. The isolated locator recheck
+passes1/1, then all17 final cases pass; initial raw evidence is retained. Initial
+type errors were the one-value previewReason tuple and test locale inferred as
+string; both now use the actual closed types. No compiler/lint options or behavior
+assertions were weakened. All data is synthetic in-memory HTTP; the PPTX case is
+version/selection metadata, not generated slide rendering or a runtime fixture.
+
+Sources: accepted Codeg business/ui.tsx and WorkSurface/TaskFrame seams atf988;
+owned fee6a939e7f693d95896a44db02147a2c34383e3 selected reader; owned b931b0f57
+frozen prompt receipt and45d7fb2f5 pane lifetime; accepted contract3f164c2a and
+Rust6195d9daf private DTOs, plus d0d56a36 publication.rs/validation.rs. The current
+PR32 head855cd3b0cf9147e6fc89d3c4a5e1ec8e59169d80 still has the exact previously
+read types blob47ca21b002c9c1efb898e38e0c920e9ca3456c70 (11,207 bytes), verified via
+gh api. No stop/write/resize result wrapper has appeared. Its scan-fence report
+is separate backend evidence, not this worker's compilation/runtime claim.
+
+Remaining implementation: the existing xterm presentation after exact
 write/resize/stop result wrappers are published. Actual E1 API/ACP/PTY/browser,
 Design Studio and export gates await a coordinated backend and build window.
 The backend `d0d56a36399d81be23787891177752022c91edf6` asset handoff is source only,
 explicitly uncompiled by its owner; no runtime or native acceptance is claimed.
+The manual offline code-context guide was rerun with the existing cached model;
+installed-version grounding and safe untrusted-content guidance apply. The
+cross-project content-factory/delegation rules do not apply to this task. No new
+dependency corpus was ingested; the previously missing rebrand docs corpus remains
+an explicit coverage limit. React19.2.4, TS5.8.3, Testing Library16.3.2/DOM10.4.1,
+Vitest2.1.9 and the previously read Blob/WebCrypto types are the installed API
+grounding. Owner-removed enforcement remains removed.
+
 Frozen4354/4355, all old exports/browsers/targets and the paused visual report
 remain untouched. No dependency, lockfile, Rust, auth or engine change is made.
 

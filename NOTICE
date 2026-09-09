@@ -1299,3 +1299,24 @@ is synthetic and in memory. React19.2.4, TypeScript5.8.3, Vitest2.1.9,
 Testing Library16.3.2 and Lucide0.563.0 are read API references. No dependency
 source, AGPL/GPL or proprietary implementation is copied. All prior NOTICE
 sections and the original Apache LICENSE remain intact.
+
+Business E1 managed files and explicit human submission (2026):
+src/components/business-execution/{task-files,asset-content,import-output,
+asset-submission}.tsx adapt the accepted business/ui.tsx Field/Action/Modal/
+Person/StatusBadge and business/workspace.tsx WorkSurface registration at
+f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0. File framing and verified
+escaped-content/Blob lifetime reuse the owned published-asset.tsx at
+fee6a939e7f693d95896a44db02147a2c34383e3, itself attributed to ReplyArtifacts
+above. Pending intent and guarded close adapt the owned session prompt and
+45d7fb2f5 session pane, not a second execution/task/approval engine.
+lib/business-execution/assets.ts mirrors private closed DTOs from accepted
+3f164c2a989cd08a523e51f1e47559c15a48c0ef and Rust types at
+6195d9daf049b7cd16615e35b87d08c7f2870bf0. Exact publication receipt target and
+input bounds were read in business_execution/publication.rs and validation.rs
+at d0d56a36399d81be23787891177752022c91edf6; no Rust code is ported or edited.
+Tests adapt the owned public-reader test and accepted business/test-fixtures;
+all transport/file data is explicitly synthetic. React19.2.4, TypeScript5.8.3,
+Testing Library16.3.2/DOM10.4.1, Vitest2.1.9 and previously recorded Node Blob/
+WebCrypto declarations are read API references. No dependency implementation,
+AGPL/GPL or proprietary code is copied. Every prior NOTICE block and the
+original Apache LICENSE are preserved.

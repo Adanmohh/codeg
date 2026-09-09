@@ -80,6 +80,7 @@ import { SettingsEditor } from "./settings-editor"
 import { WorkspaceAppearance, useWorkspaceAppearance } from "./appearance"
 import { useExecutionCopy } from "@/lib/business-execution/copy"
 import { ExecutionPaneGuard } from "@/components/business-execution/pane-guard"
+import { TaskFilesWorkspace } from "@/components/business-execution/task-files"
 import type { PromptGuard } from "@/components/business-execution/session-prompt"
 import {
   BusinessSessionPane,
@@ -159,6 +160,9 @@ export function BusinessWorkspace({
   >([])
   const [aiSessions, setAiSessions] = useState<
     (SessionIntent & { id: string })[]
+  >([])
+  const [assetWorkspaces, setAssetWorkspaces] = useState<
+    { id: string; taskId: string; sessionId: string | null; label: string }[]
   >([])
   const [refreshKey, setRefreshKey] = useState(0)
   const generation = useRef(0)
@@ -387,6 +391,26 @@ export function BusinessWorkspace({
       current.some((item) => item.id === id)
         ? current
         : [...current, { ...intent, id }]
+    )
+    setActiveTab(id)
+  }
+  function openAssets(taskId: string, sessionId: string | null) {
+    if (!context.capabilities.legacyOperator || client.native) return
+    const id = `task-assets:${taskId}:${sessionId ?? "library"}`
+    const title =
+      openTasks.find((task) => task.id === taskId)?.label ?? copy.taskDetails
+    setAssetWorkspaces((current) =>
+      current.some((item) => item.id === id)
+        ? current
+        : [
+            ...current,
+            {
+              id,
+              taskId,
+              sessionId,
+              label: `${executionCopy.documents}: ${title}`,
+            },
+          ]
     )
     setActiveTab(id)
   }
@@ -877,6 +901,7 @@ export function BusinessWorkspace({
               executionGuards.current.set(item.id, value)
             }}
             onOpen={openSession}
+            onFiles={openAssets}
           />
         </ExecutionPaneGuard>
       ),
@@ -914,10 +939,55 @@ export function BusinessWorkspace({
             client={client}
             taskId={item.taskId}
             sessionId={item.sessionId}
+            onFiles={openAssets}
             originalOperator={context.capabilities.legacyOperator}
             onGuard={(value) => {
               executionGuards.current.set(item.id, value)
             }}
+          />
+        </ExecutionPaneGuard>
+      ),
+    })),
+    ...assetWorkspaces.map((item) => ({
+      id: item.id,
+      label: item.label,
+      icon: FileText,
+      close: () => {
+        setActiveTab(item.id)
+        closeRequests.current.get(item.id)?.()
+      },
+      render: () => (
+        <ExecutionPaneGuard
+          getGuard={() =>
+            executionGuards.current.get(item.id) ?? {
+              dirty: false,
+              busy: false,
+              unresolved: false,
+            }
+          }
+          registerClose={(request) => {
+            if (request) closeRequests.current.set(item.id, request)
+            else closeRequests.current.delete(item.id)
+          }}
+          onClose={() => {
+            executionGuards.current.delete(item.id)
+            setAssetWorkspaces((current) =>
+              current.filter((row) => row.id !== item.id)
+            )
+            setActiveTab((current) => (current === item.id ? "work" : current))
+          }}
+        >
+          <TaskFilesWorkspace
+            business={client}
+            originalOperator={context.capabilities.legacyOperator}
+            taskId={item.taskId}
+            sessionId={item.sessionId}
+            members={members}
+            onGuard={(value) => {
+              executionGuards.current.set(item.id, value)
+            }}
+            onPublished={() => void reload()}
+            onTask={() => openTask(item.taskId)}
           />
         </ExecutionPaneGuard>
       ),

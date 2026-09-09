@@ -1,0 +1,17 @@
+Already up to date
+Done in 166ms using pnpm v11.9.0
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/lib/business-execution/assets.test.ts (11 tests) 3ms
+ ✓ src/components/business-execution/managed-assets.test.tsx (17 tests) 450ms
+ ✓ src/components/business-execution/session-conversation.test.tsx (9 tests) 260ms
+ ✓ src/components/business-execution/session-workspace.test.tsx (12 tests) 568ms
+   ✓ actual original-operator session entry > shows profile and conversation tabs beside a retained task draft in the actual workbench 329ms
+
+ Test Files  4 passed (4)
+      Tests  49 passed (49)
+   Start at  20:31:23
+   Duration  2.53s (transform 730ms, setup 709ms, collect 2.46s, tests 1.28s, environment 2.13s, prepare 298ms)
+

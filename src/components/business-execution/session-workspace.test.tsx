@@ -190,6 +190,8 @@ beforeEach(() => {
     if (path.endsWith("/sessions/list"))
       return Response.json({ items: saved, nextCursor: null })
     if (path.endsWith("/sessions/get")) return Response.json({ session })
+    if (path.endsWith("/assets/list"))
+      return Response.json({ items: [], nextCursor: null })
     if (path.endsWith("/sessions/start")) return start(input)
     if (path.endsWith("/sessions/continue")) return resume(input)
     if (path.endsWith("/operations/get")) return lookup(input)
@@ -417,6 +419,18 @@ describe("actual original-operator session entry", () => {
       "aria-selected",
       "true"
     )
+    fireEvent.click(screen.getByRole("button", { name: "Documents & assets" }))
+    await screen.findByRole("heading", { name: "Documents & assets" })
+    const note = screen.getByRole("textbox", { name: "Note for the reviewer" })
+    fireEvent.change(note, {
+      target: { value: "Synthetic unpublished file note" },
+    })
+    fireEvent.click(screen.getByRole("tab", { name: session.title }))
+    fireEvent.click(screen.getByRole("button", { name: "Documents & assets" }))
+    expect(screen.getByRole("textbox", { name: "Note for the reviewer" })).toBe(
+      note
+    )
+    expect(note).toHaveValue("Synthetic unpublished file note")
     fireEvent.click(screen.getByRole("tab", { name: task.task.title }))
     expect(screen.getByRole("textbox", { name: "Brief" })).toBe(brief)
     expect(brief).toHaveValue("Synthetic unsaved human plan")
