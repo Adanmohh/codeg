@@ -1,6 +1,8 @@
 # Business AI workspace — implementation checkpoint
 
-E1 frontend implementation is active on `feat/business-ai-workspace`, based on
+E1 frontend implementation is active on `feat/business-ai-workspace`,
+[draft PR33](https://github.com/Adanmohh/codeg/pull/33). First isolated type/report
+checkpoint `2bade5c4` is committed and pushed, based on
 accepted main `9e61fe672`. Root accepted PR31 and lifted the internal-only gate;
 this report does not claim an implemented backend or runtime acceptance.
 
@@ -12,6 +14,10 @@ GitHub contents API independently returned blob
 `ec22db669331e03c8d1d6fb4d312896924955853`. The report-only successor is
 `cab3b27eaf241062a56532b5cdfe885f7e648fc9`; merge is `3ddb8f819964fdba006d96ad8221a0436fd1a2cb`.
 The independent `618a3d96d` verdict closes contract questions, not runtime gates.
+Compiling backend DTOs at `6195d9daf`, `src-tauri/src/business_execution/types.rs`,
+and their additive contract change were read completely. These close private
+asset list/get/versions and prompt result shapes. Local types reflect them;
+the known response-only previewReason contract remains null/unavailable.
 
 ## Shared shell dependency and preserved handoff
 
@@ -20,7 +26,8 @@ PR29 is frozen at `96e0bcc174b000abdbb4f6d31f1c9c7c43f90518`, product
 4355 empty-editor recovery, retained prepared draft, two-user revision conflict /
 explicit adoption and the 12-case EN/AR, light/dark, 390/768/1280 measured check.
 The report records the failed locator/result-extraction attempts and bounded
-measurement limits. Independent corrected-browser review is separate.
+measurement limits. Independent corrected-browser review now reports pass at
+`c0c7e522600a94bcf33674f640d5f3665cffd39b`, with no further own fixture mutation.
 
 PR29 is not in this branch's accepted base. Prepare isolated typed client and
 components first; integrate accepted main after PR29 merges before wiring its
@@ -75,10 +82,11 @@ metadata/bytes and uses the existing human review operation.
 
 The accepted wire closes NDJSON frame limits, reset/history and authenticated
 bounded content/Blob handling. The initial client can type all exact inputs and
-the specified result envelopes. Tickets' compiling DTO handoff must supply the
-remaining concrete JSON wrappers for prompt/stop/terminal-write/resize and private
-asset list/get, including rediscovery of older private version IDs. No guessed
-wrapper, moving latest version in review, SSE, EventSource or global WS fallback.
+the specified result envelopes. Tickets' compiling `6195d9daf` DTO handoff closes
+prompt and private asset list/get/versions, including rediscovery of older private
+version IDs. The concrete stop/terminal-write/resize response wrappers remain an
+implementation handoff item. No guessed wrapper, moving latest version in review,
+SSE, EventSource or global WS fallback.
 This is an implementation transcription dependency, not a request to reopen the
 accepted authority contract.
 
@@ -120,10 +128,10 @@ exits0; scoped E1 types ESLint exits0. Logs are retained beside that config.
 This is not a full-command pass. Pure type transcription has no behavioral test
 claim; parser/client/component regressions follow their implementation.
 
-Tickets has now specified the additive private versions/list/get and successful
-prompt envelopes in coordination; the immutable compiling DTO pin is still
-pending. Public selected-version projection remains distinct. Stop/write/resize
-reply wrappers will likewise use the actual backend transcription, not guesses.
+Tickets' additive private versions/list/get and successful prompt envelopes are
+grounded in the compiling `6195d9daf` transcription. Public selected-version
+projection remains distinct. Stop/write/resize reply wrappers will likewise use
+the actual backend transcription, not guesses.
 
 No actual backend operation, browser flow or provider/native runtime pass is
 claimed. Next: framing/byte reader, client/component glue and meaningful synthetic
@@ -131,3 +139,97 @@ tests with small checkpoints. Actual
 same-workspace CLI/Design Studio and E1 ACP/PTY fixtures wait for the shared shell
 acceptance plus coordinated compiling backend/port handoff. Root owns integration
 and final acceptance.
+
+## Current local checkpoint and execution block
+
+Resume after the owner's global-hook checkpoint `f5554c92`: updated global
+AGENTS and the complete docs-first.md preface were read. This worker keeps the
+assigned Astra/max configuration and never/full-access policy; no model or hook
+configuration was changed. Actual Git status and `gh api` now exit0. Git HEAD is
+`2bade5c42b435afb9a8640e5bb319cb55cef2aab`. The GitHub commit/contents responses
+resolve the backend DTO pin to `6195d9daf049b7cd16615e35b87d08c7f2870bf0`; the
+returned Rust types were read completely. The live signed Vitest2.1.9 reader also
+returns successful correlated evidence under docs-first-v2 for this worktree.
+The old JSONL audit still contains the earlier Pre/Post records cited above;
+it is not asserted to contain new workflow-admission records.
+
+The supported test edit remains denied as `package_unresolved`. Root requested
+read-only resolver diagnosis. Exact cause from `docs_first_gate.py`: the JS
+import traversal at lines519–528 recognizes only dot-prefixed local imports;
+otherwise `record` calls `package_name` (lines458–459), whose regex at224–226
+rejects `@/lib/business/tasks`. The path is `stream.test.ts → frames.ts → types.ts`,
+with that type-only import at `types.ts:1`. The real tsconfig explicitly maps
+`@/*` to `./src/*`, but the hook contains no tsconfig handling. The resolver does
+not recurse into Vitest's external package source at this step; Node built-ins
+in its declaration imports are not the cause. No import rewrite, other editing
+tool, hook/state edit or denied-patch reroute was used. A compound regex source
+search received `reader_arguments_invalid`; bounded sed and simple rg reads
+succeeded and supplied this diagnosis.
+
+Allowed validation of the preserved, unchanged local code now ran:
+
+- `pnpm exec vitest run src/lib/business-execution/stream.test.ts`: exit0,
+  18/18; `resumed-baseline-stream.txt`.
+- Source-only typecheck: exit2, three concrete errors in
+  `resumed-baseline-source-typecheck.txt`: `client.ts:165` generic return inference
+  and `stream.test.ts:92,164` JSON.stringify callback signatures. These remain
+  unfixed pending supported edit admission; no compiling-source claim.
+
+The normal full-command reviewer-archive issue remains separate. Offline guide
+retrieval was repeated successfully; installed-doc corpus retrieval still exits3
+because rebrand.db is absent. No corpus/dependency/global mutation was made.
+
+The following paragraph records the earlier blanket-denial period, now superseded
+for Git/tests by the successful commands above; the alias edit denial is current.
+
+After the pushed type checkpoint, isolated `client.ts`, `content.ts`, `frames.ts`,
+`protocol.ts`, `reader.ts` and `stream.test.ts` were added under
+`src/lib/business-execution/`. They are uncommitted and unvalidated. They implement
+closed injected HTTP operations, byte-bounded UTF-8 NDJSON validation, abort/
+detach ownership, bounded immutable size/hash checks and disposable inert Blob
+URLs. No existing client/shell registration or runtime fixture is wired.
+The focused tests are synthetic byte streams, not backend or browser acceptance.
+
+During this work the active global hook changed to docs-first-v2. Supported
+individual cat/sed reads work, and its signed installed-doc reader successfully
+read Vitest2.1.9 `dist/index.d.ts` ranges1–80,180–198,550–575. Normal source/type
+reads also covered the mock interfaces at the installed @vitest/spy2.1.9.
+Nevertheless, `pnpm exec vitest run src/lib/business-execution/stream.test.ts`
+is rejected before execution as `shell_unproven_use_patch_or_reader`.
+`git rev-parse HEAD` receives the same rejection. A narrow correction of the test's
+JSON.stringify callback receives `package_unresolved` despite the signed reads.
+The focused retry after an additional successful signed TypeScript5.8.3
+`lib.es5.d.ts` JSON/stringify declaration read (1150–1187) receives the same
+rejection. Separate `git status --short --branch` is also rejected as
+`shell_unproven_use_patch_or_reader`; current Git state cannot be freshly asserted.
+That correction has not applied, and the new test must not be called compiling.
+Earlier multi-command/regex reads were rejected as `shell_unresolved`; separate
+supported reads succeeded. One report patch used stale context and was rejected
+without changes before this corrected patch.
+
+Read-only inspection of the active launcher and its documented reader entry
+identified the supported signed-reader command; no hook/config/state was modified
+or bypassed. The supported validation/Git runner is requested from root while
+safe source reading continues. No alternate execution path, new target, install,
+fixture change or passing-test claim is used to work around these denials.
+Initial source-only typecheck/lint results above apply only to pushed `2bade5c4`;
+the normal full typecheck limitation remains separate. New local logs using .log
+are ignored by the inherited rule and still need explicit owned-artifact staging
+when commit execution is available. PR29 stays frozen at96e0bcc1/product60d.
+
+## Bounded presentation follow-up
+
+The existing RichComposer, its editor configuration and reference node/view/badge
+were read completely. Its restored reference badges are inert spans; that alone
+does not claim or grant file access. No global composer change is justified from
+badge hydration. E1 can omit reference search and supply only explicit task/asset
+input selection alongside the existing text editor.
+
+`ai-elements/message.tsx` and `markdown-link.tsx` were read completely. The
+Message/MessageContent wrappers can provide presentation without the inherited
+conversation container. MessageResponse always installs the shared MarkdownLink
+after caller component overrides. That renderer attaches file-reference actions
+and the shared link-safety opener; it must not be adopted unchanged as the
+version-authorized document or E1 message reader. Lower presentation with explicit
+scoped content actions is the integration seam. This is source mapping, not a new
+runtime security finding or a claim that a rendered browser was tested.
