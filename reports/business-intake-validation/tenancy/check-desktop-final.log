@@ -1,0 +1,5 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+warning: codeg@0.30.4: codeg-mcp sidecar missing at binaries/codeg-mcp-aarch64-apple-darwin; wrote 0-byte placeholder. Run `pnpm tauri:prepare-sidecars` before `tauri build` to ship a working binary.
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 52.14s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

@@ -2,6 +2,17 @@
 
 ## Current integration and worker state
 
+Backend handoff `e55f3bfd1f069d6d6111370223993596b19ecb9b` publishes one
+green intake run38/38, desktop/server/companion checks, both runtime and companion
+Clippy gates, and typecheck. Root reviewed the949→e55 production cleanups
+(boxed detail value, grouped reservation arguments, equivalent enum defaults)
+and test-only mutex scope adjustment. Imported validation evidence matches all21
+listed SHA256 digests and91 source-correspondence entries at e55. The failed
+desktop Clippy run remains alongside corrected-v2 pass and focused recovery pass;
+these are owner executions, distinct from the independent949 results below.
+Approvals has the small follow-on diff for bounded review. The synthetic unified
+fixture is compiling in the same target; no listener or browser handoff yet.
+
 Published independent review `cd23134989f1df0e13616b6f13ea4c9b1d5b715e`
 is imported with its exact new evidence. Root verified all22 new SHA256 digests
 across949 backend, dc14 UI and a58 UI directories. The reviewer executed eight
@@ -29,9 +40,8 @@ Root updated the
 accepted tenant-owned Fireflies setup, persisted epochs and the unified fixture
 sequence; the old operator-only Fireflies rule is superseded.
 
-Tickets reports desktop check and typecheck exit0; four Clippy cleanup issues
-and one complete green intake run remain before its immutable unified4351/4352
-fixture handoff. Disk space is constrained: worker observed11Gi free and root
+Tickets has completed the backend checks above; its immutable unified4351/4352
+fixture handoff remains next. Disk space is constrained: worker observed11Gi free and root
 subsequently measured13Gi. Workers are coordinating serialized large checks in
 their current isolated targets; no additional bundle/target copies or old fixture,
 target or export cleanup is authorized by this storage coordination.
@@ -54,7 +64,7 @@ not root reruns or integrated tenant/browser acceptance.
 PR28 now publishes `949adb02c18c72d0804eeb74b420520a7681ee86`: eight new
 tenant/migration/protected-HTTP tests and completed native wrapper registrations.
 Owner discloses two exploratory assertion failures followed by corrected passing
-selectors; a single green final intake suite and final checks remain required.
+selectors; the complete green run and final checks now appear at e55 above.
 Approvals independently passed its eight new cases as reported above. Previously archived
 f51154b9 matches768/768; accepted000012 remains unchanged, with forward000013.
 

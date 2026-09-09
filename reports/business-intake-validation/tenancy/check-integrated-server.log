@@ -1,0 +1,481 @@
+   Compiling proc-macro2 v1.0.106
+   Compiling unicode-ident v1.0.23
+   Compiling quote v1.0.44
+   Compiling libc v0.2.180
+    Checking cfg-if v1.0.4
+   Compiling version_check v0.9.5
+    Checking memchr v2.8.0
+   Compiling serde_core v1.0.228
+   Compiling shlex v1.3.0
+    Checking itoa v1.0.17
+    Checking pin-project-lite v0.2.16
+    Checking smallvec v1.15.1
+   Compiling autocfg v1.5.0
+    Checking once_cell v1.21.3
+   Compiling serde v1.0.228
+   Compiling find-msvc-tools v0.1.9
+    Checking bytes v1.11.1
+    Checking futures-core v0.3.31
+    Checking log v0.4.29
+   Compiling typenum v1.19.0
+    Checking scopeguard v1.2.0
+   Compiling parking_lot_core v0.9.12
+    Checking core-foundation-sys v0.8.7
+    Checking futures-io v0.3.31
+    Checking pin-utils v0.1.0
+    Checking futures-sink v0.3.31
+    Checking lock_api v0.4.14
+    Checking bitflags v2.10.0
+   Compiling getrandom v0.3.4
+    Checking tracing-core v0.1.36
+    Checking futures-task v0.3.31
+    Checking futures-channel v0.3.31
+   Compiling generic-array v0.14.7
+    Checking slab v0.4.12
+   Compiling zmij v1.0.20
+    Checking subtle v2.6.1
+   Compiling num-traits v0.2.19
+   Compiling pkg-config v0.3.32
+   Compiling thiserror v2.0.18
+    Checking stable_deref_trait v1.2.1
+   Compiling serde_json v1.0.149
+    Checking equivalent v1.0.2
+    Checking hashbrown v0.16.1
+   Compiling crossbeam-utils v0.8.21
+    Checking iana-time-zone v0.1.65
+   Compiling ident_case v1.0.1
+    Checking writeable v0.6.2
+   Compiling zerocopy v0.8.39
+    Checking base64 v0.22.1
+    Checking percent-encoding v2.3.2
+    Checking indexmap v2.13.0
+    Checking litemap v0.8.1
+    Checking http v1.4.0
+   Compiling icu_normalizer_data v2.1.1
+   Compiling time-core v0.1.8
+    Checking powerfmt v0.2.0
+   Compiling num-conv v0.2.0
+   Compiling icu_properties_data v2.1.2
+   Compiling time-macros v0.2.27
+    Checking simd-adler32 v0.3.8
+   Compiling crc32fast v1.5.0
+    Checking parking v2.2.1
+    Checking num-integer v0.1.46
+    Checking form_urlencoded v1.2.2
+    Checking fastrand v2.3.0
+   Compiling rustix v1.1.3
+   Compiling httparse v1.10.1
+    Checking num-bigint v0.4.6
+   Compiling libm v0.2.16
+    Checking adler2 v2.0.1
+    Checking utf8_iter v1.0.4
+   Compiling heck v0.5.0
+   Compiling heck v0.4.1
+    Checking untrusted v0.9.0
+    Checking miniz_oxide v0.8.9
+   Compiling bigdecimal v0.4.10
+   Compiling rust_decimal v1.40.0
+    Checking crc-catalog v2.4.0
+   Compiling vcpkg v0.2.15
+    Checking deranged v0.5.5
+    Checking ryu v1.0.23
+    Checking block-buffer v0.10.4
+    Checking crc v3.4.0
+    Checking spin v0.9.8
+    Checking aho-corasick v1.1.4
+   Compiling either v1.15.0
+   Compiling fnv v1.0.7
+    Checking allocator-api2 v0.2.21
+    Checking time v0.3.47
+    Checking regex-syntax v0.8.9
+   Compiling rustls v0.23.36
+   Compiling anyhow v1.0.101
+   Compiling glob v0.3.3
+    Checking arrayvec v0.7.6
+    Checking foldhash v0.1.5
+   Compiling clang-sys v1.8.1
+    Checking hashbrown v0.15.5
+    Checking regex-automata v0.4.14
+    Checking concurrent-queue v2.5.0
+   Compiling syn v2.0.114
+    Checking http-body v1.0.1
+   Compiling rustix v0.38.44
+   Compiling prettyplease v0.2.37
+    Checking alloc-no-stdlib v2.0.4
+   Compiling unicode-segmentation v1.12.0
+   Compiling convert_case v0.10.0
+    Checking alloc-stdlib v0.2.2
+    Checking event-listener v5.4.1
+    Checking hashlink v0.10.0
+    Checking getrandom v0.2.17
+   Compiling jobserver v0.1.34
+    Checking errno v0.3.14
+    Checking rand_core v0.6.4
+   Compiling cc v1.2.55
+    Checking crypto-common v0.1.7
+    Checking parking_lot v0.12.5
+    Checking signal-hook-registry v1.4.8
+    Checking mio v1.1.1
+    Checking socket2 v0.6.2
+   Compiling synstructure v0.13.2
+    Checking digest v0.10.7
+    Checking cpufeatures v0.2.17
+    Checking uuid v1.20.0
+   Compiling serde_derive v1.0.228
+   Compiling tokio-macros v2.6.0
+   Compiling futures-macro v0.3.31
+   Compiling tracing-attributes v0.1.31
+   Compiling thiserror-impl v2.0.18
+    Checking tokio v1.49.0
+    Checking futures-util v0.3.31
+   Compiling zerofrom-derive v0.1.6
+   Compiling yoke-derive v0.8.1
+    Checking tracing v0.1.44
+    Checking zerofrom v0.1.6
+   Compiling displaydoc v0.2.5
+   Compiling zerovec-derive v0.11.2
+   Compiling zeroize_derive v1.4.3
+   Compiling ring v0.17.14
+    Checking zeroize v1.8.2
+    Checking core-foundation v0.9.4
+    Checking flate2 v1.1.9
+    Checking ppv-lite86 v0.2.21
+   Compiling libsqlite3-sys v0.30.1
+   Compiling darling_core v0.20.11
+    Checking sha2 v0.10.9
+    Checking rand_core v0.9.5
+    Checking futures-intrusive v0.5.0
+    Checking security-framework-sys v2.15.0
+    Checking crossbeam-queue v0.3.12
+   Compiling itertools v0.12.1
+   Compiling unicode-xid v0.2.6
+   Compiling system-configuration-sys v0.6.0
+   Compiling minimal-lexical v0.2.1
+   Compiling ref-cast v1.0.25
+   Compiling strsim v0.11.1
+   Compiling darling_macro v0.20.11
+    Checking tower-service v0.3.3
+   Compiling native-tls v0.2.14
+   Compiling darling_core v0.23.0
+   Compiling darling v0.20.11
+   Compiling nom v7.1.3
+   Compiling libloading v0.8.9
+   Compiling derive_more-impl v2.1.1
+    Checking security-framework v2.11.1
+    Checking rand_chacha v0.9.0
+    Checking tempfile v3.24.0
+    Checking futures-executor v0.3.31
+   Compiling zstd-sys v2.0.16+zstd.1.5.7
+   Compiling ref-cast-impl v1.0.25
+    Checking sha1 v0.10.6
+   Compiling serde_derive_internals v0.29.1
+    Checking brotli-decompressor v5.0.0
+    Checking flume v0.11.1
+    Checking atoi v2.0.0
+   Compiling proc-macro2-diagnostics v0.10.1
+    Checking mime v0.3.17
+    Checking utf8parse v0.2.2
+   Compiling objc2 v0.6.3
+    Checking httpdate v1.0.3
+    Checking atomic-waker v1.1.2
+   Compiling bindgen v0.69.5
+    Checking try-lock v0.2.5
+   Compiling home v0.5.12
+   Compiling schemars_derive v1.2.1
+    Checking want v0.3.1
+   Compiling which v4.4.2
+    Checking yoke v0.8.1
+    Checking brotli v8.0.2
+    Checking derive_more v2.1.1
+    Checking anstyle-parse v0.2.7
+    Checking tokio-util v0.7.18
+    Checking chrono v0.4.43
+    Checking serde_urlencoded v0.7.1
+    Checking tokio-stream v0.1.18
+    Checking rustls-pki-types v1.14.0
+    Checking h2 v0.4.13
+    Checking webpki-roots v1.0.6
+    Checking webpki-roots v0.26.11
+    Checking futures v0.3.31
+    Checking rand v0.9.2
+   Compiling cexpr v0.6.0
+   Compiling regex v1.12.3
+   Compiling darling_macro v0.23.0
+   Compiling async-trait v0.1.89
+   Compiling inherent v1.0.13
+   Compiling pin-project-internal v1.1.10
+    Checking http-body-util v0.1.3
+   Compiling proc-macro-error-attr2 v2.0.0
+    Checking inout v0.1.4
+    Checking ordered-float v4.6.0
+   Compiling ahash v0.8.12
+    Checking sync_wrapper v1.0.2
+   Compiling unicase v2.9.0
+    Checking data-encoding v2.10.0
+   Compiling yansi v1.0.1
+    Checking lazy_static v1.5.0
+    Checking is_terminal_polyfill v1.70.2
+    Checking anstyle-query v1.1.5
+    Checking anstyle v1.0.13
+    Checking utf-8 v0.7.6
+    Checking tower-layer v0.3.3
+   Compiling lazycell v1.3.0
+    Checking compression-core v0.4.32
+   Compiling rustc-hash v1.1.0
+    Checking objc2-encode v4.1.0
+    Checking dyn-clone v1.0.20
+    Checking colorchoice v1.0.4
+    Checking compression-codecs v0.4.38
+    Checking anstream v0.6.21
+    Checking sharded-slab v0.1.7
+   Compiling mime_guess v2.0.5
+    Checking hyper v1.8.1
+    Checking pin-project v1.1.10
+   Compiling proc-macro-error2 v2.0.1
+    Checking cipher v0.4.4
+   Compiling darling v0.23.0
+    Checking tracing-serde v0.2.0
+   Compiling bzip2-sys v0.1.13+1.0.8
+   Compiling lzma-sys v0.1.20
+   Compiling strum_macros v0.28.0
+    Checking matchers v0.2.0
+   Compiling sea-query-derive v0.4.3
+    Checking futures-lite v2.6.1
+    Checking tracing-log v0.2.0
+   Compiling memoffset v0.6.5
+    Checking thread_local v1.1.9
+    Checking sea-query v0.32.7
+    Checking encoding_rs v0.8.35
+   Compiling zstd-safe v7.2.4
+    Checking clap_lex v0.7.7
+   Compiling thiserror v1.0.69
+    Checking ipnet v2.11.0
+   Compiling crossbeam-epoch v0.9.20
+   Compiling rmcp v1.3.0
+    Checking nu-ansi-term v0.50.3
+    Checking tracing-subscriber v0.3.22
+    Checking system-configuration v0.7.0
+    Checking hyper-util v0.1.20
+    Checking rustls-webpki v0.103.9
+    Checking clap_builder v4.5.57
+    Checking strum v0.28.0
+    Checking zerovec v0.11.5
+    Checking zerotrie v0.2.3
+   Compiling ouroboros_macro v0.18.5
+    Checking tokio-native-tls v0.3.1
+    Checking async-compression v0.4.42
+    Checking tower v0.5.3
+   Compiling sea-bae v0.2.1
+    Checking toml_datetime v0.6.3
+   Compiling thiserror-impl v1.0.69
+   Compiling clap_derive v4.5.55
+   Compiling rmcp-macros v1.3.0
+   Compiling async-stream-impl v0.3.6
+    Checking universal-hash v0.5.1
+    Checking serial-core v0.4.0
+    Checking ioctl-rs v0.1.6
+    Checking termios v0.2.2
+    Checking fdeflate v0.3.7
+   Compiling multer v3.1.0
+   Compiling kill_tree v0.2.4
+    Checking schemars v1.2.1
+    Checking fixedbitset v0.5.7
+    Checking same-file v1.0.6
+    Checking pxfm v0.1.28
+    Checking byteorder-lite v0.1.0
+    Checking zune-core v0.5.1
+   Compiling pastey v0.2.1
+    Checking static_assertions v1.1.0
+    Checking color_quant v1.1.0
+    Checking siphasher v1.0.2
+    Checking winnow v0.5.40
+    Checking weezl v0.1.12
+    Checking aliasable v0.1.3
+   Compiling crossbeam-deque v0.8.7
+    Checking quick-error v2.0.1
+    Checking opaque-debug v0.3.1
+    Checking image-webp v0.2.4
+    Checking polyval v0.6.2
+    Checking gif v0.14.2
+    Checking ouroboros v0.18.5
+    Checking phf_shared v0.12.1
+    Checking zune-jpeg v0.5.15
+    Checking walkdir v2.5.0
+    Checking moxcms v0.8.1
+    Checking futures-concurrency v7.7.1
+    Checking png v0.18.1
+    Checking clap v4.5.57
+    Checking serial-unix v0.4.0
+    Checking async-stream v0.3.6
+   Compiling sea-orm-macros v1.1.19
+    Checking hashbrown v0.14.5
+    Checking tinystr v0.8.2
+    Checking potential_utf v0.1.4
+    Checking icu_collections v2.1.1
+    Checking icu_locale_core v2.1.1
+    Checking objc2-core-foundation v0.3.2
+    Checking block2 v0.6.2
+    Checking aes v0.8.4
+    Checking icu_provider v2.1.1
+    Checking tungstenite v0.28.0
+    Checking jsonrpcmsg v0.1.2
+    Checking icu_normalizer v2.1.1
+    Checking icu_properties v2.1.2
+    Checking serde_spanned v0.6.9
+   Compiling mac-notification-sys v0.6.12
+   Compiling sacp-derive v11.0.0
+   Compiling sea-schema-derive v0.3.0
+    Checking hmac v0.12.1
+    Checking filetime v0.2.27
+    Checking nix v0.27.1
+    Checking crossbeam-channel v0.5.15
+    Checking bstr v1.13.0
+    Checking idna_adapter v1.2.1
+    Checking option-ext v0.2.0
+    Checking bitflags v1.3.2
+    Checking idna v1.1.0
+    Checking bytemuck v1.25.0
+    Checking base64ct v1.8.3
+    Checking bumpalo v3.19.1
+   Compiling zip v2.4.2
+    Checking url v2.5.8
+    Checking dotenvy v0.15.7
+    Checking strum v0.26.3
+    Checking shell-words v1.1.1
+    Checking boxfnonce v0.1.1
+    Checking http-range-header v0.4.2
+    Checking byteorder v1.5.0
+    Checking rustc-hash v2.1.2
+   Compiling chrono-tz v0.10.4
+    Checking iri-string v0.7.10
+    Checking bzip2 v0.5.2
+    Checking lzma-rs v0.3.0
+    Checking sqlx-core v0.8.6
+    Checking zopfli v0.8.3
+    Checking password-hash v0.5.0
+    Checking image v0.25.10
+    Checking agent-client-protocol-schema v0.11.7
+    Checking globset v0.4.19
+    Checking nix v0.25.1
+    Checking tower-http v0.6.8
+    Checking dirs-sys v0.5.0
+    Checking pbkdf2 v0.12.2
+   Compiling prost-derive v0.13.5
+    Checking tokio-tungstenite v0.28.0
+    Checking toml_edit v0.20.2
+    Checking sqlx-sqlite v0.8.6
+    Checking objc2-foundation v0.3.2
+    Checking hashlink v0.9.1
+    Checking serial v0.4.0
+   Compiling hashify v0.2.9
+    Checking phf v0.12.1
+    Checking ghash v0.5.1
+    Checking sqlx v0.8.6
+    Checking hyper-tls v0.6.0
+    Checking ctr v0.9.2
+    Checking tungstenite v0.26.2
+    Checking sea-query-binder v0.7.0
+    Checking sea-orm-cli v1.1.19
+    Checking axum-core v0.5.6
+    Checking simple_asn1 v0.6.4
+    Checking sea-schema v0.16.2
+    Checking rand_chacha v0.3.1
+    Checking xattr v1.6.1
+    Checking blake2 v0.10.6
+    Checking aead v0.5.2
+    Checking fsevent-sys v4.1.0
+   Compiling include_dir_macros v0.7.4
+    Checking serde_path_to_error v0.1.20
+    Checking filedescriptor v0.8.3
+    Checking pem v3.0.6
+    Checking deflate64 v0.1.10
+    Checking env_home v0.1.0
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+    Checking constant_time_eq v0.3.1
+    Checking fallible-streaming-iterator v0.1.9
+    Checking matchit v0.8.4
+    Checking symlink v0.1.0
+    Checking unsafe-libyaml v0.2.11
+    Checking fallible-iterator v0.3.0
+    Checking downcast-rs v1.2.1
+    Checking include_dir v0.7.4
+    Checking portable-pty v0.8.1
+    Checking tracing-appender v0.2.5
+    Checking jsonwebtoken v9.3.1
+    Checking rusqlite v0.32.1
+    Checking axum v0.8.8
+    Checking which v7.0.3
+    Checking mail-parser v0.11.1
+    Checking aes-gcm v0.10.3
+    Checking serde_yaml v0.9.34+deprecated
+    Checking notify v6.1.1
+    Checking argon2 v0.5.3
+    Checking rand v0.8.5
+    Checking tar v0.4.44
+    Checking tokio-tungstenite v0.26.2
+    Checking reqwest v0.12.28
+    Checking toml v0.8.2
+    Checking prost v0.13.5
+    Checking qrcode v0.14.1
+    Checking cron v0.12.1
+    Checking dirs v6.0.0
+    Checking ignore v0.4.30
+    Checking toml_edit v0.19.15
+    Checking async_zip v0.0.18
+    Checking if-addrs v0.13.4
+    Checking semver v1.0.27
+    Checking urlencoding v2.1.3
+    Checking minisign-verify v0.2.5
+    Checking sea-orm v1.1.19
+    Checking xz2 v0.1.7
+    Checking zstd v0.13.3
+    Checking sea-orm-migration v1.1.19
+    Checking sacp v11.0.0
+    Checking sacp-tokio v11.0.0 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/vendor/sacp-tokio)
+warning: field `organization_id` is never read
+ --> src/business_intake/records.rs:7:9
+  |
+5 | pub(super) struct Binding {
+  |                   ------- field in this struct
+6 |     pub id: String,
+7 |     pub organization_id: String,
+  |         ^^^^^^^^^^^^^^^
+  |
+  = note: `Binding` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `actor_id` and `operation_id` are never read
+  --> src/business_intake/records.rs:36:9
+   |
+34 | pub(super) struct Setup {
+   |                   ----- fields in this struct
+35 |     pub id: String,
+36 |     pub actor_id: String,
+   |         ^^^^^^^^
+37 |     pub operation_id: String,
+   |         ^^^^^^^^^^^^
+
+warning: field `organization_id` is never read
+  --> src/business_intake/records.rs:51:9
+   |
+49 | pub(super) struct Source {
+   |                   ------ field in this struct
+50 |     pub id: String,
+51 |     pub organization_id: String,
+   |         ^^^^^^^^^^^^^^^
+   |
+   = note: `Source` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: field `provider_revision` is never read
+  --> src/business_intake/records.rs:70:9
+   |
+68 | pub(super) struct Version {
+   |                   ------- field in this struct
+69 |     pub digest: String,
+70 |     pub provider_revision: Option<String>,
+   |         ^^^^^^^^^^^^^^^^^
+
+warning: `codeg` (lib) generated 4 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 09s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

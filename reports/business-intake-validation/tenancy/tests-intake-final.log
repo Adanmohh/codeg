@@ -1,0 +1,53 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 29s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (.docs/business-intake-tenancy-target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 38 tests
+test business_intake::tests::candidate_cases::intake_publication_inputs_reject_embedded_task_identity_and_provider_payload ... ok
+test business_intake::tests::intake_closed_inputs_reject_identity_queries_secret_refs_and_null_replacement ... ok
+test business_intake::tests::epoch_migration_cases::intake_epoch_migration_fresh_combined_has_no_default_authority ... ok
+test business_intake::tests::intake_migration_retains_task_rows_and_rejects_foreign_member_bindings ... ok
+test business_intake::tests::epoch_migration_cases::intake_epoch_migration_already_recorded_a_tenancy_then_b_and_b_receipt_retry ... ok
+test business_intake::tests::reader_cases::intake_reader_fixed_queries_scope_headers_and_exact_normalization ... ok
+test business_intake::tests::legacy_cases::intake_hafidh_projection_is_cached_public_only_and_fenced_by_host_and_folder ... ok
+test business_intake::tests::reader_cases::intake_reader_rejects_partial_errors_scope_mismatch_expiry_and_malformed_metadata ... ok
+test business_intake::tests::legacy_cases::intake_email_projection_excludes_private_activity_and_fences_config_away_and_back ... ok
+test business_intake::tests::reader_cases::intake_reader_missing_empty_unsupported_summary_and_transport_caps_are_distinct ... ok
+test business_intake::tests::import_cases::intake_source_fence_across_distinct_imports_rejects_older_response ... ok
+test business_intake::tests::import_cases::intake_import_grant_revocation_and_caller_abort_cannot_commit_private_content ... ok
+test business_intake::tests::import_cases::intake_import_cancel_and_expired_claim_discard_late_detail_without_a_replacement ... ok
+test business_intake::tests::candidate_cases::intake_candidate_exact_human_draft_atomic_accept_replay_and_restricted_source_link ... ok
+test business_intake::tests::candidate_cases::intake_candidate_destination_read_and_expired_metadata_withhold_prepared_text ... ok
+test business_intake::tests::import_cases::intake_import_discovery_replay_and_aba_versions_preserve_candidate_and_source_identity ... ok
+test business_intake::tests::candidate_cases::intake_candidate_source_change_grant_epoch_and_invalid_selection_cannot_publish ... ok
+test business_intake::tests::candidate_cases::intake_candidate_null_draft_rebase_links_exact_target_and_invalidates_review ... ok
+test business_intake::tests::epoch_migration_cases::intake_epoch_migration_schema_commit_receipt_retry_preserves_null_and_captured_values ... ok
+test business_intake::tests::import_cases::intake_import_retry_budget_and_duplicate_page_cap_are_explicit ... ok
+test business_intake::tests::candidate_cases::intake_candidate_waiting_writer_rechecks_original_credential_before_any_publication ... ok
+test business_intake::tests::candidate_cases::intake_candidate_atomic_failure_and_two_connections_cas_leave_no_orphan ... ok
+test business_intake::tests::epoch_migration_cases::intake_epoch_migration_old_populated_b_then_tenancy_and_atomic_epoch_rollback ... ok
+test business_intake::tests::setup_cases::intake_protected_setup_router_rejects_manager_spoofs_and_redacts_keys ... ok
+test business_intake::tests::setup_cases::intake_grants_ceiling_current_membership_and_owner_drift_are_rechecked ... ok
+test business_intake::tests::recovery_cases::intake_recovery_late_blocking_store_after_abort_and_cleanup_retries_only_orphan ... ok
+test business_intake::tests::setup_cases::intake_setup_zero_grants_manager_denial_and_exact_replay ... ok
+test business_intake::tests::recovery_cases::intake_recovery_activation_commit_failure_and_lost_response_preserve_active_reference ... ok
+test business_intake::tests::setup_cases::intake_setup_await_rechecks_owner_revision_and_binding_disable ... ok
+test business_intake::tests::recovery_cases::intake_recovery_extra_candidate_discard_history_and_explicit_new_work ... ok
+test business_intake::tests::recovery_cases::intake_recovery_uses_current_credential_grant_and_real_passage_scope ... ok
+test business_intake::tests::tenancy_cases::intake_tenancy_suspension_fences_blocked_setup_and_source_attempt_without_reconstructing_actor ... ok
+test business_intake::tests::setup_cases::intake_staged_failure_and_wrong_provider_preserve_active_and_unrelated_keys ... ok
+test business_intake::tests::tenancy_cases::intake_tenancy_two_real_tenants_setup_domain_ceiling_zero_grants_and_reference_privacy ... ok
+test business_intake::tests::tenancy_cases::intake_tenancy_fresh_login_and_identical_refresh_cannot_resurrect_preview ... ok
+test business_intake::tests::migration_cases::intake_populated_upgrade_retains_tasks_and_tickets_and_ddl_failure_is_atomic ... ok
+test business_intake::tests::migration_cases::intake_existing_member_from_another_organization_cannot_become_source_owner ... ok
+test business_intake::tests::tenant_http_cases::intake_tenant_http_setup_import_review_task_and_foreign_ids_use_same_principal ... ok
+
+test result: ok. 38 passed; 0 failed; 0 ignored; 0 measured; 3719 filtered out; finished in 3.19s
+

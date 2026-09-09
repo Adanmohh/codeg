@@ -1,0 +1,80 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+error: large size difference between variants
+   --> src/business_intake/imports.rs:263:1
+    |
+263 | /  enum Work {
+264 | |/     Page {
+265 | ||         from: String,
+266 | ||         to: String,
+267 | ||         offset: i64,
+268 | ||     },
+    | ||_____- the second-largest variant contains at least 56 bytes
+269 | |      Detail(records::Source),
+    | |      ----------------------- the largest variant contains at least 328 bytes
+270 | |  }
+    | |__^ the entire enum is at least 328 bytes
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.98.0/index.html#large_enum_variant
+    = note: `-D clippy::large-enum-variant` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::large_enum_variant)]`
+help: consider boxing the large fields or introducing indirection in some other way to reduce the total size of the enum
+    |
+269 -     Detail(records::Source),
+269 +     Detail(Box<records::Source>),
+    |
+
+error: this function has too many arguments (8/7)
+   --> src/business_intake/setup.rs:109:1
+    |
+109 | / async fn reserve(
+110 | |     tx: &DatabaseTransaction,
+111 | |     p: &Principal,
+112 | |     operation_id: &str,
+...   |
+117 | |     plan: &Plan,
+118 | | ) -> Result<String> {
+    | |___________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.98.0/index.html#too_many_arguments
+    = note: `-D clippy::too-many-arguments` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::too_many_arguments)]`
+
+error: this `impl` can be derived
+  --> src/business_intake/types.rs:89:1
+   |
+89 | / impl Default for ImportView {
+90 | |     fn default() -> Self {
+91 | |         Self::Unfinished
+92 | |     }
+93 | | }
+   | |_^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.98.0/index.html#derivable_impls
+   = note: `-D clippy::derivable-impls` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::derivable_impls)]`
+help: replace the manual implementation with a derive attribute and mark the default variant
+   |
+24 ~         #[derive(Default)]
+25 ~ pub enum $name { $(#[default]
+26 | $variant),+ }
+   |
+
+error: this `impl` can be derived
+  --> src/business_intake/types.rs:94:1
+   |
+94 | / impl Default for CandidateState {
+95 | |     fn default() -> Self {
+96 | |         Self::Pending
+97 | |     }
+98 | | }
+   | |_^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.98.0/index.html#derivable_impls
+help: replace the manual implementation with a derive attribute and mark the default variant
+   |
+24 ~         #[derive(Default)]
+25 ~ pub enum $name { $(#[default]
+26 | $variant),+ }
+   |
+
+error: could not compile `codeg` (lib) due to 4 previous errors

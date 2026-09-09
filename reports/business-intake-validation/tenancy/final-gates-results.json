@@ -1,0 +1,94 @@
+[
+  {
+    "name": "clippy-server-final",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--bin",
+      "codeg-server",
+      "--lib",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0,
+    "seconds": 47.96
+  },
+  {
+    "name": "tests-intake-final",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--lib",
+      "business_intake::tests::",
+      "--",
+      "--nocapture"
+    ],
+    "exit": 0,
+    "seconds": 154.47
+  },
+  {
+    "name": "check-companion-final",
+    "command": [
+      "cargo",
+      "check",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--bin",
+      "codeg-mcp"
+    ],
+    "exit": 0,
+    "seconds": 39.7
+  },
+  {
+    "name": "clippy-companion-final",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--bin",
+      "codeg-mcp",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0,
+    "seconds": 0.91
+  },
+  {
+    "name": "clippy-desktop-final",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--all-targets",
+      "--features",
+      "test-utils",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 101,
+    "seconds": 115.93
+  }
+]
