@@ -1211,3 +1211,14 @@ legacy host client are not mounted or copied into a tenant boundary.
 Installed TypeScript5.8.3 DOM declarations and Vitest2.1.9 declarations are API
 references; no compiler/test-runner implementation is ported. Existing
 Codeg v0.30.4 Apache-2.0 attribution and every other worker's notices remain.
+
+Business E1 response ownership and synthetic regressions (2026):
+src/lib/business-execution/{client,content,protocol,reader}.ts and the adjacent
+client/content/stream tests extend the scoped transport and test seams already
+in this repository at c781c9d5a29dcf29c4fbe64ca1f510aa8f0e004d, Apache-2.0.
+They capture the selected event/asset identity before asynchronous reads and
+separate local detachment from a server-confirmed operation cancellation.
+TypeScript5.8.3 DOM Response/ReadableStream/Blob/SubtleCrypto/URL declarations
+and installed Vitest2.1.9 timers/spy assertions are API references only.
+No provider fixture, dependency implementation, AGPL/GPL source or new package
+is copied. The original Apache LICENSE and all preceding notices are retained.

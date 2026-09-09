@@ -7,6 +7,14 @@ export class ExecutionError extends Error {
     this.name = "ExecutionError"
   }
 }
+// Local teardown does not prove that an admitted operation was cancelled.
+// Keep its original receipt for explicit reconciliation; never replay a write.
+export class ExecutionInterrupted extends ExecutionError {
+  constructor(readonly kind: "aborted" | "closed" | "timeout") {
+    super("transport_unavailable")
+    this.name = "ExecutionInterrupted"
+  }
+}
 export function protocolError(): never {
   throw new ExecutionError("transport_unavailable")
 }

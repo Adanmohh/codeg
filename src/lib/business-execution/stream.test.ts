@@ -225,7 +225,10 @@ describe("E1 closed authenticated stream reader", () => {
     )
     await expect(
       readSessionStream(response, input, scope.signal, callback)
-    ).rejects.toMatchObject({ reason: "cancelled" })
+    ).rejects.toMatchObject({
+      reason: "transport_unavailable",
+      kind: "aborted",
+    })
     expect(callback).toHaveBeenCalledOnce()
     expect(cancel).toHaveBeenCalledOnce()
   })

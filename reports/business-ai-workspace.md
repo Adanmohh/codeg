@@ -1,7 +1,7 @@
 # Business AI workspace — implementation checkpoint
 
-Current source now passes the normal TypeScript check and scoped lint, with
-18/18 stream tests passing. After the owner confirmed complete enforcement-hook
+Current source passes the normal TypeScript check and scoped lint, with
+48/48 client, content and stream tests passing. After the owner confirmed complete enforcement-hook
 removal and restarted this saved session, the first normal Git status and gh-api
 read both exited0. The preserved type fixes then applied through the normal
 native patch tool: the result generic is explicit and JSON.stringify receives
@@ -9,11 +9,12 @@ only the array item, not the map callback's index. Existing assertions remain.
 Prettier3.8.1, using the unchanged repository configuration, corrected the earlier
 formatting diagnostics in the seven-file E1 directory only.
 
-Current raw evidence is `business-ai-workspace-evidence/resumed-fixed-stream.txt`
+The initial correction is pushed as c781c9d5a29dcf29c4fbe64ca1f510aa8f0e004d.
+Its raw evidence is `business-ai-workspace-evidence/resumed-fixed-stream.txt`
 (18 tests, exit0), `resumed-fixed-typecheck.txt` (normal --noEmit --incremental
 false, exit0) and `resumed-fixed-lint.txt` (scoped ESLint, exit0). Source diff
 whitespace check exits0. No runtime, browser, provider, native or full-app pass
-is implied. Parent-client disposal and immutable selection regressions are next.
+is implied. The subsequent ownership regressions and current gates follow below.
 No static export, Rust compile or existing browser/fixture action was taken.
 
 Documentation grounding continues manually: installed TypeScript5.8.3 JSON
@@ -23,6 +24,40 @@ source were read. Official gh-api resolves Vitest v2.1.9 to
 restoring enforcement hooks without an explicit request. All prior alias
 candidate/activation work is canceled; the historical denials below are not a
 current implementation block. This worker changed no global hook/config/state.
+
+Current response-ownership changes capture stream binding and content metadata
+before asynchronous reads. A changed caller selection cannot authorize a different
+returned session/version. Scope closure cancels readers and prevents late delivery;
+401 also revokes all content handles. Each handle's disposal is idempotent. Local
+abort, closure and deadline are explicitly `ExecutionInterrupted` with the existing
+safe transport_unavailable reason, distinct from a server-reported cancelled
+operation. No write is replayed automatically. Unsupported executable preview is
+refused before transport; verified download remains an inert binary Blob.
+
+| Current bounded gate | Result and committed evidence |
+| --- | --- |
+| `pnpm exec vitest run src/lib/business-execution` | 48/48, exit0; client-content-stream-after.txt |
+| `pnpm exec tsc --noEmit --incremental false` | exit0; client-content-typecheck.txt |
+| `pnpm exec eslint src/lib/business-execution` | exit0; client-content-lint.txt |
+| Source diff whitespace | exit0 |
+
+All paths above are under reports/business-ai-workspace-evidence. The unchanged
+c781 transport fails10 of the30 new tests after correcting the test harness;
+client-content-negative-control.txt retains that exit1. The first attempt also
+contained a Vitest2-incompatible assertion and an asynchronously handled failed
+assertion; client-content-before.txt is retained, not counted as clean product
+evidence. Installed assertion types resolved the harness; no product assertion
+was weakened. These are synthetic in-memory tests, not backend/browser acceptance.
+The new tests cover held selections, actual Unicode/hash bytes, malformed headers,
+truncation/overflow, partial-read abort, URL cleanup, error privacy, unavailable
+account references, stream deadline lifetime and zero automatic prompt replay.
+
+The latest read-only gh-api check resolves PR32 to
+b15ded12cd24f557d0de9bb55b43db30b9f8bc89; its complete types.rs was reread and
+has no new stop/write/resize result wrapper. Those operations are not guessed.
+The admitted-body UI and parent-client lifecycle wiring are the next independent
+work; no existing fixture, export, browser, Rust source/target or credential was
+changed. No static/native build was started during tickets' Rust build window.
 
 E1 frontend implementation is active on `feat/business-ai-workspace`,
 [draft PR33](https://github.com/Adanmohh/codeg/pull/33). First isolated type/report
@@ -248,10 +283,11 @@ client/shell registration or runtime fixture is wired. The stream tests are not
 backend or browser acceptance.
 
 Historical blanket command denials, including shell_unproven_use_patch_or_reader
-for Git/tests, are superseded by the admitted commands above. The supported alias
-patch still has not applied. Signed Vitest2.1.9 declaration reads and
+for Git/tests, are superseded by the admitted commands above. At that historical
+checkpoint the supported alias patch had not applied. Signed Vitest2.1.9 declaration reads and
 TypeScript5.8.3 lib.es5.d.ts JSON.stringify at1150–1187 did not repair the installed
-alias resolver. No further denied-patch retry is made while activation is pending.
+alias resolver. The patch waited for the owner-confirmed removal and restart;
+it is now applied and passing, with no activation work pending.
 Initial .log files were ignored by the inherited rule; only the explicitly named
 committed .txt evidence is treated as committed raw validation output.
 
@@ -311,7 +347,8 @@ The existing Codeg-derived config base is blob
 Actual normal `pnpm exec tsc --noEmit` before/after logs are retained as
 `normal-typecheck-{before,after}-archive-exclusion.txt`. Before: exit2, nine
 archive import errors plus three E1 source errors. After: exit2, exactly the
-three E1 source errors. **No normal typecheck pass is claimed.**
+three E1 source errors. No normal typecheck pass was claimed for that historical
+checkpoint; the corrected normal gate is recorded at the top.
 
 The real compiler --listFilesOnly runs both exit0. A file-set comparison exits0
 and records3789→3783 files, exactly the six report copies removed, no additions,
@@ -380,12 +417,12 @@ Deliverable.assets is not yet in this accepted task source; the backend owner is
 implementing it. The frontend must consume its published selected refs and []
 history defaults when handed off, without substituting private versions/list.
 
-Source review of the preserved E1 WIP identifies two further bounded checks before
+Source review of the preserved E1 WIP identified two bounded checks before
 wiring: capture event binding and expected content metadata before asynchronous
 reads, so caller mutation cannot change the object being verified; and distinguish
 local transport abort from a confirmed durable cancellation. A lost mutation
 response requires its original operation receipt, never blind replay. These are
-pending WIP hardening items, not accepted-main regressions. JSON result bodies
+now covered by the current48-test transport checkpoint, not accepted-main regressions. JSON result bodies
 are currently byte-bounded and statically typed; only event frames and content
 headers/bytes have the explicit runtime validators in this checkpoint.
 

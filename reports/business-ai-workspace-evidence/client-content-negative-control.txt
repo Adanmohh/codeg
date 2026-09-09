@@ -1,0 +1,301 @@
+Already up to date
+Done in 158ms using pnpm v11.9.0
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ❯ src/lib/business-execution/client.test.ts (12 tests | 6 failed) 12ms
+   × E1 scoped client lifecycle > does not issue a request after its scope is closed 4ms
+     → expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+   × E1 scoped client lifecycle > cancels a response that arrives after close without returning data 2ms
+     → expected ExecutionError: cancelled { …(1) } to match object { kind: 'closed' }
+(2 matching properties omitted from actual)
+   × E1 scoped client lifecycle > classifies a local deadline as uncertain transport, never a durable cancellation 1ms
+     → expected ExecutionError: cancelled { …(1) } to match object { kind: 'timeout', …(2) }
+(1 matching property omitted from actual)
+   × E1 scoped client lifecycle > keeps the original stream binding while a caller changes its selection 2ms
+     → promise rejected "ExecutionError: conflict { reason: '…' }" instead of resolving
+   × E1 scoped client lifecycle > keeps an attached stream beyond the request deadline and detaches on close 1ms
+     → expected ExecutionError: cancelled { …(1) } to match object { kind: 'closed' }
+(2 matching properties omitted from actual)
+   × E1 scoped client lifecycle > does not post when its caller already detached 0ms
+     → expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+ ❯ src/lib/business-execution/content.test.ts (18 tests | 4 failed) 14ms
+   × E1 version-bound content > keeps the selected version metadata while its caller changes selection 1ms
+     → unavailable
+   × E1 version-bound content > rejects bytes matching caller-mutated metadata instead of the original version 3ms
+     → promise resolved "{ mediaType: 'text/plain', …(5) }" instead of rejecting
+   × E1 version-bound content > aborts a partially read body without returning a URL 1ms
+     → expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+   × E1 version-bound content > refuses executable preview before transport but permits inert download 0ms
+     → expected "spy" to not be called at all, but actually been called 1 times
+
+Received: 
+
+  1st spy call:
+
+    Array [
+      "execution/assets/content",
+      Object {
+        "assetId": "synthetic-asset",
+        "disposition": "preview",
+        "versionId": "synthetic-v1",
+      },
+      AbortSignal {
+        Symbol(kEvents): undefined,
+        Symbol(events.maxEventTargetListeners): 0,
+        Symbol(events.maxEventTargetListenersWarned): false,
+        Symbol(kHandlers): undefined,
+        Symbol(kAborted): false,
+        Symbol(kReason): undefined,
+        Symbol(kComposite): false,
+      },
+    ]
+
+
+Number of calls: 1
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > does not issue a request after its scope is closed
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "closed",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > cancels a response that arrives after close without returning data
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { kind: 'closed' }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "closed",
+- }
++ [ExecutionError: cancelled]
+
+ ❯ src/lib/business-execution/client.test.ts:78:5
+     76|     client.close()
+     77|     pending.resolve(new Response(new ReadableStream({ cancel })))
+     78|     await rejected
+       |     ^
+     79|     expect(cancel).toHaveBeenCalledOnce()
+     80|     expect(host.post.mock.calls[0][2].aborted).toBe(true)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > classifies a local deadline as uncertain transport, never a durable cancellation
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { kind: 'timeout', …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "timeout",
+-   "message": "transport_unavailable",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+ ❯ src/lib/business-execution/client.test.ts:104:26
+    102|       .catch((error: unknown) => error)
+    103|     await vi.advanceTimersByTimeAsync(20000)
+    104|     expect(await result).toMatchObject({
+       |                          ^
+    105|       kind: "timeout",
+    106|       reason: "transport_unavailable",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > keeps the original stream binding while a caller changes its selection
+AssertionError: promise rejected "ExecutionError: conflict { reason: '…' }" instead of resolving
+ ❯ src/lib/business-execution/client.test.ts:126:24
+    124|       new Response(encoded(snapshot(original)), { headers: streamHeade…
+    125|     )
+    126|     await expect(result).resolves.toEqual({ kind: "interrupted" })
+       |                        ^
+    127|     expect(onFrame).toHaveBeenCalledOnce()
+    128|     expect(onFrame).toHaveBeenCalledWith(snapshot(original))
+
+Caused by: ExecutionError: conflict
+ ❯ binding src/lib/business-execution/frames.ts:93:13
+ ❯ Module.parseSessionFrame src/lib/business-execution/frames.ts:115:12
+ ❯ src/lib/business-execution/reader.ts:122:21
+ ❯ SessionFrameDecoder.push src/lib/business-execution/frames.ts:199:11
+ ❯ src/lib/business-execution/reader.ts:120:13
+ ❯ readChunks src/lib/business-execution/reader.ts:30:11
+ ❯ Module.readSessionStream src/lib/business-execution/reader.ts:119:3
+ ❯ request src/lib/business-execution/client.ts:97:22
+ ❯ src/lib/business-execution/client.test.ts:126:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { reason: 'conflict' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > keeps an attached stream beyond the request deadline and detaches on close
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { kind: 'closed' }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "closed",
+- }
++ [ExecutionError: cancelled]
+
+ ❯ src/lib/business-execution/client.test.ts:157:5
+    155|     expect(onFrame).toHaveBeenCalledOnce()
+    156|     client.close()
+    157|     await rejected
+       |     ^
+    158|     expect(cancel).toHaveBeenCalledOnce()
+    159|     expect(host.post).toHaveBeenCalledOnce()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > does not post when its caller already detached
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "aborted",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > keeps the selected version metadata while its caller changes selection
+ExecutionError: unavailable
+ ❯ Module.readAssetContent src/lib/business-execution/content.ts:37:11
+     35|     return protocolError()
+     36|   if (disposition === "preview" && !supportsTextPreview(expected.media…
+     37|     throw new ExecutionError("unavailable")
+       |           ^
+     38|   const type = response.headers.get("content-type")?.split(";")[0].tri…
+     39|   const headerDisposition = response.headers
+ ❯ request src/lib/business-execution/client.ts:97:22
+ ❯ assetContent src/lib/business-execution/client.ts:129:18
+ ❯ src/lib/business-execution/content.test.ts:85:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > rejects bytes matching caller-mutated metadata instead of the original version
+AssertionError: promise resolved "{ mediaType: 'text/plain', …(5) }" instead of rejecting
+
+- Expected
++ Received
+
+- [Error: rejected promise]
++ Object {
++   "blob": Blob {
++     Symbol(kHandle): Blob {},
++     Symbol(kLength): 19,
++     Symbol(kType): "text/plain",
++   },
++   "byteSize": 19,
++   "dispose": [Function dispose],
++   "mediaType": "text/plain",
++   "sha256": "537f5c635ea5529abe079ba0556cea7040acb5a7a3ad324527d6f0117c3d5136",
++   "url": "blob:nodedata:ce111fbd-72dd-4613-8079-1e8979121fa9",
++ }
+
+ ❯ src/lib/business-execution/content.test.ts:102:35
+    100|     const expected = { ...original.metadata }
+    101|     const result = client.assetContent(selection, expected, "preview")
+    102|     const rejected = expect(result).rejects.toMatchObject({
+       |                                   ^
+    103|       reason: "content_changed",
+    104|     })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > aborts a partially read body without returning a URL
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "aborted",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+ ❯ src/lib/business-execution/content.test.ts:213:5
+    211|     await reading.promise
+    212|     scope.abort()
+    213|     await rejected
+       |     ^
+    214|     expect(cancel).toHaveBeenCalledOnce()
+    215|     expect(createURL).not.toHaveBeenCalled()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > refuses executable preview before transport but permits inert download
+AssertionError: expected "spy" to not be called at all, but actually been called 1 times
+
+Received: 
+
+  1st spy call:
+
+    Array [
+      "execution/assets/content",
+      Object {
+        "assetId": "synthetic-asset",
+        "disposition": "preview",
+        "versionId": "synthetic-v1",
+      },
+      AbortSignal {
+        Symbol(kEvents): undefined,
+        Symbol(events.maxEventTargetListeners): 0,
+        Symbol(events.maxEventTargetListenersWarned): false,
+        Symbol(kHandlers): undefined,
+        Symbol(kAborted): false,
+        Symbol(kReason): undefined,
+        Symbol(kComposite): false,
+      },
+    ]
+
+
+Number of calls: 1
+
+ ❯ src/lib/business-execution/content.test.ts:253:27
+    251|       client.assetContent(selection, file.metadata, "preview")
+    252|     ).rejects.toMatchObject({ reason: "unavailable" })
+    253|     expect(host.post).not.toHaveBeenCalled()
+       |                           ^
+    254|     const handle = await client.assetContent(
+    255|       selection,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+ Test Files  2 failed (2)
+      Tests  10 failed | 20 passed (30)
+   Start at  18:31:13
+   Duration  261ms (transform 43ms, setup 118ms, collect 58ms, tests 26ms, environment 0ms, prepare 65ms)
+

@@ -1,5 +1,6 @@
 import {
   ExecutionError,
+  ExecutionInterrupted,
   parseErrorCode,
   protocolError,
   safeExecutionError,
@@ -8,7 +9,7 @@ import { parseSessionFrame, SessionFrameDecoder } from "./frames"
 import type { DetachReason, EventsInput, SessionFrame } from "./types"
 
 export function assertActive(signal: AbortSignal): void {
-  if (signal.aborted) throw new ExecutionError("cancelled")
+  if (signal.aborted) throw new ExecutionInterrupted("aborted")
 }
 export async function readChunks(
   response: Response,

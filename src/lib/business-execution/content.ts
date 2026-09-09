@@ -20,10 +20,11 @@ export function supportsTextPreview(mediaType: string): boolean {
 }
 export async function readAssetContent(
   response: Response,
-  expected: ContentMetadata,
+  selection: ContentMetadata,
   disposition: Disposition,
   signal: AbortSignal
 ): Promise<Blob> {
+  const expected = { ...selection }
   await requireSuccess(response, signal)
   requirePrivateHeaders(response)
   if (

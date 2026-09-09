@@ -1,0 +1,341 @@
+Already up to date
+Done in 151ms using pnpm v11.9.0
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+(node:38964) PromiseRejectionHandledWarning: Promise rejection was handled asynchronously (rejection id: 5)
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ src/lib/business-execution/client.test.ts (12 tests | 6 failed) 14ms
+   × E1 scoped client lifecycle > does not issue a request after its scope is closed 3ms
+     → expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+   × E1 scoped client lifecycle > cancels a response that arrives after close without returning data 2ms
+     → expected ExecutionError: cancelled { …(1) } to match object { kind: 'closed' }
+(2 matching properties omitted from actual)
+   × E1 scoped client lifecycle > classifies a local deadline as uncertain transport, never a durable cancellation 2ms
+     → expected ExecutionError: cancelled { …(1) } to match object { kind: 'timeout', …(2) }
+(1 matching property omitted from actual)
+   × E1 scoped client lifecycle > keeps the original stream binding while a caller changes its selection 2ms
+     → promise rejected "ExecutionError: conflict { reason: '…' }" instead of resolving
+   × E1 scoped client lifecycle > keeps an attached stream beyond the request deadline and detaches on close 1ms
+     → expected ExecutionError: cancelled { …(1) } to match object { kind: 'closed' }
+(2 matching properties omitted from actual)
+   × E1 scoped client lifecycle > does not post when its caller already detached 0ms
+     → expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+ ❯ src/lib/business-execution/content.test.ts (18 tests | 5 failed) 15ms
+   × E1 version-bound content > keeps the selected version metadata while its caller changes selection 1ms
+     → unavailable
+   × E1 version-bound content > rejects bytes matching caller-mutated metadata instead of the original version 2ms
+     → promise resolved "{ mediaType: 'text/plain', …(5) }" instead of rejecting
+   × E1 version-bound content > aborts a partially read body without returning a URL 1ms
+     → expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+   × E1 version-bound content > revokes handles once on explicit disposal, client closure and 401 1ms
+     → Invalid Chai property: toHaveBeenCalledExactlyOnceWith
+   × E1 version-bound content > refuses executable preview before transport but permits inert download 0ms
+     → expected "spy" to not be called at all, but actually been called 1 times
+
+Received: 
+
+  1st spy call:
+
+    Array [
+      "execution/assets/content",
+      Object {
+        "assetId": "synthetic-asset",
+        "disposition": "preview",
+        "versionId": "synthetic-v1",
+      },
+      AbortSignal {
+        Symbol(kEvents): undefined,
+        Symbol(events.maxEventTargetListeners): 0,
+        Symbol(events.maxEventTargetListenersWarned): false,
+        Symbol(kHandlers): undefined,
+        Symbol(kAborted): false,
+        Symbol(kReason): undefined,
+        Symbol(kComposite): false,
+      },
+    ]
+
+
+Number of calls: 1
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > does not issue a request after its scope is closed
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "closed",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > cancels a response that arrives after close without returning data
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { kind: 'closed' }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "closed",
+- }
++ [ExecutionError: cancelled]
+
+ ❯ src/lib/business-execution/client.test.ts:78:5
+     76|     client.close()
+     77|     pending.resolve(new Response(new ReadableStream({ cancel })))
+     78|     await rejected
+       |     ^
+     79|     expect(cancel).toHaveBeenCalledOnce()
+     80|     expect(host.post.mock.calls[0][2].aborted).toBe(true)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > classifies a local deadline as uncertain transport, never a durable cancellation
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { kind: 'timeout', …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "timeout",
+-   "message": "transport_unavailable",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > keeps the original stream binding while a caller changes its selection
+AssertionError: promise rejected "ExecutionError: conflict { reason: '…' }" instead of resolving
+ ❯ src/lib/business-execution/client.test.ts:123:24
+    121|     input.operationId = "other-attach"
+    122|     pending.resolve(new Response(encoded(snapshot(original)), { header…
+    123|     await expect(result).resolves.toEqual({ kind: "interrupted" })
+       |                        ^
+    124|     expect(onFrame).toHaveBeenCalledExactlyOnceWith(snapshot(original))
+    125|     expect(host.post.mock.calls[0][1]).toEqual(original)
+
+Caused by: ExecutionError: conflict
+ ❯ binding src/lib/business-execution/frames.ts:93:13
+ ❯ Module.parseSessionFrame src/lib/business-execution/frames.ts:115:12
+ ❯ src/lib/business-execution/reader.ts:122:21
+ ❯ SessionFrameDecoder.push src/lib/business-execution/frames.ts:199:11
+ ❯ src/lib/business-execution/reader.ts:120:13
+ ❯ readChunks src/lib/business-execution/reader.ts:30:11
+ ❯ Module.readSessionStream src/lib/business-execution/reader.ts:119:3
+ ❯ request src/lib/business-execution/client.ts:97:22
+ ❯ src/lib/business-execution/client.test.ts:123:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { reason: 'conflict' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > keeps an attached stream beyond the request deadline and detaches on close
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { kind: 'closed' }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "closed",
+- }
++ [ExecutionError: cancelled]
+
+ ❯ src/lib/business-execution/client.test.ts:152:5
+    150|     expect(onFrame).toHaveBeenCalledOnce()
+    151|     client.close()
+    152|     await rejected
+       |     ^
+    153|     expect(cancel).toHaveBeenCalledOnce()
+    154|     expect(host.post).toHaveBeenCalledOnce()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  src/lib/business-execution/client.test.ts > E1 scoped client lifecycle > does not post when its caller already detached
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "aborted",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > keeps the selected version metadata while its caller changes selection
+ExecutionError: unavailable
+ ❯ Module.readAssetContent src/lib/business-execution/content.ts:37:11
+     35|     return protocolError()
+     36|   if (disposition === "preview" && !supportsTextPreview(expected.media…
+     37|     throw new ExecutionError("unavailable")
+       |           ^
+     38|   const type = response.headers.get("content-type")?.split(";")[0].tri…
+     39|   const headerDisposition = response.headers
+ ❯ request src/lib/business-execution/client.ts:97:22
+ ❯ assetContent src/lib/business-execution/client.ts:129:18
+ ❯ src/lib/business-execution/content.test.ts:70:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > rejects bytes matching caller-mutated metadata instead of the original version
+AssertionError: promise resolved "{ mediaType: 'text/plain', …(5) }" instead of rejecting
+
+- Expected
++ Received
+
+- [Error: rejected promise]
++ Object {
++   "blob": Blob {
++     Symbol(kHandle): Blob {},
++     Symbol(kLength): 19,
++     Symbol(kType): "text/plain",
++   },
++   "byteSize": 19,
++   "dispose": [Function dispose],
++   "mediaType": "text/plain",
++   "sha256": "537f5c635ea5529abe079ba0556cea7040acb5a7a3ad324527d6f0117c3d5136",
++   "url": "blob:nodedata:dc9700f6-2ec4-4615-9444-7651a1489573",
++ }
+
+ ❯ src/lib/business-execution/content.test.ts:84:35
+     82|     const expected = { ...original.metadata }
+     83|     const result = client.assetContent(selection, expected, "preview")
+     84|     const rejected = expect(result).rejects.toMatchObject({ reason: "c…
+       |                                   ^
+     85|     Object.assign(expected, changed.metadata)
+     86|     pending.resolve(changed.response())
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > aborts a partially read body without returning a URL
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "aborted",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+ ❯ src/lib/business-execution/content.test.ts:142:5
+    140|     await reading.promise
+    141|     scope.abort()
+    142|     await rejected
+       |     ^
+    143|     expect(cancel).toHaveBeenCalledOnce()
+    144|     expect(createURL).not.toHaveBeenCalled()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > revokes handles once on explicit disposal, client closure and 401
+Error: Invalid Chai property: toHaveBeenCalledExactlyOnceWith
+ ❯ src/lib/business-execution/content.test.ts:155:21
+    153|     first.dispose()
+    154|     first.dispose()
+    155|     expect(revokeURL).toHaveBeenCalledExactlyOnceWith(first.url)
+       |                     ^
+    156|     host.post.mockResolvedValueOnce(new Response(null, { status: 401 }…
+    157|     await expect(client.publishedAsset({ ...selection, taskId: "synthe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  src/lib/business-execution/content.test.ts > E1 version-bound content > refuses executable preview before transport but permits inert download
+AssertionError: expected "spy" to not be called at all, but actually been called 1 times
+
+Received: 
+
+  1st spy call:
+
+    Array [
+      "execution/assets/content",
+      Object {
+        "assetId": "synthetic-asset",
+        "disposition": "preview",
+        "versionId": "synthetic-v1",
+      },
+      AbortSignal {
+        Symbol(kEvents): undefined,
+        Symbol(events.maxEventTargetListeners): 0,
+        Symbol(events.maxEventTargetListenersWarned): false,
+        Symbol(kHandlers): undefined,
+        Symbol(kAborted): false,
+        Symbol(kReason): undefined,
+        Symbol(kComposite): false,
+      },
+    ]
+
+
+Number of calls: 1
+
+ ❯ src/lib/business-execution/content.test.ts:169:27
+    167|     const { client, host } = setup(async () => file.response())
+    168|     await expect(client.assetContent(selection, file.metadata, "previe…
+    169|     expect(host.post).not.toHaveBeenCalled()
+       |                           ^
+    170|     const handle = await client.assetContent(selection, file.metadata,…
+    171|     expect(handle.blob.type).toBe("application/octet-stream")
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+AssertionError: expected ExecutionError: cancelled { …(1) } to match object { kind: 'timeout', …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- Object {
+-   "kind": "timeout",
+-   "message": "transport_unavailable",
+-   "reason": "transport_unavailable",
++ ExecutionError {
++   "reason": "cancelled",
+  }
+
+ ❯ _Assertion.<anonymous> node_modules/.pnpm/@vitest+expect@2.1.9/node_modules/@vitest/expect/dist/index.js:1134:13
+ ❯ _Assertion.<anonymous> node_modules/.pnpm/@vitest+expect@2.1.9/node_modules/@vitest/expect/dist/index.js:972:17
+ ❯ _Assertion.methodWrapper node_modules/.pnpm/chai@5.3.3/node_modules/chai/index.js:1686:25
+ ❯ node_modules/.pnpm/@vitest+expect@2.1.9/node_modules/@vitest/expect/dist/index.js:1849:31
+
+This error originated in "src/lib/business-execution/client.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "classifies a local deadline as uncertain transport, never a durable cancellation". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ Test Files  2 failed (2)
+      Tests  11 failed | 19 passed (30)
+     Errors  1 error
+   Start at  18:30:34
+   Duration  396ms (transform 47ms, setup 231ms, collect 57ms, tests 28ms, environment 0ms, prepare 86ms)
+

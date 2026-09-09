@@ -1,5 +1,13 @@
-import { readAssetContent, type ContentMetadata } from "./content"
-import { ExecutionError, safeExecutionError } from "./protocol"
+import {
+  readAssetContent,
+  supportsTextPreview,
+  type ContentMetadata,
+} from "./content"
+import {
+  ExecutionError,
+  ExecutionInterrupted,
+  safeExecutionError,
+} from "./protocol"
 import {
   assertActive,
   readBoundedJson,
@@ -76,15 +84,23 @@ export function createExecutionHttpClient(host: ExecutionHttpTransport) {
     consume: (response: Response, signal: AbortSignal) => Promise<T>,
     stream = false
   ): Promise<T> {
-    if (closed) throw new ExecutionError("cancelled")
+    if (closed) throw new ExecutionInterrupted("closed")
     const controller = new AbortController()
+    let timedOut = false
+    const interruption = () =>
+      new ExecutionInterrupted(
+        closed ? "closed" : timedOut ? "timeout" : "aborted"
+      )
     const abort = () => controller.abort()
     if (signal?.aborted) abort()
     signal?.addEventListener("abort", abort, { once: true })
     active.add(controller)
     // Same existing business request budget. An attached event stream is held
     // open after its headers; scope disposal and explicit detach still abort it.
-    const timer = globalThis.setTimeout(abort, 20000)
+    const timer = globalThis.setTimeout(() => {
+      timedOut = true
+      abort()
+    }, 20000)
     let response: Response | undefined
     try {
       assertActive(controller.signal)
@@ -92,16 +108,17 @@ export function createExecutionHttpClient(host: ExecutionHttpTransport) {
       if (stream) globalThis.clearTimeout(timer)
       if (closed || controller.signal.aborted) {
         void response.body?.cancel().catch(() => {})
-        throw new ExecutionError("cancelled")
+        throw interruption()
       }
       const result = await consume(response, controller.signal)
       assertActive(controller.signal)
-      if (closed) throw new ExecutionError("cancelled")
+      if (closed) throw interruption()
       return result
     } catch (error) {
-      const safe = controller.signal.aborted
-        ? new ExecutionError("cancelled")
-        : safeExecutionError(error)
+      const safe =
+        closed || controller.signal.aborted
+          ? interruption()
+          : safeExecutionError(error)
       if (safe.reason === "unauthorized") {
         close()
         host.unauthorized()
@@ -126,19 +143,23 @@ export function createExecutionHttpClient(host: ExecutionHttpTransport) {
     disposition: Disposition,
     signal?: AbortSignal
   ): Promise<AssetContentHandle> {
+    const metadata = { ...expected }
+    if (disposition === "preview" && !supportsTextPreview(metadata.mediaType))
+      throw new ExecutionError("unavailable")
     const blob = await request(
       path,
       { ...selection, disposition },
       signal,
       (response, scopeSignal) =>
-        readAssetContent(response, expected, disposition, scopeSignal)
+        readAssetContent(response, metadata, disposition, scopeSignal)
     )
     // A close/abort may occur in the microtask between the inner read and here.
-    if (closed || signal?.aborted) throw new ExecutionError("cancelled")
+    if (closed) throw new ExecutionInterrupted("closed")
+    if (signal) assertActive(signal)
     const url = URL.createObjectURL(blob)
     let disposed = false
     const handle: AssetContentHandle = {
-      ...expected,
+      ...metadata,
       blob,
       url,
       dispose() {
@@ -178,12 +199,13 @@ export function createExecutionHttpClient(host: ExecutionHttpTransport) {
       onFrame: (frame: SessionFrame) => void,
       signal?: AbortSignal
     ) {
+      const expected = { ...input }
       return request(
         "execution/sessions/events",
-        input,
+        expected,
         signal,
         (response, scopeSignal) =>
-          readSessionStream(response, input, scopeSignal, onFrame),
+          readSessionStream(response, expected, scopeSignal, onFrame),
         true
       )
     },
