@@ -2,6 +2,14 @@
 
 ## Current integration and worker state
 
+**Open P2 in internal E1 session pagination at3773a027.** Approvals identified
+and root source-confirmed that a revoked leading row can become an unusable next
+cursor, preventing access to a later eligible session. Tickets owns the fix and
+bounded current-authority/foreign-scope regression cases; approvals continues
+source-only file/receipt review. [Finding and acceptance requirements](reports/business-ai-execution-pagination.md).
+No runtime reproduction is claimed yet. This later consumer is not accepted;
+the independent177 schema verdict remains valid. Compilation is still on hold.
+
 **New internal E1 checkpoint under independent source review:** product
 `3773a027a8d580bd9bac1808efdb718ae6f9e135`, report/log successor
 `79703eeb50a9632d86d6c390bf7260d921593539` in draft PR32. Root verified the
