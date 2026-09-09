@@ -374,37 +374,38 @@ async fn execution_publication_agents_member_credentials_and_foreign_refs_cannot
 async fn execution_publication_late_authority_loss_cannot_publish_private_verified_bytes() {
     let case = setup().await;
     let request = input(&case);
-    let tx = case.db.begin().await.unwrap();
-    let retained = manifest(&tx, &case.principal, &request).await.unwrap();
-    tx.commit().await.unwrap();
     let ctx = tasks::ActorContext::authenticated(case.principal.clone());
-    tasks::store::cancel(
-        &case.db,
-        &ctx,
-        tasks::types::RevisionInput {
-            task_id: case.task.task.id.clone(),
-            expected_revision: 1,
-        },
-    )
-    .await
-    .unwrap();
-    tasks::store::progress(
-        &case.db,
-        &ctx,
-        tasks::types::ProgressInput {
-            task_id: case.task.task.id.clone(),
-            expected_revision: 2,
-            status: tasks::vocabulary::ProgressStatus::Todo,
-        },
-    )
-    .await
-    .unwrap();
-    let before = snapshot(&case.db).await;
+    let mut before = None;
+    let result = submit_with(&case.db, &case.files, &case.principal, request, async {
+        tasks::store::cancel(
+            &case.db,
+            &ctx,
+            tasks::types::RevisionInput {
+                task_id: case.task.task.id.clone(),
+                expected_revision: 1,
+            },
+        )
+        .await
+        .unwrap();
+        tasks::store::progress(
+            &case.db,
+            &ctx,
+            tasks::types::ProgressInput {
+                task_id: case.task.task.id.clone(),
+                expected_revision: 2,
+                status: tasks::vocabulary::ProgressStatus::Todo,
+            },
+        )
+        .await
+        .unwrap();
+        before = Some(snapshot(&case.db).await);
+    })
+    .await;
     assert!(matches!(
-        commit_verified(&case.db, &case.principal, request, &retained).await,
+        result,
         Err(Error(OperationReason::AuthorityChanged))
     ));
-    assert_eq!(snapshot(&case.db).await, before);
+    assert_eq!(snapshot(&case.db).await, before.unwrap());
 }
 
 #[tokio::test]
@@ -525,4 +526,62 @@ async fn execution_publication_human_review_keeps_selected_version_after_session
         .unwrap();
     assert_ne!(reviewed.actor.id, case.principal.member_id());
     assert_eq!(detail.deliverables[0].assets.len(), 1);
+}
+
+#[tokio::test]
+async fn execution_publication_content_survives_scratch_and_rechecks_reader_after_io() {
+    let case = setup().await;
+    let result = submit(&case.db, &case.files, &case.principal, input(&case))
+        .await
+        .unwrap();
+    let reader = member(&case, identity::MemberKind::Human, identity::Role::Viewer).await;
+    let request = PublishedContentInput {
+        task_id: case.task.task.id.clone(),
+        deliverable_id: result.detail.deliverables[0].id.clone(),
+        asset_id: case.asset_id.clone(),
+        version_id: case.first.version_id.clone(),
+        disposition: Disposition::Preview,
+    };
+    std::fs::remove_dir_all(case.files.workspace(&case.admission_id).unwrap()).unwrap();
+    let read = published_content(&case.db, &case.files, &reader, request.clone())
+        .await
+        .unwrap();
+    assert_eq!(read.bytes, b"Exact first managed document");
+    assert_eq!(read.metadata.sha256, digest(&read.bytes));
+    assert_eq!(read.metadata.file_name, "Customer proposal.txt");
+    let before = snapshot(&case.db).await;
+    // This action runs after the actual blocking byte read but before its final
+    // current identity check. No byte result may escape the revoked reader.
+    let denied = published_content_with(&case.db, &case.files, &reader, request.clone(), async {
+        case.db.execute(statement("UPDATE business_member SET status='revoked',revision=revision+1 WHERE organization_id=? AND id=?",
+            vec![reader.organization_id().into(), reader.member_id().into()])).await.unwrap();
+    }).await;
+    assert!(denied.is_err());
+    assert!(published_content(&case.db, &case.files, &reader, request)
+        .await
+        .is_err());
+    assert_eq!(snapshot(&case.db).await, before);
+}
+
+#[tokio::test]
+async fn execution_publication_aborted_after_byte_verification_never_commits() {
+    let case = setup().await;
+    let before = snapshot(&case.db).await;
+    let db = case.db.clone();
+    let principal = case.principal.clone();
+    let files = case.files.clone();
+    let request = input(&case);
+    let (arrived, ready) = tokio::sync::oneshot::channel();
+    let (_release, hold) = tokio::sync::oneshot::channel::<()>();
+    let task = tokio::spawn(async move {
+        submit_with(&db, &files, &principal, request, async {
+            arrived.send(()).unwrap();
+            hold.await.unwrap();
+        })
+        .await
+    });
+    ready.await.unwrap();
+    task.abort();
+    assert!(task.await.unwrap_err().is_cancelled());
+    assert_eq!(snapshot(&case.db).await, before);
 }

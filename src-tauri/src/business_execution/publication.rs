@@ -148,6 +148,18 @@ pub(crate) async fn submit(
     principal: &Principal,
     input: SubmitInput,
 ) -> Result<SubmitResult> {
+    submit_with(db, files, principal, input, std::future::ready(())).await
+}
+
+// The production path has no interposed action. Child tests can pause exactly
+// after bounded file verification to exercise real writer revalidation/abort.
+async fn submit_with(
+    db: &DatabaseConnection,
+    files: &Files,
+    principal: &Principal,
+    input: SubmitInput,
+    before_commit: impl std::future::Future<Output = ()>,
+) -> Result<SubmitResult> {
     validation::submit(&input)?;
     let tx = db.begin().await?;
     scope::operator(&tx, principal).await?;
@@ -178,6 +190,7 @@ pub(crate) async fn submit(
     })
     .await
     .map_err(|_| OperationReason::ContentUnavailable)??;
+    before_commit.await;
     commit_verified(db, principal, input, &retained).await
 }
 
@@ -262,6 +275,122 @@ pub(crate) async fn published(
     .await?;
     tx.commit().await?;
     Ok(read.metadata)
+}
+
+/// Transport-neutral bytes. HTTP framing/native encoding must still apply their
+/// final current-identity check; neither serializes a storage path or object ID.
+pub(crate) struct Content {
+    pub metadata: ContentMetadata,
+    pub bytes: Vec<u8>,
+}
+
+fn file_name(title: &str, media_type: &str) -> Result<String> {
+    let extension = match media_type {
+        "text/plain" => "txt",
+        "application/json" => "json",
+        "application/pdf" => "pdf",
+        "image/png" => "png",
+        "image/jpeg" => "jpg",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" => "docx",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" => "pptx",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" => "xlsx",
+        _ => return Err(OperationReason::ContentUnavailable.into()),
+    };
+    let mut name: String = title
+        .chars()
+        .take(240)
+        .map(|c| {
+            if c.is_control() || matches!(c, '/' | '\\' | '"' | ';' | '%' | ':') {
+                '_'
+            } else {
+                c
+            }
+        })
+        .collect();
+    if name.trim().is_empty() || matches!(name.trim(), "." | "..") {
+        name = "document".into();
+    }
+    if !name
+        .to_ascii_lowercase()
+        .ends_with(&format!(".{extension}"))
+    {
+        name.push('.');
+        name.push_str(extension);
+    }
+    Ok(name)
+}
+
+pub(crate) async fn published_content(
+    db: &DatabaseConnection,
+    files: &Files,
+    principal: &Principal,
+    input: PublishedContentInput,
+) -> Result<Content> {
+    published_content_with(db, files, principal, input, std::future::ready(())).await
+}
+
+async fn published_content_with(
+    db: &DatabaseConnection,
+    files: &Files,
+    principal: &Principal,
+    input: PublishedContentInput,
+    before_revalidate: impl std::future::Future<Output = ()>,
+) -> Result<Content> {
+    let reference = PublishedInput {
+        task_id: input.task_id,
+        deliverable_id: input.deliverable_id,
+        asset_id: input.asset_id,
+        version_id: input.version_id,
+    };
+    let ctx = tasks::ActorContext::authenticated(principal.clone());
+    let tx = db.begin().await?;
+    let observed = managed::read_in_transaction(&tx, &ctx, &reference).await?;
+    let version = &observed.metadata.version;
+    if input.disposition == Disposition::Preview
+        && !matches!(
+            version.media_type.as_str(),
+            "text/plain" | "application/json"
+        )
+    {
+        // No active office/PDF/image renderer or legacy watch process is enabled
+        // by a read. The exact retained file remains available for download.
+        return Err(OperationReason::Unavailable.into());
+    }
+    let metadata = ContentMetadata {
+        media_type: version.media_type.clone(),
+        byte_size: version.byte_size,
+        sha256: version.sha256.clone(),
+        file_name: file_name(&version.title, &version.media_type)?,
+    };
+    tx.commit().await?;
+    let permit = VERIFY_SLOTS
+        .acquire()
+        .await
+        .map_err(|_| OperationReason::Unavailable)?;
+    let custody = files.clone();
+    let object_id = observed.object_id.clone();
+    let hash = metadata.sha256.clone();
+    let size = metadata.byte_size;
+    let content = tokio::task::spawn_blocking(move || {
+        let _permit = permit;
+        custody.content(&object_id, &hash, size)
+    })
+    .await
+    .map_err(|_| OperationReason::ContentUnavailable)??;
+    before_revalidate.await;
+    let tx = db.begin().await?;
+    let current = managed::read_in_transaction(&tx, &ctx, &reference).await?;
+    if current.object_id != observed.object_id
+        || current.metadata.version.sha256 != metadata.sha256
+        || current.metadata.version.byte_size != metadata.byte_size
+    {
+        return Err(OperationReason::ContentChanged.into());
+    }
+    tx.commit().await?;
+    Ok(Content {
+        metadata,
+        bytes: content.bytes,
+    })
 }
 
 #[cfg(all(test, unix))]

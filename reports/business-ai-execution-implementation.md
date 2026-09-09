@@ -437,3 +437,23 @@ Tokio1.49.0 spawn_blocking/Semaphore source ground the writer and bounded read.
 Blocking jobs retain their semaphore permit until completion; cancelling the
 request cannot make a detached verifier commit a receipt. Mid-I/O cancellation
 and actual transport/engine consumption remain later integration tests.
+
+The publication source checkpoint is
+`d0d56a36399d81be23787891177752022c91edf6`. A source-only follow-on adds the
+task-scoped content core: bounded retained-file verification, format-specific
+preview refusal and a second current reader/reference check after I/O. It returns
+bytes/metadata inside Rust, without HTTP/native framing or a new registered route.
+Two additional cases cover scratch-independent reads with reader revocation after
+I/O, and abort after verified bytes before publication. The prior late-authority
+case now crosses the actual verification path before task cancel/reopen.
+The execution_publication_ selector now has eight planned cases, not executed.
+Rustfmt/diff checks pass; all new Rust compile/runtime gates remain held.
+
+Independent reviewer supplied closure
+`de3a6b8fdc2602ef743ec2e1da72f488707980af`: four9949 selectors,14 passes,
+all exits0 and802/802 before/after correspondence, distinct from owner evidence.
+Root imported that bounded R1–R3 closure. It does not certify this publication
+follow-on, import, runner or transport. Reviewer released its window; root
+reassigned it to Farha. No own Cargo/test/check started after the prior9949
+release, including the read-only preflight before that reassignment message.
+Wait for explicit root allocation and fresh≥10GiB before these queued gates.
