@@ -1,0 +1,171 @@
+{
+  "reviewedHandoff": "08417b4ff9bd39bf7d34c996106a842df3b6b264",
+  "product": "60d600db0f224d44ff191490ab79bc25530ba959",
+  "manifestSha256": "6d0ee0ca8c48350589dd94a0b70a1eff5f873acb7e8fc60033a64385d66adbc3",
+  "helperSha256": "e64e5a7ea5ceb2ff46c6e9966667a13796768dd1639b4de86c9022f03746539d",
+  "files": [
+    {
+      "path": "business.html",
+      "sha256": "6fd453d6e8153f16119f882fe3766644f3dbd2085e5956ebc6dee2391ff1f65f",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/5378be74e416e6dc.css",
+      "sha256": "6d477bec9e159269693169d992254684f66011e4c59baf20ac695cd07c6a884b",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/16dee37e5eb4b321.css",
+      "sha256": "1c3284fade77a0d7fb1bb65e6d5a3272a3ed8353788054420aec36fc98da3792",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/b280354e3e880fc2.css",
+      "sha256": "25d20647036d17ba802017e3f6c910ee64370977b654efc7d22a59e831ef87e2",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/32c323a4063a4214.js",
+      "sha256": "4b5a362fb3c7f1992dc6df9e3f43a97a10633508c1b0fea06cf8d9f49223d8b9",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/7748bdbf5ae87999.js",
+      "sha256": "9c3103bdcf9d2462f6e050308565892716efc994ac6bf4eab1730becbcbe6b85",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/4f885dbd38b881eb.js",
+      "sha256": "5bc023f0af350107226ac21bcae6d886fc01bb6aa9d5f3d9cc657b1e376a1610",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/4cad0e8192dcd03a.js",
+      "sha256": "6b5447bf111242f355380fa6ef74d1f41f72e906757a54459dcdc8ce8b4ddf36",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/turbopack-8980b67c0c87575d.js",
+      "sha256": "383ce72db141d7621a7ce721405a6cd8d67764b8d515ddf92f82c9c24c4eda19",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/b42c18c52ac80ba4.js",
+      "sha256": "66ad536a119bdea1936eb474396ddf443a49d6c741f26a2197228c5423031d42",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/0d3321903a9ada39.js",
+      "sha256": "f8b10e4adefa503322866100e0644a85176ba7cd1e1f710c7231353858a05010",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/7ea8f519ffa0aa71.js",
+      "sha256": "f7fed58fb53ec75da8d840c42bb031cdc4da9bff349561b8ca66d4774146f3b6",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/cb15e0c2ff49cf52.js",
+      "sha256": "f1801ed3118eeb612fa70a53c1400b9b6b642a0f9f64e3b0a3407070c14e3a36",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/a968316490434eb7.js",
+      "sha256": "d90d3c39f7323c6c82bcc093c1094c5dcca4fa7b29a1f06805364554c2e73971",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/a8f3b7cb6ff5de44.js",
+      "sha256": "d4ac3552fec79efdc7d8c86de9f36be2a34283dfaf1f226b162d4e5915f65afa",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/080d73d1d41149df.js",
+      "sha256": "9a44a13a7ebc4008cbe0115b87785d7530b1d9168e2eb2e55a4d5339d1cd8d6b",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/140382cda1781c36.js",
+      "sha256": "d07c38c8b1517606ba94bb5d11d86c6e0dbaa6f90e890bdc9f85957f9dfcf17e",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/e87335a515d49a17.js",
+      "sha256": "f53a092a81214a9102189321d870c7d881b9620204a468152a000868301d7a2b",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/87fe3f63246eeb48.js",
+      "sha256": "d7f6ab0777f19c2357e570d6d16037e1f145ca1af44a333d57bef5443f4ec9d0",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/3df68489099904ad.js",
+      "sha256": "c4f08381e6bc1d52875dc7b48589fd086de61233020424c0f24f39194a1380df",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/f2cd03ce6e19d2ff.js",
+      "sha256": "ea71fd7b98270f3a334a7737957ef1240559c0f3b5d9fc46f9b9afc888c0e769",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/8093ec2c5141cebc.js",
+      "sha256": "1a9373f33cd34ecb023eee3c6fefd7963061acf7f44c8921356118792ff1ded7",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/e9a365f2ffe69b45.js",
+      "sha256": "555565a2a22c5a606d7d81223bf6d66b9089a679c2d492f7042f27b90f0904c4",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/ae714d0ea3cf4a8f.js",
+      "sha256": "ac56360d4f460ff574e34e34707ea5bef37e8e7c5fcf3f65f73c8abbeaad55c5",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/ee043d118a51a5f4.js",
+      "sha256": "5e509c28e789233ec65b0fd2817d044bdaba6ff55347831433c96e208034ecb3",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/64950a99edeed6ac.js",
+      "sha256": "4e8b9c8017986986517dd365f2403dd0576380c7c9f33c0980475b4c45f02ce0",
+      "disk": true,
+      "http": true
+    },
+    {
+      "path": "_next/static/chunks/a6dad97d9634a72d.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "disk": true,
+      "http": true
+    }
+  ],
+  "scope": "Independent disk/HTTP asset correspondence only; no credentials, browser or fixture mutations."
+}

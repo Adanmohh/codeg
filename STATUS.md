@@ -2,6 +2,23 @@
 
 ## Current integration and worker state
 
+**Corrected4355 preview is running**, handoff
+`08417b4ff9bd39bf7d34c996106a842df3b6b264`, product60d600db, build e9b69ee5,
+PID85232. Root imported its exact manifest/helper/handoff and independently matched
+all27 disk/HTTP assets, manifest6d0ee0ca and helpere64e5a7e. Evidence:
+[asset correspondence](reports/business-intake-root-evidence/frontend-recovery-4355-assets.json).
+This checks asset identity, not the new recovery flow. Approvals has the immutable
+handoff and is assigned the narrow real-browser check in its own namespace after
+its current report/AI consistency checkpoint; no broad browser matrix rerun.
+
+Approvals reports no new60d source blocker: five selected unchanged component
+cases pass; the same two new tests against1974 reproduce one missing-title failure
+and one explicit-adoption pass. Its1235 restored source blobs match60d; publication
+of that evidence is pending. This is reviewer-reported evidence until root reads
+the committed report. Existing IUI-1 closure at1974 remains separately frozen.
+No root browser/credential/fixture mutation occurred in the asset check; the owner
+and old4354 sessions remain untouched. AI internal implementation dispatch continues.
+
 AI contract clarification `f454db7554531feb6fd8e9fd5c7949e7b7fa777e` is read;
 root matched SHA256 `1872370aca8b920e66001632c06e661de776e6c62eb5569ee77b4a0183daf925`.
 Its8-line delta gives task deliverables explicit selected-version references
