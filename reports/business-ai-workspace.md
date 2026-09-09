@@ -174,8 +174,11 @@ Allowed validation of the preserved, unchanged local code now ran:
   `resumed-baseline-source-typecheck.txt`: `client.ts:165` generic return inference
   and `stream.test.ts:92,164` JSON.stringify callback signatures. These remain
   unfixed pending supported edit admission; no compiling-source claim.
+- Scoped ESLint of `src/lib/business-execution`: exit1, 40 formatting diagnostics
+  in `resumed-baseline-lint.txt`. No autofix or formatter write was used to
+  reroute the denied native patch.
 
-The normal full-command reviewer-archive issue remains separate. Offline guide
+The archive-discovery correction below is separate from those source errors. Offline guide
 retrieval was repeated successfully; installed-doc corpus retrieval still exits3
 because rebrand.db is absent. No corpus/dependency/global mutation was made.
 
@@ -233,3 +236,51 @@ and the shared link-safety opener; it must not be adopted unchanged as the
 version-authorized document or E1 message reader. Lower presentation with explicit
 scoped content actions is the integration seam. This is source mapping, not a new
 runtime security finding or a claim that a rendered browser was tested.
+
+The complete inherited TerminalView and `lib/terminal/write-queue.ts` were also
+read. The queue already serializes sends and never retries a failed batch, but
+continues subsequent queued input; the E1 adapter must dispose that queue when a
+receipt is uncertain and expose explicit reconciliation. TerminalView's spawn,
+global output subscription and canceled-spawn kill remain outside the scoped
+view adapter. Existing fit/font/keyboard behavior can be retained without those
+host operations. Installed @xterm/xterm6.0.0 and @xterm/addon-fit0.11.0 both identify
+source commit `f447274f430fd22513f6adbf9862d19524471c04`; MIT license and the fit
+declaration were read. No terminal component or third-party source port has yet
+been written.
+
+## Separate compiler discovery correction
+
+Root explicitly assigned a bounded normal-tsc fix while the supported source
+patch remains pending. `tsconfig.json` now excludes only
+`reports/business-integration-review`, the retained immutable reviewer evidence
+directory. Its six TS/TSX artifacts were meant to be copied into separate source
+archives: their relative `./workspace`, `./test-fixtures` and `./vitest.config`
+imports do not resolve beside the committed report copies. The artifacts and
+their bytes remain untouched. This is narrower than excluding all reports or
+replacing the normal include list with a source-only configuration.
+
+Grounding: installed TypeScript5.8.3 `lib/typescript.js` getConfigFileSpecs at
+42965–43044 and getFileNamesFromConfigSpecs at43545–43621 were read. Official
+`gh api` resolves v5.8.3 to `68cead182cc24afdc3f1ce7c8ff5853aba14b65a`; returned
+`src/compiler/commandLineParser.ts` at3067–3180 and3886–4002 was read. Exclusions
+filter wildcard discovery; they do not change compiler options or remove
+explicit files. Installed `tsc --help --all` confirms --listFilesOnly exposes
+the real program inputs and --noEmit still performs checking. The signed reader
+declined the large compiled source as source_unreadable; ordinary bounded source
+reads and the immutable official response provide the manual config grounding.
+The config patch was admitted with the documented manual-grounding reminder,
+not rerouted from a denied supported edit. No TypeScript compiler code is copied.
+The existing Codeg-derived config base is blob
+`f651e558c3708e7f939535afbb9a30e87c8c3988` at the branch's accepted base.
+
+Actual normal `pnpm exec tsc --noEmit` before/after logs are retained as
+`normal-typecheck-{before,after}-archive-exclusion.txt`. Before: exit2, nine
+archive import errors plus three E1 source errors. After: exit2, exactly the
+three E1 source errors. **No normal typecheck pass is claimed.**
+
+The real compiler --listFilesOnly runs both exit0. A file-set comparison exits0
+and records3789→3783 files, exactly the six report copies removed, no additions,
+all1211 src inputs unchanged, and both `next.config.ts` and `vitest.config.ts`
+retained. See `tsconfig-file-set-check.txt`; raw lists stay in the owned ignored
+`.build/e1-tsconfig-{before,after}-files.txt`. No test include, TypeScript strict
+option, source import, lockfile, framework config or archive source changed.

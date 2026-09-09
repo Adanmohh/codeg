@@ -1,0 +1,18 @@
+{
+  "beforeFiles": 3789,
+  "afterFiles": 3783,
+  "removed": [
+    "reports/business-integration-review/ui-191f69b3/reviewer-source-entry.test.tsx",
+    "reports/business-integration-review/ui-191f69b3/vitest.reviewer.config.ts",
+    "reports/business-integration-review/ui-a58c004c/reviewer-source-entry.test.tsx",
+    "reports/business-integration-review/ui-a58c004c/vitest.reviewer.config.ts",
+    "reports/business-integration-review/ui-dc14e83b/reviewer-source-entry.test.tsx",
+    "reports/business-integration-review/ui-dc14e83b/vitest.reviewer.config.ts"
+  ],
+  "added": [],
+  "sourceFilesBefore": 1211,
+  "sourceFilesAfter": 1211,
+  "sourceUnchanged": true,
+  "rootConfigurationRetained": true,
+  "removedExactlySixReportArtifacts": true
+}
