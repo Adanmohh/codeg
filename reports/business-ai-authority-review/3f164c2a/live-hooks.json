@@ -1,0 +1,26 @@
+{
+  "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+  "journal": "/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl",
+  "records": [
+    {
+      "line": 26688,
+      "time": 1788949729,
+      "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+      "event": "PreToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    },
+    {
+      "line": 26687,
+      "time": 1788949728,
+      "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+      "event": "PostToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    }
+  ]
+}

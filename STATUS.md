@@ -2,6 +2,26 @@
 
 ## Current integration and worker state
 
+**PR31 accepted and merged** as
+`3ddb8f819964fdba006d96ad8221a0436fd1a2cb`, exact head
+`cab3b27eaf241062a56532b5cdfe885f7e648fc9`. Root read the complete final independent
+verdict `618a3d96d5307dc5f1812d56c556f91d5a80880e`, imported it and verified all6
+initial/final evidence digests. No open E1 contract blocker at3f164c2a/hash e2cf8304;
+the later owner commit changes only the report. Exact-head GitHub API merge
+succeeded, and root fast-forwarded to it. The accepted
+[AI execution contract](docs/contracts/business-ai-execution.md) is now in main.
+
+Root lifted the internal-only implementation gate for tickets/rebrand: complete
+the protected E1 session/event/assets/task integration through the existing engine
+on their assigned branches, with tickets-owned000014 and early compiling reports.
+Synthetic ACP/PTY subprocess tests in isolated temporary directories are authorized;
+new persistent fixtures still require a coordinated immutable recipe/port window.
+No live provider/login/inference or old-fixture/user-browser changes. Native tenant
+windows remain unavailable. Rebrand must finish the bounded PR29 correction/design
+handoff before integrating that accepted shell, without duplicating it from old main.
+Approvals continues its authorized4355 browser recovery check, then reviews compiling
+E1 source. Contract approval is not runtime acceptance or E2/E3 completion.
+
 Root read final AI wire delta `3f164c2a989cd08a523e51f1e47559c15a48c0ef` and
 matched SHA256 `e2cf8304fb5eababce79961da57061e244f2567eae11b75b88dbfcbccc6a114d`.
 The five requested clarifications now explicitly separate E2 manager stop,
