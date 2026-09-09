@@ -1,0 +1,126 @@
+{
+  "commit": "177d0f3e2b426d65de9573ba534ac8c11f9250f7",
+  "results": [
+    {
+      "selector": "business_execution::tests",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/177d0f3e/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "business_execution::tests"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/177d0f3e/source",
+      "exitCode": 0,
+      "exitEvidence": "Final write_stdin tool completion, not inferred solely from stdout",
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "runtimeSeconds": 0.27,
+      "cargoReportedCompile": "1m 59s",
+      "log": "unchanged-execution-tests.log",
+      "sha256": "e4c29d114a4782405410959d60ad1a2247b7428945df9c03bee6c0989fc959c9",
+      "sourceMode": "unchanged frozen archive"
+    },
+    {
+      "selector": "business_intake::tests::epoch_migration_cases",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/177d0f3e/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "business_intake::tests::epoch_migration_cases"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/177d0f3e/source",
+      "exitCode": 0,
+      "exitEvidence": "Final write_stdin tool completion, not inferred solely from stdout",
+      "passed": 4,
+      "failed": 0,
+      "ignored": 0,
+      "runtimeSeconds": 0.64,
+      "cargoReportedCompile": "1.05s",
+      "log": "unchanged-b-epoch-migrations.log",
+      "sha256": "9d6d65ee707b293faedaa1725e66896a006ad916b62e900ab0ce0178f8467780",
+      "sourceMode": "unchanged frozen archive"
+    },
+    {
+      "selector": "business_execution::tests::reviewer_schema",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/177d0f3e/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "business_execution::tests::reviewer_schema"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/177d0f3e/source",
+      "exitCode": 0,
+      "exitEvidence": "Final write_stdin tool completion, not inferred solely from stdout",
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "runtimeSeconds": 0.36,
+      "cargoReportedCompile": "1m 10s",
+      "log": "reviewer-probes-attempt1.log",
+      "sha256": "522a9c6ff645c174cfd65a6c088f067948082df712f0b6503d3590064cd14e4d",
+      "sourceMode": "frozen production plus reviewer-probes.patch"
+    }
+  ],
+  "totals": {
+    "passed": 11,
+    "failed": 0,
+    "ignored": 0
+  },
+  "window": "Released to tickets and root after all three tool processes completed; no further Cargo planned",
+  "diskGiBObserved": [
+    5.5,
+    4.7,
+    3.9
+  ],
+  "limits": "Schema and wire only. No route/process/provider/native/browser acceptance.",
+  "artifactChecks": [
+    {
+      "command": "git apply --check --reverse --directory=.build/business-integration-review/177d0f3e/source reports/business-ai-execution-review/177d0f3e/reviewer-probes.patch",
+      "exitCode": 0,
+      "scope": "Read-only patch applicability; no source change"
+    },
+    {
+      "command": "git diff --exit-code c0c7e522600a94bcf33674f640d5f3665cffd39b -- reports/review-business-intake-recovery.md reports/business-integration-review/recovery-4355 reports/business-integration-review/ui-60d600db",
+      "exitCode": 0,
+      "scope": "Earlier recovery evidence unchanged"
+    },
+    {
+      "command": "git diff --cached --check",
+      "exitCode": 2,
+      "scope": "Only three raw log EOF blank lines and one unified-patch empty context line; exact evidence bytes retained"
+    },
+    {
+      "command": "git diff --cached --check excluding the three raw .log files and reviewer-probes.patch",
+      "exitCode": 0,
+      "scope": "All documentation, JSON and reviewer Rust evidence"
+    }
+  ]
+}
