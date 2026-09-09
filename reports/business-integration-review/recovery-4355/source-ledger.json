@@ -1,0 +1,152 @@
+{
+  "remoteApi": "gh api repos/Adanmohh/codeg/git/trees/<immutable-commit>?recursive=1",
+  "license": "Apache-2.0 Codeg; no dependency implementation port",
+  "pins": [
+    {
+      "files": [
+        {
+          "mode": "100644",
+          "path": "LICENSE",
+          "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "size": 11357,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "localBlobMatches": true,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "mode": "100644",
+          "path": "reports/business-integration-review/fixture-7ed0dd0c/browser-guard.js",
+          "sha": "2a536695a0f4f8ee6afabc6a0c59ff38c84482ee",
+          "size": 1102,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/2a536695a0f4f8ee6afabc6a0c59ff38c84482ee",
+          "localBlobMatches": true,
+          "sha256": "adffe1b8e02d9c2e58ecf267e77dbfb81bb27176d34917b44f06d15cb58f3aa7"
+        },
+        {
+          "mode": "100644",
+          "path": "reports/business-integration-review/fixture-7ed0dd0c/browser-login.js",
+          "sha": "2cbf569a2c25c9b9200bc8b3527ccbc511ea552a",
+          "size": 2435,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/2cbf569a2c25c9b9200bc8b3527ccbc511ea552a",
+          "localBlobMatches": true,
+          "sha256": "c87ae5f4d304f89ee3d3f1df8479745e25870ca6d0bea1f6f89a44ef963bd969"
+        },
+        {
+          "mode": "100644",
+          "path": "reports/business-integration-review/fixture-7ed0dd0c/protected-api.py",
+          "sha": "bcc6e2b53a6b38ae32d0c1050a435608fc158103",
+          "size": 17700,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/bcc6e2b53a6b38ae32d0c1050a435608fc158103",
+          "localBlobMatches": true,
+          "sha256": "bafd49da01e694b2255bd932876dab4d20acec3c1c5bff057ef51fd6312f283c"
+        }
+      ],
+      "sha": "6895bedf425db263c2d6eb1dd73641f34521f439",
+      "truncated": false
+    },
+    {
+      "files": [
+        {
+          "mode": "100644",
+          "path": "NOTICE",
+          "sha": "c0ded8418c60081d0ebf883be2cfed52f0a90e21",
+          "size": 60826,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/c0ded8418c60081d0ebf883be2cfed52f0a90e21",
+          "localBlobMatches": true,
+          "sha256": "21582275043a9ebbe956409fbed815e4b328ebf7b2d4c729662bd705315dda45"
+        },
+        {
+          "mode": "100644",
+          "path": "src/components/business-intake/candidate.tsx",
+          "sha": "daef5d5f8e8efdb07ba04cf979afa89d3b3f917f",
+          "size": 29514,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/daef5d5f8e8efdb07ba04cf979afa89d3b3f917f",
+          "localBlobMatches": true,
+          "sha256": "e360ff55973fd20805def4627b8dfa862813a89a7c5b22f977c2fe86d45fa5d8"
+        },
+        {
+          "mode": "100644",
+          "path": "src/components/business-intake/imports.tsx",
+          "sha": "9b666afa954e79db0e5a06492bdc18afe15ea8d0",
+          "size": 14966,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/9b666afa954e79db0e5a06492bdc18afe15ea8d0",
+          "localBlobMatches": true,
+          "sha256": "9daa4f0dadbbb9a2a5b498922155fc3c6b3c9e6621a980facb114c73894f07c8"
+        },
+        {
+          "mode": "100644",
+          "path": "src/components/business-intake/source-review.tsx",
+          "sha": "672f439b58b1fcde5aa2d40cd541b2d1f8b37378",
+          "size": 17331,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/672f439b58b1fcde5aa2d40cd541b2d1f8b37378",
+          "localBlobMatches": true,
+          "sha256": "25b09f6a3d2b6f7ad12563e2d1d5f5e92b16667d40cdab8e613097c3db529cc8"
+        },
+        {
+          "mode": "100644",
+          "path": "src/lib/business/intake.ts",
+          "sha": "3e2a5a518f2bf36fe8b663f2ed175c23ae49e8bc",
+          "size": 11306,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/3e2a5a518f2bf36fe8b663f2ed175c23ae49e8bc",
+          "localBlobMatches": true,
+          "sha256": "86e147c62fcdc022192dc5e78b56e937a29218c97b79fbc5531af544da6506ad"
+        }
+      ],
+      "sha": "60d600db0f224d44ff191490ab79bc25530ba959",
+      "truncated": false
+    },
+    {
+      "files": [
+        {
+          "mode": "100644",
+          "path": "reports/business-intake-ui-evidence/recovery-4355-60d.sha256",
+          "sha": "5045184d02afd6b015346d2e1015931120b73883",
+          "size": 4064,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/5045184d02afd6b015346d2e1015931120b73883",
+          "localBlobMatches": true,
+          "sha256": "6d0ee0ca8c48350589dd94a0b70a1eff5f873acb7e8fc60033a64385d66adbc3"
+        },
+        {
+          "mode": "100644",
+          "path": "reports/business-intake-ui-evidence/recovery-4355-handoff.json",
+          "sha": "46049f684fb2db293d28ada32dca905692ef83b9",
+          "size": 1401,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/46049f684fb2db293d28ada32dca905692ef83b9",
+          "localBlobMatches": true,
+          "sha256": "3312bc4985ae1793a27ca8a4c028f73d533a3c7bdc79f4ae613b67fdc241e998"
+        },
+        {
+          "mode": "100644",
+          "path": "reports/business-intake-ui-evidence/serve-recovery-4355.mjs",
+          "sha": "38df14154b29ce03cfbb5776ddbb3e778f01fbdf",
+          "size": 5996,
+          "type": "blob",
+          "url": "https://api.github.com/repos/Adanmohh/codeg/git/blobs/38df14154b29ce03cfbb5776ddbb3e778f01fbdf",
+          "localBlobMatches": true,
+          "sha256": "e64e5a7ea5ceb2ff46c6e9966667a13796768dd1639b4de86c9022f03746539d"
+        }
+      ],
+      "sha": "08417b4ff9bd39bf7d34c996106a842df3b6b264",
+      "truncated": false
+    }
+  ],
+  "localInstalledReferences": [
+    "@playwright/cli@0.1.18 help and run-code documentation",
+    "Playwright@1.63.0-alpha-2026-08-05 installed types",
+    "Python@3.12.13 http.client and pathlib source",
+    "React@19.2.4; @types/react@19.2.13"
+  ],
+  "scope": "Browser guard/login adapted only to new4355 origin from6895; prepare-cases.py reuses the closed protected API request shape and safe credential-file convention. Observer/finish/assertion glue is new. Product source was read and exercised, not copied into a new product.",
+  "independentlyVerifiedLocalBlobs": 12
+}

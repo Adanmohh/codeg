@@ -1,0 +1,818 @@
+{
+  "session": "review-intake-recovery-4355",
+  "namespace": "review",
+  "source": "60d600db0f224d44ff191490ab79bc25530ba959",
+  "ui": "http://127.0.0.1:4355/business",
+  "backend": "http://127.0.0.1:4351",
+  "interceptedResponses": 0,
+  "syntheticProvider": "http://127.0.0.1:4352",
+  "checks": [
+    {
+      "case": "unprepared_initial",
+      "passed": true,
+      "fieldsAbsent": true,
+      "candidate": {
+        "phase": "open-unprepared-withheld",
+        "path": "/api/business/intake/candidates/get",
+        "status": 200,
+        "id": "654db166-6394-4ae9-94db-f787d13376c8",
+        "revision": 1,
+        "sourceRevision": 1,
+        "disclosure": "metadata_only",
+        "hasPreparedDraft": false,
+        "draftNull": true,
+        "requiresRebase": false,
+        "newerNotesMatch": false
+      }
+    },
+    {
+      "case": "unprepared_restored",
+      "passed": true,
+      "emptyFields": true,
+      "noComparison": true,
+      "owner": "review owner",
+      "saveEnabled": true,
+      "candidate": {
+        "phase": "refresh-unprepared",
+        "path": "/api/business/intake/candidates/get",
+        "status": 200,
+        "id": "654db166-6394-4ae9-94db-f787d13376c8",
+        "revision": 1,
+        "sourceRevision": 1,
+        "disclosure": "fresh",
+        "hasPreparedDraft": false,
+        "draftNull": true,
+        "requiresRebase": false,
+        "newerNotesMatch": false
+      }
+    },
+    {
+      "case": "unprepared_unsaved_discard",
+      "passed": true,
+      "explicitPrompt": true
+    },
+    {
+      "case": "prepared_initial_withheld",
+      "passed": true,
+      "fieldsAbsent": true,
+      "candidate": {
+        "phase": "open-prepared-withheld",
+        "path": "/api/business/intake/candidates/get",
+        "status": 200,
+        "id": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+        "revision": 2,
+        "sourceRevision": 1,
+        "disclosure": "metadata_only",
+        "hasPreparedDraft": true,
+        "draftNull": true,
+        "requiresRebase": false,
+        "newerNotesMatch": false
+      }
+    },
+    {
+      "case": "prepared_comparison",
+      "passed": true,
+      "fieldsAbsent": true,
+      "revisionVisible": true,
+      "newerNotesVisible": true,
+      "candidate": {
+        "phase": "refresh-prepared-newer",
+        "path": "/api/business/intake/candidates/get",
+        "status": 200,
+        "id": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+        "revision": 3,
+        "sourceRevision": 1,
+        "disclosure": "fresh",
+        "hasPreparedDraft": true,
+        "draftNull": false,
+        "requiresRebase": false,
+        "newerNotesMatch": true
+      }
+    },
+    {
+      "case": "prepared_explicit_adoption",
+      "passed": true,
+      "notesMatch": true,
+      "noComparison": true,
+      "revisionVisible": true
+    },
+    {
+      "case": "prepared_review_unconfirmed",
+      "passed": true,
+      "unconfirmed": true,
+      "acceptDisabled": true
+    }
+  ],
+  "traffic": [
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/settings/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/members/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/tasks/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/bindings/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/imports/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/imports/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/imports/start",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/imports/advance",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/imports/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/imports/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/imports/start",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/imports/advance",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/list",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/intake/sources/get",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/business/context",
+      "status": 200
+    }
+  ],
+  "dtos": [
+    {
+      "phase": "open-unprepared-withheld",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+      "revision": 1,
+      "disclosure": "metadata_only",
+      "accessValidUntil": "2026-09-09T10:39:32.198199+00:00",
+      "passageCount": 0
+    },
+    {
+      "phase": "open-unprepared-withheld",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "654db166-6394-4ae9-94db-f787d13376c8",
+      "revision": 1,
+      "sourceRevision": 1,
+      "disclosure": "metadata_only",
+      "hasPreparedDraft": false,
+      "draftNull": true,
+      "requiresRebase": false,
+      "newerNotesMatch": false
+    },
+    {
+      "phase": "open-unprepared-withheld",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "654db166-6394-4ae9-94db-f787d13376c8",
+      "revision": 1,
+      "sourceRevision": 1,
+      "disclosure": "metadata_only",
+      "hasPreparedDraft": false,
+      "draftNull": true,
+      "requiresRebase": false,
+      "newerNotesMatch": false
+    },
+    {
+      "phase": "open-unprepared-withheld",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+      "revision": 1,
+      "disclosure": "metadata_only",
+      "accessValidUntil": "2026-09-09T10:39:32.198199+00:00",
+      "passageCount": 0
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/imports/start",
+      "status": 200,
+      "id": "67ad22c1-a3cd-4441-977b-e5f1d3861156",
+      "state": "queued",
+      "revision": 1
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "654db166-6394-4ae9-94db-f787d13376c8",
+      "revision": 1,
+      "sourceRevision": 1,
+      "disclosure": "metadata_only",
+      "hasPreparedDraft": false,
+      "draftNull": true,
+      "requiresRebase": false,
+      "newerNotesMatch": false
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+      "revision": 1,
+      "disclosure": "metadata_only",
+      "accessValidUntil": "2026-09-09T10:39:32.198199+00:00",
+      "passageCount": 0
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+      "revision": 1,
+      "disclosure": "metadata_only",
+      "accessValidUntil": "2026-09-09T10:39:32.198199+00:00",
+      "passageCount": 0
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "654db166-6394-4ae9-94db-f787d13376c8",
+      "revision": 1,
+      "sourceRevision": 1,
+      "disclosure": "metadata_only",
+      "hasPreparedDraft": false,
+      "draftNull": true,
+      "requiresRebase": false,
+      "newerNotesMatch": false
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+      "revision": 1,
+      "disclosure": "metadata_only",
+      "accessValidUntil": "2026-09-09T10:39:32.198199+00:00",
+      "passageCount": 0
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/imports/advance",
+      "status": 200,
+      "id": "67ad22c1-a3cd-4441-977b-e5f1d3861156",
+      "state": "complete",
+      "revision": 3
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "654db166-6394-4ae9-94db-f787d13376c8",
+      "revision": 1,
+      "sourceRevision": 1,
+      "disclosure": "fresh",
+      "hasPreparedDraft": false,
+      "draftNull": true,
+      "requiresRebase": false,
+      "newerNotesMatch": false
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:46:30.678006+00:00",
+      "passageCount": 3
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:46:30.678006+00:00",
+      "passageCount": 3
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "654db166-6394-4ae9-94db-f787d13376c8",
+      "revision": 1,
+      "sourceRevision": 1,
+      "disclosure": "fresh",
+      "hasPreparedDraft": false,
+      "draftNull": true,
+      "requiresRebase": false,
+      "newerNotesMatch": false
+    },
+    {
+      "phase": "refresh-unprepared",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:46:30.678006+00:00",
+      "passageCount": 3
+    },
+    {
+      "phase": "open-prepared-withheld",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+      "revision": 1,
+      "disclosure": "metadata_only",
+      "accessValidUntil": "2026-09-09T10:39:32.218231+00:00",
+      "passageCount": 0
+    },
+    {
+      "phase": "open-prepared-withheld",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+      "revision": 2,
+      "sourceRevision": 1,
+      "disclosure": "metadata_only",
+      "hasPreparedDraft": true,
+      "draftNull": true,
+      "requiresRebase": false,
+      "newerNotesMatch": false
+    },
+    {
+      "phase": "open-prepared-withheld",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+      "revision": 2,
+      "sourceRevision": 1,
+      "disclosure": "metadata_only",
+      "hasPreparedDraft": true,
+      "draftNull": true,
+      "requiresRebase": false,
+      "newerNotesMatch": false
+    },
+    {
+      "phase": "open-prepared-withheld",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+      "revision": 1,
+      "disclosure": "metadata_only",
+      "accessValidUntil": "2026-09-09T10:39:32.218231+00:00",
+      "passageCount": 0
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/imports/start",
+      "status": 200,
+      "id": "c0439940-fb63-4fde-a969-5071c48b6792",
+      "state": "queued",
+      "revision": 1
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+      "revision": 3,
+      "sourceRevision": 1,
+      "disclosure": "fresh",
+      "hasPreparedDraft": true,
+      "draftNull": false,
+      "requiresRebase": false,
+      "newerNotesMatch": true
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:48:10.106447+00:00",
+      "passageCount": 3
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:48:10.106447+00:00",
+      "passageCount": 3
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+      "revision": 3,
+      "sourceRevision": 1,
+      "disclosure": "fresh",
+      "hasPreparedDraft": true,
+      "draftNull": false,
+      "requiresRebase": false,
+      "newerNotesMatch": true
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:48:10.106447+00:00",
+      "passageCount": 3
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/imports/advance",
+      "status": 200,
+      "id": "c0439940-fb63-4fde-a969-5071c48b6792",
+      "state": "complete",
+      "revision": 3
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+      "revision": 3,
+      "sourceRevision": 1,
+      "disclosure": "fresh",
+      "hasPreparedDraft": true,
+      "draftNull": false,
+      "requiresRebase": false,
+      "newerNotesMatch": true
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:49:08.325564+00:00",
+      "passageCount": 3
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:49:08.325564+00:00",
+      "passageCount": 3
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/candidates/get",
+      "status": 200,
+      "id": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+      "revision": 3,
+      "sourceRevision": 1,
+      "disclosure": "fresh",
+      "hasPreparedDraft": true,
+      "draftNull": false,
+      "requiresRebase": false,
+      "newerNotesMatch": true
+    },
+    {
+      "phase": "refresh-prepared-newer",
+      "path": "/api/business/intake/sources/get",
+      "status": 200,
+      "id": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+      "revision": 1,
+      "disclosure": "fresh",
+      "accessValidUntil": "2026-09-09T10:49:08.325564+00:00",
+      "passageCount": 3
+    }
+  ],
+  "counts": {
+    "requests": 70,
+    "blocked": 0,
+    "non200": 0,
+    "browserCandidateWrites": 0,
+    "browserTaskWrites": 0,
+    "browserImportActions": 4
+  },
+  "now": "2026-09-09T10:45:24.950Z",
+  "status": "passed"
+}
