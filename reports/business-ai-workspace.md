@@ -3,7 +3,8 @@
 Current branch: `feat/business-ai-workspace`; draft
 [PR33](https://github.com/Adanmohh/codeg/pull/33). Accepted shell base is
 `f988700db6975364d35b80125af12bfe2d5baac3`. Guarded session entry is pushed as
-`45d7fb2f5`; this checkpoint adds the private task file workflow described below.
+`45d7fb2f5`; the private task file workflow is pushed as
+`9c623f8e9fecebfceef8ffd8c291f7570092b127`.
 Conversation product checkpoint
 `b125aec9e5703508ac7f6948d0d2db134534c90d` is pushed. This next checkpoint adds
 the original-operator browser entry, explicit start/continue and guarded session
@@ -84,7 +85,7 @@ retain task, prompt and submission drafts in memory.
 The first managed component run was13/14: Testing Library's default whitespace
 normalizer did not match the exact multiline preview string. Installed DOM10.4.1
 matches.js was read; the existing public-reader test's exact PRE.textContent
-assertion now verifies every byte of displayed text. The isolated locator recheck
+assertion now verifies the exact displayed text. The isolated locator recheck
 passes1/1, then all17 final cases pass; initial raw evidence is retained. Initial
 type errors were the one-value previewReason tuple and test locale inferred as
 string; both now use the actual closed types. No compiler/lint options or behavior
@@ -100,8 +101,39 @@ read types blob47ca21b002c9c1efb898e38e0c920e9ca3456c70 (11,207 bytes), verified
 gh api. No stop/write/resize result wrapper has appeared. Its scan-fence report
 is separate backend evidence, not this worker's compilation/runtime claim.
 
-Remaining implementation: the existing xterm presentation after exact
-write/resize/stop result wrappers are published. Actual E1 API/ACP/PTY/browser,
+The next terminal-input checkpoint imports the unchanged inherited
+`lib/terminal/write-queue.ts` (blob0380ef127d26c9d2b6a221ace4d59861464595ff
+atf988) and adds receipt/generation handling around it. Writes stay ordered;
+each chunk is at most16KiB UTF-8 without splitting a Unicode character. The
+64KiB local buffer rejects an entire excess incoming paste before enqueue and
+reports that rejection; it never silently truncates the paste. Uncertain/pending
+acknowledgement disposes the queue before later buffered input can follow.
+Only the original receipt is queried, and no written bytes are replayed. Confirmed
+or known-failed receipt requires explicit resume plus current matching task,
+session/generation and terminal read/write capability. Teardown aborts delivery;
+neither creation nor disposal starts/stops anything. State callbacks contain
+receipt metadata, not typed shell text.
+
+This is an **injected lower adapter**, not a new HTTP envelope or enabled terminal.
+The final TerminalView was reread: its host spawn/kill/global subscriptions remain
+excluded. Its installed xterm6.0.0/addon-fit0.11.0 package manifests identify
+commitf447274f430fd22513f6adbf9862d19524471c04. No xterm renderer, client route or
+native control was added in this queue checkpoint. The13 owned queue tests pass,
+exit0 (`terminal-input-first.txt`), with normal TypeScript and scoped ESLint both
+exit0 (`terminal-input-typecheck.txt`, `terminal-input-lint.txt`). These are
+controlled promises and synthetic metadata, not a real PTY/process test.
+
+Concrete backend/runtime handoff dependencies, separate from passing source gates:
+
+| Needed handoff | Current source evidence and conservative UI behavior |
+| --- | --- |
+| stop/write/resize JSON result envelopes | Rust types blob47ca21b0 has their inputs but no exact result wrappers. Closed client allowlist and visible entry do not expose those operations. The terminal queue accepts an injected adapter only. |
+| Initial terminal screen and cursor-reset replay | Accepted snapshot state contains status/messages/tools; terminal data exists in replay/live events. Confirm how first attach/reset obtains the retained terminal screen before renderer wiring; no extra snapshot field or host buffer route is invented. |
+| Refusal without a durable failed receipt | d0d56a36 publication validation/CAS can return before receipt reservation. Current UI preserves uncertain intent and does not infer safe replay from404. Operational error mapping must distinguish a known refusal from response loss before a reset is offered. |
+| Actual E1 fixture/export/runtime | No operational route/runner/guarded fixture handoff or new export window has been supplied to this frontend. All49+15 component gates and13 queue cases are synthetic in-process tests. |
+
+Remaining implementation: the existing xterm presentation after those exact
+transport handoffs, followed by integrated runner validation. Actual E1 API/ACP/PTY/browser,
 Design Studio and export gates await a coordinated backend and build window.
 The backend `d0d56a36399d81be23787891177752022c91edf6` asset handoff is source only,
 explicitly uncompiled by its owner; no runtime or native acceptance is claimed.

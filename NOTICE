@@ -1320,3 +1320,16 @@ Testing Library16.3.2/DOM10.4.1, Vitest2.1.9 and previously recorded Node Blob/
 WebCrypto declarations are read API references. No dependency implementation,
 AGPL/GPL or proprietary code is copied. Every prior NOTICE block and the
 original Apache LICENSE are preserved.
+
+Business E1 receipt-gated terminal input (2026):
+src/lib/business-execution/terminal-input.ts imports the existing
+src/lib/terminal/write-queue.ts (blob0380ef127d26c9d2b6a221ace4d59861464595ff)
+at accepted Codeg-derived f988700db6975364d35b80125af12bfe2d5baac3,
+Apache-2.0. Its tests adapt that helper's controlled promises/fake-timer tests.
+The owned closed operation/session parsers add only exact E1 input/receipt and
+generation checks from accepted contract3f164c2a. This injected component
+adapter does not specify a new wire envelope, copy a terminal emulator or
+enable host spawn/kill/global event APIs. Installed @xterm/xterm6.0.0 and
+addon-fit0.11.0 at f447274f430fd22513f6adbf9862d19524471c04 were read as API
+references only; no third-party source port occurs. Original LICENSE and all
+earlier Apache/other attribution blocks remain complete.
