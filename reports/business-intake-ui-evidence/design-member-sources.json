@@ -1,0 +1,135 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#fcfdff",
+      "#f8faff",
+      "#0a0a0a",
+      "#687285",
+      "#07090f",
+      "#155dfc",
+      "#1458ff",
+      "#eff4fd",
+      "#eb0014",
+      "#dbe5ee"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      12,
+      14,
+      16,
+      30
+    ],
+    "spacingPx": [
+      2,
+      4,
+      6,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      36,
+      40,
+      135
+    ],
+    "radiiPx": [
+      14,
+      33554400
+    ]
+  },
+  "contrast": {
+    "checked": 23,
+    "failures": [
+      {
+        "text": "Sources",
+        "fg": "#155dfc",
+        "bg": "#e1e9ff",
+        "ratio": 4.32,
+        "required": 4.5
+      }
+    ]
+  },
+  "motion": {
+    "transitionsCount": 2,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "snapshot": "- alert\n- complementary:\n  - paragraph: Hafidh\n  - paragraph: Ops Desk\n  - paragraph: Workspace\n  - paragraph: Synthetic Studio\n  - navigation \"Workspace\":\n    - button \"My work\"\n    - button \"Shared work\"\n    - button \"Review\"\n    - button \"Sources\"\n    - button \"People & agents\"\n    - button \"Workspace appearance\"\n  - combobox \"Language\":\n    - option \"English\" [selected]\n    - option \"简体中文\"\n    - option \"繁體中文\"\n    - option \"日本語\"\n    - option \"한국어\"\n    - option \"Español\"\n    - option \"Deutsch\"\n    - option \"Français\"\n    - option \"Português\"\n    - option \"العربية\"\n  - combobox \"Appearance\":\n    - option \"Device appearance\"\n    - option \"Light\" [selected]\n    - option \"Dark\"\n  - text: Yusuf (Synthetic)\n  - paragraph: Member · Connected\n  - button \"Disconnect\"\n- tablist \"Open work\":\n  - tab \"My work\"\n  - tab \"Sources\" [selected]\n  - tab \"Workspace appearance\"\n- button \"Show side by side\"\n- tabpanel \"Sources\":\n  - banner:\n    - paragraph: Sources\n    - heading \"Turn what you heard into clear work.\" [level=1]\n    - paragraph: Read the source, choose the exact passage, then decide what belongs in shared work.\n  - paragraph: Private source review\n  - paragraph: Only people with explicit source access can read these passages and drafts. Task access is separate.\n  - alert:\n    - paragraph: The workspace could not be reached.\n    - button \"Try again\"",
+    "unnamedInteractive": 0,
+    "headingOrderBreaks": null,
+    "landmarks": null
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffffff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fcfdff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f8faff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#687285 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#07090f rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#155dfc rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#1458ff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#eff4fd rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#eb0014 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#dbe5ee rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "2px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "135px spacing off brief + 4px scale"
+    }
+  ]
+}

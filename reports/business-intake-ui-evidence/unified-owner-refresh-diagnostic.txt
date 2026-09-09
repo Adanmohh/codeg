@@ -1,0 +1,107 @@
+### Page
+- Page URL: http://127.0.0.1:4354/business
+- Page Title: Hafidh Ops Desk
+### Snapshot
+```yaml
+- generic:
+  - alert
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - complementary:
+            - generic:
+              - generic:
+                - generic:
+                  - paragraph: Hafidh
+                  - paragraph: Ops Desk
+            - generic:
+              - paragraph: Workspace
+              - paragraph: Intake ui synthetic
+            - navigation:
+              - button: My work
+              - button: Shared work
+              - button: Review
+              - button: Sources
+              - button: People & agents
+              - button: Workspace appearance
+            - generic:
+              - generic:
+                - combobox
+                - combobox
+              - generic:
+                - generic:
+                  - generic: U
+                  - generic: ui owner
+                - paragraph: Owner · Connected
+                - button: Disconnect
+          - generic:
+            - generic:
+              - generic:
+                - tablist:
+                  - tab:
+                    - generic: My work
+                  - tab [selected]:
+                    - generic: Sources
+                  - tab:
+                    - generic: Task details
+                  - button
+                - button
+              - generic:
+                - tabpanel:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button: Sources
+                          - generic:
+                            - generic:
+                              - paragraph: Private source review
+                              - paragraph: Only people with explicit source access can read these passages and drafts. Task access is separate.
+                          - banner:
+                            - paragraph: Fireflies meetings
+                            - heading [level=1]: "ui: meeting-follow-up"
+                            - paragraph: "Source version: 1"
+                            - button: Review access and setup
+                          - status:
+                            - heading [level=2]: Source content is currently withheld.
+                            - paragraph: Refresh upstream access before reading or preparing a task. Cached private text is not shown while access is stale.
+                          - generic:
+                            - generic:
+                              - group:
+                                - generic: Refresh source access
+                                - region:
+                                  - generic:
+                                    - heading [level=2]: Import progress
+                                    - button: Refresh
+                                  - generic:
+                                    - paragraph: Read this record again through its connection. A cached page cannot renew access.
+                                    - button: Refresh source access
+                                  - generic:
+                                    - checkbox
+                                    - text: All import attempts
+                                  - paragraph: No import attempts in this view.
+                            - generic:
+                              - region:
+                                - paragraph: Decision recorded
+                                - heading [level=2]: Task created
+                                - button: Open shared task
+                              - region:
+                                - heading [level=2]: Private drafts & decisions
+                                - combobox
+                                - list:
+                                  - listitem:
+                                    - button:
+                                      - generic: Pending 1
+                                      - generic: Pending · Revision 1
+  - dialog [ref=e50]:
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - heading "Leave this source review?" [level=2] [ref=e53]
+        - paragraph [ref=e54]: Leave this source review?
+      - button "Close" [active] [ref=e55]
+    - paragraph [ref=e56]: Unsaved edits in this window will be discarded. Saved private drafts can be reopened from Sources.
+    - generic [ref=e57]:
+      - button "Keep editing" [ref=e58]
+      - button "Discard my draft" [ref=e59]
+```

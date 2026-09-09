@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { NextIntlClientProvider } from "next-intl"
 import { describe, expect, it } from "vitest"
 import { Modal } from "./ui"
+import { OverlayHostHiddenProvider } from "@/components/ui/overlay-host-hidden"
 
 function FocusExample({ removeOpener }: { removeOpener: boolean }) {
   const [open, setOpen] = useState(false)
@@ -28,6 +29,35 @@ function FocusExample({ removeOpener }: { removeOpener: boolean }) {
 }
 
 describe("controlled business dialog keyboard recovery", () => {
+  it("hides a background pane's portal without discarding the parent's private draft", () => {
+    const closed = () => {
+      throw new Error("Hiding a pane must not close its editor")
+    }
+    function Pane({ hidden }: { hidden: boolean }) {
+      const [note, setNote] = useState("")
+      return (
+        <NextIntlClientProvider locale="en" messages={{}} timeZone="UTC">
+          <OverlayHostHiddenProvider hidden={hidden}>
+            <Modal title="Synthetic pane dialog" onClose={closed}>
+              <input
+                aria-label="Synthetic draft"
+                value={note}
+                onChange={(event) => setNote(event.target.value)}
+              />
+            </Modal>
+          </OverlayHostHiddenProvider>
+        </NextIntlClientProvider>
+      )
+    }
+    const view = render(<Pane hidden={false} />)
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "Synthetic private note" },
+    })
+    view.rerender(<Pane hidden />)
+    expect(screen.queryByRole("dialog")).toBeNull()
+    view.rerender(<Pane hidden={false} />)
+    expect(screen.getByRole("textbox")).toHaveValue("Synthetic private note")
+  })
   it("returns to the work area after a programmatic detail handoff with no focused opener", async () => {
     render(<FocusExample removeOpener={false} />)
     expect(document.activeElement).toBe(document.body)

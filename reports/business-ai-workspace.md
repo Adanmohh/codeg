@@ -11,11 +11,21 @@ Current resume: root accepted PR29 and published main
 tsconfig correction `91c98d469`. Root reports 109/109 scoped frontend tests and
 normal `tsc --noEmit --incremental false` passing on that integrated source,
 without this E1 WIP. These are independent results, not this worker's E1 gates.
-Root explicitly authorized preserving/committing the existing E1 WIP before
-additive main integration. That checkpoint retains the known three source type
-errors and 40 formatting diagnostics; 18 stream tests pass. The alias-correcting
-hook candidate is under independent review, so the denied native patch remains
-pending and imports remain unchanged.
+The E1 WIP was committed and pushed as
+`f9186504022c28f33e16e2601b6d768fa577bc3b` before merging that exact accepted
+main. The sole conflict was NOTICE: the complete accepted-main file is preserved
+byte for byte, followed by both exact E1 sections. All seven E1 files remain
+identical to f9186504; LICENSE, both dependency locks, package/configuration and
+protected documents match f988700d. Verification exits0; the integration evidence
+is `business-ai-workspace-evidence/accepted-main-integration.txt`.
+
+This preserved checkpoint retains three source type errors and 40 formatting
+diagnostics; 18 stream tests pass. Root reports canonical alias candidate
+`a918234a97b6786686140f833bdcfa6af53372ad694906192a24ee4dc56f702e`
+passing 46 new and 56 retained regressions, but explicitly says it is **not
+installed**. Those are root-reported maintenance results, not this worker's
+product gates. The denied native patch remains unchanged until actual activation;
+there has been no import rewrite, gate retry or bypass.
 
 The wire authority is
 `docs/contracts/business-ai-execution.md` at
@@ -32,7 +42,7 @@ the known response-only previewReason contract remains null/unavailable.
 
 ## Shared shell dependency and preserved handoff
 
-PR29 is frozen at `96e0bcc174b000abdbb4f6d31f1c9c7c43f90518`, product
+PR29 was accepted at `96e0bcc174b000abdbb4f6d31f1c9c7c43f90518`, product
 `60d600db0f224d44ff191490ab79bc25530ba959`. Its final report contains actual
 4355 empty-editor recovery, retained prepared draft, two-user revision conflict /
 explicit adoption and the 12-case EN/AR, light/dark, 390/768/1280 measured check.
@@ -40,14 +50,11 @@ The report records the failed locator/result-extraction attempts and bounded
 measurement limits. Independent corrected-browser review now reports pass at
 `c0c7e522600a94bcf33674f640d5f3665cffd39b`, with no further own fixture mutation.
 
-PR29 is not in this branch's accepted base. Prepare isolated typed client and
-components first; integrate accepted main after PR29 merges before wiring its
-`WorkSurface` tabs/panes. Do not reproduce that shell or import unaccepted WIP.
-Existing human task review remains the publication/review destination.
-
-That dependency is now accepted as noted above; the next owned Git operation is
-to preserve the WIP checkpoint and integrate that exact accepted main. No shell
-source has been recreated or imported from an unaccepted branch.
+The accepted PR29 WorkSurface tabs/panes are now integrated. No shell source was
+recreated or imported from an unaccepted branch. Existing human task review
+remains the publication/review destination. E1 is still isolated and not mounted;
+source corrections await hook activation, while admitted source analysis can
+continue against the actual merged client and workspace.
 
 4355 remains PID85232, export `.build/business-intake-ui-recovery-60d600db0`;
 `business.html` SHA256

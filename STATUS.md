@@ -2,6 +2,124 @@
 
 ## Current integration and worker state
 
+**PR29 integration accepted and being published.** Frozen `96e0bcc1` / product
+`60d600db` retains the independently reviewed tabs/panes, settings and intake UI.
+Root's integrated frontend selectors pass109/109 across12 files. Normal typecheck
+passes after accepting rebrand's exact `91c98d469` compiler-discovery correction
+for six archived report files; the original nine import errors remain in evidence.
+Backend/Pi/LICENSE are unchanged from accepted main, frontend/lock/Next config
+match PR29, and the complete main NOTICE is preserved with additive attribution.
+See [integration evidence and limits](reports/business-ui-integration.md).
+This unlocks rebrand's E1 workbench integration; AI chat/terminal/assets are still
+being implemented. No running fixture, user browser or native artifact changed.
+
+Tickets' audit correction `ca58f2b9` is verified as report-only and imported:
+legacy timestamps1788951206–1207 are historical, not fresh hook metadata. No
+current generic Pre/Post journal coverage is claimed. Approvals checkpoint
+`bb33fbffb` records780/780 exact frozen177 source blobs and has started the released
+existing-target independent tests; no result is assumed yet. The canonical alias
+repair resolves the reported graph in its staged candidate, with independent
+review and single installation handoff pending. It is not called installed.
+
+**Global hook installed and project work resumed.** Owner ran the test-before-
+install script successfully; engine f5554c92 and backup claude-workflow-n0d8pjua
+are recorded in [the live acceptance report](reports/docs-first-live-acceptance.md).
+Root read the actual 56-test passing log and installer audit. Actual gh api tag
+and pinned source reads, Git fetch and Herdr access now pass. A disposable native
+edit was denied before docs, passed after the signed source read, and remained
+denied in another project. Framework docs-first remains required; unsupported
+surfaces need manual grounding rather than fictitious machine verification.
+
+All three existing Herdr workers were resumed and observed working. Rebrand and
+approvals show Astra/max. Tickets' actual picker had drifted to Luna/low despite
+Astra status metadata; root restored and visually verified Astra/max before its
+new implementation assignment. No historical authored-turn claim is made.
+Tickets published the preserved combined B checkpoint at
+177d0f3e2b426d65de9573ba534ac8c11f9250f7, verified independently through gh api.
+Root read the complete added test diff, verified test/log digests and unchanged
+migrations10–13/LICENSE against accepted B. Its four schema passes are owner
+evidence, not an independent runtime verdict. Evidence-only successor
+25badf45db086c3dd33d841d55175f724108c6cc adds four accepted B epoch passes and
+locked/offline server check exit0; root verified both log digests and the report-
+only diff. Product remains177d0f3e2. Tickets explicitly released the build window
+with no own Cargo process. Approvals freezes177 and is now authorized for bounded
+independent tests in its existing target, coordinating start/release with tickets.
+Disk5.7GiB is observed capacity, not a reservation. No new worker, target, fixture
+or user-browser action. Full E1 runtime/assets/task publication remain incomplete.
+
+Two narrower hook limits remain explicit. Rebrand's package_unresolved is traced
+to the existing tsconfig @/* local alias, which the hook treats as an invalid
+package. Its 18 unchanged parser tests pass, but three type errors cannot yet be
+edited through that gate. A hash command naming the engine is also mistakenly
+treated as a reader invocation. [Bounded maintenance follow-up](reports/docs-first-alias-followup.md)
+records source evidence and required regressions; neither issue is called fixed
+or bypassed. General research, coordination and review execution are usable.
+
+Reviewer final4355 evidence is published at
+c0c7e522600a94bcf33674f640d5f3665cffd39b. Root fetched and read the complete immutable
+review report: no bounded recovery blocker, seven browser checks, seventy200
+responses, twenty-two separate API requests and five persistence checks pass.
+Root imported the report and verified all thirty-one new evidence digests.
+PR29's earlier source/evidence reviews and attribution-only conflict assessment
+remain valid; the current integration gate and publication are recorded above.
+No product fixture/browser/process changed. Existing E1 assignments continue
+with current documentation, borrowing and task authority rules.
+
+**First compiling E1 source published:** product
+`6195d9daf049b7cd16615e35b87d08c7f2870bf0`, PR32 evidence
+`fdfe342940d1a6881005e5534b3f0090f9391ef7`. Internal closed DTOs/validation and
+000014 schema now exist; HTTP/native handlers and runner operations do not yet.
+Root read the complete migration Rust/SQL, input validation and additive asset/
+prompt envelope clarification, imported validation logs and verified both digests.
+Owner's server check passes on the initial schema; subsequent three-test compile
+includes the final checkpoint DTOs and passes. These are owner results, not a root
+runtime pass. Full authority/launch/file/publication/stream gates remain ahead.
+
+Approvals is assigned independent bounded E1 persistence/schema/input review in
+`reports/review-business-ai-execution-implementation.md` after4355 report closeout.
+It can read frozen619 now; execution should use the forthcoming committed combined
+B+14 head to avoid duplicate compiles. Tickets reports local merge b73940560 of
+accepted B with only additive NOTICE/registry resolution and is testing real B
+epoch migrations plus retained execution-linked/history/receipt cases. That local
+merge and its tests are not yet independently verified or accepted. No additional
+large target, active fixture or user-browser change is part of this review.
+
+**PR28 intake backend merged** as `c8453a48d441f40eb47f9c9af856235b4f9986e5`;
+GitHub confirms closed/merged. Accepted frozen head:
+`462604b00ad74a7f72c36d0bea3714a5912bf640`, production e55f3bfd and separately
+reviewed test fixture7ed0dd0c. Owner desktop/server/companion checks and Clippy,
+38-case intake run, independent epoch/core/API tests and protected browser
+publication support the bounded Fireflies/source-to-task scope. New-tenant legacy
+email/Hafidh entrustment, full native tenancy and AI execution are not included.
+Root's merge has no product conflict: the only conflict was the evidence checksum
+manifest gaining its already-committed README entry. Root retained that entry and
+verified all22 artifacts; merged product/source/NOTICE/LICENSE match the frozen
+PR28 head. No rerun/build or existing fixture mutation was needed for this merge.
+
+Reviewer reports actual4355 recovery passing:7 browser assertions,70 protected
+responses,22 setup/newer-version/persistence API requests, no browser candidate/task
+writes, explicit adoption and unchecked publication confirmation. Its new browser
+is closed; all others remain. Final committed evidence is awaited before PR29 merge.
+PR29 has only an attribution-text conflict to reconcile; reviewed product remains60d.
+
+PR32 checkpoint `79d195471c001e656e8f1ca5b3ed4cdbe3ae7be0` is read: it adds
+only the implementation report, with no product source or compiling pass yet.
+Tickets is writing000014/internal DTOs on accepted9e61. Root verified the existing
+000010 nonempty-text constraint locally and against GitHub blob3cb107d5; forward14
+must preserve rows/FKs/immutable triggers, keep empty legacy text submissions
+invalid and require exact file references atomically for file-only publication.
+Next requested milestone is compiling source with meaningful migration/CAS tests.
+Worker reports7.6Gi free and reuses only its own target; old fixtures stay intact.
+
+Root read PR29 final report at `96e0bcc174b000abdbb4f6d31f1c9c7c43f90518`:
+owner's actual4355 empty-editor recovery, prepared draft retention and concurrent
+adoption pass, with bounded12-case/840-sample Sources design evidence. These are
+owner results; independent4355 recovery remains underway. Its exact existing
+composer/transcript/xterm/asset mapping is concrete and avoids global host
+providers. Three small API details (asset envelopes, private older-version discovery
+and prompt receipt fields) are being resolved directly with tickets while isolated
+typed UI work continues. No new architecture or acceptance claim is implied.
+
 **PR31 accepted and merged** as
 `3ddb8f819964fdba006d96ad8221a0436fd1a2cb`, exact head
 `cab3b27eaf241062a56532b5cdfe885f7e648fc9`. Root read the complete final independent

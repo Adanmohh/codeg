@@ -1,0 +1,54 @@
+{
+  "file": "src/components/business/workbench.tsx",
+  "surface": {
+    "isButton": true,
+    "isInput": false,
+    "isList": true,
+    "isOverlay": false,
+    "isImage": false
+  },
+  "signals": {
+    "disabledState": true,
+    "loadingState": true,
+    "hoverState": true,
+    "focusState": true,
+    "activeState": false,
+    "aria": true,
+    "role": true,
+    "emptyState": false,
+    "errorState": false,
+    "motion": false,
+    "responsive": false,
+    "altText": true,
+    "deadLink": false,
+    "emojiIcon": false,
+    "tabRole": true,
+    "tabpanelRole": true,
+    "sliderRole": false,
+    "ariaValuetext": false,
+    "keyboardNav": true,
+    "ariaLive": false,
+    "dynamicText": false,
+    "preserveNone": false,
+    "timerLoop": false,
+    "scrollTimeline": false,
+    "realImg": false,
+    "gradientArt": false,
+    "cdnScript": false,
+    "scriptNoSri": false,
+    "hotlinkPlaceholder": false,
+    "imgOnError": false,
+    "intersectionObserver": false,
+    "subtractiveOpacity": false,
+    "revealGuard": false
+  },
+  "missing": [
+    {
+      "sev": "high",
+      "msg": "List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data)."
+    }
+  ],
+  "probe": null
+}
+
+SUMMARY src/components/business/workbench.tsx: 1 gap(s) — [high] List/grid has no empty state (checklist: Loading/empty — guide the user when there's no data).

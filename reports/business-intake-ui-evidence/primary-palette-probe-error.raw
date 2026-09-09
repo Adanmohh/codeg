@@ -1,0 +1,7 @@
+### Error
+Error: locator.hover: Error: strict mode violation: getByRole('heading', { name: 'Synthetic · Shape the website launch brief', exact: true }) resolved to 2 elements:
+    1) <h2 class="text-base leading-relaxed font-semibold tracking-tight break-words">…</h2> aka getByRole('button', { name: 'In progress Website · High' })
+    2) <h2 class="min-w-0 pt-2 text-xl font-semibold tracking-tight">…</h2> aka getByRole('tabpanel', { name: 'Synthetic · Shape the website' }).getByRole('heading', { name: 'Synthetic · Shape the website' })
+
+Call log:
+[2m  - waiting for getByRole('heading', { name: 'Synthetic · Shape the website launch brief', exact: true })[22m

@@ -74,6 +74,23 @@ export default function BusinessPage() {
   }
   function updateContext(client: BusinessClient, context: BusinessContext) {
     if (active.current !== client) return
+    const previous = session?.context
+    if (
+      previous?.organization &&
+      (previous.organization.id !== context.organization?.id ||
+        previous.organization.authorizationEpoch !==
+          context.organization?.authorizationEpoch ||
+        previous.member?.id !== context.member?.id)
+    ) {
+      // New login may authenticate after a suspension/resume, but it cannot
+      // bless the previous epoch's private drafts, reads or pending responses.
+      generation.current++
+      client.close()
+      active.current = null
+      setSession(null)
+      setError(new BusinessError("unauthorized"))
+      return
+    }
     setSession((current) =>
       current?.client === client ? { ...current, context } : current
     )
@@ -96,8 +113,9 @@ export default function BusinessPage() {
         error={new BusinessError("unauthorized")}
       />
     )
-  // One private editing lifetime per connection/principal and current membership
-  // revision. Locale/viewport changes never replace it.
+  // One private editing lifetime per connection/principal and membership
+  // revision. Epoch drift closes the connection above; locale/appearance and
+  // viewport changes never replace this lifetime.
   const key = `${session.serial}:${session.context.organization.id}:${session.context.member.id}:${session.context.member.revision}`
   return (
     <BusinessWorkspace

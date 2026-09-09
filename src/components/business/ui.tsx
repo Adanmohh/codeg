@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useOverlayHostHidden } from "@/components/ui/overlay-host-hidden"
 import {
   Dialog,
   DialogContent,
@@ -23,17 +24,29 @@ import { BusinessError } from "@/lib/business/client"
 import { useBusinessCopy, type BusinessCopy } from "@/lib/business/copy"
 import type { BusinessStatus, PersonLabel } from "@/lib/business/presentation"
 import type { MemberRole } from "@/lib/business/identity"
+import { useWorkspaceAppearance } from "./appearance"
 
 export function Action({
   className,
   type = "button",
   ...props
 }: ComponentProps<typeof Button>) {
+  const appearance = useWorkspaceAppearance()
+  const primary = !props.variant || props.variant === "default"
   return (
     <Button
       type={type}
       className={cn(
         "min-h-11 rounded-xl px-4 motion-reduce:transition-none",
+        // The inherited 80% hover fade loses text contrast on light presets.
+        // Use existing scoped colors: Blue's background works in both modes;
+        // light Violet needs its dark foreground on the brighter primary fill.
+        primary && "hover:bg-primary/95",
+        primary && appearance.palette === "blue" && "text-background",
+        primary &&
+          appearance.palette === "violet" &&
+          !appearance.dark &&
+          "text-foreground",
         props.variant === "destructive" &&
           "text-red-800 focus-visible:border-red-800 focus-visible:ring-red-800 dark:text-red-300 dark:focus-visible:border-red-300 dark:focus-visible:ring-red-300",
         className
@@ -234,14 +247,17 @@ export function Modal({
 }) {
   const copy = useBusinessCopy()
   const returnFocus = useRef<HTMLElement | null>(null)
+  const hidden = useOverlayHostHidden()
+  const appearance = useWorkspaceAppearance()
   return (
     <Dialog
-      open
+      open={!hidden}
       onOpenChange={(open) => {
-        if (!open) onClose()
+        if (!open && !hidden) onClose()
       }}
     >
       <DialogContent
+        data-theme={appearance.palette}
         showCloseButton={false}
         onOpenAutoFocus={() => {
           returnFocus.current =
@@ -254,6 +270,9 @@ export function Modal({
           // opener, or the work area when an updated/archived row has disappeared.
           event.preventDefault()
           if (document.activeElement?.closest('[role="dialog"]')) return
+          // A closed work tab may already have restored focus to its surviving
+          // sibling. Do not override that with this dialog's removed opener.
+          if (document.activeElement?.getAttribute("role") === "tab") return
           if (
             returnFocus.current?.isConnected &&
             returnFocus.current !== document.body &&
@@ -266,6 +285,7 @@ export function Modal({
         }}
         className={cn(
           "min-w-0 grid-cols-1 gap-5 rounded-2xl p-5 [overflow-wrap:anywhere] motion-reduce:animate-none! sm:p-7",
+          appearance.dark && "dark",
           wide ? "max-w-3xl" : "max-w-lg"
         )}
       >

@@ -1,0 +1,22 @@
+Owned branch: feat/business-ai-workspace
+Preserved E1 checkpoint: f9186504022c28f33e16e2601b6d768fa577bc3b
+Accepted main: f988700db6975364d35b80125af12bfe2d5baac3
+
+git fetch origin: exit 0
+gh api exact accepted commit: exit 0; SHA f988700db6975364d35b80125af12bfe2d5baac3
+git merge --no-ff --no-commit --no-overwrite-ignore accepted-main: exit 1
+Sole conflicted file: NOTICE. No product conflict.
+
+After the native NOTICE patch, read-only byte correspondence: exit 0
+NOTICE: complete accepted-main prefix and both exact E1 sections preserved
+LICENSE, dependency locks, package/config and all protected documents match accepted main
+E1 source: all 7 files unchanged from preserved f9186504
+NOTICE conflict markers: none
+
+git diff --name-only accepted-main excluding reports, E1 source and NOTICE:
+exit 0, no output. No application/config delta outside the isolated E1 files.
+
+This check does not claim E1 compiles or runtime/browser acceptance.
+Known 3 type errors and 40 formatting diagnostics remain pending activation
+of the root-owned canonical alias resolver. No denied edit was retried.
+All existing exports, fixtures, browsers and the paused visual report are preserved.

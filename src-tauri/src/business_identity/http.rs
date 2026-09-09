@@ -192,7 +192,8 @@ pub(crate) fn router(state: Arc<AppState>, operator_token: String) -> Router {
         .route("/credentials/revoke", post(credentials_revoke))
         .route("/settings/get", post(settings_get))
         .route("/settings/update", post(settings_update))
-        .merge(crate::business_tasks::http::router());
+        .merge(crate::business_tasks::http::router())
+        .merge(crate::business_intake::http::router());
     // Identity and task routes share this same business authentication layer.
     Router::new().nest(
         "/business",

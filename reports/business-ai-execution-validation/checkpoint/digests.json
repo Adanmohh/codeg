@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "6195d9daf049b7cd16615e35b87d08c7f2870bf0",
+  "note": "Initial server check preceded additive DTO envelope fields; final three-test compilation includes all checkpoint source. Logs contain actual exits reported by the owned tool sessions; no runtime launch.",
+  "logs": [
+    {
+      "file": "check-schema.log",
+      "sha256": "73706e59aaae0f034ed6d47383546676590dc986249428cbc41e0431e2ca6b3e",
+      "exitCode": 0
+    },
+    {
+      "file": "tests-schema.log",
+      "sha256": "825c55fd1f0b6e5a794c84563114eb0c8f085536a68ae40953a6090c4c3c3bb6",
+      "exitCode": 0
+    }
+  ]
+}

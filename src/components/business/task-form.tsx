@@ -27,7 +27,7 @@ export function MetadataFields({
 }) {
   const copy = useBusinessCopy()
   return (
-    <fieldset disabled={disabled} className="space-y-5">
+    <fieldset disabled={disabled} className="@container min-w-0 space-y-5">
       <Field label={copy.taskTitle}>
         {(id) => (
           <Input
@@ -57,7 +57,7 @@ export function MetadataFields({
           />
         )}
       </Field>
-      <div className="grid gap-5 sm:grid-cols-3">
+      <div className="grid gap-5 @[30rem]:grid-cols-3">
         <Field label={copy.domain}>
           {(id) => (
             <select
@@ -171,12 +171,12 @@ export function AssignmentFields({
     ) : null
   }
   return (
-    <fieldset disabled={disabled} className="space-y-4">
+    <fieldset disabled={disabled} className="@container min-w-0 space-y-4">
       <legend className="mb-2 text-sm font-medium">{copy.assignment}</legend>
       <p className="text-muted-foreground text-xs leading-relaxed">
         {copy.assignmentHint}
       </p>
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 @[36rem]:grid-cols-3">
         <Field label={copy.owner}>
           {(id) => (
             <select

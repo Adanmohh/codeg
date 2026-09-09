@@ -1,0 +1,1964 @@
+{
+  "reports": [
+    {
+      "name": "workbench-1280-light-en",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "ltr",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "Close tab: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(44.0605 29.0279 -86.0352) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.545987 -0.0303796 -0.243091 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#ffffff",
+            "#fcfdff",
+            "#f8faff",
+            "#0a0a0a",
+            "#687285",
+            "#07090f",
+            "#eff4fd",
+            "#e8f1ff",
+            "#eef4fc",
+            "#eff6ff",
+            "#155dfc",
+            "#dbe5ee",
+            "#eff3fd",
+            "#193cb8",
+            "#2780ff",
+            "#f0f5fc",
+            "#9f0712",
+            "#e2000a"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20,
+            24
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20,
+            24,
+            36,
+            40,
+            135
+          ],
+          "radiiPx": [
+            10,
+            14,
+            18,
+            33554400
+          ]
+        },
+        "contrast": {
+          "checked": 117,
+          "failures": []
+        },
+        "motion": {
+          "transitionsCount": 14,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- complementary:\n  - paragraph: Hafidh\n  - paragraph: Ops Desk\n  - paragraph: Workspace\n  - paragraph: Synthetic Studio\n  - navigation \"Workspace\":\n    - button \"My work\"\n    - button \"Shared work\"\n    - button \"Review\"\n    - button \"Sources\"\n    - button \"People & agents\"\n    - button \"Workspace appearance\"\n  - combobox \"Language\":\n    - option \"English\" [selected]\n    - option \"简体中文\"\n    - option \"繁體中文\"\n    - option \"日本語\"\n    - option \"한국어\"\n    - option \"Español\"\n    - option \"Deutsch\"\n    - option \"Français\"\n    - option \"Português\"\n    - option \"العربية\"\n  - combobox \"Appearance\":\n    - option \"Device appearance\"\n    - option \"Light\" [selected]\n    - option \"Dark\"\n  - text: Rania (Synthetic)\n  - paragraph: Owner · Connected\n  - button \"Disconnect\"\n- tablist \"Open work\":\n  - tab \"Shared work\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"Close tab: Synthetic · Shape the website launch brief\"'\n- button \"Use one pane\" [pressed]\n- button \"Stack the panes\"\n- separator \"Resize work panes\"\n- tabpanel \"Shared work\":\n  - text: Kept alongside your work\n  - main:\n    - heading \"Shared work\" [level=1]\n    - paragraph: A shared view of the work your team can access.\n    - button \"Create task\"\n    - textbox \"Find a task\"\n    - button \"Find a task\"\n    - button \"Refresh\"\n    - combobox \"Area of work\":\n      - option \"All areas\" [selected]\n      - option \"Marketing\"\n      - option \"Website\"\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - combobox \"Status\":\n      - option \"All statuses\" [selected]\n      - option \"To do\"\n      - option \"In progress\"\n      - option \"Review\"\n      - option \"Done\"\n      - option \"Cancelled\"\n    - checkbox \"Archived\"\n    - text: Archived\n    - button \"List\" [pressed]\n    - button \"Board\"\n    - button \"Table\"\n    - paragraph: 6 tasks loaded\n    - list:\n      - listitem:\n        - button \"In progress Website · High Synthetic · Shape the website launch brief Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-12\":\n          - text: In progress Website · High\n          - heading \"Synthetic · Shape the website launch brief\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-12\n      - listitem:\n        - button \"To do Ads · Low Synthetic · Clarify the ad creative brief Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent 2026-09-18\":\n          - text: To do Ads · Low\n          - heading \"Synthetic · Clarify the ad creative brief\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent\n          - time: 2026-09-18\n      - listitem:\n        - button \"In progress Engineering · Urgent Synthetic · Check the signup error report Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-10\":\n          - text: In progress Engineering · Urgent\n          - heading \"Synthetic · Check the signup error report\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-10\n      - listitem:\n        - button \"To do Marketing · High Synthetic · Compare two campaign directions Accountable owner Synthetic Platform Operator Assigned to Rania (Synthetic) No due date\":\n          - text: To do Marketing · High\n          - heading \"Synthetic · Compare two campaign directions\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Rania (Synthetic) No due date\n      - listitem:\n        - button \"To do Channels · Normal Synthetic · Prepare next week’s channel plan Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-16\":\n          - text: To do Channels · Normal\n          - heading \"Synthetic · Prepare next week’s channel plan\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-16\n      - listitem:\n        - button \"To do Feedback · Normal Synthetic · Review customer interview themes Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent 2026-09-14\":\n          - text: To do Feedback · Normal\n          - heading \"Synthetic · Review customer interview themes\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent\n          - time: 2026-09-14\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"Close\"\n  - text: In progress Website · High Revision 4\n  - group:\n    - text: Task title\n    - textbox \"Task title\": Synthetic · Shape the website launch brief\n    - text: Brief\n    - textbox \"Brief\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: Area of work\n    - combobox \"Area of work\":\n      - option \"Marketing\"\n      - option \"Website\" [selected]\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - text: Priority\n    - combobox \"Priority\":\n      - option \"Low\"\n      - option \"Normal\"\n      - option \"High\" [selected]\n      - option \"Urgent\"\n    - text: Due date\n    - textbox \"Due date\": 2026-09-12\n    - paragraph: Calendar date; no time or reminder is set.\n  - button \"Cancel\"\n  - button \"Save changes\"\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task created\n      - time: Sep 9, 2026, 12:19 AM\n      - group: Saved version · Revision 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task updated\n      - time: Sep 9, 2026, 12:19 AM\n      - paragraph: To do → In progress\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · Submitted work for review\n      - time: Sep 9, 2026, 12:34 AM\n      - group: Deliverable\n    - listitem:\n      - paragraph: Rania (Synthetic) · Task updated\n      - time: Sep 9, 2026, 12:35 AM\n      - group: Saved version · Revision 4\n  - group: Source references\n  - group: Engineering detail\n  - button \"Cancel task\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fcfdff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f8faff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#687285 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090f rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff4fd rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#e8f1ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eef4fc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#155dfc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#dbe5ee rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff3fd rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#193cb8 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f0f5fc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#9f0712 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#e2000a rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-radius",
+            "detail": "18px radius off brief + 4px scale"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "135px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-768-light-en",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "ltr",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "Close tab: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(44.0605 29.0279 -86.0352) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.545987 -0.0303796 -0.243091 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 768,
+        "width": 768
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#ffffff",
+            "#fcfdff",
+            "#0a0a0a",
+            "#f8faff",
+            "#687285",
+            "#07090f",
+            "#193cb8",
+            "#2780ff",
+            "#dbe5ee",
+            "#eff6ff",
+            "#155dfc",
+            "#9f0712",
+            "#e2000a"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20,
+            24
+          ],
+          "radiiPx": [
+            10,
+            14
+          ]
+        },
+        "contrast": {
+          "checked": 45,
+          "failures": []
+        },
+        "motion": {
+          "transitionsCount": 8,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- banner:\n  - button \"Open workspace navigation\"\n  - text: Synthetic Studio\n- tablist \"Open work\":\n  - tab \"Shared work\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"Close tab: Synthetic · Shape the website launch brief\"'\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"Close\"\n  - text: In progress Website · High Revision 4\n  - group:\n    - text: Task title\n    - textbox \"Task title\": Synthetic · Shape the website launch brief\n    - text: Brief\n    - textbox \"Brief\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: Area of work\n    - combobox \"Area of work\":\n      - option \"Marketing\"\n      - option \"Website\" [selected]\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - text: Priority\n    - combobox \"Priority\":\n      - option \"Low\"\n      - option \"Normal\"\n      - option \"High\" [selected]\n      - option \"Urgent\"\n    - text: Due date\n    - textbox \"Due date\": 2026-09-12\n    - paragraph: Calendar date; no time or reminder is set.\n  - button \"Cancel\"\n  - button \"Save changes\"\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task created\n      - time: Sep 9, 2026, 12:19 AM\n      - group: Saved version · Revision 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task updated\n      - time: Sep 9, 2026, 12:19 AM\n      - paragraph: To do → In progress\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · Submitted work for review\n      - time: Sep 9, 2026, 12:34 AM\n      - group: Deliverable\n    - listitem:\n      - paragraph: Rania (Synthetic) · Task updated\n      - time: Sep 9, 2026, 12:35 AM\n      - group: Saved version · Revision 4\n  - group: Source references\n  - group: Engineering detail\n  - button \"Cancel task\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fcfdff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f8faff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#687285 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090f rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#193cb8 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#dbe5ee rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#155dfc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#9f0712 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#e2000a rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-390-light-en",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "ltr",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "Close tab: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(44.0605 29.0279 -86.0352) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.545987 -0.0303796 -0.243091 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 390,
+        "width": 390
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#ffffff",
+            "#fcfdff",
+            "#0a0a0a",
+            "#f8faff",
+            "#687285",
+            "#07090f",
+            "#193cb8",
+            "#2780ff",
+            "#dbe5ee",
+            "#eff6ff",
+            "#155dfc",
+            "#9f0712",
+            "#e2000a"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20
+          ],
+          "radiiPx": [
+            10,
+            14
+          ]
+        },
+        "contrast": {
+          "checked": 45,
+          "failures": []
+        },
+        "motion": {
+          "transitionsCount": 8,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- banner:\n  - button \"Open workspace navigation\"\n  - text: Synthetic Studio\n- tablist \"Open work\":\n  - tab \"Shared work\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"Close tab: Synthetic · Shape the website launch brief\"'\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"Close\"\n  - text: In progress Website · High Revision 4\n  - group:\n    - text: Task title\n    - textbox \"Task title\": Synthetic · Shape the website launch brief\n    - text: Brief\n    - textbox \"Brief\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: Area of work\n    - combobox \"Area of work\":\n      - option \"Marketing\"\n      - option \"Website\" [selected]\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - text: Priority\n    - combobox \"Priority\":\n      - option \"Low\"\n      - option \"Normal\"\n      - option \"High\" [selected]\n      - option \"Urgent\"\n    - text: Due date\n    - textbox \"Due date\": 2026-09-12\n    - paragraph: Calendar date; no time or reminder is set.\n  - button \"Cancel\"\n  - button \"Save changes\"\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task created\n      - time: Sep 9, 2026, 12:19 AM\n      - group: Saved version · Revision 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task updated\n      - time: Sep 9, 2026, 12:19 AM\n      - paragraph: To do → In progress\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · Submitted work for review\n      - time: Sep 9, 2026, 12:34 AM\n      - group: Deliverable\n    - listitem:\n      - paragraph: Rania (Synthetic) · Task updated\n      - time: Sep 9, 2026, 12:35 AM\n      - group: Saved version · Revision 4\n  - group: Source references\n  - group: Engineering detail\n  - button \"Cancel task\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fcfdff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f8faff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#687285 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090f rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#193cb8 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#dbe5ee rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#155dfc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#9f0712 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#e2000a rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-1280-dark-en",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "ltr",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "Close tab: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(36.9089 35.0961 -85.6872) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.487988 -0.0238316 -0.241812 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#0a0a0a",
+            "#07090e",
+            "#14171e",
+            "#fafafa",
+            "#96a0b3",
+            "#f9fafc",
+            "#23282f",
+            "#22282e",
+            "#eff6ff",
+            "#2b7fff",
+            "#ffffff",
+            "#242830",
+            "#8ec5ff",
+            "#2780ff",
+            "#ffa2a2",
+            "#ff6469"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20,
+            24
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20,
+            24,
+            36,
+            40,
+            135
+          ],
+          "radiiPx": [
+            10,
+            14,
+            18,
+            33554400
+          ]
+        },
+        "contrast": {
+          "checked": 117,
+          "failures": [
+            {
+              "text": "Create task",
+              "fg": "#eff6ff",
+              "bg": "#2b7fff",
+              "ratio": 3.46,
+              "required": 4.5
+            },
+            {
+              "text": "Save changes",
+              "fg": "#eff6ff",
+              "bg": "#2b7fff",
+              "ratio": 3.46,
+              "required": 4.5
+            }
+          ]
+        },
+        "motion": {
+          "transitionsCount": 14,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- complementary:\n  - paragraph: Hafidh\n  - paragraph: Ops Desk\n  - paragraph: Workspace\n  - paragraph: Synthetic Studio\n  - navigation \"Workspace\":\n    - button \"My work\"\n    - button \"Shared work\"\n    - button \"Review\"\n    - button \"Sources\"\n    - button \"People & agents\"\n    - button \"Workspace appearance\"\n  - combobox \"Language\":\n    - option \"English\" [selected]\n    - option \"简体中文\"\n    - option \"繁體中文\"\n    - option \"日本語\"\n    - option \"한국어\"\n    - option \"Español\"\n    - option \"Deutsch\"\n    - option \"Français\"\n    - option \"Português\"\n    - option \"العربية\"\n  - combobox \"Appearance\":\n    - option \"Device appearance\"\n    - option \"Light\"\n    - option \"Dark\" [selected]\n  - text: Rania (Synthetic)\n  - paragraph: Owner · Connected\n  - button \"Disconnect\"\n- tablist \"Open work\":\n  - tab \"Shared work\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"Close tab: Synthetic · Shape the website launch brief\"'\n- button \"Use one pane\" [pressed]\n- button \"Stack the panes\"\n- separator \"Resize work panes\"\n- tabpanel \"Shared work\":\n  - text: Kept alongside your work\n  - main:\n    - heading \"Shared work\" [level=1]\n    - paragraph: A shared view of the work your team can access.\n    - button \"Create task\"\n    - textbox \"Find a task\"\n    - button \"Find a task\"\n    - button \"Refresh\"\n    - combobox \"Area of work\":\n      - option \"All areas\" [selected]\n      - option \"Marketing\"\n      - option \"Website\"\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - combobox \"Status\":\n      - option \"All statuses\" [selected]\n      - option \"To do\"\n      - option \"In progress\"\n      - option \"Review\"\n      - option \"Done\"\n      - option \"Cancelled\"\n    - checkbox \"Archived\"\n    - text: Archived\n    - button \"List\" [pressed]\n    - button \"Board\"\n    - button \"Table\"\n    - paragraph: 6 tasks loaded\n    - list:\n      - listitem:\n        - button \"In progress Website · High Synthetic · Shape the website launch brief Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-12\":\n          - text: In progress Website · High\n          - heading \"Synthetic · Shape the website launch brief\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-12\n      - listitem:\n        - button \"To do Ads · Low Synthetic · Clarify the ad creative brief Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent 2026-09-18\":\n          - text: To do Ads · Low\n          - heading \"Synthetic · Clarify the ad creative brief\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent\n          - time: 2026-09-18\n      - listitem:\n        - button \"In progress Engineering · Urgent Synthetic · Check the signup error report Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-10\":\n          - text: In progress Engineering · Urgent\n          - heading \"Synthetic · Check the signup error report\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-10\n      - listitem:\n        - button \"To do Marketing · High Synthetic · Compare two campaign directions Accountable owner Synthetic Platform Operator Assigned to Rania (Synthetic) No due date\":\n          - text: To do Marketing · High\n          - heading \"Synthetic · Compare two campaign directions\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Rania (Synthetic) No due date\n      - listitem:\n        - button \"To do Channels · Normal Synthetic · Prepare next week’s channel plan Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-16\":\n          - text: To do Channels · Normal\n          - heading \"Synthetic · Prepare next week’s channel plan\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-16\n      - listitem:\n        - button \"To do Feedback · Normal Synthetic · Review customer interview themes Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent 2026-09-14\":\n          - text: To do Feedback · Normal\n          - heading \"Synthetic · Review customer interview themes\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent\n          - time: 2026-09-14\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"Close\"\n  - text: In progress Website · High Revision 4\n  - group:\n    - text: Task title\n    - textbox \"Task title\": Synthetic · Shape the website launch brief\n    - text: Brief\n    - textbox \"Brief\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: Area of work\n    - combobox \"Area of work\":\n      - option \"Marketing\"\n      - option \"Website\" [selected]\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - text: Priority\n    - combobox \"Priority\":\n      - option \"Low\"\n      - option \"Normal\"\n      - option \"High\" [selected]\n      - option \"Urgent\"\n    - text: Due date\n    - textbox \"Due date\": 2026-09-12\n    - paragraph: Calendar date; no time or reminder is set.\n  - button \"Cancel\"\n  - button \"Save changes\"\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task created\n      - time: Sep 9, 2026, 12:19 AM\n      - group: Saved version · Revision 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task updated\n      - time: Sep 9, 2026, 12:19 AM\n      - paragraph: To do → In progress\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · Submitted work for review\n      - time: Sep 9, 2026, 12:34 AM\n      - group: Deliverable\n    - listitem:\n      - paragraph: Rania (Synthetic) · Task updated\n      - time: Sep 9, 2026, 12:35 AM\n      - group: Saved version · Revision 4\n  - group: Source references\n  - group: Engineering detail\n  - button \"Cancel task\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#14171e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fafafa rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#96a0b3 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f9fafc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#23282f rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#22282e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2b7fff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#242830 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#8ec5ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffa2a2 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ff6469 rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-radius",
+            "detail": "18px radius off brief + 4px scale"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "135px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-768-dark-en",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "ltr",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "Close tab: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(36.9089 35.0961 -85.6872) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.487988 -0.0238316 -0.241812 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 768,
+        "width": 768
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#0a0a0a",
+            "#07090e",
+            "#fafafa",
+            "#14171e",
+            "#96a0b3",
+            "#f9fafc",
+            "#8ec5ff",
+            "#2780ff",
+            "#ffffff",
+            "#eff6ff",
+            "#2b7fff",
+            "#ffa2a2",
+            "#ff6469"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20,
+            24
+          ],
+          "radiiPx": [
+            10,
+            14
+          ]
+        },
+        "contrast": {
+          "checked": 45,
+          "failures": [
+            {
+              "text": "Save changes",
+              "fg": "#eff6ff",
+              "bg": "#2b7fff",
+              "ratio": 3.46,
+              "required": 4.5
+            }
+          ]
+        },
+        "motion": {
+          "transitionsCount": 8,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- banner:\n  - button \"Open workspace navigation\"\n  - text: Synthetic Studio\n- tablist \"Open work\":\n  - tab \"Shared work\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"Close tab: Synthetic · Shape the website launch brief\"'\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"Close\"\n  - text: In progress Website · High Revision 4\n  - group:\n    - text: Task title\n    - textbox \"Task title\": Synthetic · Shape the website launch brief\n    - text: Brief\n    - textbox \"Brief\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: Area of work\n    - combobox \"Area of work\":\n      - option \"Marketing\"\n      - option \"Website\" [selected]\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - text: Priority\n    - combobox \"Priority\":\n      - option \"Low\"\n      - option \"Normal\"\n      - option \"High\" [selected]\n      - option \"Urgent\"\n    - text: Due date\n    - textbox \"Due date\": 2026-09-12\n    - paragraph: Calendar date; no time or reminder is set.\n  - button \"Cancel\"\n  - button \"Save changes\"\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task created\n      - time: Sep 9, 2026, 12:19 AM\n      - group: Saved version · Revision 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task updated\n      - time: Sep 9, 2026, 12:19 AM\n      - paragraph: To do → In progress\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · Submitted work for review\n      - time: Sep 9, 2026, 12:34 AM\n      - group: Deliverable\n    - listitem:\n      - paragraph: Rania (Synthetic) · Task updated\n      - time: Sep 9, 2026, 12:35 AM\n      - group: Saved version · Revision 4\n  - group: Source references\n  - group: Engineering detail\n  - button \"Cancel task\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fafafa rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#14171e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#96a0b3 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f9fafc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#8ec5ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2b7fff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffa2a2 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ff6469 rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-390-dark-en",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "ltr",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "Close tab: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(36.9089 35.0961 -85.6872) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.487988 -0.0238316 -0.241812 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 390,
+        "width": 390
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#0a0a0a",
+            "#07090e",
+            "#fafafa",
+            "#14171e",
+            "#96a0b3",
+            "#f9fafc",
+            "#8ec5ff",
+            "#2780ff",
+            "#ffffff",
+            "#eff6ff",
+            "#2b7fff",
+            "#ffa2a2",
+            "#ff6469"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20
+          ],
+          "radiiPx": [
+            10,
+            14
+          ]
+        },
+        "contrast": {
+          "checked": 45,
+          "failures": [
+            {
+              "text": "Save changes",
+              "fg": "#eff6ff",
+              "bg": "#2b7fff",
+              "ratio": 3.46,
+              "required": 4.5
+            }
+          ]
+        },
+        "motion": {
+          "transitionsCount": 8,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- banner:\n  - button \"Open workspace navigation\"\n  - text: Synthetic Studio\n- tablist \"Open work\":\n  - tab \"Shared work\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"Close tab: Synthetic · Shape the website launch brief\"'\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"Close\"\n  - text: In progress Website · High Revision 4\n  - group:\n    - text: Task title\n    - textbox \"Task title\": Synthetic · Shape the website launch brief\n    - text: Brief\n    - textbox \"Brief\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: Area of work\n    - combobox \"Area of work\":\n      - option \"Marketing\"\n      - option \"Website\" [selected]\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - text: Priority\n    - combobox \"Priority\":\n      - option \"Low\"\n      - option \"Normal\"\n      - option \"High\" [selected]\n      - option \"Urgent\"\n    - text: Due date\n    - textbox \"Due date\": 2026-09-12\n    - paragraph: Calendar date; no time or reminder is set.\n  - button \"Cancel\"\n  - button \"Save changes\"\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task created\n      - time: Sep 9, 2026, 12:19 AM\n      - group: Saved version · Revision 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task updated\n      - time: Sep 9, 2026, 12:19 AM\n      - paragraph: To do → In progress\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · Submitted work for review\n      - time: Sep 9, 2026, 12:34 AM\n      - group: Deliverable\n    - listitem:\n      - paragraph: Rania (Synthetic) · Task updated\n      - time: Sep 9, 2026, 12:35 AM\n      - group: Saved version · Revision 4\n  - group: Source references\n  - group: Engineering detail\n  - button \"Cancel task\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fafafa rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#14171e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#96a0b3 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f9fafc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#8ec5ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2b7fff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffa2a2 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ff6469 rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-1280-light-ar",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "rtl",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "إغلاق التبويب: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(44.0605 29.0279 -86.0352) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.545987 -0.0303796 -0.243091 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#ffffff",
+            "#fcfdff",
+            "#f8faff",
+            "#0a0a0a",
+            "#687285",
+            "#07090f",
+            "#eff4fd",
+            "#eef4fc",
+            "#eff6ff",
+            "#155dfc",
+            "#dbe5ee",
+            "#eff3fd",
+            "#193cb8",
+            "#2780ff",
+            "#f0f5fc",
+            "#9f0712",
+            "#e2000a"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20,
+            24
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20,
+            24,
+            36,
+            40,
+            151
+          ],
+          "radiiPx": [
+            10,
+            14,
+            18,
+            33554400
+          ]
+        },
+        "contrast": {
+          "checked": 117,
+          "failures": []
+        },
+        "motion": {
+          "transitionsCount": 14,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- complementary:\n  - paragraph: Hafidh\n  - paragraph: Ops Desk\n  - paragraph: مساحة العمل\n  - paragraph: Synthetic Studio\n  - navigation \"مساحة العمل\":\n    - button \"عملي\"\n    - button \"العمل المشترك\"\n    - button \"المراجعة\"\n    - button \"المصادر\"\n    - button \"الأشخاص والوكلاء\"\n    - button \"مظهر مساحة العمل\"\n  - combobox \"اللغة\":\n    - option \"English\"\n    - option \"简体中文\"\n    - option \"繁體中文\"\n    - option \"日本語\"\n    - option \"한국어\"\n    - option \"Español\"\n    - option \"Deutsch\"\n    - option \"Français\"\n    - option \"Português\"\n    - option \"العربية\" [selected]\n  - combobox \"المظهر\":\n    - option \"مظهر الجهاز\"\n    - option \"فاتح\" [selected]\n    - option \"داكن\"\n  - text: Rania (Synthetic)\n  - paragraph: مالك · متصل\n  - button \"قطع الاتصال\"\n- tablist \"العمل المفتوح\":\n  - tab \"العمل المشترك\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"إغلاق التبويب: Synthetic · Shape the website launch brief\"'\n- button \"استخدام مساحة واحدة\" [pressed]\n- button \"ترتيب المساحات فوق بعضها\"\n- separator \"تغيير حجم مساحات العمل\"\n- tabpanel \"العمل المشترك\":\n  - text: مرجع بجانب عملك\n  - main:\n    - heading \"العمل المشترك\" [level=1]\n    - paragraph: العمل المشترك الذي يستطيع فريقك الوصول إليه.\n    - button \"إنشاء مهمة\"\n    - textbox \"البحث عن مهمة\"\n    - button \"البحث عن مهمة\"\n    - button \"تحديث\"\n    - combobox \"مجال العمل\":\n      - option \"كل المجالات\" [selected]\n      - option \"التسويق\"\n      - option \"الموقع\"\n      - option \"الملاحظات\"\n      - option \"القنوات\"\n      - option \"الإعلانات\"\n      - option \"الهندسة\"\n    - combobox \"الحالة\":\n      - option \"كل الحالات\" [selected]\n      - option \"للتنفيذ\"\n      - option \"قيد التنفيذ\"\n      - option \"المراجعة\"\n      - option \"مكتملة\"\n      - option \"ملغاة\"\n    - checkbox \"مؤرشفة\"\n    - text: مؤرشفة\n    - button \"قائمة\" [pressed]\n    - button \"لوحة\"\n    - button \"جدول\"\n    - paragraph: 6 مهام محمّلة\n    - list:\n      - listitem:\n        - button \"قيد التنفيذ الموقع · مرتفعة Synthetic · Shape the website launch brief المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic) 2026-09-12\":\n          - text: قيد التنفيذ الموقع · مرتفعة\n          - heading \"Synthetic · Shape the website launch brief\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic)\n          - time: 2026-09-12\n      - listitem:\n        - button \"للتنفيذ الإعلانات · منخفضة Synthetic · Clarify the ad creative brief المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Draft assistant (Synthetic)وكيل 2026-09-18\":\n          - text: للتنفيذ الإعلانات · منخفضة\n          - heading \"Synthetic · Clarify the ad creative brief\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Draft assistant (Synthetic)وكيل\n          - time: 2026-09-18\n      - listitem:\n        - button \"قيد التنفيذ الهندسة · عاجلة Synthetic · Check the signup error report المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic) 2026-09-10\":\n          - text: قيد التنفيذ الهندسة · عاجلة\n          - heading \"Synthetic · Check the signup error report\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic)\n          - time: 2026-09-10\n      - listitem:\n        - button \"للتنفيذ التسويق · مرتفعة Synthetic · Compare two campaign directions المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Rania (Synthetic) بلا تاريخ استحقاق\":\n          - text: للتنفيذ التسويق · مرتفعة\n          - heading \"Synthetic · Compare two campaign directions\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Rania (Synthetic) بلا تاريخ استحقاق\n      - listitem:\n        - button \"للتنفيذ القنوات · عادية Synthetic · Prepare next week’s channel plan المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic) 2026-09-16\":\n          - text: للتنفيذ القنوات · عادية\n          - heading \"Synthetic · Prepare next week’s channel plan\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic)\n          - time: 2026-09-16\n      - listitem:\n        - button \"للتنفيذ الملاحظات · عادية Synthetic · Review customer interview themes المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Draft assistant (Synthetic)وكيل 2026-09-14\":\n          - text: للتنفيذ الملاحظات · عادية\n          - heading \"Synthetic · Review customer interview themes\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Draft assistant (Synthetic)وكيل\n          - time: 2026-09-14\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"إغلاق\"\n  - text: قيد التنفيذ الموقع · مرتفعة النسخة 4\n  - group:\n    - text: عنوان المهمة\n    - textbox \"عنوان المهمة\": Synthetic · Shape the website launch brief\n    - text: وصف العمل\n    - textbox \"وصف العمل\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: مجال العمل\n    - combobox \"مجال العمل\":\n      - option \"التسويق\"\n      - option \"الموقع\" [selected]\n      - option \"الملاحظات\"\n      - option \"القنوات\"\n      - option \"الإعلانات\"\n      - option \"الهندسة\"\n    - text: الأولوية\n    - combobox \"الأولوية\":\n      - option \"منخفضة\"\n      - option \"عادية\"\n      - option \"مرتفعة\" [selected]\n      - option \"عاجلة\"\n    - text: تاريخ الاستحقاق\n    - textbox \"تاريخ الاستحقاق\": 2026-09-12\n    - paragraph: تاريخ فقط؛ لم يُحدد وقت أو تذكير.\n  - button \"إلغاء\"\n  - button \"حفظ التغييرات\"\n  - heading \"النشاط\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · أُنشئت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - group: النسخة المحفوظة · النسخة 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - paragraph: للتنفيذ → قيد التنفيذ\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · قدّم العمل للمراجعة\n      - time: 09‏/09‏/2026، 12:34 ص\n      - group: مخرجات العمل\n    - listitem:\n      - paragraph: Rania (Synthetic) · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:35 ص\n      - group: النسخة المحفوظة · النسخة 4\n  - group: مراجع المصادر\n  - group: التفاصيل الهندسية\n  - button \"إلغاء المهمة\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fcfdff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f8faff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#687285 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090f rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff4fd rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eef4fc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#155dfc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#dbe5ee rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff3fd rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#193cb8 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f0f5fc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#9f0712 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#e2000a rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-radius",
+            "detail": "18px radius off brief + 4px scale"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "151px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-768-light-ar",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "rtl",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "إغلاق التبويب: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(44.0605 29.0279 -86.0352) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.545987 -0.0303796 -0.243091 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 768,
+        "width": 768
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#ffffff",
+            "#fcfdff",
+            "#0a0a0a",
+            "#f8faff",
+            "#687285",
+            "#07090f",
+            "#193cb8",
+            "#2780ff",
+            "#dbe5ee",
+            "#eff6ff",
+            "#155dfc",
+            "#9f0712",
+            "#e2000a"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20,
+            24
+          ],
+          "radiiPx": [
+            10,
+            14
+          ]
+        },
+        "contrast": {
+          "checked": 45,
+          "failures": []
+        },
+        "motion": {
+          "transitionsCount": 8,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- banner:\n  - button \"فتح قائمة مساحة العمل\"\n  - text: Synthetic Studio\n- tablist \"العمل المفتوح\":\n  - tab \"العمل المشترك\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"إغلاق التبويب: Synthetic · Shape the website launch brief\"'\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"إغلاق\"\n  - text: قيد التنفيذ الموقع · مرتفعة النسخة 4\n  - group:\n    - text: عنوان المهمة\n    - textbox \"عنوان المهمة\": Synthetic · Shape the website launch brief\n    - text: وصف العمل\n    - textbox \"وصف العمل\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: مجال العمل\n    - combobox \"مجال العمل\":\n      - option \"التسويق\"\n      - option \"الموقع\" [selected]\n      - option \"الملاحظات\"\n      - option \"القنوات\"\n      - option \"الإعلانات\"\n      - option \"الهندسة\"\n    - text: الأولوية\n    - combobox \"الأولوية\":\n      - option \"منخفضة\"\n      - option \"عادية\"\n      - option \"مرتفعة\" [selected]\n      - option \"عاجلة\"\n    - text: تاريخ الاستحقاق\n    - textbox \"تاريخ الاستحقاق\": 2026-09-12\n    - paragraph: تاريخ فقط؛ لم يُحدد وقت أو تذكير.\n  - button \"إلغاء\"\n  - button \"حفظ التغييرات\"\n  - heading \"النشاط\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · أُنشئت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - group: النسخة المحفوظة · النسخة 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - paragraph: للتنفيذ → قيد التنفيذ\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · قدّم العمل للمراجعة\n      - time: 09‏/09‏/2026، 12:34 ص\n      - group: مخرجات العمل\n    - listitem:\n      - paragraph: Rania (Synthetic) · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:35 ص\n      - group: النسخة المحفوظة · النسخة 4\n  - group: مراجع المصادر\n  - group: التفاصيل الهندسية\n  - button \"إلغاء المهمة\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fcfdff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f8faff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#687285 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090f rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#193cb8 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#dbe5ee rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#155dfc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#9f0712 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#e2000a rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-390-light-ar",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "rtl",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "إغلاق التبويب: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(44.0605 29.0279 -86.0352) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.545987 -0.0303796 -0.243091 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 390,
+        "width": 390
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#ffffff",
+            "#fcfdff",
+            "#0a0a0a",
+            "#f8faff",
+            "#687285",
+            "#07090f",
+            "#193cb8",
+            "#2780ff",
+            "#dbe5ee",
+            "#eff6ff",
+            "#155dfc",
+            "#9f0712",
+            "#e2000a"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20
+          ],
+          "radiiPx": [
+            10,
+            14
+          ]
+        },
+        "contrast": {
+          "checked": 45,
+          "failures": []
+        },
+        "motion": {
+          "transitionsCount": 8,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- banner:\n  - button \"فتح قائمة مساحة العمل\"\n  - text: Synthetic Studio\n- tablist \"العمل المفتوح\":\n  - tab \"العمل المشترك\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"إغلاق التبويب: Synthetic · Shape the website launch brief\"'\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"إغلاق\"\n  - text: قيد التنفيذ الموقع · مرتفعة النسخة 4\n  - group:\n    - text: عنوان المهمة\n    - textbox \"عنوان المهمة\": Synthetic · Shape the website launch brief\n    - text: وصف العمل\n    - textbox \"وصف العمل\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: مجال العمل\n    - combobox \"مجال العمل\":\n      - option \"التسويق\"\n      - option \"الموقع\" [selected]\n      - option \"الملاحظات\"\n      - option \"القنوات\"\n      - option \"الإعلانات\"\n      - option \"الهندسة\"\n    - text: الأولوية\n    - combobox \"الأولوية\":\n      - option \"منخفضة\"\n      - option \"عادية\"\n      - option \"مرتفعة\" [selected]\n      - option \"عاجلة\"\n    - text: تاريخ الاستحقاق\n    - textbox \"تاريخ الاستحقاق\": 2026-09-12\n    - paragraph: تاريخ فقط؛ لم يُحدد وقت أو تذكير.\n  - button \"إلغاء\"\n  - button \"حفظ التغييرات\"\n  - heading \"النشاط\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · أُنشئت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - group: النسخة المحفوظة · النسخة 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - paragraph: للتنفيذ → قيد التنفيذ\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · قدّم العمل للمراجعة\n      - time: 09‏/09‏/2026، 12:34 ص\n      - group: مخرجات العمل\n    - listitem:\n      - paragraph: Rania (Synthetic) · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:35 ص\n      - group: النسخة المحفوظة · النسخة 4\n  - group: مراجع المصادر\n  - group: التفاصيل الهندسية\n  - button \"إلغاء المهمة\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fcfdff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f8faff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#687285 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090f rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#193cb8 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#dbe5ee rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#155dfc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#9f0712 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#e2000a rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-1280-dark-ar",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "rtl",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "إغلاق التبويب: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(36.9089 35.0961 -85.6872) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.487988 -0.0238316 -0.241812 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#0a0a0a",
+            "#07090e",
+            "#14171e",
+            "#fafafa",
+            "#96a0b3",
+            "#f9fafc",
+            "#23282f",
+            "#22282e",
+            "#eff6ff",
+            "#2b7fff",
+            "#ffffff",
+            "#242830",
+            "#8ec5ff",
+            "#2780ff",
+            "#ffa2a2",
+            "#ff6469"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20,
+            24
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20,
+            24,
+            36,
+            40,
+            151
+          ],
+          "radiiPx": [
+            10,
+            14,
+            18,
+            33554400
+          ]
+        },
+        "contrast": {
+          "checked": 117,
+          "failures": [
+            {
+              "text": "إنشاء مهمة",
+              "fg": "#eff6ff",
+              "bg": "#2b7fff",
+              "ratio": 3.46,
+              "required": 4.5
+            },
+            {
+              "text": "حفظ التغييرات",
+              "fg": "#eff6ff",
+              "bg": "#2b7fff",
+              "ratio": 3.46,
+              "required": 4.5
+            }
+          ]
+        },
+        "motion": {
+          "transitionsCount": 14,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- complementary:\n  - paragraph: Hafidh\n  - paragraph: Ops Desk\n  - paragraph: مساحة العمل\n  - paragraph: Synthetic Studio\n  - navigation \"مساحة العمل\":\n    - button \"عملي\"\n    - button \"العمل المشترك\"\n    - button \"المراجعة\"\n    - button \"المصادر\"\n    - button \"الأشخاص والوكلاء\"\n    - button \"مظهر مساحة العمل\"\n  - combobox \"اللغة\":\n    - option \"English\"\n    - option \"简体中文\"\n    - option \"繁體中文\"\n    - option \"日本語\"\n    - option \"한국어\"\n    - option \"Español\"\n    - option \"Deutsch\"\n    - option \"Français\"\n    - option \"Português\"\n    - option \"العربية\" [selected]\n  - combobox \"المظهر\":\n    - option \"مظهر الجهاز\"\n    - option \"فاتح\"\n    - option \"داكن\" [selected]\n  - text: Rania (Synthetic)\n  - paragraph: مالك · متصل\n  - button \"قطع الاتصال\"\n- tablist \"العمل المفتوح\":\n  - tab \"العمل المشترك\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"إغلاق التبويب: Synthetic · Shape the website launch brief\"'\n- button \"استخدام مساحة واحدة\" [pressed]\n- button \"ترتيب المساحات فوق بعضها\"\n- separator \"تغيير حجم مساحات العمل\"\n- tabpanel \"العمل المشترك\":\n  - text: مرجع بجانب عملك\n  - main:\n    - heading \"العمل المشترك\" [level=1]\n    - paragraph: العمل المشترك الذي يستطيع فريقك الوصول إليه.\n    - button \"إنشاء مهمة\"\n    - textbox \"البحث عن مهمة\"\n    - button \"البحث عن مهمة\"\n    - button \"تحديث\"\n    - combobox \"مجال العمل\":\n      - option \"كل المجالات\" [selected]\n      - option \"التسويق\"\n      - option \"الموقع\"\n      - option \"الملاحظات\"\n      - option \"القنوات\"\n      - option \"الإعلانات\"\n      - option \"الهندسة\"\n    - combobox \"الحالة\":\n      - option \"كل الحالات\" [selected]\n      - option \"للتنفيذ\"\n      - option \"قيد التنفيذ\"\n      - option \"المراجعة\"\n      - option \"مكتملة\"\n      - option \"ملغاة\"\n    - checkbox \"مؤرشفة\"\n    - text: مؤرشفة\n    - button \"قائمة\" [pressed]\n    - button \"لوحة\"\n    - button \"جدول\"\n    - paragraph: 6 مهام محمّلة\n    - list:\n      - listitem:\n        - button \"قيد التنفيذ الموقع · مرتفعة Synthetic · Shape the website launch brief المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic) 2026-09-12\":\n          - text: قيد التنفيذ الموقع · مرتفعة\n          - heading \"Synthetic · Shape the website launch brief\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic)\n          - time: 2026-09-12\n      - listitem:\n        - button \"للتنفيذ الإعلانات · منخفضة Synthetic · Clarify the ad creative brief المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Draft assistant (Synthetic)وكيل 2026-09-18\":\n          - text: للتنفيذ الإعلانات · منخفضة\n          - heading \"Synthetic · Clarify the ad creative brief\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Draft assistant (Synthetic)وكيل\n          - time: 2026-09-18\n      - listitem:\n        - button \"قيد التنفيذ الهندسة · عاجلة Synthetic · Check the signup error report المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic) 2026-09-10\":\n          - text: قيد التنفيذ الهندسة · عاجلة\n          - heading \"Synthetic · Check the signup error report\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic)\n          - time: 2026-09-10\n      - listitem:\n        - button \"للتنفيذ التسويق · مرتفعة Synthetic · Compare two campaign directions المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Rania (Synthetic) بلا تاريخ استحقاق\":\n          - text: للتنفيذ التسويق · مرتفعة\n          - heading \"Synthetic · Compare two campaign directions\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Rania (Synthetic) بلا تاريخ استحقاق\n      - listitem:\n        - button \"للتنفيذ القنوات · عادية Synthetic · Prepare next week’s channel plan المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic) 2026-09-16\":\n          - text: للتنفيذ القنوات · عادية\n          - heading \"Synthetic · Prepare next week’s channel plan\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Yusuf (Synthetic)\n          - time: 2026-09-16\n      - listitem:\n        - button \"للتنفيذ الملاحظات · عادية Synthetic · Review customer interview themes المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Draft assistant (Synthetic)وكيل 2026-09-14\":\n          - text: للتنفيذ الملاحظات · عادية\n          - heading \"Synthetic · Review customer interview themes\" [level=2]\n          - text: المسؤول عن النتيجة Synthetic Platform Operator المكلّف بالعمل Draft assistant (Synthetic)وكيل\n          - time: 2026-09-14\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"إغلاق\"\n  - text: قيد التنفيذ الموقع · مرتفعة النسخة 4\n  - group:\n    - text: عنوان المهمة\n    - textbox \"عنوان المهمة\": Synthetic · Shape the website launch brief\n    - text: وصف العمل\n    - textbox \"وصف العمل\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: مجال العمل\n    - combobox \"مجال العمل\":\n      - option \"التسويق\"\n      - option \"الموقع\" [selected]\n      - option \"الملاحظات\"\n      - option \"القنوات\"\n      - option \"الإعلانات\"\n      - option \"الهندسة\"\n    - text: الأولوية\n    - combobox \"الأولوية\":\n      - option \"منخفضة\"\n      - option \"عادية\"\n      - option \"مرتفعة\" [selected]\n      - option \"عاجلة\"\n    - text: تاريخ الاستحقاق\n    - textbox \"تاريخ الاستحقاق\": 2026-09-12\n    - paragraph: تاريخ فقط؛ لم يُحدد وقت أو تذكير.\n  - button \"إلغاء\"\n  - button \"حفظ التغييرات\"\n  - heading \"النشاط\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · أُنشئت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - group: النسخة المحفوظة · النسخة 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - paragraph: للتنفيذ → قيد التنفيذ\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · قدّم العمل للمراجعة\n      - time: 09‏/09‏/2026، 12:34 ص\n      - group: مخرجات العمل\n    - listitem:\n      - paragraph: Rania (Synthetic) · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:35 ص\n      - group: النسخة المحفوظة · النسخة 4\n  - group: مراجع المصادر\n  - group: التفاصيل الهندسية\n  - button \"إلغاء المهمة\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#14171e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fafafa rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#96a0b3 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f9fafc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#23282f rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#22282e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2b7fff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#242830 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#8ec5ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffa2a2 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ff6469 rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-radius",
+            "detail": "18px radius off brief + 4px scale"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "151px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-768-dark-ar",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "rtl",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "إغلاق التبويب: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(36.9089 35.0961 -85.6872) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.487988 -0.0238316 -0.241812 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 768,
+        "width": 768
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#0a0a0a",
+            "#07090e",
+            "#fafafa",
+            "#14171e",
+            "#96a0b3",
+            "#f9fafc",
+            "#8ec5ff",
+            "#2780ff",
+            "#ffffff",
+            "#eff6ff",
+            "#2b7fff",
+            "#ffa2a2",
+            "#ff6469"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20,
+            24
+          ],
+          "radiiPx": [
+            10,
+            14
+          ]
+        },
+        "contrast": {
+          "checked": 45,
+          "failures": [
+            {
+              "text": "حفظ التغييرات",
+              "fg": "#eff6ff",
+              "bg": "#2b7fff",
+              "ratio": 3.46,
+              "required": 4.5
+            }
+          ]
+        },
+        "motion": {
+          "transitionsCount": 8,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- banner:\n  - button \"فتح قائمة مساحة العمل\"\n  - text: Synthetic Studio\n- tablist \"العمل المفتوح\":\n  - tab \"العمل المشترك\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"إغلاق التبويب: Synthetic · Shape the website launch brief\"'\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"إغلاق\"\n  - text: قيد التنفيذ الموقع · مرتفعة النسخة 4\n  - group:\n    - text: عنوان المهمة\n    - textbox \"عنوان المهمة\": Synthetic · Shape the website launch brief\n    - text: وصف العمل\n    - textbox \"وصف العمل\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: مجال العمل\n    - combobox \"مجال العمل\":\n      - option \"التسويق\"\n      - option \"الموقع\" [selected]\n      - option \"الملاحظات\"\n      - option \"القنوات\"\n      - option \"الإعلانات\"\n      - option \"الهندسة\"\n    - text: الأولوية\n    - combobox \"الأولوية\":\n      - option \"منخفضة\"\n      - option \"عادية\"\n      - option \"مرتفعة\" [selected]\n      - option \"عاجلة\"\n    - text: تاريخ الاستحقاق\n    - textbox \"تاريخ الاستحقاق\": 2026-09-12\n    - paragraph: تاريخ فقط؛ لم يُحدد وقت أو تذكير.\n  - button \"إلغاء\"\n  - button \"حفظ التغييرات\"\n  - heading \"النشاط\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · أُنشئت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - group: النسخة المحفوظة · النسخة 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - paragraph: للتنفيذ → قيد التنفيذ\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · قدّم العمل للمراجعة\n      - time: 09‏/09‏/2026، 12:34 ص\n      - group: مخرجات العمل\n    - listitem:\n      - paragraph: Rania (Synthetic) · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:35 ص\n      - group: النسخة المحفوظة · النسخة 4\n  - group: مراجع المصادر\n  - group: التفاصيل الهندسية\n  - button \"إلغاء المهمة\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fafafa rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#14171e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#96a0b3 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f9fafc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#8ec5ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2b7fff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffa2a2 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ff6469 rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workbench-390-dark-ar",
+      "measurement": {
+        "rootPalette": "neutral",
+        "scopedPalette": "blue",
+        "dir": "rtl",
+        "privateStored": false,
+        "date": "2026-09-12",
+        "focus": {
+          "name": "إغلاق التبويب: Synthetic · Shape the website launch brief",
+          "tag": "BUTTON",
+          "width": 44,
+          "height": 48,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, lab(36.9089 35.0961 -85.6872) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.487988 -0.0238316 -0.241812 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "scrollWidth": 390,
+        "width": 390
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "report": {
+        "ok": true,
+        "inventory": {
+          "colors": [
+            "#0a0a0a",
+            "#07090e",
+            "#fafafa",
+            "#14171e",
+            "#96a0b3",
+            "#f9fafc",
+            "#8ec5ff",
+            "#2780ff",
+            "#ffffff",
+            "#eff6ff",
+            "#2b7fff",
+            "#ffa2a2",
+            "#ff6469"
+          ],
+          "fontFamilies": [
+            "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+          ],
+          "fontSizesPx": [
+            12,
+            14,
+            16,
+            20
+          ],
+          "spacingPx": [
+            4,
+            6,
+            8,
+            12,
+            16,
+            20
+          ],
+          "radiiPx": [
+            10,
+            14
+          ]
+        },
+        "contrast": {
+          "checked": 45,
+          "failures": [
+            {
+              "text": "حفظ التغييرات",
+              "fg": "#eff6ff",
+              "bg": "#2b7fff",
+              "ratio": 3.46,
+              "required": 4.5
+            }
+          ]
+        },
+        "motion": {
+          "transitionsCount": 8,
+          "easings": [
+            "cubic-bezier(0.4, 0, 0.2, 1)"
+          ],
+          "reducedMotionHandled": true,
+          "reducedMotionEffective": null,
+          "cls": null,
+          "longFrames": null
+        },
+        "aria": {
+          "snapshot": "- alert\n- banner:\n  - button \"فتح قائمة مساحة العمل\"\n  - text: Synthetic Studio\n- tablist \"العمل المفتوح\":\n  - tab \"العمل المشترك\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"إغلاق التبويب: Synthetic · Shape the website launch brief\"'\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"إغلاق\"\n  - text: قيد التنفيذ الموقع · مرتفعة النسخة 4\n  - group:\n    - text: عنوان المهمة\n    - textbox \"عنوان المهمة\": Synthetic · Shape the website launch brief\n    - text: وصف العمل\n    - textbox \"وصف العمل\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: مجال العمل\n    - combobox \"مجال العمل\":\n      - option \"التسويق\"\n      - option \"الموقع\" [selected]\n      - option \"الملاحظات\"\n      - option \"القنوات\"\n      - option \"الإعلانات\"\n      - option \"الهندسة\"\n    - text: الأولوية\n    - combobox \"الأولوية\":\n      - option \"منخفضة\"\n      - option \"عادية\"\n      - option \"مرتفعة\" [selected]\n      - option \"عاجلة\"\n    - text: تاريخ الاستحقاق\n    - textbox \"تاريخ الاستحقاق\": 2026-09-12\n    - paragraph: تاريخ فقط؛ لم يُحدد وقت أو تذكير.\n  - button \"إلغاء\"\n  - button \"حفظ التغييرات\"\n  - heading \"النشاط\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · أُنشئت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - group: النسخة المحفوظة · النسخة 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:19 ص\n      - paragraph: للتنفيذ → قيد التنفيذ\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · قدّم العمل للمراجعة\n      - time: 09‏/09‏/2026، 12:34 ص\n      - group: مخرجات العمل\n    - listitem:\n      - paragraph: Rania (Synthetic) · حُدثت المهمة\n      - time: 09‏/09‏/2026، 12:35 ص\n      - group: النسخة المحفوظة · النسخة 4\n  - group: مراجع المصادر\n  - group: التفاصيل الهندسية\n  - button \"إلغاء المهمة\"",
+          "unnamedInteractive": 0,
+          "headingOrderBreaks": null,
+          "landmarks": null
+        },
+        "briefViolations": [
+          {
+            "kind": "off-palette-color",
+            "detail": "#0a0a0a rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#07090e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#fafafa rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#14171e rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#96a0b3 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#f9fafc rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#8ec5ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2780ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffffff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#eff6ff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#2b7fff rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ffa2a2 rendered but not in brief palette"
+          },
+          {
+            "kind": "off-palette-color",
+            "detail": "#ff6469 rendered but not in brief palette"
+          },
+          {
+            "kind": "extra-font-family",
+            "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+          },
+          {
+            "kind": "off-scale-spacing",
+            "detail": "6px spacing off brief + 4px scale"
+          }
+        ]
+      }
+    }
+  ],
+  "reduced": {
+    "enabled": true,
+    "overflow": false,
+    "visibleTitles": [
+      "Synthetic · Shape the website launch brief"
+    ]
+  }
+}
