@@ -1,0 +1,20 @@
+[
+  {
+    "time": 1788949682,
+    "session_id": "01a084ee-12a8-7833-ace9-f3f4985ba926",
+    "event": "PreToolUse",
+    "tool": "Bash",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand",
+    "exit": 0,
+    "context_emitted": true
+  },
+  {
+    "time": 1788949682,
+    "session_id": "01a084ee-12a8-7833-ace9-f3f4985ba926",
+    "event": "PostToolUse",
+    "tool": "Bash",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand",
+    "exit": 0,
+    "context_emitted": false
+  }
+]

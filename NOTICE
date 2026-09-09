@@ -999,6 +999,16 @@ Library16.3.2/Vitest2.1.9 are read API references. No third-party implementation
 provider, dependency, authentication boundary or license is added or replaced.
 Original LICENSE and all preceding attribution blocks remain intact.
 
+Intake recovery browser evidence (2026):
+reports/business-intake-ui-evidence/recovery-*.cli.js reuses the protected
+synthetic sign-in, source refresh, candidate review and measured Canvas helpers
+already in this repository at08417b4ff (full source follows the60d600db0 product).
+Original Codeg Apache-2.0 attribution and the existing Design Studio measurement
+ledger remain unchanged. Browser CLI0.1.18/Playwright1.63.0-alpha-2026-08-05,
+Node24.19.0/@types-node25.2.2 are read API references, not dependency ports.
+No original user/private-provider data, credential, new package or application
+authorization implementation is copied into these synthetic evidence files.
+
 Corrected intake browser fixture (2026):
 reports/business-intake-ui-evidence/serve-recovery-4355.mjs adapts
 serve-unified.mjs at Codeg60d600db0f224d44ff191490ab79bc25530ba959,
