@@ -2,11 +2,20 @@
 
 ## Current integration and worker state
 
-Approvals has read all eight committed949adb02 epoch/migration/HTTP tests and
-native wrappers. Its bounded independent run will reuse
-`.build/business-integration-review/target-15bb402b`, sequential-j2, without a
-desktop build or build-output copies; no pass is claimed yet. The original UI
-probe runs separately in a small archive/cache. Root updated the
+Approvals reports all eight frozen949adb02 tests independently passing:
+epoch migrations4, tenancy3 and protected HTTP1, exits0, runtimes0.41/0.26/0.09s.
+Its existing target recompile took169s and all processes finished. Reviewer
+reports772/772 original archive blobs exact, with accepted000012 and retained
+000011 unchanged. Exact logs/report publication and root digest verification
+remain pending; these results do not accept the full integration.
+
+At UI dc14, the original probe reaches the correct discard dialog. Its next
+background role lookup fails because the modal correctly hides that subtree.
+Reviewer retained the failed run and changed only that assertion to check the
+mounted field, then explicit Keep editing and its accessible value:1/1 passes.
+No product change or accessibility defect is inferred from that locator failure.
+The a58 race correction and real unified-fixture browser closure remain pending.
+Root updated the
 [acceptance checklist](reports/business-intake-acceptance-checklist.md) to reflect
 accepted tenant-owned Fireflies setup, persisted epochs and the unified fixture
 sequence; the old operator-only Fireflies rule is superseded.
@@ -37,7 +46,7 @@ PR28 now publishes `949adb02c18c72d0804eeb74b420520a7681ee86`: eight new
 tenant/migration/protected-HTTP tests and completed native wrapper registrations.
 Owner discloses two exploratory assertion failures followed by corrected passing
 selectors; a single green final intake suite and final checks remain required.
-Approvals has this exact head for independent execution. Previously archived
+Approvals independently passed its eight new cases as reported above. Previously archived
 f51154b9 matches768/768; accepted000012 remains unchanged, with forward000013.
 
 PR29 publishes `dc14e83b93529afab99e973ddbd21e0db79b851b`, including the
@@ -45,8 +54,10 @@ PR29 publishes `dc14e83b93529afab99e973ddbd21e0db79b851b`, including the
 read that guard and the newer `a58c004c7d5187e6455a452195985528ddf14bc7`
 diff: newer navigation supersedes pending target reads, and busy/unknown writes
 block discard until recovery. Its component race tests are published; root has
-not executed them, and the owner's report closeout is pending. IUI-1 stays
-open pending independent regression and actual integrated browser recheck.
+not executed them. Report-only closeout495466c2 records owner52/52 affected
+component tests, typecheck and scoped lint passing, with exploratory failures
+and the test readiness correction disclosed. IUI-1 stays open pending final
+independent race review and actual integrated browser recheck.
 All three workers are active and report Astra through Herdr. Tickets owns the
 next stable synthetic4351/4352 handoff; existing4350 preview still uses separate
 backends. The unified database, tenant privacy, source workflows and shared-pane
