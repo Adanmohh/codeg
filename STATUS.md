@@ -2,6 +2,15 @@
 
 ## Current integration and worker state
 
+Approvals has read all eight committed949adb02 epoch/migration/HTTP tests and
+native wrappers. Its bounded independent run will reuse
+`.build/business-integration-review/target-15bb402b`, sequential-j2, without a
+desktop build or build-output copies; no pass is claimed yet. The original UI
+probe runs separately in a small archive/cache. Root updated the
+[acceptance checklist](reports/business-intake-acceptance-checklist.md) to reflect
+accepted tenant-owned Fireflies setup, persisted epochs and the unified fixture
+sequence; the old operator-only Fireflies rule is superseded.
+
 Tickets reports desktop check and typecheck exit0; four Clippy cleanup issues
 and one complete green intake run remain before its immutable unified4351/4352
 fixture handoff. Disk space is constrained: worker observed11Gi free and root
