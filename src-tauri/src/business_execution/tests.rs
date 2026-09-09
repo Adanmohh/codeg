@@ -25,7 +25,7 @@ async fn before_execution() -> DatabaseConnection {
     Migrator::up(&conn, Some(index as u32)).await.unwrap();
     conn
 }
-async fn task(conn: &DatabaseConnection) -> (identity::Principal, tasks::types::Detail) {
+pub(super) async fn task(conn: &DatabaseConnection) -> (identity::Principal, tasks::types::Detail) {
     identity::store::bootstrap(
         conn,
         identity::types::BootstrapInput {

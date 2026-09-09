@@ -92,6 +92,14 @@ CREATE TRIGGER business_execution_profile_changed AFTER UPDATE OF config_hash,re
  WHEN NEW.config_hash != OLD.config_hash OR NEW.revision != OLD.revision OR NEW.retired_at IS NOT OLD.retired_at
  BEGIN UPDATE business_execution_session SET status='revoked',generation=generation+1,revision=revision+1
   WHERE profile_id=NEW.id AND status NOT IN ('revoked','closed'); END;
+CREATE TRIGGER business_execution_member_changed AFTER UPDATE OF role,domains_json,status,operator_owner ON business_member
+ WHEN NEW.role IS NOT OLD.role OR NEW.domains_json IS NOT OLD.domains_json OR NEW.status IS NOT OLD.status OR NEW.operator_owner IS NOT OLD.operator_owner
+ BEGIN UPDATE business_execution_session SET status='revoked',generation=generation+1,revision=revision+1
+  WHERE organization_id=NEW.organization_id AND member_id=NEW.id AND status NOT IN ('revoked','closed'); END;
+CREATE TRIGGER business_execution_tenant_changed AFTER UPDATE OF status,authorization_epoch ON business_organization
+ WHEN NEW.status IS NOT OLD.status OR NEW.authorization_epoch IS NOT OLD.authorization_epoch
+ BEGIN UPDATE business_execution_session SET status='revoked',generation=generation+1,revision=revision+1
+  WHERE organization_id=NEW.id AND status NOT IN ('revoked','closed'); END;
 
 CREATE TABLE business_execution_generation (
  organization_id TEXT NOT NULL,
