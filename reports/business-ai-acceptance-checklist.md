@@ -1,5 +1,10 @@
 # Business AI workspace — root acceptance
 
+This restates the owner's previously agreed product requirements. AI orchestration,
+real agent/terminal sessions and role-based business views in one shared workspace
+are required delivery, not a newly requested expansion or an optional later phase.
+The owner should not need to repeat them during checkpoint coordination.
+
 This is the next delivery priority after the owner's direct observation that the
 business preview has no usable AI chat, agents or terminal. It is a plan, not an
 implementation or acceptance claim. Existing engine and workspace components are
