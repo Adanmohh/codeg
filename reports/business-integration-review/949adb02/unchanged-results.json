@@ -1,0 +1,71 @@
+{
+  "commit": "949adb02c18c72d0804eeb74b420520a7681ee86",
+  "results": [
+    {
+      "selector": "epoch_migration_cases",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/949adb02/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "business_intake::tests::epoch_migration_cases"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/949adb02/source",
+      "exit": 0,
+      "wall_seconds": 169.425,
+      "log": "unchanged-epoch_migration_cases.log"
+    },
+    {
+      "selector": "tenancy_cases",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/949adb02/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "business_intake::tests::tenancy_cases"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/949adb02/source",
+      "exit": 0,
+      "wall_seconds": 1.172,
+      "log": "unchanged-tenancy_cases.log"
+    },
+    {
+      "selector": "tenant_http_cases",
+      "command": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/949adb02/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "business_intake::tests::tenant_http_cases"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/949adb02/source",
+      "exit": 0,
+      "wall_seconds": 0.375,
+      "log": "unchanged-tenant_http_cases.log"
+    }
+  ]
+}

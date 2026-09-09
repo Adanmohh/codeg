@@ -2,19 +2,28 @@
 
 ## Current integration and worker state
 
+Published independent review `cd23134989f1df0e13616b6f13ea4c9b1d5b715e`
+is imported with its exact new evidence. Root verified all22 new SHA256 digests
+across949 backend, dc14 UI and a58 UI directories. The reviewer executed eight
+backend tests and13 a58 component tests (four race, eight setup, one adapted
+reviewer probe), all passing. Its original source manifests preserve772/1230/1231
+blobs. No new bounded backend or component-level IUI-1 blocker remains; actual
+protected browser closure, remaining UI flows and final integration stay pending.
+
 Approvals reports all eight frozen949adb02 tests independently passing:
 epoch migrations4, tenancy3 and protected HTTP1, exits0, runtimes0.41/0.26/0.09s.
 Its existing target recompile took169s and all processes finished. Reviewer
 reports772/772 original archive blobs exact, with accepted000012 and retained
-000011 unchanged. Exact logs/report publication and root digest verification
-remain pending; these results do not accept the full integration.
+000011 unchanged. Exact logs/report are now imported and hash-verified as above;
+these results do not accept the full integration.
 
 At UI dc14, the original probe reaches the correct discard dialog. Its next
 background role lookup fails because the modal correctly hides that subtree.
 Reviewer retained the failed run and changed only that assertion to check the
 mounted field, then explicit Keep editing and its accessible value:1/1 passes.
 No product change or accessibility defect is inferred from that locator failure.
-The a58 race correction and real unified-fixture browser closure remain pending.
+The a58 race correction now passes independent component checks; the real
+unified-fixture browser closure remains pending.
 Root updated the
 [acceptance checklist](reports/business-intake-acceptance-checklist.md) to reflect
 accepted tenant-owned Fireflies setup, persisted epochs and the unified fixture
@@ -56,8 +65,8 @@ diff: newer navigation supersedes pending target reads, and busy/unknown writes
 block discard until recovery. Its component race tests are published; root has
 not executed them. Report-only closeout495466c2 records owner52/52 affected
 component tests, typecheck and scoped lint passing, with exploratory failures
-and the test readiness correction disclosed. IUI-1 stays open pending final
-independent race review and actual integrated browser recheck.
+and the test readiness correction disclosed. Independent a58 race review now
+passes; IUI-1 stays open pending the actual integrated browser recheck.
 All three workers are active and report Astra through Herdr. Tickets owns the
 next stable synthetic4351/4352 handoff; existing4350 preview still uses separate
 backends. The unified database, tenant privacy, source workflows and shared-pane

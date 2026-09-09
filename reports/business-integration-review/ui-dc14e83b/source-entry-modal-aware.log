@@ -1,0 +1,11 @@
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/ui-dc14e83b/source
+
+ ✓ src/components/business-intake/reviewer-source-entry.test.tsx (1 test) 129ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  10:24:48
+   Duration  1.27s (transform 152ms, setup 160ms, collect 445ms, tests 129ms, environment 377ms, prepare 58ms)
+

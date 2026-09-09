@@ -1,0 +1,35 @@
+Reviewer source-entry regression attribution
+
+Adanmohh/codeg@191f69b3c2b827ce2f712bfcad1f995a201981bb (PR29 product c1e618dede15368d4af39ac74391f18931b317a5), Apache-2.0.
+Fixture/test harness and test config adapted from these exact existing Codeg files:
+- src/components/business-intake/workflow.test.tsx: 9794a5f41403fd95d1d3bcda8c7f1b79f2d4c0e3
+- src/components/business-intake/test-fixtures.ts: 62324c412714f6230db03424d5ae049809b4b117
+- src/components/business/test-fixtures.ts: 1fd92f45da999c7372fa995fa137f9ae34ed6e0f
+- vitest.config.ts: 3cd9d3b5156039f7eb4ee99dbbeb7d45ee8148ce
+- src/test-setup.ts: b81c1697c7ce3aecf800fdd79efb4a3bf40912df
+- LICENSE: 261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64
+
+Existing repository LICENSE/NOTICE remain authoritative and unchanged.
+Test-only glue adds a controlled source-entry action; no product implementation is ported.
+Installed React19.2.4 package, @testing-library/react16.3.2 render/rerender types,
+Vitest2.1.9 config/CLI and Vite5.4.21 cacheDir types were read locally.
+No new dependency, install, live server, provider or browser action.
+
+Modal-aware correction of the original reviewer probe (2026-09-09):
+The original dialog assertion is unchanged. Once it succeeds, its background
+textbox is intentionally excluded from role queries by the real modal. The
+reviewer now checks the same mounted DOM node, chooses Keep editing, and then
+checks its accessible value. This is test-only evidence glue; the original
+failing run at dc14 is retained. Local Testing Library DOM10.4.1 queries.d.ts
+ByRoleOptions and role-helpers.js, plus existing Codeg modal source, were read.
+Codeg dc14e83b93529afab99e973ddbd21e0db79b851b, Apache-2.0:
+- src/components/business/ui.tsx: f1bdd3334300db63cc01e6381a275db3ce1686a4
+- src/components/ui/dialog.tsx: c34bcf00ed7e385f3758d8bf08f57f33795f2bbf
+Original probe source attribution above still applies; no product source changed.
+
+The same reviewer probe runs against a58c004c7d5187e6455a452195985528ddf14bc7.
+The other twelve tests are the unchanged owner tests, read before independent
+execution; their source stays in the immutable archive, not ported into product:
+- src/components/business-intake/source-entry.test.tsx: 35584147eca439241c27b01ed28aa0ec8885a549
+- src/components/business-intake/setup-capabilities.test.tsx: 481db7c7fff32c92fdbeedcdff02687a0953478b
+Codeg Apache-2.0; all prior NOTICE/LICENSE retained.

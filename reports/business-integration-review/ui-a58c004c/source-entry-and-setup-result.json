@@ -1,0 +1,21 @@
+{
+  "commit": "a58c004c7d5187e6455a452195985528ddf14bc7",
+  "command": [
+    "node",
+    "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "vitest.reviewer.config.ts",
+    "src/components/business-intake/reviewer-source-entry.test.tsx",
+    "src/components/business-intake/source-entry.test.tsx",
+    "src/components/business-intake/setup-capabilities.test.tsx",
+    "--maxWorkers",
+    "1",
+    "--minWorkers",
+    "1"
+  ],
+  "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/ui-a58c004c/source",
+  "exit": 0,
+  "wall_seconds": 3.627,
+  "log": "source-entry-and-setup.log"
+}
