@@ -946,3 +946,18 @@ and source/task tests at29774b50/15bb402b; no foreign workflow engine is ported.
 Native wrappers reuse accepted29774b50 commands/business_tasks.rs and
 business_identity/native.rs, retaining the original caller-window authority.
 All preceding notices and the Apache LICENSE remain unchanged.
+
+Unified business intake synthetic HTTP fixture (2026):
+src-tauri/src/business_intake/tests/browser.rs adapts Apache-2.0 Codeg at
+949adb02c18c72d0804eeb74b420520a7681ee86:
+src-tauri/src/business_tasks/tests/fixture.rs (1c2f30c657fb339be53392cda21e508bd866929e),
+business_intake/tests/support.rs (57db886feacfc201f2e38da002ef18832ea073a2),
+business_intake/tests/tenant_http_cases.rs (9973b928ec7e89239313eb560e94a5ddc03e35a4),
+keyring_store.rs (2973118cb2a47eabfca9fb0b3413fd534e91aba8), and
+business_intake/fireflies.rs (8c2dfc4845dc4e504e833a4e2af8c057a5e78102).
+Paths after the first are relative to src-tauri/src/. The three copied synthetic
+query expectations match the already attributed MIT Fireflies projection exactly;
+the original Copyright2022 n8n and full permission notice above still apply.
+Axum0.8.8, Tokio1.49.0, tokio-util0.7.18, tempfile3.24.0 and axum-test17.3.0
+installed source is used as API documentation only. This test-only harness adds
+no production credential store, runtime, source authority or dependency.

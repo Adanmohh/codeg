@@ -1,0 +1,10 @@
+{
+  "build-artifact.json": "1df87b2df68b2f11ed86b3859c78f23d22b06bb93d67f7cd8a1ee9a0c5d394f8",
+  "build-fixture-final.log": "baab17e93e2b593ed22b2f84d4eecf5389d8fbbf17ebe235d54dff7abf355a63",
+  "build-fixture.log": "c7f1828c08439fda189665b900cdadad05183f83647c157739954d84480eef3f",
+  "clippy-fixture-final.log": "562b5310716a3102bc9f2e4a1a44e28f691ce7c5285c8417a3a5655308cfb105",
+  "clippy-fixture-v2.log": "01010af3ee3c74780657ff1f4d58c04afa2188dfaf86bf4ffb2b776b11bd5164",
+  "clippy-fixture.log": "f433ab6de326b6bb8475753b72416107c0b72f258ff6ba3f7ecc817427b39146",
+  "commands.json": "8d24e530f968c2a087d59ee24f2633389de3784f1a5038d0747c483051592ccb",
+  "fixture-final-results.json": "724784448d1cfd43dc5a705ff55877193efefa24bbbdc5995b23479b202f35b5"
+}

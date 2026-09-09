@@ -591,3 +591,27 @@ targets and static exports remain untouched. No fixture listener is started yet.
 Full B UI/BI acceptance and new-tenant legacy resource entrustment remain pending;
 restricted native tenant windows remain unavailable. PR28 remains draft:
 https://github.com/Adanmohh/codeg/pull/28.
+
+## Immutable unified fixture preparation
+
+Production/source-gate checkpoint is pushed
+`e55f3bfd1f069d6d6111370223993596b19ecb9b`; independent source-only follow-on
+review187f93607 reports no new blocker, separately from its eight949 runtime cases.
+The new manual `business_intake::tests::browser::intake_browser_fixture` and
+`reports/business-intake-fixture.md` publish the full fixture boundary, namespace
+rules, safe controls, lifecycle and immutable provenance. New frontend4354 is
+allowed explicitly; old4350/4353 remain excluded and untouched.
+
+Fixture Clippy initially omitted `test-utils` when selecting external integration
+tests and failed on their existing gated helpers (exit101); the corrected
+`--no-default-features --lib --tests --features test-utils -- -D warnings`
+passed,1m32s. After the4354 origin guard addition it passed again,24.57s.
+The final locked/offline server library fixture `--no-run --message-format=json`
+build passed,Cargo-reported1m14s; its runner wall clock recorded3735.85s (the
+difference is not investigated or presented as CPU/test time). These commands
+compile the harness without executing any
+fixture/provider. Logs, exact commands and the compiler artifact record are in
+`reports/business-intake-validation/fixture/`. The prior production gates remain
+valid; no further production file changed. Source/README/NOTICE and test-only
+registration are committed before any listener starts. The actual binary digest,
+PID, private synthetic credential paths and health evidence follow after launch.

@@ -1,5 +1,6 @@
 use super::types::*;
 use serde_json::json;
+mod browser;
 mod candidate_cases;
 mod epoch_migration_cases;
 mod import_cases;
