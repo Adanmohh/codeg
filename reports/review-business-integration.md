@@ -296,8 +296,9 @@ The owner's full38/38 run, corrected desktop Clippy and focused recovery run are
 explicitly owner evidence in its committed report. Root independently verified
 the attached gate/source correspondence artifacts; this worker's unchanged949
 execution remains separately frozen above. No new backend blocker established
-in this source-only follow-on. The unified fixture is still compiling, with no
-listener handoff or persistent API/browser mutation by this reviewer.
+in this source-only follow-on. At that checkpoint the unified fixture was still
+compiling, without a listener handoff or persistent API/browser mutation by this
+reviewer. Its subsequent source review is recorded below.
 
 PR29 **514b5432b03667dc6a461593a224d80d14050aee** was also resolved through
 `gh api`; read its full report/source/test/NOTICE diff from a58. Product
@@ -309,3 +310,58 @@ No extra UI test run is claimed for this small eligibility change; inspect it
 through the forthcoming real setup flow. Existing4350 remains its old export;
 owner has proposed a separate4354 frontend to protect its retained private draft.
 No export, browser, credential file or listener has been changed by this review.
+
+## Unified fixture guard review at7ed0dd0c
+
+**No concrete fixture-guard blocker found in this bounded source review.** Frozen
+fixture source `7ed0dd0c28f5065f1c37983f366cc6dcb0727e08`, tree
+`4d263ead4226aee5457f70b3e3cb2ab84592cc8f`; handoff
+`1042a0b79b869c7bf86aabf91a6b6292600d7732`. Both pins were resolved with
+`gh api`. Production remains e55f3bfd. Read the complete507-line fixture,
+recipe/runtime JSON, test registration/NOTICE diff and relevant pinned router,
+reader, service injection, AppState/manager construction and file helpers.
+
+- `tests/browser.rs:310` puts the exact path/method/origin guard outside the
+  composed router. Installed Axum0.8.8 `Router::layer` also wraps the fallback,
+  so the credential directory supplied to the production static service is
+  guarded. Host/engine/terminal/file/bootstrap/execution-link paths are absent.
+  No-Origin CLI requests still require the actual inner Principal/platform
+  middleware; this is not an alternate authentication mechanism.
+- `browser.rs:222` checks a separate random control token against its exact
+  namespace. It only changes future synthetic detail responses; it does not
+  alter source freshness, a tenant epoch or any database row. Owner-only stop
+  and platform credentials remain in a separate file. Review consumes only its
+  own file and namespace; lifecycle belongs to root/fixture owner.
+- `browser.rs` injects an in-memory store that accepts only the four synthetic
+  provider keys, with no existing-keyring fallback. `Reader::fixture` fixes the
+  endpoint to the bound loopback address; its client has no proxy, redirects or
+  retries and retains the12-second/2MiB bounds. USER/LIST/DETAIL strings match
+  the production reader byte-for-byte; variables/provider principals are closed.
+  These synthetic namespace keys and the shared counters are fixture controls,
+  not a production provider ACL or same-user process security boundary.
+- `browser.rs:340` uses create-new0600/write-all/sync credential files. Independent
+  metadata-only `lstat` confirms the supplied review file is a regular0600 file;
+  its contents had not been read at this source checkpoint. Both ports bind
+  before new data; retained temporary storage is unique. AppState test
+  construction does not launch an engine, delegation listener or channel.
+
+All five949 source/blob attribution entries match Git objects. The additive
+NOTICE preserves Codeg Apache-2.0 and the existing exact Fireflies MIT notice.
+Fixture source blob `a8fd171918b6879b50c1d3cb79c7ec0db85b7b3d`, SHA256
+`b37a13cfb68001fc644e5d8ddfdb340c9718c751cf1dce72a57b54a42e1cc52c`,
+matches the committed runtime handoff. [Mechanical checks and metadata](business-integration-review/fixture-7ed0dd0c/source-review.json).
+
+The handoff reports PID66200 on4351/4352, binary SHA256
+`313d987c2c5eb159bef700e19b9dffc2f942385e76e3b9a9612cf78ad08866ea`,
+zero initial bindings/grants/provider reads and six passing startup guards.
+Those runtime observations are **fixture-owner evidence**, not independent
+executions. This review launched no runtime, built nothing and made no HTTP
+request. Root has now authorized own-review-namespace protected API checks;
+actual IUI-1 browser closure still awaits rebrand's matching4354 asset handoff.
+Production tenancy, native isolation and live Fireflies behavior are not
+certified by this fixture guard.
+
+Current session metadata at line1222 records gpt-6-astra/max, never/full access.
+Own-worktree live hook records24833–24835 are PreToolUse and24836–24838 are
+PostToolUse. No model downgrade, hook bypass, old process action or fixture
+replacement occurred.

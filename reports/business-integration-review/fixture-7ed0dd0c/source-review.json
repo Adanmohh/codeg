@@ -1,0 +1,47 @@
+{
+  "sourceCommit": "7ed0dd0c28f5065f1c37983f366cc6dcb0727e08",
+  "sourceTree": "4d263ead4226aee5457f70b3e3cb2ab84592cc8f",
+  "handoffCommit": "1042a0b79b869c7bf86aabf91a6b6292600d7732",
+  "productionCommit": "e55f3bfd1f069d6d6111370223993596b19ecb9b",
+  "sourcePath": "src-tauri/src/business_intake/tests/browser.rs",
+  "sourceBlob": "a8fd171918b6879b50c1d3cb79c7ec0db85b7b3d",
+  "sourceSha256": "b37a13cfb68001fc644e5d8ddfdb340c9718c751cf1dce72a57b54a42e1cc52c",
+  "mechanicalCheckExit": 0,
+  "mechanicalCheckMethod": "Existing rag-skills Python3.12.13: git rev-parse five source refs; extract three constant lines from git show and compare; SHA256 fixture source; lstat own credential file; parse only whitelisted session/hook metadata.",
+  "ledgerSourceCommit": "949adb02c18c72d0804eeb74b420520a7681ee86",
+  "verifiedLedger": {
+    "src-tauri/src/business_tasks/tests/fixture.rs": "1c2f30c657fb339be53392cda21e508bd866929e",
+    "src-tauri/src/business_intake/tests/support.rs": "57db886feacfc201f2e38da002ef18832ea073a2",
+    "src-tauri/src/business_intake/tests/tenant_http_cases.rs": "9973b928ec7e89239313eb560e94a5ddc03e35a4",
+    "src-tauri/src/keyring_store.rs": "2973118cb2a47eabfca9fb0b3413fd534e91aba8",
+    "src-tauri/src/business_intake/fireflies.rs": "8c2dfc4845dc4e504e833a4e2af8c057a5e78102"
+  },
+  "queriesMatchProduction": { "USER": true, "LIST": true, "DETAIL": true },
+  "credentialFile": {
+    "path": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/review-credentials.json",
+    "mode": "0o600",
+    "regular": true,
+    "contentsReadAtSourceCheckpoint": false
+  },
+  "session": {
+    "id": "01a084ee-129a-7561-9f10-64266115e759",
+    "turnContextLine": 1222,
+    "timestamp": "2026-09-09T09:31:57.487Z",
+    "model": "gpt-6-astra",
+    "effort": "max",
+    "approvalPolicy": "never",
+    "sandbox": "danger-full-access",
+    "preToolUseLines": [24833, 24834, 24835],
+    "postToolUseLines": [24836, 24837, 24838]
+  },
+  "independentHttpRequestsAtSourceCheckpoint": 0,
+  "independentRuntimeLaunches": 0,
+  "independentBuilds": 0,
+  "blockingFindings": [],
+  "limits": [
+    "Owner runtime/guard results are separately attributed, not independently rerun here.",
+    "Loopback fixture controls do not establish production tenancy, malicious same-user isolation, provider access policy or native-window isolation.",
+    "Restricted tenant native windows remain unavailable; existing original-organization protected platform/native path remains available.",
+    "Protected API checks and matching4354 actual browser IUI-1 flow follow this source-only checkpoint."
+  ]
+}
