@@ -2,6 +2,15 @@
 
 ## Current integration and worker state
 
+Authentication recovery: rebrand and approvals now run replacement Codex clients
+in the same panes/worktrees on Astra/max. Their auth-stale clients40904/49733 were
+suspended individually, preserving their independently running fixture processes.
+Direct resume refused the existing writer locks, so documented `codex fork` retained
+each saved history in a fresh session. Both replacement clients show active work;
+tickets continues integration. Do not resume/kill the suspended clients or reuse
+their exec-session handles without a separate fixture-preservation plan. No shared
+credentials were read/copied, no pane closed, and no extra active worker was added.
+
 **PR30 merged** at exact `b3dfbcb602314cee6eb0039d92cb997762c02dd8`, merge
 `b3f2f6d03bbbef3ea7b4a9412e29308f1f355843`. Root verified the unchanged
 reviewed product29774b50, ten owner log digests, source correspondence and nine
@@ -14,12 +23,11 @@ require fresh validation. Migration must support both old000011→000012 and
 installations that already applied A-only000012 before adding B. Root relayed
 that additional upgrade path for implementation and tests.
 
-Rebrand and approvals received the next UI/integration-review assignments, but
-their resumed turns fail with an access-token refresh error after the account
-change. Current CLI login/doctor is healthy; those two sessions remain blocked.
-They own running fixtures, so root is investigating recovery without stopping
-them. Tickets remains active on Astra/max. Earlier wording that all workers were
-working is superseded by this checked live state. No existing fixture, preview,
+Before recovery, rebrand and approvals received the next UI/review assignments, but
+their resumed turns failed with an access-token refresh error after the account
+change. Current CLI login/doctor was healthy; those two clients were blocked.
+They own running fixtures; the recovery above preserves them. Tickets remains
+active on Astra/max. The earlier blocked state is historical. No existing fixture, preview,
 bundle or credential changed.
 
 ## Earlier checkpoints — historical
