@@ -2,6 +2,24 @@
 
 ## Current integration and worker state
 
+Root read final AI wire delta `3f164c2a989cd08a523e51f1e47559c15a48c0ef` and
+matched SHA256 `e2cf8304fb5eababce79961da57061e244f2567eae11b75b88dbfcbccc6a114d`.
+The five requested clarifications now explicitly separate E2 manager stop,
+selected-version public provenance, unavailable E1 account inputs, authenticated
+NDJSON event/history delivery and authorized byte responses. PR31 handoff
+`cab3b27eaf241062a56532b5cdfe885f7e648fc9` changes only the report after that
+contract. Final independent consistency remains pending; tickets has started its
+authorized separate internal persistence branch, with no-route/no-launch gate.
+
+Independent60d recovery review `f1d5a7de54c898a6187da2c74587b29bd6081757` is
+read/imported and all6 evidence digests verify. Five focused component cases pass;
+the same committed regression against1974 fails on the missing title while its
+adoption control passes. Raw failure/success logs retain their original bytes.
+No new scoped source blocker; actual4355 recovery remains the separate assigned
+browser gate. Herdr briefly reported Luna quota metadata for approvals while its
+visible pane footer still showed Astra/max; root records the discrepancy without
+claiming a model change or restarting the session.
+
 **Corrected4355 preview is running**, handoff
 `08417b4ff9bd39bf7d34c996106a842df3b6b264`, product60d600db, build e9b69ee5,
 PID85232. Root imported its exact manifest/helper/handoff and independently matched

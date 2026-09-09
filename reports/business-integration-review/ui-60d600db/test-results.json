@@ -1,0 +1,56 @@
+{
+  "reviewed_head": "60d600db0f224d44ff191490ab79bc25530ba959",
+  "baseline": "1974d97f44b69db96051ace1c68717cc8c27b6e9",
+  "baseline_exception": "Only candidate.tsx temporarily replaced by exact1974 product; tests and all other source remain exact60d. Restored before final run.",
+  "runs": [
+    {
+      "label": "baseline-1974-new-regressions",
+      "argv": [
+        "node",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "vitest.reviewer.config.ts",
+        "src/components/business-intake/workflow.test.tsx",
+        "--maxWorkers",
+        "1",
+        "--minWorkers",
+        "1",
+        "--reporter",
+        "verbose",
+        "--testNamePattern",
+        "restores an unprepared editor after the parent completes a fresh same-version read|requires explicit adoption when fresh access returns a newer prepared candidate"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/ui-60d600db/source",
+      "exit": 1,
+      "wall_seconds": 2.7504,
+      "log": "reports/business-integration-review/ui-60d600db/baseline-1974-new-regressions.log"
+    },
+    {
+      "label": "exact-60d-five-focused",
+      "argv": [
+        "node",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "vitest.reviewer.config.ts",
+        "src/components/business-intake/workflow.test.tsx",
+        "--maxWorkers",
+        "1",
+        "--minWorkers",
+        "1",
+        "--reporter",
+        "verbose",
+        "--testNamePattern",
+        "restores an unprepared editor after the parent completes a fresh same-version read|requires explicit adoption when fresh access returns a newer prepared candidate|keeps local drafts across locale and view changes without browser persistence|withholds a saved destination-private draft despite fresh source read permission|hides cached private text after source access is denied, including unsaved local fields"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/ui-60d600db/source",
+      "exit": 0,
+      "wall_seconds": 1.1401,
+      "log": "reports/business-integration-review/ui-60d600db/exact-60d-five-focused.log"
+    }
+  ],
+  "exact_source_files_after": 1235,
+  "changed_original_files": [],
+  "limits": "JSDOM component tests with synthetic client responses, not protected API/browser/production authorization proof. No Rust target or fixture action."
+}

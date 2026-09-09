@@ -1,0 +1,29 @@
+{
+  "algorithm": "sha256",
+  "files": [
+    {
+      "path": "reports/business-integration-review/ui-60d600db/baseline-1974-new-regressions.log",
+      "sha256": "6c1c7cbb463de6f69ce5a601d62e76e399f93ef60e593e6c06dc9b2d3ff6a977"
+    },
+    {
+      "path": "reports/business-integration-review/ui-60d600db/exact-60d-five-focused.log",
+      "sha256": "5c60c769da89e93d3b648b2699fcd05c529794df6179a1b3ed8fc6574b8c5437"
+    },
+    {
+      "path": "reports/business-integration-review/ui-60d600db/source-before.json",
+      "sha256": "398b896602c02b063bb8b17124823d6de389c9a88267cca919e6f3b8a70eeacd"
+    },
+    {
+      "path": "reports/business-integration-review/ui-60d600db/source-ledger.json",
+      "sha256": "c0de6e88dabb90640076edb8ac155e0ca2dec4a5329e4a05b14f04891fb5c7a8"
+    },
+    {
+      "path": "reports/business-integration-review/ui-60d600db/test-results.json",
+      "sha256": "f32979c646a7719cf0a5442c54f86512a95669afc9e23574aa3879522356c2dd"
+    },
+    {
+      "path": "reports/review-business-intake-recovery.md",
+      "sha256": "22dd0572e9f7d6cbac754181094378ebd2aba04dc3a3b94dcc75baf1473faf41"
+    }
+  ]
+}
