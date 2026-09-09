@@ -151,7 +151,19 @@ async fn execution_migration_retains_review_history_and_real_receipt_retry() {
 #[tokio::test]
 async fn execution_migration_failure_rolls_back_rebuild_and_restores_enforcement() {
     let conn = before_execution().await;
-    let (_, task) = task(&conn).await;
+    let (op, task) = task(&conn).await;
+    let submitted = tasks::store::submit(
+        &conn,
+        &tasks::ActorContext::authenticated(op.clone()),
+        tasks::types::TextInput {
+            task_id: task.task.id.clone(),
+            expected_revision: task.task.revision,
+            body: "Keep these exact bytes during failed DDL".into(),
+        },
+    )
+    .await
+    .unwrap();
+    let saved = serde_json::to_value(&submitted).unwrap();
     let receipts = scalar(&conn, "SELECT count(*) AS value FROM seaql_migrations").await;
     // Fail after deliverable replacement, then verify old schema/data/receipts
     // were restored atomically and the same pooled connection enforces FKs.
@@ -174,6 +186,16 @@ async fn execution_migration_failure_rolls_back_rebuild_and_restores_enforcement
         scalar(&conn, "SELECT count(*) AS value FROM business_task").await,
         1
     );
+    let reread = tasks::store::get(
+        &conn,
+        &tasks::ActorContext::authenticated(op),
+        tasks::types::TaskInput {
+            task_id: task.task.id.clone(),
+        },
+    )
+    .await
+    .unwrap();
+    assert_eq!(serde_json::to_value(reread).unwrap(), saved);
     assert_eq!(
         scalar(
             &conn,
@@ -209,6 +231,99 @@ async fn execution_migration_failure_rolls_back_rebuild_and_restores_enforcement
         .await
         .unwrap()
         .is_empty());
+}
+
+#[tokio::test]
+async fn execution_migration_retains_original_linked_lineage_and_deliverable_columns() {
+    let conn = before_execution().await;
+    let (op, task) = task(&conn).await;
+    let agent = identity::store::create_member(
+        &conn,
+        &op,
+        identity::types::CreateMemberInput {
+            organization_id: op.organization_id().into(),
+            display_name: "Retained producer".into(),
+            kind: identity::MemberKind::Agent,
+            role: identity::Role::Member,
+            domains: vec![identity::Domain::Feedback],
+        },
+    )
+    .await
+    .unwrap();
+    // This is retained-schema data, not an engine ownership/admission assertion.
+    // The original opaque grant is stored verbatim and never reconstructed.
+    let grant = identity::delegation_grant(&op)
+        .unwrap()
+        .to_storage()
+        .unwrap();
+    conn.execute(stmt("INSERT INTO business_task_execution_authority(id,organization_id,task_id,domain,task_revision,work_task_id,run_seq,connection_id,agent_member_id,agent_key,entrusted_by,created_at) VALUES('retained-authority',?,?,'feedback',1,2147000,1,'synthetic-retained-run',?,'pi',?,'then')",
+        vec![op.organization_id().into(), task.task.id.clone().into(), agent.id.clone().into(), op.member_id().into()])).await.unwrap();
+    conn.execute(stmt("INSERT INTO business_task_execution(id,organization_id,task_id,authority_id,work_task_id,run_seq,connection_id,agent_member_id,agent_key,delegation_json,linked_by,created_at) VALUES('retained-execution',?,?,'retained-authority',2147000,1,'synthetic-retained-run',?,'pi',?,?,'then')",
+        vec![op.organization_id().into(), task.task.id.clone().into(), agent.id.clone().into(), grant.into(), op.member_id().into()])).await.unwrap();
+    conn.execute(stmt("INSERT INTO business_task_deliverable(id,organization_id,task_id,revision,author_id,author_name,author_kind,body,execution_id,created_at) VALUES('retained-agent-output',?,?,2,?,'Retained producer','agent','Exact retained agent text','retained-execution','then')",
+        vec![op.organization_id().into(), task.task.id.clone().into(), agent.id.into()])).await.unwrap();
+    conn.execute(stmt("UPDATE business_task SET current_deliverable_id='retained-agent-output',current_execution_id='retained-execution',revision=2,status='review' WHERE id=?", vec![task.task.id.into()])).await.unwrap();
+    let mut queries = vec![];
+    for table in [
+        "business_task",
+        "business_task_activity",
+        "business_task_deliverable",
+        "business_task_execution",
+        "business_task_execution_authority",
+        "business_execution_authority_epoch",
+        "business_member",
+    ] {
+        let columns = conn
+            .query_all(stmt(&format!("PRAGMA table_info({table})"), vec![]))
+            .await
+            .unwrap();
+        let names = columns
+            .into_iter()
+            .map(|r| format!("\"{}\"", r.try_get::<String>("", "name").unwrap()))
+            .collect::<Vec<_>>()
+            .join(",");
+        queries.push(format!(
+            "SELECT json_array({names}) AS value FROM {table} ORDER BY rowid"
+        ));
+    }
+    let mut saved = vec![];
+    for query in &queries {
+        saved.push(
+            conn.query_all(stmt(query, vec![]))
+                .await
+                .unwrap()
+                .into_iter()
+                .map(|r| r.try_get::<String>("", "value").unwrap())
+                .collect::<Vec<_>>(),
+        );
+    }
+    Migrator::up(&conn, None).await.unwrap();
+    // Retry after receipt loss must preserve every captured value too.
+    conn.execute_unprepared(
+        "DELETE FROM seaql_migrations WHERE version='m20260909_000014_business_execution'",
+    )
+    .await
+    .unwrap();
+    Migrator::up(&conn, None).await.unwrap();
+    for (query, before) in queries.iter().zip(saved) {
+        let after = conn
+            .query_all(stmt(query, vec![]))
+            .await
+            .unwrap()
+            .into_iter()
+            .map(|r| r.try_get::<String>("", "value").unwrap())
+            .collect::<Vec<_>>();
+        assert_eq!(after, before);
+    }
+    assert!(conn
+        .query_all(stmt("PRAGMA foreign_key_check", vec![]))
+        .await
+        .unwrap()
+        .is_empty());
+    assert!(conn
+        .execute_unprepared("UPDATE business_task_deliverable SET execution_id=NULL")
+        .await
+        .is_err());
 }
 
 #[test]

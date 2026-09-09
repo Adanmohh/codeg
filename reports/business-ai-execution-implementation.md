@@ -134,3 +134,76 @@ Actual commands, own existing target only:
 `reports/business-ai-execution-validation/checkpoint/`. Existing linker unwind and
 proc-macro-error2 future-compatibility notices are preserved in logs. This is not
 final default/server/companion/Clippy/typecheck or complete E1 acceptance.
+
+## Integrated B checkpoint and historical global hook block
+
+Accepted B mainc8453a48d was merged locally as b73940560. NOTICE retains the
+complete accepted-main prefix plus the E1 addition. Applied migrations10/11/12/13
+and LICENSE were byte-compared against c8453a48d and are exact. Registration order
+is11,12,13,14. Existing B task-owned transaction helpers arrived intact.
+
+The next owned test run completed successfully before any further build:
+four business_execution::tests passed,0 failed/ignored,0.30s runtime,2m02s compile,
+exit0. It uses the actual integrated B migrations. The additional retained-schema
+case preserves every column of the task, agent-authored deliverable, original
+execution link/opaque grant/authority epoch, activity and member rows through14
+and real receipt loss/retry. This is schema retention, not a live engine ownership
+proof. The DDL rollback case now also preserves a populated deliverable.
+Actual log remains at the owned absolute path
+/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-ai-execution-logs/tests-integrated-schema.log.
+The four unchanged B epoch_migration_cases and final integrated check have NOT run.
+
+While that previously authorized test process was compiling, the global launcher
+changed to docs-first-v2. Its current source and full documentation were read:
+[/Users/mohamedadan/.codex/hooks/docs-first.md](/Users/mohamedadan/.codex/hooks/docs-first.md)
+states: “Other languages, unknown configuration, SQL, notebooks, MDX, arbitrary
+JSON and ambiguous syntax stop.” It also states: “Arbitrary interpreters, scripts,
+builds, tests, formatters, shell patches and shell write helpers are deliberately
+unsupported even after a documentation read.” Rust/Cargo and git commit/push are
+therefore unavailable through this gate. Package resolution has no Cargo/Rust
+source implementation; installed Rust reads cannot satisfy that missing path.
+
+Actual denials: the coordination message returned shell_unresolved, and even
+herdr agent discovery / rg with a directory option returned
+shell_unproven_use_patch_or_reader. Safe plain cat and herdr agent list still work.
+The engine accepts only numeric workspace IDs in its Herdr target grammar;
+the actual existing Ops IDs are wR:p1 through wR:p4 and have no agent aliases.
+Thus the bounded reviewer build-window message was NOT delivered. No alternate
+execution route, hook edit/disable, hidden acknowledgement or process reuse was
+attempted. Existing permitted test polling observed completion only.
+
+At that pause, the hook owner needed to add reviewed Rust/SQL, build/test/Git and actual Herdr-ID
+support before implementation could continue. This was an environment gate, not an
+E1 product failure or request to weaken authority. Latest pushed checkpoint is
+fdfe34294 over product6195d9daf; local mergeb73940560 and the later test/report
+edits remain preserved but cannot be pushed under the new gate. No source/fixture/
+provider/native action follows this block. Prior stable fixtures and the owner's
+inspected browser/records remain unchanged. Full E1 remains incomplete.
+
+## Resumed combined checkpoint
+
+The owner installed Claude-style admission f5554c92. This session reread the full
+`~/.codex/AGENTS.md` and current `docs-first.md` preface: ordinary Git, gh api,
+build/test and authorized Herdr commands are admitted; Rust/SQL still require
+manual source grounding, and supported patches retain signed documentation checks.
+Actual `git fetch origin` and immutable `gh api` read of accepted B migration13 at
+`c8453a48d441f40eb47f9c9af856235b4f9986e5` both exit0. That source confirms nullable
+historical epochs, per-column idempotence and writer/FK checks. No denied edit was
+rerouted. The historical blockage above is resolved, not deleted from evidence.
+
+This checkpoint publishes local merge `b73940560a69748f6774f41eb1a8de44e7c4c11f`
+plus the actual four-test changes. Committed integrated log:
+`reports/business-ai-execution-validation/integrated-schema/tests.log`, SHA256
+`adab474c63542e411377f1681c952ac2dc2a92819111144ffb93126700a096dd`.
+Exact tested `business_execution/tests.rs` SHA256:
+`3885fa6dfcaac60be118bbccf1b449f7f0ac0274c56548e68b7058068935dd14`.
+All other product source matches that merge. Four passes remain schema/closed-wire
+evidence; the four accepted B epoch cases and integrated server check are next.
+
+Current free space is 5.7GiB, a changed observation rather than a reservation.
+The reviewer build-window message now succeeds; only the existing tickets target
+will be used, with no concurrent reviewer compilation requested. Herdr currently
+reports `gpt-6-astra`; this does not establish historical reasoning effort or
+retroactively certify earlier turns. The owner's restored Astra/max selection is
+retained. No fixture, user browser, paused visual report, target or native bundle
+was removed, restarted or replaced during recovery.
