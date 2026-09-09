@@ -2,6 +2,20 @@
 
 ## Current integration and worker state
 
+Root read the current tickets fixture recipe: one fresh file DB, four isolated
+tester namespaces, zero initial bindings/grants/provider reads, private0600
+credential files, synthetic-only reader/store and explicit route/origin guard.
+The origin correction allows new4354 and own4351; old4350/4353 stay excluded.
+Tickets reports initial fixture no-run build and Clippy passing, then a fixture-only
+origin correction recompiling in the same target. No listener or browser readiness
+is claimed yet. Root cleared one stable executable copy and the planned launch
+after committed source/final hash; approvals owns a bounded fixture-source review.
+
+Model observation: Herdr quota metadata currently reports Luna, but direct pane
+reads for all three workers still display Astra/max. This discrepancy is recorded
+without claiming the actual execution model changed. Existing sessions/processes
+were not restarted; workers are instructed to preserve Astra/max.
+
 Independent source-only follow-on `187f93607` is read and imported. The reviewer
 found no new blocker in949→e55 cleanups, verified accepted000012 unchanged, and
 did not rerun unchanged tests. Backend independent execution remains pinned949.
