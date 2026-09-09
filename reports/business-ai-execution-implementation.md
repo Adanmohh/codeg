@@ -298,3 +298,62 @@ are notified before another build. No old target/artifact/fixture/browser change
 Next: managed DB import and task-owned selected-reference publication, existing
 ACP/PTY lifecycle and narrowed companion scope, protected transport/events/content,
 then full runtime/CAS/receipt/byte tests and desktop/server/companion/Clippy gates.
+
+## Three internal review corrections — source checkpoint9949c8a9a
+
+Accepted main4043efa0e integrated and pushed as
+`54daac22eba8aaab1e7b2e6da9e39a03e80e6be1`: complete main NOTICE retained with
+the existing E1 attribution appended; report conflict retained this newer report.
+Backend/locks/LICENSE were unchanged by that merge. Three bounded fixes follow:
+
+- R2 `836fbdcf451b5d9181f8b6d13e14ba962f57f151`: admission fields are private;
+  completion validates the receipt's kind/target task/session/generation/resource
+  before any linkage/status write and checks the same binding again at receipt
+  completion. Two genuine pending admissions, substituted operation ID, stale
+  generation and profile revocation tests compare all retained session/generation/
+  receipt values on rejection and preserve correct A/B completion controls.
+- R1 `5a231349edafa0a57d3fad8792ea1ac7b95f0787`: current stored authority/profile/
+  task eligibility is applied before LIMIT. Cursors are immutable positions under
+  the current org/member/task, not session access grants. Revocation between pages
+  cannot strand a returned cursor; no revoked row is emitted as an item/cursor.
+  Three tests cover leading/interleaved stale rows, stable complete traversal,
+  revocation after page one and real member/tenant plus wrong-task cursor controls.
+- R3 `9949c8a9ad99ffb70232c05bf1c2ad243dcaf194`: same-object recovery verifies the
+  descriptor/hash, then repeats file metadata and parent-directory sync before
+  returning Retained. Test-only injection exercises each post-seal failure,
+  repeated failed retries and successful ordered real sync with the original
+  inode/bytes retained after scratch removal. Production has no injectable sync
+  callback. Existing corruption/partial-object/no-overwrite boundaries remain.
+
+This checkpoint is committed source, not yet a test or runtime acceptance claim.
+Changed files are the execution module's files/file_tests, receipts, session_store,
+session_tests, mod, new pagination_tests and session_store/completion_tests. No
+schema, public transport, dependency, lockfile, identity constructor or provider
+runtime changed. Exact3773 source-only findings remain reviewer evidence at
+`dc0e9cb06ded25122c373029c3bc9f9bbe40b42f` until independent correction review.
+
+Grounding: existing3773 session/scope/receipt and temporary-file tests, accepted
+Codeg task/identity/SQLite fixture sources already attributed in NOTICE, installed
+SeaORM1.1.19 Statement/QueryResult and Rust1.98.0 File::metadata/try_clone/sync_all.
+Installed std HTML source was located under the toolchain's share/doc/rust/html/
+src/std/fs.rs.html; prior unavailable Rust source coverage did not include this
+location. Official Rust source was also read via gh api at
+88d9e12ae178fab0fb5cc050a94da85685d449ea. No third-party source or licence added.
+
+Owner removed enforcement hooks and restarted this same session. Updated global
+AGENTS was read: do not install/restore hooks without an explicit request. Normal
+git status and full immutable gh api lookup of54daac22 succeeded, as did native
+patching. The initial abbreviated Git-commit lookup returned404; the full40-char
+lookup succeeded. No hook maintenance or fresh legacy Pre/Post claim is made.
+Earlier durability patch context denial applied nothing; exact source was reread
+and the normal patch tool accepted corrected context before the removal override.
+
+Storage interruption: writes/builds paused when reviewer reported117MiB. Read-only
+inventory found old incremental caches, but this worker removed nothing. Root's
+separately authorized cache recovery and same-session restart preserved fixture
+66200, previews and all worker targets. Current preflight reports17,659,348KiB
+available (about16.84GiB), an observation rather than reserved capacity.
+Next authorized bounded gates: execution_pagination_, execution_admission_,
+execution_authority_, execution_assets_ selectors and server check, all locked/
+offline, existing .docs/business-intake-tenancy-target, -j2. Start only with at
+least10GiB free; stop/report near5GiB. No new target/export/native build or cleanup.
