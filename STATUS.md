@@ -2,6 +2,15 @@
 
 ## Current integration and worker state
 
+**Two additional internal E1 handoff findings at3773a027 are open.** Root
+source-confirmed approvals' admission/receipt target mismatch and retained-file
+retry missing durability synchronization. Tickets owns private admission plus
+exact persisted target binding, and equivalent file/directory sync on recovery;
+focused injected-failure/negative-control tests await coordinated build capacity.
+See [source findings and required gates](reports/business-ai-execution-handoffs.md).
+These are unexposed internal helpers, with no runtime reproduction or remote
+exploit claim. Both affected consumers remain unaccepted alongside pagination.
+
 **Open P2 in internal E1 session pagination at3773a027.** Approvals identified
 and root source-confirmed that a revoked leading row can become an unusable next
 cursor, preventing access to a later eligible session. Tickets owns the fix and
