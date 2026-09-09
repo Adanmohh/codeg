@@ -63,6 +63,27 @@ pub(super) struct Target<'a> {
     pub session_id: Option<&'a str>,
     pub generation: Option<i64>,
 }
+pub(super) fn require_target(
+    row: &records::Operation,
+    target: &Target<'_>,
+    resource_id: &str,
+) -> Result<()> {
+    if row.task_id != target.task_id
+        || row.session_id.as_deref() != target.session_id
+        || row.generation != target.generation
+        || row.resource_id.as_deref() != Some(resource_id)
+    {
+        return Err(OperationReason::Conflict.into());
+    }
+    Ok(())
+}
+pub(super) struct Completion<'a, T> {
+    pub target: Target<'a>,
+    pub resource_id: &'a str,
+    pub status: OperationStatus,
+    pub reason: Option<OperationReason>,
+    pub result: Option<&'a T>,
+}
 pub(super) async fn reserve<T: Serialize>(
     tx: &DatabaseTransaction,
     principal: &Principal,
@@ -84,19 +105,18 @@ pub(super) async fn complete<T: Serialize>(
     principal: &Principal,
     kind: OperationKind,
     operation_id: &str,
-    status: OperationStatus,
-    reason: Option<OperationReason>,
-    result: Option<&T>,
+    completion: Completion<'_, T>,
 ) -> Result<()> {
     // Repeat the captured lineage/current resource check after any external work.
     let row = find(tx, principal, kind, operation_id)
         .await?
         .ok_or(OperationReason::Missing)?;
+    require_target(&row, &completion.target, completion.resource_id)?;
     if !matches!(row.status.as_str(), "pending" | "uncertain") {
         return Err(OperationReason::Conflict.into());
     }
     let count = tx.execute(statement("UPDATE business_execution_operation SET status=?,reason=?,result_json=?,updated_at=? WHERE organization_id=? AND member_id=? AND kind=? AND operation_id=? AND status IN ('pending','uncertain')",
-        vec![key(status)?.into(), reason.map(key).transpose()?.into(), result.map(encode).transpose()?.into(), now().into(), principal.organization_id().into(), principal.member_id().into(), key(kind)?.into(), operation_id.into()])).await?.rows_affected();
+        vec![key(completion.status)?.into(), completion.reason.map(key).transpose()?.into(), completion.result.map(encode).transpose()?.into(), now().into(), principal.organization_id().into(), principal.member_id().into(), key(kind)?.into(), operation_id.into()])).await?.rows_affected();
     if count != 1 {
         return Err(OperationReason::Conflict.into());
     }

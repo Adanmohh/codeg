@@ -164,15 +164,20 @@ pub(crate) async fn list(
 
 /// Backend-owned admission and exact captured principal. Never serialized to UI.
 pub(super) struct Admission {
-    pub principal: Principal,
-    pub operation_id: String,
-    pub kind: OperationKind,
-    pub session_id: String,
-    pub generation: i64,
-    pub admission_id: String,
-    pub profile_id: String,
-    pub profile_revision: i64,
-    pub mode: Mode,
+    principal: Principal,
+    operation_id: String,
+    kind: OperationKind,
+    session_id: String,
+    generation: i64,
+    admission_id: String,
+    profile_id: String,
+    profile_revision: i64,
+    mode: Mode,
+}
+impl Admission {
+    pub(super) fn session_id(&self) -> &str {
+        &self.session_id
+    }
 }
 pub(super) struct Reservation {
     pub result: SessionResult,
@@ -312,17 +317,37 @@ pub(super) async fn complete_launch(
     let tx = identity::begin_write(db, principal.organization_id()).await?;
     let row = scope::session(&tx, principal, &admission.session_id).await?;
     let gen = generation(&tx, principal, &row.id, admission.generation).await?;
-    if row.generation != admission.generation
+    let receipt = receipts::find(&tx, principal, admission.kind, &admission.operation_id)
+        .await?
+        .ok_or(OperationReason::Missing)?;
+    receipts::require_target(
+        &receipt,
+        &receipts::Target {
+            task_id: &row.task_id,
+            session_id: Some(&row.id),
+            generation: Some(admission.generation),
+        },
+        &row.id,
+    )?;
+    if !matches!(
+        admission.kind,
+        OperationKind::Start | OperationKind::Continue
+    ) || !matches!(receipt.status.as_str(), "pending" | "uncertain")
+        || row.generation != admission.generation
         || row.status != "starting"
         || gen.admission_id != admission.admission_id
         || gen.engine_json.is_some()
         || row.profile_id != admission.profile_id
         || row.profile_revision != admission.profile_revision
+        || row.mode != key(admission.mode)?
     {
         return Err(OperationReason::AuthorityChanged.into());
     }
-    tx.execute(statement("UPDATE business_execution_generation SET engine_json=? WHERE organization_id=? AND session_id=? AND generation=? AND admission_id=? AND engine_json IS NULL",
-        vec![encode(engine)?.into(), principal.organization_id().into(), row.id.clone().into(), row.generation.into(), admission.admission_id.clone().into()])).await?;
+    let changed = tx.execute(statement("UPDATE business_execution_generation SET engine_json=? WHERE organization_id=? AND session_id=? AND generation=? AND admission_id=? AND engine_json IS NULL",
+        vec![encode(engine)?.into(), principal.organization_id().into(), row.id.clone().into(), row.generation.into(), admission.admission_id.clone().into()])).await?.rows_affected();
+    if changed != 1 {
+        return Err(OperationReason::Conflict.into());
+    }
     set_status(&tx, principal, &row, SessionStatus::Idle).await?;
     let row = scope::session(&tx, principal, &row.id).await?;
     let result = SessionResult {
@@ -338,9 +363,17 @@ pub(super) async fn complete_launch(
         principal,
         admission.kind,
         &admission.operation_id,
-        OperationStatus::Confirmed,
-        None,
-        Some(&result),
+        receipts::Completion {
+            target: receipts::Target {
+                task_id: &row.task_id,
+                session_id: Some(&row.id),
+                generation: Some(row.generation),
+            },
+            resource_id: &row.id,
+            status: OperationStatus::Confirmed,
+            reason: None,
+            result: Some(&result),
+        },
     )
     .await?;
     tx.commit().await?;
@@ -378,3 +411,6 @@ pub(crate) async fn operation(
     tx.commit().await?;
     Ok(result)
 }
+
+#[cfg(test)]
+mod completion_tests;

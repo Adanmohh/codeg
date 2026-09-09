@@ -4,7 +4,7 @@ use crate::{business_identity as identity, business_tasks as tasks, db::migratio
 use sea_orm::{ConnectionTrait, Database, DatabaseConnection};
 use sea_orm_migration::MigratorTrait;
 
-async fn setup() -> (
+pub(super) async fn setup() -> (
     DatabaseConnection,
     identity::Principal,
     tasks::types::Detail,
@@ -20,7 +20,7 @@ async fn setup() -> (
         .remove(0);
     (db, op, task, p)
 }
-fn profile(hash: &str) -> store::DiscoveredProfile {
+pub(super) fn profile(hash: &str) -> store::DiscoveredProfile {
     store::DiscoveredProfile {
         config_key: "synthetic-existing-client".into(),
         config_hash: hash.repeat(64),
@@ -46,7 +46,7 @@ fn profile(hash: &str) -> store::DiscoveredProfile {
         },
     }
 }
-fn start(task: &tasks::types::Detail, p: &ProfileSummary) -> StartInput {
+pub(super) fn start(task: &tasks::types::Detail, p: &ProfileSummary) -> StartInput {
     StartInput {
         operation_id: id(),
         task_id: task.task.id.clone(),
@@ -56,7 +56,7 @@ fn start(task: &tasks::types::Detail, p: &ProfileSummary) -> StartInput {
         mode: Mode::Chat,
     }
 }
-fn link() -> store::EngineLink {
+pub(super) fn link() -> store::EngineLink {
     store::EngineLink {
         connection_id: id(),
         conversation_id: None,
@@ -282,7 +282,7 @@ async fn execution_authority_task_cancel_reopen_and_fresh_tenant_login_do_not_re
             &db,
             &fresh,
             SessionInput {
-                session_id: admission.session_id
+                session_id: admission.session_id().into()
             }
         )
         .await,
