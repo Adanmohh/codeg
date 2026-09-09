@@ -35,6 +35,27 @@ const english = {
   detach: "Close this pane",
   detachHint:
     "Closing a pane detaches the view. It does not stop the AI session.",
+  submittedFiles: "Submitted files",
+  selectedFile: "Submitted file",
+  submittedVersion: "The exact version submitted for review",
+  readFile: "Read file",
+  download: "Prepare download",
+  saveFile: "Save file",
+  checkingFile: "Checking this submitted version…",
+  loadingFile: "Loading verified file content…",
+  retry: "Check access again",
+  bytes: "bytes",
+  previewUnavailable:
+    "Preview is not available for this format. You can download the submitted version.",
+  previewTooLarge:
+    "This file is too large for the text reader. Download it to read the full content.",
+  fileUnavailable: "This submitted file is currently unavailable.",
+  fileInformation: "File information",
+  submittedBy: "Submitted by",
+  taskRevision: "Task revision at submission",
+  createdWith: "Created with",
+  modelUnavailable: "Model not recorded",
+  verifiedDownload: "The selected version is verified and ready to save.",
 }
 export type ExecutionCopy = typeof english
 const arabic: ExecutionCopy = {
@@ -66,6 +87,27 @@ const arabic: ExecutionCopy = {
   receipt: "سجل استلام الطلب",
   detach: "إغلاق هذه اللوحة",
   detachHint: "إغلاق اللوحة يفصل العرض ولا يوقف جلسة الذكاء الاصطناعي.",
+  submittedFiles: "الملفات المقدّمة",
+  selectedFile: "الملف المقدّم",
+  submittedVersion: "النسخة نفسها التي قُدّمت للمراجعة",
+  readFile: "قراءة الملف",
+  download: "تجهيز التنزيل",
+  saveFile: "حفظ الملف",
+  checkingFile: "جارٍ التحقق من النسخة المقدّمة…",
+  loadingFile: "جارٍ تحميل محتوى الملف والتحقق منه…",
+  retry: "التحقق من الوصول مجددًا",
+  bytes: "بايت",
+  previewUnavailable:
+    "معاينة هذا التنسيق غير متاحة. يمكنك تنزيل النسخة المقدّمة.",
+  previewTooLarge:
+    "هذا الملف أكبر من حدّ قارئ النصوص. نزّله لقراءة المحتوى كاملًا.",
+  fileUnavailable: "الملف المقدّم غير متاح حاليًا.",
+  fileInformation: "معلومات الملف",
+  submittedBy: "قدّمه",
+  taskRevision: "مراجعة المهمة عند التقديم",
+  createdWith: "أُنشئ باستخدام",
+  modelUnavailable: "النموذج غير مسجّل",
+  verifiedDownload: "تم التحقق من النسخة المختارة وهي جاهزة للحفظ.",
 }
 export function useExecutionCopy(): ExecutionCopy {
   return useLocale() === "ar" ? arabic : english

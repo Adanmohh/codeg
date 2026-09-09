@@ -14,6 +14,7 @@ import {
   readSessionStream,
   requireSuccess,
 } from "./reader"
+import { parsePublishedAsset } from "./published"
 import type {
   AssetSelection,
   Disposition,
@@ -210,11 +211,13 @@ export function createExecutionHttpClient(host: ExecutionHttpTransport) {
       )
     },
     publishedAsset(selection: PublishedSelection, signal?: AbortSignal) {
+      const expected = { ...selection }
       return request<PublishedAsset>(
         "tasks/deliverables/assets/get",
-        selection,
+        expected,
         signal,
-        json
+        async (response, scopeSignal) =>
+          parsePublishedAsset(await json(response, scopeSignal), expected)
       )
     },
     assetContent(

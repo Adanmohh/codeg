@@ -1249,3 +1249,21 @@ d0d56a36399d81be23787891177752022c91edf6 and the accepted E1 contract
 Testing Library16.3.2, Vitest2.1.9 and TypeScript5.8.3 are read API references.
 No host composer container, dependency implementation, AGPL/GPL or proprietary
 source is copied. Original Apache LICENSE and every preceding notice remain.
+
+Business E1 selected-file reader and task-tab integration (2026):
+src/components/business-execution/published-asset.tsx adapts only the file-card
+framing from src/components/message/reply-artifacts.tsx (blob
+65474f8c8a5af35644c6ed9a3adf9e0341890dd6) and business/ui.tsx Action at accepted
+Codeg-derived f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0. Additive
+business/workspace.tsx and task-detail.tsx registrations retain their existing
+WorkSurface and SavedTask implementation at that same pin. Host file openers,
+filesystem OfficePreview and global conversation providers are not mounted.
+src/lib/business-execution/published.ts uses the existing closed frame-parser
+helpers and accepted task-selected public metadata contract at
+3f164c2a989cd08a523e51f1e47559c15a48c0ef, mirrored by business_tasks/types.rs
+at d0d56a36399d81be23787891177752022c91edf6. Test fixtures reuse the existing
+business/test-fixtures.ts and workbench.test.tsx at f988700d. React19.2.4,
+TypeScript5.8.3, @types/node25.2.2, Vitest2.1.9, Testing Library16.3.2 and
+Lucide0.563.0 are installed API/type references, not dependency source ports.
+No AGPL/GPL, proprietary source or package is added. All prior notices and the
+original Apache LICENSE remain intact.

@@ -39,13 +39,35 @@ describe("business-owned execution scopes", () => {
     const business = client()
     const scope = business.execution()
     expect(fetcher).not.toHaveBeenCalled()
-    fetcher.mockResolvedValueOnce(Response.json({}))
     const selection = {
       taskId: "synthetic-task",
       deliverableId: "synthetic-deliverable",
       assetId: "synthetic-asset",
       versionId: "synthetic-version",
     }
+    fetcher.mockResolvedValueOnce(
+      Response.json({
+        version: {
+          assetId: selection.assetId,
+          versionId: selection.versionId,
+          title: "Synthetic selected file",
+          mediaType: "text/plain",
+          byteSize: 0,
+          sha256: "a".repeat(64),
+        },
+        createdAt: "2026-09-09T00:00:00Z",
+        producer: { clientId: "synthetic-client", model: null },
+        publication: {
+          deliverableId: selection.deliverableId,
+          taskRevision: 4,
+          submittedBy: {
+            memberId: "synthetic-member",
+            displayName: "Synthetic Member",
+            authorityKind: "credential",
+          },
+        },
+      })
+    )
     await scope.publishedAsset(selection)
     expect(fetcher).toHaveBeenCalledWith(
       "http://127.0.0.1:4359/api/business/tasks/deliverables/assets/get",

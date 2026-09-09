@@ -77,6 +77,10 @@ import {
 import { useSettingsCopy } from "@/lib/business/settings-copy"
 import { SettingsEditor } from "./settings-editor"
 import { WorkspaceAppearance, useWorkspaceAppearance } from "./appearance"
+import {
+  PublishedAssetPane,
+  type PublishedFileIntent,
+} from "@/components/business-execution/published-asset"
 
 type View = "mine" | "shared" | "review" | "people" | "sources" | "settings"
 export function BusinessWorkspace({
@@ -136,6 +140,9 @@ export function BusinessWorkspace({
     }[]
   >([])
   const closeRequests = useRef(new Map<string, () => void>())
+  const [openFiles, setOpenFiles] = useState<
+    { id: string; intent: PublishedFileIntent }[]
+  >([])
   const [refreshKey, setRefreshKey] = useState(0)
   const generation = useRef(0)
   const menuRef = useRef<HTMLButtonElement>(null)
@@ -325,6 +332,16 @@ export function BusinessWorkspace({
   function closeTask(id: string) {
     setOpenTasks((current) => current.filter((task) => task.id !== id))
     setActiveTab((current) => (current === id ? "work" : current))
+  }
+  function openFile(intent: PublishedFileIntent) {
+    const { taskId, deliverableId, assetId, versionId } = intent.selection
+    const id = `asset:${taskId}:${deliverableId}:${assetId}:${versionId}`
+    setOpenFiles((current) =>
+      current.some((file) => file.id === id)
+        ? current
+        : [...current, { id, intent }]
+    )
+    setActiveTab(id)
   }
   function selectedNav(id: View) {
     return id === "sources" || id === "people" || id === "settings"
@@ -759,6 +776,7 @@ export function BusinessWorkspace({
           }}
           onClose={() => closeTask(task.id)}
           onChanged={() => void reload()}
+          onAsset={openFile}
           onSource={(source) => {
             closeTask(task.id)
             setSourceEntry({ sourceId: source.id, bindingId: source.bindingId })
@@ -766,6 +784,16 @@ export function BusinessWorkspace({
           }}
         />
       ),
+    })),
+    ...openFiles.map((file) => ({
+      id: file.id,
+      label: file.intent.expected.title,
+      icon: FileText,
+      close: () => {
+        setOpenFiles((current) => current.filter((item) => item.id !== file.id))
+        setActiveTab((current) => (current === file.id ? "work" : current))
+      },
+      render: () => <PublishedAssetPane client={client} intent={file.intent} />,
     })),
   ]
   return (

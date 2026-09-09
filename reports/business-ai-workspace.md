@@ -1,6 +1,6 @@
 # Business AI workspace — implementation checkpoint
 
-The current compiling component checkpoint adds the inherited RichComposer with
+The prompt checkpoint `b931b0f57` adds the inherited RichComposer with
 explicit E1 prompt receipts, EN/AR copy and in-memory context selection. Its nine
 focused tests pass, as do normal TypeScript and scoped ESLint. The component is
 not mounted in the workbench yet; no operational AI or browser acceptance is
@@ -43,6 +43,44 @@ production responses. React19.2.4, @types/react19.2.13, Testing Library16.3.2,
 Vitest2.1.9 and TypeScript5.8.3 installed source/types were read before edits.
 Normal Git status and immutable gh-api reads both pass in this resumed session;
 owner-removed enforcement hooks remain absent and are not restored.
+
+The next compiling checkpoint mounts the task-selected file reader in the
+accepted workbench. Existing Task Detail cards open exact task/deliverable/asset/
+version selections as stable WorkSurface tabs. Returning to a human editor retains
+its unsaved draft. The selected route rechecks current access before metadata or
+content; it never calls private assets/list, versions, sessions or legacy paths.
+The public parser refuses extra private fields and foreign asset/version/
+deliverable identities, and captures caller selection before asynchronous reads.
+The task manifest's hash/size/type must match returned metadata before a read can
+be offered. This extends source only; no preview export was replaced or started.
+
+The reader uses escaped text for plain/Markdown content up to1MiB. Other formats
+or larger text show an explicit preview gap and a separately authorized download
+up to the contract's50MiB bound. SHA-256 and exact byte/header validation precede
+content delivery. Download uses an inert binary Blob and an explicit Save file
+link, never a credential URL or filesystem opener. Close/version change aborts
+pending reads and disposes handles; a denied read clears displayed content.
+The slide-format unit case is a synthetic MIME/byte handling test, not a generated
+PPTX/Office-renderer or real browser proof. Native E1 remains unavailable.
+
+| Selected-file gate | Result; evidence under business-ai-workspace-evidence |
+| --- | --- |
+| Published projection plus business parent client | 18/18, exit0; published-after.txt |
+| Real reader/Task Detail/Workbench components with injected synthetic HTTP | 7/7, exit0; published-component-final.txt |
+| Affected workbench/workflow plus execution library/parent tests | 88/88, exit0; published-integrated-regressions.txt |
+| Normal `tsc --noEmit --incremental false` | exit0; published-integrated-typecheck-final.txt |
+| Scoped ESLint | exit0, no diagnostics; published-integrated-lint-final.txt |
+
+The unchanged b931 public client fails11/12 new projection cases; exact negative
+evidence is published-negative-control.txt. The first component typecheck found a
+test fixture using public SubmittedBy fields for the different TaskActor type.
+It now uses the actual task `id/displayName/kind`, without a production or assertion
+change. Its initial diagnostic and an unused test parameter lint warning remain
+in published-integrated-typecheck.txt and published-integrated-lint.txt. The
+corrected seven component tests reran. Installed @types/node25.2.2 Blob/WebCrypto
+types ground the test-only Node implementations replacing missing jsdom APIs;
+this is not browser proof. Lucide0.563.0 exports and existing Button/Action props
+were read. No dependency, lockfile or global configuration changed.
 
 The earlier transport checkpoint passes the normal TypeScript check and scoped lint, with
 48/48 client, content and stream tests passing. After the owner confirmed complete enforcement-hook
@@ -490,8 +528,9 @@ reads, so caller mutation cannot change the object being verified; and distingui
 local transport abort from a confirmed durable cancellation. A lost mutation
 response requires its original operation receipt, never blind replay. These are
 now covered by the current48-test transport checkpoint, not accepted-main regressions. JSON result bodies
-are currently byte-bounded and statically typed; only event frames and content
-headers/bytes have the explicit runtime validators in this checkpoint.
+are byte-bounded and statically typed. Event frames, prompt receipts, task-selected
+public asset metadata and content headers/bytes have explicit runtime validators;
+other private result envelopes still require component-specific validation.
 
 With normal tools restored, the next focused gate covers parent/client closure,
 keyed scope disposal and no late delivery; unchanged draft through locale and

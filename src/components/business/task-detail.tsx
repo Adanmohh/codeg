@@ -20,6 +20,10 @@ import { DueDay } from "./work-list"
 import { ActivityList } from "./activity"
 import { TaskSources } from "@/components/business-intake/task-sources"
 import type { SourceSummary } from "@/lib/business/intake"
+import {
+  PublishedAssetCards,
+  type PublishedFileIntent,
+} from "@/components/business-execution/published-asset"
 
 type RegisterClose = (request: (() => void) | null) => void
 
@@ -95,6 +99,7 @@ export function TaskDetailDialog({
   onClose,
   onChanged,
   onSource,
+  onAsset,
   presentation = "dialog",
   registerClose,
 }: {
@@ -107,6 +112,7 @@ export function TaskDetailDialog({
   onClose: () => void
   onChanged: () => void
   onSource?: (source: SourceSummary) => void
+  onAsset?: (intent: PublishedFileIntent) => void
   presentation?: "dialog" | "pane"
   registerClose?: RegisterClose
 }) {
@@ -159,6 +165,7 @@ export function TaskDetailDialog({
       onClose={onClose}
       onChanged={onChanged}
       onSource={onSource}
+      onAsset={onAsset}
       presentation={presentation}
       registerClose={registerClose}
     />
@@ -174,6 +181,7 @@ function TaskEditor({
   onClose,
   onChanged,
   onSource,
+  onAsset,
   presentation,
   registerClose,
 }: {
@@ -185,6 +193,7 @@ function TaskEditor({
   onClose: () => void
   onChanged: () => void
   onSource?: (source: SourceSummary) => void
+  onAsset?: (intent: PublishedFileIntent) => void
   presentation: "dialog" | "pane"
   registerClose?: RegisterClose
 }) {
@@ -368,7 +377,7 @@ function TaskEditor({
           <p className="text-sm font-medium">
             <bdi>{current.task.title}</bdi>
           </p>
-          <SavedTask detail={current} members={members} />
+          <SavedTask detail={current} members={members} onAsset={onAsset} />
           <div className="flex flex-wrap gap-3">
             <Action disabled={busy} onClick={() => adoptCurrent(true)}>
               {copy.keepDraft}
@@ -385,7 +394,7 @@ function TaskEditor({
       )}
       {mode === "view" ? (
         <>
-          <SavedTask detail={detail} members={members} />
+          <SavedTask detail={detail} members={members} onAsset={onAsset} />
           <div className="flex flex-wrap gap-2">
             {cap.edit && (
               <Action
@@ -859,9 +868,11 @@ function TaskEditor({
 function SavedTask({
   detail,
   members,
+  onAsset,
 }: {
   detail: TaskDetail
   members: Member[]
+  onAsset?: (intent: PublishedFileIntent) => void
 }) {
   const copy = useBusinessCopy()
   const task = detail.task
@@ -934,6 +945,13 @@ function SavedTask({
               >
                 {deliverable.body}
               </p>
+              {onAsset && (
+                <PublishedAssetCards
+                  taskId={task.id}
+                  deliverable={deliverable}
+                  onOpen={onAsset}
+                />
+              )}
               <Person
                 compact
                 person={{
