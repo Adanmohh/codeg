@@ -135,28 +135,32 @@ pub(crate) async fn list(
     validation::uuid(&input.task_id)?;
     validation::page(input.limit, 50, input.cursor.as_deref())?;
     let tx = db.begin().await?;
-    scope::task(&tx, principal, &input.task_id, false).await?;
-    // A cursor is an actual row UUID under this task, never an offset or caller
-    // authority. Session IDs are immutable and give deterministic pagination.
+    let current = scope::task(&tx, principal, &input.task_id, false).await?;
+    // A cursor is only an immutable position within this member's task. It may
+    // have been revoked since the preceding page; consuming the position must
+    // not grant access to that session or prevent traversal of eligible rows.
     if let Some(cursor) = &input.cursor {
-        let row = scope::session(&tx, principal, cursor).await?;
-        if row.task_id != input.task_id {
+        validation::uuid(cursor)?;
+        if tx.query_one(statement(
+            "SELECT id FROM business_execution_session WHERE organization_id=? AND member_id=? AND task_id=? AND id=?",
+            vec![principal.organization_id().into(), principal.member_id().into(), input.task_id.clone().into(), cursor.as_str().into()],
+        )).await?.is_none() {
             return Err(OperationReason::Missing.into());
         }
     }
+    // Apply the stored scope::validate_session predicates before LIMIT so no
+    // hidden row becomes a cursor or consumes a visible page slot. Revalidate
+    // every selected row through the shared authority helper in this snapshot.
     let mut rows = records::Session::find_by_statement(statement(
-        "SELECT * FROM business_execution_session WHERE organization_id=? AND member_id=? AND task_id=? AND (? IS NULL OR id<?) ORDER BY id DESC LIMIT ?",
-        vec![principal.organization_id().into(), principal.member_id().into(), input.task_id.into(), input.cursor.clone().into(), input.cursor.into(), (i64::from(input.limit)+1).into()])).all(&tx).await?;
+        "SELECT s.* FROM business_execution_session s JOIN business_execution_profile p ON p.organization_id=s.organization_id AND p.member_id=s.member_id AND p.id=s.profile_id WHERE s.organization_id=? AND s.member_id=? AND s.task_id=? AND s.authorization_epoch=? AND s.authority_json=? AND s.task_scope_epoch=? AND s.status NOT IN ('revoked','closed') AND p.revision=s.profile_revision AND p.retired_at IS NULL AND (? IS NULL OR s.id<?) ORDER BY s.id DESC LIMIT ?",
+        vec![principal.organization_id().into(), principal.member_id().into(), input.task_id.into(), principal.authorization_epoch().into(), scope::authority(principal)?.into(), current.epoch.into(), input.cursor.clone().into(), input.cursor.into(), (i64::from(input.limit)+1).into()])).all(&tx).await?;
     let next_cursor =
         (rows.len() > input.limit as usize).then(|| rows[input.limit as usize - 1].id.clone());
     rows.truncate(input.limit as usize);
     let mut items = vec![];
     for row in rows {
-        match scope::validate_session(&tx, principal, &row).await {
-            Ok(()) => items.push(summary(&row)?),
-            Err(Error(OperationReason::AuthorityChanged)) => {}
-            Err(error) => return Err(error),
-        }
+        scope::validate_session(&tx, principal, &row).await?;
+        items.push(summary(&row)?);
     }
     tx.commit().await?;
     Ok(Page { items, next_cursor })
