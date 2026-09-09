@@ -1,0 +1,26 @@
+Reviewer synthetic recovery evidence glue (2026).
+
+prepare-cases.py adapts protected-api.py from Apache-2.0 Codeg at
+6895bedf425db263c2d6eb1dd73641f34521f439:
+reports/business-integration-review/fixture-7ed0dd0c/protected-api.py
+blob bcc6e2b53a6b38ae32d0c1050a435608fc158103.
+The original request flow in turn attributes Codeg 7ed0dd0c, retained in
+../fixture-7ed0dd0c/NOTICE and its exact source ledgers.
+
+browser-guard.js and browser-login.js adapt the same files under that
+6895bedf fixture-evidence directory to the new4355 origin. Original blobs:
+browser-guard.js 2a536695a0f4f8ee6afabc6a0c59ff38c84482ee;
+browser-login.js 2cbf569a2c25c9b9200bc8b3527ccbc511ea552a.
+
+The actual flow exercises Codeg 60d600db0f224d44ff191490ab79bc25530ba959:
+src/components/business-intake/{candidate,source-review,imports}.tsx and
+src/lib/business/intake.ts. Exact blobs and the 08417b4f export/helper sources
+are recorded in source-ledger.json. No component implementation is ported.
+browser-observe.js and browser-finish.js are original test-only assertions
+using installed Playwright types; no dependency code is copied.
+
+Codeg is Apache-2.0. Its LICENSE blob is
+261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64. The repository LICENSE and existing
+NOTICE entries remain unchanged; this file supplements them for this report.
+No credentials, dependency install, product source or external provider code
+are included in this artifact.

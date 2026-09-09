@@ -1,0 +1,59 @@
+{
+  "action": "prepare",
+  "namespace": "review",
+  "requests": [
+    {
+      "operation": "context",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/imports/start",
+      "operationId": "3e5c6645-56e7-4fbc-8062-80444723434b",
+      "status": 200
+    },
+    {
+      "operation": "intake/imports/advance",
+      "operationId": "5e797626-7d14-40d2-ade8-2f76edfa07fe",
+      "status": 200
+    },
+    {
+      "operation": "intake/sources/get",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/candidates/create",
+      "operationId": "87536d81-2326-4f24-a602-904ce4d75060",
+      "status": 200
+    },
+    {
+      "operation": "intake/imports/start",
+      "operationId": "7ab630ec-7806-48c7-96e4-99286ca404ce",
+      "status": 200
+    },
+    {
+      "operation": "intake/imports/advance",
+      "operationId": "9d71e7d6-a91b-46fc-b6fe-1abc9ee88802",
+      "status": 200
+    },
+    {
+      "operation": "intake/sources/get",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/candidates/create",
+      "operationId": "090e71e1-423b-466f-aaa0-f8e108b80187",
+      "status": 200
+    },
+    {
+      "operation": "intake/candidates/edit",
+      "operationId": "6a8fdca5-5a03-4402-b62d-8976172fa8e7",
+      "status": 200
+    }
+  ],
+  "status": "passed",
+  "httpRetries": 0,
+  "finishedAtUnix": 1788950072.232647
+}

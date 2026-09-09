@@ -1,6 +1,13 @@
+import { isTauri } from "@tauri-apps/api/core"
 import { extractAppCommandError } from "@/lib/app-error"
 import type { IdentityOperations } from "./identity"
 import type { TaskOperations } from "./tasks"
+import {
+  intakeCommands,
+  intakeReason,
+  type IntakeOperations,
+  type IntakeReason,
+} from "./intake"
 
 export type BusinessErrorKind =
   | "unauthorized"
@@ -12,29 +19,37 @@ export type BusinessErrorKind =
   | "offline"
   | "closed"
 export class BusinessError extends Error {
-  constructor(readonly kind: BusinessErrorKind) {
+  constructor(
+    readonly kind: BusinessErrorKind,
+    readonly intakeReason?: IntakeReason
+  ) {
     super(kind)
     this.name = "BusinessError"
   }
 }
 
-function safeError(error: unknown, status?: number): BusinessError {
+function safeError(
+  error: unknown,
+  status?: number,
+  intake = false
+): BusinessError {
   if (error instanceof BusinessError) return error
   const parsed = extractAppCommandError(error)
+  const reason = intake ? intakeReason(parsed?.i18n_key) : undefined
   if (status === 401 || parsed?.code === "authentication_failed")
     return new BusinessError("unauthorized")
   if (status === 403 || parsed?.code === "permission_denied")
-    return new BusinessError("forbidden")
+    return new BusinessError("forbidden", reason)
   if (status === 404 || parsed?.code === "not_found")
-    return new BusinessError("missing")
+    return new BusinessError("missing", reason)
   if (status === 409 || parsed?.code === "already_exists")
-    return new BusinessError("conflict")
+    return new BusinessError("conflict", reason)
   if (status === 400 || parsed?.code === "invalid_input")
-    return new BusinessError("invalid")
+    return new BusinessError("invalid", reason)
   if (parsed?.i18n_key === "business.bootstrapRequired")
     return new BusinessError("bootstrap")
   // Never expose SQL, provider bodies, arbitrary server messages or credentials.
-  return new BusinessError("offline")
+  return new BusinessError("offline", reason)
 }
 
 export function workspaceOrigin(address: string): string {
@@ -68,6 +83,8 @@ const identityCommands = {
   "credentials/issue": "business_credentials_issue",
   "credentials/list": "business_credentials_list",
   "credentials/revoke": "business_credentials_revoke",
+  "settings/get": "business_settings_get",
+  "settings/update": "business_settings_update",
 } as const satisfies Record<keyof IdentityOperations, string>
 
 const commands = {
@@ -100,6 +117,12 @@ export function createBusinessClient(
   connection: BusinessConnection,
   onUnauthorized: () => void = () => {}
 ) {
+  // The native host has operator capabilities. Personal HTTP sessions belong
+  // in a browser until the backend can create a restricted tenant window.
+  // Reject before retaining a bearer or making any request, even if an old
+  // hydrated form submits. Native isolation remains a backend responsibility.
+  if (connection.kind === "http" && isTauri())
+    throw new BusinessError("forbidden")
   const native = connection.kind === "native"
   const origin =
     connection.kind === "http" ? workspaceOrigin(connection.address) : ""
@@ -115,10 +138,22 @@ export function createBusinessClient(
     active.clear()
   }
   async function request<T>(
-    path: keyof typeof commands,
+    path: keyof typeof commands | `intake/${keyof IntakeOperations}`,
     input: object
   ): Promise<T> {
     if (closed) throw new BusinessError("closed")
+    const intake = path.startsWith("intake/")
+    const command = intake
+      ? intakeCommands[path.slice(7) as keyof IntakeOperations]
+      : commands[path as keyof typeof commands]
+    if (
+      !command ||
+      !Object.prototype.hasOwnProperty.call(
+        intake ? intakeCommands : commands,
+        intake ? path.slice(7) : path
+      )
+    )
+      throw new BusinessError("invalid")
     const controller = new AbortController()
     active.add(controller)
     const timer = window.setTimeout(() => controller.abort(), 20000)
@@ -126,7 +161,7 @@ export function createBusinessClient(
       let result: T
       if (native) {
         const { invoke } = await import("@tauri-apps/api/core")
-        result = await invoke<T>(commands[path], { input })
+        result = await invoke<T>(command, { input })
       } else {
         const response = await fetch(`${origin}/api/business/${path}`, {
           method: "POST",
@@ -144,7 +179,8 @@ export function createBusinessClient(
         if (!response.ok)
           throw safeError(
             await response.json().catch(() => null),
-            response.status
+            response.status,
+            intake
           )
         result = await response.json()
       }
@@ -152,7 +188,7 @@ export function createBusinessClient(
       return result
     } catch (error) {
       if (closed) throw new BusinessError("closed")
-      const safe = safeError(error)
+      const safe = safeError(error, undefined, intake)
       if (safe.kind === "unauthorized") {
         close()
         onUnauthorized()
@@ -178,6 +214,12 @@ export function createBusinessClient(
       input: TaskOperations[K]["input"]
     ): Promise<TaskOperations[K]["result"]> {
       return request(`tasks/${operation}`, input)
+    },
+    intake<K extends keyof IntakeOperations>(
+      operation: K,
+      input: IntakeOperations[K]["input"]
+    ): Promise<IntakeOperations[K]["result"]> {
+      return request(`intake/${operation}`, input)
     },
   }
 }

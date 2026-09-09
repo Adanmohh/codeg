@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, type ReactNode } from "react"
+import { X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { BusinessError, type BusinessClient } from "@/lib/business/client"
@@ -17,6 +18,55 @@ import { Action, ErrorNotice, Field, Modal, Person, StatusBadge } from "./ui"
 import { AssignmentFields, MetadataFields } from "./task-form"
 import { DueDay } from "./work-list"
 import { ActivityList } from "./activity"
+import { TaskSources } from "@/components/business-intake/task-sources"
+import type { SourceSummary } from "@/lib/business/intake"
+
+type RegisterClose = (request: (() => void) | null) => void
+
+function TaskFrame({
+  title,
+  onClose,
+  presentation,
+  registerClose,
+  children,
+}: {
+  title: string
+  onClose: () => void
+  presentation: "dialog" | "pane"
+  registerClose?: RegisterClose
+  children: ReactNode
+}) {
+  const copy = useBusinessCopy()
+  useEffect(() => {
+    registerClose?.(onClose)
+    return () => registerClose?.(null)
+  }, [onClose, registerClose])
+  if (presentation === "dialog")
+    return (
+      <Modal title={title} onClose={onClose} wide>
+        {children}
+      </Modal>
+    )
+  return (
+    <div className="mx-auto max-w-3xl space-y-5 p-5 [overflow-wrap:anywhere] sm:p-6">
+      <header className="flex items-start justify-between gap-4 border-b pb-5">
+        <h2 className="min-w-0 pt-2 text-xl font-semibold tracking-tight">
+          <bdi>{title}</bdi>
+        </h2>
+        <Action
+          variant="ghost"
+          size="icon"
+          className="size-11 shrink-0 p-0"
+          onClick={onClose}
+          aria-label={copy.close}
+        >
+          <X aria-hidden="true" />
+        </Action>
+      </header>
+      {children}
+    </div>
+  )
+}
 
 function fieldsOf(task: Task): TaskFields {
   return {
@@ -44,6 +94,9 @@ export function TaskDetailDialog({
   legacyOperator = false,
   onClose,
   onChanged,
+  onSource,
+  presentation = "dialog",
+  registerClose,
 }: {
   taskId: string
   initial?: TaskDetail
@@ -53,6 +106,9 @@ export function TaskDetailDialog({
   legacyOperator?: boolean
   onClose: () => void
   onChanged: () => void
+  onSource?: (source: SourceSummary) => void
+  presentation?: "dialog" | "pane"
+  registerClose?: RegisterClose
 }) {
   const copy = useBusinessCopy()
   const [detail, setDetail] = useState<TaskDetail | null>(initial ?? null)
@@ -78,7 +134,12 @@ export function TaskDetailDialog({
   }, [client, taskId, initial, reload])
   if (!detail)
     return (
-      <Modal title={copy.loading} onClose={onClose}>
+      <TaskFrame
+        title={copy.loading}
+        onClose={onClose}
+        presentation={presentation}
+        registerClose={registerClose}
+      >
         {error != null && (
           <ErrorNotice error={error}>
             <Action variant="outline" onClick={() => setReload(reload + 1)}>
@@ -86,7 +147,7 @@ export function TaskDetailDialog({
             </Action>
           </ErrorNotice>
         )}
-      </Modal>
+      </TaskFrame>
     )
   return (
     <TaskEditor
@@ -97,6 +158,9 @@ export function TaskDetailDialog({
       legacyOperator={legacyOperator}
       onClose={onClose}
       onChanged={onChanged}
+      onSource={onSource}
+      presentation={presentation}
+      registerClose={registerClose}
     />
   )
 }
@@ -109,6 +173,9 @@ function TaskEditor({
   legacyOperator,
   onClose,
   onChanged,
+  onSource,
+  presentation,
+  registerClose,
 }: {
   initial: TaskDetail
   client: BusinessClient
@@ -117,6 +184,9 @@ function TaskEditor({
   legacyOperator: boolean
   onClose: () => void
   onChanged: () => void
+  onSource?: (source: SourceSummary) => void
+  presentation: "dialog" | "pane"
+  registerClose?: RegisterClose
 }) {
   const copy = useBusinessCopy()
   const [detail, setDetail] = useState(initial)
@@ -134,6 +204,7 @@ function TaskEditor({
   const [conflicted, setConflicted] = useState(false)
   const [current, setCurrent] = useState<TaskDetail | null>(null)
   const [discard, setDiscard] = useState(false)
+  const [pendingSource, setPendingSource] = useState<SourceSummary | null>(null)
   const [confirm, setConfirm] = useState<"cancel" | "archive" | null>(null)
   const task = detail.task
   const cap = task.capabilities
@@ -155,7 +226,26 @@ function TaskEditor({
   const locked = busy || conflicted || !!current
   function close() {
     if (busy) return
+    setPendingSource(null)
     if (dirty) setDiscard(true)
+    else onClose()
+  }
+  function openSource(source: SourceSummary) {
+    if (busy || !onSource) return
+    if (dirty) {
+      setPendingSource(source)
+      setDiscard(true)
+    } else onSource(source)
+  }
+  function stay() {
+    setDiscard(false)
+    setPendingSource(null)
+  }
+  function discardAndLeave() {
+    if (busy) return
+    setDiscard(false)
+    setPendingSource(null)
+    if (pendingSource && onSource) onSource(pendingSource)
     else onClose()
   }
   function failed(caught: unknown) {
@@ -217,7 +307,12 @@ function TaskEditor({
     setError(null)
   }
   return (
-    <Modal title={task.title} onClose={close} wide>
+    <TaskFrame
+      title={task.title}
+      onClose={close}
+      presentation={presentation}
+      registerClose={registerClose}
+    >
       <div
         className="flex flex-wrap items-center gap-3"
         role={conflicted ? "group" : undefined}
@@ -560,6 +655,14 @@ function TaskEditor({
         </>
       )}
       <ActivityList detail={detail} members={members} />
+      {onSource && (
+        <TaskSources
+          taskId={task.id}
+          client={client}
+          disabled={busy}
+          onSource={openSource}
+        />
+      )}
       <details className="border-t pt-3">
         <summary className="focus-visible:ring-ring flex min-h-11 cursor-pointer items-center rounded-lg text-sm font-medium outline-none focus-visible:ring-2">
           {copy.execution}
@@ -737,19 +840,19 @@ function TaskEditor({
         <Modal
           title={copy.discardTitle}
           description={copy.discardHint}
-          onClose={() => setDiscard(false)}
+          onClose={stay}
         >
           <div className="flex flex-wrap justify-end gap-3">
-            <Action variant="outline" onClick={() => setDiscard(false)}>
+            <Action variant="outline" onClick={stay}>
               {copy.stay}
             </Action>
-            <Action variant="destructive" onClick={onClose}>
+            <Action variant="destructive" onClick={discardAndLeave}>
               {copy.discardDraft}
             </Action>
           </div>
         </Modal>
       )}
-    </Modal>
+    </TaskFrame>
   )
 }
 

@@ -49,6 +49,7 @@ export function ConnectWorkspace({
   ) as { native: boolean; savedOperator: boolean; origin: string }
   const address = addressDraft ?? origin
   async function submit(connection: BusinessConnection) {
+    if (connection.kind === "http" && isTauri()) return
     if (await connect(connection)) setToken("")
   }
   return (
@@ -93,103 +94,113 @@ export function ConnectWorkspace({
             id="business-signin"
             className="text-xl font-semibold tracking-tight"
           >
-            {copy.signIn}
+            {native ? copy.localLabel : copy.signIn}
           </h2>
           <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-            {copy.signInHint}
+            {native ? copy.nativeLocalHint : copy.signInHint}
           </p>
-          <form
-            className="mt-6 space-y-5"
-            onSubmit={(event) => {
-              event.preventDefault()
-              void submit({ kind: "http", address, token })
-            }}
-          >
-            <Field label={copy.server} hint={copy.addressHint}>
-              {(id) => (
-                <Input
-                  id={id}
-                  className="min-h-11 rounded-xl"
-                  type="url"
-                  dir="ltr"
-                  value={address}
-                  onChange={(event) => setAddress(event.target.value)}
-                  required
-                  autoComplete="url"
-                  disabled={busy}
-                />
-              )}
-            </Field>
-            <Field label={operator ? copy.operatorToken : copy.memberToken}>
-              {(id) => (
-                <Input
-                  id={id}
-                  className="min-h-11 rounded-xl"
-                  type="password"
-                  dir="ltr"
-                  value={token}
-                  onChange={(event) => setToken(event.target.value)}
-                  required
-                  autoComplete="off"
-                  spellCheck={false}
-                  disabled={busy}
-                />
-              )}
-            </Field>
-            {error != null && <ErrorNotice error={error} />}
-            <Action
-              className="w-full"
-              type="submit"
-              disabled={busy || !token.trim() || !address.trim()}
-            >
-              {busy ? copy.connecting : copy.connect}
-              <ArrowRight className="rtl:rotate-180" aria-hidden="true" />
-            </Action>
-            <p className="text-muted-foreground text-xs leading-relaxed">
-              {copy.sessionHint}
-            </p>
-          </form>
-          <details className="mt-6 border-t pt-4">
-            <summary className="focus-visible:ring-ring flex min-h-11 cursor-pointer items-center rounded-lg text-sm font-medium outline-none focus-visible:ring-2">
-              {copy.operator}
-            </summary>
-            <div className="grid gap-3 pt-2">
-              {native && (
-                <Action
-                  variant="outline"
-                  disabled={busy}
-                  onClick={() => void submit({ kind: "native" })}
-                >
-                  {copy.localDesk}
-                </Action>
-              )}
-              {savedOperator && (
-                <Action
-                  variant="outline"
-                  className="h-auto whitespace-normal py-3 text-start"
-                  disabled={busy}
-                  onClick={() => {
-                    void submit({
-                      kind: "http",
-                      address: window.location.origin,
-                      token: getCodegToken(),
-                    })
-                  }}
-                >
-                  {copy.existingOperator}
-                </Action>
-              )}
-              <label className="flex min-h-11 cursor-pointer items-center gap-3 text-sm">
-                <input
-                  type="checkbox"
-                  checked={operator}
-                  onChange={(event) => setOperator(event.target.checked)}
-                  className="accent-primary size-4"
-                />
-                {copy.operatorToken}
-              </label>
+          {native ? (
+            <div className="mt-6 space-y-5">
+              {error != null && <ErrorNotice error={error} />}
+              <Action
+                className="h-auto w-full whitespace-normal py-3 text-start"
+                disabled={busy}
+                onClick={() => void submit({ kind: "native" })}
+              >
+                {busy ? copy.connecting : copy.localDesk}
+                <ArrowRight className="rtl:rotate-180" aria-hidden="true" />
+              </Action>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {copy.nativeMemberBrowser}
+              </p>
             </div>
-          </details>
+          ) : (
+            <>
+              <form
+                className="mt-6 space-y-5"
+                onSubmit={(event) => {
+                  event.preventDefault()
+                  void submit({ kind: "http", address, token })
+                }}
+              >
+                <Field label={copy.server} hint={copy.addressHint}>
+                  {(id) => (
+                    <Input
+                      id={id}
+                      className="min-h-11 rounded-xl"
+                      type="url"
+                      dir="ltr"
+                      value={address}
+                      onChange={(event) => setAddress(event.target.value)}
+                      required
+                      autoComplete="url"
+                      disabled={busy}
+                    />
+                  )}
+                </Field>
+                <Field label={operator ? copy.operatorToken : copy.memberToken}>
+                  {(id) => (
+                    <Input
+                      id={id}
+                      className="min-h-11 rounded-xl"
+                      type="password"
+                      dir="ltr"
+                      value={token}
+                      onChange={(event) => setToken(event.target.value)}
+                      required
+                      autoComplete="off"
+                      spellCheck={false}
+                      disabled={busy}
+                    />
+                  )}
+                </Field>
+                {error != null && <ErrorNotice error={error} />}
+                <Action
+                  className="w-full"
+                  type="submit"
+                  disabled={busy || !token.trim() || !address.trim()}
+                >
+                  {busy ? copy.connecting : copy.connect}
+                  <ArrowRight className="rtl:rotate-180" aria-hidden="true" />
+                </Action>
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  {copy.sessionHint}
+                </p>
+              </form>
+              <details className="mt-6 border-t pt-4">
+                <summary className="focus-visible:ring-ring flex min-h-11 cursor-pointer items-center rounded-lg text-sm font-medium outline-none focus-visible:ring-2">
+                  {copy.operator}
+                </summary>
+                <div className="grid gap-3 pt-2">
+                  {savedOperator && (
+                    <Action
+                      variant="outline"
+                      className="h-auto whitespace-normal py-3 text-start"
+                      disabled={busy}
+                      onClick={() => {
+                        void submit({
+                          kind: "http",
+                          address: window.location.origin,
+                          token: getCodegToken(),
+                        })
+                      }}
+                    >
+                      {copy.existingOperator}
+                    </Action>
+                  )}
+                  <label className="flex min-h-11 cursor-pointer items-center gap-3 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={operator}
+                      onChange={(event) => setOperator(event.target.checked)}
+                      className="accent-primary size-4"
+                    />
+                    {copy.operatorToken}
+                  </label>
+                </div>
+              </details>
+            </>
+          )}
         </section>
       </div>
     </main>

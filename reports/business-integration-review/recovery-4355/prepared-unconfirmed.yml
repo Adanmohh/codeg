@@ -1,0 +1,36 @@
+- region "Review before sharing" [ref=e598]:
+  - heading "Review before sharing" [level=3] [ref=e599]
+  - generic [ref=e600]:
+    - generic [ref=e601]:
+      - 'heading "Reviewer4355: prepared recovery control" [level=3] [ref=e602]'
+      - paragraph [ref=e603]: Reviewer4355 newer exact private saved text
+    - generic [ref=e604]:
+      - generic [ref=e605]:
+        - term [ref=e606]: Area of work
+        - definition [ref=e607]: Feedback
+      - generic [ref=e608]:
+        - term [ref=e609]: Priority
+        - definition [ref=e610]: Normal
+      - generic [ref=e611]:
+        - term [ref=e612]: Due date
+        - definition [ref=e613]: No due date
+      - generic [ref=e614]:
+        - term [ref=e615]: Accountable owner
+        - definition [ref=e616]:
+          - generic [ref=e617]:
+            - generic [ref=e618]: R
+            - generic [ref=e619]: review owner
+      - generic [ref=e620]:
+        - term [ref=e621]: Assigned to
+        - definition [ref=e622]: Unassigned
+      - generic [ref=e623]:
+        - term [ref=e624]: Reviewer
+        - definition [ref=e625]: Any authorized human reviewer
+  - generic [ref=e626]:
+    - 'heading "Destination audience: Feedback" [level=4] [ref=e627]'
+    - paragraph [ref=e628]: Everyone with current or future Read access to this area can read the complete task title, brief, responsibility, due date and activity. Source grants do not limit that task audience.
+    - paragraph [ref=e629]: Accepted task text remains in this area even if the original source or its access is later removed. Only the source reference stays private to source-authorized readers.
+  - generic [ref=e630] [cursor=pointer]:
+    - checkbox "I have reviewed these exact passages, the complete task and this destination audience. I explicitly approve sharing this task here." [ref=e631]
+    - generic [ref=e632]: I have reviewed these exact passages, the complete task and this destination audience. I explicitly approve sharing this task here.
+  - button "Accept into shared work" [disabled]

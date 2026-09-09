@@ -1,0 +1,17 @@
+{
+  "observedNonzeroCommands": [
+    {
+      "command": "rg -n ... .build/business-integration-review/ui-60d600db/source/src/lib/business-intake",
+      "exit": 2,
+      "reason": "Reviewer searched a nonexistent directory; rg --files located src/lib/business/intake.ts, then the actual types were read. No source/API conclusion came from the failed search."
+    },
+    {
+      "command": "playwright-cli -s=review-intake-recovery-4355 run-code <refresh-prepared-newer> --raw",
+      "exit": 1,
+      "error": "TimeoutError: locator.click: Timeout 30000ms exceeded while Read next step was present but not visible",
+      "observedState": "The separate authorized API edit had renewed source B access. Starting the browser refresh loaded that fresh state and collapsed the details element. The revision-3 comparison was already visible; the queued import still existed.",
+      "recovery": "Read the actual snapshot, opened the existing summary element, then clicked the same queued Read next step. No repeated imports/start, new key or forced hidden click. Existing import completed and comparison/adoption assertions passed."
+    }
+  ],
+  "classification": "Reviewer command/locator recovery, not a demonstrated product defect. Exact component baseline failure and passing test logs remain separately preserved under ui-60d600db."
+}

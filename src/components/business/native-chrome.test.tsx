@@ -36,6 +36,7 @@ const client: BusinessClient = {
   native: true,
   label: "local",
   close: vi.fn(),
+  intake: vi.fn(),
   identity,
   tasks,
 }
@@ -167,16 +168,39 @@ describe("business native window chrome", () => {
     }
   )
 
-  it("keeps the private connection draft mounted across native locale rerenders", () => {
+  it("offers only the local operator path in a native host, preserving chrome across locale rerenders", async () => {
     const { rerender, container } = render(surface("connect"))
-    const token = screen.getByLabelText("Personal access token")
-    fireEvent.change(token, { target: { value: "synthetic-private-draft" } })
+    expect(screen.queryByLabelText("Personal access token")).toBeNull()
+    expect(screen.queryByLabelText("Workspace address")).toBeNull()
+    expect(container.querySelector('input[type="password"]')).toBeNull()
+    expect(screen.getByText(/Personal sign-in is not available/)).toBeVisible()
+    const local = screen.getByRole("button", {
+      name: "Use this desktop’s local workspace",
+    })
     const chrome = container.querySelector("[data-business-native-chrome]")
     rerender(surface("connect", "ar"))
-    expect(screen.getByDisplayValue("synthetic-private-draft")).toBe(token)
+    expect(
+      screen.getByRole("button", { name: "استخدام مساحة سطح المكتب المحلية" })
+    ).toBe(local)
+    expect(container.querySelector('input[type="password"]')).toBeNull()
     expect(container.querySelector("[data-business-native-chrome]")).toBe(
       chrome
     )
+    expect(connect).not.toHaveBeenCalled()
+    expect(localStorage.length).toBe(0)
+    fireEvent.click(local)
+    await waitFor(() =>
+      expect(connect).toHaveBeenCalledWith({ kind: "native" })
+    )
+  })
+
+  it("keeps the personal HTTP draft mounted across browser locale rerenders", () => {
+    vi.unstubAllGlobals()
+    const { rerender } = render(surface("connect"))
+    const token = screen.getByLabelText("Personal access token")
+    fireEvent.change(token, { target: { value: "synthetic-private-draft" } })
+    rerender(surface("connect", "ar"))
+    expect(screen.getByDisplayValue("synthetic-private-draft")).toBe(token)
     expect(connect).not.toHaveBeenCalled()
     expect(localStorage.length).toBe(0)
   })

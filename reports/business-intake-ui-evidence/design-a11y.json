@@ -1,0 +1,8 @@
+{
+  "specialist": "a11y-auditor",
+  "execution": "method applied inline; no subagent",
+  "scope": "measured task panes, primary actions, navigation and member states",
+  "scores": { "accessibility": 8, "states": 8 },
+  "findings": [],
+  "notes": "BC-12/13/14: 936 final pane text samples have no contrast failure or unnamed interactive control; 18 primary state samples pass (min4.5299); 12 selected-nav cases pass (min15.2989). EN/AR390/768/1280 preserve exact draft/date, manual tab activation and visible44x48 close focus. Table keyboard scroll stays inside its region. Full B receipt/disclosure states remain unassessed, rather than implicitly passing."
+}

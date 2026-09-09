@@ -1,4 +1,5 @@
 import type { BusinessDomain } from "./presentation"
+import type { SettingsOperations } from "./settings"
 
 // approvals/docs/contracts/business-identity.md, f3c36dc6. UUIDs stay strings.
 export const MEMBER_ROLES = [
@@ -24,10 +25,22 @@ export interface Member {
 }
 export interface BusinessContext {
   needsBootstrap: boolean
-  organization: { id: string; name: string } | null
+  organization: Organization | null
   member: Member | null
   operator: boolean
-  capabilities: { manageMembers: boolean; legacyOperator: boolean }
+  capabilities: {
+    manageMembers: boolean
+    manageTenantSettings: boolean
+    legacyOperator: boolean
+  }
+}
+// Exact tenancy projection at 29774b50. Presentation revision is separate.
+export interface Organization {
+  id: string
+  name: string
+  status: "active" | "suspended"
+  revision: number
+  authorizationEpoch: number
 }
 export interface Credential {
   id: string
@@ -42,7 +55,7 @@ export interface MemberFields {
   role: MemberRole
   domains: BusinessDomain[]
 }
-export interface IdentityOperations {
+export interface IdentityOperations extends SettingsOperations {
   context: { input: Record<string, never>; result: BusinessContext }
   bootstrap: {
     input: { organizationName: string; ownerName: string }

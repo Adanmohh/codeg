@@ -14,10 +14,80 @@ export function WorkList({
   onOpen,
 }: {
   tasks: TaskPreview[]
-  mode: "list" | "board"
+  mode: "list" | "board" | "table"
   onOpen: (key: string) => void
 }) {
   const copy = useBusinessCopy()
+  if (mode === "table")
+    return (
+      <div
+        className="border-border focus-visible:ring-ring overflow-x-auto rounded-xl border bg-card outline-none focus-visible:ring-2"
+        tabIndex={0}
+        role="region"
+        aria-label={copy.table}
+      >
+        <table className="w-full min-w-[820px] border-collapse text-start text-sm">
+          <caption className="sr-only">{copy.workTab}</caption>
+          <thead className="bg-muted/40 border-border border-b text-xs">
+            <tr>
+              {[
+                copy.taskTitle,
+                copy.status,
+                copy.domain,
+                copy.priority,
+                copy.assignee,
+                copy.dueDate,
+              ].map((label) => (
+                <th
+                  key={label}
+                  scope="col"
+                  className="px-4 py-3 text-start font-medium whitespace-nowrap"
+                >
+                  {label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y">
+            {tasks.map((task) => (
+              <tr key={task.key} className="hover:bg-muted/30">
+                <th
+                  scope="row"
+                  className="min-w-64 max-w-96 px-4 py-2 text-start font-medium"
+                >
+                  <button
+                    type="button"
+                    onClick={() => onOpen(task.key)}
+                    className="focus-visible:ring-ring min-h-11 w-full rounded-md py-2 text-start leading-relaxed break-words outline-none focus-visible:ring-2"
+                  >
+                    <bdi>{task.title}</bdi>
+                  </button>
+                </th>
+                <td className="px-4 py-3">
+                  <StatusBadge status={task.status} />
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  {copy[task.domain]}
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  {copy[task.priority]}
+                </td>
+                <td className="min-w-44 px-4 py-3">
+                  <Person
+                    compact
+                    person={task.assignee}
+                    fallback={copy.unassigned}
+                  />
+                </td>
+                <td className="px-4 py-3 text-xs whitespace-nowrap">
+                  <DueDay value={task.dueDate} fallback={copy.noDate} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
   if (mode === "board")
     return (
       <div
@@ -71,10 +141,10 @@ export function WorkList({
       </div>
     )
   return (
-    <div className="border-border overflow-hidden rounded-2xl border bg-card">
+    <div className="@container border-border overflow-hidden rounded-2xl border bg-card">
       <div
         aria-hidden="true"
-        className="text-muted-foreground bg-muted/30 hidden grid-cols-[minmax(0,1fr)_200px_140px] gap-5 border-b px-6 py-3 text-xs lg:grid"
+        className="text-muted-foreground bg-muted/30 hidden grid-cols-[minmax(0,1fr)_200px_140px] gap-5 border-b px-6 py-3 text-xs @[48rem]:grid"
       >
         <span>{copy.taskTitle}</span>
         <span>{copy.assignment}</span>
@@ -86,7 +156,7 @@ export function WorkList({
             <button
               type="button"
               onClick={() => onOpen(task.key)}
-              className="group hover:bg-muted/40 focus-visible:ring-ring grid w-full min-w-0 gap-4 px-4 py-5 text-start outline-none focus-visible:ring-2 focus-visible:ring-inset sm:px-6 lg:grid-cols-[minmax(0,1fr)_200px_140px] lg:items-center lg:gap-5"
+              className="group hover:bg-muted/40 focus-visible:ring-ring grid w-full min-w-0 gap-4 px-4 py-5 text-start outline-none focus-visible:ring-2 focus-visible:ring-inset @[30rem]:px-6 @[48rem]:grid-cols-[minmax(0,1fr)_200px_140px] @[48rem]:items-center @[48rem]:gap-5"
             >
               <div className="min-w-0">
                 <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-2">

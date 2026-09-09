@@ -17,10 +17,20 @@ export const member: Member = {
 }
 export const context: BusinessContext = {
   needsBootstrap: false,
-  organization: { id: member.organizationId, name: "Synthetic organization" },
+  organization: {
+    id: member.organizationId,
+    name: "Synthetic organization",
+    status: "active",
+    revision: 1,
+    authorizationEpoch: 1,
+  },
   member,
   operator: false,
-  capabilities: { manageMembers: true, legacyOperator: false },
+  capabilities: {
+    manageMembers: true,
+    manageTenantSettings: true,
+    legacyOperator: false,
+  },
 }
 export function detail(): TaskDetail {
   return {

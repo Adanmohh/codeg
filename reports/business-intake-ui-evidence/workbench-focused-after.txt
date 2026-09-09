@@ -1,0 +1,14 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/components/business/ui.test.tsx (4 tests) 282ms
+ ✓ src/components/business/workbench.test.tsx (5 tests) 746ms
+   ✓ business workbench uses real task seams without legacy shell providers > keeps two independent drafts and DOM identity across tabs, split, locale and narrow layout 382ms
+ ✓ src/components/business-intake/workflow.test.tsx (17 tests) 768ms
+ ✓ src/components/business/workflow.test.tsx (15 tests) 777ms
+
+ Test Files  4 passed (4)
+      Tests  41 passed (41)
+   Start at  23:19:00
+   Duration  2.09s (transform 401ms, setup 516ms, collect 1.90s, tests 2.57s, environment 1.55s, prepare 299ms)

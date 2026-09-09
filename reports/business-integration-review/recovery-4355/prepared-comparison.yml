@@ -1,0 +1,139 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e6]:
+    - complementary [ref=e7]:
+      - generic [ref=e14]:
+        - paragraph [ref=e15]: Hafidh
+        - paragraph [ref=e16]: Ops Desk
+      - generic [ref=e17]:
+        - paragraph [ref=e18]: Workspace
+        - paragraph [ref=e19]: Intake review synthetic
+      - navigation "Workspace" [ref=e20]:
+        - button "My work" [ref=e21]
+        - button "Shared work" [ref=e25]
+        - button "Review" [ref=e31]
+        - button "Sources" [ref=e35]
+        - button "People & agents" [ref=e38]
+        - button "Workspace appearance" [ref=e44]
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - combobox "Language" [ref=e50]:
+            - option "English" [selected]
+            - option "简体中文"
+            - option "繁體中文"
+            - option "日本語"
+            - option "한국어"
+            - option "Español"
+            - option "Deutsch"
+            - option "Français"
+            - option "Português"
+            - option "العربية"
+          - combobox "Appearance" [ref=e51]:
+            - option "Device appearance" [selected]
+            - option "Light"
+            - option "Dark"
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: R
+            - generic [ref=e55]: review owner
+          - paragraph [ref=e56]: Owner · Connected
+          - button "Disconnect" [ref=e57]
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - tablist "Open work" [ref=e61]:
+          - tab "My work" [ref=e62]
+          - tab "Sources" [selected] [ref=e152]
+        - button "Show side by side" [ref=e67]
+      - tabpanel "Sources" [ref=e156]:
+        - generic [ref=e374]:
+          - button "Sources" [ref=e375]
+          - generic [ref=e381]:
+            - paragraph [ref=e382]: Private source review
+            - paragraph [ref=e383]: Only people with explicit source access can read these passages and drafts. Task access is separate.
+          - banner [ref=e384]:
+            - paragraph [ref=e385]: Fireflies meetings
+            - 'heading "review: meeting-long" [level=1] [ref=e386]'
+            - paragraph [ref=e387]: "Source version: 1"
+            - button "Review access and setup" [ref=e388]
+          - generic [ref=e392]:
+            - generic [ref=e393]:
+              - region "Exact source passage" [ref=e497]:
+                - heading "Exact source passage" [level=2] [ref=e498]
+                - paragraph [ref=e499]: Choose 1–20 passages, up to 20,000 characters in total. Nothing is shortened or rewritten for you.
+                - list [ref=e500]:
+                  - listitem [ref=e501]:
+                    - generic [ref=e503]:
+                      - generic [ref=e504]: Exact source passage 1
+                      - generic [ref=e505]: review private evidence. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed. Review the customer request in its original context; publish only the text you have deliberately reviewed.
+                  - listitem [ref=e506]:
+                    - generic [ref=e508]:
+                      - generic [ref=e509]: Exact source passage 2
+                      - generic [ref=e510]: "review second private passage: confirm responsibility with the human owner."
+                  - listitem [ref=e511]:
+                    - generic [ref=e513]:
+                      - generic [ref=e514]: Exact source passage 3
+                      - generic [ref=e515]: "review: Review a customer follow-up."
+              - group [ref=e394]:
+                - generic "Refresh source access" [ref=e395] [cursor=pointer]
+            - generic [ref=e406]:
+              - region "Private task draft" [ref=e416]:
+                - generic [ref=e417]:
+                  - heading "Private task draft" [level=2] [ref=e418]
+                  - generic [ref=e419]: Revision 2 · Source version 1
+                  - paragraph [ref=e420]: Write the task that should be shared. Saving here does not publish it or assign work.
+                - generic [ref=e446]:
+                  - status [ref=e447]: This candidate or source changed. Your local draft has not been applied.
+                  - paragraph [ref=e448]:
+                    - text: "Your draft is based on:"
+                    - generic [ref=e449]: Revision 2 · Source version 1
+                  - region "Current saved candidate" [ref=e450]:
+                    - heading "Current saved candidate" [level=3] [ref=e451]
+                    - paragraph [ref=e452]: Pending · Revision 3 · Source version 1
+                    - generic [ref=e516]:
+                      - generic [ref=e517]:
+                        - 'heading "Reviewer4355: prepared recovery control" [level=3] [ref=e518]'
+                        - paragraph [ref=e519]: Reviewer4355 newer exact private saved text
+                      - generic [ref=e520]:
+                        - generic [ref=e521]:
+                          - term [ref=e522]: Area of work
+                          - definition [ref=e523]: Feedback
+                        - generic [ref=e524]:
+                          - term [ref=e525]: Priority
+                          - definition [ref=e526]: Normal
+                        - generic [ref=e527]:
+                          - term [ref=e528]: Due date
+                          - definition [ref=e529]: No due date
+                        - generic [ref=e530]:
+                          - term [ref=e531]: Accountable owner
+                          - definition [ref=e532]:
+                            - generic [ref=e533]:
+                              - generic [ref=e534]: R
+                              - generic [ref=e535]: review owner
+                        - generic [ref=e536]:
+                          - term [ref=e537]: Assigned to
+                          - definition [ref=e538]: Unassigned
+                        - generic [ref=e539]:
+                          - term [ref=e540]: Reviewer
+                          - definition [ref=e541]: Any authorized human reviewer
+                    - button "Use the current saved draft" [ref=e480]
+                - region "Selected passages" [ref=e542]:
+                  - heading "Selected passages" [level=3] [ref=e543]
+                  - list
+                  - button "Review and reselect current passages" [disabled]
+                - generic [ref=e544]:
+                  - button "Edit task" [ref=e545]
+                  - button "Link an existing task" [disabled]
+                - generic [ref=e425]:
+                  - button "Discard candidate" [disabled]
+              - region "Private drafts & decisions" [ref=e407]:
+                - heading "Private drafts & decisions" [level=2] [ref=e408]
+                - combobox "Private drafts & decisions" [ref=e409]:
+                  - option "Pending" [selected]
+                  - option "Task created"
+                  - option "Linked to existing task"
+                  - option "Discarded"
+                - list [ref=e410]:
+                  - listitem [ref=e411]:
+                    - 'button "Reviewer4355: prepared recovery control Pending · Revision 3" [ref=e485]':
+                      - generic [ref=e413]: "Reviewer4355: prepared recovery control"
+                      - generic [ref=e414]: Pending · Revision 3

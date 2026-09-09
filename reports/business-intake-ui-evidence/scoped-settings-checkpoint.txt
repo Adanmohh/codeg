@@ -1,0 +1,43 @@
+node_modules/.bin/vitest run [client, session, native-chrome, settings-editor, workbench, workflow, ui, intake/workflow]
+Exit: 0
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/lib/business/client.test.ts (15 tests) 15ms
+ ✓ src/components/business/settings-editor.test.tsx (6 tests) 213ms
+ ✓ src/components/business/ui.test.tsx (4 tests) 318ms
+ ✓ src/components/business/session.test.tsx (3 tests) 482ms
+ ✓ src/components/business/native-chrome.test.tsx (14 tests) 676ms
+ ✓ src/components/business-intake/workflow.test.tsx (17 tests) 826ms
+ ✓ src/components/business/workflow.test.tsx (15 tests) 824ms
+ ✓ src/components/business/workbench.test.tsx (7 tests) 1221ms
+   ✓ business workbench uses real task seams without legacy shell providers > applies saved tenant appearance and stacked panes without replacing an open task draft or global theme 511ms
+
+ Test Files  8 passed (8)
+      Tests  81 passed (81)
+   Start at  00:03:45
+   Duration  2.84s (transform 979ms, setup 1.37s, collect 5.27s, tests 4.57s, environment 3.36s, prepare 475ms)
+
+pnpm exec tsc --noEmit --incremental false
+Exit: 0
+Already up to date
+Done in 225ms using pnpm v11.9.0
+
+pnpm exec eslint [15 changed frontend source/test files]
+Exit: 0
+Already up to date
+Done in 224ms using pnpm v11.9.0
+
+node_modules/.bin/vitest run src/components/business/settings-editor.test.tsx
+Exit: 0
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/components/business/settings-editor.test.tsx (7 tests) 122ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  00:09:46
+   Duration  1.26s (transform 102ms, setup 147ms, collect 346ms, tests 122ms, environment 391ms, prepare 69ms)

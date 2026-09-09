@@ -1,0 +1,18 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/177d0f3e/source/src-tauri)
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 10s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 3 tests
+test business_execution::tests::reviewer_schema::review_execution_nested_wire_public_metadata_and_utf8_byte_bounds ... ok
+test business_execution::tests::reviewer_schema::review_execution_real_tenant_task_fks_immutable_receipts_and_scope_away_back ... ok
+test business_execution::tests::reviewer_schema::review_execution_cancel_closes_pinned_connection_preserves_rows_and_retries ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3762 filtered out; finished in 0.36s
+

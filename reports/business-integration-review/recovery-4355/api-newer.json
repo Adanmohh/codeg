@@ -1,0 +1,39 @@
+{
+  "action": "newer",
+  "namespace": "review",
+  "requests": [
+    {
+      "operation": "context",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/imports/start",
+      "operationId": "8dcc00bb-a546-4aea-95b5-8bf6618001cd",
+      "status": 200
+    },
+    {
+      "operation": "intake/imports/advance",
+      "operationId": "db58e74d-1e6d-4db2-8714-b5c01ef5bae5",
+      "status": 200
+    },
+    {
+      "operation": "intake/sources/get",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/candidates/get",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/candidates/edit",
+      "operationId": "c84f3fdc-37be-4a32-8ad8-eb5b3c0fd200",
+      "status": 200
+    }
+  ],
+  "status": "passed",
+  "httpRetries": 0,
+  "finishedAtUnix": 1788950590.126105
+}

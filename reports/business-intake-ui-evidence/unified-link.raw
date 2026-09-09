@@ -1,0 +1,7 @@
+### Error
+TimeoutError: page.waitForResponse: Timeout 30000ms exceeded while waiting for event "response"
+
+page.waitForResponse: Timeout 30000ms exceeded while waiting for event "response"
+    at evalmachine.<anonymous>:34:23
+    at async evalmachine.<anonymous>:3:20
+    at async /Users/mohamedadan/.local/share/fnm/node-versions/v24.19.0/installation/lib/node_modules/@playwright/cli/node_modules/playwright-core/lib/coreBundle.js:67058:13

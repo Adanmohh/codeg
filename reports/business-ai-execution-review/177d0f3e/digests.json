@@ -1,0 +1,81 @@
+{
+  "productCommit": "177d0f3e2b426d65de9573ba534ac8c11f9250f7",
+  "files": [
+    {
+      "file": "NOTICE",
+      "sha256": "9350f3f40843aa522e8248a04bfe14bd2cb0ca8c6e2d4beb5e74760a4b74da61",
+      "bytes": 1325
+    },
+    {
+      "file": "code-context.json",
+      "sha256": "458e2f098e085d3e2139a449a9e922dd9caa8c49bbeba323c2dacfc01325a77d",
+      "bytes": 4356
+    },
+    {
+      "file": "historical-hook-block.md",
+      "sha256": "d0aeefd5459c23b5d9795960647ccebfca9c06283de6030dd304cfd87a7527e8",
+      "bytes": 4406
+    },
+    {
+      "file": "hook-coverage.json",
+      "sha256": "e4e9c5a3c958c497782008d633d6d839f85cf10fda53643088176a6195cd3f22",
+      "bytes": 1632
+    },
+    {
+      "file": "installed-source.json",
+      "sha256": "b259a0e698d29d143fcca08b4e91dc07c1ea871aebaba6c8e9952c66b76d0c8b",
+      "bytes": 5077
+    },
+    {
+      "file": "owner-digests-verified.json",
+      "sha256": "4168407aa77d529f8ac2ede9ad6aa90cea2f4d05636781d5edceff79604643bc",
+      "bytes": 1962
+    },
+    {
+      "file": "remote-source-ledger.json",
+      "sha256": "2998c8065640ece0f0b7bf8dc08d7462b13997caf8a72a6c6d84a784012d50ad",
+      "bytes": 2502
+    },
+    {
+      "file": "results.json",
+      "sha256": "27b619389d61478e366f924de4bc40155b7cbd27a9ea38749994443ad89f74bc",
+      "bytes": 4919
+    },
+    {
+      "file": "reviewer-probes-attempt1.log",
+      "sha256": "522a9c6ff645c174cfd65a6c088f067948082df712f0b6503d3590064cd14e4d",
+      "bytes": 1443
+    },
+    {
+      "file": "reviewer-probes.patch",
+      "sha256": "3b372f60ae034e9ad56060ea70c1e704d83e4dad3c7bc68aeef9e3e4b80740e3",
+      "bytes": 22230
+    },
+    {
+      "file": "reviewer_schema.rs",
+      "sha256": "eb21e4e698f992b44d1454536acfb98cac3ef4a6104b4ca7a985f5aa4bb0629c",
+      "bytes": 20982
+    },
+    {
+      "file": "source-after.json",
+      "sha256": "7b5eeb74404c32874ac812b08f128d0b75f3d7df2f09e1bf3932c43101f2ea98",
+      "bytes": 245017
+    },
+    {
+      "file": "source-before.json",
+      "sha256": "03cd0ab88c3c7ac3cd7dcadee3477606824d68f5c219cab5aa4bcdeef0ab8be7",
+      "bytes": 244652
+    },
+    {
+      "file": "unchanged-b-epoch-migrations.log",
+      "sha256": "9d6d65ee707b293faedaa1725e66896a006ad916b62e900ab0ce0178f8467780",
+      "bytes": 1447
+    },
+    {
+      "file": "unchanged-execution-tests.log",
+      "sha256": "e4c29d114a4782405410959d60ad1a2247b7428945df9c03bee6c0989fc959c9",
+      "bytes": 1671
+    }
+  ],
+  "scope": "Evidence-only files; digest index excludes itself and the evolving top-level report."
+}

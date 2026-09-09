@@ -1,0 +1,329 @@
+{
+  "cases": [
+    {
+      "palette": "neutral",
+      "theme": "light",
+      "state": "normal",
+      "fg": [
+        250,
+        250,
+        250,
+        255
+      ],
+      "bg": [
+        36,
+        94,
+        88
+      ],
+      "ratio": 7.142132518622554,
+      "focusVisible": false
+    },
+    {
+      "palette": "neutral",
+      "theme": "light",
+      "state": "hover",
+      "fg": [
+        250,
+        250,
+        250,
+        255
+      ],
+      "bg": [
+        47,
+        102,
+        97
+      ],
+      "ratio": 6.299086211181831,
+      "focusVisible": false
+    },
+    {
+      "palette": "neutral",
+      "theme": "light",
+      "state": "focus",
+      "fg": [
+        250,
+        250,
+        250,
+        255
+      ],
+      "bg": [
+        36,
+        94,
+        88
+      ],
+      "ratio": 7.142132518622554,
+      "focusVisible": true
+    },
+    {
+      "palette": "neutral",
+      "theme": "dark",
+      "state": "normal",
+      "fg": [
+        23,
+        23,
+        23,
+        255
+      ],
+      "bg": [
+        155,
+        212,
+        197
+      ],
+      "ratio": 10.771515435044805,
+      "focusVisible": true
+    },
+    {
+      "palette": "neutral",
+      "theme": "dark",
+      "state": "hover",
+      "fg": [
+        23,
+        23,
+        23,
+        255
+      ],
+      "bg": [
+        148,
+        202,
+        187
+      ],
+      "ratio": 9.753567279339181,
+      "focusVisible": true
+    },
+    {
+      "palette": "neutral",
+      "theme": "dark",
+      "state": "focus",
+      "fg": [
+        23,
+        23,
+        23,
+        255
+      ],
+      "bg": [
+        155,
+        212,
+        197
+      ],
+      "ratio": 10.771515435044805,
+      "focusVisible": true
+    },
+    {
+      "palette": "violet",
+      "theme": "light",
+      "state": "normal",
+      "fg": [
+        9,
+        8,
+        15,
+        255
+      ],
+      "bg": [
+        142,
+        81,
+        255
+      ],
+      "ratio": 4.52992579607169,
+      "focusVisible": false
+    },
+    {
+      "palette": "violet",
+      "theme": "light",
+      "state": "hover",
+      "fg": [
+        9,
+        8,
+        15,
+        255
+      ],
+      "bg": [
+        148,
+        90,
+        255
+      ],
+      "ratio": 4.904498349263388,
+      "focusVisible": false
+    },
+    {
+      "palette": "violet",
+      "theme": "light",
+      "state": "focus",
+      "fg": [
+        9,
+        8,
+        15,
+        255
+      ],
+      "bg": [
+        142,
+        81,
+        255
+      ],
+      "ratio": 4.52992579607169,
+      "focusVisible": true
+    },
+    {
+      "palette": "violet",
+      "theme": "dark",
+      "state": "normal",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        127,
+        34,
+        254
+      ],
+      "ratio": 5.374721114380705,
+      "focusVisible": true
+    },
+    {
+      "palette": "violet",
+      "theme": "dark",
+      "state": "hover",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        122,
+        33,
+        242
+      ],
+      "ratio": 5.754576020238722,
+      "focusVisible": true
+    },
+    {
+      "palette": "violet",
+      "theme": "dark",
+      "state": "focus",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        127,
+        34,
+        254
+      ],
+      "ratio": 5.374721114380705,
+      "focusVisible": true
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "state": "normal",
+      "fg": [
+        252,
+        253,
+        255,
+        255
+      ],
+      "bg": [
+        21,
+        93,
+        252
+      ],
+      "ratio": 5.154072433082704,
+      "focusVisible": false
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "state": "hover",
+      "fg": [
+        252,
+        253,
+        255,
+        255
+      ],
+      "bg": [
+        33,
+        101,
+        252
+      ],
+      "ratio": 4.763200273361443,
+      "focusVisible": false
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "state": "focus",
+      "fg": [
+        252,
+        253,
+        255,
+        255
+      ],
+      "bg": [
+        21,
+        93,
+        252
+      ],
+      "ratio": 5.154072433082704,
+      "focusVisible": true
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "state": "normal",
+      "fg": [
+        7,
+        9,
+        14,
+        255
+      ],
+      "bg": [
+        43,
+        127,
+        255
+      ],
+      "ratio": 5.294196578361257,
+      "focusVisible": true
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "state": "hover",
+      "fg": [
+        7,
+        9,
+        14,
+        255
+      ],
+      "bg": [
+        41,
+        122,
+        243
+      ],
+      "ratio": 4.905219242820548,
+      "focusVisible": true
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "state": "focus",
+      "fg": [
+        7,
+        9,
+        14,
+        255
+      ],
+      "bg": [
+        43,
+        127,
+        255
+      ],
+      "ratio": 5.294196578361257,
+      "focusVisible": true
+    }
+  ],
+  "draftRetained": true
+}

@@ -1,0 +1,48 @@
+{
+  "sessionId": "01a084ee-129a-7561-9f10-64266115e759",
+  "journal": "/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl",
+  "records": [
+    {
+      "line": 27202,
+      "time": 1788950911,
+      "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+      "event": "PreToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    },
+    {
+      "line": 27188,
+      "time": 1788950879,
+      "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+      "event": "PostToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    },
+    {
+      "line": 27109,
+      "time": 1788950724,
+      "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+      "event": "PreToolUse",
+      "tool": "apply_patch",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": true
+    }
+  ],
+  "turnContext": {
+    "line": 2291,
+    "timestamp": "2026-09-09T10:38:49.552Z",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+    "model": "gpt-6-astra",
+    "effort": "max",
+    "approval_policy": "never",
+    "sandbox_policy": {
+      "type": "danger-full-access"
+    }
+  },
+  "limit": "Selected metadata only; no credential or request bodies persisted."
+}

@@ -2,6 +2,108 @@
 
 ## Current integration and worker state
 
+**PR29 merged and pushed** as `f988700db6975364d35b80125af12bfe2d5baac3`;
+gh api confirms closed/merged. Frozen `96e0bcc1` / product
+`60d600db` retains the independently reviewed tabs/panes, settings and intake UI.
+Root's integrated frontend selectors pass109/109 across12 files. Normal typecheck
+passes after accepting rebrand's exact `91c98d469` compiler-discovery correction
+for six archived report files; the original nine import errors remain in evidence.
+Backend/Pi/LICENSE are unchanged from accepted main, frontend/lock/Next config
+match PR29, and the complete main NOTICE is preserved with additive attribution.
+See [integration evidence and limits](reports/business-ui-integration.md).
+This unlocks rebrand's E1 workbench integration; AI chat/terminal/assets are still
+being implemented. No running fixture, user browser or native artifact changed.
+The exact accepted head and next bounded work were relayed to all three existing
+workers; Herdr reports each working. Rebrand integrates this accepted shell,
+tickets continues E1 backend and now owns the released build window. Final
+independent review `f4b12e8dccf249bce75accbb4a5f4aa69df48ac3` is read and
+imported: four unchanged E1 schema tests, four B epoch tests and three reviewer
+cancellation/schema/DTO probes pass, all exit0, no bounded blocker at frozen177.
+Root verified all15 evidence digests, read complete probes/logs, checked780 expected
+source references against the immutable product tree and separately matched5 owner
+log hashes. The manifest records780/780 before and779/780 after with only the test
+registration changed plus a new reviewer file; production/locks are unchanged.
+See [final independent review](reports/review-business-ai-execution-implementation.md).
+No root rerun or product merge is implied. Runtime authority, launch, immutable
+bytes/import, human publication and task-owned Deliverable.assets with historical
+[] remain pending. Those requirements and the next review handoff are relayed to
+tickets/approvals. Last reviewer space3.9GiB is an observation, not a reservation;
+no new target, cleanup, browser, provider or fixture action occurred.
+
+Tickets' audit correction `ca58f2b9` is verified as report-only and imported:
+legacy timestamps1788951206–1207 are historical, not fresh hook metadata. No
+current generic Pre/Post journal coverage is claimed. Approvals checkpoint
+`bb33fbffb` records780/780 exact frozen177 source blobs; the newly reported results
+and build-window release are recorded above. Canonical alias candidate
+`a918234a97b6786686140f833bdcfa6af53372ad694906192a24ee4dc56f702e`
+has independent46-case acceptance and reported56 retained passes. Root read both
+maintenance/review reports and the actual46-pass log. Installer pins/launcher
+checks and single user-terminal handoff remain pending; no global install is
+claimed. Rebrand was notified to preserve denied edits until actual activation.
+
+**Global hook installed and project work resumed.** Owner ran the test-before-
+install script successfully; engine f5554c92 and backup claude-workflow-n0d8pjua
+are recorded in [the live acceptance report](reports/docs-first-live-acceptance.md).
+Root read the actual 56-test passing log and installer audit. Actual gh api tag
+and pinned source reads, Git fetch and Herdr access now pass. A disposable native
+edit was denied before docs, passed after the signed source read, and remained
+denied in another project. Framework docs-first remains required; unsupported
+surfaces need manual grounding rather than fictitious machine verification.
+
+All three existing Herdr workers were resumed and observed working. Rebrand and
+approvals show Astra/max. Tickets' actual picker had drifted to Luna/low despite
+Astra status metadata; root restored and visually verified Astra/max before its
+new implementation assignment. No historical authored-turn claim is made.
+Tickets published the preserved combined B checkpoint at
+177d0f3e2b426d65de9573ba534ac8c11f9250f7, verified independently through gh api.
+Root read the complete added test diff, verified test/log digests and unchanged
+migrations10–13/LICENSE against accepted B. Its four schema passes are owner
+evidence, not an independent runtime verdict. Evidence-only successor
+25badf45db086c3dd33d841d55175f724108c6cc adds four accepted B epoch passes and
+locked/offline server check exit0; root verified both log digests and the report-
+only diff. Product remains177d0f3e2. Tickets explicitly released the build window
+with no own Cargo process. Approvals freezes177 and is now authorized for bounded
+independent tests in its existing target, coordinating start/release with tickets.
+Disk5.7GiB is observed capacity, not a reservation. No new worker, target, fixture
+or user-browser action. Full E1 runtime/assets/task publication remain incomplete.
+
+Two narrower hook limits remain explicit. Rebrand's package_unresolved is traced
+to the existing tsconfig @/* local alias, which the hook treats as an invalid
+package. Its 18 unchanged parser tests pass, but three type errors cannot yet be
+edited through that gate. A hash command naming the engine is also mistakenly
+treated as a reader invocation. [Bounded maintenance follow-up](reports/docs-first-alias-followup.md)
+records source evidence and required regressions; neither issue is called fixed
+or bypassed. General research, coordination and review execution are usable.
+
+Reviewer final4355 evidence is published at
+c0c7e522600a94bcf33674f640d5f3665cffd39b. Root fetched and read the complete immutable
+review report: no bounded recovery blocker, seven browser checks, seventy200
+responses, twenty-two separate API requests and five persistence checks pass.
+Root imported the report and verified all thirty-one new evidence digests.
+PR29's earlier source/evidence reviews and attribution-only conflict assessment
+remain valid; the current integration gate and publication are recorded above.
+No product fixture/browser/process changed. Existing E1 assignments continue
+with current documentation, borrowing and task authority rules.
+
+**First compiling E1 source published:** product
+`6195d9daf049b7cd16615e35b87d08c7f2870bf0`, PR32 evidence
+`fdfe342940d1a6881005e5534b3f0090f9391ef7`. Internal closed DTOs/validation and
+000014 schema now exist; HTTP/native handlers and runner operations do not yet.
+Root read the complete migration Rust/SQL, input validation and additive asset/
+prompt envelope clarification, imported validation logs and verified both digests.
+Owner's server check passes on the initial schema; subsequent three-test compile
+includes the final checkpoint DTOs and passes. These are owner results, not a root
+runtime pass. Full authority/launch/file/publication/stream gates remain ahead.
+
+Approvals is assigned independent bounded E1 persistence/schema/input review in
+`reports/review-business-ai-execution-implementation.md` after4355 report closeout.
+It can read frozen619 now; execution should use the forthcoming committed combined
+B+14 head to avoid duplicate compiles. Tickets reports local merge b73940560 of
+accepted B with only additive NOTICE/registry resolution and is testing real B
+epoch migrations plus retained execution-linked/history/receipt cases. That local
+merge and its tests are not yet independently verified or accepted. No additional
+large target, active fixture or user-browser change is part of this review.
+
 **PR28 intake backend merged** as `c8453a48d441f40eb47f9c9af856235b4f9986e5`;
 GitHub confirms closed/merged. Accepted frozen head:
 `462604b00ad74a7f72c36d0bea3714a5912bf640`, production e55f3bfd and separately

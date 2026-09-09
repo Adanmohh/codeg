@@ -1,0 +1,24 @@
+Independent E1 schema review evidence
+
+The reviewer-only Rust probe is an adaptation of Apache License 2.0 Codeg
+fixtures. Original authorship and the repository LICENSE are retained; no
+production implementation was changed. Codeg upstream remains v0.30.4,
+6f6bd648b206412644842a98d9ffeebf57292bed. The probe changes the original tests
+to target migration14 cancellation, existing tenant/task/session references,
+immutable managed versions/receipts, and private/public DTO boundaries.
+
+Exact fixture sources:
+- Adanmohh/codeg commit177d0f3e2b426d65de9573ba534ac8c11f9250f7,
+  src-tauri/src/business_execution/tests.rs,
+  blob b32527db618cbcc6e960d1bf92ed1b2fc714d51f.
+- Adanmohh/codeg commit9e61fe67261219921e0a6a860c45f6e08ea99c21,
+  src-tauri/src/business_identity/tests/platform.rs,
+  blob2ff452f1e0462ca17816770869f1ceef9cc2f506.
+- Prior owned reviewer probe at commitc0c7e522600a94bcf33674f640d5f3665cffd39b,
+  reports/business-tenancy-review/f3b408da/independent_cases.rs,
+  blob462ebcf33e2be70e3dafab05d8f1a360528520c2.
+
+Direct API references, without vendoring or ports: installed SeaORM1.1.19,
+SQLx0.8.6, serde/derive1.0.228, Tokio1.49.0, tempfile3.24.0 and UUID1.20.0.
+No AGPL/GPL, proprietary Edublend, live connector or model source is added.
+This local NOTICE supplements the unchanged root NOTICE and LICENSE.
