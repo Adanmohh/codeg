@@ -71,6 +71,7 @@ export function SourceSetupDialog({
     (member) =>
       member.kind === "human" &&
       member.status === "active" &&
+      member.role !== "viewer" &&
       member.domains.includes(domain)
   )
   const currentGrant = grants?.items.find((grant) => grant.memberId === grantee)
@@ -94,7 +95,8 @@ export function SourceSetupDialog({
     (destinations.length === 0 || retained) &&
     (admin
       ? !secret || validSecret
-      : !!owner && (kind === "fireflies" ? validSecret : validResource))
+      : owners.some((member) => member.id === owner) &&
+        (kind === "fireflies" ? validSecret : validResource))
   const validGrantDomains = grantDomains.every(
     (value) =>
       setupDomains.includes(value) && admin?.publicationDomains.includes(value)

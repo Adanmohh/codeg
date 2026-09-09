@@ -955,3 +955,12 @@ Installed React19.2.4/@types-react19.2.13 useEffect/useCallback/useState and
 Testing Library16.3.2 act/render plus Vitest2.1.9 are read API/type references;
 no dependency implementation or copyleft code is copied. Original LICENSE
 and every preceding attribution section remain intact.
+
+Business source-owner reference eligibility (2026):
+The setup owner selector follows the current contributing-human check in
+src-tauri/src/business_intake/access.rs::owner at
+f51154b948ac1ae74fa1bf6a7df495e7e12e05f2 and reuses the reference filtering
+from src/components/business/task-form.tsx at
+a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0 Codeg). Current backend
+authorization remains decisive. The frontend adds no identity, role or source
+permission. Original LICENSE and every previous attribution remain intact.

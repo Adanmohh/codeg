@@ -9,6 +9,7 @@ import {
 import { NextIntlClientProvider } from "next-intl"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import type { BusinessClient } from "@/lib/business/client"
+import type { Member } from "@/lib/business/identity"
 import type { BindingList, BindingView } from "@/lib/business/intake"
 import { member } from "@/components/business/test-fixtures"
 import { SourceSetupDialog } from "./setup"
@@ -54,6 +55,75 @@ beforeEach(() => {
 })
 
 describe("source setup follows the protected response scope", () => {
+  it("requires a current contributing human as source owner and blocks a stale selection", () => {
+    const people: Member[] = [
+      member,
+      {
+        ...member,
+        id: "viewer",
+        displayName: "Synthetic viewer",
+        role: "viewer",
+      },
+      { ...member, id: "agent", displayName: "Synthetic agent", kind: "agent" },
+      {
+        ...member,
+        id: "inactive",
+        displayName: "Synthetic inactive",
+        status: "revoked",
+      },
+      {
+        ...member,
+        id: "other-area",
+        displayName: "Synthetic other area",
+        domains: ["marketing"],
+      },
+    ]
+    const form = (members: Member[]) => (
+      <NextIntlClientProvider locale="en" messages={{}} timeZone="UTC">
+        <SourceSetupDialog
+          client={client}
+          setupKinds={["fireflies"]}
+          setupDomains={["engineering"]}
+          members={members}
+          onClose={vi.fn()}
+          onChanged={vi.fn()}
+        />
+      </NextIntlClientProvider>
+    )
+    const view = render(form(people))
+    const owners = screen.getByRole("combobox", {
+      name: "Source account owner",
+    })
+    expect(
+      within(owners)
+        .getAllByRole("option")
+        .map((option) => option.textContent)
+    ).toEqual(["Source account owner", "Synthetic owner"])
+    fireEvent.change(screen.getByRole("textbox", { name: "Connection name" }), {
+      target: { value: "Synthetic source setup" },
+    })
+    fireEvent.change(screen.getByLabelText("Fireflies API key"), {
+      target: { value: "SYNTHETIC_WRITE_ONLY_KEY" },
+    })
+    fireEvent.change(owners, { target: { value: member.id } })
+    expect(
+      screen.getByRole("button", { name: "Create disabled connection" })
+    ).toBeEnabled()
+    view.rerender(
+      form(
+        people.map((person) =>
+          person.id === member.id ? { ...person, role: "viewer" } : person
+        )
+      )
+    )
+    expect(
+      screen.getByRole("button", { name: "Create disabled connection" })
+    ).toBeDisabled()
+    fireEvent.submit(
+      screen.getByRole("textbox", { name: "Connection name" }).closest("form")!
+    )
+    expect(intake).not.toHaveBeenCalled()
+  })
   it("offers only the returned kind/domain and never infers source read from setup", async () => {
     const view: BindingView = {
       binding: {
