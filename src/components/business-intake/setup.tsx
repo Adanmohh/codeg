@@ -23,12 +23,16 @@ import { Check, IntakeError, accessWasLost, outcomeIsUncertain } from "./ui"
 export function SourceSetupDialog({
   client,
   initial,
+  setupKinds,
+  setupDomains,
   members,
   onClose,
   onChanged,
 }: {
   client: BusinessClient
   initial?: BindingAdmin
+  setupKinds: SourceKind[]
+  setupDomains: BusinessDomain[]
   members: Member[]
   onClose: () => void
   onChanged: () => void
@@ -36,10 +40,10 @@ export function SourceSetupDialog({
   const copy = useIntakeCopy()
   const common = useBusinessCopy()
   const [admin, setAdmin] = useState<BindingAdmin | null>(initial ?? null)
-  const [kind, setKind] = useState<SourceKind>(initial?.kind ?? "fireflies")
+  const [kind, setKind] = useState<SourceKind>(initial?.kind ?? setupKinds[0])
   const [label, setLabel] = useState(initial?.label ?? "")
   const [domain, setDomain] = useState<BusinessDomain>(
-    initial?.domain ?? "marketing"
+    initial?.domain ?? setupDomains[0]
   )
   const [owner, setOwner] = useState(initial?.sourceOwnerId ?? "")
   const [secret, setSecret] = useState("")
@@ -83,11 +87,18 @@ export function SourceSetupDialog({
     (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$/.test(expiry) &&
       Date.parse(expiry) > Date.now())
   const validSetup =
+    setupKinds.includes(kind) &&
+    setupDomains.includes(domain) &&
+    destinations.every((value) => setupDomains.includes(value)) &&
     !!label.trim() &&
     (destinations.length === 0 || retained) &&
     (admin
       ? !secret || validSecret
       : !!owner && (kind === "fireflies" ? validSecret : validResource))
+  const validGrantDomains = grantDomains.every(
+    (value) =>
+      setupDomains.includes(value) && admin?.publicationDomains.includes(value)
+  )
   useEffect(() => {
     alive.current = true
     return () => {
@@ -305,9 +316,7 @@ export function SourceSetupDialog({
                         setResource("")
                       }}
                     >
-                      {(
-                        ["fireflies", "email", "hafidh_testflight"] as const
-                      ).map((value) => (
+                      {setupKinds.map((value) => (
                         <option key={value} value={value}>
                           {copy[value]}
                         </option>
@@ -326,7 +335,7 @@ export function SourceSetupDialog({
                         setOwner("")
                       }}
                     >
-                      {BUSINESS_DOMAINS.map((value) => (
+                      {setupDomains.map((value) => (
                         <option key={value} value={value}>
                           {common[value]}
                         </option>
@@ -426,8 +435,16 @@ export function SourceSetupDialog({
             <p className="text-muted-foreground text-sm">
               {copy.publicationHint}
             </p>
+            {destinations.some((value) => !setupDomains.includes(value)) && (
+              <p role="status" className="text-sm">
+                {copy.removeUnavailableDestinations}
+              </p>
+            )}
             <div className="grid gap-2 sm:grid-cols-2">
-              {BUSINESS_DOMAINS.map((value) => (
+              {BUSINESS_DOMAINS.filter(
+                (value) =>
+                  setupDomains.includes(value) || destinations.includes(value)
+              ).map((value) => (
                 <Check
                   key={value}
                   checked={destinations.includes(value)}
@@ -552,6 +569,7 @@ export function SourceSetupDialog({
                 !grantee ||
                 !confirmed ||
                 !validExpiry ||
+                !validGrantDomains ||
                 busy ||
                 uncertain ||
                 !grantRead
@@ -648,7 +666,17 @@ export function SourceSetupDialog({
                 <legend className="mb-2 text-sm font-medium">
                   {copy.publicationAreas}
                 </legend>
-                {admin.publicationDomains.map((value) => (
+                {!validGrantDomains && (
+                  <p role="status" className="text-sm">
+                    {copy.removeUnavailableDestinations}
+                  </p>
+                )}
+                {BUSINESS_DOMAINS.filter(
+                  (value) =>
+                    (setupDomains.includes(value) &&
+                      admin.publicationDomains.includes(value)) ||
+                    grantDomains.includes(value)
+                ).map((value) => (
                   <Check
                     key={value}
                     checked={grantDomains.includes(value)}
@@ -693,6 +721,7 @@ export function SourceSetupDialog({
                 !grantee ||
                 !grantRead ||
                 !validExpiry ||
+                !validGrantDomains ||
                 !confirmed
               }
             >

@@ -14,13 +14,14 @@ const english = {
   connection: "Source connection",
   empty: "No sources available yet.",
   emptyHint:
-    "A workspace operator can connect a source and grant access to the people who need it.",
+    "A workspace administrator can connect a source and grant access to the people who need it.",
   emptySource: "No imported records in this connection.",
   emptySourceHint:
     "Import a bounded set of records to begin reading. Nothing is turned into a task automatically.",
   setup: "Set up a source",
   reviewSetup: "Review access and setup",
-  contactOperator: "Ask your workspace operator to review access and setup.",
+  contactOperator:
+    "Ask your workspace administrator to review access and setup.",
   fireflies: "Fireflies meetings",
   email: "Email correspondence",
   hafidh_testflight: "Hafidh feedback",
@@ -52,6 +53,8 @@ const english = {
   publicationAreas: "Allowed task destinations",
   publicationHint:
     "These areas are a ceiling. Each person also needs an explicit grant and current task permissions.",
+  removeUnavailableDestinations:
+    "Remove destinations outside your current setup access before saving.",
   retainedConsent:
     "I allow explicitly accepted task text to remain in the chosen work area, even if source access is later removed.",
   grants: "People with source access",
@@ -195,9 +198,9 @@ const english = {
   reason: {
     binding_missing: "This connection is unavailable. Review access and setup.",
     binding_disabled:
-      "This connection is disabled. Ask the operator to review setup.",
+      "This connection is disabled. Ask a workspace administrator to review setup.",
     credential_unavailable:
-      "The protected credential is unavailable. Ask the operator to review setup.",
+      "The protected credential is unavailable. Ask a workspace administrator to review setup.",
     binding_unavailable:
       "Source use is paused. Review access and setup, then refresh the source.",
     source_expired:
@@ -282,6 +285,8 @@ const arabic: IntakeCopy = {
   publicationAreas: "وجهات المهام المسموح بها",
   publicationHint:
     "هذه المجالات حدّ أعلى. يحتاج كل شخص أيضًا إلى منحة صريحة وصلاحيات المهام الحالية.",
+  removeUnavailableDestinations:
+    "أزل الوجهات التي لا تشملها صلاحيات الإعداد الحالية قبل الحفظ.",
   retainedConsent:
     "أسمح ببقاء نص المهمة المقبول صراحةً في مجال العمل المختار، حتى إذا أُزيل الوصول إلى المصدر لاحقًا.",
   grants: "الأشخاص المخوّلون للمصدر",

@@ -99,6 +99,8 @@ describe("business Sources privacy and exact human decisions", () => {
       if (operation === "bindings/list")
         return {
           canManageSetup: false,
+          setupKinds: [],
+          setupDomains: [],
           items: [binding],
           page: 0,
           hasMore: false,
@@ -302,6 +304,8 @@ describe("business Sources privacy and exact human decisions", () => {
   it("does not preload source APIs on My work or infer operator setup from an owner role", async () => {
     intake.mockResolvedValue({
       canManageSetup: false,
+      setupKinds: [],
+      setupDomains: [],
       items: [],
       page: 0,
       hasMore: false,
@@ -799,6 +803,8 @@ describe("protected setup and bounded import recovery", () => {
       wrapper(
         <SourceSetupDialog
           client={client}
+          setupKinds={["fireflies"]}
+          setupDomains={["marketing", "engineering"]}
           members={[member]}
           onClose={vi.fn()}
           onChanged={vi.fn()}
@@ -861,6 +867,8 @@ describe("protected setup and bounded import recovery", () => {
         <SourceSetupDialog
           client={client}
           initial={admin}
+          setupKinds={["fireflies"]}
+          setupDomains={["marketing", "engineering"]}
           members={[member]}
           onClose={vi.fn()}
           onChanged={vi.fn()}

@@ -6,7 +6,8 @@ import type {
   TaskOperations,
 } from "./tasks"
 
-// Closed contract670af9ca + access18be55ed. IDs and revisions stay opaque;
+// Closed contract670af9ca + access18be55ed; setup scopes follow f51154b9.
+// IDs and revisions stay opaque;
 // identity, provider credentials and source epochs are never inferred by UI.
 export const INTAKE_REASONS = [
   "binding_missing",
@@ -81,6 +82,8 @@ export interface Page<T> {
 }
 export interface BindingList extends Page<BindingView> {
   canManageSetup: boolean
+  setupKinds: SourceKind[]
+  setupDomains: BusinessDomain[]
 }
 export type GrantScope = "binding_current_and_future_sources"
 export interface Grant {

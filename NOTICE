@@ -926,3 +926,19 @@ installed API/type references; official React source at
 f32bd1b033d5e3989ae1cb490d515ce389c54e53 verify their matching tags.
 No dependency implementation or third-party/copyleft source is ported.
 Original Apache-2.0 LICENSE and all earlier attribution sections remain intact.
+
+Business intake setup capability integration (2026):
+The response-only setupKinds/setupDomains and specific binding administration
+checks follow src-tauri/src/business_intake/{types,access,setup}.rs and
+src-tauri/src/business_identity/types.rs at Adanmohh/codeg
+f51154b948ac1ae74fa1bf6a7df495e7e12e05f2 (Apache-2.0). The frontend adapts
+the existing capability-gated form, explicit retained-text grant and in-memory
+secret patterns in src/components/business/{workspace,task-form}.tsx and
+src/components/business-intake/{workspace,setup}.tsx at this branch's
+c1e618dede15368d4af39ac74391f18931b317a5, rooted in accepted Codeg
+a40b03393a466672060066ae6e0e8c9054a2349d. Setup does not
+confer source read, and no provider, authorization core or credential storage
+implementation is copied. React19.2.4/@types-react19.2.13 hooks, Testing
+Library16.3.2 render/act/query types, Vitest2.1.9 and Prettier3.8.1 installed
+source/help are API references only. No dependency, proprietary or copyleft
+source is ported. Original LICENSE and every previous NOTICE block remain.

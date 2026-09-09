@@ -22,6 +22,9 @@ export interface SourceEntry {
   sourceId: string
   bindingId: string
 }
+type SetupSession = Pick<BindingList, "setupKinds" | "setupDomains"> & {
+  target: "new" | "current"
+}
 export function SourcesWorkspace({
   client,
   actor,
@@ -47,10 +50,30 @@ export function SourcesWorkspace({
   const [sourceId, setSourceId] = useState<string | null>(null)
   const [error, setError] = useState<unknown>(null)
   const [loading, setLoading] = useState(true)
-  const [setup, setSetup] = useState<"new" | "current" | null>(null)
+  const [setup, setSetup] = useState<SetupSession | null>(null)
   const [dirty, setDirty] = useState(false)
   const [leave, setLeave] = useState<(() => void) | null>(null)
   const [acceptedEntry, setAcceptedEntry] = useState<SourceEntry | null>(null)
+  const setupKinds = list?.setupKinds ?? []
+  const setupDomains = list?.setupDomains ?? []
+  const canSetup =
+    !!list?.canManageSetup && setupKinds.length > 0 && setupDomains.length > 0
+  const canReviewSetup =
+    canSetup &&
+    !!binding?.admin &&
+    setupKinds.includes(binding.admin.kind) &&
+    setupDomains.includes(binding.admin.domain)
+  const setupAllowed =
+    !!setup &&
+    canSetup &&
+    setup.setupKinds.every((kind) => setupKinds.includes(kind)) &&
+    setup.setupDomains.every((domain) => setupDomains.includes(domain)) &&
+    (setup.target === "new" || canReviewSetup)
+  useEffect(() => {
+    // A reduced setup scope closes the form and releases its write-only secret
+    // and frozen request. Same-scope refreshes keep the existing editor intact.
+    if (setup && !setupAllowed) setSetup(null)
+  }, [setup, setupAllowed])
   const alive = useRef(true)
   const serial = useRef(0)
   const invalidateReads = useCallback(() => {
@@ -216,6 +239,10 @@ export function SourcesWorkspace({
     if (dirty) setLeave(() => action)
     else action()
   }
+  function openSetup(target: SetupSession["target"]) {
+    if (!canSetup || (target === "current" && !canReviewSetup)) return
+    setSetup({ target, setupKinds, setupDomains })
+  }
   function selectBinding(id: string) {
     const next = list?.items.find((item) => item.binding.id === id)
     if (next)
@@ -250,11 +277,7 @@ export function SourcesWorkspace({
             })
           }
           onTask={onTask}
-          onSetup={
-            list?.canManageSetup && binding.admin
-              ? () => setSetup("current")
-              : undefined
-          }
+          onSetup={canReviewSetup ? () => openSetup("current") : undefined}
         />
       ) : (
         <>
@@ -270,8 +293,8 @@ export function SourcesWorkspace({
                 {copy.introduction}
               </p>
             </div>
-            {list?.canManageSetup && (
-              <Action variant="outline" onClick={() => setSetup("new")}>
+            {canSetup && (
+              <Action variant="outline" onClick={() => openSetup("new")}>
                 <Settings2 className="size-4" aria-hidden />
                 {copy.setup}
               </Action>
@@ -354,8 +377,11 @@ export function SourcesWorkspace({
                     {binding.binding.enabled ? copy.enabled : copy.disabled}
                   </p>
                 </div>
-                {list?.canManageSetup && binding.admin && (
-                  <Action variant="outline" onClick={() => setSetup("current")}>
+                {canReviewSetup && (
+                  <Action
+                    variant="outline"
+                    onClick={() => openSetup("current")}
+                  >
                     {copy.reviewSetup}
                   </Action>
                 )}
@@ -433,13 +459,17 @@ export function SourcesWorkspace({
           )}
         </>
       )}
-      {setup && list?.canManageSetup && (setup === "new" || binding?.admin) && (
+      {setup && setupAllowed && (
         <SourceSetupDialog
-          key={setup === "new" ? "new" : binding!.binding.id}
+          key={setup.target === "new" ? "new" : binding!.binding.id}
           client={client}
           initial={
-            setup === "current" ? (binding?.admin ?? undefined) : undefined
+            setup.target === "current"
+              ? (binding?.admin ?? undefined)
+              : undefined
           }
+          setupKinds={setup.setupKinds}
+          setupDomains={setup.setupDomains}
           members={members}
           onClose={() => setSetup(null)}
           onChanged={() => void loadBindings()}
