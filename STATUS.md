@@ -6,8 +6,12 @@
 product `9949c8a9ad99ffb70232c05bf1c2ad243dcaf194` and report-only
 `e56affc361ba7901e624dcc7e4d8e5a2776aee5b`. Its bounded locked/offline `-j2`
 window finished: pagination3, admission3, authority3 and assets5 (14 passed),
-all exits0, followed by server check exit0 in27.46s. Root read the four test
-summaries; owner report/log publication follows. All owner Cargo processes have
+all exits0, followed by server check exit0 in27.46s. Evidence successor
+`b15ded12cd24f557d0de9bb55b43db30b9f8bc89` is verified report/log-only. Root
+matched eight product Git blobs and SHA256 values, all five log digests, and read
+the actual test/check summaries plus report delta. The exact logs and
+[source/command ledger](reports/business-ai-execution-validation/review-corrections/digests.json)
+are imported; these remain owner-run gates, not independent execution. All owner Cargo processes have
 exited. Root observes about15.8 GiB free and explicitly released Farha's local
 production build and synthetic browser checks via `w4:p1`. Approvals reports
 no additional blocker after reading the three corrected modules and six new test

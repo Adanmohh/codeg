@@ -1,0 +1,126 @@
+{
+  "productCommit": "9949c8a9ad99ffb70232c05bf1c2ad243dcaf194",
+  "evidenceBaseCommit": "e56affc361ba7901e624dcc7e4d8e5a2776aee5b",
+  "reviewedPreCorrectionCommit": "3773a027a8d580bd9bac1808efdb718ae6f9e135",
+  "scope": "Three bounded internal pagination, receipt/admission and retained-file durability corrections. No engine launch, provider, UI, final runtime, or Clippy acceptance.",
+  "source": [
+    {
+      "path": "src-tauri/src/business_execution/file_tests.rs",
+      "gitBlob": "9ed75f6cf1103ad2bc7236ad45499db2ee06ee08",
+      "sha256": "483b531a6a2676afff80df06bbc923c60aba57b4e223cff2116bc94dfa9c2e67",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/files.rs",
+      "gitBlob": "d01e7c24a95c73e6c7133e4020cca2a156f562ad",
+      "sha256": "fd35ed1068fa17b482983934824fdd64469b2114235f23a83f3326dbb523b6c4",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/mod.rs",
+      "gitBlob": "3e7462af221de28b64d186b86fac852c4f226779",
+      "sha256": "7ac24d3039ddef44cfd44a2366dca0930adfc0613a376314e9e6bd90ab13d20d",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/pagination_tests.rs",
+      "gitBlob": "fcf34b9a925ea5ea5169ffb1eae3c429293599e8",
+      "sha256": "815de7d6c791fe6c7deca7600092edd05fe7022fa3fe50d68b97db382982e7e7",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/receipts.rs",
+      "gitBlob": "5b6dfcc657f5c6e395ee6f7d82cc97963020bb28",
+      "sha256": "b4c0749c57056f928d2e6401cc02f9a87702798d46c5e170b5b193f3508fee17",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/session_store.rs",
+      "gitBlob": "0d13988632d6e4c31f651130cbe28963fe1c412f",
+      "sha256": "f2f336836e219f759569fcadc0a7b6a49ee763963a8e357a490acaf51def18dc",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/session_store/completion_tests.rs",
+      "gitBlob": "83ef2beace803f68861680af0d3ece4d32b338b0",
+      "sha256": "1901649c7f769a21ce3dd60c8193d5ff81206e920f2ad93df6b25ca1188895ed",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/session_tests.rs",
+      "gitBlob": "9aa4f2eadfe6a9391d79fe0e11fb3b18c4bf20b5",
+      "sha256": "cb8fa9f5eae187f3d0b291a1cd98091e848d4a8fcf0ec901b57274e445036cea",
+      "matchesProduct": true
+    }
+  ],
+  "gates": [
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target cargo test --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --lib -j2 execution_pagination_",
+      "log": "pagination.log",
+      "sha256": "f6c5ab3e6c84af5af957b8e3146a96eb8f72fa8d6384168f20d34ea96ae3d947",
+      "exitCode": 0,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "runtimeSeconds": 0.27,
+      "cargoFinishedSeconds": 104
+    },
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target cargo test --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --lib -j2 execution_admission_",
+      "log": "admission.log",
+      "sha256": "03ca180b7aa37ff80b61395eac6d4df1b24a0414256eea87ba368528533a3908",
+      "exitCode": 0,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "runtimeSeconds": 0.3,
+      "cargoFinishedSeconds": 0.51
+    },
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target cargo test --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --lib -j2 execution_authority_",
+      "log": "authority.log",
+      "sha256": "a398164aacfd79f951e4fd294c9ea36cd2f2991851b25a532140c825ad29c1b0",
+      "exitCode": 0,
+      "passed": 3,
+      "failed": 0,
+      "ignored": 0,
+      "runtimeSeconds": 0.25,
+      "cargoFinishedSeconds": 0.22
+    },
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target cargo test --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --lib -j2 execution_assets_",
+      "log": "assets.log",
+      "sha256": "77bfb84888722df141b18d25f8c4ced0b6d0f541bccf17207ea1915b3674afec",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": 0,
+      "ignored": 0,
+      "runtimeSeconds": 0.09,
+      "cargoFinishedSeconds": 0.21
+    },
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target cargo check --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --bin codeg-server -j2",
+      "log": "check.log",
+      "sha256": "d7979975f4b327bf675e6997314676bccf52900aadc71102a064258f6740168c",
+      "exitCode": 0,
+      "cargoFinishedSeconds": 27.46
+    }
+  ],
+  "warnings": {
+    "testBuild": 7,
+    "serverCheck": 62,
+    "notes": [
+      "Unused pending runtime consumers remain.",
+      "Test linker compact-unwind warning retained.",
+      "proc-macro-error2 2.0.1 future-incompatibility warning retained."
+    ]
+  },
+  "storage": {
+    "startAvailableKiB": 17653552,
+    "finalAvailableKiB": 16600328,
+    "newTarget": false,
+    "cleanup": false,
+    "windowReleased": true
+  },
+  "fixturesChanged": false
+}
