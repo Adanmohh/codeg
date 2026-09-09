@@ -1,5 +1,13 @@
 # Remaining docs-first resolver defect
 
+## Superseded by explicit owner removal order
+
+The owner ordered complete docs-first hook removal and canceled all maintenance
+and installation. Uramax root `wC:p1` owns removal; canonical `wC:p6` is quiescent.
+No alias or cumulative candidate may be activated. Ops notified all three workers
+and made no global change. Removal verification is pending. The candidate review
+below is retained as historical evidence, not an installation recommendation.
+
 ## Reviewed candidate, not installed
 
 Canonical EduBlend candidate SHA256

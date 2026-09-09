@@ -2,6 +2,15 @@
 
 ## Current integration and worker state
 
+**Owner override: docs-first hook removal ordered; all maintenance canceled.**
+Uramax root `wC:p1` owns complete removal while preserving unrelated hooks and
+project data. Canonical `wC:p6` is quiescent; no alias/cumulative candidate was
+activated. All three Ops workers were told to stop hook maintenance and never
+activate prior installers. Ops root makes no global changes. Actual removal
+confirmation is pending; historical hook evidence remains historical. Product
+documentation/source reads and gh api continue, alongside the storage allocation
+below. Previously recorded candidate acceptance is superseded for installation.
+
 **Storage write failure recovered with bounded root-cache cleanup.** After
 approvals reported117MiB free and a failed report write, root coordinated all Ops
 lanes and other active project owners. Only idle, untracked root
