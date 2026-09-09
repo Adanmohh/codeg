@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Farha returned the unused slot; independent correction execution is assigned.**
+No Farha production build/server started within its five-minute preparation limit.
+Root observes about15.5 GiB free and assigned approvals one existing-target,
+locked/offline `-j2` window at frozen9949: the four correction/control prefixes
+(14 cases), without schema/full-suite/native/export reruns. The reviewer must
+check at least10 GiB before start, stop/report near5 GiB, and release promptly
+after commands or if preparation exceeds five minutes. Tickets remains source-only;
+Farha will coordinate a fresh slot before its integrated build. Execution results
+are pending; no new pass is claimed by this allocation.
+
 **Independent correction source review verified and imported:**
 `42d5978b2fde232b8c066131407323955148ed71` finds R1–R3 addressed in code at
 `9949c8a9`, with no additional blocking source finding. Root read the complete
@@ -10,7 +20,7 @@ verified prior3773/f4 evidence and product paths remain unchanged. The reviewer
 also verified the14 owner passes and server check; no independent execution is
 claimed. The later consuming runner permit, transport and asset/task publication
 remain unaccepted. [Correction assessment](reports/business-ai-execution-review/9949c8a9/review.md).
-Reviewer compilation remains held during Farha's window.
+That source-only checkpoint preceded the reviewer allocation above.
 
 **Bounded correction gates passed; Farha's build window is released.** Tickets has committed
 product `9949c8a9ad99ffb70232c05bf1c2ad243dcaf194` and report-only
