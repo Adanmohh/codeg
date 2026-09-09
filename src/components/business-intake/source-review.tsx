@@ -47,7 +47,7 @@ export function SourceReview({
   members: Member[]
   active: boolean
   onBack: () => void
-  onDirty: (dirty: boolean) => void
+  onDirty: (dirty: boolean, blocked: boolean) => void
   onTask: (id: string) => void
   onSetup?: () => void
 }) {
@@ -59,6 +59,11 @@ export function SourceReview({
   const [selected, setSelected] = useState<string[]>([])
   const [candidate, setCandidate] = useState<CandidateDetail | null>(null)
   const [candidateDirty, setCandidateDirty] = useState(false)
+  const [candidateBlocked, setCandidateBlocked] = useState(false)
+  const candidateChanged = useCallback((dirty: boolean, blocked: boolean) => {
+    setCandidateDirty(dirty)
+    setCandidateBlocked(blocked)
+  }, [])
   const [pendingCandidate, setPendingCandidate] = useState<string | null>(null)
   const [error, setError] = useState<unknown>(null)
   const [busy, setBusy] = useState(false)
@@ -74,6 +79,7 @@ export function SourceReview({
   const replay = useRef<(() => Promise<Candidate>) | null>(null)
   const fresh = useSourceFreshness(source?.source ?? null)
   const visible = active && verified && fresh && source?.disclosure === "fresh"
+  const navigationBlocked = busy || unknown || candidateBlocked
   useEffect(() => {
     alive.current = true
     return () => {
@@ -84,10 +90,13 @@ export function SourceReview({
   }, [invalidateReads])
   useEffect(() => {
     onDirty(
-      candidateDirty || (!candidate && selected.length > 0) || busy || unknown
+      candidateDirty ||
+        (!candidate && selected.length > 0) ||
+        navigationBlocked,
+      navigationBlocked
     )
-    return () => onDirty(false)
-  }, [candidateDirty, candidate, selected.length, busy, unknown, onDirty])
+    return () => onDirty(false, false)
+  }, [candidateDirty, candidate, selected.length, navigationBlocked, onDirty])
   const load = useCallback(async () => {
     const attempt = ++serial.current
     setVerified(false)
@@ -153,7 +162,7 @@ export function SourceReview({
       })
   }, [client, sourceId, state])
   async function openCandidate(id: string) {
-    if (working.current) return
+    if (working.current || candidateBlocked) return
     working.current = true
     setBusy(true)
     setError(null)
@@ -382,7 +391,7 @@ export function SourceReview({
               members={members}
               active={active && verified}
               refresh={refresh}
-              onDirty={setCandidateDirty}
+              onDirty={candidateChanged}
               onChanged={refreshCandidates}
               onTask={onTask}
             />
@@ -422,7 +431,7 @@ export function SourceReview({
                     aria-current={
                       candidate?.candidate.id === item.id ? "true" : undefined
                     }
-                    disabled={busy || unknown}
+                    disabled={navigationBlocked}
                     onClick={() => {
                       if (candidateDirty) setPendingCandidate(item.id)
                       else void openCandidate(item.id)
@@ -484,14 +493,18 @@ export function SourceReview({
           title={copy.leaveDraft}
           onClose={() => setPendingCandidate(null)}
         >
-          <p className="text-sm leading-relaxed">{copy.leaveHint}</p>
+          <p className="text-sm leading-relaxed">
+            {navigationBlocked ? copy.leavePending : copy.leaveHint}
+          </p>
           <div className="flex flex-wrap gap-2">
             <Action variant="outline" onClick={() => setPendingCandidate(null)}>
               {common.stay}
             </Action>
             <Action
               variant="destructive"
+              disabled={navigationBlocked}
               onClick={() => {
+                if (navigationBlocked) return
                 void openCandidate(pendingCandidate)
                 setPendingCandidate(null)
               }}

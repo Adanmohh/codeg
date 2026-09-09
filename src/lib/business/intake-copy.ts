@@ -189,6 +189,8 @@ const english = {
   editsKept:
     "Local edits are kept in this window. Save the complete draft again before sharing.",
   leaveDraft: "Leave this source review?",
+  leavePending:
+    "Wait for the current operation or recover its saved outcome before leaving this review.",
   leaveHint:
     "Unsaved edits in this window will be discarded. Saved private drafts can be reopened from Sources.",
   taskSources: "Source references",
@@ -414,6 +416,8 @@ const arabic: IntakeCopy = {
   editsKept:
     "تبقى تعديلاتك المحلية في هذه النافذة. احفظ المسودة كاملةً مجددًا قبل المشاركة.",
   leaveDraft: "مغادرة مراجعة المصدر؟",
+  leavePending:
+    "انتظر اكتمال العملية الحالية أو تحقّق من نتيجتها المحفوظة قبل مغادرة هذه المراجعة.",
   leaveHint:
     "ستُحذف التعديلات غير المحفوظة في هذه النافذة. يمكنك فتح المسودات الخاصة المحفوظة مجددًا من المصادر.",
   taskSources: "مراجع المصادر",

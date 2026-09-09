@@ -52,8 +52,13 @@ export function SourcesWorkspace({
   const [loading, setLoading] = useState(true)
   const [setup, setSetup] = useState<SetupSession | null>(null)
   const [dirty, setDirty] = useState(false)
+  const [navigationBlocked, setNavigationBlocked] = useState(false)
   const [leave, setLeave] = useState<(() => void) | null>(null)
   const [acceptedEntry, setAcceptedEntry] = useState<SourceEntry | null>(null)
+  const reviewChanged = useCallback((dirty: boolean, blocked: boolean) => {
+    setDirty(dirty)
+    setNavigationBlocked(blocked)
+  }, [])
   const setupKinds = list?.setupKinds ?? []
   const setupDomains = list?.setupDomains ?? []
   const canSetup =
@@ -200,17 +205,30 @@ export function SourcesWorkspace({
   }, [active, binding, loadSources, sourceId])
   useEffect(() => {
     if (!active || !entry) return
+    // Every newer intent supersedes both a prior prompt and its outstanding
+    // binding read, including a request to stay on the current source.
+    setLeave(null)
+    setAcceptedEntry(null)
     // Task references share the existing review surface. Consume the request
     // once, but keep its private editor until the same discard guard accepts it.
     if (
       entry.sourceId !== sourceId ||
       entry.bindingId !== binding?.binding.id
     ) {
-      if (dirty) setLeave(() => () => setAcceptedEntry(entry))
+      if (dirty || navigationBlocked)
+        setLeave(() => () => setAcceptedEntry(entry))
       else setAcceptedEntry(entry)
     }
     onEntryRead()
-  }, [active, entry, sourceId, binding?.binding.id, dirty, onEntryRead])
+  }, [
+    active,
+    entry,
+    sourceId,
+    binding?.binding.id,
+    dirty,
+    navigationBlocked,
+    onEntryRead,
+  ])
   useEffect(() => {
     if (!active || !acceptedEntry) return
     let cancelled = false
@@ -236,7 +254,7 @@ export function SourcesWorkspace({
     }
   }, [active, acceptedEntry, client])
   function navigate(action: () => void) {
-    if (dirty) setLeave(() => action)
+    if (dirty || navigationBlocked) setLeave(() => action)
     else action()
   }
   function openSetup(target: SetupSession["target"]) {
@@ -269,7 +287,7 @@ export function SourcesWorkspace({
           actor={actor}
           members={members}
           active={active && !acceptedEntry}
-          onDirty={setDirty}
+          onDirty={reviewChanged}
           onBack={() =>
             navigate(() => {
               setSourceId(null)
@@ -477,14 +495,18 @@ export function SourcesWorkspace({
       )}
       {leave && (
         <Modal title={copy.leaveDraft} onClose={() => setLeave(null)}>
-          <p className="text-sm leading-relaxed">{copy.leaveHint}</p>
+          <p className="text-sm leading-relaxed">
+            {navigationBlocked ? copy.leavePending : copy.leaveHint}
+          </p>
           <div className="flex flex-wrap gap-2">
             <Action variant="outline" onClick={() => setLeave(null)}>
               {common.stay}
             </Action>
             <Action
               variant="destructive"
+              disabled={navigationBlocked}
               onClick={() => {
+                if (navigationBlocked) return
                 leave()
                 setLeave(null)
               }}

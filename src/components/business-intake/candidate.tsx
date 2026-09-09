@@ -56,7 +56,7 @@ export function CandidateReview({
   members: Member[]
   active: boolean
   refresh: number
-  onDirty: (dirty: boolean) => void
+  onDirty: (dirty: boolean, blocked: boolean) => void
   onChanged: () => void
   onTask: (id: string) => void
 }) {
@@ -153,8 +153,8 @@ export function CandidateReview({
     base.current = detail
   }, [detail])
   useEffect(() => {
-    onDirty(dirty || selectionDirty || busy || unknown)
-    return () => onDirty(false)
+    onDirty(dirty || selectionDirty || busy || unknown, busy || unknown)
+    return () => onDirty(false, false)
   }, [dirty, selectionDirty, busy, unknown, onDirty])
   useEffect(() => {
     alive.current = true

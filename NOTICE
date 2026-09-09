@@ -942,3 +942,16 @@ implementation is copied. React19.2.4/@types-react19.2.13 hooks, Testing
 Library16.3.2 render/act/query types, Vitest2.1.9 and Prettier3.8.1 installed
 source/help are API references only. No dependency, proprietary or copyleft
 source is ported. Original LICENSE and every previous NOTICE block remain.
+
+Business linked-source pending-operation and response ordering (2026):
+src/components/business-intake/{workspace,source-review,candidate}.tsx reuses
+its existing mounted editor, effect cleanup and frozen mutation recovery at
+Codeg dc14e83b93529afab99e973ddbd21e0db79b851b, and the pending-write close guard in
+src/components/business/task-detail.tsx at
+a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0). The parent now receives
+the existing busy/unknown state explicitly, and a newer task-source intent
+cancels the previous target read. There are no new mutations or runtime APIs.
+Installed React19.2.4/@types-react19.2.13 useEffect/useCallback/useState and
+Testing Library16.3.2 act/render plus Vitest2.1.9 are read API/type references;
+no dependency implementation or copyleft code is copied. Original LICENSE
+and every preceding attribution section remain intact.
