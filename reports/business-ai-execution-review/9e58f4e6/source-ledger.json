@@ -1,0 +1,365 @@
+{
+  "reviewed_commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+  "tree": "9d7c7638f93fdda9484928c5602b0495b2605bb8",
+  "parent": "03c701dba3ade317a9597a49872530ddd2a17c93",
+  "finding_source_commit": "4251987071e8e7213a678be94039cd3fad1328f1",
+  "evidence_only_successor": "7e28988190176caea1ae405e7c3d31e82ec53bce",
+  "review_base": "2c37bb7c3103cc8a391521d37a60a21b12ca5be8",
+  "mode": "Independent source-only correction review; uncompiled/unexecuted at this head; no Cargo/archive/output copies/fixtures.",
+  "verdict": {
+    "source": "Addresses R4; no additional blocking source finding in this bounded correction.",
+    "R4": "OPEN pending compilation and execution evidence.",
+    "runtime": "No launch/import/public-transport/native acceptance."
+  },
+  "sources": [
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "NOTICE",
+      "blob": "7db22d4724153c38013d95b3f79fa149a20103d6",
+      "sha256": "49b3c81c51ed3967ba811c63f3ddb6dc59fcf9dcc092b2b365a639c0ee107c91",
+      "bytes": 77644,
+      "read_scope": "Entire13-line addition; prefix byte preservation verified."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "src-tauri/src/business_execution/outputs.rs",
+      "blob": "a6f99c004c443140aa5292df68983229fc360a4a",
+      "sha256": "319bb86eaece895a534113500440054584456d5733a8eb8565084739f4d7ddc9",
+      "bytes": 11805,
+      "read_scope": "Complete final helper plus full correction delta."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "blob": "c083bf7ec0ee069f2baa9e1d109f8f10d5388370",
+      "sha256": "7f3a7062d1ce8f929ac3c9a9091f870b103c76906f05902b8e158f4b57f0864e",
+      "bytes": 17568,
+      "read_scope": "All3 added test bodies, new helpers/profile assertion; original5 bodies read at425 and otherwise unchanged."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "src-tauri/src/business_execution/outputs/migration_tests.rs",
+      "blob": "46e774ad45e76fdd4aa12137312b75e4504943c5",
+      "sha256": "167e2f13092f90f4e3112070608ee369eba6d429c4cb062a81a2d9066a2e21ea",
+      "bytes": 11557,
+      "read_scope": "Complete file:3 real-Migrator planned bodies, setup and snapshots."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "src-tauri/src/business_execution/tests.rs",
+      "blob": "d08d351a7f23d3120605c8f1477daf7ea84d00fc",
+      "sha256": "ba4a062496535349f3b29f1c8211ed6ac780fea4cdb8d3bd21b9b3d92639d509",
+      "bytes": 15667,
+      "read_scope": "Lines1-215 reread; exact two changed receipt assertions in one historical test."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "src-tauri/src/db/migration/m20260909_000015_business_execution_scans.rs",
+      "blob": "4bf02520a6fdeddd76b17b2a28754d855a611c2b",
+      "sha256": "b1ac0757c1c1225dcd7988278a0db3d43496fe402147e1f3794d0696c6ee8c14",
+      "bytes": 4485,
+      "read_scope": "Complete91-line migration and SQL schema."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "src-tauri/src/db/migration/mod.rs",
+      "blob": "6b52b8741f3759e980062ed02481044fe92d9f1f",
+      "sha256": "57df65865e7851ae4775cb0db04538c1db2ac44db63ec6586cc2335b9d5c23d9",
+      "bytes": 6699,
+      "read_scope": "Complete2-line additive delta,15 after14; preceding registry unchanged."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "reports/business-ai-execution-implementation.md",
+      "blob": "dabad018f84acb15adc0d8b09570f795d8b26d96",
+      "sha256": "d1b68dfe8e912ad855179f12a77fab05fb1a4112c6f623d9e965a77403a0a78c",
+      "bytes": 39871,
+      "read_scope": "Complete added correction section and preceding owner publication-gate update; historic sections read at earlier pins."
+    },
+    {
+      "commit": "7e28988190176caea1ae405e7c3d31e82ec53bce",
+      "path": "reports/business-ai-execution-implementation.md",
+      "blob": "132e42a68215f448d6c847423dc903302ed26170",
+      "sha256": "fc577eedefa1b8c695a0efa4a142fe97f813d17bf9453d64f0a10ad0775ac52b",
+      "bytes": 40275,
+      "read_scope": "Complete6-line evidence-only closeout delta."
+    },
+    {
+      "commit": "7e28988190176caea1ae405e7c3d31e82ec53bce",
+      "path": "reports/business-ai-execution-validation/scan-fence/source.json",
+      "blob": "3416c63f7b14fd8598b5fd3ebd90c61bc78f197a",
+      "sha256": "bd714138601ec920d28f351bc1b155dae5a12f56a8a4ce8776971b6d56fa955d",
+      "bytes": 3678,
+      "read_scope": "Complete owner source/check inventory;7 changed and2 preserved pairs independently verified."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.rs",
+      "blob": "0e8bf9e47532076561c587c89b2677ea129383e3",
+      "sha256": "7cbf2342c8a6efcd64aaa5f790b765ce62cd879a25c56c43839255596aec9e5e",
+      "bytes": 3246,
+      "read_scope": "Full-byte preservation against425; earlier full source/schema review retained."
+    },
+    {
+      "commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.sql",
+      "blob": "2369913295543dce4542c364f23567cbffd0d842",
+      "sha256": "e113a1eb674de813475e0872211c2afc52562296dcfe6cd26292dc617edf128b",
+      "bytes": 14222,
+      "read_scope": "Full-byte preservation against425; earlier full source/schema review retained."
+    },
+    {
+      "commit": "c8453a48d441f40eb47f9c9af856235b4f9986e5",
+      "path": "src-tauri/src/business_intake/sources.rs",
+      "blob": "56e8ca543207335e65469e17444af755c82b0dbd",
+      "sha256": "876f9cd0da5220f03f2ad90b7fbadb1ad51d1fd6c4aae23daf35787006142614",
+      "bytes": 13239,
+      "read_scope": "fence/store compare-update and surrounding context inspected; full immutable remote blob byte-compared."
+    },
+    {
+      "commit": "c8453a48d441f40eb47f9c9af856235b4f9986e5",
+      "path": "src-tauri/src/db/migration/m20260909_000013_business_intake_epochs.rs",
+      "blob": "19d3436cf4e3e5a6e337df72de55fbb4200d56a3",
+      "sha256": "f193bb36656915aa25429f6ab20078a00edc83adb9bf41a785a51a2c2281c2b8",
+      "bytes": 2679,
+      "read_scope": "Complete source read; full immutable remote blob byte-compared."
+    }
+  ],
+  "installed_sources": [
+    {
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sea-orm-migration-1.1.19/src/migrator.rs",
+      "sha256": "f414cb6bb83b5c1de3bf6ef93b0be581050a0a7ef4738f0167b5bcc9b8a147c0",
+      "ranges_read": [
+        "252-273",
+        "360-401"
+      ]
+    },
+    {
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sea-orm-migration-1.1.19/src/connection.rs",
+      "sha256": "835f69ff90c3699320458c90987a5aa939895cc29c11800fbf9fe364b8d5397f",
+      "ranges_read": [
+        "1-80"
+      ]
+    },
+    {
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sea-orm-1.1.19/src/database/transaction.rs",
+      "sha256": "49daf3e11d1d3fedc798d51c2fa350331fb1d283a6f2e201e74997b01412a0f0",
+      "ranges_read": [
+        "110-249"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/commits/9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+        "--jq",
+        "{sha:.sha,tree:.commit.tree.sha,parents:[.parents[].sha],message:.commit.message}"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/commits/7e28988190176caea1ae405e7c3d31e82ec53bce",
+        "--jq",
+        "{sha:.sha,tree:.commit.tree.sha,parents:[.parents[].sha],message:.commit.message}"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/git/blobs/56e8ca543207335e65469e17444af755c82b0dbd"
+      ],
+      "exit": 0,
+      "check": "Decoded complete source matches local c845 sources.rs."
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/git/blobs/19d3436cf4e3e5a6e337df72de55fbb4200d56a3"
+      ],
+      "exit": 0,
+      "check": "Decoded complete source matches local c845 migration13."
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--quiet",
+        "4251987071e8e7213a678be94039cd3fad1328f1",
+        "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+        "--",
+        "LICENSE",
+        "src-tauri/Cargo.toml",
+        "src-tauri/Cargo.lock",
+        "src-tauri/build.rs",
+        "src-tauri/src/business_identity",
+        "src-tauri/src/business_tasks",
+        "src-tauri/src/business_execution/files.rs",
+        "src-tauri/src/business_execution/receipts.rs",
+        "src-tauri/src/business_execution/scope.rs",
+        "src-tauri/src/business_execution/session_store.rs",
+        "src-tauri/src/business_execution/types.rs",
+        "src-tauri/src/web",
+        "src-tauri/src/commands",
+        "src-tauri/src/lib.rs",
+        "src-tauri/src/db/migration/m20260909_000014_business_execution.rs",
+        "src-tauri/src/db/migration/m20260909_000014_business_execution.sql"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--exit-code",
+        "2c37bb7c3103cc8a391521d37a60a21b12ca5be8",
+        "--",
+        "reports/business-ai-execution-review/9949c8a9",
+        "reports/business-ai-execution-review/d0d56a36",
+        "reports/business-ai-execution-review/bdfa7ca6",
+        "reports/business-ai-execution-review/177d0f3e",
+        "reports/business-ai-execution-review/3773a027",
+        "reports/business-ai-execution-review/42519870"
+      ],
+      "exit": 0
+    },
+    {
+      "check": "Owner7 changed and2 preserved pairs verified against immutable Git;14 exactly matches425",
+      "exit": 0
+    },
+    {
+      "check": "NOTICE unchanged prefix",
+      "passed": true,
+      "added_bytes": 900
+    },
+    {
+      "check": "Correction commit changes8 paths; successor only2 documentation paths",
+      "exit": 0
+    }
+  ],
+  "changed_paths": [
+    "NOTICE",
+    "reports/business-ai-execution-implementation.md",
+    "src-tauri/src/business_execution/outputs.rs",
+    "src-tauri/src/business_execution/outputs/migration_tests.rs",
+    "src-tauri/src/business_execution/outputs/tests.rs",
+    "src-tauri/src/business_execution/tests.rs",
+    "src-tauri/src/db/migration/m20260909_000015_business_execution_scans.rs",
+    "src-tauri/src/db/migration/mod.rs"
+  ],
+  "successor_paths": [
+    "reports/business-ai-execution-implementation.md",
+    "reports/business-ai-execution-validation/scan-fence/source.json"
+  ],
+  "owner_ledger_verification": {
+    "path": "reports/business-ai-execution-validation/scan-fence/source.json",
+    "commit": "7e28988190176caea1ae405e7c3d31e82ec53bce",
+    "sha256": "bd714138601ec920d28f351bc1b155dae5a12f56a8a4ce8776971b6d56fa955d",
+    "changed_pairs_verified": 7,
+    "preserved_pairs_verified": 2,
+    "style_checks": "Owner rustfmt/git-diff checks read, not reviewer execution."
+  },
+  "preserved_migration14": [
+    {
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.rs",
+      "base_blob": "0e8bf9e47532076561c587c89b2677ea129383e3",
+      "correction_blob": "0e8bf9e47532076561c587c89b2677ea129383e3",
+      "sha256": "7cbf2342c8a6efcd64aaa5f790b765ce62cd879a25c56c43839255596aec9e5e",
+      "byte_identical": true
+    },
+    {
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.sql",
+      "base_blob": "2369913295543dce4542c364f23567cbffd0d842",
+      "correction_blob": "2369913295543dce4542c364f23567cbffd0d842",
+      "sha256": "e113a1eb674de813475e0872211c2afc52562296dcfe6cd26292dc617edf128b",
+      "byte_identical": true
+    }
+  ],
+  "planned_selector": "execution_outputs_",
+  "planned_count": 11,
+  "new_count": 6,
+  "independent_executed_count": 0,
+  "owner_correction_executed_count": 0,
+  "test_bodies": [
+    {
+      "name": "execution_outputs_newer_empty_scan_cannot_resurrect_older_candidate",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "line": 66
+    },
+    {
+      "name": "execution_outputs_newer_unchanged_scan_still_fences_older_candidate",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "line": 106
+    },
+    {
+      "name": "execution_outputs_writer_and_commit_failures_preserve_fence_and_rows",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "line": 152
+    },
+    {
+      "name": "execution_outputs_revisioned_discovery_and_pagination_do_not_publish",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "line": 193
+    },
+    {
+      "name": "execution_outputs_foreign_cursor_and_member_transport_fail_before_scan",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "line": 275
+    },
+    {
+      "name": "execution_outputs_late_profile_revocation_retains_no_observation",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "line": 346
+    },
+    {
+      "name": "execution_outputs_reordered_scan_cannot_replace_newer_observation",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "line": 378
+    },
+    {
+      "name": "execution_outputs_stop_fence_and_new_generation_cannot_rebind_old_scan",
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "line": 410
+    },
+    {
+      "name": "execution_outputs_migration_retains_generation_and_real_receipt_retry",
+      "path": "src-tauri/src/business_execution/outputs/migration_tests.rs",
+      "line": 121
+    },
+    {
+      "name": "execution_outputs_migration_failure_rolls_back_schema_seed_and_receipt",
+      "path": "src-tauri/src/business_execution/outputs/migration_tests.rs",
+      "line": 187
+    },
+    {
+      "name": "execution_outputs_migration_generation_fk_and_rollback_keep_exact_binding",
+      "path": "src-tauri/src/business_execution/outputs/migration_tests.rs",
+      "line": 215
+    }
+  ],
+  "coverage_limits": [
+    "New FK negatives reference nonexistent org/session/generation parents, not an existing second tenant.",
+    "Stopped-read test retains observation/cursor assertions; no explicit stopped counter assertion. Conditional counter skip read in source.",
+    "New tests use synthetic admitted links and SQL generation states, no engine teardown.",
+    "No async task-abort or process-crash case among these6 added bodies.",
+    "Two historical count expressions changed in one14 test; +2 reflects current14+15 pending registry.",
+    "Future mutable output writers must preserve the shared accepted-scan ordering mechanism."
+  ],
+  "prior_evidence": {
+    "original_R4_report": "2c37bb7c3103cc8a391521d37a60a21b12ca5be8",
+    "content_recovery_source": "2c011b27a53f34b6e625797ab4ec43460608e66f",
+    "9949_independent": "de3a6b8fdc2602ef743ec2e1da72f488707980af",
+    "owner_publication8_product": "4251987071e8e7213a678be94039cd3fad1328f1",
+    "note": "All frozen report directories unchanged; no prior pass is transferred to this correction."
+  },
+  "grounding": "Existing offline code-context staging rule and pinned library reads reused. No new corpus-coverage or hook claim.",
+  "capacity": "No reviewer allocation taken; no Cargo/server/native/build/fixture command ran."
+}

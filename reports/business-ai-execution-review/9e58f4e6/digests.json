@@ -1,0 +1,12 @@
+{
+  "algorithm": "sha256",
+  "reviewed_commit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+  "verdict": "Source correction addressesR4; R4 remains open pending execution.",
+  "paths_relative_to_worktree": {
+    "reports/business-ai-execution-review/9e58f4e6/review.md": "ba875d8f8cb1482c76db9fbb05c7d96939fa04da1a1cb531b81387d3df42e4ed",
+    "reports/business-ai-execution-review/9e58f4e6/source-ledger.json": "132590ad5ee52aa2ae86793f914301c56cbb092f080ec36dd9ef2ecefed9ba6c",
+    "reports/review-business-ai-execution-implementation.md": "d5b64daabc097624d2d5a9d3ad140ca2265a20d487cc9fb0a461783de92aacf9"
+  },
+  "historical_evidence_unchanged_against": "2c37bb7c3103cc8a391521d37a60a21b12ca5be8",
+  "note": "This index excludes itself; hashes apply to this publication."
+}
