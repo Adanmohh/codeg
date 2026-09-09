@@ -956,6 +956,17 @@ Testing Library16.3.2 act/render plus Vitest2.1.9 are read API/type references;
 no dependency implementation or copyleft code is copied. Original LICENSE
 and every preceding attribution section remain intact.
 
+Unified synthetic business UI origin (2026):
+reports/business-intake-ui-evidence/serve-unified.mjs reuses the existing
+serve.mjs in that directory at Codeg
+1974d97f44b69db96051ace1c68717cc8c27b6e9 (Apache-2.0), itself grounded in
+reports/business-workspace-evidence/serve.mjs at
+a40b03393a466672060066ae6e0e8c9054a2349d. Only its fixed frontend port4354
+and unified backend4351 configuration differ. The closed method/path guard,
+secret-free diagnostics and static export behavior are retained. Existing4350
+source/runtime/exports are untouched. No product server, dependency or external
+implementation is introduced. All original LICENSE/NOTICE entries remain.
+
 Business source-owner reference eligibility (2026):
 The setup owner selector follows the current contributing-human check in
 src-tauri/src/business_intake/access.rs::owner at

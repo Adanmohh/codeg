@@ -82,12 +82,18 @@ safe Fireflies/email/Hafidh record references and coordinated mutation records
 for accept/link/discard/rebase/claim and response-loss recovery. Existing4353
 credentials are never reused as4351 access. No listener or export was restarted
 on recovery; no runtime response interception substitutes for these gates.
-The next full export is additionally held for root's disk/build window
-(read-only disk check:13Gi available). An allocation question is pending:
-inherited intake-ui-a4350 holds a private unsaved4353 draft, so switching its
-origin to4351 could invalidate that session. A separate proposed4354 frontend
-would preserve4350 and its old browsers; no new port/export has been started.
-4350 remains unchanged until the allocation and draft preservation are resolved.
+The next full export is held for root's disk/build window (read-only disk
+check:13Gi available). Root has now reserved **4354** for the unified frontend.
+This preserves inherited intake-ui-a4350 and its private unsaved4353 draft.
+Own read-only port check finds no4354 listener; it will be repeated immediately
+before launch. No new export/listener has started. The new dedicated
+`serve-unified.mjs` helper fixes both business API destinations at4351, without
+changing the4350 helper, export or runtime. Its cold route will be
+`http://127.0.0.1:4354/business`, after the immutable handoff/build window.
+`node --check` exits0 with installed Node24.19.0; comparison against the old
+helper confirms only provenance/port/strict unified routing configuration changed.
+The existing4350 helper is byte-unchanged. This is a syntax/source check, not
+an executed4354 guard or browser test.
 
 ## Delivered behavior
 
@@ -134,7 +140,7 @@ existing engineering entry remains available only with legacyOperator.
 | Access prerequisite | `18be55edc276713fc6d46d075baec363245ba285`, `docs/contracts/business-intake-access.md`; explicit zero grants/history/owner lifecycle and setup authority |
 | Accepted UI plan | `1a876afc2ae81c7ea2066a14cdbb268fb363e37c`, `reports/business-intake-ui-plan.md`; Q1–Q4 closed |
 | Compiling Rust DTOs | `f51154b948ac1ae74fa1bf6a7df495e7e12e05f2`, `src-tauri/src/business_intake/types.rs`; adds response-only setup kind/domain scope to9a4; unchanged through949adb02 (`git diff` exit0) |
-| B runtime checkpoint | `949adb02c18c72d0804eeb74b420520a7681ee86`; registered25 HTTP/native operations, captured tenant epochs and owner-reported migration/HTTP cases. Final gates, independent acceptance and the real unified B fixture remain pending |
+| B runtime checkpoint | `e55f3bfd1f069d6d6111370223993596b19ecb9b`; registered25 HTTP/native operations, captured tenant epochs and owner-reported38 passing intake tests/runtime gates. Full independent acceptance and the real unified B fixture remain pending |
 | Tenant settings | Contract `7516461633c163c2ac683930487e33231e630b0b`; actual `29774b50aafc29658a2f48fab1f44d366ed2c8a0` types/settings/http/native commands; final owner report `d3a176d2287c23b649cd1d266cb1a9187bbcc0bb` leaves product unchanged |
 
 The bounded reconciliation resolved PR28's immutable head through `gh api`, then
@@ -145,6 +151,10 @@ introduces no epoch default or provider source. PR30's accepted merge
 `b3f2f6d03bbbef3ea7b4a9412e29308f1f355843` retains product29774b50.
 Its accepted runtime awaits integration with PR28 here; the preserved4353
 settings/task fixture remains the earlier explicitly isolated snapshot.
+The subsequent backend handoff `e55f3bfd1f069d6d6111370223993596b19ecb9b`
+reports38/38 intake cases plus green runtime/Clippy/typecheck gates; its full
+final-gates section was read. Fixture compilation/publication still follows.
+Those are backend-owner results, not an executed frontend fixture claim.
 
 Complete governing documents, business implementation/interaction plan and design
 brief were read before product work. Remote source research used `gh api` at
@@ -203,6 +213,14 @@ remain enabled; no workers, paid inference or other-worktree writes were used.
 UI **http://127.0.0.1:4350/business** (also `/business.html`), Node **90939**,
 export `.build/business-intake-ui-nav`. HTTP/disk `business.html` SHA256:
 `2d3f87ea738e4b191dd77f43373c34f2540e8f8beeba59a81d4542670bb38b1a`.
+Export source is **c1e618dede15368d4af39ac74391f18931b317a5**; it does not
+contain the later1974 source/setup/navigation corrections. On September9,
+read-only `lsof`, HTTP/disk SHA256 and whitelisted fixture health reads all
+exit0 and reconfirm Node90939, backend4351/workspaceBackend4353 and this export.
+[HTML and its26 referenced CSS/JS hashes](business-intake-ui-evidence/preserved-4350-c1.sha256)
+record asset identity without copying build outputs. No authenticated API or
+browser action was performed for this verification.
+`shasum -a 256 --check --status` over the27-entry manifest exits0.
 
 ```text
 node reports/business-intake-ui-evidence/serve.mjs .build/business-intake-ui-nav --backend=4351 --synthetic-intake-fixture --workspace-backend=4353
@@ -239,6 +257,55 @@ B checks must use one integrated backend/identity database and newly coordinated
 synthetic sessions; credentials minted on4353 must not be treated as4351 access.
 The export helper can route all closed business calls to4351 without the optional
 workspace-backend flag when that real handoff is ready.
+
+### Exact connection recipe for the upcoming unified browser
+
+The actual connection screen is the cold **`/business`** or **`/business.html`**
+route. There is no separate connection-selection route or engineering Settings
+step. `src/components/business/connect.tsx`, `src/app/business/page.tsx` and
+`src/lib/business/client.ts` are byte-identical from c1 through1974 (`git diff`
+exit0); the EN/AR labels below are read from `src/lib/business/copy.ts`.
+
+1. Wait for the published unified frontend URL/export hash and tickets' guarded
+   backend/credential-file handoff. Current4350 still routes authentication to4353;
+   **do not use any new4351 namespace credential against its default address**.
+   Its older Sources code is also not a valid runtime acceptance target for the
+   later corrections. Root has reserved4354; its export/launch is still pending
+   the immutable fixture handoff and completed build window.
+2. Open a new named CLI browser session at the published frontend `/business`,
+   starting at desktop width. Use the **Workspace address** (`عنوان مساحة العمل`)
+   field with **`http://127.0.0.1:4354`**, without an `/api` path. Its proxy must
+   report both backend ports4351 before login. The field initially uses the page's
+   origin; it does not select a tenant. Identity comes only from the personal token.
+3. Fill **Personal access token** (`رمز الوصول الشخصي`) from the private0600 file
+   for the assigned namespace/person, then press **Connect** (`اتصال`). Keep
+   **Administrator access** / **Original administrator token** untouched for a
+   personal session. No token belongs in CODEG_TOKEN, URL, saved browser state,
+   output, report, screenshot or DOM snapshot. Do not snapshot the filled form.
+4. Successful connection calls protected `POST /api/business/context` with
+   `{input:{}}`, clears the form key, and opens the actual workspace. Use its
+   **Sources** button. The new owner setup sees only returned Fireflies/domain
+   scope; an initial zero-binding/grant result stays an honest empty/setup state.
+   Namespace membership alone does not grant source reading.
+5. UI worker uses the `ui` namespace and two fresh named sessions; the backend
+   worker uses its own `worker` namespace. Root/review namespaces are reserved.
+   Existing link targets and record mutations must stay within those allocations.
+   A namespace owner/manager/viewer account cannot be substituted across backends.
+
+This is the source-grounded recipe, not a claim that the unified URL or sessions
+are running. The current4350 listener/export and inherited browsers remain intact.
+
+Planned own commands **after** the handoff/build window and another4354 vacancy
+check (not yet executed):
+
+```text
+env CODEG_EXPORT_DIR=.build/business-intake-ui-unified-1974d97f NEXT_TELEMETRY_DISABLED=1 pnpm build
+node reports/business-intake-ui-evidence/serve-unified.mjs .build/business-intake-ui-unified-1974d97f --backend=4351 --synthetic-intake-fixture
+```
+
+The target is a new owned export path; no old export, fixture, Rust target or
+native bundle is replaced. The actual next handoff will include its source head,
+HTML/assets hash, PID, origin and safe namespace lifetime.
 
 ## Actual browser evidence and design corrections
 
