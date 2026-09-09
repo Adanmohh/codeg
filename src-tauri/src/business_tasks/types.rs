@@ -224,6 +224,8 @@ pub struct Deliverable {
     pub revision: i64,
     pub author: Actor,
     pub body: String,
+    /// Exact selected immutable versions, never the asset's private latest state.
+    pub assets: Vec<crate::business_execution::types::PublishedAssetRef>,
     pub created_at: String,
 }
 

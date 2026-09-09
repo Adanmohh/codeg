@@ -55,23 +55,67 @@ pub(super) async fn task(conn: &DatabaseConnection) -> (identity::Principal, tas
     (principal, detail)
 }
 
+// Migration fixtures represent the old installed schema, not today's task read
+// API (which now includes the migration14 publication table).
+async fn legacy_submission(
+    conn: &DatabaseConnection,
+    op: &identity::Principal,
+    task_id: &str,
+    body: &str,
+) {
+    let deliverable_id = uuid::Uuid::new_v4().to_string();
+    conn.execute(stmt(
+        "INSERT INTO business_task_deliverable(id,organization_id,task_id,revision,author_id,author_name,author_kind,body,created_at) VALUES(?,?,?,2,?,'Synthetic operator','human',?,'then')",
+        vec![deliverable_id.clone().into(), op.organization_id().into(), task_id.into(), op.member_id().into(), body.into()],
+    )).await.unwrap();
+    conn.execute(stmt(
+        "UPDATE business_task SET status='review',revision=2,current_deliverable_id=?,updated_at='then' WHERE organization_id=? AND id=?",
+        vec![deliverable_id.clone().into(), op.organization_id().into(), task_id.into()],
+    )).await.unwrap();
+    conn.execute(stmt(
+        "INSERT INTO business_task_activity(id,organization_id,task_id,revision,kind,actor_id,actor_name,actor_kind,payload_json,created_at) VALUES(?,?,?,2,'submitted',?,'Synthetic operator','human',?,'then')",
+        vec![uuid::Uuid::new_v4().to_string().into(), op.organization_id().into(), task_id.into(), op.member_id().into(),
+            json!({"deliverableId":deliverable_id}).to_string().into()],
+    )).await.unwrap();
+}
+
+async fn legacy_snapshot(conn: &DatabaseConnection) -> Vec<Vec<String>> {
+    let mut saved = vec![];
+    for table in [
+        "business_task",
+        "business_task_activity",
+        "business_task_deliverable",
+    ] {
+        let names = conn
+            .query_all(stmt(&format!("PRAGMA table_info({table})"), vec![]))
+            .await
+            .unwrap()
+            .into_iter()
+            .map(|r| format!("\"{}\"", r.try_get::<String>("", "name").unwrap()))
+            .collect::<Vec<_>>()
+            .join(",");
+        saved.push(
+            conn.query_all(stmt(
+                &format!("SELECT json_array({names}) AS value FROM {table} ORDER BY rowid"),
+                vec![],
+            ))
+            .await
+            .unwrap()
+            .into_iter()
+            .map(|r| r.try_get::<String>("", "value").unwrap())
+            .collect(),
+        );
+    }
+    saved
+}
+
 #[tokio::test]
 async fn execution_migration_retains_review_history_and_real_receipt_retry() {
     let conn = before_execution().await;
     let (op, original) = task(&conn).await;
     let ctx = tasks::ActorContext::authenticated(op.clone());
-    let submitted = tasks::store::submit(
-        &conn,
-        &ctx,
-        tasks::types::TextInput {
-            task_id: original.task.id.clone(),
-            expected_revision: 1,
-            body: "Original reviewed text".into(),
-        },
-    )
-    .await
-    .unwrap();
-    let saved = serde_json::to_value(&submitted).unwrap();
+    legacy_submission(&conn, &op, &original.task.id, "Original reviewed text").await;
+    let saved = legacy_snapshot(&conn).await;
     let receipts = scalar(&conn, "SELECT count(*) AS value FROM seaql_migrations").await;
     Migrator::up(&conn, None).await.unwrap();
     let reread = tasks::store::get(
@@ -83,7 +127,9 @@ async fn execution_migration_retains_review_history_and_real_receipt_retry() {
     )
     .await
     .unwrap();
-    assert_eq!(serde_json::to_value(reread).unwrap(), saved);
+    assert_eq!(legacy_snapshot(&conn).await, saved);
+    assert_eq!(reread.deliverables[0].body, "Original reviewed text");
+    assert!(reread.deliverables[0].assets.is_empty());
     assert_eq!(
         scalar(&conn, "SELECT count(*) AS value FROM seaql_migrations").await,
         receipts + 1
@@ -152,18 +198,14 @@ async fn execution_migration_retains_review_history_and_real_receipt_retry() {
 async fn execution_migration_failure_rolls_back_rebuild_and_restores_enforcement() {
     let conn = before_execution().await;
     let (op, task) = task(&conn).await;
-    let submitted = tasks::store::submit(
+    legacy_submission(
         &conn,
-        &tasks::ActorContext::authenticated(op.clone()),
-        tasks::types::TextInput {
-            task_id: task.task.id.clone(),
-            expected_revision: task.task.revision,
-            body: "Keep these exact bytes during failed DDL".into(),
-        },
+        &op,
+        &task.task.id,
+        "Keep these exact bytes during failed DDL",
     )
-    .await
-    .unwrap();
-    let saved = serde_json::to_value(&submitted).unwrap();
+    .await;
+    let saved = legacy_snapshot(&conn).await;
     let receipts = scalar(&conn, "SELECT count(*) AS value FROM seaql_migrations").await;
     // Fail after deliverable replacement, then verify old schema/data/receipts
     // were restored atomically and the same pooled connection enforces FKs.
@@ -186,16 +228,7 @@ async fn execution_migration_failure_rolls_back_rebuild_and_restores_enforcement
         scalar(&conn, "SELECT count(*) AS value FROM business_task").await,
         1
     );
-    let reread = tasks::store::get(
-        &conn,
-        &tasks::ActorContext::authenticated(op),
-        tasks::types::TaskInput {
-            task_id: task.task.id.clone(),
-        },
-    )
-    .await
-    .unwrap();
-    assert_eq!(serde_json::to_value(reread).unwrap(), saved);
+    assert_eq!(legacy_snapshot(&conn).await, saved);
     assert_eq!(
         scalar(
             &conn,

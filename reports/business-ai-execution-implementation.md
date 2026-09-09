@@ -397,3 +397,43 @@ transports. The runner must consume an admission once; current
 `complete_launch(&Admission)` only proves internal DB/receipt binding, not that
 an actual process launch is owned or one-time. No remaining runtime prerequisite
 is waived by these correction tests.
+
+## Managed publication source follow-on — gates pending
+
+While approvals owns the separate9949 correction build, source work adds the
+accepted task-owned deliverable references and publication helper. Every task
+Detail now reads only its exact selected PublishedAssetRef list; text-only history
+has an empty list. Private E1 submit requires the original operator and an actual
+human, validates retained bytes outside the writer, then repeats current scope /
+selection and commits task CAS, immutable references/activity and exact receipt
+together. Previously published versions use current task Read; private versions
+still require current producer-session authority. The task public projection
+contains no private session/turn/profile/object/latest-version fields.
+
+Code is in business_execution/publication.rs and
+business_tasks/store/managed.rs, with minimal parent/type registration. Six new
+execution_publication_ cases use actual temporary retained bytes, real SQLite /
+identity/task writers, injected SQL failures and explicit synthetic version rows.
+They are not an import or process-launch test. Two pre14 migration cases now seed
+historical text rows directly and compare retained columns, because today's Detail
+reader requires the real publication table. No migration DDL or applied history
+changed; no production table-existence fallback was added.
+
+Actual source checks so far: rustfmt and git diff --check exit0. New code/tests
+have NOT been compiled or executed while the reviewer owns capacity. Planned
+next bounded gates are execution_publication_, the two adapted migration cases,
+relevant existing task tests and server check, after explicit capacity release.
+Correction product9949/owner14-pass and independent42d5978b source evidence remain
+separate from this unvalidated follow-on. No new route/native registration, client,
+provider, fixture, browser, target or large allocation occurred.
+
+Grounding: code-context retrieval used the existing rag-skills Python offline.
+Applied Atomic per-task staging and installed-version guidance; the current
+tickets dependency corpus remains missing (docs lookup exit3), without ingest or
+installation. Read accepted Codeg store/policy/types and migration14 SQL locally;
+read the exact c8453a48d441f40eb47f9c9af856235b4f9986e5 task submit/CAS helper via
+gh api. Installed SeaORM1.1.19 Statement/QueryResult/transaction source and
+Tokio1.49.0 spawn_blocking/Semaphore source ground the writer and bounded read.
+Blocking jobs retain their semaphore permit until completion; cancelling the
+request cannot make a detached verifier commit a receipt. Mid-I/O cancellation
+and actual transport/engine consumption remain later integration tests.

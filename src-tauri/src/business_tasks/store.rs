@@ -17,6 +17,8 @@ use sea_orm::{
 };
 use serde_json::json;
 
+pub(crate) mod managed;
+
 pub(super) fn statement(sql: &str, values: Vec<Value>) -> Statement {
     Statement::from_sql_and_values(DbBackend::Sqlite, sql, values)
 }
@@ -214,11 +216,28 @@ async fn detail_in<C: ConnectionTrait>(
         actor: Actor { id: a.actor_id, display_name: a.actor_name, kind: a.actor_kind },
         payload: serde_json::from_str(&a.payload_json).map_err(|_| E::Invalid("Invalid stored task activity"))?, created_at: a.created_at,
     })).collect::<Result<Vec<_>, E>>()?;
-    let deliverables = deliverable::Model::find_by_statement(statement(
+    let rows = deliverable::Model::find_by_statement(statement(
         "SELECT * FROM business_task_deliverable WHERE organization_id = ? AND task_id = ? ORDER BY revision",
         vec![row.organization_id.clone().into(), row.id.clone().into()],
-    )).all(conn).await?.into_iter().map(|d| Deliverable { id: d.id, revision: d.revision,
-        author: Actor { id: d.author_id, display_name: d.author_name, kind: d.author_kind }, body: d.body, created_at: d.created_at }).collect();
+    )).all(conn).await?;
+    let mut deliverables = Vec::with_capacity(rows.len());
+    for d in rows {
+        // The common task visibility/agent scope check above also governs every
+        // selected reference. Text-only history naturally returns an empty list.
+        let assets = managed::references_for_detail(conn, &row, &d.id).await?;
+        deliverables.push(Deliverable {
+            id: d.id,
+            revision: d.revision,
+            author: Actor {
+                id: d.author_id,
+                display_name: d.author_name,
+                kind: d.author_kind,
+            },
+            body: d.body,
+            assets,
+            created_at: d.created_at,
+        });
+    }
     let execution = match &row.current_execution_id {
         None => None,
         Some(id) => {

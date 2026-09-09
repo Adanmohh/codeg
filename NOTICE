@@ -1219,3 +1219,16 @@ or authority constructor is duplicated. Paths after the first are relative to
 src-tauri/src/. Rust1.98.0 standard-library source at
 88d9e12ae178fab0fb5cc050a94da85685d449ea (library/std/src/{fs,os/unix/fs}.rs),
 installed libc0.2.180, sha2 0.10.9/digest0.10.7 and tempfile3.24.0 are API references.
+
+E1 selected-version task publication (2026):
+business_tasks/store/managed.rs and business_execution/publication.rs reuse
+business_tasks/store.rs at the same accepted B c8453a48d441f40eb47f9c9af856235b4f9986e5
+(4d45912b748f2083457ccb6ab075b335d8ec2ac2), specifically current visibility,
+references, submit, finish_in_transaction and immutable activity. These remain
+the task-owned authorization/CAS path. The selected metadata projection and
+receipt/file verification linkage are accepted E1 contract glue; synthetic tests
+reuse the already-attributed identity/SQLite and anchored-file fixtures.
+Installed Tokio1.49.0 task/blocking.rs and sync/semaphore.rs are read references
+for bounded blocking verification and cancellation limits. No runtime, dependency
+implementation, authorization constructor or copyleft source is introduced.
+All original Apache-2.0 licence and preceding NOTICE sections are preserved.
