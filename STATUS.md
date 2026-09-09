@@ -15,15 +15,22 @@ This unlocks rebrand's E1 workbench integration; AI chat/terminal/assets are sti
 being implemented. No running fixture, user browser or native artifact changed.
 The exact accepted head and next bounded work were relayed to all three existing
 workers; Herdr reports each working. Rebrand integrates this accepted shell,
-tickets continues E1 backend, approvals owns the independent test build window.
+tickets continues E1 backend and now owns the released build window. Approvals
+reports all commands finished: four unchanged E1 schema tests, four B epoch tests
+and three reviewer-only cancellation/schema/DTO probes pass, all exit0. Final
+immutable report/log/source-after publication is pending root verification. This
+does not accept runtime authority, launch, file import or publication.
 
 Tickets' audit correction `ca58f2b9` is verified as report-only and imported:
 legacy timestamps1788951206–1207 are historical, not fresh hook metadata. No
 current generic Pre/Post journal coverage is claimed. Approvals checkpoint
-`bb33fbffb` records780/780 exact frozen177 source blobs and has started the released
-existing-target independent tests; no result is assumed yet. The canonical alias
-repair resolves the reported graph in its staged candidate, with independent
-review and single installation handoff pending. It is not called installed.
+`bb33fbffb` records780/780 exact frozen177 source blobs; the newly reported results
+and build-window release are recorded above. Canonical alias candidate
+`a918234a97b6786686140f833bdcfa6af53372ad694906192a24ee4dc56f702e`
+has independent46-case acceptance and reported56 retained passes. Root read both
+maintenance/review reports and the actual46-pass log. Installer pins/launcher
+checks and single user-terminal handoff remain pending; no global install is
+claimed. Rebrand was notified to preserve denied edits until actual activation.
 
 **Global hook installed and project work resumed.** Owner ran the test-before-
 install script successfully; engine f5554c92 and backup claude-workflow-n0d8pjua

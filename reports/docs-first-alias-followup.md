@@ -1,5 +1,27 @@
 # Remaining docs-first resolver defect
 
+## Reviewed candidate, not installed
+
+Canonical EduBlend candidate SHA256
+`a918234a97b6786686140f833bdcfa6af53372ad694906192a24ee4dc56f702e`
+has independent acceptance:46 actual signed-flow/isolation regressions pass,
+exit0,0.626s. Root read the complete maintenance and independent review reports
+at `/tmp/edublend-hook-alias-report.md` and
+`/tmp/edublend-hook-alias-review/report.md`, plus the actual final test log.
+The canonical owner also reports56 retained/workflow passes. Root has not rerun
+these suites. The reviewer reports no remaining actionable finding in the bounded
+alias/reader-command scope, after correcting graph-limit, dependency-root,
+command-boundary, nonfinite-JSON and executable-symlink cases.
+
+The actual installed TypeScript5.8.3 resolver and candidate agree on rebrand's
+`tasks.ts` path with external=false; this is maintainer evidence. It does not
+grant framework evidence to the worker or establish live edit admission. Final
+installer pins/launcher checks and a single user-terminal maintenance handoff
+are still pending. No global source/config/trust change was made by Ops root.
+Rebrand has been informed of both acceptance and the lack of installation.
+
+## Original reproduction and requirements
+
 Current installed engine f5554c92 admits ordinary research and tests. Rebrand
 verified actual gh api and Git access in its existing session, then ran its
 unchanged preserved E1 parser tests: 18 pass. Three actual type errors remain
