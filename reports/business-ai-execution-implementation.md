@@ -86,7 +86,47 @@ unchanged. User-inspected `intake-worker4354` and its records are frozen.
 Paused `reports/visual-correspondence.md` remains untracked and untouched. Preserved
 branches include business-intake462604b00 and docs/business-ai-executioncab3b27e.
 
-Current source/tests: implementation not yet written at this first checkpoint.
+At the initial79d19547 checkpoint, implementation was not yet written.
 Commands so far: separate local docs/status/source reads, offline retrieval and
 `git fetch origin` / `git merge --ff-only origin/main` (exit0), `gh pr create --help`
-(exit0). Draft PR/head and each subsequent actual gate will be recorded here.
+(exit0). Draft PR: https://github.com/Adanmohh/codeg/pull/32 (stays draft).
+
+## First compiling product checkpoint
+
+Implemented internal closed DTOs/validation and migration000014, registered only
+the module/migration. No HTTP/native handlers or runner actions exist at this
+checkpoint. Profiles remain backend discoveries, with no wire credential/command
+input. Captured authority, task-scope epoch, profile revision, session generation,
+receipts, output claims, immutable versions and selected publication references
+are separate retained records. Task assignment/domain/cancel/reopen changes fence
+old session generations, including change-away-and-back. Runtime consumption of
+these fences remains to implement/test; schema alone is not authority acceptance.
+
+Migration ports000012's one pinned SQLx connection, close-on-cancel FK restoration
+and atomic completion marker. Deliverable rebuild keeps every column/ID/FK and
+immutable trigger, changing only the lower text-length bound. A real migration
+receipt deletion/retry was tested after populated human text/history/current
+deliverable retention. Mid-DDL table collision rolls back the rebuild/receipt and
+restores FK enforcement. Blank legacy text submission remains rejected after14.
+Actual execution-linked retention, cancellation while awaiting SQLite, B11/13
+combined ordering, file-only writer/CAS and runtime races are still pending.
+
+The rebrand wire questions are closed in an additive contract section and Rust
+types: assets/list is a stable page; private assets/versions adds authorized older
+version pagination; assets/get has explicit current capability/preview fields;
+successful prompt has durable messageId/inputHash. Public task readers still get
+only selected safe references/metadata. No route availability is implied by DTOs.
+
+Actual commands, own existing target only:
+
+| Command | Result |
+| --- | --- |
+| `cargo check --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --bin codeg-server` | exit0;36.66s; initial schema/DTO source |
+| `cargo test --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --lib business_execution::tests` | exit0;3 passed,0 failed/ignored;0.13s runtime,1m56s compile; final checkpoint DTO source |
+| `rustfmt --edition 2021` on the five new Rust files; `git diff --check` | exit0 |
+
+`CARGO_TARGET_DIR` was the existing absolute
+`.docs/business-intake-tenancy-target` described above. Committed logs are under
+`reports/business-ai-execution-validation/checkpoint/`. Existing linker unwind and
+proc-macro-error2 future-compatibility notices are preserved in logs. This is not
+final default/server/companion/Clippy/typecheck or complete E1 acceptance.

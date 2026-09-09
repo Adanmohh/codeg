@@ -842,3 +842,20 @@ The channel source identifies an unresolved native-isolation prerequisite;
 it is not ported or patched. tauri?/test only exposes the already locked
 framework's test helpers through existing test-utils; no new dependency/version.
 Original Codeg Apache-2.0 LICENSE and preceding notices remain intact.
+
+Business AI execution, sessions and managed task files (2026):
+Reuses Apache-2.0 Codeg at Adanmohh/codeg
+9e61fe67261219921e0a6a860c45f6e08ea99c21, following upstream v0.30.4
+6f6bd648b206412644842a98d9ffeebf57292bed:
+src-tauri/src/db/migration/m20260908_000012_business_tenancy.rs
+(a305a682bbf55e750a5d5156ac0aa4695aac08c1),
+src-tauri/src/db/migration/m20260908_000010_business_tasks.rs
+(3cb107d5bc0ab375e1b82fc64c7fefc82396b318),
+src-tauri/src/business_tasks/{store,types,entity,policy}.rs and
+src-tauri/src/business_identity/{mod,tests/tenancy}.rs.
+Migration000014 ports the pinned-connection, cancellation-safe FK restoration
+and atomic marker/receipt pattern, retaining original task deliverable columns,
+identity and history. New execution DTOs/storage are accepted-contract glue;
+tests reuse synthetic SQLite and task authorization patterns. Installed
+SeaORM1.1.19, SQLx0.8.6 and serde1.0.228 are API references, not vendored ports.
+Original Codeg copyright, Apache-2.0 LICENSE and all prior notices remain.

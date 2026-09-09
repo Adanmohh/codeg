@@ -264,6 +264,28 @@ human policy; no second asset-approval endpoint or agent review capability.
 
 ## Durable files and exact publication
 
+### Implementation wire clarification (E1, additive)
+
+`assets/list` returns `{items:AssetSummary[],nextCursor:null|string}`.
+Private `assets/versions` accepts `{input:{assetId,cursor:null|string,limit:1..50}}`
+and returns `{items:AssetVersion[],nextCursor:null|string}` in descending immutable
+version order, with a server-issued asset-bound cursor. Every request uses the
+same current original-operator/session/task authorization; another producer's
+unpublished versions are never included. This enables older-version discovery
+after reload without exposing private versions to task-only public readers.
+`assets/get` returns `{asset:AssetSummary,version:AssetVersion,capabilities:{readContent,preview,download,submit,addVersion},previewReason:null|"unavailable"}`.
+Capabilities describe current authorization and verified format support; they do
+not replace the writer/read checks. Public task asset operations keep their
+distinct selected-version projection and do not use either private envelope.
+
+Successful `sessions/prompt` returns `{operation:OperationSummary,messageId,inputHash}`.
+The backend creates the durable message UUID and SHA256 of the exact accepted
+normalized text/resolved public input manifest before dispatch. The message ID
+and hash are retained and identical on operation replay; neither is a provider
+completion claim. `operations/get.resourceId` is that message ID for a prompt;
+an uncertain receipt never authorizes another send. No caller-supplied hash or
+message ID is trusted. These shapes are mirrored by the execution Rust DTOs.
+
 Managed assets are organization/task-scoped records plus retained immutable bytes
 under service-owned storage, separate from session scratch/output. Minimum first
 slice: real Markdown/text document preview and a generated deck/file import,

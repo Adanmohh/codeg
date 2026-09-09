@@ -55,6 +55,7 @@ mod m20260908_000008_ops_telegram_issues;
 mod m20260908_000009_business_identity;
 mod m20260908_000010_business_tasks;
 mod m20260908_000012_business_tenancy;
+mod m20260909_000014_business_execution;
 pub struct Migrator;
 
 #[async_trait::async_trait]
@@ -116,6 +117,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20260908_000009_business_identity::Migration),
             Box::new(m20260908_000010_business_tasks::Migration),
             Box::new(m20260908_000012_business_tenancy::Migration),
+            Box::new(m20260909_000014_business_execution::Migration),
         ]
     }
 }
