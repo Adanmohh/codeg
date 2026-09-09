@@ -2,10 +2,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { createBusinessClient, workspaceOrigin } from "./client"
 
 const fetcher = vi.fn()
-const native = vi.hoisted(() => ({ invoke: vi.fn() }))
-vi.mock("@tauri-apps/api/core", () => ({ invoke: native.invoke }))
+const native = vi.hoisted(() => ({ invoke: vi.fn(), isTauri: vi.fn() }))
+vi.mock("@tauri-apps/api/core", () => native)
 beforeEach(() => {
   vi.clearAllMocks()
+  native.isTauri.mockReturnValue(false)
   vi.stubGlobal("fetch", fetcher)
   localStorage.clear()
 })
@@ -19,6 +20,116 @@ const response = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status })
 
 describe("separate business credential client", () => {
+  it("routes the closed tenant settings operations without an organization or actor selector", async () => {
+    const settings = {
+      displayName: "Synthetic workspace",
+      palette: "blue" as const,
+      workspaceLayout: "stacked" as const,
+      defaultWorkArea: "tasks" as const,
+    }
+    fetcher.mockResolvedValueOnce(
+      response({ organizationId: "synthetic-org", revision: 2, settings })
+    )
+    const client = createBusinessClient(memberConnection)
+    await client.identity("settings/update", { expectedRevision: 1, settings })
+    expect(fetcher).toHaveBeenCalledWith(
+      "http://127.0.0.1:4340/api/business/settings/update",
+      expect.objectContaining({
+        body: JSON.stringify({ input: { expectedRevision: 1, settings } }),
+      })
+    )
+    const desktop = createBusinessClient({ kind: "native" })
+    await desktop.identity("settings/get", {})
+    expect(native.invoke).toHaveBeenCalledWith("business_settings_get", {
+      input: {},
+    })
+    client.close()
+    desktop.close()
+  })
+  it("rejects personal HTTP access in an operator native host before any transport call", () => {
+    native.isTauri.mockReturnValue(true)
+    localStorage.setItem("codeg_token", "synthetic_original_operator")
+    expect(() => createBusinessClient(memberConnection)).toThrow("forbidden")
+    expect(fetcher).not.toHaveBeenCalled()
+    expect(native.invoke).not.toHaveBeenCalled()
+    expect(localStorage.getItem("codeg_token")).toBe(
+      "synthetic_original_operator"
+    )
+    expect(JSON.stringify(localStorage)).not.toContain(memberConnection.token)
+  })
+  it("uses the isolated intake envelope and dedicated native command without legacy transport", async () => {
+    fetcher.mockResolvedValueOnce(
+      response({ items: [], canManageSetup: false, page: 0, hasMore: false })
+    )
+    const client = createBusinessClient(memberConnection)
+    await client.intake("bindings/list", {})
+    expect(fetcher).toHaveBeenCalledWith(
+      "http://127.0.0.1:4340/api/business/intake/bindings/list",
+      expect.objectContaining({
+        body: '{"input":{}}',
+        cache: "no-store",
+        credentials: "omit",
+      })
+    )
+    native.invoke.mockResolvedValueOnce({})
+    const desktop = createBusinessClient({ kind: "native" })
+    await desktop.intake("candidates/select", {
+      operationId: "op",
+      candidateId: "candidate",
+      expectedRevision: 4,
+      expectedSourceRevision: 2,
+      passageIds: ["passage"],
+    })
+    expect(native.invoke).toHaveBeenCalledWith(
+      "business_intake_candidates_select",
+      {
+        input: {
+          operationId: "op",
+          candidateId: "candidate",
+          expectedRevision: 4,
+          expectedSourceRevision: 2,
+          passageIds: ["passage"],
+        },
+      }
+    )
+    client.close()
+    desktop.close()
+  })
+  it("allows safe intake reasons only on intake, discards raw content, and never logs out on provider failures", async () => {
+    const privateError = {
+      code: "network_error",
+      message: "private provider body",
+      detail: "private key",
+      i18n_key: "business.intake.provider_unavailable",
+      i18n_params: { secret: "private" },
+    }
+    fetcher.mockResolvedValueOnce(response(privateError, 500))
+    fetcher.mockResolvedValueOnce(response(privateError, 500))
+    fetcher.mockResolvedValueOnce(
+      response(
+        { ...privateError, i18n_key: "business.intake.untrusted_secret" },
+        500
+      )
+    )
+    const unauthorized = vi.fn()
+    const client = createBusinessClient(memberConnection, unauthorized)
+    await expect(
+      client.intake("sources/get", { sourceId: "source" })
+    ).rejects.toMatchObject({
+      kind: "offline",
+      intakeReason: "provider_unavailable",
+      message: "offline",
+    })
+    await expect(client.tasks("get", { taskId: "task" })).rejects.toMatchObject(
+      { intakeReason: undefined }
+    )
+    await expect(
+      client.intake("sources/get", { sourceId: "source" })
+    ).rejects.toMatchObject({ intakeReason: undefined })
+    expect(unauthorized).not.toHaveBeenCalled()
+    expect(JSON.stringify(client)).not.toContain("private")
+    client.close()
+  })
   it("uses its own bearer and input envelope without reading/replacing the ambient operator token", async () => {
     localStorage.setItem("codeg_token", "synthetic_original_operator")
     fetcher.mockResolvedValueOnce(response({ needsBootstrap: false }))

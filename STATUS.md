@@ -2,6 +2,25 @@
 
 ## Current integration and worker state
 
+**PR29 integration accepted and being published.** Frozen `96e0bcc1` / product
+`60d600db` retains the independently reviewed tabs/panes, settings and intake UI.
+Root's integrated frontend selectors pass109/109 across12 files. Normal typecheck
+passes after accepting rebrand's exact `91c98d469` compiler-discovery correction
+for six archived report files; the original nine import errors remain in evidence.
+Backend/Pi/LICENSE are unchanged from accepted main, frontend/lock/Next config
+match PR29, and the complete main NOTICE is preserved with additive attribution.
+See [integration evidence and limits](reports/business-ui-integration.md).
+This unlocks rebrand's E1 workbench integration; AI chat/terminal/assets are still
+being implemented. No running fixture, user browser or native artifact changed.
+
+Tickets' audit correction `ca58f2b9` is verified as report-only and imported:
+legacy timestamps1788951206–1207 are historical, not fresh hook metadata. No
+current generic Pre/Post journal coverage is claimed. Approvals checkpoint
+`bb33fbffb` records780/780 exact frozen177 source blobs and has started the released
+existing-target independent tests; no result is assumed yet. The canonical alias
+repair resolves the reported graph in its staged candidate, with independent
+review and single installation handoff pending. It is not called installed.
+
 **Global hook installed and project work resumed.** Owner ran the test-before-
 install script successfully; engine f5554c92 and backup claude-workflow-n0d8pjua
 are recorded in [the live acceptance report](reports/docs-first-live-acceptance.md).
@@ -41,8 +60,8 @@ c0c7e522600a94bcf33674f640d5f3665cffd39b. Root fetched and read the complete imm
 review report: no bounded recovery blocker, seven browser checks, seventy200
 responses, twenty-two separate API requests and five persistence checks pass.
 Root imported the report and verified all thirty-one new evidence digests.
-PR29 remains unmerged pending final integration; its earlier
-source/evidence reviews and attribution-only conflict assessment remain valid.
+PR29's earlier source/evidence reviews and attribution-only conflict assessment
+remain valid; the current integration gate and publication are recorded above.
 No product fixture/browser/process changed. Existing E1 assignments continue
 with current documentation, borrowing and task authority rules.
 

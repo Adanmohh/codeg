@@ -12,6 +12,7 @@ vi.mock("next-themes", () => ({
 }))
 let rejected = false
 let revised = false
+let epochChanged = false
 const requests: string[] = []
 const fetcher = vi.fn(async (url: string) => {
   requests.push(url)
@@ -28,7 +29,14 @@ const fetcher = vi.fn(async (url: string) => {
         }),
         { status: 401 }
       )
-    value = { ...context, member: currentMember }
+    value = {
+      ...context,
+      member: currentMember,
+      organization: {
+        ...context.organization!,
+        authorizationEpoch: epochChanged ? 3 : 1,
+      },
+    }
   } else if (url.endsWith("/members/list")) value = [currentMember]
   else if (url.endsWith("/tasks/list"))
     value = {
@@ -44,6 +52,7 @@ const fetcher = vi.fn(async (url: string) => {
 beforeEach(() => {
   rejected = false
   revised = false
+  epochChanged = false
   requests.length = 0
   vi.clearAllMocks()
   localStorage.clear()
@@ -73,6 +82,20 @@ async function openDraft() {
   })
 }
 describe("business private session boundary", () => {
+  it("closes an old authorization epoch instead of blessing its private draft with a resumed organization", async () => {
+    await openDraft()
+    epochChanged = true
+    await act(async () => window.dispatchEvent(new Event("focus")))
+    await screen.findByLabelText("Personal access token")
+    expect(
+      screen.queryByDisplayValue("Private unsubmitted session draft")
+    ).toBeNull()
+    expect(screen.getByLabelText("Personal access token")).toHaveValue("")
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Your access has expired or was revoked."
+    )
+    expect(JSON.stringify(localStorage)).not.toContain("bdm_synthetic_session")
+  })
   it("clears private edits and bearer on credential rejection, keeping an unrelated ambient operator slot intact", async () => {
     localStorage.setItem("codeg_token", "synthetic-ambient-operator")
     await openDraft()

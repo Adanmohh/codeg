@@ -1,0 +1,46 @@
+{
+  "deduped": [
+    {
+      "surface": "business Sources",
+      "element": "integrated private passage/draft/publication/receipt flow",
+      "severity": "med",
+      "check": "BC-4 through BC-11 | not assessed: complete candidate API/fixture handoff pending",
+      "fix": "Use the real integrated protected backend and two coordinated synthetic identities for complete Fireflies/email/Hafidh acceptance; do not substitute mocked production responses.",
+      "specialists": [
+        "flow-validator"
+      ]
+    },
+    {
+      "surface": "business workbench",
+      "element": "continuous motion and jank",
+      "severity": "low",
+      "check": "BC-15 | continuous smoothness/CLS/long frames not assessed by stills",
+      "fix": "Keep the actual reduced-motion content/overflow result separate from any later filmstrip or continuous motion assessment. No motion product change is justified by missing evidence.",
+      "specialists": [
+        "motion-judge"
+      ]
+    }
+  ],
+  "top3": [
+    {
+      "surface": "business Sources",
+      "element": "integrated private passage/draft/publication/receipt flow",
+      "severity": "med",
+      "check": "BC-4 through BC-11 | not assessed: complete candidate API/fixture handoff pending",
+      "fix": "Use the real integrated protected backend and two coordinated synthetic identities for complete Fireflies/email/Hafidh acceptance; do not substitute mocked production responses.",
+      "specialists": [
+        "flow-validator"
+      ]
+    },
+    {
+      "surface": "business workbench",
+      "element": "continuous motion and jank",
+      "severity": "low",
+      "check": "BC-15 | continuous smoothness/CLS/long frames not assessed by stills",
+      "fix": "Keep the actual reduced-motion content/overflow result separate from any later filmstrip or continuous motion assessment. No motion product change is justified by missing evidence.",
+      "specialists": [
+        "motion-judge"
+      ]
+    }
+  ]
+}

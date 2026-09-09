@@ -961,3 +961,225 @@ the original Copyright2022 n8n and full permission notice above still apply.
 Axum0.8.8, Tokio1.49.0, tokio-util0.7.18, tempfile3.24.0 and axum-test17.3.0
 installed source is used as API documentation only. This test-only harness adds
 no production credential store, runtime, source authority or dependency.
+
+Business Sources frontend (2026):
+Composes the accepted Apache-2.0 Codeg business workspace at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d: src/lib/business/{client,tasks,
+identity,presentation}.ts, src/components/business/{task-form,task-detail,ui,
+workspace}.tsx and src/components/ui/{input,button,dialog,textarea}.tsx.
+The isolated client, task fields, revision comparison and modal focus patterns
+are adapted as frontend glue for contract670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5
+and access18be55edc276713fc6d46d075baec363245ba285. No provider, IntroMail or
+dependency implementation is copied. React19.2.4/@types-react19.2.13,
+TypeScript5.8.3, Next16.1.6, Tailwind4.1.18 and Vitest2.1.9 installed source,
+types and CLI help are API references only. Original Codeg Apache-2.0 LICENSE
+and all preceding attribution remain unchanged.
+
+Business Sources synthetic export fixture (test evidence only):
+reports/business-intake-ui-evidence/serve.mjs adapts Apache-2.0
+reports/business-workspace-evidence/serve.mjs at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d. It restricts the listener to the owned
+loopback4350 and forwards only the closed business/intake and human-task calls
+to the separately guarded synthetic backend4351. No engine/legacy API or
+WebSocket forwarding, credential/body logging, provider implementation or
+production server change. Node24.19.0 and installed @types/node25.2.2 existing
+http/fs/path definitions are references; no newer-only API is introduced.
+Original Apache-2.0 LICENSE and every prior attribution remain intact.
+
+Business shared workbench (2026):
+Adapts Apache-2.0 Codeg at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d:
+src/app/workspace/layout.tsx (KeptMountedSurface),
+src/components/conversations/conversation-detail-panel.tsx (stable keyed sibling
+pane geometry), src/lib/tab-group-layout.ts (unchanged computeRects),
+src/components/ui/{resizable,overlay-host-hidden}.tsx,
+src/hooks/use-media-query.ts, src/components/tabs/tab-bar.tsx (tab chrome and
+explicit close actions), and src/components/business/{workspace,task-detail,
+work-list,ui}.tsx. New frontend glue composes existing isolated business task
+and source surfaces into tabs/panes; legacy stores/providers and host terminal
+APIs are not imported. The scoped business modal consumes the existing hidden
+surface context. Existing task fields, revision gates and close guards remain.
+Installed react-resizable-panels2.1.9 (MIT) PanelGroup/Panel/PanelResizeHandle
+types, React19.2.4/@types-react19.2.13 hooks/DOM types, lucide-react0.563.0,
+Tailwind4.1.18, Testing Library React16.3.2/DOM10.4.1 and Vitest2.1.9 are API
+references, not copied dependency code. W3C ARIA Practices tabs/table docs at
+7e4034b262bc0d25332e330d8a582aaf34113829 are documentation references only.
+No Edublend, Payload, AGPL/GPL or other third-party source is ported.
+Original Apache-2.0 LICENSE and all preceding attribution remain intact.
+
+Business native entry and scoped-settings editor preparation (2026):
+Adapts Apache-2.0 Codeg src/components/business/{connect,native-chrome.test,
+task-detail,ui}.tsx and src/lib/business/{client,copy}.ts at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d. The native host retains its original
+local-operator path; personal HTTP sign-in is offered only in browsers while
+restricted tenant windows are unavailable. The settings editor reuses explicit
+CAS comparison/adoption and private in-memory draft patterns. Closed DTOs are
+transcribed from src-tauri/src/business_identity/{types,settings,store,http}.rs
+and docs/contracts/business-tenancy.md at
+29774b50aafc29658a2f48fab1f44d366ed2c8a0 (Apache-2.0); no backend code is ported.
+Installed @tauri-apps/api2.10.1 core.js isTauri/invoke, React19.2.4,
+@types/react19.2.13, TypeScript5.8.3 and Testing Library16.3.2/Vitest2.1.9
+are source/type references only. No dependency or vendor implementation,
+Edublend proprietary source, or AGPL/GPL source is copied.
+Original Apache-2.0 LICENSE and every preceding attribution remain intact.
+
+Business scoped appearance and tenancy fixture integration (2026):
+Reuses Apache-2.0 Codeg src/app/globals.css paired neutral/blue/violet
+selectors, src/lib/theme-presets.ts, src/components/business/{workspace,
+task-detail,ui}.tsx, src/components/ui/{dialog,drawer,resizable}.tsx and
+src/lib/tab-group-layout.ts at a40b03393a466672060066ae6e0e8c9054a2349d.
+The scoped React appearance context also labels business portals; it never
+writes the platform/global theme. Closed settings/organization fields and
+transport names follow business_identity/{http,types,settings}.rs and
+commands/business_identity.rs at 29774b50aafc29658a2f48fab1f44d366ed2c8a0.
+The test-only fixture patch adapts that commit's
+src-tauri/src/business_tasks/tests/fixture.rs and the unchanged
+src-tauri/src/db/test_helpers.rs fresh_disk_db helper to owned loopback4353
+with a closed task/identity/settings/platform allowlist. Its isolated archive
+retains the same commit's integrations, LICENSE and NOTICE. No engine/provider
+route is enabled or provider source copied. The optional Node4350 split proxy
+reuses the previously attributed synthetic export server.
+Installed React19.2.4/@types-react19.2.13 context/hooks, next-themes0.4.6
+resolvedTheme, react-resizable-panels2.1.9 direction types, Tailwind4.1.18,
+Testing Library16.3.2 and Vitest2.1.9 are API references only. Existing
+locked axum0.8.8, SeaORM1.1.19, Tokio1.49.0 and tempfile3.24.0 fixture
+calls are retained; no dependency, vendor or third-party code is ported.
+Original Apache-2.0 LICENSE and all preceding attribution remain intact.
+
+Business workbench pane-width layout correction (2026):
+Adapts the Apache-2.0 Codeg container-query pattern in
+src/components/conversations/session-details-content.tsx at
+Adanmohh/codeg a40b03393a466672060066ae6e0e8c9054a2349d to the existing
+business/work-list.tsx, business/task-form.tsx and business-intake/{workspace,
+source-review}.tsx surfaces. Columns now follow the available pane width,
+including the unchanged split-pane geometry, instead of the outer viewport.
+Installed Tailwind CSS4.1.18 manifest/source and the accepted @container /
+@[20rem] source pattern are the API authority. No dependency source, new
+runtime or AGPL/GPL code is ported. Original Apache-2.0 LICENSE and every
+preceding attribution section remain intact.
+
+Business primary-action contrast correction (2026):
+src/components/business/ui.tsx reuses the paired neutral/blue/violet semantic
+colors from src/app/globals.css and Button/Action variants from
+src/components/ui/button.tsx and src/components/business/ui.tsx at
+Adanmohh/codeg a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0).
+The business wrapper reduces the inherited primary hover fade and selects an
+existing scoped foreground for measured Blue/Violet failures. It changes no
+global token, default shared Button, role, action or API behavior. Installed
+Tailwind CSS4.1.18 opacity utilities and React19.2.4 context are references;
+no dependency implementation or AGPL/GPL source is copied. Original LICENSE
+and every preceding attribution remain intact.
+
+Business selected-navigation contrast correction (2026):
+The selected item in src/components/business/workspace.tsx retains its existing
+primary tint and aria-current behavior, using the paired sidebar-foreground
+and semibold weight from the accepted Codeg semantic system. Source references:
+that workspace and src/app/globals.css at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0), with Tailwind4.1.18.
+No new palette, global token, authentication or navigation behavior is added.
+Original LICENSE and all previous attribution sections remain intact.
+
+Business linked-source private-draft navigation guard (2026):
+src/components/business-intake/workspace.tsx adapts the existing dirty-state,
+explicit discard and retained-editor pattern from Apache-2.0 Codeg
+src/components/business/task-detail.tsx at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d. Incoming task references reuse
+the same guarded Sources surface; no task/source write is added. React19.2.4
+and @types/react19.2.13 hooks plus Testing Library16.3.2 render/rerender are
+installed API/type references; official React source at
+90ab3f89f4824ac763b6f877c6f711200d1338d2 and Testing Library source at
+f32bd1b033d5e3989ae1cb490d515ce389c54e53 verify their matching tags.
+No dependency implementation or third-party/copyleft source is ported.
+Original Apache-2.0 LICENSE and all earlier attribution sections remain intact.
+
+Business intake setup capability integration (2026):
+The response-only setupKinds/setupDomains and specific binding administration
+checks follow src-tauri/src/business_intake/{types,access,setup}.rs and
+src-tauri/src/business_identity/types.rs at Adanmohh/codeg
+f51154b948ac1ae74fa1bf6a7df495e7e12e05f2 (Apache-2.0). The frontend adapts
+the existing capability-gated form, explicit retained-text grant and in-memory
+secret patterns in src/components/business/{workspace,task-form}.tsx and
+src/components/business-intake/{workspace,setup}.tsx at this branch's
+c1e618dede15368d4af39ac74391f18931b317a5, rooted in accepted Codeg
+a40b03393a466672060066ae6e0e8c9054a2349d. Setup does not
+confer source read, and no provider, authorization core or credential storage
+implementation is copied. React19.2.4/@types-react19.2.13 hooks, Testing
+Library16.3.2 render/act/query types, Vitest2.1.9 and Prettier3.8.1 installed
+source/help are API references only. No dependency, proprietary or copyleft
+source is ported. Original LICENSE and every previous NOTICE block remain.
+
+Business linked-source pending-operation and response ordering (2026):
+src/components/business-intake/{workspace,source-review,candidate}.tsx reuses
+its existing mounted editor, effect cleanup and frozen mutation recovery at
+Codeg dc14e83b93529afab99e973ddbd21e0db79b851b, and the pending-write close guard in
+src/components/business/task-detail.tsx at
+a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0). The parent now receives
+the existing busy/unknown state explicitly, and a newer task-source intent
+cancels the previous target read. There are no new mutations or runtime APIs.
+Installed React19.2.4/@types-react19.2.13 useEffect/useCallback/useState and
+Testing Library16.3.2 act/render plus Vitest2.1.9 are read API/type references;
+no dependency implementation or copyleft code is copied. Original LICENSE
+and every preceding attribution section remain intact.
+
+Unified synthetic business UI origin (2026):
+reports/business-intake-ui-evidence/serve-unified.mjs reuses the existing
+serve.mjs in that directory at Codeg
+1974d97f44b69db96051ace1c68717cc8c27b6e9 (Apache-2.0), itself grounded in
+reports/business-workspace-evidence/serve.mjs at
+a40b03393a466672060066ae6e0e8c9054a2349d. Only its fixed frontend port4354
+and unified backend4351 configuration differ. The closed method/path guard,
+secret-free diagnostics and static export behavior are retained. Existing4350
+source/runtime/exports are untouched. No product server, dependency or external
+implementation is introduced. All original LICENSE/NOTICE entries remain.
+
+Business source-owner reference eligibility (2026):
+The setup owner selector follows the current contributing-human check in
+src-tauri/src/business_intake/access.rs::owner at
+f51154b948ac1ae74fa1bf6a7df495e7e12e05f2 and reuses the reference filtering
+from src/components/business/task-form.tsx at
+a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0 Codeg). Current backend
+authorization remains decisive. The frontend adds no identity, role or source
+permission. Original LICENSE and every previous attribution remain intact.
+
+Unified business UI browser evidence (2026):
+reports/business-intake-ui-evidence/unified-*.cli.js adapts the personal sign-in,
+scoped source/task selectors and no-secret returned-evidence pattern from
+owner-personal-session.cli.js and the owned frontend in the same repository at
+1974d97f44b69db96051ace1c68717cc8c27b6e9 (Apache-2.0 Codeg). Installed
+Playwright CLI0.1.18/core1.63.0-alpha-2026-08-05 run-code implementation and
+types, Node24.19.0 with @types/node25.2.2 fs/crypto/process declarations are
+API references, not copied dependency implementations. Generated private fixture
+values are read in memory and are absent from committed scripts/results.
+Original LICENSE and all earlier NOTICE entries remain intact.
+
+Business intake fresh-editor recovery (2026):
+src/components/business-intake/candidate.tsx reuses its initialDraft, current
+snapshot and explicit adoption logic at Codeg
+1974d97f44b69db96051ace1c68717cc8c27b6e9 (Apache-2.0). A same-revision,
+freshly authorized read may reconstruct withheld fields from that returned
+snapshot; newer revisions retain explicit adoption. Tests reuse SourceReview,
+ImportPanel and the synthetic fixtures at that same pin. React19.2.4,
+@types/react19.2.13 useCallback/SetStateAction and installed Testing
+Library16.3.2/Vitest2.1.9 are read API references. No third-party implementation,
+provider, dependency, authentication boundary or license is added or replaced.
+Original LICENSE and all preceding attribution blocks remain intact.
+
+Intake recovery browser evidence (2026):
+reports/business-intake-ui-evidence/recovery-*.cli.js reuses the protected
+synthetic sign-in, source refresh, candidate review and measured Canvas helpers
+already in this repository at08417b4ff (full source follows the60d600db0 product).
+Original Codeg Apache-2.0 attribution and the existing Design Studio measurement
+ledger remain unchanged. Browser CLI0.1.18/Playwright1.63.0-alpha-2026-08-05,
+Node24.19.0/@types-node25.2.2 are read API references, not dependency ports.
+No original user/private-provider data, credential, new package or application
+authorization implementation is copied into these synthetic evidence files.
+
+Corrected intake browser fixture (2026):
+reports/business-intake-ui-evidence/serve-recovery-4355.mjs adapts
+serve-unified.mjs at Codeg60d600db0f224d44ff191490ab79bc25530ba959,
+Apache-2.0. It preserves the fixed loopback API allowlist and adds a supplied
+Origin equality guard for the separately authorized4355 preview. Node24.19.0
+and installed @types/node25.2.2 IncomingHttpHeaders are API grounding; official
+Node doc/api/http.md was read at cdc1b38d40cb567b7ad0b39c86addf830a0af0ae.
+No dependency implementation or production authority is copied or changed.
+Original LICENSE and all previous NOTICE sections remain intact.

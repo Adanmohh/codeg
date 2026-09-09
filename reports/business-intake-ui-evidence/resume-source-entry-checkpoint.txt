@@ -1,0 +1,21 @@
+Source correction026c1e46cfe60d625e4d8a27223c3ebcafd8f4c9; measured export c1e618de preserved.
+
+pnpm exec vitest run src/components/business-intake/workflow.test.tsx -t 'keeps an open private candidate'
+Before: exit1,1 failed/17 skipped,2.68s. Missing dialog at workflow.test.tsx:162; the incoming source replaced the private review. Full local resume-source-entry-before.log retained.
+After: exit0,1 passed/17 skipped,1.40s. Full local resume-source-entry-after.log retained.
+
+pnpm exec vitest run src/components/business-intake/workflow.test.tsx src/components/business/workbench.test.tsx src/components/business/workflow.test.tsx
+Exit0;40 passed across3files,1.92s. resume-source-entry-focused.log retained locally.
+
+pnpm exec tsc --noEmit --incremental false
+Exit0;resume-source-entry-typecheck.log.
+
+pnpm exec eslint src/components/business-intake/workspace.tsx src/components/business-intake/workflow.test.tsx
+Exit0;resume-source-entry-lint.log.
+
+git diff --check and git diff --cached --check each exit0.
+No export/build/browser/provider/backend action in this correction. Actual integrated B browser recheck remains pending.
+
+Docs: React19.2.4 package, @types/react19.2.13 useState/useEffect/useRef/useCallback; Testing Library16.3.2 render/rerender types and Vitest2.1.9 installed run help. Official ReactHooks.js at90ab3f89f4824ac763b6f877c6f711200d1338d2; Testing Library src/pure.js atf32bd1b033d5e3989ae1cb490d515ce389c54e53, both resolved through gh api matching installed tags. Context7 lacks these exact versions and returned main; those results are not version-pinned authority.
+Borrow: Apache Codeg a40b03393a466672060066ae6e0e8c9054a2349d task-detail dirty/close behavior, existing Sources guard and modal. NOTICE append retained all preceding sections.
+Live hook session01a084ee-12a8-7833-ace9-f3f4985ba926 recorded both PreToolUse and PostToolUse in the rebrand worktree. Old stopped PID40904 and inherited processes untouched; no old exec IDs used.

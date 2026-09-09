@@ -1,0 +1,3 @@
+Command: tsc --noEmit --incremental false
+Exit: 0
+

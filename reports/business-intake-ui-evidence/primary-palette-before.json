@@ -1,0 +1,365 @@
+{
+  "cases": [
+    {
+      "palette": "blue",
+      "theme": "light",
+      "state": "normal",
+      "fg": [
+        239,
+        246,
+        255,
+        255
+      ],
+      "bg": [
+        21,
+        93,
+        252
+      ],
+      "ratio": 4.820158866191738,
+      "withBackground": 5.154072433082704,
+      "withForeground": 3.7945543422370323,
+      "focusVisible": false
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "state": "hover",
+      "fg": [
+        239,
+        246,
+        255,
+        255
+      ],
+      "bg": [
+        67,
+        124,
+        253
+      ],
+      "ratio": 3.483058138588051,
+      "withBackground": 3.7243448677251405,
+      "withForeground": 5.2512344118937575,
+      "focusVisible": false
+    },
+    {
+      "palette": "blue",
+      "theme": "light",
+      "state": "focus",
+      "fg": [
+        239,
+        246,
+        255,
+        255
+      ],
+      "bg": [
+        67,
+        124,
+        253
+      ],
+      "ratio": 3.483058138588051,
+      "withBackground": 3.7243448677251405,
+      "withForeground": 5.2512344118937575,
+      "focusVisible": true
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "state": "normal",
+      "fg": [
+        239,
+        246,
+        255,
+        255
+      ],
+      "bg": [
+        43,
+        127,
+        255
+      ],
+      "ratio": 3.456617176390771,
+      "withBackground": 5.294196578361257,
+      "withForeground": 3.6019640084554743,
+      "focusVisible": true
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "state": "hover",
+      "fg": [
+        239,
+        246,
+        255,
+        255
+      ],
+      "bg": [
+        35,
+        104,
+        207
+      ],
+      "ratio": 4.881976969969947,
+      "withBackground": 3.7484836451543977,
+      "withForeground": 5.087258564832262,
+      "focusVisible": true
+    },
+    {
+      "palette": "blue",
+      "theme": "dark",
+      "state": "focus",
+      "fg": [
+        239,
+        246,
+        255,
+        255
+      ],
+      "bg": [
+        35,
+        104,
+        207
+      ],
+      "ratio": 4.881976969969947,
+      "withBackground": 3.7484836451543977,
+      "withForeground": 5.087258564832262,
+      "focusVisible": true
+    },
+    {
+      "palette": "violet",
+      "theme": "light",
+      "state": "normal",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        142,
+        81,
+        255
+      ],
+      "ratio": 4.013040625095552,
+      "withBackground": 4.332442823088172,
+      "withForeground": 4.52992579607169,
+      "focusVisible": false
+    },
+    {
+      "palette": "violet",
+      "theme": "light",
+      "state": "hover",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        163,
+        115,
+        255
+      ],
+      "ratio": 2.96682993349024,
+      "withBackground": 3.202963102913243,
+      "withForeground": 6.127340176495427,
+      "focusVisible": false
+    },
+    {
+      "palette": "violet",
+      "theme": "light",
+      "state": "focus",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        163,
+        115,
+        255
+      ],
+      "ratio": 2.96682993349024,
+      "withBackground": 3.202963102913243,
+      "withForeground": 6.127340176495427,
+      "focusVisible": true
+    },
+    {
+      "palette": "violet",
+      "theme": "dark",
+      "state": "normal",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        127,
+        34,
+        254
+      ],
+      "ratio": 5.374721114380705,
+      "withBackground": 3.384061996338978,
+      "withForeground": 5.654861840790709,
+      "focusVisible": true
+    },
+    {
+      "palette": "violet",
+      "theme": "dark",
+      "state": "hover",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        104,
+        29,
+        206
+      ],
+      "ratio": 7.209936567432942,
+      "withBackground": 2.5226837010262773,
+      "withForeground": 7.585732227223831,
+      "focusVisible": true
+    },
+    {
+      "palette": "violet",
+      "theme": "dark",
+      "state": "focus",
+      "fg": [
+        245,
+        243,
+        255,
+        255
+      ],
+      "bg": [
+        104,
+        29,
+        206
+      ],
+      "ratio": 7.209936567432942,
+      "withBackground": 2.5226837010262773,
+      "withForeground": 7.585732227223831,
+      "focusVisible": true
+    },
+    {
+      "palette": "neutral",
+      "theme": "light",
+      "state": "normal",
+      "fg": [
+        250,
+        250,
+        250,
+        255
+      ],
+      "bg": [
+        36,
+        94,
+        88
+      ],
+      "ratio": 7.142132518622554,
+      "withBackground": 7.4547095311532825,
+      "withForeground": 2.6557903601459216,
+      "focusVisible": false
+    },
+    {
+      "palette": "neutral",
+      "theme": "light",
+      "state": "hover",
+      "fg": [
+        250,
+        250,
+        250,
+        255
+      ],
+      "bg": [
+        80,
+        126,
+        121
+      ],
+      "ratio": 4.372341296849316,
+      "withBackground": 4.563697782712655,
+      "withForeground": 4.338180715103537,
+      "focusVisible": false
+    },
+    {
+      "palette": "neutral",
+      "theme": "light",
+      "state": "focus",
+      "fg": [
+        250,
+        250,
+        250,
+        255
+      ],
+      "bg": [
+        80,
+        126,
+        121
+      ],
+      "ratio": 4.372341296849316,
+      "withBackground": 4.563697782712655,
+      "withForeground": 4.338180715103537,
+      "focusVisible": true
+    },
+    {
+      "palette": "neutral",
+      "theme": "dark",
+      "state": "normal",
+      "fg": [
+        23,
+        23,
+        23,
+        255
+      ],
+      "bg": [
+        155,
+        212,
+        197
+      ],
+      "ratio": 10.771515435044805,
+      "withBackground": 11.895243883053343,
+      "withForeground": 1.594587456997449,
+      "focusVisible": true
+    },
+    {
+      "palette": "neutral",
+      "theme": "dark",
+      "state": "hover",
+      "fg": [
+        23,
+        23,
+        23,
+        255
+      ],
+      "bg": [
+        126,
+        172,
+        160
+      ],
+      "ratio": 7.082134267799271,
+      "withBackground": 7.820971416326187,
+      "withForeground": 2.4252750309567683,
+      "focusVisible": true
+    },
+    {
+      "palette": "neutral",
+      "theme": "dark",
+      "state": "focus",
+      "fg": [
+        23,
+        23,
+        23,
+        255
+      ],
+      "bg": [
+        126,
+        172,
+        160
+      ],
+      "ratio": 7.082134267799271,
+      "withBackground": 7.820971416326187,
+      "withForeground": 2.4252750309567683,
+      "focusVisible": true
+    }
+  ],
+  "draftRetained": true
+}

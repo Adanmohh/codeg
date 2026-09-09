@@ -1,0 +1,29 @@
+Product: 110c8a2915bf3a539fb689c11efe88b842404c20
+Worktree: /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+pnpm exec vitest run src/components/business/workbench.test.tsx src/components/business/workflow.test.tsx src/components/business-intake/workflow.test.tsx
+Exit 0. 39 passed / 3 files. 2.39 seconds.
+Local complete log: pane-layout-tests.log
+
+pnpm exec tsc --noEmit --incremental false
+Exit 0. Local log: pane-layout-typecheck.log
+
+pnpm exec eslint src/components/business/work-list.tsx src/components/business/task-form.tsx src/components/business-intake/workspace.tsx src/components/business-intake/source-review.tsx
+Initial exit 1: a single Prettier JSX wrapping error in workspace.tsx:215.
+Wrapped the opening JSX element. Retry exit 0.
+Local logs: pane-layout-lint.log, pane-layout-lint-retry.log
+
+env CODEG_EXPORT_DIR=.build/business-intake-ui-pane-layout NEXT_TELEMETRY_DISABLED=1 pnpm build
+Exit 0. 34 static routes. No default/old export overwritten.
+Local log: pane-layout-export.log
+business.html SHA256 b5dfee0d4adbdc0a52a4d77a81c6f34d2591c688d968f28acaa05fd7e81dd5ec
+
+Actual Playwright CLI0.1.18 named sessions intake-ui-a4350 and intake-ui-b4350:
+scoped-appearance-live: exit0, protected settings200; draft retained, scoped blue/global neutral.
+member-submit-live: exit0, protected human submit200, Review3, execution null.
+conflict-panes-live: exit0, actual409, preserved/locked base2/currentReview3; explicit adopt/save200 revision4, execution null.
+pane-layout-after: exit0, six titles393.1875px wide / 26px tall in475.1875px pane; no page overflow.
+design-pane-light: exit0, 117 measured text samples, no contrast failures, no unnamed interactive nodes. Full Design Studio acceptance is pending.
+
+git diff --check and git diff --cached --check: exit0 for the product commit.
+No new Rust/product API, dependency, runtime, lockfile or source provider change.

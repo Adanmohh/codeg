@@ -1,0 +1,4 @@
+### Error
+TimeoutError: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('region', { name: 'Private task draft', exact: true }).getByRole('button', { name: 'Link an existing task', exact: true })[22m

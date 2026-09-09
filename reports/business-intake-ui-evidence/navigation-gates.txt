@@ -1,0 +1,9 @@
+Commands and observed exits for the navigation checkpoint:
+node_modules/.bin/tsc --noEmit --incremental false: exit 0
+node_modules/.bin/eslint src/components/business-intake src/components/business/task-detail.tsx src/lib/business/intake-copy.ts: exit 0, zero warnings
+node --check reports/business-intake-ui-evidence/serve.mjs: exit 0
+git diff --check: exit 0
+
+Typecheck output:
+
+Scoped lint output:

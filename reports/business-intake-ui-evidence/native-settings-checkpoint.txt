@@ -1,0 +1,28 @@
+Native host restriction and standalone settings preparation, 2026-09-08
+
+
+node_modules/.bin/vitest run src/lib/business/client.test.ts src/components/business/session.test.tsx src/components/business/native-chrome.test.tsx src/components/business/settings-editor.test.tsx
+Exit: 0
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/lib/business/client.test.ts (14 tests) 11ms
+ ✓ src/components/business/settings-editor.test.tsx (6 tests) 163ms
+ ✓ src/components/business/session.test.tsx (2 tests) 312ms
+ ✓ src/components/business/native-chrome.test.tsx (14 tests) 556ms
+
+ Test Files  4 passed (4)
+      Tests  36 passed (36)
+   Start at  23:53:43
+   Duration  2.37s (transform 566ms, setup 897ms, collect 2.39s, tests 1.04s, environment 1.44s, prepare 212ms)
+
+pnpm exec tsc --noEmit --incremental false
+Exit: 0
+Already up to date
+Done in 257ms using pnpm v11.9.0
+
+pnpm exec eslint [the nine changed business client/connect/native/settings source and test files]
+Exit: 0
+Already up to date
+Done in 275ms using pnpm v11.9.0

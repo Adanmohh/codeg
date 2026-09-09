@@ -1,0 +1,3 @@
+Command: eslint src/components/business-intake src/lib/business/intake.ts src/lib/business/intake.test.ts src/lib/business/intake-copy.ts src/lib/business/client.ts src/lib/business/client.test.ts src/components/business/workspace.tsx src/components/business/task-detail.tsx src/components/business/native-chrome.test.tsx src/components/business/workflow.test.tsx
+Exit: 0
+

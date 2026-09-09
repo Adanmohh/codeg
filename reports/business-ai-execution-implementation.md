@@ -49,7 +49,7 @@ and no-extra-worker instructions. Installed docs retrieval exits3 because
 `data/code/tickets.db` is absent; no corpus coverage is claimed or install performed.
 Direct local pinned source is used: React19.2.4, SeaORM1.1.19, SQLx0.8.6,
 Tokio1.49.0, portable-pty0.8.1, codeg0.30.4. React package and Cargo manifest were
-read in separate commands. Live own-session hook records include PreToolUse26778–82
+read in separate commands. Earlier own-session hook records include PreToolUse26778–82
 and PostToolUse26783–84 in `ops-docs-first-audit.jsonl`, exact tickets cwd/session
 `01a07c1c-d82f-7022-84db-778a438632f1`; no hook bypass.
 
@@ -223,6 +223,12 @@ SHA256 `0d3b0edc8b1e7a856213a7c7d9a4db3763bd7bff6860d102603093f709c79df8` and
 Both processes completed before releasing the reviewer build window. No final
 runtime/asset/session gate is inferred from these migration checks.
 
-Current live hook metadata was independently read in this session without command
-payloads: own session `01a07c1c-d82f-7022-84db-778a438632f1`, exact tickets cwd,
-PreToolUse/PostToolUse exit0 records at Unix timestamps1788951206–1788951207.
+The legacy audit file was read in this session without command payloads: session
+`01a07c1c-d82f-7022-84db-778a438632f1`, tickets cwd, PreToolUse/PostToolUse exit0
+records at Unix timestamps1788951206–1788951207. These are historical records;
+reading them now does not make them fresh launcher evidence. The owner clarified
+that the current launcher does not write a replacement generic Pre/Post journal.
+No fresh generic hook-event metadata or universal hook coverage is claimed.
+Actual current Git/gh results and normally admitted edits establish the usable
+workflow only. The owner's separate signed-reader deny/read/retry verification
+is owner evidence, not a test independently rerun here.

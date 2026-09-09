@@ -1,0 +1,685 @@
+{
+  "product": "60d600db0f224d44ff191490ab79bc25530ba959",
+  "cases": [
+    {
+      "name": "recovery-1280-light-en",
+      "measurement": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "dir": "ltr",
+        "focus": {
+          "name": "Sources",
+          "width": 110.921875,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 363.1875
+          },
+          {
+            "font": "16px",
+            "width": 363.1875
+          },
+          {
+            "font": "16px",
+            "width": 536.8125
+          },
+          {
+            "font": "16px",
+            "width": 494.8125
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "none"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 78,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-768-light-en",
+      "measurement": {
+        "width": 768,
+        "scrollWidth": 768,
+        "dir": "ltr",
+        "focus": {
+          "name": "Sources",
+          "width": 110.921875,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 644
+          },
+          {
+            "font": "16px",
+            "width": 644
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 678
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "none"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 66,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-390-light-en",
+      "measurement": {
+        "width": 390,
+        "scrollWidth": 390,
+        "dir": "ltr",
+        "focus": {
+          "name": "Sources",
+          "width": 110.921875,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 282
+          },
+          {
+            "font": "16px",
+            "width": 282
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 316
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "none"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 66,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-1280-dark-en",
+      "measurement": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "dir": "ltr",
+        "focus": {
+          "name": "Sources",
+          "width": 110.921875,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 363.1875
+          },
+          {
+            "font": "16px",
+            "width": 363.1875
+          },
+          {
+            "font": "16px",
+            "width": 536.8125
+          },
+          {
+            "font": "16px",
+            "width": 494.8125
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "none"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 78,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-768-dark-en",
+      "measurement": {
+        "width": 768,
+        "scrollWidth": 768,
+        "dir": "ltr",
+        "focus": {
+          "name": "Sources",
+          "width": 110.921875,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 644
+          },
+          {
+            "font": "16px",
+            "width": 644
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 678
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "none"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 66,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-390-dark-en",
+      "measurement": {
+        "width": 390,
+        "scrollWidth": 390,
+        "dir": "ltr",
+        "focus": {
+          "name": "Sources",
+          "width": 110.921875,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 282
+          },
+          {
+            "font": "16px",
+            "width": 282
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 316
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "none"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 66,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-1280-light-ar",
+      "measurement": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "dir": "rtl",
+        "focus": {
+          "name": "المصادر",
+          "width": 93.953125,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 363.1875
+          },
+          {
+            "font": "16px",
+            "width": 363.1875
+          },
+          {
+            "font": "16px",
+            "width": 536.8125
+          },
+          {
+            "font": "16px",
+            "width": 494.8125
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "180deg"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 78,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-768-light-ar",
+      "measurement": {
+        "width": 768,
+        "scrollWidth": 768,
+        "dir": "rtl",
+        "focus": {
+          "name": "المصادر",
+          "width": 93.953125,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 644
+          },
+          {
+            "font": "16px",
+            "width": 644
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 678
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "180deg"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 66,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-390-light-ar",
+      "measurement": {
+        "width": 390,
+        "scrollWidth": 390,
+        "dir": "rtl",
+        "focus": {
+          "name": "المصادر",
+          "width": 93.953125,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.442017 -0.0605752 -0.00630662 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.442017 -0.0605752 -0.00630662 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 282
+          },
+          {
+            "font": "16px",
+            "width": 282
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 316
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "180deg"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 66,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-1280-dark-ar",
+      "measurement": {
+        "width": 1280,
+        "scrollWidth": 1280,
+        "dir": "rtl",
+        "focus": {
+          "name": "المصادر",
+          "width": 93.953125,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 439.1875
+          },
+          {
+            "font": "16px",
+            "width": 363.1875
+          },
+          {
+            "font": "16px",
+            "width": 363.1875
+          },
+          {
+            "font": "16px",
+            "width": 536.8125
+          },
+          {
+            "font": "16px",
+            "width": 494.8125
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "180deg"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 78,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-768-dark-ar",
+      "measurement": {
+        "width": 768,
+        "scrollWidth": 768,
+        "dir": "rtl",
+        "focus": {
+          "name": "المصادر",
+          "width": 93.953125,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 644
+          },
+          {
+            "font": "16px",
+            "width": 644
+          },
+          {
+            "font": "16px",
+            "width": 720
+          },
+          {
+            "font": "16px",
+            "width": 678
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "180deg"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 66,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    },
+    {
+      "name": "recovery-390-dark-ar",
+      "measurement": {
+        "width": 390,
+        "scrollWidth": 390,
+        "dir": "rtl",
+        "focus": {
+          "name": "المصادر",
+          "width": 93.953125,
+          "height": 44,
+          "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.826447 -0.0622301 0.00369805 / 0.5) 0px 0px 0px 3px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+          "outline": "oklab(0.826447 -0.0622301 0.00369805 / 0.5) none 1px",
+          "visibility": "visible"
+        },
+        "sourceFont": [
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 282
+          },
+          {
+            "font": "16px",
+            "width": 282
+          },
+          {
+            "font": "16px",
+            "width": 350
+          },
+          {
+            "font": "16px",
+            "width": 316
+          }
+        ],
+        "privateStored": false,
+        "date": "2026-11-03",
+        "backArrow": "180deg"
+      },
+      "draftRetained": true,
+      "manualTabFocus": true,
+      "contrast": {
+        "checked": 66,
+        "failures": []
+      },
+      "unnamedInteractive": 0
+    }
+  ],
+  "reduced": {
+    "enabled": true,
+    "overflow": false,
+    "taskInputs": 1
+  },
+  "textSamples": 840,
+  "failures": [],
+  "scope": "Direct painted text with ancestor Canvas composition; not input placeholder, gradient/opacity, whole-app, or live provider acceptance."
+}

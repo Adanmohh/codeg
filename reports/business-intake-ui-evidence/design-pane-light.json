@@ -1,0 +1,163 @@
+{
+  "ok": true,
+  "inventory": {
+    "colors": [
+      "#ffffff",
+      "#fcfdff",
+      "#f8faff",
+      "#0a0a0a",
+      "#687285",
+      "#07090f",
+      "#eff4fd",
+      "#e8f1ff",
+      "#eef4fc",
+      "#eff6ff",
+      "#155dfc",
+      "#dbe5ee",
+      "#eff3fd",
+      "#193cb8",
+      "#2780ff",
+      "#f0f5fc",
+      "#9f0712",
+      "#e2000a"
+    ],
+    "fontFamilies": [
+      "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+    ],
+    "fontSizesPx": [
+      12,
+      14,
+      16,
+      20,
+      24
+    ],
+    "spacingPx": [
+      4,
+      6,
+      8,
+      12,
+      16,
+      20,
+      24,
+      36,
+      40,
+      135
+    ],
+    "radiiPx": [
+      10,
+      14,
+      18,
+      33554400
+    ]
+  },
+  "contrast": {
+    "checked": 117,
+    "failures": []
+  },
+  "motion": {
+    "transitionsCount": 14,
+    "easings": [
+      "cubic-bezier(0.4, 0, 0.2, 1)"
+    ],
+    "reducedMotionHandled": true,
+    "reducedMotionEffective": null,
+    "cls": null,
+    "longFrames": null
+  },
+  "aria": {
+    "snapshot": "- alert\n- complementary:\n  - paragraph: Hafidh\n  - paragraph: Ops Desk\n  - paragraph: Workspace\n  - paragraph: Synthetic Studio\n  - navigation \"Workspace\":\n    - button \"My work\"\n    - button \"Shared work\"\n    - button \"Review\"\n    - button \"Sources\"\n    - button \"People & agents\"\n    - button \"Workspace appearance\"\n  - combobox \"Language\":\n    - option \"English\" [selected]\n    - option \"简体中文\"\n    - option \"繁體中文\"\n    - option \"日本語\"\n    - option \"한국어\"\n    - option \"Español\"\n    - option \"Deutsch\"\n    - option \"Français\"\n    - option \"Português\"\n    - option \"العربية\"\n  - combobox \"Appearance\":\n    - option \"Device appearance\"\n    - option \"Light\" [selected]\n    - option \"Dark\"\n  - text: Rania (Synthetic)\n  - paragraph: Owner · Connected\n  - button \"Disconnect\"\n- tablist \"Open work\":\n  - tab \"Shared work\"\n  - tab \"Synthetic · Shape the website launch brief\" [selected]\n  - 'button \"Close tab: Synthetic · Shape the website launch brief\"'\n- button \"Use one pane\" [pressed]\n- button \"Stack the panes\"\n- separator \"Resize work panes\"\n- tabpanel \"Shared work\":\n  - text: Kept alongside your work\n  - main:\n    - heading \"Shared work\" [level=1]\n    - paragraph: A shared view of the work your team can access.\n    - button \"Create task\"\n    - textbox \"Find a task\"\n    - button \"Find a task\"\n    - button \"Refresh\"\n    - combobox \"Area of work\":\n      - option \"All areas\" [selected]\n      - option \"Marketing\"\n      - option \"Website\"\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - combobox \"Status\":\n      - option \"All statuses\" [selected]\n      - option \"To do\"\n      - option \"In progress\"\n      - option \"Review\"\n      - option \"Done\"\n      - option \"Cancelled\"\n    - checkbox \"Archived\"\n    - text: Archived\n    - button \"List\" [pressed]\n    - button \"Board\"\n    - button \"Table\"\n    - paragraph: 6 tasks loaded\n    - list:\n      - listitem:\n        - button \"In progress Website · High Synthetic · Shape the website launch brief Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-12\":\n          - text: In progress Website · High\n          - heading \"Synthetic · Shape the website launch brief\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-12\n      - listitem:\n        - button \"To do Ads · Low Synthetic · Clarify the ad creative brief Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent 2026-09-18\":\n          - text: To do Ads · Low\n          - heading \"Synthetic · Clarify the ad creative brief\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent\n          - time: 2026-09-18\n      - listitem:\n        - button \"In progress Engineering · Urgent Synthetic · Check the signup error report Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-10\":\n          - text: In progress Engineering · Urgent\n          - heading \"Synthetic · Check the signup error report\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-10\n      - listitem:\n        - button \"To do Marketing · High Synthetic · Compare two campaign directions Accountable owner Synthetic Platform Operator Assigned to Rania (Synthetic) No due date\":\n          - text: To do Marketing · High\n          - heading \"Synthetic · Compare two campaign directions\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Rania (Synthetic) No due date\n      - listitem:\n        - button \"To do Channels · Normal Synthetic · Prepare next week’s channel plan Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic) 2026-09-16\":\n          - text: To do Channels · Normal\n          - heading \"Synthetic · Prepare next week’s channel plan\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Yusuf (Synthetic)\n          - time: 2026-09-16\n      - listitem:\n        - button \"To do Feedback · Normal Synthetic · Review customer interview themes Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent 2026-09-14\":\n          - text: To do Feedback · Normal\n          - heading \"Synthetic · Review customer interview themes\" [level=2]\n          - text: Accountable owner Synthetic Platform Operator Assigned to Draft assistant (Synthetic)Agent\n          - time: 2026-09-14\n- tabpanel \"Synthetic · Shape the website launch brief\":\n  - banner:\n    - heading \"Synthetic · Shape the website launch brief\" [level=2]\n    - button \"Close\"\n  - text: In progress Website · High Revision 4\n  - group:\n    - text: Task title\n    - textbox \"Task title\": Synthetic · Shape the website launch brief\n    - text: Brief\n    - textbox \"Brief\": Synthetic pane draft for locale, focus and responsive preservation.\n    - text: Area of work\n    - combobox \"Area of work\":\n      - option \"Marketing\"\n      - option \"Website\" [selected]\n      - option \"Feedback\"\n      - option \"Channels\"\n      - option \"Ads\"\n      - option \"Engineering\"\n    - text: Priority\n    - combobox \"Priority\":\n      - option \"Low\"\n      - option \"Normal\"\n      - option \"High\" [selected]\n      - option \"Urgent\"\n    - text: Due date\n    - textbox \"Due date\": 2026-09-12\n    - paragraph: Calendar date; no time or reminder is set.\n  - button \"Cancel\"\n  - button \"Save changes\"\n  - heading \"Activity\" [level=3]\n  - list:\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task created\n      - time: Sep 9, 2026, 12:19 AM\n      - group: Saved version · Revision 1\n    - listitem:\n      - paragraph: Synthetic Platform Operator · Task updated\n      - time: Sep 9, 2026, 12:19 AM\n      - paragraph: To do → In progress\n    - listitem:\n      - paragraph: Yusuf (Synthetic) · Submitted work for review\n      - time: Sep 9, 2026, 12:34 AM\n      - group: Deliverable\n    - listitem:\n      - paragraph: Rania (Synthetic) · Task updated\n      - time: Sep 9, 2026, 12:35 AM\n      - group: Saved version · Revision 4\n  - group: Source references\n  - group: Engineering detail\n  - button \"Cancel task\"",
+    "unnamedInteractive": 0,
+    "headingOrderBreaks": null,
+    "landmarks": null
+  },
+  "briefViolations": [
+    {
+      "kind": "off-palette-color",
+      "detail": "#ffffff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#fcfdff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f8faff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#0a0a0a rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#687285 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#07090f rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#eff4fd rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#e8f1ff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#eef4fc rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#eff6ff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#155dfc rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#dbe5ee rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#eff3fd rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#193cb8 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#2780ff rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#f0f5fc rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#9f0712 rendered but not in brief palette"
+    },
+    {
+      "kind": "off-palette-color",
+      "detail": "#e2000a rendered but not in brief palette"
+    },
+    {
+      "kind": "extra-font-family",
+      "detail": "Inter Variable, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif rendered but its primary family is not in brief type system"
+    },
+    {
+      "kind": "off-scale-radius",
+      "detail": "18px radius off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "6px spacing off brief + 4px scale"
+    },
+    {
+      "kind": "off-scale-spacing",
+      "detail": "135px spacing off brief + 4px scale"
+    }
+  ]
+}
