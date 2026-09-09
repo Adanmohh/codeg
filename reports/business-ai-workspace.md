@@ -1,12 +1,36 @@
 # Business AI workspace — implementation checkpoint
 
+Current source now passes the normal TypeScript check and scoped lint, with
+18/18 stream tests passing. After the owner confirmed complete enforcement-hook
+removal and restarted this saved session, the first normal Git status and gh-api
+read both exited0. The preserved type fixes then applied through the normal
+native patch tool: the result generic is explicit and JSON.stringify receives
+only the array item, not the map callback's index. Existing assertions remain.
+Prettier3.8.1, using the unchanged repository configuration, corrected the earlier
+formatting diagnostics in the seven-file E1 directory only.
+
+Current raw evidence is `business-ai-workspace-evidence/resumed-fixed-stream.txt`
+(18 tests, exit0), `resumed-fixed-typecheck.txt` (normal --noEmit --incremental
+false, exit0) and `resumed-fixed-lint.txt` (scoped ESLint, exit0). Source diff
+whitespace check exits0. No runtime, browser, provider, native or full-app pass
+is implied. Parent-client disposal and immutable selection regressions are next.
+No static export, Rust compile or existing browser/fixture action was taken.
+
+Documentation grounding continues manually: installed TypeScript5.8.3 JSON
+overloads, Vitest2.1.9 types, Prettier3.8.1 help/configuration and relevant Codeg
+source were read. Official gh-api resolves Vitest v2.1.9 to
+`c9e59a089d94642eea29a43f2ee1986a5afb99c6`. Owner replacement AGENTS forbids
+restoring enforcement hooks without an explicit request. All prior alias
+candidate/activation work is canceled; the historical denials below are not a
+current implementation block. This worker changed no global hook/config/state.
+
 E1 frontend implementation is active on `feat/business-ai-workspace`,
 [draft PR33](https://github.com/Adanmohh/codeg/pull/33). First isolated type/report
 checkpoint `2bade5c4` is committed and pushed, based on
 accepted main `9e61fe672`. Root accepted PR31 and lifted the internal-only gate;
 this report does not claim an implemented backend or runtime acceptance.
 
-Current resume: root accepted PR29 and published main
+Accepted integration: root accepted PR29 and published main
 `f988700db6975364d35b80125af12bfe2d5baac3`, including the exact narrow worker
 tsconfig correction `91c98d469`. Root reports 109/109 scoped frontend tests and
 normal `tsc --noEmit --incremental false` passing on that integrated source,
@@ -14,23 +38,23 @@ without this E1 WIP. These are independent results, not this worker's E1 gates.
 The E1 WIP was committed and pushed as
 `f9186504022c28f33e16e2601b6d768fa577bc3b` before merging that exact accepted
 main. The sole conflict was NOTICE: the complete accepted-main file is preserved
-byte for byte, followed by both exact E1 sections. All seven E1 files remain
-identical to f9186504; LICENSE, both dependency locks, package/configuration and
+byte for byte, followed by both exact E1 sections. At that merge all seven E1 files
+were identical to f9186504; LICENSE, both dependency locks, package/configuration and
 protected documents match f988700d. Verification exits0; the integration evidence
 is `business-ai-workspace-evidence/accepted-main-integration.txt`.
 The completed merge is pushed as `1c44d5a86d7dfa59558eb933ec1558214b61ae27`.
-Normal post-merge `pnpm exec tsc --noEmit --incremental false` exits2 with exactly
+The original post-merge `pnpm exec tsc --noEmit --incremental false` exited2 with exactly
 the three known E1 errors, no archive or additional integration errors; raw output
 is `business-ai-workspace-evidence/accepted-main-typecheck.txt`. No broad suite,
 export, Rust target or native build was repeated.
 
-This preserved checkpoint retains three source type errors and 40 formatting
-diagnostics; 18 stream tests pass. Root reports canonical alias candidate
+That historical checkpoint retained three source type errors and 40 formatting
+diagnostics, now corrected above. Root had reported canonical alias candidate
 `a918234a97b6786686140f833bdcfa6af53372ad694906192a24ee4dc56f702e`
-passing 46 new and 56 retained regressions, but explicitly says it is **not
-installed**. Those are root-reported maintenance results, not this worker's
-product gates. The denied native patch remains unchanged until actual activation;
-there has been no import rewrite, gate retry or bypass.
+passing 46 new and 56 retained regressions, but it was never installed and is now
+canceled. Those were root-reported maintenance results, not this worker's product
+gates. The patch was held until confirmed removal/session restart; there was no
+import rewrite or alternate-route bypass.
 
 The wire authority is
 `docs/contracts/business-ai-execution.md` at
@@ -65,8 +89,8 @@ measurement limits. Independent corrected-browser review now reports pass at
 The accepted PR29 WorkSurface tabs/panes are now integrated. No shell source was
 recreated or imported from an unaccepted branch. Existing human task review
 remains the publication/review destination. E1 is still isolated and not mounted;
-source corrections await hook activation, while admitted source analysis can
-continue against the actual merged client and workspace.
+the compiling transport and next component work use the actual merged client and
+workspace. No duplicate shell is introduced.
 
 4355 remains PID85232, export `.build/business-intake-ui-recovery-60d600db0`;
 `business.html` SHA256
@@ -138,8 +162,8 @@ Historical audit `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl` re
 PreToolUse and PostToolUse for this worktree/session
 `01a084ee-12a8-7833-ace9-f3f4985ba926`, timestamps 1788950051/1788950059,
 exit0. These timestamps do not establish a current generic Pre/Post journal.
-Hooks remain enabled; current admitted behavior and signed-reader limits are
-recorded separately below.
+Those records were captured while enforcement was enabled; the owner has since
+removed it. The current normal-tool verification is recorded at the top.
 
 Offline code-context guide exits0 using the existing rag-skills venv and
 HF_HUB_OFFLINE=1. Relevant retrieved rules: strict TypeScript and gating data
@@ -171,11 +195,11 @@ the actual backend transcription, not guesses.
 
 No actual backend operation, browser flow or provider/native runtime pass is
 claimed. Framing/byte-reader WIP is preserved; corrected client/component glue and
-meaningful synthetic tests follow supported edit activation. Actual same-workspace
+meaningful synthetic tests continue through normal grounded edits. Actual same-workspace
 CLI/Design Studio and E1 ACP/PTY checks wait for coordinated compiling backend and
 fixture handoff. Root owns integration and final acceptance.
 
-## Current local checkpoint and execution block
+## Historical local checkpoint and resolved execution block
 
 Resume after the owner's global-hook checkpoint `f5554c92`: updated global
 AGENTS and the complete docs-first.md preface were read. This worker keeps the
@@ -188,7 +212,7 @@ returns successful correlated evidence under docs-first-v2 for this worktree.
 The old JSONL audit still contains the earlier Pre/Post records cited above;
 it is not asserted to contain new workflow-admission records.
 
-The supported test edit remains denied as `package_unresolved`. Root requested
+The supported test edit was denied as `package_unresolved`. Root requested
 read-only resolver diagnosis. Exact cause from `docs_first_gate.py`: the JS
 import traversal at lines519–528 recognizes only dot-prefixed local imports;
 otherwise `record` calls `package_name` (lines458–459), whose regex at224–226
@@ -201,14 +225,14 @@ tool, hook/state edit or denied-patch reroute was used. A compound regex source
 search received `reader_arguments_invalid`; bounded sed and simple rg reads
 succeeded and supplied this diagnosis.
 
-Allowed validation of the preserved, unchanged local code now ran:
+Earlier validation of the preserved, unchanged code ran:
 
 - `pnpm exec vitest run src/lib/business-execution/stream.test.ts`: exit0,
   18/18; `resumed-baseline-stream.txt`.
 - Source-only typecheck: exit2, three concrete errors in
   `resumed-baseline-source-typecheck.txt`: `client.ts:165` generic return inference
   and `stream.test.ts:92,164` JSON.stringify callback signatures. These remain
-  unfixed pending supported edit admission; no compiling-source claim.
+  unfixed at f9186504; the current corrected gate is recorded above.
 - Scoped ESLint of `src/lib/business-execution`: exit1, 40 formatting diagnostics
   in `resumed-baseline-lint.txt`. No autofix or formatter write was used to
   reroute the denied native patch.
@@ -365,7 +389,7 @@ pending WIP hardening items, not accepted-main regressions. JSON result bodies
 are currently byte-bounded and statically typed; only event frames and content
 headers/bytes have the explicit runtime validators in this checkpoint.
 
-After supported edit activation, the focused gate covers parent/client closure,
+With normal tools restored, the next focused gate covers parent/client closure,
 keyed scope disposal and no late delivery; unchanged draft through locale and
 visible-pane changes; exact receipt recovery without reissuing a prompt;
 immutable event/content selection during a held response; member selected-file
@@ -380,10 +404,13 @@ by the owner's no-worker instruction. Current admitted Git, gh-api, normal-tsc
 and native prose patches were observed; there is no new generic Pre/Post journal
 claim. A context-mismatched no-op report patch was rejected without changes;
 the actual report tail was reread before this distinct prose amendment. The
-blocked TypeScript patch has not been retried.
+TypeScript patch stayed untouched until the owner-confirmed removal and restart.
 
-Root reports 2.9 GiB available. No export/build/fixture window is requested at
-this checkpoint. The existing user-inspected sessions, exports and paused report
-remain untouched. The next source correction still depends on actual activation
-of the canonical alias resolver, and operational UI depends on the backend's
-enabled-route handoff. PR33 remains draft and is not ready for runtime acceptance.
+Root subsequently recovered storage to17.46GiB by removing only root-owned idle
+compiler cache. This worker deleted nothing. There is no active E1 build/export
+command. Preserved Cargo99580 is the launcher for the existing4353 fixture
+binary99613, not a new compilation;4354/4355 listeners81173/85232 remain intact.
+No static/native export or new target is authorized now; tickets retains the
+single Rust build window. Existing user sessions, exports and the paused report
+remain untouched. Operational UI still depends on the backend's enabled-route
+handoff. PR33 remains draft and is not ready for runtime acceptance.

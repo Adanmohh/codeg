@@ -24,7 +24,10 @@ export function record(
     return protocolError()
   return value as Record<string, unknown>
 }
-export function choice<T extends string>(value: unknown, choices: readonly T[]): T {
+export function choice<T extends string>(
+  value: unknown,
+  choices: readonly T[]
+): T {
   const match = choices.find((candidate) => candidate === value)
   return match ?? protocolError()
 }
@@ -47,7 +50,10 @@ export function nullableCursor(value: unknown): string | null {
   return value === null ? null : text(value)
 }
 export function values(value: unknown, maximum?: number): unknown[] {
-  if (!Array.isArray(value) || (maximum !== undefined && value.length > maximum))
+  if (
+    !Array.isArray(value) ||
+    (maximum !== undefined && value.length > maximum)
+  )
     return protocolError()
   return value
 }

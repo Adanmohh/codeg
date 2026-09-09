@@ -46,7 +46,11 @@ export type ExecutionPath =
 // It must POST {input}, omit cookies, deny redirects and retain the inner auth.
 // There is deliberately no token/config getter, native invoke or global fetch.
 export interface ExecutionHttpTransport {
-  post(path: ExecutionPath, input: object, signal: AbortSignal): Promise<Response>
+  post(
+    path: ExecutionPath,
+    input: object,
+    signal: AbortSignal
+  ): Promise<Response>
   unauthorized(): void
 }
 export interface AssetContentHandle extends ContentMetadata {
@@ -162,7 +166,12 @@ export function createExecutionHttpClient(host: ExecutionHttpTransport) {
         input.inputs.some((reference) => reference.kind === "account_snapshot")
       )
         return Promise.reject(new ExecutionError("unavailable"))
-      return request(`execution/${operation}`, input, signal, json)
+      return request<ExecutionResults[K]>(
+        `execution/${operation}`,
+        input,
+        signal,
+        json
+      )
     },
     events(
       input: EventsInput,

@@ -58,10 +58,7 @@ const read = (response: Response, callback = vi.fn()) =>
 describe("E1 closed authenticated stream reader", () => {
   it("keeps split UTF-8/lines and a final detach in exact order", async () => {
     const data = new TextEncoder().encode(
-      [snapshot, { ...message }, detached]
-        .filter((row) => "type" in row)
-        .map((row) => JSON.stringify(row))
-        .join("\n") + "\n"
+      [snapshot, detached].map((row) => JSON.stringify(row)).join("\n") + "\n"
     )
     const callback = vi.fn()
     const chunks = Array.from(data, (byte) => Uint8Array.of(byte))
@@ -86,11 +83,19 @@ describe("E1 closed authenticated stream reader", () => {
       sessionId: input.sessionId,
       generation: 2,
       cursor: "opaque-cursor-2",
-      event: { kind: "message", message: { ...message, part: 1, text: "Next" } },
+      event: {
+        kind: "message",
+        message: { ...message, part: 1, text: "Next" },
+      },
     }
     const callback = vi.fn()
-    const body = [snapshot, heartbeat, event].map(JSON.stringify).join("\n") + "\n"
-    await expect(read(new Response(body, { headers }), callback)).resolves.toEqual({
+    const body =
+      [snapshot, heartbeat, event]
+        .map((frame) => JSON.stringify(frame))
+        .join("\n") + "\n"
+    await expect(
+      read(new Response(body, { headers }), callback)
+    ).resolves.toEqual({
       kind: "interrupted",
     })
     expect(callback.mock.calls.map(([frame]) => frame)).toEqual([
@@ -103,34 +108,58 @@ describe("E1 closed authenticated stream reader", () => {
     { ...snapshot, sessionId: "foreign-session" },
     { ...snapshot, generation: 3 },
     { ...snapshot, operation: { ...snapshot.operation, id: "foreign-attach" } },
-  ])("withholds foreign session/generation/receipt before delivery", async (value) => {
-    const callback = vi.fn()
-    await expect(read(stream([encode(value)]), callback)).rejects.toThrow()
-    expect(callback).not.toHaveBeenCalled()
-  })
+  ])(
+    "withholds foreign session/generation/receipt before delivery",
+    async (value) => {
+      const callback = vi.fn()
+      await expect(read(stream([encode(value)]), callback)).rejects.toThrow()
+      expect(callback).not.toHaveBeenCalled()
+    }
+  )
   it.each([
     { ...snapshot, reset: false },
     { ...snapshot, privatePath: "synthetic-private-path" },
     {
       ...snapshot,
-      state: { ...snapshot.state, messages: Array.from({ length: 41 }, () => message) },
+      state: {
+        ...snapshot.state,
+        messages: Array.from({ length: 41 }, () => message),
+      },
     },
     {
       ...snapshot,
-      state: { ...snapshot.state, messages: [{ ...message, text: "أ".repeat(8193) }] },
+      state: {
+        ...snapshot.state,
+        messages: [{ ...message, text: "أ".repeat(8193) }],
+      },
     },
     {
       ...snapshot,
-      state: { ...snapshot.state, tools: [{ id: "tool", name: "Write", status: "running", arguments: "synthetic-secret" }] },
+      state: {
+        ...snapshot.state,
+        tools: [
+          {
+            id: "tool",
+            name: "Write",
+            status: "running",
+            arguments: "synthetic-secret",
+          },
+        ],
+      },
     },
-  ])("rejects malformed/over-limit closed fields without releasing them", async (value) => {
-    const callback = vi.fn()
-    await expect(read(stream([encode(value)]), callback)).rejects.toMatchObject({
-      reason: "transport_unavailable",
-      message: "transport_unavailable",
-    })
-    expect(callback).not.toHaveBeenCalled()
-  })
+  ])(
+    "rejects malformed/over-limit closed fields without releasing them",
+    async (value) => {
+      const callback = vi.fn()
+      await expect(
+        read(stream([encode(value)]), callback)
+      ).rejects.toMatchObject({
+        reason: "transport_unavailable",
+        message: "transport_unavailable",
+      })
+      expect(callback).not.toHaveBeenCalled()
+    }
+  )
   it("caps frame bytes before building or parsing an oversized line", () => {
     const decoder = new SessionFrameDecoder()
     const callback = vi.fn()
@@ -161,17 +190,22 @@ describe("E1 closed authenticated stream reader", () => {
   })
   it("discards queued bytes after an authority detach and cancels the reader", async () => {
     const cancel = vi.fn()
-    const body = [snapshot, detached].map(JSON.stringify).join("\n") +
+    const body =
+      [snapshot, detached].map((frame) => JSON.stringify(frame)).join("\n") +
       '\n{"private":"must never be parsed or released"'
-    const response = new Response(new ReadableStream({
-      start(controller) {
-        controller.enqueue(new TextEncoder().encode(body))
-      },
-      cancel,
-    }), { headers })
+    const response = new Response(
+      new ReadableStream({
+        start(controller) {
+          controller.enqueue(new TextEncoder().encode(body))
+        },
+        cancel,
+      }),
+      { headers }
+    )
     const callback = vi.fn()
     await expect(read(response, callback)).resolves.toEqual({
-      kind: "detached", reason: "authority_changed",
+      kind: "detached",
+      reason: "authority_changed",
     })
     expect(callback).toHaveBeenCalledTimes(2)
     expect(cancel).toHaveBeenCalledOnce()
@@ -180,12 +214,18 @@ describe("E1 closed authenticated stream reader", () => {
     const scope = new AbortController()
     const cancel = vi.fn()
     const callback = vi.fn(() => scope.abort())
-    const response = new Response(new ReadableStream({
-      start(controller) { controller.enqueue(encode(snapshot)) },
-      cancel,
-    }), { headers })
-    await expect(readSessionStream(response, input, scope.signal, callback))
-      .rejects.toMatchObject({ reason: "cancelled" })
+    const response = new Response(
+      new ReadableStream({
+        start(controller) {
+          controller.enqueue(encode(snapshot))
+        },
+        cancel,
+      }),
+      { headers }
+    )
+    await expect(
+      readSessionStream(response, input, scope.signal, callback)
+    ).rejects.toMatchObject({ reason: "cancelled" })
     expect(callback).toHaveBeenCalledOnce()
     expect(cancel).toHaveBeenCalledOnce()
   })
@@ -193,8 +233,9 @@ describe("E1 closed authenticated stream reader", () => {
     for (const field of Object.keys(headers)) {
       const invalid = new Headers(headers)
       invalid.delete(field)
-      await expect(read(new Response(encode(snapshot), { headers: invalid })))
-        .rejects.toMatchObject({ reason: "transport_unavailable" })
+      await expect(
+        read(new Response(encode(snapshot), { headers: invalid }))
+      ).rejects.toMatchObject({ reason: "transport_unavailable" })
     }
   })
 })

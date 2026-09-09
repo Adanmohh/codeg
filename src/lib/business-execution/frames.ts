@@ -117,7 +117,11 @@ export function parseSessionFrame(
         operation: receipt(row),
         cursor: text(row.cursor),
         reset: true,
-        reason: choice(row.reason, ["initial", "cursor_expired", "cursor_invalid"]),
+        reason: choice(row.reason, [
+          "initial",
+          "cursor_expired",
+          "cursor_invalid",
+        ]),
         state: {
           status: choice(state.status, SESSION_STATUSES),
           messages: values(state.messages, 40).map(parseMessagePart),

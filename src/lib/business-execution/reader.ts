@@ -80,7 +80,9 @@ export async function requireSuccess(
   }
   const body = await readBoundedJson(response, signal, 4096).catch(() => null)
   assertActive(signal)
-  throw new ExecutionError(parseErrorCode(body) ?? known ?? "transport_unavailable")
+  throw new ExecutionError(
+    parseErrorCode(body) ?? known ?? "transport_unavailable"
+  )
 }
 export function requirePrivateHeaders(response: Response): void {
   if (
