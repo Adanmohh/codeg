@@ -7,9 +7,10 @@ Deliverable: [contract](../docs/contracts/business-ai-execution.md).
 Draft [PR31](https://github.com/Adanmohh/codeg/pull/31); early checkpoint
 `d1f22f85a22d844660df99a770daee39df3e371f` published before final DTOs.
 No product implementation or execution acceptance claimed. Frozen contract head:
-`f454db7554531feb6fd8e9fd5c7949e7b7fa777e` (eight-line review-file response
-clarification after full DTO/recovery head `f2af30f73e38cd929b993026df8600fde32715d6`).
-Contract SHA256: `1872370aca8b920e66001632c06e661de776e6c62eb5569ee77b4a0183daf925`.
+`3f164c2a989cd08a523e51f1e47559c15a48c0ef` (final event/content and public
+metadata clarification after `f454db7554531feb6fd8e9fd5c7949e7b7fa777e` and full
+DTO/recovery head `f2af30f73e38cd929b993026df8600fde32715d6`).
+Contract SHA256: `e2cf8304fb5eababce79961da57061e244f2567eae11b75b88dbfcbccc6a114d`.
 
 ## Progress and preserved work
 
@@ -174,8 +175,13 @@ Root has now dispatched **internal E1 prerequisites only**, separately on
 `feat/business-ai-execution`, migration `m20260909_000014_business_execution`.
 E1 must reject unimplemented `account_snapshot` input references; future manager
 stop applies to E2, never relaxes E1's every-operation operator gate. Published
-provenance remains selected-version facts only. Exact authenticated POST event
-framing/replay and content response must be pinned before UI exposure. No routes,
+provenance remains selected-version facts only. Final `3f164c2a` explicitly pins
+the safe public metadata projection (no private session/turn/profile references),
+authenticated POST NDJSON framing/reset/replay/history/revalidation, bounded
+content/error/disposition/no-range responses and fetch-to-Blob rendering without
+bearer URLs. E2 manager stop is explicitly separate; unavailable E1 account refs
+fail before mutation. These close the five requested wire clarifications for
+independent review; runtime implementation/testing is still required. No routes,
 native registration, profile launch or fixture/provider work until final authority
 verdict. That implementation gets `reports/business-ai-execution-implementation.md`;
 this document and PR31 remain the docs-only contract handoff.
