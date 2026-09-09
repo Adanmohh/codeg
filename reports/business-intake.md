@@ -615,3 +615,29 @@ fixture/provider. Logs, exact commands and the compiler artifact record are in
 valid; no further production file changed. Source/README/NOTICE and test-only
 registration are committed before any listener starts. The actual binary digest,
 PID, private synthetic credential paths and health evidence follow after launch.
+
+## Unified backend ready for independent UI/API acceptance
+
+Fixture source `7ed0dd0c28f5065f1c37983f366cc6dcb0727e08` is pushed; product
+remains e55f3bfd. One stable copied executable, SHA256
+`313d987c2c5eb159bef700e19b9dffc2f942385e76e3b9a9612cf78ad08866ea`,
+305495032 bytes, is running as PID66200 on4351/4352. Startup source digest matches
+`b37a13cfb68001fc644e5d8ddfdb340c9718c751cf1dce72a57b54a42e1cc52c`;
+binary digest matched before and after startup. Exact paths, namespace ownership,
+private0600 credential-file paths, stop/release rules and safe controls are in
+`reports/business-intake-fixture.md`; no credential values are in committed evidence.
+
+Both ports were unoccupied immediately before launch. The single fresh database
+asserted zero initial bindings/grants/provider reads. Health200 and all6 startup
+origin/auth/path guard probes passed. The four403s are deliberate guard checks;
+zero synthetic provider reads remain at handoff. New frontend4354 may connect;
+old4350/4353 and all other fixtures are preserved. No listener shutdown or reseed
+is planned until the three consumers release it. Full UI/BI acceptance remains
+pending; native tenant runtime remains unavailable. This is a stable synthetic
+backend handoff, not a real-provider, engine or native-isolation acceptance claim.
+
+Metadata-only own-session audit is committed alongside fixture evidence. The
+latest four inspected `turn_context` records are gpt-6-astra/max, latest line14162
+at2026-09-09T07:17:57.316Z. The complete historical session also contains Luna,
+as disclosed by the earlier model audit; no assertion that it never did is made.
+No restart/model reset was performed for the transient quota-label discrepancy.

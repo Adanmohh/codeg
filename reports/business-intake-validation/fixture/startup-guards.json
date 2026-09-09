@@ -1,0 +1,77 @@
+[
+  {
+    "name": "allowed-origin-preflight",
+    "methodAndHeaders": [
+      "--request",
+      "OPTIONS",
+      "--header",
+      "Origin: http://127.0.0.1:4354",
+      "--header",
+      "Access-Control-Request-Method: POST",
+      "--header",
+      "Access-Control-Request-Headers: authorization,content-type"
+    ],
+    "path": "/api/business/context",
+    "status": 200,
+    "exit": 0
+  },
+  {
+    "name": "missing-session",
+    "methodAndHeaders": [
+      "--request",
+      "POST",
+      "--header",
+      "Origin: http://127.0.0.1:4354",
+      "--header",
+      "Content-Type: application/json",
+      "--data-binary",
+      "{\"input\":{}}"
+    ],
+    "path": "/api/business/context",
+    "status": 401,
+    "exit": 0
+  },
+  {
+    "name": "foreign-origin",
+    "methodAndHeaders": [
+      "--request",
+      "POST",
+      "--header",
+      "Origin: https://unrelated.invalid",
+      "--header",
+      "Content-Type: application/json",
+      "--data-binary",
+      "{\"input\":{}}"
+    ],
+    "path": "/api/business/context",
+    "status": 403,
+    "exit": 0
+  },
+  {
+    "name": "terminal-blocked",
+    "methodAndHeaders": [
+      "--request",
+      "POST"
+    ],
+    "path": "/api/terminal_spawn",
+    "status": 403,
+    "exit": 0
+  },
+  {
+    "name": "engine-link-blocked",
+    "methodAndHeaders": [
+      "--request",
+      "POST"
+    ],
+    "path": "/api/business/tasks/link-execution",
+    "status": 403,
+    "exit": 0
+  },
+  {
+    "name": "file-blocked",
+    "methodAndHeaders": [],
+    "path": "/owner-controls.json",
+    "status": 403,
+    "exit": 0
+  }
+]

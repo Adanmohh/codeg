@@ -116,3 +116,49 @@ Tokio1.49.0, tokio-util0.7.18, tempfile3.24.0, SeaORM1.1.19 and axum-test17.3.0
 sources are API references for serving, cancellation, retained temporary paths
 and synthetic request dispatch. No package, runtime, AGPL/GPL source or credential
 client is installed or ported.
+
+## Stable runtime handoff
+
+Source is pushed `7ed0dd0c28f5065f1c37983f366cc6dcb0727e08`; production remains
+`e55f3bfd1f069d6d6111370223993596b19ecb9b`. Fixture source SHA256:
+`b37a13cfb68001fc644e5d8ddfdb340c9718c751cf1dce72a57b54a42e1cc52c`.
+
+Stable executable:
+`/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/artifacts/7ed0dd0c28f5065f1c37983f366cc6dcb0727e08/intake-fixture`
+
+SHA256 `313d987c2c5eb159bef700e19b9dffc2f942385e76e3b9a9612cf78ad08866ea`,
+305495032 bytes. The original own-target executable and copied executable matched
+before launch; the stable copy matched again after startup. Only one executable
+was copied. PID **66200** owns both4351/4352 IPv4 loopback listeners. It remains
+running until coordinated release; no timer/reseed/restart is scheduled.
+
+Safe metadata:
+`/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/metadata.json`
+
+Credential file paths (each measured0600; read only your namespace's file, never
+paste values into prompts, reports, snapshots or logs):
+
+- UI: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/ui-credentials.json`
+- Root: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/root-credentials.json`
+- Reviewer: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/review-credentials.json`
+- Worker: `/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/worker-credentials.json`
+
+Each contains `sessions.owner`, `sessions.manager`, `sessions.viewer` with `token`
+and `memberId`, the organization metadata, `firefliesApiKey`, `controlToken` and
+`linkTarget`. Fixture-owner/root control file in that same directory is
+`owner-controls.json`; it is not an ordinary tenant session.
+
+Startup assertions passed: zero bindings/grants/provider reads. Actual health
+returned200 and the advertised source hash matched the committed source. Six
+non-mutating guard probes passed:4354 preflight200, missing session401,
+foreign origin403, terminal403, task execution linking403, credential-file path403.
+Final startup health has exactly4 known blocked guard requests and zero synthetic
+provider reads/rejections. No engine or provider process was started. The initial
+metadata verifier used snake_case for a camelCase counter and raised KeyError;
+the verifier was corrected, with no fixture/source/state change.
+
+Committed runtime/artifact/guard/health evidence is in
+`reports/business-intake-validation/fixture/`. Browser readiness means this
+synthetic backend can now serve the new rebrand4354 export; it is not a claim that
+the UI or full B acceptance flows have already passed. Other fixtures, paused
+work, targets and native bundle remain unchanged.
