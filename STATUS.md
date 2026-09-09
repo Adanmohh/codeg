@@ -2,6 +2,19 @@
 
 ## Current integration and worker state
 
+**Open UI finding IUI-1/P2:** a task source-entry can replace a different active
+Sources review without its dirty-navigation guard, losing an unsaved draft.
+Reviewer reproduced it with a mocked-client component test; root confirmed the
+entry effect bypass and keyed review remount at productc1e618de. Rebrand owns
+the fix; acceptance requires the original regression and a real browser recheck
+on the unified fixture. This component result is not browser/API evidence.
+
+Reviewer independently reports pre-epoch B15bb candidate7/import5/recovery4
+tests passing, all exit0. Integrated `f51154b948ac1ae74fa1bf6a7df495e7e12e05f2`
+is archived768/768 exact, with accepted000012 unchanged. Root read its report:
+000013 and persisted epoch/setup scope now compile, but new epoch/migration
+tests are still in progress. Final review evidence publication is pending.
+
 Independent integration preparation `21d4ecaf` is read and imported as
 [the integration review](reports/review-business-integration.md). Reviewer
 archives match B15bb756/756 and UI191f69b3 1229/1229 source/licence blobs.
