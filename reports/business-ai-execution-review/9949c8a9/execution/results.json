@@ -1,0 +1,547 @@
+{
+  "pin": "9949c8a9ad99ffb70232c05bf1c2ad243dcaf194",
+  "kind": "independent unchanged committed correction tests",
+  "target": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+  "stage": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source",
+  "started_at": "2026-09-09T15:44:08.166406+00:00",
+  "commands": [
+    {
+      "selector": "execution_pagination_",
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "execution_pagination_"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source",
+      "started_at": "2026-09-09T15:44:08.172616+00:00",
+      "log": "reports/business-ai-execution-review/9949c8a9/execution/execution_pagination.log",
+      "disk_before": {
+        "utc": "2026-09-09T15:44:08.172558+00:00",
+        "available_kib": 16597980,
+        "available_gib": 15.82906723022461,
+        "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 908245000  16597980    99% 11079712 165979800    6%   /System/Volumes/Data\n"
+      },
+      "cargo_pid": 63296,
+      "exit": 0,
+      "elapsed_seconds": 140.391,
+      "finished_at": "2026-09-09T15:46:28.565204+00:00",
+      "disk_after": {
+        "utc": "2026-09-09T15:46:28.568404+00:00",
+        "available_kib": 15589968,
+        "available_gib": 14.867752075195312,
+        "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253012  15589968    99% 11078075 155899680    7%   /System/Volumes/Data\n"
+      },
+      "test_result_lines": [
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.29s"
+      ],
+      "finished_lines": [
+        "    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 16s"
+      ]
+    },
+    {
+      "selector": "execution_admission_",
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "execution_admission_"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source",
+      "started_at": "2026-09-09T15:46:28.586120+00:00",
+      "log": "reports/business-ai-execution-review/9949c8a9/execution/execution_admission.log",
+      "disk_before": {
+        "utc": "2026-09-09T15:46:28.586026+00:00",
+        "available_kib": 15589964,
+        "available_gib": 14.867748260498047,
+        "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253016  15589964    99% 11078075 155899640    7%   /System/Volumes/Data\n"
+      },
+      "cargo_pid": 67391,
+      "exit": 0,
+      "elapsed_seconds": 5.028,
+      "finished_at": "2026-09-09T15:46:33.613989+00:00",
+      "disk_after": {
+        "utc": "2026-09-09T15:46:33.616680+00:00",
+        "available_kib": 15590128,
+        "available_gib": 14.867904663085938,
+        "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252852  15590128    99% 11078078 155901280    7%   /System/Volumes/Data\n"
+      },
+      "test_result_lines": [
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.29s"
+      ],
+      "finished_lines": [
+        "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.97s"
+      ]
+    },
+    {
+      "selector": "execution_authority_",
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "execution_authority_"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source",
+      "started_at": "2026-09-09T15:46:33.631068+00:00",
+      "log": "reports/business-ai-execution-review/9949c8a9/execution/execution_authority.log",
+      "disk_before": {
+        "utc": "2026-09-09T15:46:33.630989+00:00",
+        "available_kib": 15590116,
+        "available_gib": 14.86789321899414,
+        "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252864  15590116    99% 11078078 155901160    7%   /System/Volumes/Data\n"
+      },
+      "cargo_pid": 67872,
+      "exit": 0,
+      "elapsed_seconds": 5.018,
+      "finished_at": "2026-09-09T15:46:38.648976+00:00",
+      "disk_after": {
+        "utc": "2026-09-09T15:46:38.651694+00:00",
+        "available_kib": 15590084,
+        "available_gib": 14.867862701416016,
+        "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252896  15590084    99% 11078079 155900840    7%   /System/Volumes/Data\n"
+      },
+      "test_result_lines": [
+        "test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.26s"
+      ],
+      "finished_lines": [
+        "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.53s"
+      ]
+    },
+    {
+      "selector": "execution_assets_",
+      "argv": [
+        "cargo",
+        "test",
+        "--manifest-path",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source/src-tauri/Cargo.toml",
+        "--target-dir",
+        "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+        "--locked",
+        "--offline",
+        "--no-default-features",
+        "--lib",
+        "-j",
+        "2",
+        "execution_assets_"
+      ],
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source",
+      "started_at": "2026-09-09T15:46:38.666332+00:00",
+      "log": "reports/business-ai-execution-review/9949c8a9/execution/execution_assets.log",
+      "disk_before": {
+        "utc": "2026-09-09T15:46:38.666270+00:00",
+        "available_kib": 15590072,
+        "available_gib": 14.867851257324219,
+        "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252908  15590072    99% 11078079 155900720    7%   /System/Volumes/Data\n"
+      },
+      "cargo_pid": 67966,
+      "exit": 0,
+      "elapsed_seconds": 5.029,
+      "finished_at": "2026-09-09T15:46:43.695819+00:00",
+      "disk_after": {
+        "utc": "2026-09-09T15:46:43.699564+00:00",
+        "available_kib": 15589052,
+        "available_gib": 14.866878509521484,
+        "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253928  15589052    99% 11078080 155890520    7%   /System/Volumes/Data\n"
+      },
+      "test_result_lines": [
+        "test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 3771 filtered out; finished in 0.10s"
+      ],
+      "finished_lines": [
+        "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.62s"
+      ]
+    }
+  ],
+  "disk_samples": [
+    {
+      "utc": "2026-09-09T15:44:08.169974+00:00",
+      "available_kib": 16597980,
+      "available_gib": 15.82906723022461,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 908245000  16597980    99% 11079712 165979800    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:08.172558+00:00",
+      "available_kib": 16597980,
+      "available_gib": 15.82906723022461,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 908245000  16597980    99% 11079712 165979800    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:13.190037+00:00",
+      "available_kib": 18037580,
+      "available_gib": 17.201976776123047,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 906805400  18037580    99% 11079711 180375800    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:18.201275+00:00",
+      "available_kib": 17928808,
+      "available_gib": 17.098243713378906,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 906914172  17928808    99% 11079711 179288080    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:23.210047+00:00",
+      "available_kib": 17885440,
+      "available_gib": 17.056884765625,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 906957540  17885440    99% 11079275 178854400    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:28.224828+00:00",
+      "available_kib": 17838052,
+      "available_gib": 17.01169204711914,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907004928  17838052    99% 11079276 178380520    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:33.238883+00:00",
+      "available_kib": 17805160,
+      "available_gib": 16.980323791503906,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907037820  17805160    99% 11079276 178051600    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:38.252936+00:00",
+      "available_kib": 17788428,
+      "available_gib": 16.964366912841797,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907054552  17788428    99% 11079278 177884280    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:43.266110+00:00",
+      "available_kib": 17756752,
+      "available_gib": 16.934158325195312,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907086228  17756752    99% 11079277 177567520    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:48.270588+00:00",
+      "available_kib": 17723900,
+      "available_gib": 16.902828216552734,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907119080  17723900    99% 11079277 177239000    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:53.284489+00:00",
+      "available_kib": 17707288,
+      "available_gib": 16.886985778808594,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907135692  17707288    99% 11079292 177072880    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:44:58.293348+00:00",
+      "available_kib": 17689796,
+      "available_gib": 16.870304107666016,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907153184  17689796    99% 11079292 176897960    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:03.352522+00:00",
+      "available_kib": 17654740,
+      "available_gib": 16.836872100830078,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907188240  17654740    99% 11079299 176547400    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:08.365905+00:00",
+      "available_kib": 17589076,
+      "available_gib": 16.774250030517578,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907253904  17589076    99% 11079298 175890760    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:13.388686+00:00",
+      "available_kib": 17557088,
+      "available_gib": 16.743743896484375,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907285892  17557088    99% 11079300 175570880    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:18.397288+00:00",
+      "available_kib": 17524060,
+      "available_gib": 16.71224594116211,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907318920  17524060    99% 11079300 175240600    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:23.403557+00:00",
+      "available_kib": 17474624,
+      "available_gib": 16.66510009765625,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907368356  17474624    99% 11079300 174746240    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:28.418625+00:00",
+      "available_kib": 17425576,
+      "available_gib": 16.618324279785156,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907417404  17425576    99% 11079300 174255760    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:33.425530+00:00",
+      "available_kib": 17376220,
+      "available_gib": 16.57125473022461,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907466760  17376220    99% 11079300 173762200    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:38.438035+00:00",
+      "available_kib": 17310144,
+      "available_gib": 16.50823974609375,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907532836  17310144    99% 11079301 173101440    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:43.456879+00:00",
+      "available_kib": 17295544,
+      "available_gib": 16.49431610107422,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907547436  17295544    99% 11079303 172955440    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:48.473323+00:00",
+      "available_kib": 17073036,
+      "available_gib": 16.282115936279297,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907769944  17073036    99% 11079311 170730360    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:53.489261+00:00",
+      "available_kib": 16885900,
+      "available_gib": 16.103649139404297,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 907957080  16885900    99% 11079327 168859000    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:45:58.500842+00:00",
+      "available_kib": 16730752,
+      "available_gib": 15.9556884765625,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 908112228  16730752    99% 11079347 167307520    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:03.506293+00:00",
+      "available_kib": 16602372,
+      "available_gib": 15.833255767822266,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 908240600  16602372    99% 11079382 166023720    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:08.517455+00:00",
+      "available_kib": 16474484,
+      "available_gib": 15.711292266845703,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 908368496  16474484    99% 11079423 164744840    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:13.526279+00:00",
+      "available_kib": 16360932,
+      "available_gib": 15.60300064086914,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 908482048  16360932    99% 11079491 163609320    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:18.553258+00:00",
+      "available_kib": 16228136,
+      "available_gib": 15.476356506347656,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 908614844  16228136    99% 11079543 162281360    6%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:23.559618+00:00",
+      "available_kib": 15538264,
+      "available_gib": 14.818443298339844,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909304716  15538264    99% 11079579 155382640    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:28.565145+00:00",
+      "available_kib": 15589968,
+      "available_gib": 14.867752075195312,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253012  15589968    99% 11078075 155899680    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:28.568404+00:00",
+      "available_kib": 15589968,
+      "available_gib": 14.867752075195312,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253012  15589968    99% 11078075 155899680    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:28.586026+00:00",
+      "available_kib": 15589964,
+      "available_gib": 14.867748260498047,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253016  15589964    99% 11078075 155899640    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:33.613944+00:00",
+      "available_kib": 15590132,
+      "available_gib": 14.867908477783203,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252848  15590132    99% 11078078 155901320    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:33.616680+00:00",
+      "available_kib": 15590128,
+      "available_gib": 14.867904663085938,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252852  15590128    99% 11078078 155901280    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:33.630989+00:00",
+      "available_kib": 15590116,
+      "available_gib": 14.86789321899414,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252864  15590116    99% 11078078 155901160    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:38.648926+00:00",
+      "available_kib": 15590084,
+      "available_gib": 14.867862701416016,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252896  15590084    99% 11078079 155900840    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:38.651694+00:00",
+      "available_kib": 15590084,
+      "available_gib": 14.867862701416016,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252896  15590084    99% 11078079 155900840    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:38.666270+00:00",
+      "available_kib": 15590072,
+      "available_gib": 14.867851257324219,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909252908  15590072    99% 11078079 155900720    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:43.695774+00:00",
+      "available_kib": 15589052,
+      "available_gib": 14.866878509521484,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253928  15589052    99% 11078080 155890520    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:43.699564+00:00",
+      "available_kib": 15589052,
+      "available_gib": 14.866878509521484,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253928  15589052    99% 11078080 155890520    7%   /System/Volumes/Data\n"
+    },
+    {
+      "utc": "2026-09-09T15:46:43.714980+00:00",
+      "available_kib": 15589040,
+      "available_gib": 14.866867065429688,
+      "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253940  15589040    99% 11078080 155890400    7%   /System/Volumes/Data\n"
+    }
+  ],
+  "coordination": [
+    {
+      "utc": "2026-09-09T15:44:08.179669+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer actual START execution_pagination_ at frozen 9949c8a9; Cargo PID 63296, fresh 15.829 GiB. Same target, locked/offline -j2; no other gate.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:44:08.185285+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer actual START execution_pagination_ at frozen 9949c8a9; Cargo PID 63296, fresh 15.829 GiB. Same target, locked/offline -j2; no other gate.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:28.575216+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer execution_pagination_ EXIT 0 at exact 9949; test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.29s; disk 14.868 GiB. Next bounded prefix only.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:28.582514+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer execution_pagination_ EXIT 0 at exact 9949; test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.29s; disk 14.868 GiB. Next bounded prefix only.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:28.594079+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer actual START execution_admission_ at frozen 9949c8a9; Cargo PID 67391, fresh 14.868 GiB. Same target, locked/offline -j2; no other gate.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:28.600259+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer actual START execution_admission_ at frozen 9949c8a9; Cargo PID 67391, fresh 14.868 GiB. Same target, locked/offline -j2; no other gate.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:33.622713+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer execution_admission_ EXIT 0 at exact 9949; test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.29s; disk 14.868 GiB. Next bounded prefix only.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:33.628065+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer execution_admission_ EXIT 0 at exact 9949; test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.29s; disk 14.868 GiB. Next bounded prefix only.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:33.637186+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer actual START execution_authority_ at frozen 9949c8a9; Cargo PID 67872, fresh 14.868 GiB. Same target, locked/offline -j2; no other gate.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:33.642758+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer actual START execution_authority_ at frozen 9949c8a9; Cargo PID 67872, fresh 14.868 GiB. Same target, locked/offline -j2; no other gate.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:38.657713+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer execution_authority_ EXIT 0 at exact 9949; test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.26s; disk 14.868 GiB. Next bounded prefix only.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:38.663387+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer execution_authority_ EXIT 0 at exact 9949; test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.26s; disk 14.868 GiB. Next bounded prefix only.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:38.676486+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer actual START execution_assets_ at frozen 9949c8a9; Cargo PID 67966, fresh 14.868 GiB. Same target, locked/offline -j2; no other gate.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:38.681531+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer actual START execution_assets_ at frozen 9949c8a9; Cargo PID 67966, fresh 14.868 GiB. Same target, locked/offline -j2; no other gate.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:43.705753+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer execution_assets_ EXIT 0 at exact 9949; test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 3771 filtered out; finished in 0.10s; disk 14.867 GiB. All-command release follows.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:43.711926+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer execution_assets_ EXIT 0 at exact 9949; test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 3771 filtered out; finished in 0.10s; disk 14.867 GiB. All-command release follows.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:43.720474+00:00",
+      "pane": "wR:p1",
+      "message": "Reviewer ALL-COMMAND BUILD WINDOW RELEASED. Frozen 9949 correction run: execution_pagination_ exit 0, execution_admission_ exit 0, execution_authority_ exit 0, execution_assets_ exit 0. No reviewer Cargo remains; final 14.867 GiB. Publishing report/log/source-after hashes next; no runtime launch acceptance.",
+      "exit": 0
+    },
+    {
+      "utc": "2026-09-09T15:46:43.725705+00:00",
+      "pane": "wR:p4",
+      "message": "Reviewer ALL-COMMAND BUILD WINDOW RELEASED. Frozen 9949 correction run: execution_pagination_ exit 0, execution_admission_ exit 0, execution_authority_ exit 0, execution_assets_ exit 0. No reviewer Cargo remains; final 14.867 GiB. Publishing report/log/source-after hashes next; no runtime launch acceptance.",
+      "exit": 0
+    }
+  ],
+  "release": "2026-09-09T15:46:43.715009+00:00",
+  "exit": 0,
+  "final_disk": {
+    "utc": "2026-09-09T15:46:43.714980+00:00",
+    "available_kib": 15589040,
+    "available_gib": 14.866867065429688,
+    "df": "Filesystem   1024-blocks      Used Available Capacity  iused     ifree %iused  Mounted on\n/dev/disk3s5   971298980 909253940  15589040    99% 11078080 155890400    7%   /System/Volumes/Data\n"
+  }
+}

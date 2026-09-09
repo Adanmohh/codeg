@@ -2,6 +2,18 @@
 
 ## Current integration and worker state
 
+**R1–R3 closed within the reviewed internal helper scope at9949.** Independent
+closure `de3a6b8fdc2602ef743ec2e1da72f488707980af` is verified and imported.
+Root read the execution report and actual14 passing test summaries, matched all10
+evidence hashes and all802 before/after source Git blobs plus SHA256 values, and
+verified historical f4/dc/42d evidence and product paths unchanged. No test patch
+was needed. Raw log whitespace is preserved and disclosed; no Clippy or complete
+runtime acceptance is claimed. [Independent closure](reports/business-ai-execution-review/9949c8a9/execution/review.md).
+The later d0d56a publication code remains uncompiled. Farha reports its production
+build passed and is running bounded synthetic browser checks, with about11.37 GiB
+free; its slot remains held until explicit all-process release. Tickets' next
+bounded gates remain queued, subject to a fresh at-least10 GiB preflight.
+
 **New publication checkpoint is uncompiled and queued for validation.** Tickets
 pushed `d0d56a36399d81be23787891177752022c91edf6`: task-owned selected asset
 references, human publication/CAS/receipt helpers, six new synthetic tests and

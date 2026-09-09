@@ -1,0 +1,72 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/9949c8a9/source/src-tauri)
+warning: associated function `supported` is never used
+  --> src/business_execution/files.rs:75:19
+   |
+71 | impl Files {
+   | ---------- associated function in this implementation
+...
+75 |     pub(crate) fn supported() -> bool {
+   |                   ^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `initial_cursor` is never read
+  --> src/business_execution/records.rs:37:9
+   |
+35 | pub(super) struct Generation {
+   |                   ---------- field in this struct
+36 |     pub admission_id: String,
+37 |     pub initial_cursor: String,
+   |         ^^^^^^^^^^^^^^
+   |
+   = note: `Generation` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: fields `kind` and `result_json` are never read
+  --> src/business_execution/records.rs:43:9
+   |
+41 | pub(super) struct Operation {
+   |                   --------- fields in this struct
+42 |     pub operation_id: String,
+43 |     pub kind: String,
+   |         ^^^^
+...
+54 |     pub result_json: Option<String>,
+   |         ^^^^^^^^^^^
+   |
+   = note: `Operation` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: struct `Output` is never constructed
+  --> src/business_execution/records.rs:58:19
+   |
+58 | pub(super) struct Output {
+   |                   ^^^^^^
+
+warning: struct `Asset` is never constructed
+  --> src/business_execution/records.rs:66:19
+   |
+66 | pub(super) struct Asset {
+   |                   ^^^^^
+
+warning: struct `Version` is never constructed
+  --> src/business_execution/records.rs:79:19
+   |
+79 | pub(super) struct Version {
+   |                   ^^^^^^^
+
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 7 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 16s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 3 tests
+test business_execution::pagination_tests::execution_pagination_returned_cursor_remains_usable_after_revocation ... ok
+test business_execution::pagination_tests::execution_pagination_rejects_foreign_task_member_and_tenant_cursors ... ok
+test business_execution::pagination_tests::execution_pagination_skips_leading_and_interleaved_stale_rows ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 3773 filtered out; finished in 0.29s
+

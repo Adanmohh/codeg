@@ -1,8 +1,19 @@
 # Independent E1 implementation review
 
-At correction product `9949c8a9ad99ffb70232c05bf1c2ad243dcaf194`, independent source re-review finds R1–R3 addressed in code, with no additional blocking source finding in this bounded delta. Independent execution remains pending. Verified owner evidence at `b15ded12cd24f557d0de9bb55b43db30b9f8bc89` records14 helper passes and server check0; these remain owner execution. Farha owns the next build window, so reviewer Cargo remains held. No runtime acceptance is claimed. See the [exact correction assessment and needed selectors](business-ai-execution-review/9949c8a9/review.md) and [source ledger](business-ai-execution-review/9949c8a9/source-ledger.json).
+**R1–R3 are closed for the reviewed internal helpers at `9949c8a9ad99ffb70232c05bf1c2ad243dcaf194`: independent source review and all 14 unchanged correction/control tests pass, with no additional blocking finding in this bounded scope.** No runtime launch, route, import/publication or tenant/native isolation acceptance is implied. The [independent execution report](business-ai-execution-review/9949c8a9/execution/review.md) records exact commands, raw logs, limits and preservation evidence.
 
-The original three P2 findings against `3773a027a8d580bd9bac1808efdb718ae6f9e135`, published at `dc0e9cb06ded25122c373029c3bc9f9bbe40b42f`, remain unchanged in [their report](business-ai-execution-review/3773a027/review.md) and [ledger](business-ai-execution-review/3773a027/source-ledger.json). They concern internal, unexposed helpers. The prior 11 passing schema/DTO tests and evidence below also remain unchanged. No product source, fixture, target or browser was modified by this reviewer.
+| Independent selector | Result | Cargo compile / test runtime |
+| --- | --- | --- |
+| `execution_pagination_` | 3 passed, exit 0 | 2m16s / 0.29s |
+| `execution_admission_` | 3 passed, exit 0 | 0.97s cached / 0.29s |
+| `execution_authority_` | 3 passed, exit 0 | 0.53s cached / 0.26s |
+| `execution_assets_` | 5 passed, exit 0 | 0.62s cached / 0.10s |
+
+The four commands ran sequentially with `--locked --offline --no-default-features --lib -j 2` in the existing `.build/business-integration-review/target-15bb402b`. All 802 staged Git blobs match before and after execution, including manifests, lock, tests and the reused vendor source. No reviewer test patch or assertion adjustment was needed. The first Cargo process started at 2026-09-09 15:44:08 UTC with 15.829 GiB free; every prefix started above 10 GiB. All commands finished, and root/tickets received the build-window release at 15:46:43 UTC with 14.867 GiB free, before this publication. Seven test-build warnings and the future-compatibility notice remain in the raw logs. No extra schema, server, native, export or broad A gate ran.
+
+The original three P2 findings against `3773a027a8d580bd9bac1808efdb718ae6f9e135`, published at `dc0e9cb06ded25122c373029c3bc9f9bbe40b42f`, remain unchanged in [their report](business-ai-execution-review/3773a027/review.md) and [ledger](business-ai-execution-review/3773a027/source-ledger.json). The source-only correction assessment and its then-pending execution status are preserved at checkpoint `42d5978b2fde232b8c066131407323955148ed71` in [review.md](business-ai-execution-review/9949c8a9/review.md), [source-ledger.json](business-ai-execution-review/9949c8a9/source-ledger.json) and their original digest index. Verified owner evidence at `b15ded12cd24f557d0de9bb55b43db30b9f8bc89` remains separately attributed. The earlier f4 schema evidence is unchanged; its historical review follows below.
+
+This execution used only fresh, exact source staging and the previously authorized reviewer compiler target. No dependency, target or build output was copied; the unchanged path dependency was reused by a verified symlink. Product files, old source archives, fixtures, browsers, bundles and paused work remain unchanged. Normal Git and immutable `gh api` succeeded in this session. No enforcement hook was installed, restored, probed or claimed. The earlier hook discussion below is historical.
 
 ## Frozen schema/DTO verdict — 177d0f3e
 
