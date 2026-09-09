@@ -2,6 +2,22 @@
 
 ## Current integration and worker state
 
+**New internal E1 checkpoint under independent source review:** product
+`3773a027a8d580bd9bac1808efdb718ae6f9e135`, report/log successor
+`79703eeb50a9632d86d6c390bf7260d921593539` in draft PR32. Root verified the
+successor is report-only, read/imported the admission/file report and matched both
+committed log hashes. Owner12 tests pass (schema4/admission4/files4), server check
+exit0;58 unused-consumer server warnings remain, and no Clippy pass is claimed.
+Consumers are internal: no provider/process launch, public transport, task asset
+publication or full runtime acceptance. Approvals now reviews exact3773 source;
+its accepted11-case independent verdict below remains pinned to177.
+
+Both Cargo windows are closed. Tickets reports no active Cargo; root's subsequent
+df observes only2.5GiB available. Tickets and approvals have been instructed to
+continue source-only and coordinate capacity before any further compilation.
+No target cleanup, large archive copy, native build or fixture/browser change is
+authorized by this handoff. Rebrand continues the accepted-shell E1 UI assignment.
+
 **PR29 merged and pushed** as `f988700db6975364d35b80125af12bfe2d5baac3`;
 gh api confirms closed/merged. Frozen `96e0bcc1` / product
 `60d600db` retains the independently reviewed tabs/panes, settings and intake UI.
@@ -15,7 +31,7 @@ This unlocks rebrand's E1 workbench integration; AI chat/terminal/assets are sti
 being implemented. No running fixture, user browser or native artifact changed.
 The exact accepted head and next bounded work were relayed to all three existing
 workers; Herdr reports each working. Rebrand integrates this accepted shell,
-tickets continues E1 backend and now owns the released build window. Final
+tickets continues E1 backend; the subsequent compile hold is recorded above. Final
 independent review `f4b12e8dccf249bce75accbb4a5f4aa69df48ac3` is read and
 imported: four unchanged E1 schema tests, four B epoch tests and three reviewer
 cancellation/schema/DTO probes pass, all exit0, no bounded blocker at frozen177.

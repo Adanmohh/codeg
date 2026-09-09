@@ -232,3 +232,69 @@ No fresh generic hook-event metadata or universal hook coverage is claimed.
 Actual current Git/gh results and normally admitted edits establish the usable
 workflow only. The owner's separate signed-reader deny/read/retry verification
 is owner evidence, not a test independently rerun here.
+
+## Admission and file prerequisites — 3773a027a
+
+Exact product `3773a027a8d580bd9bac1808efdb718ae6f9e135` adds private SQL records,
+current original-operator/task/profile checks, durable exact-input receipts and
+one-time backend launch admissions. A replay returns no new admission. Original
+operator authority is stored through the existing opaque DelegationGrant, with
+captured tenant/task/profile generations; an ordinary owner credential is denied.
+Late launch binding is rejected after profile/task revocation. Sole unaccepted14
+adds member/tenant lifecycle triggers; applied10–13 remain untouched. No Principal
+constructor, engineering work_task or replacement engine was added.
+
+The file prerequisite ports Codeg upload_jail's Unix descriptor/no-follow pattern:
+bounded depth4/512-entry discovery, hidden/profile/config exclusions, regular-file
+and single-link checks,50MiB ceiling, identity/size/time checks, streamed hash/copy,
+exclusive0600 staging outside scratch and completed0400 retained objects. Existing
+completed objects are hash-checked for same-operation recovery, including missing
+scratch. Corrupt/partial objects are never silently overwritten. Public assets,
+publication and recovery dispatch still require the later DB/runtime consumer;
+these filesystem methods are not exposed by a route. The trusted data-directory
+ancestor is not an OS sandbox. Non-Unix managed file support fails closed pending
+equivalent hardening; the profile consumer must expose that readiness limit.
+
+Manual grounding used SeaORM1.1.19 Statement/transaction commit/drop and existing
+Codeg task/intake/identity source; immutable gh api task writer read atc8453a48d.
+File methods used the installed libc0.2.180, sha2 0.10.9/digest0.10.7 plus official
+Rust1.98.0 `library/std/src/{fs,os/unix/fs}.rs` at
+`88d9e12ae178fab0fb5cc050a94da85685d449ea` via gh api: descriptor metadata, link/time
+fields, sync and directory-name enumeration behavior. Relevant Codeg upload_jail
+source was also re-read locally and through immutable gh api. Exact source-to-port
+files/blobs are appended in NOTICE; no lockfile, dependency or licence changed.
+One native patch returned `patch_context_unresolved`; actual source and relevant
+pinned APIs were reread, then the same native patch tool accepted corrected exact
+context. There was no shell/interpreter edit fallback or hook modification.
+
+Actual gates, unchanged existing target, locked/offline flags:
+
+| Command | Result at3773a027a |
+| --- | --- |
+| `cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib business_execution::` | exit0;12 passed,0 failed/ignored;0.80s runtime,1m57s compile |
+| `cargo check --manifest-path src-tauri/Cargo.toml --no-default-features --bin codeg-server` | exit0;11.50s |
+| `rustfmt --edition 2021 src-tauri/src/business_execution/mod.rs`; `git diff --check` | exit0 |
+
+The12 are four earlier migration/wire cases, four new admission/authority cases
+and four real temporary-file cases. Authority cases cover a human-only task with
+zero work_task rows, receipt replay/changed input, same-org owner credential and
+real separately provisioned tenant denial, profile change-away-and-back, task
+cancel/reopen and fresh operator authentication after tenant suspend/resume.
+They bind a synthetic linkage record without starting a subprocess: not live
+engine ownership, scoped event delivery or protected HTTP/native acceptance.
+Filesystem cases cover retained bytes/scratch deletion, symlink/hardlink/traversal/
+profile exclusion, changed source, corrupt retained object, oversize and replaced
+storage parent. Mid-copy mutation and integrated import/publication/receipt races
+are still pending. Warning logs are retained:58 unused-consumer warnings in server
+mode,9 warnings in test mode including the inherited linker message. Clippy is
+not passing or claimed at this prerequisite checkpoint.
+
+Committed `admission-files/tests.log` SHA256
+`1b2acae5bc2197c6c664b140436e2f75d022744964124d99371242699f031043`;
+`admission-files/check.log` SHA256
+`352204e540f5962f6ebab8a7833bcae1c1f89e115b9e8df5d6a6bec6bec76c55`.
+Latest free-space observation2.9GiB; both own Cargo processes finished. Root/reviewer
+are notified before another build. No old target/artifact/fixture/browser changed.
+Next: managed DB import and task-owned selected-reference publication, existing
+ACP/PTY lifecycle and narrowed companion scope, protected transport/events/content,
+then full runtime/CAS/receipt/byte tests and desktop/server/companion/Clippy gates.
