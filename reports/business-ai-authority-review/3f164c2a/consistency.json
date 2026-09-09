@@ -1,0 +1,51 @@
+{
+  "verdict": "No open E1 contract blocker; implementation/runtime acceptance pending",
+  "contracts": [
+    {
+      "commit": "f2af30f73e38cd929b993026df8600fde32715d6",
+      "path": "docs/contracts/business-ai-execution.md",
+      "blob": "e491f33c5945bb8a555a4e4c9c16ef2aec2b3594",
+      "sha256": "8cfd910e219758cf0902be8d90acb28c68dac24198facac7efd547869e58fd2e",
+      "gh_api_bytes_equal_local": true,
+      "read": "Complete f2 contract plus complete consecutive f454/3f wire deltas; report read at f2 and all final report changes."
+    },
+    {
+      "commit": "f454db7554531feb6fd8e9fd5c7949e7b7fa777e",
+      "path": "docs/contracts/business-ai-execution.md",
+      "blob": "e27b89b040a80f3d3cfc2ac7659bd6ad4fb4b877",
+      "sha256": "1872370aca8b920e66001632c06e661de776e6c62eb5569ee77b4a0183daf925",
+      "gh_api_bytes_equal_local": true,
+      "read": "Complete f2 contract plus complete consecutive f454/3f wire deltas; report read at f2 and all final report changes."
+    },
+    {
+      "commit": "3f164c2a989cd08a523e51f1e47559c15a48c0ef",
+      "path": "docs/contracts/business-ai-execution.md",
+      "blob": "ec22db669331e03c8d1d6fb4d312896924955853",
+      "sha256": "e2cf8304fb5eababce79961da57061e244f2567eae11b75b88dbfcbccc6a114d",
+      "gh_api_bytes_equal_local": true,
+      "read": "Complete f2 contract plus complete consecutive f454/3f wire deltas; report read at f2 and all final report changes."
+    }
+  ],
+  "only_changed_paths": [
+    "docs/contracts/business-ai-execution.md",
+    "reports/business-ai-execution.md"
+  ],
+  "closed_requirements": [
+    "E1 every-private-route operator and captured lineage",
+    "durable launch/dispatch/attach/recovery",
+    "immutable managed bytes and staged storage recovery",
+    "human selected-version publication in task CAS writer",
+    "E2-only manager stop",
+    "public producer projection without session/turn/profile",
+    "exact POST NDJSON and content framing",
+    "E3 account_snapshot explicitly unavailable",
+    "safe Deliverable.assets rediscovery"
+  ],
+  "limits": [
+    "No AI runtime/provider/browser execution",
+    "E2 process/native isolation not accepted",
+    "E3 adapter unselected/unimplemented",
+    "Contract is not evidence of a compiling API"
+  ],
+  "source_reference": "../d1f22f85/source-ledger.json"
+}
