@@ -1,5 +1,40 @@
 # Business AI workspace — implementation checkpoint
 
+Latest completed public-file checkpoint:
+`fee6a939e7f693d95896a44db02147a2c34383e3`, pushed to draft PR33. The next
+compiling component adds persistent chat presentation over the existing E1
+attachment client. It reuses Codeg Message/MessageContent and RichComposer,
+without mounting the legacy conversation provider or Markdown file opener.
+The private profile/session entry, explicit start/continue and guarded tab
+registration remain in progress; this component is not an enabled private UI
+entry or runtime acceptance claim.
+
+Its authenticated attachment uses the exact session/generation and opaque cursor.
+Unexpected EOF requires explicit session revalidation/reconnect, never prompt
+replay. Snapshot reset updates the bounded recent-message cache without remounting
+the actual prompt editor. History requests40 parts per page through the accepted
+opaque cursor; a160-part live window reports trimming and exposes saved history.
+Duplicate cursor/part delivery is deduplicated, including snapshot/history rows.
+Tool state is a closed projection; terminal bytes are not rendered as chat/task
+text. Revoked status, authority detach or denied current binding aborts the owned
+view, clears private content/draft and prevents buffered delivery. Ordinary tab
+detachment does not stop, continue or launch the process.
+
+| Conversation component gate | Result; evidence under business-ai-workspace-evidence |
+| --- | --- |
+| Conversation state + real message/composer + existing prompt tests | 22/22, exit0; conversation-component-final.txt |
+| Normal `pnpm exec tsc --noEmit --incremental false` | exit0; conversation-typecheck-final.txt |
+| Scoped ESLint | exit0, no diagnostics; conversation-lint-final.txt |
+
+The first state negative control is retained in conversation-negative-control.txt:
+duplicate snapshot/history parts initially failed1/4; all four now pass. Earlier
+type/lint diagnostics are preserved: tuple inference, a test-only Array.at outside
+the unchanged ES2020 lib, an effect dependency and synchronous history loading
+resets. The latter now derive loading/error from the exact cursor-associated
+response; no lint rule or compiler library was disabled/upgraded. These remain
+in-memory synthetic tests, without a provider, exported UI, browser or native pass.
+No existing fixture/preview/target was changed and no build window was taken.
+
 The prompt checkpoint `b931b0f57` adds the inherited RichComposer with
 explicit E1 prompt receipts, EN/AR copy and in-memory context selection. Its nine
 focused tests pass, as do normal TypeScript and scoped ESLint. The component is

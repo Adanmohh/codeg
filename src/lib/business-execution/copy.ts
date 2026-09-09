@@ -56,6 +56,36 @@ const english = {
   createdWith: "Created with",
   modelUnavailable: "Model not recorded",
   verifiedDownload: "The selected version is verified and ready to save.",
+  attaching: "Connecting to this saved session…",
+  attached: "Connected to this session",
+  disconnected:
+    "The view is disconnected. Check the session to reconnect. No prompt is repeated.",
+  reconnect: "Check session and reconnect",
+  emptyConversation:
+    "This session has no saved messages yet. Send a prompt to begin.",
+  recentOnly:
+    "Showing recent messages. Browse the saved conversation for older work.",
+  savedConversation: "Browse saved conversation",
+  returnLive: "Return to conversation",
+  olderMessages: "Older messages",
+  newerMessages: "Newer messages",
+  loadingHistory: "Loading saved messages…",
+  historyEmpty: "No saved messages on this page.",
+  you: "You",
+  assistant: "AI assistant",
+  activity: "Session activity",
+  starting: "Starting",
+  idle: "Ready",
+  running: "Working",
+  awaiting_input: "Waiting for input",
+  stopped: "Stopped",
+  failed: "Failed",
+  interrupted: "Interrupted",
+  revoked: "Access ended",
+  closed: "Closed",
+  completed: "Completed",
+  currentAccessRequired:
+    "Current session access is required. Your task and submitted files are separate from this private conversation.",
 }
 export type ExecutionCopy = typeof english
 const arabic: ExecutionCopy = {
@@ -108,6 +138,36 @@ const arabic: ExecutionCopy = {
   createdWith: "أُنشئ باستخدام",
   modelUnavailable: "النموذج غير مسجّل",
   verifiedDownload: "تم التحقق من النسخة المختارة وهي جاهزة للحفظ.",
+  attaching: "جارٍ الاتصال بهذه الجلسة المحفوظة…",
+  attached: "متصل بهذه الجلسة",
+  disconnected:
+    "انقطع اتصال العرض. تحقق من الجلسة لإعادة الاتصال. لن يُعاد إرسال أي طلب.",
+  reconnect: "التحقق من الجلسة وإعادة الاتصال",
+  emptyConversation:
+    "لا توجد رسائل محفوظة في هذه الجلسة بعد. أرسل طلبًا للبدء.",
+  recentOnly:
+    "تُعرض الرسائل الحديثة. تصفّح المحادثة المحفوظة للاطلاع على العمل السابق.",
+  savedConversation: "تصفّح المحادثة المحفوظة",
+  returnLive: "العودة إلى المحادثة",
+  olderMessages: "رسائل أقدم",
+  newerMessages: "رسائل أحدث",
+  loadingHistory: "جارٍ تحميل الرسائل المحفوظة…",
+  historyEmpty: "لا توجد رسائل محفوظة في هذه الصفحة.",
+  you: "أنت",
+  assistant: "مساعد الذكاء الاصطناعي",
+  activity: "نشاط الجلسة",
+  starting: "جارٍ البدء",
+  idle: "جاهز",
+  running: "يعمل الآن",
+  awaiting_input: "بانتظار إدخال",
+  stopped: "متوقف",
+  failed: "فشل",
+  interrupted: "انقطعت الجلسة",
+  revoked: "انتهى الوصول",
+  closed: "مغلقة",
+  completed: "مكتمل",
+  currentAccessRequired:
+    "يلزم وصول سارٍ إلى الجلسة. المهمة وملفاتها المقدّمة منفصلة عن هذه المحادثة الخاصة.",
 }
 export function useExecutionCopy(): ExecutionCopy {
   return useLocale() === "ar" ? arabic : english

@@ -1,0 +1,4 @@
+Already up to date
+Done in 165ms using pnpm v11.9.0
+src/lib/business-execution/session.ts(73,5): error TS2322: Type 'string | null' is not assignable to type '"missing_client" | "missing_configuration" | "model_unavailable" | "profile_unavailable" | "tenant_execution_unavailable" | "native_boundary_unavailable" | "client_resume_unsupported" | "authority_changed" | "launch_uncertain" | "process_gone" | null'.
+  Type 'string' is not assignable to type '"missing_client" | "missing_configuration" | "model_unavailable" | "profile_unavailable" | "tenant_execution_unavailable" | "native_boundary_unavailable" | "client_resume_unsupported" | "authority_changed" | "launch_uncertain" | "process_gone" | null'.

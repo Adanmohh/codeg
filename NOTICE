@@ -1267,3 +1267,19 @@ TypeScript5.8.3, @types/node25.2.2, Vitest2.1.9, Testing Library16.3.2 and
 Lucide0.563.0 are installed API/type references, not dependency source ports.
 No AGPL/GPL, proprietary source or package is added. All prior notices and the
 original Apache LICENSE remain intact.
+
+Business E1 persistent conversation presentation (2026):
+src/components/business-execution/session-conversation.tsx reuses the lower
+Message/MessageContent exports in src/components/ai-elements/message.tsx
+(blob 2db4c106c1ac32268b0a7c49a5dc7fa4d6836192), RichComposer and business/ui.tsx
+at accepted Codeg-derived f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0.
+The bounded view cache in lib/business-execution/conversation.ts follows the
+snapshot/replay/disposal seam in lib/transport/web-event-stream.ts
+(blob fd8bd05f8d92d0f143d1980871643c5d3beca69e) at that same pin, adapting only
+the accepted E1 closed NDJSON/message/history DTOs. It does not copy/mount the
+global WebSocket or host conversation implementation. session.ts mirrors the
+accepted 3f164c2a989cd08a523e51f1e47559c15a48c0ef contract and the previously
+recorded 6195d9daf Rust DTO transcription. React19.2.4/@types-react19.2.13,
+TypeScript5.8.3, Vitest2.1.9 and Testing Library16.3.2 are read API references.
+No dependency implementation, AGPL/GPL or proprietary code is ported. Every
+earlier attribution section and the original Apache LICENSE are retained.

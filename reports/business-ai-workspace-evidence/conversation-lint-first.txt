@@ -1,0 +1,24 @@
+Already up to date
+Done in 200ms using pnpm v11.9.0
+
+/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/business-execution/session-conversation.tsx
+  158:6  warning  React Hook useEffect has a missing dependency: 'current.status'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
+  367:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/src/components/business-execution/session-conversation.tsx:367:5
+  365 |   useEffect(() => {
+  366 |     const owner = new AbortController()
+> 367 |     setPage(null)
+      |     ^^^^^^^ Avoid calling setState() directly within an effect
+  368 |     setError(null)
+  369 |     void client
+  370 |       .json(  react-hooks/set-state-in-effect
+
+✖ 2 problems (1 error, 1 warning)
+
