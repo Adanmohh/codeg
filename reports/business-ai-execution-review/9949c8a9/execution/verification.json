@@ -1,0 +1,61 @@
+{
+  "utc": "2026-09-09T15:49:44.373117+00:00",
+  "pin": "9949c8a9ad99ffb70232c05bf1c2ad243dcaf194",
+  "test_counts_independently_read": {
+    "execution_pagination_": 3,
+    "execution_admission_": 3,
+    "execution_authority_": 3,
+    "execution_assets_": 5
+  },
+  "total_passed": 14,
+  "all_four_exit_zero": true,
+  "start_threshold_gib": 10,
+  "stop_threshold_gib": 5.1,
+  "minimum_observed_gib": 14.818443298339844,
+  "historical_evidence": {
+    "argv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "42d5978b2fde232b8c066131407323955148ed71",
+      "--",
+      "reports/business-ai-execution-review/3773a027",
+      "reports/business-ai-execution-review/177d0f3e",
+      "reports/business-ai-execution-review/9949c8a9/review.md",
+      "reports/business-ai-execution-review/9949c8a9/source-ledger.json",
+      "reports/business-ai-execution-review/9949c8a9/owner-evidence-verified.json",
+      "reports/business-ai-execution-review/9949c8a9/digests.json"
+    ],
+    "exit": 0
+  },
+  "source_before_matches": 802,
+  "source_after_matches": 802,
+  "no_test_or_product_patch": true,
+  "no_extra_gate": true,
+  "scope": "internal correction/control tests; runtime consumers not accepted",
+  "publication_checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit": 2,
+      "reason": "Four unchanged raw Cargo logs have terminal blank lines."
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check",
+        "--",
+        "reports/review-business-ai-execution-implementation.md",
+        "reports/business-ai-execution-review/9949c8a9/execution",
+        ":!*.log"
+      ],
+      "exit": 0
+    }
+  ]
+}

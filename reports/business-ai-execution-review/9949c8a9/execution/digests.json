@@ -1,0 +1,17 @@
+{
+  "algorithm": "sha256",
+  "product": "9949c8a9ad99ffb70232c05bf1c2ad243dcaf194",
+  "paths_relative_to_worktree": {
+    "reports/business-ai-execution-review/9949c8a9/execution/execution_admission.log": "08b76881326689ab1a8d8e27c4873fa3d81687d771bbe66e439fe3ddd102ea5c",
+    "reports/business-ai-execution-review/9949c8a9/execution/execution_assets.log": "c02f405df19aaadb43fd0d927bf7b4fef15b9787d141523294773345cb882463",
+    "reports/business-ai-execution-review/9949c8a9/execution/execution_authority.log": "4fa32c613e1e716776f243115fe3f6de27f6a0a07470d74b0eaeec95f1b0092c",
+    "reports/business-ai-execution-review/9949c8a9/execution/execution_pagination.log": "6302cb53a22b189fdd22d727c0b30f8527f71b02ac4fea5a1d54b894d824e755",
+    "reports/business-ai-execution-review/9949c8a9/execution/results.json": "d95769a44ae82ead0e64bc41a694d6b3578db53bb22f8866146b8cd6229965da",
+    "reports/business-ai-execution-review/9949c8a9/execution/review.md": "d8f8d2a4de0c931c14f2486c161520e61f79a5e76b5aae4263753dc9ad8c2294",
+    "reports/business-ai-execution-review/9949c8a9/execution/source-after.json": "c9df7a556864c4544b3ef206a25431aa725bc60f90e207964005172893a2786a",
+    "reports/business-ai-execution-review/9949c8a9/execution/source-before.json": "57bee6118d1703fd07b167b575bd1b5bbafa92f7d11502cf5b5a6b7a93469b69",
+    "reports/business-ai-execution-review/9949c8a9/execution/verification.json": "edaa7705eb16a0877f00d252471f0a710be3a1fbb766e8da00c9143017ffd4af",
+    "reports/review-business-ai-execution-implementation.md": "483b1544a9a7444fa09d4e580bbf9f91401523629cdf35e7ec1b18405dd8f9f0"
+  },
+  "note": "Independent execution evidence. Original 3773/177/source-only 9949 evidence remains frozen at prior commits. This index excludes itself."
+}
