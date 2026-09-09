@@ -57,6 +57,7 @@ mod m20260908_000010_business_tasks;
 mod m20260908_000011_business_intake;
 mod m20260908_000012_business_tenancy;
 mod m20260909_000013_business_intake_epochs;
+mod m20260909_000014_business_execution;
 pub struct Migrator;
 
 #[async_trait::async_trait]
@@ -120,6 +121,7 @@ impl MigratorTrait for Migrator {
             Box::new(m20260908_000011_business_intake::Migration),
             Box::new(m20260908_000012_business_tenancy::Migration),
             Box::new(m20260909_000013_business_intake_epochs::Migration),
+            Box::new(m20260909_000014_business_execution::Migration),
         ]
     }
 }

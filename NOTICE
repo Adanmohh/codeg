@@ -1183,3 +1183,39 @@ and installed @types/node25.2.2 IncomingHttpHeaders are API grounding; official
 Node doc/api/http.md was read at cdc1b38d40cb567b7ad0b39c86addf830a0af0ae.
 No dependency implementation or production authority is copied or changed.
 Original LICENSE and all previous NOTICE sections remain intact.
+
+Business AI execution, sessions and managed task files (2026):
+Reuses Apache-2.0 Codeg at Adanmohh/codeg
+9e61fe67261219921e0a6a860c45f6e08ea99c21, following upstream v0.30.4
+6f6bd648b206412644842a98d9ffeebf57292bed:
+src-tauri/src/db/migration/m20260908_000012_business_tenancy.rs
+(a305a682bbf55e750a5d5156ac0aa4695aac08c1),
+src-tauri/src/db/migration/m20260908_000010_business_tasks.rs
+(3cb107d5bc0ab375e1b82fc64c7fefc82396b318),
+src-tauri/src/business_tasks/{store,types,entity,policy}.rs and
+src-tauri/src/business_identity/{mod,tests/tenancy}.rs.
+Migration000014 ports the pinned-connection, cancellation-safe FK restoration
+and atomic marker/receipt pattern, retaining original task deliverable columns,
+identity and history. New execution DTOs/storage are accepted-contract glue;
+tests reuse synthetic SQLite and task authorization patterns. Installed
+SeaORM1.1.19, SQLx0.8.6 and serde1.0.228 are API references, not vendored ports.
+Original Codeg copyright, Apache-2.0 LICENSE and all prior notices remain.
+
+The E1 admission and file prerequisites additionally reuse Apache-2.0 Codeg:
+src-tauri/src/web/handlers/upload_jail.rs at9e61fe67261219921e0a6a860c45f6e08ea99c21
+(66621d1bccf9fe1a8080eea4a38864e90635e3df): anchored open/openat/O_NOFOLLOW,
+exclusive private creation and original synthetic symlink test patterns, adapted
+in business_execution/files.rs and file_tests.rs. Source read/hash/identity/link
+checks and retained-object recovery are new application glue, not OS isolation.
+At accepted B c8453a48d441f40eb47f9c9af856235b4f9986e5:
+src-tauri/src/business_intake/records.rs (b205a8738133be163c51e921da401694e94ccff7),
+business_intake/error.rs (7dc266736152322b5c54c4c6388e902a7672a0a9),
+business_intake/common.rs (9f71cf5cf886b77a9b1389cceac9aaadc87efa8e),
+business_identity/platform.rs (167b9f682cb9b2a02b2bd48e4302436164f2dcd2), and
+business_tasks/store.rs (4d45912b748f2083457ccb6ab075b335d8ec2ac2) ground the
+private records, safe errors, durable receipts, real two-tenant fixtures and
+current task/identity writer calls in business_execution. No token/hash primitive
+or authority constructor is duplicated. Paths after the first are relative to
+src-tauri/src/. Rust1.98.0 standard-library source at
+88d9e12ae178fab0fb5cc050a94da85685d449ea (library/std/src/{fs,os/unix/fs}.rs),
+installed libc0.2.180, sha2 0.10.9/digest0.10.7 and tempfile3.24.0 are API references.
