@@ -1,0 +1,39 @@
+{
+  "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+  "journal": "/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl",
+  "live_records": [
+    {
+      "line": 26209,
+      "time": 1788948632,
+      "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+      "event": "PreToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    },
+    {
+      "line": 26186,
+      "time": 1788948562,
+      "session_id": "01a084ee-129a-7561-9f10-64266115e759",
+      "event": "PostToolUse",
+      "tool": "Bash",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit": 0,
+      "context_emitted": false
+    }
+  ],
+  "session_file": "/Users/mohamedadan/.codex/sessions/2026/09/09/rollout-2026-09-09T09-49-49-01a084ee-129a-7561-9f10-64266115e759.jsonl",
+  "turn_context": {
+    "line": 1800,
+    "timestamp": "2026-09-09T10:05:49.054Z",
+    "model": "gpt-6-astra",
+    "effort": "max",
+    "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+    "approval_policy": "never",
+    "sandbox_policy": {
+      "type": "danger-full-access"
+    }
+  },
+  "evidence_scope": "Observed live journal events and actual turn context; no compliance inference from configuration alone."
+}
