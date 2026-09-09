@@ -2,6 +2,26 @@
 
 ## Current integration and worker state
 
+PR29 now contains a newer product correction at
+`60d600db0f224d44ff191490ab79bc25530ba959`: after source access expires,
+successful refresh could leave an initially unprepared candidate without editor
+fields. Root read the exact candidate diff/report through the published GitHub
+head. Owner reports33 passing component cases, typecheck and scoped ESLint;
+corrected browser acceptance is still pending. The independent IUI-1 closure at
+1974 remains valid for that earlier source and does not certify this new change.
+Rebrand is authorized one separate export and fixed synthetic proxy on confirmed
+free4355, using unchanged4351;4354 and the user-inspected window stay intact.
+Approvals will review the bounded source/tests after its concise AI authority
+report. No new Rust target, native build or fixture restart is authorized by this
+frontend window. Disk snapshot8.6Gi free; builds remain serialized.
+
+Approvals has read initial AI d1 and relayed concrete lineage, human-attribution,
+launch-recovery and immutable-publication prerequisites to tickets. Root requested
+the smallest coherent E1 DTO checkpoint promptly for implementation dispatch;
+tenant execution and connected-account prerequisites must stay explicit without
+turning into another broad survey. Existing three workers remain active on Astra;
+root writes no product code.
+
 Root read the complete early AI contract/report at
 `d1f22f85a22d844660df99a770daee39df3e371f`, verified through `gh api`.
 Its task → persistent configured session → managed immutable asset versions →
