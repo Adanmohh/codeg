@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+AI contract clarification `f454db7554531feb6fd8e9fd5c7949e7b7fa777e` is read;
+root matched SHA256 `1872370aca8b920e66001632c06e661de776e6c62eb5569ee77b4a0183daf925`.
+Its8-line delta gives task deliverables explicit selected-version references
+(historical text returns an empty list) and fixes the submit response envelope.
+This addresses the separate human reviewer's file-discovery/reload gap without
+requiring private operator asset listing. Initial reviewer's four E1 requirements
+are substantially addressed; final consistency still covers public metadata
+redaction, event/content framing and explicit E1/E2/E3 availability distinctions.
+Internal implementation dispatch remains active; no new runtime gate is claimed.
+
 **E1 internal implementation dispatched.** Root read the complete474-line contract
 and report at `f2af30f73e38cd929b993026df8600fde32715d6` (draft PR31), verifying
 SHA256 `8cfd910e219758cf0902be8d90acb28c68dac24198facac7efd547869e58fd2e`.
