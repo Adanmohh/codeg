@@ -18,6 +18,11 @@ byte for byte, followed by both exact E1 sections. All seven E1 files remain
 identical to f9186504; LICENSE, both dependency locks, package/configuration and
 protected documents match f988700d. Verification exits0; the integration evidence
 is `business-ai-workspace-evidence/accepted-main-integration.txt`.
+The completed merge is pushed as `1c44d5a86d7dfa59558eb933ec1558214b61ae27`.
+Normal post-merge `pnpm exec tsc --noEmit --incremental false` exits2 with exactly
+the three known E1 errors, no archive or additional integration errors; raw output
+is `business-ai-workspace-evidence/accepted-main-typecheck.txt`. No broad suite,
+export, Rust target or native build was repeated.
 
 This preserved checkpoint retains three source type errors and 40 formatting
 diagnostics; 18 stream tests pass. Root reports canonical alias candidate
@@ -39,6 +44,13 @@ Compiling backend DTOs at `6195d9daf`, `src-tauri/src/business_execution/types.r
 and their additive contract change were read completely. These close private
 asset list/get/versions and prompt result shapes. Local types reflect them;
 the known response-only previewReason contract remains null/unavailable.
+The latest owner checkpoint is `3773a027a8d580bd9bac1808efdb718ae6f9e135`,
+reported through `79703eeb`. Actual gh-api contents responses at both 6195d9daf
+and 3773a027a identify the same types.rs blob
+`47ca21b002c9c1efb898e38e0c920e9ca3456c70`, 11207 bytes. Its agreed DTOs are
+unchanged. The owner reports durable admission/private bytes ready internally;
+production routes, runner and managed publication remain in progress. This is
+not an enabled-controls or fixture handoff. No unaccepted backend is merged here.
 
 ## Shared shell dependency and preserved handoff
 
@@ -76,7 +88,7 @@ No AGPL/GPL, proprietary Edublend or dependency implementation is copied.
 
 | Existing source | Exact reuse / authority boundary |
 | --- | --- |
-| `src/components/business/workbench.tsx`, blob `8d46bb7a9ada8d0e25e89da7dc00a03eff8b9f0b` | PR29 dependency: keyed mounted `WorkSurface` content and split/stack geometry. Add task/session/library surfaces after merge; closing a session tab detaches, never stops a process. |
+| `src/components/business/workbench.tsx`, blob `8d46bb7a9ada8d0e25e89da7dc00a03eff8b9f0b` | Accepted keyed mounted `WorkSurface` content and split/stack geometry. Append task/session/library surfaces here; closing a session tab detaches, never stops a process. |
 | `src/lib/business/client.ts` and accepted business session | One closure owns the bearer, clears it and aborts pending work on disposal; explicit HTTP and native branches. E1 must extend this lifecycle, never read legacy token storage or infer native operator authority from a personal credential. |
 | `src/components/chat/composer/rich-composer.tsx`, blob `7d1a646bc1bf0ad0692dd36974f4799f431341f8` | Reusable editor with explicit text/submit/focus callbacks. Omit host reference search and arbitrary attachments; prompt inputs are exact closed task/asset references. Keep unsent text in memory. |
 | `chat/chat-input.tsx`, blob `a8ce461e35edb6bbb5ef74fa4faec3def6bf938f`; `chat/message-input.tsx`, blob `0e228f1e92e297cea0a3b4882c65e5997f578baf` | Existing composition/button behavior is guidance. Do not mount the full wrapper: skills/file/session reference queries and optional localStorage drafts have different authority. `useShortcutSettings` itself is local personal storage, not a host API. |
@@ -122,10 +134,12 @@ no calendar, connector, launch or completion placeholder counts as delivered AI.
 Complete AGENTS/FOUNDING/ORCHESTRATOR/DECISIONS/STATUS and the accepted E1 contract
 were read, with the accepted-main STATUS amendment after integration. Separate
 `cat node_modules/react/package.json` and `cat src-tauri/Cargo.toml` preceded work.
-Live audit `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl` records
+Historical audit `/Users/mohamedadan/.codex/hooks/ops-docs-first-audit.jsonl` records
 PreToolUse and PostToolUse for this worktree/session
 `01a084ee-12a8-7833-ace9-f3f4985ba926`, timestamps 1788950051/1788950059,
-exit0. Hooks remain enabled.
+exit0. These timestamps do not establish a current generic Pre/Post journal.
+Hooks remain enabled; current admitted behavior and signed-reader limits are
+recorded separately below.
 
 Offline code-context guide exits0 using the existing rag-skills venv and
 HF_HUB_OFFLINE=1. Relevant retrieved rules: strict TypeScript and gating data
@@ -137,18 +151,18 @@ React19.2.4 and TypeScript5.8.3 `lib.dom.d.ts` ReadableStream/TextDecoder/Subtle
 URL declarations are read. Existing business client/session tests and the Codeg
 event stream source are read before adapting their seams. No new dependency.
 
-The first product checkpoint adds only isolated closed E1 wire types. No existing
-client, session, shell, task type, backend or UI route is changed. Full
-`pnpm exec tsc --noEmit` exits2 on nine unchanged reviewer-archive relative imports
+The first product checkpoint, 2bade5c4, added only isolated closed E1 wire types.
+It changed no existing client, session, shell, task type, backend or UI route.
+Its full `pnpm exec tsc --noEmit` exited2 on nine reviewer-archive relative imports
 under `reports/business-integration-review/ui-{191f69b3,a58c004c,dc14e83b}`; exact
 diagnostics are retained in `business-ai-workspace-evidence/initial-typecheck.txt`.
-The normal project configuration and imported evidence remain untouched.
+At that point the normal project configuration and imported evidence were untouched.
 
 The separate source-only config checks every `src` TS/TSX file and its tests:
 `pnpm exec tsc --noEmit --project reports/business-ai-workspace-evidence/tsconfig.source.json`
-exits0; scoped E1 types ESLint exits0. Logs are retained beside that config.
-This is not a full-command pass. Pure type transcription has no behavioral test
-claim; parser/client/component regressions follow their implementation.
+exited0 at 2bade5c4; scoped E1 types ESLint also exited0 then. These historical
+results do not cover the later seven-file WIP. Pure type transcription has no
+behavioral test claim; parser/client/component regressions follow implementation.
 
 Tickets' additive private versions/list/get and successful prompt envelopes are
 grounded in the compiling `6195d9daf` transcription. Public selected-version
@@ -156,19 +170,18 @@ projection remains distinct. Stop/write/resize reply wrappers will likewise use
 the actual backend transcription, not guesses.
 
 No actual backend operation, browser flow or provider/native runtime pass is
-claimed. Next: framing/byte reader, client/component glue and meaningful synthetic
-tests with small checkpoints. Actual
-same-workspace CLI/Design Studio and E1 ACP/PTY fixtures wait for the shared shell
-acceptance plus coordinated compiling backend/port handoff. Root owns integration
-and final acceptance.
+claimed. Framing/byte-reader WIP is preserved; corrected client/component glue and
+meaningful synthetic tests follow supported edit activation. Actual same-workspace
+CLI/Design Studio and E1 ACP/PTY checks wait for coordinated compiling backend and
+fixture handoff. Root owns integration and final acceptance.
 
 ## Current local checkpoint and execution block
 
 Resume after the owner's global-hook checkpoint `f5554c92`: updated global
 AGENTS and the complete docs-first.md preface were read. This worker keeps the
 assigned Astra/max configuration and never/full-access policy; no model or hook
-configuration was changed. Actual Git status and `gh api` now exit0. Git HEAD is
-`2bade5c42b435afb9a8640e5bb319cb55cef2aab`. The GitHub commit/contents responses
+configuration was changed. Actual Git status and `gh api` exit0; the pushed
+integration head is recorded above. The GitHub commit/contents responses
 resolve the backend DTO pin to `6195d9daf049b7cd16615e35b87d08c7f2870bf0`; the
 returned Rust types were read completely. The live signed Vitest2.1.9 reader also
 returns successful correlated evidence under docs-first-v2 for this worktree.
@@ -204,43 +217,19 @@ The archive-discovery correction below is separate from those source errors. Off
 retrieval was repeated successfully; installed-doc corpus retrieval still exits3
 because rebrand.db is absent. No corpus/dependency/global mutation was made.
 
-The following paragraph records the earlier blanket-denial period, now superseded
-for Git/tests by the successful commands above; the alias edit denial is current.
+The preserved seven-file WIP includes the closed injected HTTP client, bounded
+UTF-8 NDJSON decoder, abort/detach reader, inert content handles and synthetic
+stream tests. It is committed at f9186504, unchanged by integration. No existing
+client/shell registration or runtime fixture is wired. The stream tests are not
+backend or browser acceptance.
 
-After the pushed type checkpoint, isolated `client.ts`, `content.ts`, `frames.ts`,
-`protocol.ts`, `reader.ts` and `stream.test.ts` were added under
-`src/lib/business-execution/`. They are uncommitted and unvalidated. They implement
-closed injected HTTP operations, byte-bounded UTF-8 NDJSON validation, abort/
-detach ownership, bounded immutable size/hash checks and disposable inert Blob
-URLs. No existing client/shell registration or runtime fixture is wired.
-The focused tests are synthetic byte streams, not backend or browser acceptance.
-
-During this work the active global hook changed to docs-first-v2. Supported
-individual cat/sed reads work, and its signed installed-doc reader successfully
-read Vitest2.1.9 `dist/index.d.ts` ranges1–80,180–198,550–575. Normal source/type
-reads also covered the mock interfaces at the installed @vitest/spy2.1.9.
-Nevertheless, `pnpm exec vitest run src/lib/business-execution/stream.test.ts`
-is rejected before execution as `shell_unproven_use_patch_or_reader`.
-`git rev-parse HEAD` receives the same rejection. A narrow correction of the test's
-JSON.stringify callback receives `package_unresolved` despite the signed reads.
-The focused retry after an additional successful signed TypeScript5.8.3
-`lib.es5.d.ts` JSON/stringify declaration read (1150–1187) receives the same
-rejection. Separate `git status --short --branch` is also rejected as
-`shell_unproven_use_patch_or_reader`; current Git state cannot be freshly asserted.
-That correction has not applied, and the new test must not be called compiling.
-Earlier multi-command/regex reads were rejected as `shell_unresolved`; separate
-supported reads succeeded. One report patch used stale context and was rejected
-without changes before this corrected patch.
-
-Read-only inspection of the active launcher and its documented reader entry
-identified the supported signed-reader command; no hook/config/state was modified
-or bypassed. The supported validation/Git runner is requested from root while
-safe source reading continues. No alternate execution path, new target, install,
-fixture change or passing-test claim is used to work around these denials.
-Initial source-only typecheck/lint results above apply only to pushed `2bade5c4`;
-the normal full typecheck limitation remains separate. New local logs using .log
-are ignored by the inherited rule and still need explicit owned-artifact staging
-when commit execution is available. PR29 stays frozen at96e0bcc1/product60d.
+Historical blanket command denials, including shell_unproven_use_patch_or_reader
+for Git/tests, are superseded by the admitted commands above. The supported alias
+patch still has not applied. Signed Vitest2.1.9 declaration reads and
+TypeScript5.8.3 lib.es5.d.ts JSON.stringify at1150–1187 did not repair the installed
+alias resolver. No further denied-patch retry is made while activation is pending.
+Initial .log files were ignored by the inherited rule; only the explicitly named
+committed .txt evidence is treated as committed raw validation output.
 
 ## Bounded presentation follow-up
 
@@ -347,3 +336,54 @@ member selected-file reads without private sibling/session calls; same-scope
 EN/AR and narrow-pane draft retention. Actual CLI ACP/PTY/generated-file flows
 wait for a coordinated backend fixture. No current browser, export, process or
 fixture was mutated for this planning/checkpoint work.
+
+## Accepted-main wiring checkpoint
+
+The merged page, client, full BusinessWorkspace and full BusinessWorkbench were
+read at accepted `f988700db6975364d35b80125af12bfe2d5baac3`. This resolves the
+earlier shell dependency without importing an unaccepted implementation.
+
+| Accepted source and Git blob | Concrete E1 glue point |
+| --- | --- |
+| src/app/business/page.tsx — b260d42ab9ac3d59b4c8efa48ac6d8ad01ad7b94 | The current connection generation owns the private subtree. Organization/epoch/member identity drift closes the client; membership revision keys the workspace. E1 cleanup must also run on that keyed remount, not only when the bearer closes. Locale and pane visibility remain outside this lifetime key. |
+| src/lib/business/client.ts — db86ebdd13fec0a3284c8f85b49c22a60d0b31df | Instantiate the closed E1 adapter inside this credential closure. Parent close/401 must abort child attachments and revoke content handles immediately; a disposed workspace must not reuse its old child adapter. Expose no bearer getter or generic fetch. Preserve the browser-only personal connection restriction. Native E1 requires actual dedicated commands after backend handoff. |
+| src/components/business/workspace.tsx — 4dbaa30b43037f96cf6cf5114d8712d8763dce2e | Append task-scoped session/file surfaces to the existing surfaces collection. The original-operator capability gates private profile/session loading, independently from public selected-deliverable reads. Owner role and engineering domain do not imply execution authority. Existing task list/board/table, Sources and tenant appearance remain in the same shell. |
+| src/components/business/workbench.tsx — 8d46bb7a9ada8d0e25e89da7dc00a03eff8b9f0b | Reuse stable keyed surfaces, render(visible), close callbacks and existing split/stack layout. A visibility change keeps the prompt mounted. The E1 editor owns its pending/dirty close guard; removing a surface detaches transport without stop/kill. No second tab store or layout implementation is needed. |
+| src/components/business/task-detail.tsx — e912904115c0ec6f3697cb735e74276ee1a51af5 | Inspected entry/editor/close/revision and SavedTask render seams. Append selected version cards to the existing deliverable presentation when task-owned assets arrive. Keep current CAS adoption and explicit human review; an imported private asset or confirmed prompt is not a reviewed deliverable. |
+
+The imported task types remain blob751813ba7d7abea191885e95d3690c4a4db5f9e2.
+Deliverable.assets is not yet in this accepted task source; the backend owner is
+implementing it. The frontend must consume its published selected refs and []
+history defaults when handed off, without substituting private versions/list.
+
+Source review of the preserved E1 WIP identifies two further bounded checks before
+wiring: capture event binding and expected content metadata before asynchronous
+reads, so caller mutation cannot change the object being verified; and distinguish
+local transport abort from a confirmed durable cancellation. A lost mutation
+response requires its original operation receipt, never blind replay. These are
+pending WIP hardening items, not accepted-main regressions. JSON result bodies
+are currently byte-bounded and statically typed; only event frames and content
+headers/bytes have the explicit runtime validators in this checkpoint.
+
+After supported edit activation, the focused gate covers parent/client closure,
+keyed scope disposal and no late delivery; unchanged draft through locale and
+visible-pane changes; exact receipt recovery without reissuing a prompt;
+immutable event/content selection during a held response; member selected-file
+reads with zero private session/asset-list calls; and terminal queue disposal
+before later buffered input can be sent after uncertainty. Native controls and
+real ACP/PTY/content transport remain separately coordinated runtime checks.
+
+The offline guide was rerun successfully for these seams. Applicable rules were
+"Gate optional module data loading as well as visible controls" and "Atomic
+per-task staging"; cross-project delegation recommendations remain overridden
+by the owner's no-worker instruction. Current admitted Git, gh-api, normal-tsc
+and native prose patches were observed; there is no new generic Pre/Post journal
+claim. A context-mismatched no-op report patch was rejected without changes;
+the actual report tail was reread before this distinct prose amendment. The
+blocked TypeScript patch has not been retried.
+
+Root reports 2.9 GiB available. No export/build/fixture window is requested at
+this checkpoint. The existing user-inspected sessions, exports and paused report
+remain untouched. The next source correction still depends on actual activation
+of the canonical alias resolver, and operational UI depends on the backend's
+enabled-route handoff. PR33 remains draft and is not ready for runtime acceptance.
