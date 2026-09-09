@@ -1,0 +1,155 @@
+- generic:
+  - alert
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - complementary:
+            - generic:
+              - generic:
+                - generic:
+                  - paragraph: Hafidh
+                  - paragraph: Ops Desk
+            - generic:
+              - paragraph: Workspace
+              - paragraph: Intake worker synthetic
+            - navigation:
+              - button: My work
+              - button: Shared work
+              - button: Review
+              - button: Sources
+              - button: People & agents
+              - button: Workspace appearance
+            - generic:
+              - generic:
+                - combobox
+                - combobox
+              - generic:
+                - generic:
+                  - generic: W
+                  - generic: worker owner
+                - paragraph: Owner · Connected
+                - button: Disconnect
+          - generic:
+            - generic:
+              - generic:
+                - tablist:
+                  - tab:
+                    - generic: My work
+                  - tab [selected]:
+                    - generic: Sources
+                - button
+              - generic:
+                - tabpanel:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - banner:
+                          - generic:
+                            - paragraph: Sources
+                            - heading [level=1]: Turn what you heard into clear work.
+                            - paragraph: Read the source, choose the exact passage, then decide what belongs in shared work.
+                          - button: Set up a source
+                        - generic:
+                          - generic:
+                            - paragraph: Private source review
+                            - paragraph: Only people with explicit source access can read these passages and drafts. Task access is separate.
+                        - region:
+                          - generic:
+                            - generic:
+                              - text: Source connection
+                              - combobox
+                            - button: Refresh
+  - dialog [active] [ref=e197]:
+    - generic [ref=e145]:
+      - generic [ref=e146]:
+        - heading "Review access and setup" [level=2] [ref=e198]
+        - paragraph [ref=e148]: Review access and setup
+      - button "Close" [ref=e149]
+    - paragraph [ref=e150]: A new connection is disabled and grants nobody access, including its owner. Add explicit grants before enabling source use.
+    - generic [ref=e151]:
+      - group [ref=e152]:
+        - generic [ref=e153]:
+          - generic [ref=e154]: Connection name
+          - textbox "Connection name" [ref=e155]: Worker meeting review
+        - generic [ref=e199]:
+          - generic [ref=e200]:
+            - term [ref=e201]: Source type
+            - definition [ref=e202]: Fireflies meetings
+          - generic [ref=e203]:
+            - term [ref=e204]: Area of work
+            - definition [ref=e205]: Feedback
+          - generic [ref=e206]:
+            - term [ref=e207]: Source account owner
+            - definition [ref=e208]: worker owner
+          - generic [ref=e209]:
+            - term [ref=e210]: Status
+            - definition [ref=e211]: Disabled · Revision 1
+        - generic [ref=e167]:
+          - generic [ref=e168]: Replace stored Fireflies key (optional)
+          - textbox "Replace stored Fireflies key (optional)" [ref=e212]
+          - paragraph [ref=e170]: Write-only. Stored by the protected backend; never shown again here.
+        - group "Allowed task destinations" [ref=e171]:
+          - paragraph [ref=e173]: These areas are a ceiling. Each person also needs an explicit grant and current task permissions.
+          - generic [ref=e174]:
+            - generic [ref=e175] [cursor=pointer]:
+              - checkbox "Marketing" [ref=e176]
+              - generic [ref=e177]: Marketing
+            - generic [ref=e178] [cursor=pointer]:
+              - checkbox "Channels" [ref=e179]
+              - generic [ref=e180]: Channels
+            - generic [ref=e181] [cursor=pointer]:
+              - checkbox "Ads" [ref=e182]
+              - generic [ref=e183]: Ads
+            - generic [ref=e184] [cursor=pointer]:
+              - checkbox "Website" [ref=e185]
+              - generic [ref=e186]: Website
+            - generic [ref=e187] [cursor=pointer]:
+              - checkbox "Feedback" [checked] [ref=e188]
+              - generic [ref=e189]: Feedback
+            - generic [ref=e190] [cursor=pointer]:
+              - checkbox "Engineering" [ref=e191]
+              - generic [ref=e192]: Engineering
+        - generic [ref=e193] [cursor=pointer]:
+          - checkbox "I allow explicitly accepted task text to remain in the chosen work area, even if source access is later removed." [checked] [ref=e194]
+          - generic [ref=e195]: I allow explicitly accepted task text to remain in the chosen work area, even if source access is later removed.
+      - generic [ref=e196]:
+        - button "Save changes" [ref=e213]
+        - button "Enable connection" [ref=e214]
+        - button "Revalidate access and setup" [ref=e215]
+        - button "Refresh" [ref=e216]
+      - paragraph [ref=e217]: Recheck the same account owner and protected configuration. Source records still require a fresh read afterwards.
+    - region "People with source access" [ref=e218]:
+      - heading "People with source access" [level=2] [ref=e219]
+      - paragraph [ref=e220]: Nobody has an explicit grant yet.
+      - list
+      - generic [ref=e221]:
+        - group [ref=e222]:
+          - generic [ref=e223]:
+            - generic [ref=e224]: Person receiving access
+            - combobox "Person receiving access" [ref=e225]:
+              - option "Person receiving access" [selected]
+              - option "worker manager"
+              - option "worker owner"
+              - option "worker viewer"
+          - generic [ref=e226] [cursor=pointer]:
+            - checkbox "Read retained and newly imported source records" [ref=e227]
+            - generic [ref=e228]: Read retained and newly imported source records
+          - generic [ref=e229]:
+            - checkbox "Import and refresh source records" [disabled] [ref=e230]
+            - generic [ref=e231]: Import and refresh source records
+          - generic [ref=e232]:
+            - checkbox "Prepare and decide on source drafts" [disabled] [ref=e233]
+            - generic [ref=e234]: Prepare and decide on source drafts
+          - group "Allowed task destinations" [ref=e235]:
+            - generic [ref=e237]:
+              - checkbox "Feedback" [disabled] [ref=e238]
+              - generic [ref=e239]: Feedback
+          - generic [ref=e240]:
+            - generic [ref=e241]: Expires at (UTC, optional)
+            - textbox "Expires at (UTC, optional)" [ref=e242]
+            - paragraph [ref=e243]: An exact UTC instant, for example 2026-12-31T18:00:00Z. Leave empty for no expiry.
+        - generic [ref=e244] [cursor=pointer]:
+          - checkbox "I am granting this person access through this exact connection to all retained historical versions, including those imported before this grant, and to current and future imports." [ref=e245]
+          - generic [ref=e246]: I am granting this person access through this exact connection to all retained historical versions, including those imported before this grant, and to current and future imports.
+        - button "Save explicit access" [disabled]

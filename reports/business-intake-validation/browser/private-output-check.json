@@ -1,0 +1,11 @@
+{
+  "namespace": "worker",
+  "filesChecked": 17,
+  "credentialValuesFound": false,
+  "checkedKinds": [
+    "member tokens",
+    "synthetic Fireflies key",
+    "namespace control token"
+  ],
+  "browserStateExported": false
+}

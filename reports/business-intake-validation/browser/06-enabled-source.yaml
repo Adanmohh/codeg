@@ -1,0 +1,65 @@
+- generic [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e50]:
+    - complementary [ref=e51]:
+      - generic [ref=e58]:
+        - paragraph [ref=e59]: Hafidh
+        - paragraph [ref=e60]: Ops Desk
+      - generic [ref=e61]:
+        - paragraph [ref=e62]: Workspace
+        - paragraph [ref=e63]: Intake worker synthetic
+      - navigation "Workspace" [ref=e64]:
+        - button "My work" [ref=e65]
+        - button "Shared work" [ref=e69]
+        - button "Review" [ref=e75]
+        - button "Sources" [ref=e79]
+        - button "People & agents" [ref=e82]
+        - button "Workspace appearance" [ref=e88]
+      - generic [ref=e92]:
+        - generic [ref=e93]:
+          - combobox "Language" [ref=e94]:
+            - option "English" [selected]
+            - option "简体中文"
+            - option "繁體中文"
+            - option "日本語"
+            - option "한국어"
+            - option "Español"
+            - option "Deutsch"
+            - option "Français"
+            - option "Português"
+            - option "العربية"
+          - combobox "Appearance" [ref=e95]:
+            - option "Device appearance" [selected]
+            - option "Light"
+            - option "Dark"
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: W
+            - generic [ref=e99]: worker owner
+          - paragraph [ref=e100]: Owner · Connected
+          - button "Disconnect" [ref=e101]
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - tablist "Open work" [ref=e105]:
+          - tab "My work" [ref=e106]
+          - tab "Sources" [selected] [ref=e111]
+        - button "Show side by side" [ref=e115]
+      - tabpanel "Sources" [ref=e119]:
+        - generic [ref=e122]:
+          - banner [ref=e123]:
+            - generic [ref=e124]:
+              - paragraph [ref=e125]: Sources
+              - heading "Turn what you heard into clear work." [level=1] [ref=e126]
+              - paragraph [ref=e127]: Read the source, choose the exact passage, then decide what belongs in shared work.
+            - button "Set up a source" [active] [ref=e128]
+          - generic [ref=e134]:
+            - paragraph [ref=e135]: Private source review
+            - paragraph [ref=e136]: Only people with explicit source access can read these passages and drafts. Task access is separate.
+          - region "Source connections" [ref=e258]:
+            - generic [ref=e259]:
+              - generic [ref=e260]:
+                - text: Source connection
+                - combobox "Source connection" [ref=e261]:
+                  - option "Source connection" [selected]
+                  - option "Worker meeting review"
+              - button "Refresh" [ref=e262]

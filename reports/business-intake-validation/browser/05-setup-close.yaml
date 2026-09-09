@@ -1,0 +1,168 @@
+- generic:
+  - alert
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - complementary:
+            - generic:
+              - generic:
+                - generic:
+                  - paragraph: Hafidh
+                  - paragraph: Ops Desk
+            - generic:
+              - paragraph: Workspace
+              - paragraph: Intake worker synthetic
+            - navigation:
+              - button: My work
+              - button: Shared work
+              - button: Review
+              - button: Sources
+              - button: People & agents
+              - button: Workspace appearance
+            - generic:
+              - generic:
+                - combobox
+                - combobox
+              - generic:
+                - generic:
+                  - generic: W
+                  - generic: worker owner
+                - paragraph: Owner · Connected
+                - button: Disconnect
+          - generic:
+            - generic:
+              - generic:
+                - tablist:
+                  - tab:
+                    - generic: My work
+                  - tab [selected]:
+                    - generic: Sources
+                - button
+              - generic:
+                - tabpanel:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - banner:
+                          - generic:
+                            - paragraph: Sources
+                            - heading [level=1]: Turn what you heard into clear work.
+                            - paragraph: Read the source, choose the exact passage, then decide what belongs in shared work.
+                          - button: Set up a source
+                        - generic:
+                          - generic:
+                            - paragraph: Private source review
+                            - paragraph: Only people with explicit source access can read these passages and drafts. Task access is separate.
+                        - region:
+                          - generic:
+                            - generic:
+                              - text: Source connection
+                              - combobox
+                            - button: Refresh
+  - generic:
+    - dialog:
+      - generic:
+        - generic:
+          - heading [level=2]: Review access and setup
+          - paragraph: Review access and setup
+        - button
+      - paragraph: A new connection is disabled and grants nobody access, including its owner. Add explicit grants before enabling source use.
+      - generic:
+        - group:
+          - generic:
+            - generic: Connection name
+            - textbox: Worker meeting review
+          - generic:
+            - generic:
+              - term: Source type
+              - definition: Fireflies meetings
+            - generic:
+              - term: Area of work
+              - definition: Feedback
+            - generic:
+              - term: Source account owner
+              - definition: worker owner
+            - generic:
+              - term: Status
+              - definition: Enabled · Revision 3
+          - generic:
+            - generic: Replace stored Fireflies key (optional)
+            - textbox
+            - paragraph: Write-only. Stored by the protected backend; never shown again here.
+          - group:
+            - generic: Allowed task destinations
+            - paragraph: These areas are a ceiling. Each person also needs an explicit grant and current task permissions.
+            - generic:
+              - generic:
+                - checkbox
+                - generic: Marketing
+              - generic:
+                - checkbox
+                - generic: Channels
+              - generic:
+                - checkbox
+                - generic: Ads
+              - generic:
+                - checkbox
+                - generic: Website
+              - generic:
+                - checkbox [checked]
+                - generic: Feedback
+              - generic:
+                - checkbox
+                - generic: Engineering
+          - generic:
+            - checkbox [checked]
+            - generic: I allow explicitly accepted task text to remain in the chosen work area, even if source access is later removed.
+        - generic:
+          - button: Save changes
+          - button: Disable connection
+          - button: Revalidate access and setup
+          - button: Refresh
+        - paragraph: Recheck the same account owner and protected configuration. Source records still require a fresh read afterwards.
+      - region:
+        - heading [level=2]: People with source access
+        - list:
+          - listitem:
+            - generic:
+              - paragraph: worker owner
+              - paragraph: Active grant · Revision 1
+            - button: Revoke source access
+        - generic:
+          - group:
+            - generic:
+              - generic: Person receiving access
+              - combobox
+            - generic:
+              - checkbox [checked]
+              - generic: Read retained and newly imported source records
+            - generic:
+              - checkbox [checked]
+              - generic: Import and refresh source records
+            - generic:
+              - checkbox [checked]
+              - generic: Prepare and decide on source drafts
+            - group:
+              - generic: Allowed task destinations
+              - generic:
+                - checkbox [checked]
+                - generic: Feedback
+            - generic:
+              - generic: Expires at (UTC, optional)
+              - textbox
+              - paragraph: An exact UTC instant, for example 2026-12-31T18:00:00Z. Leave empty for no expiry.
+          - generic:
+            - checkbox
+            - generic: I am granting this person access through this exact connection to all retained historical versions, including those imported before this grant, and to current and future imports.
+          - button [disabled]: Save explicit access
+  - dialog [ref=e248]:
+    - generic [ref=e249]:
+      - generic [ref=e250]:
+        - heading "Discard these changes?" [level=2] [ref=e251]
+        - paragraph [ref=e252]: Discard these changes?
+      - button "Close" [active] [ref=e253]
+    - paragraph [ref=e254]: Your unsaved text will be removed from this window.
+    - generic [ref=e255]:
+      - button "Keep editing" [ref=e256]
+      - button "Close" [ref=e257]

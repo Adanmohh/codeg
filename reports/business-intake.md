@@ -641,3 +641,38 @@ latest four inspected `turn_context` records are gpt-6-astra/max, latest line141
 at2026-09-09T07:17:57.316Z. The complete historical session also contains Luna,
 as disclosed by the earlier model audit; no assertion that it never did is made.
 No restart/model reset was performed for the transient quota-label discrepancy.
+
+## Bounded browser checkpoint and AI-workspace priority
+
+Stable fixture/report handoff is1042a0b79b869c7bf86aabf91a6b6292600d7732;
+production remains e55f3bfd and the running copied executable remains313d987c.
+Root independently verified15 fixture evidence hashes and reports32 protected
+HTTP checks in its own namespace, including suspend/resume, explicit rebase,
+exact task publication and replay. Reviewer0eb25d1f4 reports no guard-source
+blocker at7ed0dd0c/1042a0b7. These are attributed independent results, not new
+worker test passes; full UI/B acceptance remains pending.
+
+Own actual CLI `intake-worker4354` opened headed at1280×900 against UI1974d97f,
+built6739c476. All27 local manifest files and the served HTML matched the UI
+handoff. In the worker namespace, real UI login, zero-source setup, disabled
+Fireflies creation, explicit owner read/import/triage/Feedback grant and enable
+all passed with200 responses, empty secret fields and offOrigin0. No production
+response was mocked. Exact scripts, safe raw results, screenshots, hashes and
+limitations are in `reports/business-intake-validation/browser/README.md`.
+
+The owner then inspected that visible browser and opened the existing task
+editor. Root confirmed the supplied screenshot; the changed view is not evidence
+of spontaneous navigation. Preserve browserPID1965/session`intake-worker4354` and
+its task/draft without further automation, refresh, save, close or worker-record
+mutation. The attempted source-selection step timed out during this inspection;
+no own browser import/publication pass is claimed. A preceding unsupported CLI
+`select --label` attempt exited1 without selection and is disclosed. Existing
+listeners/outputs/paused work remain preserved. The manual fixture stays running,
+not a completed test result.
+
+Root priority docs aa0b5b7b/ee11d3a0 correctly identify the missing business AI
+chat/agent/terminal flow. After this bounded evidence checkpoint, tickets owns
+the separate existing-engine execution contract, rebrand component integration
+and approvals authority review. New-tenant legacy host entrustment follows that
+core AI work. No legacy route exposure, implicit operator fallback, native tenant
+enablement, new runtime or model/provider action is authorized by these reports.
