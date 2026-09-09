@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Uncompiled publication/content follow-ons are under source review.** Exact
+`3841e659bec3d0161d73eaca16058b170fe751be` adds task-scoped content/current-reader
+rechecks and two planned publication cases; `bdfa7ca69334196448c3745a8ee0aac97166a877`
+adds recovery-only sealed-object reconciliation and one planned file case. Root
+verified both GitHub commits and report deltas and dispatched bounded source-only
+review to approvals. The queued selectors now include eight publication and six
+assets cases; no new pass is claimed. Farha still holds the browser window; root
+requested current completion status or return of the slot if new source/build work
+is needed. No Ops Cargo, fixture change or large allocation has begun.
+
 **Publication source review imported; execution remains pending.** Reviewer
 `d1fba7e4a5367b05bd93c7e58d3e3d8f78b98c89` establishes no additional blocking
 source finding at d0d56a. Root read the full assessment/ledger, verified three
