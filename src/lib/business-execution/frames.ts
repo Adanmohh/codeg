@@ -44,7 +44,7 @@ function parseTool(value: unknown): ToolState {
     status: choice(row.status, ["running", "completed", "failed"]),
   }
 }
-function parseOperation(value: unknown): OperationSummary {
+export function parseOperationSummary(value: unknown): OperationSummary {
   const row = record(value, ["id", "status", "reason"])
   return {
     id: text(row.id),
@@ -94,7 +94,7 @@ export function parseSessionFrame(
     return { sessionId, generation }
   }
   function receipt(row: Record<string, unknown>) {
-    const operation = parseOperation(row.operation)
+    const operation = parseOperationSummary(row.operation)
     if (operation.id !== expected.operationId) return protocolError()
     return operation
   }

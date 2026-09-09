@@ -60,7 +60,17 @@ export interface Deliverable {
   revision: number
   author: TaskActor
   body: string
+  // Selected immutable versions only; historical text-only submissions use [].
+  assets: PublishedAssetRef[]
   createdAt: string
+}
+export interface PublishedAssetRef {
+  assetId: string
+  versionId: string
+  title: string
+  mediaType: string
+  byteSize: number
+  sha256: string
 }
 export interface TaskDetail {
   task: Task

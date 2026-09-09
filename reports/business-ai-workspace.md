@@ -1,6 +1,50 @@
 # Business AI workspace — implementation checkpoint
 
-Current source passes the normal TypeScript check and scoped lint, with
+The current compiling component checkpoint adds the inherited RichComposer with
+explicit E1 prompt receipts, EN/AR copy and in-memory context selection. Its nine
+focused tests pass, as do normal TypeScript and scoped ESLint. The component is
+not mounted in the workbench yet; no operational AI or browser acceptance is
+claimed. The preceding parent/client integration is pushed as
+`ca3454c4bb995b48f813b024eceba2ee31a3d6ac` on draft PR33. No export, native/Rust
+build, provider, credential or existing fixture/browser was touched.
+
+The common frontend Task Detail now has required `Deliverable.assets` and the
+six-field `PublishedAssetRef`, matching the complete Rust task types read through
+gh api at `d0d56a36399d81be23787891177752022c91edf6`. Historical text submissions
+use an empty array. The execution types reuse this common type instead of an
+isolated substitute. This source handoff has no routes or fixture, and the
+backend owner explicitly reports it uncompiled while Farha owns the build window.
+There is no claim that the running B previews return this new field.
+
+Prompt glue reuses RichComposer at accepted
+`f988700db6975364d35b80125af12bfe2d5baac3`, blob
+`7d1a646bc1bf0ad0692dd36974f4799f431341f8`, and the explicit frozen-operation
+pattern in `business-intake/candidate.tsx`, blob
+`daef5d5f8e8efdb07ba04cf979afa89d3b3f917f`. It sends once on explicit Enter/button
+intent, retains exact text and selected version labels while pending/uncertain,
+and looks up only the original operation. A missing receipt does not unlock a
+resend. A confirmed receipt is acceptance, not agent completion or task review.
+Unsent reference revision drift requires a new explicit selection. Locale and
+pane visibility keep the actual editor mounted; unmount aborts local delivery.
+Absent prompt capability permits no send. No host mention/file API is mounted.
+
+| Current component gate | Result; evidence under business-ai-workspace-evidence |
+| --- | --- |
+| `pnpm exec vitest run src/components/business-execution/session-prompt.test.tsx` | 9/9, exit0; session-prompt-final.txt |
+| Prompt plus affected frame parser checkpoint | 26/26, exit0 (8 prompt + 18 existing stream); session-prompt-after.txt |
+| `pnpm exec tsc --noEmit --incremental false` | exit0; session-prompt-typecheck-final.txt |
+| Scoped ESLint, component/copy/frame/task types | exit0; session-prompt-lint-final.txt |
+
+The pending-reference negative control fails against the pre-fix component
+because a newer parent reference replaces the submitted label; its exact failure
+is retained in prompt-reference-negative-control.txt. The nine final tests use
+the real RichComposer with an injected in-memory transport, not intercepted
+production responses. React19.2.4, @types/react19.2.13, Testing Library16.3.2,
+Vitest2.1.9 and TypeScript5.8.3 installed source/types were read before edits.
+Normal Git status and immutable gh-api reads both pass in this resumed session;
+owner-removed enforcement hooks remain absent and are not restored.
+
+The earlier transport checkpoint passes the normal TypeScript check and scoped lint, with
 48/48 client, content and stream tests passing. After the owner confirmed complete enforcement-hook
 removal and restarted this saved session, the first normal Git status and gh-api
 read both exited0. The preserved type fixes then applied through the normal
@@ -436,10 +480,9 @@ earlier shell dependency without importing an unaccepted implementation.
 | src/components/business/workbench.tsx — 8d46bb7a9ada8d0e25e89da7dc00a03eff8b9f0b | Reuse stable keyed surfaces, render(visible), close callbacks and existing split/stack layout. A visibility change keeps the prompt mounted. The E1 editor owns its pending/dirty close guard; removing a surface detaches transport without stop/kill. No second tab store or layout implementation is needed. |
 | src/components/business/task-detail.tsx — e912904115c0ec6f3697cb735e74276ee1a51af5 | Inspected entry/editor/close/revision and SavedTask render seams. Append selected version cards to the existing deliverable presentation when task-owned assets arrive. Keep current CAS adoption and explicit human review; an imported private asset or confirmed prompt is not a reviewed deliverable. |
 
-The imported task types remain blob751813ba7d7abea191885e95d3690c4a4db5f9e2.
-Deliverable.assets is not yet in this accepted task source; the backend owner is
-implementing it. The frontend must consume its published selected refs and []
-history defaults when handed off, without substituting private versions/list.
+The original task type base was blob751813ba7d7abea191885e95d3690c4a4db5f9e2.
+The current additive Deliverable.assets source handoff is recorded at the top.
+Selected task versions remain distinct from private versions/list.
 
 Source review of the preserved E1 WIP identified two bounded checks before
 wiring: capture event binding and expected content metadata before asynchronous

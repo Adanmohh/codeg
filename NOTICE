@@ -1233,3 +1233,19 @@ tests reuse client.test.ts and the scoped transport regression patterns at
 No legacy transport, native fallback or third-party implementation is added.
 TypeScript5.8.3 RequestInit and Vitest2.1.9 are read API references. Original
 Codeg attribution, LICENSE and every preceding NOTICE section remain intact.
+
+Business E1 receipt-bound prompt and shared asset projection (2026):
+src/components/business-execution/session-prompt.tsx reuses RichComposer
+(src/components/chat/composer/rich-composer.tsx, blob
+7d1a646bc1bf0ad0692dd36974f4799f431341f8), business/ui.tsx Action and the
+frozen-operation recovery pattern in business-intake/candidate.tsx (blob
+daef5d5f8e8efdb07ba04cf979afa89d3b3f917f), all at accepted Codeg-derived
+f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0. The EN/AR copy follows
+the existing business/copy.ts convention. src/lib/business/tasks.ts mirrors
+the selected PublishedAssetRef/Deliverable.assets in
+src-tauri/src/business_tasks/types.rs at
+d0d56a36399d81be23787891177752022c91edf6 and the accepted E1 contract
+3f164c2a989cd08a523e51f1e47559c15a48c0ef. React19.2.4, @types/react19.2.13,
+Testing Library16.3.2, Vitest2.1.9 and TypeScript5.8.3 are read API references.
+No host composer container, dependency implementation, AGPL/GPL or proprietary
+source is copied. Original Apache LICENSE and every preceding notice remain.

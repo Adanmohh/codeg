@@ -1,4 +1,6 @@
-import type { Deliverable, TaskDetail } from "@/lib/business/tasks"
+import type { PublishedAssetRef, TaskDetail } from "@/lib/business/tasks"
+
+export type { PublishedAssetRef } from "@/lib/business/tasks"
 
 // Accepted business-ai-execution.md, 3f164c2a989cd08a523e51f1e47559c15a48c0ef.
 // Additive private-version/prompt wrappers: compiling business_execution/types.rs
@@ -158,14 +160,6 @@ export interface AssetVersion {
     taskRevision: number
   }[]
 }
-export interface PublishedAssetRef {
-  assetId: string
-  versionId: string
-  title: string
-  mediaType: string
-  byteSize: number
-  sha256: string
-}
 export interface PublishedAsset {
   version: PublishedAssetRef
   createdAt: string
@@ -180,10 +174,8 @@ export interface PublishedAsset {
     }
   }
 }
-// Isolated until the backend's additive Deliverable.assets and PR29 integrate.
-export type AssetTaskDetail = Omit<TaskDetail, "deliverables"> & {
-  deliverables: (Deliverable & { assets: PublishedAssetRef[] })[]
-}
+// Common Task Detail projection from the d0d56a36 source checkpoint.
+export type AssetTaskDetail = TaskDetail
 export interface MessagePart {
   messageId: string
   role: "user" | "assistant"
