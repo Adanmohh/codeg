@@ -9,6 +9,15 @@ pub struct Migration;
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         let tx = manager.get_connection().begin().await?;
+        let marker = tx.query_one(sea_orm::Statement::from_string(
+            sea_orm::DbBackend::Sqlite,
+            "SELECT count(*) AS count FROM sqlite_master WHERE type='table' AND name='business_intake_migration'".to_owned(),
+        )).await?.ok_or_else(|| DbErr::Migration("Cannot inspect intake migration".into()))?;
+        if marker.try_get::<i64>("", "count")? == 1 {
+            // SQLite schema commit can precede SeaORM's separate migration receipt.
+            // Never rebuild/erase retained source history on a receipt retry.
+            return tx.commit().await;
+        }
         tx.execute_unprepared(r#"
 CREATE TABLE business_intake_binding (
  id TEXT PRIMARY KEY NOT NULL, organization_id TEXT NOT NULL REFERENCES business_organization(id) ON DELETE RESTRICT,
@@ -210,6 +219,7 @@ BEGIN SELECT RAISE(ABORT,'Source decision is terminal'); END;
         ] {
             tx.execute_unprepared(&format!("CREATE TRIGGER business_intake_{table}_immutable BEFORE UPDATE ON business_intake_{table} BEGIN SELECT RAISE(ABORT,'Intake history is immutable'); END;")).await?;
         }
+        tx.execute_unprepared("CREATE TABLE business_intake_migration (id INTEGER PRIMARY KEY CHECK(id=1)); INSERT INTO business_intake_migration VALUES(1);").await?;
         tx.commit().await
     }
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
@@ -251,6 +261,7 @@ BEGIN SELECT RAISE(ABORT,'Source decision is terminal'); END;
             "binding",
             "setup",
             "legacy_generation",
+            "migration",
         ] {
             tx.execute_unprepared(&format!("DROP TABLE business_intake_{table}"))
                 .await?;

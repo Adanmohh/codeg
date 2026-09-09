@@ -160,7 +160,7 @@ async fn publication(
     let (s, c) =
         access::check_source(tx, p, services, &row.source_id, Use::Publish(destination)).await?;
     sources::fresh(tx, p, services, &s, &c).await?;
-    if s.revision != Some(expected_source_revision) || candidates::needs_rebase(row, &s, &c) {
+    if s.revision != Some(expected_source_revision) || candidates::needs_rebase(p, row, &s, &c) {
         return Err(Reason::RebaseRequired.into());
     }
     sources::selection(

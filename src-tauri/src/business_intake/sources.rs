@@ -31,6 +31,7 @@ pub(super) async fn inspect(
     let valid = s.revision.is_some()
         && s.access == "fresh"
         && s.observed_epoch == Some(c.binding.access_epoch)
+        && s.authorization_epoch == Some(p.authorization_epoch())
         && unexpired(c.grant.expires_at.as_deref())
         && s.access_until
             .as_deref()
@@ -299,13 +300,13 @@ pub(super) async fn store(
             selected.push(row.id.clone());
         }
         if !selected.is_empty() {
-            tx.execute(sql("INSERT INTO business_intake_candidate(id,organization_id,source_id,revision,source_revision,prepared_epoch,state,origin,passage_ids,created_by,updated_by,created_at,updated_at) VALUES(?,?,?,1,?,?,'pending','source_review',?,?,?,?,?)",
-                vec![id().into(),p.organization_id().into(),s.id.clone().into(),current_revision.into(),c.binding.access_epoch.into(),json(&selected)?.into(),p.member_id().into(),p.member_id().into(),now().into(),now().into()])).await?;
+            tx.execute(sql("INSERT INTO business_intake_candidate(id,organization_id,source_id,revision,source_revision,prepared_epoch,authorization_epoch,state,origin,passage_ids,created_by,updated_by,created_at,updated_at) VALUES(?,?,?,1,?,?,?,'pending','source_review',?,?,?,?,?)",
+                vec![id().into(),p.organization_id().into(),s.id.clone().into(),current_revision.into(),c.binding.access_epoch.into(),p.authorization_epoch().into(),json(&selected)?.into(),p.member_id().into(),p.member_id().into(),now().into(),now().into()])).await?;
             seeded = true;
         }
     }
-    let result=tx.execute(sql("UPDATE business_intake_source SET title=?,revision=?,observed_epoch=?,observed_at=?,access_until=?,access='fresh',content=?,summary=?,provider_summary_status=?,seeded=? WHERE organization_id=? AND id=? AND refresh_fence=? AND revision IS ?",
-        vec![value.title.into(),current_revision.into(),c.binding.access_epoch.into(),now().into(),until.to_rfc3339().into(),code(value.content)?.into(),code(value.summary)?.into(),value.provider_status.into(),seeded.into(),p.organization_id().into(),s.id.clone().into(),claimed.refresh_fence.into(),claimed.revision.into()])).await?;
+    let result=tx.execute(sql("UPDATE business_intake_source SET title=?,revision=?,observed_epoch=?,authorization_epoch=?,observed_at=?,access_until=?,access='fresh',content=?,summary=?,provider_summary_status=?,seeded=? WHERE organization_id=? AND id=? AND refresh_fence=? AND revision IS ?",
+        vec![value.title.into(),current_revision.into(),c.binding.access_epoch.into(),p.authorization_epoch().into(),now().into(),until.to_rfc3339().into(),code(value.content)?.into(),code(value.summary)?.into(),value.provider_status.into(),seeded.into(),p.organization_id().into(),s.id.clone().into(),claimed.refresh_fence.into(),claimed.revision.into()])).await?;
     if result.rows_affected() != 1 {
         return Err(error::conflict());
     }

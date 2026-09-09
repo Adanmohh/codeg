@@ -201,7 +201,7 @@ dto!(BindingAdmin {
     pub retained_task_text: bool, pub credential_state: CredentialState, pub resource: ResourceIdentity,
 });
 dto!(BindingView { pub binding: BindingSummary, pub admin: Option<BindingAdmin>, });
-dto!(BindingList { pub can_manage_setup: bool, pub items: Vec<BindingView>, pub page: u32, pub has_more: bool, });
+dto!(BindingList { pub can_manage_setup: bool, pub setup_kinds: Vec<SourceKind>, pub setup_domains: Vec<Domain>, pub items: Vec<BindingView>, pub page: u32, pub has_more: bool, });
 dto!(Grant {
     pub id: String, pub binding_id: String, pub member_id: String, pub revision: i64,
     pub state: GrantState, pub scope: GrantScope, pub read: bool, pub import: bool, pub triage: bool,

@@ -36,11 +36,41 @@ pub(super) async fn human(tx: &DatabaseTransaction, p: &Principal) -> Result<Mem
 }
 pub(super) async fn require_setup(tx: &DatabaseTransaction, p: &Principal) -> Result<Member> {
     let member = human(tx, p).await?;
-    if !p.is_operator() {
+    identity::authorize(
+        tx,
+        p,
+        p.organization_id(),
+        Permission::ManageTenantSettings,
+        None,
+    )
+    .await?;
+    Ok(member)
+}
+fn manages(p: &Principal, member: &Member, b: &records::Binding) -> Result<bool> {
+    Ok(member.allows(Permission::ManageTenantSettings, None)
+        && member.allows(Permission::Contribute, Some(vocabulary(&b.domain)?))
+        && (p.is_operator() || b.kind == "fireflies"))
+}
+pub(super) async fn require_binding_setup(
+    tx: &DatabaseTransaction,
+    p: &Principal,
+    b: &records::Binding,
+) -> Result<Member> {
+    let member = require_setup(tx, p).await?;
+    if !manages(p, &member, b)? {
+        return Err(error::missing());
+    }
+    Ok(member)
+}
+pub(super) fn setup_domain(member: &Member, domain: Domain, publication: &[Domain]) -> Result<()> {
+    if !member.allows(Permission::Contribute, Some(domain))
+        || publication
+            .iter()
+            .any(|d| !member.allows(Permission::Create, Some(*d)))
+    {
         return Err(IdentityError::Forbidden.into());
     }
-    identity::authorize(tx, p, p.organization_id(), Permission::ManageMembers, None).await?;
-    Ok(member)
+    Ok(())
 }
 pub(super) async fn binding(
     tx: &DatabaseTransaction,
@@ -286,24 +316,42 @@ pub(super) async fn list(
     let offset = page(input.page)?;
     let tx = db.begin().await?;
     let member = human(&tx, p).await?;
-    let setup = p.is_operator();
+    let setup = member.allows(Permission::ManageTenantSettings, None);
     if setup {
         require_setup(&tx, p).await?;
     }
+    let setup_domains = Domain::ALL
+        .into_iter()
+        .filter(|d| setup && member.allows(Permission::Contribute, Some(*d)))
+        .collect::<Vec<_>>();
     let domains = Domain::ALL
         .into_iter()
         .filter(|d| member.allows(Permission::Read, Some(*d)))
         .collect::<Vec<_>>();
     let rows = records::Binding::find_by_statement(sql(
-        "SELECT b.* FROM business_intake_binding b WHERE b.organization_id=? AND (? OR (b.domain IN (SELECT value FROM json_each(?)) AND EXISTS(SELECT 1 FROM business_intake_grant g WHERE g.organization_id=b.organization_id AND g.binding_id=b.id AND g.member_id=? AND g.state='active' AND g.can_read=1 AND (g.expires_at IS NULL OR g.expires_at>?)))) ORDER BY b.id LIMIT 51 OFFSET ?",
-        vec![p.organization_id().into(),setup.into(),json(&domains)?.into(),p.member_id().into(),now().into(),offset.into()])).all(&tx).await?;
+        "SELECT b.* FROM business_intake_binding b WHERE b.organization_id=? AND ((b.domain IN (SELECT value FROM json_each(?)) AND (? OR b.kind='fireflies')) OR (b.domain IN (SELECT value FROM json_each(?)) AND EXISTS(SELECT 1 FROM business_intake_grant g WHERE g.organization_id=b.organization_id AND g.binding_id=b.id AND g.member_id=? AND g.state='active' AND g.can_read=1 AND (g.expires_at IS NULL OR g.expires_at>?)))) ORDER BY b.id LIMIT 51 OFFSET ?",
+        vec![p.organization_id().into(),json(&setup_domains)?.into(),p.is_operator().into(),json(&domains)?.into(),p.member_id().into(),now().into(),offset.into()])).all(&tx).await?;
     let has_more = rows.len() > 50;
     let mut items = Vec::new();
     for b in rows.into_iter().take(50) {
-        items.push(view(&tx, p, b, services, setup).await?);
+        let admin = manages(p, &member, &b)?;
+        items.push(view(&tx, p, b, services, admin).await?);
     }
+    let setup_kinds = if setup_domains.is_empty() {
+        vec![]
+    } else if p.is_operator() {
+        vec![
+            SourceKind::Fireflies,
+            SourceKind::Email,
+            SourceKind::HafidhTestflight,
+        ]
+    } else {
+        vec![SourceKind::Fireflies]
+    };
     Ok(BindingList {
-        can_manage_setup: setup,
+        can_manage_setup: !setup_kinds.is_empty(),
+        setup_kinds,
+        setup_domains,
         items,
         page: input.page,
         has_more,
@@ -318,8 +366,9 @@ pub(super) async fn status(
     let tx = db.begin().await?;
     let member = human(&tx, p).await?;
     let b = binding(&tx, p, &input.binding_id).await?;
-    if p.is_operator() {
-        require_setup(&tx, p).await?;
+    let setup = manages(p, &member, &b)?;
+    if setup {
+        require_binding_setup(&tx, p, &b).await?;
     } else {
         let domain = vocabulary(&b.domain)?;
         if !grant(&tx, p, &b.id)
@@ -329,7 +378,7 @@ pub(super) async fn status(
             return Err(error::missing());
         }
     }
-    view(&tx, p, b, services, p.is_operator()).await
+    view(&tx, p, b, services, setup).await
 }
 pub(super) fn validate_publication(domains: &[Domain], retained: bool) -> Result<()> {
     if domains.len() > 6
@@ -397,7 +446,7 @@ pub(super) async fn grants_list(
     let offset = page(input.page)?;
     let tx = db.begin().await?;
     require_setup(&tx, p).await?;
-    binding(&tx, p, &input.binding_id).await?;
+    require_binding_setup(&tx, p, &binding(&tx, p, &input.binding_id).await?).await?;
     let rows = records::Grant::find_by_statement(sql("SELECT * FROM business_intake_grant WHERE organization_id=? AND binding_id=? ORDER BY id LIMIT 51 OFFSET ?",vec![p.organization_id().into(),input.binding_id.clone().into(),offset.into()])).all(&tx).await?;
     let has_more = rows.len() > 50;
     let items = rows
@@ -442,6 +491,8 @@ pub(super) async fn grants_upsert(
     let tx = identity::begin_write(db, p.organization_id()).await?;
     require_setup(&tx, p).await?;
     let b = binding(&tx, p, &input.binding_id).await?;
+    let manager = require_binding_setup(&tx, p, &b).await?;
+    setup_domain(&manager, vocabulary(&b.domain)?, &input.publication_domains)?;
     if let Some(id) = receipt(&tx, p, &input.operation_id, "grants/upsert", &digest).await? {
         return Ok(GrantResult {
             binding: admin(&tx, &b, services).await?,
@@ -504,6 +555,7 @@ pub(super) async fn grants_revoke(
     let tx = identity::begin_write(db, p.organization_id()).await?;
     require_setup(&tx, p).await?;
     let b = binding(&tx, p, &input.binding_id).await?;
+    require_binding_setup(&tx, p, &b).await?;
     let g = grant_by_id(&tx, p, &b.id, &input.grant_id).await?;
     if receipt(&tx, p, &input.operation_id, "grants/revoke", &digest)
         .await?

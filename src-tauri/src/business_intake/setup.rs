@@ -52,19 +52,24 @@ async fn replay(
     digest: &str,
 ) -> Result<Option<BindingAdmin>> {
     if let Some(id) = receipt(tx, p, operation_id, operation, digest).await? {
-        return Ok(Some(
-            access::admin(tx, &access::binding(tx, p, &id).await?, services).await?,
-        ));
+        let binding = access::binding(tx, p, &id).await?;
+        access::require_binding_setup(tx, p, &binding).await?;
+        return Ok(Some(access::admin(tx, &binding, services).await?));
     }
     if let Some(a) = attempt(tx, p, operation_id).await? {
         if a.digest != digest || parse::<Plan>(&a.plan_json)?.operation != operation {
             return Err(error::conflict());
         }
-        return Err(if a.state == "staged" && unexpired(Some(&a.expires_at)) {
-            Reason::ImportBusy.into()
-        } else {
-            Reason::CredentialUnavailable.into()
-        });
+        return Err(
+            if a.state == "staged"
+                && a.authorization_epoch == Some(p.authorization_epoch())
+                && unexpired(Some(&a.expires_at))
+            {
+                Reason::ImportBusy.into()
+            } else {
+                Reason::CredentialUnavailable.into()
+            },
+        );
     }
     Ok(None)
 }
@@ -112,8 +117,8 @@ async fn reserve(
     plan: &Plan,
 ) -> Result<String> {
     let reference = format!("business-intake:{}", id());
-    tx.execute(sql("INSERT INTO business_intake_setup(id,organization_id,actor_id,operation_id,digest,binding_id,base_revision,base_epoch,owner_authority_revision,plan_json,credential_ref,state,expires_at,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,'staged',?,?)",
-        vec![id().into(),p.organization_id().into(),p.member_id().into(),operation_id.into(),digest.into(),binding_id.into(),base.map(|b|b.revision).into(),base.map(|b|b.access_epoch).into(),owner_revision.into(),json(plan)?.into(),reference.clone().into(),future(15).into(),now().into()])).await?;
+    tx.execute(sql("INSERT INTO business_intake_setup(id,organization_id,actor_id,operation_id,digest,binding_id,base_revision,base_epoch,owner_authority_revision,plan_json,credential_ref,state,expires_at,created_at,authorization_epoch) VALUES(?,?,?,?,?,?,?,?,?,?,?,'staged',?,?,?)",
+        vec![id().into(),p.organization_id().into(),p.member_id().into(),operation_id.into(),digest.into(),binding_id.into(),base.map(|b|b.revision).into(),base.map(|b|b.access_epoch).into(),owner_revision.into(),json(plan)?.into(),reference.clone().into(),future(15).into(),now().into(),p.authorization_epoch().into()])).await?;
     Ok(reference)
 }
 
@@ -150,7 +155,11 @@ pub(super) async fn create(
     let digest = digest(&json!({"plan":plan,"source":fingerprint}))?;
     cleanup(db, p, services).await?;
     let tx = identity::begin_write(db, p.organization_id()).await?;
-    access::require_setup(&tx, p).await?;
+    let manager = access::require_setup(&tx, p).await?;
+    access::setup_domain(&manager, plan.domain, &plan.publication_domains)?;
+    if !p.is_operator() && !matches!(input.source, SourceSetup::Fireflies { .. }) {
+        return Err(identity::IdentityError::Forbidden.into());
+    }
     if let Some(result) = replay(
         &tx,
         p,
@@ -238,6 +247,8 @@ pub(super) async fn update(
         return Ok(result);
     }
     let b = access::binding(&tx, p, &input.binding_id).await?;
+    let manager = access::require_binding_setup(&tx, p, &b).await?;
+    access::setup_domain(&manager, vocabulary(&b.domain)?, &input.publication_domains)?;
     if b.revision != input.expected_revision {
         return Err(error::conflict());
     }
@@ -324,6 +335,7 @@ pub(super) async fn disable(
     let tx = identity::begin_write(db, p.organization_id()).await?;
     access::require_setup(&tx, p).await?;
     let b = access::binding(&tx, p, &input.binding_id).await?;
+    access::require_binding_setup(&tx, p, &b).await?;
     if receipt(&tx, p, &input.operation_id, "bindings/disable", &digest)
         .await?
         .is_some()
@@ -395,15 +407,20 @@ async fn activate(
     user: &str,
 ) -> Result<BindingAdmin> {
     let tx = identity::begin_write(db, p.organization_id()).await?;
-    access::require_setup(&tx, p).await?;
+    let manager = access::require_setup(&tx, p).await?;
     let a = attempt(&tx, p, operation_id)
         .await?
         .ok_or_else(error::missing)?;
     let plan: Plan = parse(&a.plan_json)?;
+    access::setup_domain(&manager, plan.domain, &plan.publication_domains)?;
     if let Some(result) = receipt(&tx, p, operation_id, &plan.operation, &a.digest).await? {
         return access::admin(&tx, &access::binding(&tx, p, &result).await?, services).await;
     }
-    if a.credential_ref != reference || a.state != "staged" || !unexpired(Some(&a.expires_at)) {
+    if a.credential_ref != reference
+        || a.state != "staged"
+        || a.authorization_epoch != Some(p.authorization_epoch())
+        || !unexpired(Some(&a.expires_at))
+    {
         return Err(Reason::RequestTimeout.into());
     }
     let owner = access::owner(&tx, p, &plan.owner_id, plan.domain).await?;
@@ -416,6 +433,7 @@ async fn activate(
     };
     if let Some(revision) = a.base_revision {
         let b = access::binding(&tx, p, &a.binding_id).await?;
+        access::require_binding_setup(&tx, p, &b).await?;
         if b.revision != revision || Some(b.access_epoch) != a.base_epoch {
             return Err(error::conflict());
         }
@@ -489,8 +507,12 @@ async fn retire(db: &DatabaseConnection, p: &Principal, operation_id: &str, refe
 /// A late blocking store may recreate an orphan; its retained row is retried later.
 async fn cleanup(db: &DatabaseConnection, p: &Principal, services: &Services) -> Result<()> {
     let tx = identity::begin_write(db, p.organization_id()).await?;
-    access::require_setup(&tx, p).await?;
-    let rows=records::Setup::find_by_statement(sql("SELECT s.* FROM business_intake_setup s WHERE s.organization_id=? AND (s.state='retired' OR (s.state='staged' AND s.expires_at<=?)) AND NOT EXISTS(SELECT 1 FROM business_intake_binding b WHERE b.credential_ref=s.credential_ref) ORDER BY COALESCE(s.cleanup_at,s.created_at),s.id LIMIT 4",vec![p.organization_id().into(),now().into()])).all(&tx).await?;
+    let member = access::require_setup(&tx, p).await?;
+    let domains = Domain::ALL
+        .into_iter()
+        .filter(|d| member.allows(identity::Permission::Contribute, Some(*d)))
+        .collect::<Vec<_>>();
+    let rows=records::Setup::find_by_statement(sql("SELECT s.* FROM business_intake_setup s WHERE s.organization_id=? AND json_extract(s.plan_json,'$.domain') IN (SELECT value FROM json_each(?)) AND (s.state='retired' OR (s.state='staged' AND (s.expires_at<=? OR s.authorization_epoch IS NOT ?))) AND NOT EXISTS(SELECT 1 FROM business_intake_binding b WHERE b.credential_ref=s.credential_ref) ORDER BY COALESCE(s.cleanup_at,s.created_at),s.id LIMIT 4",vec![p.organization_id().into(),json(&domains)?.into(),now().into(),p.authorization_epoch().into()])).all(&tx).await?;
     for row in &rows {
         tx.execute(sql("UPDATE business_intake_setup SET state='retired',cleanup_at=? WHERE organization_id=? AND id=?",vec![now().into(),p.organization_id().into(),row.id.clone().into()])).await?;
     }

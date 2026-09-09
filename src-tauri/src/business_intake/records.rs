@@ -32,6 +32,7 @@ pub(super) struct Grant {
 }
 #[derive(FromQueryResult)]
 pub(super) struct Setup {
+    pub authorization_epoch: Option<i64>,
     pub id: String,
     pub actor_id: String,
     pub operation_id: String,
@@ -47,6 +48,7 @@ pub(super) struct Setup {
 }
 #[derive(Clone, FromQueryResult)]
 pub(super) struct Source {
+    pub authorization_epoch: Option<i64>,
     pub id: String,
     pub organization_id: String,
     pub binding_id: String,
@@ -81,6 +83,7 @@ pub(super) struct Passage {
 }
 #[derive(FromQueryResult)]
 pub(super) struct Candidate {
+    pub authorization_epoch: Option<i64>,
     pub id: String,
     pub source_id: String,
     pub revision: i64,
@@ -95,6 +98,7 @@ pub(super) struct Candidate {
 }
 #[derive(FromQueryResult)]
 pub(super) struct Import {
+    pub authorization_epoch: Option<i64>,
     pub id: String,
     pub binding_id: String,
     pub revision: i64,

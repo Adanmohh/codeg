@@ -446,3 +446,52 @@ because tickets.db is absent. The cross-project per-tenant-DB advice does not
 replace this accepted shared-DB contract. Live own-session hook audit recorded
 PreToolUse22753/22755 and PostToolUse22750–22754 for this worktree/session
 `01a07c1c-d82f-7022-84db-778a438632f1`. No hooks were bypassed.
+
+## Captured epoch and tenant Fireflies checkpoint
+
+Compiling merge checkpoint is `a9a610a8b60c0aa2a8e2a4a873f9c278ec28750b`,
+pushed to draft PR28. Root subsequently accepted/merged the same PR30 handoff.
+The integration mechanism now follows root's reserved forward
+`m20260909_000013_business_intake_epochs`; accepted000012 is byte-identical.
+Migration000013 follows000011 and000012, so an already-recorded A-only000012
+installation still runs newly pending000011 and000013 through SeaORM's actual
+pending-name set. Old populated000011 receives nullable columns in000013;
+there is no epoch backfill/default. Per-column checks and one writer transaction
+support schema-commit/receipt retry. New000011 also has an atomic schema marker
+for its own schema-commit/SeaORM-receipt retry; no existing history is rewritten.
+
+Four private nullable `authorization_epoch` columns fence setup reservations,
+import attempts, source observations and candidate previews. New writes use only
+`Principal::authorization_epoch()`. Final setup/import writers keep the same
+Principal and validate captured storage; source disclosure and preview rebase
+compare persisted epoch even after a fresh login. A stale running import is
+reported waiting and can be explicitly reclaimed under fresh current authority;
+its old result cannot commit. New detail observation does not reauthorize an old
+preview: explicit candidate select/edit remains required. Old setup reservations
+are retired by authorized bounded orphan cleanup, never reactivated.
+
+Tenant Fireflies administration now uses current human owner/admin permission,
+current source-domain Contribute and publication Create ceiling. Binding list
+adds response-only `setupKinds: SourceKind[]` and `setupDomains: Domain[]`;
+`canManageSetup` reflects a nonempty effective setup scope. Tenant credentials
+receive only fireflies; the original actual operator may manage legacy kinds.
+BindingView.admin and every setup/grant mutation check the specific kind/domain
+scope; foreign/hidden bindings remain undisclosed. New bindings still have zero
+grants. Setup, source ownership and tenant administration confer no source read.
+Legacy resource association remains actual protected operator transport in the
+original mapped tenant; the separately scoped platform-to-new-tenant legacy
+entrustment is not yet exposed. No fallback is added. Native B command expansion
+and final fixture are still pending this checkpoint.
+
+Locked offline server checks in the new isolated target: epoch correction exit0,
+9.53s (`check-epochs-server.log`); tenant setup/forward migration exit0,14.21s
+(`check-tenant-setup-server.log`). Same four private-model warnings remain pending
+Clippy cleanup. Focused two-tenant/epoch and real migration receipt tests are being
+written; no passing claim yet. Planned selectors `business_intake::tests::tenancy_cases`
+and `business_intake::tests::epoch_migration_cases`. A broad rustfmt check reported
+inherited formatting differences (exit1); no files were changed by that check.
+Subsequent formatting is restricted to changed owned files.
+
+The recovered approvals/rebrand same panes received the DTO/migration checkpoint
+via wR:p3 and wR:p2. Their old name aliases were absent (two earlier prompt errors);
+no suspended process or fixture was touched. Runtime4351/upstream4352 remain off.

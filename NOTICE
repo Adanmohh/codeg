@@ -921,3 +921,16 @@ The channel source identifies an unresolved native-isolation prerequisite;
 it is not ported or patched. tauri?/test only exposes the already locked
 framework's test helpers through existing test-utils; no new dependency/version.
 Original Codeg Apache-2.0 LICENSE and preceding notices remain intact.
+
+Business intake captured tenant authority (2026):
+Composes accepted Apache-2.0 Codeg PR30 product
+29774b50aafc29658a2f48fab1f44d366ed2c8a0, handoff
+b3dfbcb602314cee6eb0039d92cb997762c02dd8:
+src-tauri/src/business_identity/{mod.rs,types.rs,platform.rs} and
+src-tauri/src/db/migration/m20260908_000012_business_tenancy.rs.
+B adds nullable captured epoch storage and explicit current tenant setup glue;
+accepted000012 is unchanged. Forward000013 and000011 receipt recovery use the
+existing transaction/query patterns already attributed above. Installed
+SeaORM1.1.19/SQLx0.8.6 migrator, transaction, query_scalar and connection sources
+are API references only, with no dependency port or new package. Prior licenses
+and source attributions remain intact.

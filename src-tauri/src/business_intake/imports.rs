@@ -28,16 +28,17 @@ async fn model(tx: &DatabaseTransaction, p: &Principal, id: &str) -> Result<reco
 fn terminal(row: &records::Import) -> bool {
     matches!(row.state.as_str(), "complete" | "failed" | "cancelled")
 }
-fn live(row: &records::Import) -> bool {
+fn live(row: &records::Import, p: &Principal) -> bool {
     row.state == "running"
+        && row.authorization_epoch == Some(p.authorization_epoch())
         && row
             .lease_until
             .as_deref()
             .is_some_and(|s| unexpired(Some(s)))
 }
-fn view(row: records::Import) -> Result<Import> {
+fn view(row: records::Import, p: &Principal) -> Result<Import> {
     let terminal = terminal(&row);
-    let live = live(&row);
+    let live = live(&row, p);
     let retry_ready = row
         .next_attempt_at
         .as_deref()
@@ -114,7 +115,7 @@ pub(super) async fn start(
     let tx = identity::begin_write(db, p.organization_id()).await?;
     let c = access::check_binding(&tx, p, services, &input.binding_id, Use::Import).await?;
     if let Some(id) = receipt(&tx, p, &input.operation_id, "imports/start", &digest).await? {
-        return view(model(&tx, p, &id).await?);
+        return view(model(&tx, p, &id).await?, p);
     }
     let source = match &input.selection {
         Selection::Window { from_date, to_date } => {
@@ -134,7 +135,7 @@ pub(super) async fn start(
     };
     let id = insert(&tx, p, &c.binding.id, &input.selection, source.as_ref()).await?;
     record(&tx, p, &input.operation_id, "imports/start", &digest, &id).await?;
-    let result = view(model(&tx, p, &id).await?)?;
+    let result = view(model(&tx, p, &id).await?, p)?;
     tx.commit().await?;
     Ok(result)
 }
@@ -149,7 +150,7 @@ pub(super) async fn capture(
     let tx = identity::begin_write(db, p.organization_id()).await?;
     let c = access::check_binding(&tx, p, services, &input.binding_id, Use::Import).await?;
     if let Some(id) = receipt(&tx, p, &input.operation_id, "imports/capture", &digest).await? {
-        return view(model(&tx, p, &id).await?);
+        return view(model(&tx, p, &id).await?, p);
     }
     let projection = legacy::project(
         &tx,
@@ -184,7 +185,7 @@ pub(super) async fn capture(
     )
     .await?;
     record(&tx, p, &input.operation_id, "imports/capture", &digest, &id).await?;
-    let result = view(model(&tx, p, &id).await?)?;
+    let result = view(model(&tx, p, &id).await?, p)?;
     tx.commit().await?;
     Ok(result)
 }
@@ -201,7 +202,11 @@ pub(super) async fn list(
         vec![p.organization_id().into(),c.binding.id.into(),(input.view==ImportView::All).into(),offset.into()])).all(&tx).await?;
     let has_more = rows.len() > 50;
     Ok(ImportPage {
-        items: rows.into_iter().take(50).map(view).collect::<Result<_>>()?,
+        items: rows
+            .into_iter()
+            .take(50)
+            .map(|row| view(row, p))
+            .collect::<Result<_>>()?,
         page: input.page,
         has_more,
     })
@@ -215,7 +220,7 @@ pub(super) async fn get(
     let tx = db.begin().await?;
     let row = model(&tx, p, &input.import_id).await?;
     access::check_binding(&tx, p, services, &row.binding_id, Use::Import).await?;
-    view(row)
+    view(row, p)
 }
 pub(super) async fn cancel(
     db: &DatabaseConnection,
@@ -233,7 +238,7 @@ pub(super) async fn cancel(
         .await?
         .is_some()
     {
-        return view(row);
+        return view(row, p);
     }
     if row.revision != input.expected_revision || terminal(&row) {
         return Err(error::conflict());
@@ -250,7 +255,7 @@ pub(super) async fn cancel(
         &row.id,
     )
     .await?;
-    let result = view(model(&tx, p, &row.id).await?)?;
+    let result = view(model(&tx, p, &row.id).await?, p)?;
     tx.commit().await?;
     Ok(result)
 }
@@ -291,12 +296,12 @@ pub(super) async fn advance(
         .await?
         .is_some()
     {
-        return view(row);
+        return view(row, p);
     }
     if row.revision != input.expected_revision || terminal(&row) {
         return Err(error::conflict());
     }
-    if live(&row) {
+    if live(&row, p) {
         return Err(Reason::ImportBusy.into());
     }
     if row
@@ -318,7 +323,7 @@ pub(super) async fn advance(
         )
         .await?;
         audit(&tx, p, "import_exhausted", &row.id, next(row.revision)?).await?;
-        let result = view(model(&tx, p, &row.id).await?)?;
+        let result = view(model(&tx, p, &row.id).await?, p)?;
         tx.commit().await?;
         return Ok(result);
     }
@@ -354,8 +359,8 @@ pub(super) async fn advance(
         resource: parse(&c.binding.resource_json)?,
         credential_ref: c.binding.credential_ref,
     };
-    tx.execute(sql("UPDATE business_intake_import SET revision=?,state='running',attempt_id=?,attempt_actor_id=?,lease_until=?,attempt_count=?,attempt_epoch=?,next_attempt_at=NULL,error_code=NULL,updated_at=? WHERE organization_id=? AND id=? AND revision=?",
-        vec![next(row.revision)?.into(),claim.attempt_id.clone().into(),p.member_id().into(),future(60).into(),next(row.attempt_count)?.into(),claim.epoch.into(),now().into(),p.organization_id().into(),row.id.clone().into(),row.revision.into()])).await?;
+    tx.execute(sql("UPDATE business_intake_import SET revision=?,state='running',attempt_id=?,attempt_actor_id=?,lease_until=?,attempt_count=?,attempt_epoch=?,authorization_epoch=?,next_attempt_at=NULL,error_code=NULL,updated_at=? WHERE organization_id=? AND id=? AND revision=?",
+        vec![next(row.revision)?.into(),claim.attempt_id.clone().into(),p.member_id().into(),future(60).into(),next(row.attempt_count)?.into(),claim.epoch.into(),p.authorization_epoch().into(),now().into(),p.organization_id().into(),row.id.clone().into(),row.revision.into()])).await?;
     record(
         &tx,
         p,
@@ -433,7 +438,7 @@ async fn finish(
     let tx = identity::begin_write(db, p.organization_id()).await?;
     let row = model(&tx, p, &claim.import_id).await?;
     let c = access::check_binding(&tx, p, services, &row.binding_id, Use::Import).await?;
-    if !live(&row)
+    if !live(&row, p)
         || row.attempt_id.as_deref() != Some(&claim.attempt_id)
         || row.attempt_epoch != Some(claim.epoch)
         || c.binding.access_epoch != claim.epoch
@@ -515,7 +520,7 @@ async fn finish(
     tx.execute(sql("UPDATE business_intake_import SET revision=?,state=?,coverage=?,scan_offset=?,scan_done=?,discovered=?,completed=?,failed=?,attempt_id=NULL,lease_until=NULL,attempt_count=?,next_attempt_at=?,error_code=?,updated_at=? WHERE organization_id=? AND id=? AND revision=? AND attempt_id=?",
         vec![next(row.revision)?.into(),state.into(),coverage.into(),offset.into(),scan_done.into(),discovered.into(),completed.into(),failed.into(),attempt_count.into(),next_at.into(),failure.into(),now().into(),p.organization_id().into(),row.id.clone().into(),row.revision.into(),claim.attempt_id.into()])).await?;
     audit(&tx, p, "import_observed", &row.id, next(row.revision)?).await?;
-    let result = view(model(&tx, p, &row.id).await?)?;
+    let result = view(model(&tx, p, &row.id).await?, p)?;
     tx.commit().await?;
     Ok(result)
 }

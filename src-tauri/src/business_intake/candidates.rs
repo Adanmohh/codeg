@@ -40,11 +40,14 @@ pub(super) fn pending(row: &records::Candidate, expected: i64) -> Result<()> {
     Ok(())
 }
 pub(super) fn needs_rebase(
+    p: &Principal,
     row: &records::Candidate,
     source: &records::Source,
     c: &Checked,
 ) -> bool {
-    source.revision != Some(row.source_revision) || row.prepared_epoch != c.binding.access_epoch
+    source.revision != Some(row.source_revision)
+        || row.prepared_epoch != c.binding.access_epoch
+        || row.authorization_epoch != Some(p.authorization_epoch())
 }
 /// Capabilities can hide an unavailable action, never an authentication/storage failure.
 pub(super) fn permitted<T>(result: std::result::Result<T, IdentityError>) -> Result<Option<T>> {
@@ -65,7 +68,7 @@ async fn view(
     source: &SourceSummary,
 ) -> Result<Candidate> {
     let readable = source.access == AccessState::Fresh;
-    let requires_rebase = needs_rebase(row, s, c);
+    let requires_rebase = needs_rebase(p, row, s, c);
     let pending = row.state == "pending";
     let triage = pending
         && c.grant.can_triage
@@ -236,8 +239,8 @@ pub(super) async fn create(
     )
     .await?;
     let id = id();
-    tx.execute(sql("INSERT INTO business_intake_candidate(id,organization_id,source_id,revision,source_revision,prepared_epoch,state,origin,passage_ids,created_by,updated_by,created_at,updated_at) VALUES(?,?,?,1,?,?,'pending','human_selection',?,?,?,?,?)",
-        vec![id.clone().into(), p.organization_id().into(), s.id.into(), input.expected_source_revision.into(), c.binding.access_epoch.into(), json(&input.passage_ids)?.into(), p.member_id().into(), p.member_id().into(), now().into(), now().into()])).await?;
+    tx.execute(sql("INSERT INTO business_intake_candidate(id,organization_id,source_id,revision,source_revision,prepared_epoch,authorization_epoch,state,origin,passage_ids,created_by,updated_by,created_at,updated_at) VALUES(?,?,?,1,?,?,?,'pending','human_selection',?,?,?,?,?)",
+        vec![id.clone().into(), p.organization_id().into(), s.id.into(), input.expected_source_revision.into(), c.binding.access_epoch.into(), p.authorization_epoch().into(), json(&input.passage_ids)?.into(), p.member_id().into(), p.member_id().into(), now().into(), now().into()])).await?;
     audit(&tx, p, "candidate_created", &id, 1).await?;
     record(
         &tx,
@@ -270,8 +273,8 @@ async fn save(
     r: &Revision<'_>,
     change: Change<'_>,
 ) -> Result<()> {
-    let result = tx.execute(sql("UPDATE business_intake_candidate SET revision=?,source_revision=?,prepared_epoch=?,passage_ids=?,draft_json=?,owner_suggestion=?,due_suggestion=?,updated_by=?,updated_at=? WHERE organization_id=? AND id=? AND revision=? AND state='pending'",
-        vec![next(r.expected)?.into(), r.source_revision.into(), change.epoch.into(), json(r.passage_ids)?.into(), change.draft.into(), change.owner_suggestion.into(), change.due_suggestion.into(), p.member_id().into(), now().into(), p.organization_id().into(), r.candidate_id.into(), r.expected.into()])).await?;
+    let result = tx.execute(sql("UPDATE business_intake_candidate SET revision=?,source_revision=?,prepared_epoch=?,authorization_epoch=?,passage_ids=?,draft_json=?,owner_suggestion=?,due_suggestion=?,updated_by=?,updated_at=? WHERE organization_id=? AND id=? AND revision=? AND state='pending'",
+        vec![next(r.expected)?.into(), r.source_revision.into(), change.epoch.into(), p.authorization_epoch().into(), json(r.passage_ids)?.into(), change.draft.into(), change.owner_suggestion.into(), change.due_suggestion.into(), p.member_id().into(), now().into(), p.organization_id().into(), r.candidate_id.into(), r.expected.into()])).await?;
     if result.rows_affected() != 1 {
         return Err(error::conflict());
     }
