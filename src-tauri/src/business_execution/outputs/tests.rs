@@ -49,6 +49,145 @@ async fn snapshot(db: &DatabaseConnection) -> Vec<String> {
         "SELECT json_array(id,organization_id,session_id,generation,revision,relative_path,metadata_json) AS value FROM business_execution_output ORDER BY id", vec![],
     )).await.unwrap().into_iter().map(|r| r.try_get("", "value").unwrap()).collect()
 }
+async fn accepted(case: &Case) -> i64 {
+    case.db.query_one(statement(
+        "SELECT accepted_scan FROM business_execution_scan WHERE organization_id=? AND session_id=? AND generation=1",
+        vec![case.principal.organization_id().into(), case.session_id.clone().into()],
+    )).await.unwrap().unwrap().try_get("", "accepted_scan").unwrap()
+}
+async fn session_snapshot(case: &Case) -> String {
+    case.db.query_one(statement(
+        "SELECT json_array(revision,generation,status,updated_at,last_activity_at) AS value FROM business_execution_session WHERE id=?",
+        vec![case.session_id.clone().into()],
+    )).await.unwrap().unwrap().try_get("", "value").unwrap()
+}
+
+#[tokio::test]
+async fn execution_outputs_newer_empty_scan_cannot_resurrect_older_candidate() {
+    let case = setup().await;
+    std::fs::write(case.workspace.join("brief.md"), b"Disappearing source").unwrap();
+    let session = session_snapshot(&case).await;
+    assert_eq!(accepted(&case).await, 0);
+    let result = list_with(
+        &case.db,
+        &case.files,
+        &case.principal,
+        input(&case),
+        async {
+            std::fs::remove_file(case.workspace.join("brief.md")).unwrap();
+            let newer = list(&case.db, &case.files, &case.principal, input(&case))
+                .await
+                .unwrap();
+            assert!(newer.items.is_empty());
+            assert!(snapshot(&case.db).await.is_empty());
+            assert_eq!(accepted(&case).await, 1);
+        },
+    )
+    .await;
+    assert!(matches!(result, Err(Error(OperationReason::Conflict))));
+    assert!(snapshot(&case.db).await.is_empty());
+    assert_eq!(accepted(&case).await, 1);
+    assert_eq!(session_snapshot(&case).await, session);
+    // A fresh explicit scan may accept new bytes after the rejected old scan.
+    std::fs::write(
+        case.workspace.join("brief.md"),
+        b"Explicitly rescanned source",
+    )
+    .unwrap();
+    let current = list(&case.db, &case.files, &case.principal, input(&case))
+        .await
+        .unwrap();
+    assert_eq!(current.items.len(), 1);
+    assert_eq!(current.items[0].status, OutputStatus::Available);
+    assert_eq!(accepted(&case).await, 2);
+}
+
+#[tokio::test]
+async fn execution_outputs_newer_unchanged_scan_still_fences_older_candidate() {
+    let case = setup().await;
+    std::fs::write(
+        case.workspace.join("keep.md"),
+        b"Unchanged retained candidate",
+    )
+    .unwrap();
+    let first = list(&case.db, &case.files, &case.principal, input(&case))
+        .await
+        .unwrap();
+    let before = snapshot(&case.db).await;
+    let session = session_snapshot(&case).await;
+    assert_eq!(accepted(&case).await, 1);
+    std::fs::write(case.workspace.join("brief.md"), b"Temporary new candidate").unwrap();
+    let result = list_with(
+        &case.db,
+        &case.files,
+        &case.principal,
+        input(&case),
+        async {
+            std::fs::remove_file(case.workspace.join("brief.md")).unwrap();
+            let newer = list(&case.db, &case.files, &case.principal, input(&case))
+                .await
+                .unwrap();
+            assert_eq!(newer.items.len(), 1);
+            assert_eq!(newer.items[0].id, first.items[0].id);
+            assert_eq!(newer.items[0].revision, first.items[0].revision);
+            assert_eq!(snapshot(&case.db).await, before);
+            assert_eq!(accepted(&case).await, 2);
+        },
+    )
+    .await;
+    assert!(matches!(result, Err(Error(OperationReason::Conflict))));
+    assert_eq!(snapshot(&case.db).await, before);
+    assert_eq!(accepted(&case).await, 2);
+    let unchanged = list(&case.db, &case.files, &case.principal, input(&case))
+        .await
+        .unwrap();
+    assert_eq!(unchanged.items[0].id, first.items[0].id);
+    assert_eq!(unchanged.items[0].revision, first.items[0].revision);
+    assert_eq!(snapshot(&case.db).await, before);
+    assert_eq!(accepted(&case).await, 3);
+    assert_eq!(session_snapshot(&case).await, session);
+}
+
+#[tokio::test]
+async fn execution_outputs_writer_and_commit_failures_preserve_fence_and_rows() {
+    let case = setup().await;
+    std::fs::write(case.workspace.join("brief.md"), b"Atomic observation").unwrap();
+    case.db.execute_unprepared("CREATE TRIGGER synthetic_scan_write_failure BEFORE INSERT ON business_execution_output BEGIN SELECT RAISE(ABORT,'synthetic failure'); END;").await.unwrap();
+    assert!(list(&case.db, &case.files, &case.principal, input(&case))
+        .await
+        .is_err());
+    assert!(snapshot(&case.db).await.is_empty());
+    assert_eq!(accepted(&case).await, 0);
+    case.db.execute_unprepared("DROP TRIGGER synthetic_scan_write_failure;
+        CREATE TABLE synthetic_scan_parent(id TEXT PRIMARY KEY);
+        CREATE TABLE synthetic_scan_child(parent TEXT REFERENCES synthetic_scan_parent(id) DEFERRABLE INITIALLY DEFERRED);
+        CREATE TRIGGER synthetic_scan_commit_failure AFTER INSERT ON business_execution_output BEGIN INSERT INTO synthetic_scan_child VALUES('missing'); END;").await.unwrap();
+    // All writer statements succeed; the deliberately deferred FK rejects COMMIT.
+    assert!(list(&case.db, &case.files, &case.principal, input(&case))
+        .await
+        .is_err());
+    assert!(snapshot(&case.db).await.is_empty());
+    assert_eq!(accepted(&case).await, 0);
+    assert!(case
+        .db
+        .query_all(statement("SELECT * FROM synthetic_scan_child", vec![]))
+        .await
+        .unwrap()
+        .is_empty());
+    case.db
+        .execute_unprepared("DROP TRIGGER synthetic_scan_commit_failure")
+        .await
+        .unwrap();
+    assert_eq!(
+        list(&case.db, &case.files, &case.principal, input(&case))
+            .await
+            .unwrap()
+            .items
+            .len(),
+        1
+    );
+    assert_eq!(accepted(&case).await, 1);
+}
 
 #[tokio::test]
 async fn execution_outputs_revisioned_discovery_and_pagination_do_not_publish() {
@@ -232,6 +371,7 @@ async fn execution_outputs_late_profile_revocation_retains_no_observation() {
         Err(Error(OperationReason::AuthorityChanged))
     ));
     assert!(snapshot(&case.db).await.is_empty());
+    assert_eq!(accepted(&case).await, 0);
 }
 
 #[tokio::test]

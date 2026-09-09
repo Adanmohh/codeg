@@ -543,3 +543,60 @@ prove the tested post-verification cancellation / current reader checks, real
 file verification and task/receipt writer paths. They do not prove mid-blocking
 abort, import lineage, actual runner ownership, HTTP/native byte delivery or
 scoped event streaming. These remain implementation/acceptance work.
+
+## Source-only correction: accepted empty/no-op scans
+
+Reviewer/root identified a P2 in frozen425198707 outputs.rs: an older scan could
+commit after a newer empty/unchanged scan because the revision vector did not
+change. Example: A sees brief.md, it is removed, B accepts an empty scan, then A
+inserts the vanished file as Available. The five original output tests did not
+cover that no-row-change ordering case. This is source analysis, not a live
+exploit/import authorization finding. Frozen425 and its8 publication passes are
+preserved; those tests did not exercise this output race.
+
+Root reserved `m20260909_000015_business_execution_scans`. The bounded correction
+adds a separate org/session/generation scan-counter table and forward migration;
+both000014 files remain byte-identical to425. Existing generation/output/authority
+rows are retained; initial counter0 means no accepted scan under this mechanism,
+not a grant/freshness reset. Future generations receive a counter in their own
+writer transaction. Composite FK, immutable keys, monotonic increment and retained
+rows prevent rebinding/reset. Session visible revision/timestamps are unchanged.
+
+An active scan captures its counter before I/O. After existing current principal /
+task/profile/generation validation, the final writer compares/advances that exact
+counter and retains observations together. Every accepted scan advances it,
+including empty/no-op results. A stale scan conflicts before retaining anything;
+writer/read/commit failure rolls back counter and observations together. Ended
+sessions still return only cached observations and do not advance the counter.
+There is no missing-state fallback or reconstructed Principal.
+
+Migration15 uses an explicit writer transaction with FK enforcement left on.
+Schema/seed/triggers/marker commit together; the SeaORM receipt remains a separate
+write, as verified in installed1.1.19 migrator source. Marker retry validates
+coverage/FKs and preserves counters rather than re-seeding them. Two historical
+14 test receipt totals now account for the additional15 receipt;14 DDL/rebuild
+code is untouched. No existing fixture/database/target is migrated by this work.
+
+The focused execution_outputs_ selector now has11 planned cases (previous5 plus6):
+- execution_outputs_newer_empty_scan_cannot_resurrect_older_candidate
+- execution_outputs_newer_unchanged_scan_still_fences_older_candidate
+- execution_outputs_writer_and_commit_failures_preserve_fence_and_rows
+- execution_outputs_migration_retains_generation_and_real_receipt_retry
+- execution_outputs_migration_failure_rolls_back_schema_seed_and_receipt
+- execution_outputs_migration_generation_fk_and_rollback_keep_exact_binding
+
+The new runtime tests use the actual list_with interleaving, a fresh subsequent
+scan positive control, unchanged visible session state, writer failure and a
+deferred FK COMMIT failure. Migration tests start with actual14 receipts, retained
+admission/grant/engine/output rows and temporary file metadata; they cover real
+receipt-insert failure/retry, late DDL failure/rollback, future-generation seed
+rollback, invalid composite parent references and refused counter reset/downgrade.
+They do not claim a live process, real second-tenant execution or file transport.
+
+Actual checks at this checkpoint: native rustfmt and git diff --check exit0;
+git diff --quiet425 over both000014 files exit0. No new test, Cargo/server check,
+fixture/import, provider or engine action has run. Tests remain held for explicit
+root allocation and fresh≥10GiB; this correction is not independently executed or
+closed yet. Exact accepted B source blobs and pinned SeaORM references are in
+NOTICE; offline code-context staging/version rules and earlier missing corpus
+coverage still apply. Only the bounded source/tests/NOTICE/report are changed.

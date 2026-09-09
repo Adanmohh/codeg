@@ -182,21 +182,31 @@ async fn cursor(
     }
     Ok(())
 }
-async fn revisions(
+async fn scan_fence(
     tx: &DatabaseTransaction,
     principal: &Principal,
     source: &Source,
-) -> Result<Vec<(String, i64)>> {
-    let rows = tx.query_all(statement(
-        "SELECT id,revision FROM business_execution_output WHERE organization_id=? AND session_id=? AND generation=? ORDER BY id LIMIT 513",
+) -> Result<i64> {
+    let row = tx.query_one(statement(
+        "SELECT accepted_scan FROM business_execution_scan WHERE organization_id=? AND session_id=? AND generation=?",
         vec![principal.organization_id().into(), source.session_id.clone().into(), source.generation.into()],
-    )).await?;
-    if rows.len() > MAX_CANDIDATES {
-        return Err(OperationReason::RateLimited.into());
+    )).await?.ok_or(OperationReason::Unavailable)?;
+    Ok(row.try_get("", "accepted_scan")?)
+}
+async fn accept_scan(
+    tx: &DatabaseTransaction,
+    principal: &Principal,
+    source: &Source,
+    before: i64,
+) -> Result<()> {
+    let changed = tx.execute(statement(
+        "UPDATE business_execution_scan SET accepted_scan=? WHERE organization_id=? AND session_id=? AND generation=? AND accepted_scan=?",
+        vec![next(before)?.into(), principal.organization_id().into(), source.session_id.clone().into(), source.generation.into(), before.into()],
+    )).await?.rows_affected();
+    if changed != 1 {
+        return Err(OperationReason::Conflict.into());
     }
-    rows.into_iter()
-        .map(|row| Ok((row.try_get("", "id")?, row.try_get("", "revision")?)))
-        .collect()
+    Ok(())
 }
 pub(super) async fn list(
     db: &DatabaseConnection,
@@ -219,7 +229,7 @@ async fn list_with(
         let tx = db.begin().await?;
         let expected = source(&tx, principal, &input.session_id).await?;
         cursor(&tx, principal, &expected, input.cursor.as_deref()).await?;
-        let before = revisions(&tx, principal, &expected).await?;
+        let before = scan_fence(&tx, principal, &expected).await?;
         (expected, before)
     };
     // Ended runs expose only observations captured while active. Scanning them
@@ -246,12 +256,11 @@ async fn list_with(
     before_commit.await;
     let tx = identity::begin_write(db, principal.organization_id()).await?;
     revalidate(&tx, principal, &expected).await?;
-    // An older scan must not replace observations committed by a later scan.
-    // Compare the bounded generation snapshot in the same writer as all updates.
-    if revisions(&tx, principal, &expected).await? != before {
-        return Err(OperationReason::Conflict.into());
-    }
     if let Some(found) = found {
+        // Every accepted active scan advances ordering, including empty/unchanged
+        // results. The counter and observations commit or roll back together.
+        // Cached reads after stop neither scan nor advance this counter.
+        accept_scan(&tx, principal, &expected, before).await?;
         retain(&tx, principal, &expected, found).await?;
     }
     cursor(&tx, principal, &expected, input.cursor.as_deref()).await?;
@@ -273,3 +282,6 @@ async fn list_with(
 
 #[cfg(all(test, unix))]
 mod tests;
+
+#[cfg(all(test, unix))]
+mod migration_tests;

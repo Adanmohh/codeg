@@ -132,7 +132,7 @@ async fn execution_migration_retains_review_history_and_real_receipt_retry() {
     assert!(reread.deliverables[0].assets.is_empty());
     assert_eq!(
         scalar(&conn, "SELECT count(*) AS value FROM seaql_migrations").await,
-        receipts + 1
+        receipts + 2
     );
     assert_eq!(
         scalar(
@@ -179,7 +179,7 @@ async fn execution_migration_retains_review_history_and_real_receipt_retry() {
     Migrator::up(&conn, None).await.unwrap();
     assert_eq!(
         scalar(&conn, "SELECT count(*) AS value FROM seaql_migrations").await,
-        receipts + 1
+        receipts + 2
     );
     let fk = conn
         .query_one(stmt("PRAGMA foreign_keys", vec![]))

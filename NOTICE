@@ -1241,3 +1241,16 @@ It reuses the already-attributed anchored Files scanner and identity writer.
 Generation/observation fencing and private candidate DTO mapping are E1 glue.
 Installed chrono0.4.43 datetime/mod.rs and Tokio1.49.0 blocking/semaphore APIs
 ground UTC metadata and bounded blocking I/O; no dependency implementation port.
+
+E1 accepted-scan ordering correction (2026): outputs.rs adapts the compare/update
+source fence from Apache-2.0 business_intake/sources.rs at
+c8453a48d441f40eb47f9c9af856235b4f9986e5
+(56e8ca543207335e65469e17444af755c82b0dbd). Additive migration000015 reuses
+m20260909_000013_business_intake_epochs.rs at that same immutable commit
+(19d3436cf4e3e5a6e337df72de55fbb4200d56a3): writer acquisition, explicit
+transaction/FK validation, forward retention and schema/receipt retry distinction.
+Both files were read locally and via gh api. New generation scan state advances
+with accepted observations, including empty/no-op results; it confers no authority.
+Installed sea-orm-migration/SeaORM1.1.19 connection, migrator and transaction source
+ground the SQLite transaction and separate receipt behavior. No dependency source
+or new identity/runtime is copied. Migration000014 and all prior notices remain.
