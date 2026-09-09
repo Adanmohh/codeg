@@ -1,0 +1,125 @@
+{
+  "productCommit": "4251987071e8e7213a678be94039cd3fad1328f1",
+  "precedingIndependentCorrectionCommit": "9949c8a9ad99ffb70232c05bf1c2ad243dcaf194",
+  "scope": "Original-operator exact selected-version publication and current task-reader content core; source-only output discovery and recovery helper compiled by the same lib-test build.",
+  "source": [
+    {
+      "path": "NOTICE",
+      "gitBlob": "266f9658c6944c5f18935e197d6fd7af7d7745f0",
+      "sha256": "af9129752b29eb048306f7cb3beea812598fb63716a854238db8392749aef061",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/file_tests.rs",
+      "gitBlob": "fe7b50d1ce1eb6577ac5c345f46a864b2a5a6939",
+      "sha256": "fac1eb66e041382e4fd1d599fb88030f6a267c734f83d0a219cf71fc8eb7bec3",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/files.rs",
+      "gitBlob": "0277449e812808f150ee3ee9d224d61cd2d5f518",
+      "sha256": "6c3b71256b34b49854473ae02578036a7656afa6c5795a832eb12737c5e91e40",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/mod.rs",
+      "gitBlob": "43742e65f78a68d392fec2acedde95e14367685d",
+      "sha256": "64baa5b3eaf5233bf05b3fbea6adc8515fcda1d911cb0d59a611befb86def50e",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/outputs.rs",
+      "gitBlob": "53db0dd18342c287b14fafe9640c2bee509d0e19",
+      "sha256": "ab9d35b0740d965bccd785d4a3796236ccbac05dc90ad1f66ab0b98a9e203037",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "gitBlob": "2b72ae5646ebf926db415d0566672b39d0c37117",
+      "sha256": "15b9482cd93e9463924274f86f819fa756b34fd072ffe166b9dccc41edf09769",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/publication.rs",
+      "gitBlob": "f301ad0c2fd81f46a92ff73dcc32ae8104fa39a1",
+      "sha256": "1ea622bf298bc31b9125e51402f9e026d0caebffb27fa225ea3a2784a6cf17d6",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/publication/tests.rs",
+      "gitBlob": "1d78481594274520a2c96694c635a28e1bd079dc",
+      "sha256": "c284bf2afe1a20e6b162dbe9600f9d156f7959f17b2388e4f1b26240163a6a4c",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/tests.rs",
+      "gitBlob": "f34cfcd02ead4b4c7a40b64ae7ef3e4bba376621",
+      "sha256": "8ba5d838e5b510666427b847f38bdb775e31d8599ba2ac0772eb8b2212b1488f",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_tasks/store.rs",
+      "gitBlob": "6cf636d67a933b5e22b286f09ec9297ae10948ee",
+      "sha256": "0885872c6071ef3258abb945f2741c9da923b6a7bc2c4e754467d9a94d0424e2",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_tasks/store/managed.rs",
+      "gitBlob": "94c743c4831af5cc91f90d52877f026de025044c",
+      "sha256": "2102dea275f822949cd66bfe554a129df34e796f42fb13187c6434f4c47ba165",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_tasks/types.rs",
+      "gitBlob": "d092211349387baf0ca587c51ada4ec69d39930a",
+      "sha256": "c0f0e5472e1297a6bec8b77fe882009e904e0b4b03de10a6f73f1cc19df01f72",
+      "matchesProduct": true
+    }
+  ],
+  "gates": [
+    {
+      "command": "env CARGO_TARGET_DIR=/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target cargo test --locked --offline --manifest-path src-tauri/Cargo.toml --no-default-features --lib -j2 execution_publication_",
+      "log": "publication-initial.log",
+      "sha256": "778247d077532fc92e97519a83d101614dd8d784929a0b200d231189e54ebc78",
+      "exitCode": 0,
+      "cargoPid": 19985,
+      "passed": 8,
+      "failed": 0,
+      "ignored": 0,
+      "runtimeSeconds": 1.05,
+      "cargoFinishedSeconds": 117
+    }
+  ],
+  "notRun": [
+    "execution_assets_ (6)",
+    "execution_outputs_ (5)",
+    "execution_migration_retains_review_history_and_real_receipt_retry",
+    "execution_migration_failure_rolls_back_rebuild_and_restores_enforcement",
+    "business_tasks::tests:: core controls",
+    "server cargo check"
+  ],
+  "warnings": {
+    "libTest": 7,
+    "notes": [
+      "Pending runtime consumers remain unused.",
+      "Inherited compact-unwind linker and proc-macro-error2 future-compatibility warnings retained."
+    ]
+  },
+  "storage": {
+    "startAvailableKiB": 10796940,
+    "finalAvailableKiB": 9744388,
+    "minimumStartKiB": 10485760,
+    "stopFloorKiB": 5242880,
+    "windowReleased": true,
+    "reason": "The completed gate left less than the required 10GiB for starting the next command.",
+    "newTarget": false,
+    "cleanup": false
+  },
+  "limits": [
+    "Owner execution only; independent d0/3841/bdfa review is source-only.",
+    "Abort occurs after byte verification, not mid-blocking syscall.",
+    "Reader-revocation test uses a synthetic member-row update; no HTTP/native streaming proof.",
+    "Synthetic version rows and generation links do not certify import or process ownership.",
+    "No engine/client/provider/login/fixture/browser/native bundle action."
+  ]
+}

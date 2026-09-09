@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Publication8 owner evidence verified and imported.** Evidence-only
+`03c701dba3ade317a9597a49872530ddd2a17c93` preserves product425198707 exactly.
+Root matched12 product/NOTICE Git blob and SHA256 pairs, the original log digest,
+and read its eight-pass/zero-failure summary plus report delta. The exact
+[command/source ledger](reports/business-ai-execution-validation/managed-checkpoint/digests.json)
+and raw log are imported. Other test bodies compiled in this lib-test build but
+their assertions were not executed. Assets6, outputs5, retention2, task controls
+and server check remain pending; no runtime/import/transport acceptance follows.
+No Cargo or large allocation is active in Ops; product source remains frozen.
+
 **Content/reconciliation source review imported.** Reviewer
 `2c011b27a53f34b6e625797ab4ec43460608e66f` finds no additional blocking source
 issue in3841/bdfa. Root read the full assessment/ledger, matched three artifact

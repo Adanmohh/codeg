@@ -1,0 +1,107 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+warning: associated function `supported` is never used
+  --> src/business_execution/files.rs:83:19
+   |
+79 | impl Files {
+   | ---------- associated function in this implementation
+...
+83 |     pub(crate) fn supported() -> bool {
+   |                   ^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `initial_cursor` is never read
+  --> src/business_execution/records.rs:37:9
+   |
+35 | pub(super) struct Generation {
+   |                   ---------- field in this struct
+36 |     pub admission_id: String,
+37 |     pub initial_cursor: String,
+   |         ^^^^^^^^^^^^^^
+   |
+   = note: `Generation` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: fields `kind` and `result_json` are never read
+  --> src/business_execution/records.rs:43:9
+   |
+41 | pub(super) struct Operation {
+   |                   --------- fields in this struct
+42 |     pub operation_id: String,
+43 |     pub kind: String,
+   |         ^^^^
+...
+54 |     pub result_json: Option<String>,
+   |         ^^^^^^^^^^^
+   |
+   = note: `Operation` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: field `generation` is never read
+  --> src/business_execution/records.rs:60:9
+   |
+58 | pub(super) struct Output {
+   |                   ------ field in this struct
+59 |     pub id: String,
+60 |     pub generation: i64,
+   |         ^^^^^^^^^^
+   |
+   = note: `Output` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: struct `Asset` is never constructed
+  --> src/business_execution/records.rs:66:19
+   |
+66 | pub(super) struct Asset {
+   |                   ^^^^^
+
+warning: multiple fields are never read
+  --> src/business_execution/records.rs:81:9
+   |
+79 | pub(super) struct Version {
+   |                   ------- fields in this struct
+80 |     pub id: String,
+81 |     pub organization_id: String,
+   |         ^^^^^^^^^^^^^^^
+82 |     pub task_id: String,
+   |         ^^^^^^^
+83 |     pub asset_id: String,
+84 |     pub version: i64,
+   |         ^^^^^^^
+85 |     pub title: String,
+   |         ^^^^^
+...
+88 |     pub media_type: String,
+   |         ^^^^^^^^^^
+89 |     pub object_id: String,
+90 |     pub created_at: String,
+   |         ^^^^^^^^^^
+...
+93 |     pub producer_turn_id: Option<String>,
+   |         ^^^^^^^^^^^^^^^^
+94 |     pub producer_client_id: String,
+   |         ^^^^^^^^^^^^^^^^^^
+95 |     pub producer_model: Option<String>,
+   |         ^^^^^^^^^^^^^^
+   |
+   = note: `Version` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 7 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 57s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (.docs/business-intake-tenancy-target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 8 tests
+test business_execution::publication::tests::execution_publication_aborted_after_byte_verification_never_commits ... ok
+test business_execution::publication::tests::execution_publication_human_review_keeps_selected_version_after_session_revocation ... ok
+test business_execution::publication::tests::execution_publication_missing_bytes_and_competing_revision_fail_closed ... ok
+test business_execution::publication::tests::execution_publication_agents_member_credentials_and_foreign_refs_cannot_submit ... ok
+test business_execution::publication::tests::execution_publication_content_survives_scratch_and_rechecks_reader_after_io ... ok
+test business_execution::publication::tests::execution_publication_late_authority_loss_cannot_publish_private_verified_bytes ... ok
+test business_execution::publication::tests::execution_publication_file_only_is_atomic_replayable_and_rediscoverable ... ok
+test business_execution::publication::tests::execution_publication_cas_and_receipt_failure_leave_no_partial_disclosure ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 3782 filtered out; finished in 1.05s
+
