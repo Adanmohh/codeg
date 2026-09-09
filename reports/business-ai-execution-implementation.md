@@ -457,3 +457,21 @@ follow-on, import, runner or transport. Reviewer released its window; root
 reassigned it to Farha. No own Cargo/test/check started after the prior9949
 release, including the read-only preflight before that reassignment message.
 Wait for explicit root allocation and fresh≥10GiB before these queued gates.
+
+The content/abort follow-on is committed at
+`3841e659bec3d0161d73eaca16058b170fe751be`. Reviewer publication-source verdict
+`d1fba7e4a5367b05bd93c7e58d3e3d8f78b98c89` covers frozen d0d56a only: no additional
+blocking source finding, no compilation or execution. It does not certify the
+later content/abort cases. Farha's browser reservation remains active; no own
+Cargo/test/check or large allocation has started.
+
+A further source-only file helper gives import reconciliation an explicit
+recovery-only operation: validate and re-sync the reserved sealed object, never
+fall through to copying the mutable workspace again. The existing9949 retained
+descriptor/hash/mode/sync checks are shared unchanged. A new planned
+`execution_assets_reconciliation_never_recopies_missing_or_partial_object` case
+covers missing and non-sealed objects, changed scratch, same-inode reuse and
+deleted-object refusal without recreation. The assets selector now has six
+planned cases; its five prior passes remain evidence of the earlier source only.
+Rustfmt and diff checks exit0; no runtime result is claimed for this addition.
+No schema, transport, dependency, licence source or fixture changes accompany it.

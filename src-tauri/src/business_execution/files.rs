@@ -243,6 +243,32 @@ mod unix {
         }
         Ok((before, format!("{:x}", hasher.finalize())))
     }
+    fn retained(
+        objects: &Directory,
+        existing: File,
+        object_id: &str,
+        expected_hash: &str,
+        expected_size: i64,
+        sync: &mut impl FnMut(&File, SyncPoint) -> Result<()>,
+    ) -> Result<Retained> {
+        if existing.metadata().map_err(unavailable)?.mode() & 0o777 != 0o400 {
+            return Err(R::ContentUnavailable.into());
+        }
+        let (stored, hash) = read_stable(existing.try_clone().map_err(unavailable)?, |_| Ok(()))?;
+        if hash != expected_hash || stored.len != expected_size as u64 {
+            return Err(R::ContentChanged.into());
+        }
+        // Sealed mode does not prove a preceding sync succeeded. Both metadata
+        // and directory durability must succeed again on every recovery.
+        sync(&existing, SyncPoint::SealedBytes)?;
+        sync(&objects.0, SyncPoint::ObjectDirectory)?;
+        Ok(Retained {
+            object_id: object_id.into(),
+            sha256: hash,
+            byte_size: stored.len as i64,
+        })
+    }
+
     impl Files {
         fn base(&self) -> Result<Directory> {
             Directory::root(&self.data_dir)?.child("business-execution", true)
@@ -373,24 +399,14 @@ mod unix {
             // Same-operation recovery can only reuse its completed immutable
             // object. It never truncates/replaces a partial or referenced object.
             if let Ok(existing) = objects.file(object_id, false) {
-                if existing.metadata().map_err(unavailable)?.mode() & 0o777 != 0o400 {
-                    return Err(R::ContentUnavailable.into());
-                }
-                let (stored, hash) =
-                    read_stable(existing.try_clone().map_err(unavailable)?, |_| Ok(()))?;
-                if hash != expected.sha256 || stored.len != expected.byte_size as u64 {
-                    return Err(R::ContentChanged.into());
-                }
-                // Sealed mode does not prove a preceding sync succeeded.
-                // Recovery repeats file metadata and parent-directory durability
-                // against the validated descriptors before returning Retained.
-                sync(&existing, SyncPoint::SealedBytes)?;
-                sync(&objects.0, SyncPoint::ObjectDirectory)?;
-                return Ok(Retained {
-                    object_id: object_id.into(),
-                    sha256: hash,
-                    byte_size: stored.len as i64,
-                });
+                return retained(
+                    &objects,
+                    existing,
+                    object_id,
+                    &expected.sha256,
+                    expected.byte_size,
+                    &mut sync,
+                );
             }
             let root = self.workspace_directory(admission_id, false)?;
             let source = source(&root, relative)?;
@@ -414,6 +430,26 @@ mod unix {
                 sha256: hash,
                 byte_size: observed.len as i64,
             })
+        }
+        /// Reconcile one durable import claim. A replay cannot fall through to
+        /// another copy from the mutable original workspace.
+        pub(in crate::business_execution) fn recover(
+            &self,
+            object_id: &str,
+            expected_hash: &str,
+            expected_size: i64,
+        ) -> Result<Retained> {
+            super::super::validation::uuid(object_id)?;
+            let objects = self.base()?.child("objects", false)?;
+            let existing = objects.file(object_id, false)?;
+            retained(
+                &objects,
+                existing,
+                object_id,
+                expected_hash,
+                expected_size,
+                &mut |file: &File, _: SyncPoint| file.sync_all().map_err(unavailable),
+            )
         }
         pub(in crate::business_execution) fn content(
             &self,
@@ -454,6 +490,9 @@ impl Files {
         Err(R::Unavailable.into())
     }
     pub(super) fn stage(&self, _: &str, _: &str, _: &Observation, _: &str) -> Result<Retained> {
+        Err(R::Unavailable.into())
+    }
+    pub(super) fn recover(&self, _: &str, _: &str, _: i64) -> Result<Retained> {
         Err(R::Unavailable.into())
     }
     pub(super) fn content(&self, _: &str, _: &str, _: i64) -> Result<Content> {

@@ -66,6 +66,63 @@ fn execution_assets_retained_bytes_survive_scratch_removal_and_same_object_recov
 }
 
 #[test]
+fn execution_assets_reconciliation_never_recopies_missing_or_partial_object() {
+    let temp = tempfile::tempdir().unwrap();
+    let files = Files::new(temp.path().into());
+    let admission = id();
+    let workspace = files.workspace(&admission).unwrap();
+    fs::write(workspace.join("brief.md"), b"Original candidate bytes").unwrap();
+    let candidate = files.scan(&admission).unwrap().remove(0);
+    let missing = id();
+    assert!(files
+        .recover(
+            &missing,
+            &candidate.observation.sha256,
+            candidate.observation.byte_size
+        )
+        .is_err());
+    assert!(!temp
+        .path()
+        .join("business-execution/objects")
+        .join(&missing)
+        .exists());
+    let retained = files
+        .stage(
+            &admission,
+            &candidate.relative,
+            &candidate.observation,
+            &id(),
+        )
+        .unwrap();
+    let path = temp
+        .path()
+        .join("business-execution/objects")
+        .join(&retained.object_id);
+    let inode = fs::metadata(&path).unwrap().ino();
+    fs::write(workspace.join("brief.md"), b"A newer mutable source").unwrap();
+    let found = files
+        .recover(&retained.object_id, &retained.sha256, retained.byte_size)
+        .unwrap();
+    assert_eq!(found.sha256, retained.sha256);
+    assert_eq!(fs::metadata(&path).unwrap().ino(), inode);
+    fs::set_permissions(&path, fs::Permissions::from_mode(0o600)).unwrap();
+    assert!(files
+        .recover(&retained.object_id, &retained.sha256, retained.byte_size)
+        .is_err());
+    assert_eq!(fs::read(&path).unwrap(), b"Original candidate bytes");
+    fs::set_permissions(&path, fs::Permissions::from_mode(0o400)).unwrap();
+    fs::remove_file(&path).unwrap();
+    assert!(files
+        .recover(&retained.object_id, &retained.sha256, retained.byte_size)
+        .is_err());
+    assert!(!path.exists());
+    assert_eq!(
+        fs::read(workspace.join("brief.md")).unwrap(),
+        b"A newer mutable source"
+    );
+}
+
+#[test]
 fn execution_assets_path_symlink_hardlink_and_profile_hints_never_become_candidates() {
     let temp = tempfile::TempDir::new().unwrap();
     let files = Files::new(temp.path().into());
