@@ -1,12 +1,12 @@
 # Business Sources and shared workbench
 
-Current source: **026c1e46cfe60d625e4d8a27223c3ebcafd8f4c9**, branch
+Current source: **a58c004c7d5187e6455a452195985528ddf14bc7**, branch
 `feat/business-intake-ui`, [draft PR29](https://github.com/Adanmohh/codeg/pull/29).
 Preserved measured export: **c1e618dede15368d4af39ac74391f18931b317a5**.
 Base: accepted `a40b03393a466672060066ae6e0e8c9054a2349d`.
 The independent frontend implementation and structured-workspace checks are
-published. **Complete B intake runtime acceptance remains pending tenant-epoch
-integration, the protected B fixture handoff and accepted backend integration.** No complete
+published. **Complete B intake runtime acceptance remains pending the protected
+B fixture handoff and accepted backend integration.** No complete
 provider, native-tenant, or final product acceptance is claimed.
 
 ## September 9 frontend recovery checkpoint
@@ -22,24 +22,50 @@ no old exec session ID was reused. Offline code-context guide exits0; installed
 docs lookup exits3 because rebrand.db remains absent. Cross-project DB advice
 does not supersede the accepted tenancy design.
 
-Source review found an incoming task reference could replace the Sources pane's
-private candidate without its discard guard. The regression failed against c1
-(missing confirmation, destination already opened). Correction026c1e46 consumes
-the incoming request once, preserves the existing editor on cancellation, leaves
-same-source references intact, and waits for explicit discard before checking
-the new binding. The authorized target read temporarily hides private controls;
-no source/task write is added. The focused case then passes; all40 affected
-intake/workbench/task workflow tests pass, typecheck and scoped ESLint exit0.
-This is a component regression, not a claimed real B browser flow. The preserved
+IUI-1: an incoming task reference could replace the Sources pane's private
+candidate without its discard guard. The original regression failed against c1
+(missing confirmation, destination already opened), matching independent
+reviewer evidence `cb05fbe8`. Correction026c1e46 consumes the request once,
+preserves the existing editor on cancellation, leaves same-source references
+intact, and waits for explicit discard before checking the new binding.
+Follow-up **a58c004c** cancels any older target read when a newer intent arrives,
+including returning to the current source. Late success/error cannot overwrite
+that choice. The existing candidate busy/unknown state now reaches the parent
+guard: discarding or replacing an unresolved operation is disabled, and exact
+operation recovery remains mounted. EN/AR copy explains the required recovery.
+The authorized target read temporarily hides private controls; no source/task
+write or fresh-authority claim is added. Source and candidate navigation reuse
+the same pending guard.
+
+Four additional race/recovery cases initially produced3 failures/1 pass at dc14
+(late target replacement and enabled discard during a write). After correction,
+the first combined run passed51/52: the test attempted navigation before the
+recovery response completed. Waiting for the real saved-review control fixed
+that test-only readiness error; product code did not change. The final run
+passes **52/52 across five files**,2.34s,exit0; typecheck and scoped ESLint exit0.
+The test checks exact replay input equality and no added task writes. This is
+component evidence, not IUI-1's actual protected browser closure. The preserved
 4350 export remains c1; its next export waits for the stable integrated handoff.
 
-Tickets' compiling integration `a9a610a8b60c0aa2a8e2a4a873f9c278ec28750b`
-was resolved via gh api and its committed report/types read. Existing25 inputs
-and DTOs are unchanged from9a4. Tickets has specified upcoming response-only
-`BindingList.setupKinds` and `setupDomains`: tenant owner/admin Fireflies versus
-actual operator legacy setup, and current Contribute domains. This UI will use
-the committed capabilities, not derive setup authority from roles or accept a
-caller epoch. Its immutable field checkpoint is still awaited.
+Setup correction **dc14e83b93529afab99e973ddbd21e0db79b851b** consumes
+the exact f51154b9 response-only `BindingList.setupKinds/setupDomains`.
+Missing/empty scope fails closed. Forms show only returned source kinds and
+domains, including publication/grant ceilings; setup does not grant source
+read/import/triage. Same-scope refresh preserves the write-only key; a reduced
+setup scope closes the form and releases its key/frozen request. A previously
+saved destination outside current authority is explicitly removable before
+saving, rather than silently retained or replaced. Eight setup cases plus18
+existing intake cases passed26/26; these are included in the final52 above.
+No role-derived setup authority, caller epoch or runtime mock is introduced.
+
+The f51154b9 `types.rs`, `access.rs`, `setup.rs` and identity `Member::allows`
+were read at the immutable commit. For currently eligible human owner/admin,
+Create and Contribute share the domain ceiling; no agent-role permission is
+inferred from that fact. Backend checkpoint
+`949adb02c18c72d0804eeb74b420520a7681ee86` has byte-identical DTOs
+(`git diff` exit0) and adds owner-reported epoch/migration/protected HTTP tests
+and native wrappers. Its report is read; these remain backend-owner evidence.
+The all25 client input shapes are unchanged.
 
 Remaining fixture needs are the integrated backend4351/upstream4352 source hash,
 guard/health details, fresh synthetic human credentials in that same database,
@@ -92,19 +118,18 @@ existing engineering entry remains available only with legacyOperator.
 | Accepted B contract | `670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5`, `docs/contracts/business-intake.md`; SHA256 `6d4be7f3be2c41264ab3bb9c27311e879306a75af0aaae6c0e240f434c874dbd` |
 | Access prerequisite | `18be55edc276713fc6d46d075baec363245ba285`, `docs/contracts/business-intake-access.md`; explicit zero grants/history/owner lifecycle and setup authority |
 | Accepted UI plan | `1a876afc2ae81c7ea2066a14cdbb268fb363e37c`, `reports/business-intake-ui-plan.md`; Q1–Q4 closed |
-| Compiling Rust DTOs | `9a4c8c882cec938665bc233b4d658d8de019ccfd`, `src-tauri/src/business_intake/types.rs`; canonical closed field/capability shapes, byte-unchanged through `15bb402b9265006930cc9ce4428332d04c9fb34a` (`git diff --quiet` exit0) |
-| B runtime checkpoint | Product `e9c6323760497e7b294282d2746cfe1d9b2774fa`; latest reviewed handoff `15bb402b9265006930cc9ce4428332d04c9fb34a` adds recovery tests/report. Actual `http.rs` registers all 25 accepted intake operations, including candidate decisions; integrated tenant-epoch persistence, full transport validation and the real B fixture remain pending |
+| Compiling Rust DTOs | `f51154b948ac1ae74fa1bf6a7df495e7e12e05f2`, `src-tauri/src/business_intake/types.rs`; adds response-only setup kind/domain scope to9a4; unchanged through949adb02 (`git diff` exit0) |
+| B runtime checkpoint | `949adb02c18c72d0804eeb74b420520a7681ee86`; registered25 HTTP/native operations, captured tenant epochs and owner-reported migration/HTTP cases. Final gates, independent acceptance and the real unified B fixture remain pending |
 | Tenant settings | Contract `7516461633c163c2ac683930487e33231e630b0b`; actual `29774b50aafc29658a2f48fab1f44d366ed2c8a0` types/settings/http/native commands; final owner report `d3a176d2287c23b649cd1d266cb1a9187bbcc0bb` leaves product unchanged |
 
-The final bounded reconciliation resolved PR28's immutable head through `gh api`
-and read its committed report, DTO comparison and complete HTTP registration.
-Its seven candidate and four recovery test passes are backend-owner evidence,
-not frontend runtime acceptance. Retained observations/previews still need the
-captured tenant epoch so fresh authentication after suspend/resume cannot revive
-old evidence. No epoch default, source copy or premature integrated fixture is
-introduced here. PR30's later report-only head
-`b3dfbcb602314cee6eb0039d92cb997762c02dd8` retains product29774b50; root
-acceptance/integration of both backends remains separate.
+The bounded reconciliation resolved PR28's immutable head through `gh api`, then
+read local immutable objects for its report, DTO and setup/permission changes.
+Persisted tenant epochs are now implemented by tickets; their independent
+acceptance and actual frontend recovery checks are separate gates. This branch
+introduces no epoch default or provider source. PR30's accepted merge
+`b3f2f6d03bbbef3ea7b4a9412e29308f1f355843` retains product29774b50.
+Its accepted runtime awaits integration with PR28 here; the preserved4353
+settings/task fixture remains the earlier explicitly isolated snapshot.
 
 Complete governing documents, business implementation/interaction plan and design
 brief were read before product work. Remote source research used `gh api` at

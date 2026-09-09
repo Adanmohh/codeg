@@ -1,0 +1,37 @@
+Synthetic component checkpoints; no provider/browser/runtime acceptance claim.
+
+Setup product: dc14e83b93529afab99e973ddbd21e0db79b851b
+BindingList/types/access/setup source: f51154b948ac1ae74fa1bf6a7df495e7e12e05f2
+Setup response DTO unchanged at949adb02c18c72d0804eeb74b420520a7681ee86 (diff exit0).
+
+pnpm exec vitest run src/components/business-intake/setup-capabilities.test.tsx src/components/business-intake/workflow.test.tsx
+exit0:26passed,2files,2.15s. Eight new capability/form privacy cases.
+Log: resume-setup-capabilities-tests.log (local ignored).
+pnpm exec tsc --noEmit --incremental false
+exit0; resume-setup-capabilities-typecheck.log.
+Scoped ESLint of intake types/copy/workspace/setup/new tests/existing workflow
+exit0; resume-setup-capabilities-lint.log.
+
+IUI-1 follow-up product: a58c004c7d5187e6455a452195985528ddf14bc7
+pnpm exec vitest run src/components/business-intake/source-entry.test.tsx
+Before correction: exit1,3failed/1passed,3.59s; resume-source-entry-races-before.log.
+Delayed target success and replacement overwrote A; busy discard remained enabled.
+After correction first combined run: exit1,51passed/1failed,3.08s;
+resume-source-entry-races-after.log. Remaining failure was test-only readiness:
+error removal precedes replay completion. Await the saved-review control.
+Same product, four-case retry: exit0,4passed,1.92s;
+resume-source-entry-races-retry.log.
+
+Final combined command:
+pnpm exec vitest run src/components/business-intake/source-entry.test.tsx src/components/business-intake/workflow.test.tsx src/components/business-intake/setup-capabilities.test.tsx src/components/business/workflow.test.tsx src/components/business/workbench.test.tsx
+exit0,52passed/5files,2.34s; resume-source-entry-races-final.log.
+pnpm exec tsc --noEmit --incremental false
+exit0; resume-source-entry-races-typecheck.log.
+Scoped ESLint workspace/source-review/candidate/new race tests/intake-copy
+exit0; resume-source-entry-races-lint.log.
+git diff --check and staged diff check exit0 before commits.
+
+All previous live exports/processes/browsers preserved. UI4350 staysc1;
+unified backend4351/upstream4352 is not launched or used by this worker.
+No old exec IDs, original credentials, intercepted responses, dependencies,
+Rust edits or real provider/model/task-engine operations were used.
