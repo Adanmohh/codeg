@@ -1,0 +1,15 @@
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/ui-60d600db/source
+
+ ✓ src/components/business-intake/workflow.test.tsx > business Sources privacy and exact human decisions > restores an unprepared editor after the parent completes a fresh same-version read
+ ✓ src/components/business-intake/workflow.test.tsx > business Sources privacy and exact human decisions > requires explicit adoption when fresh access returns a newer prepared candidate
+ ✓ src/components/business-intake/workflow.test.tsx > business Sources privacy and exact human decisions > keeps local drafts across locale and view changes without browser persistence
+ ✓ src/components/business-intake/workflow.test.tsx > business Sources privacy and exact human decisions > withholds a saved destination-private draft despite fresh source read permission
+ ✓ src/components/business-intake/workflow.test.tsx > business Sources privacy and exact human decisions > hides cached private text after source access is denied, including unsaved local fields
+
+ Test Files  1 passed (1)
+      Tests  5 passed | 15 skipped (20)
+   Start at  13:19:57
+   Duration  913ms (transform 210ms, setup 52ms, collect 446ms, tests 154ms, environment 147ms, prepare 32ms)
+

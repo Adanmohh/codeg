@@ -1,0 +1,30 @@
+{
+  "head": "60d600db0f224d44ff191490ab79bc25530ba959",
+  "tree": "ee79be903e3177c6549663e94f55d3a2e46f6981",
+  "remote_api": "gh api repos/Adanmohh/codeg/git/commits/<exact-head>; git/trees/<exact-tree>?recursive=1",
+  "remote_matches": 1235,
+  "selected": [
+    {
+      "path": "LICENSE",
+      "git_blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "NOTICE",
+      "git_blob": "c0ded8418c60081d0ebf883be2cfed52f0a90e21",
+      "sha256": "21582275043a9ebbe956409fbed815e4b328ebf7b2d4c729662bd705315dda45"
+    },
+    {
+      "path": "src/components/business-intake/candidate.tsx",
+      "git_blob": "daef5d5f8e8efdb07ba04cf979afa89d3b3f917f",
+      "sha256": "e360ff55973fd20805def4627b8dfa862813a89a7c5b22f977c2fe86d45fa5d8"
+    },
+    {
+      "path": "src/components/business-intake/workflow.test.tsx",
+      "git_blob": "a409260a60e5cb813d2408bb2a4efbd51b1bcfa2",
+      "sha256": "03353283414265a4bfd4d86166cb63041c2dc44d2cb11395d32f530f20b83549"
+    }
+  ],
+  "baseline_candidate_blob": "b3d9ff91097c6afa0a511ab22da9fd2d6a466802",
+  "source_scope": "Full candidate/test/NOTICE diff plus affected definitions/callers/tests; no independent full-repository source audit."
+}
