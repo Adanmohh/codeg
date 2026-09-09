@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Cross-project storage correction:** Farha reports one integration test used
+default macOS TMPDIR, where existing setup helpers may sweep old `farsu-vitest-`
+and `farsu-test-` directories. Without a before-inventory, removed files/bytes
+are unknown; zero removal is not claimed. No manual reclamation was reported.
+Root read and preserved Farha's [audit](reports/farha-small-check-storage-audit-20260909.json);
+its preserved-path checks are Farha evidence. Further default-TMPDIR tests are
+stopped; necessary tests use an isolated task-owned TMPDIR. Farha's small browser
+supplement alone remains active with its existing timer/disk stop, taking no
+exclusive allocation. No Ops cleanup or compilation was performed here.
+
 **Independent R4 correction source verdict imported; execution still held.**
 Reviewer `76956d6c77d35891ddfc8608b62e3cdbd147793a` finds9e58 addresses the race
 with no additional blocking source issue. Root read the full report/ledger,

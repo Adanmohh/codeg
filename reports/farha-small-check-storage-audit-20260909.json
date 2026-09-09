@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-09-09T17:11:24.707892+00:00",
+  "run": "root-projection-tests.log: 13 passed, 43 excluded by selector",
+  "defaultTmpDir": "/var/folders/6k/w2fh6wy167726g5nr9zm_ph80000gn/T/",
+  "automaticSweepSources": [
+    "vitest.setup.ts: farsu-vitest- directories older than one hour, up to 200 per test file",
+    "lib/huoltaja/_testdb.ts: old farsu-test- directories in os.tmpdir()"
+  ],
+  "removedCount": "not observed; no before inventory, so no zero-removal claim",
+  "response": "No further default-TMPDIR tests; any necessary future tests must use a new task-owned TMPDIR. No manual reclamation or hook changes.",
+  "preserved": [
+    {
+      "path": "/tmp/farha-ui-teaching-followup-20260909-01/manifest.json",
+      "exists": true
+    },
+    {
+      "path": "/tmp/farha-followup-20260909/production-browser-125/acceptance-checkpoint.json",
+      "exists": true
+    },
+    {
+      "path": "/Users/mohamedadan/projects/_worktrees/farha/review-access-20260908/.next",
+      "exists": true
+    },
+    {
+      "path": "/Users/mohamedadan/projects/_worktrees/farha/review-claude-20260908/.next",
+      "exists": true
+    },
+    {
+      "path": "/Users/mohamedadan/projects/farha/.next/standalone/server.js",
+      "exists": true
+    }
+  ]
+}
