@@ -1,0 +1,107 @@
+- generic [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e50]:
+    - complementary [ref=e51]:
+      - generic [ref=e58]:
+        - paragraph [ref=e59]: Hafidh
+        - paragraph [ref=e60]: Ops Desk
+      - generic [ref=e61]:
+        - paragraph [ref=e62]: Workspace
+        - paragraph [ref=e63]: Intake worker synthetic
+      - navigation "Workspace" [ref=e64]:
+        - button "My work" [ref=e65]
+        - button "Shared work" [ref=e69]
+        - button "Review" [ref=e75]
+        - button "Sources" [ref=e79]
+        - button "People & agents" [ref=e82]
+        - button "Workspace appearance" [ref=e88]
+      - generic [ref=e92]:
+        - generic [ref=e93]:
+          - combobox "Language" [ref=e94]:
+            - option "English" [selected]
+            - option "简体中文"
+            - option "繁體中文"
+            - option "日本語"
+            - option "한국어"
+            - option "Español"
+            - option "Deutsch"
+            - option "Français"
+            - option "Português"
+            - option "العربية"
+          - combobox "Appearance" [ref=e95]:
+            - option "Device appearance" [selected]
+            - option "Light"
+            - option "Dark"
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: W
+            - generic [ref=e99]: worker owner
+          - paragraph [ref=e100]: Owner · Connected
+          - button "Disconnect" [ref=e101]
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - tablist "Open work" [ref=e105]:
+          - tab "My work" [ref=e106]
+          - tab "Sources" [ref=e111]
+          - tab "Workspace appearance" [ref=e319]
+          - 'tab "worker: existing reviewed customer follow-up" [selected] [ref=e324]'
+          - 'button "Close tab: worker: existing reviewed customer follow-up" [ref=e329]'
+        - button "Show side by side" [ref=e115]
+      - 'tabpanel "worker: existing reviewed customer follow-up" [ref=e333]':
+        - generic [ref=e335]:
+          - banner [ref=e336]:
+            - 'heading "worker: existing reviewed customer follow-up" [level=2] [ref=e337]'
+            - button "Close" [ref=e338]
+          - generic [ref=e339]:
+            - generic [ref=e340]: To do
+            - generic [ref=e343]: Feedback · Normal
+            - generic [ref=e344]: Revision 1
+          - generic [ref=e345]:
+            - group [ref=e346]:
+              - generic [ref=e347]:
+                - generic [ref=e348]: Task title
+                - textbox "Task title" [ref=e349]: "worker: existing reviewed customer follow-up"
+              - generic [ref=e350]:
+                - generic [ref=e351]: Brief
+                - textbox "Brief" [ref=e352]: Deliberately reviewed shared task text; source transcript remains private.
+              - generic [ref=e353]:
+                - generic [ref=e354]:
+                  - generic [ref=e355]: Area of work
+                  - combobox "Area of work" [ref=e356]:
+                    - option "Marketing"
+                    - option "Channels"
+                    - option "Ads"
+                    - option "Website"
+                    - option "Feedback" [selected]
+                    - option "Engineering"
+                - generic [ref=e357]:
+                  - generic [ref=e358]: Priority
+                  - combobox "Priority" [ref=e359]:
+                    - option "Low"
+                    - option "Normal" [selected]
+                    - option "High"
+                    - option "Urgent"
+                - generic [ref=e360]:
+                  - generic [ref=e361]: Due date
+                  - textbox "Due date" [ref=e362]: 2026-11-01
+                  - paragraph [ref=e363]: Calendar date; no time or reminder is set.
+            - generic [ref=e364]:
+              - button "Cancel" [ref=e365]
+              - button "Save changes" [ref=e366]
+          - generic [ref=e367]:
+            - heading "Activity" [level=3] [ref=e368]
+            - list [ref=e369]:
+              - listitem [ref=e370]:
+                - generic [ref=e371]:
+                  - paragraph [ref=e372]: worker owner · Task created
+                  - time [ref=e373]: Sep 9, 2026, 12:23 PM
+                - group [ref=e374]:
+                  - generic "Saved version · Revision 1" [ref=e375] [cursor=pointer]
+          - group [ref=e376]:
+            - generic "Source references" [active] [ref=e377] [cursor=pointer]
+            - generic [ref=e378]:
+              - paragraph [ref=e379]: No source references linked.
+              - list
+          - group [ref=e380]:
+            - generic "Engineering detail" [ref=e381] [cursor=pointer]
+          - button "Cancel task" [ref=e383]

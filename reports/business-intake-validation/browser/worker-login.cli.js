@@ -1,0 +1,54 @@
+// Owned synthetic acceptance glue. Installed @playwright/cli 0.1.18 exposes
+// the actual Page to its explicitly unsafe run-code function; Node24's pinned
+// getBuiltinModule/readFileSync API reads only the worker's private0600 file.
+// No credential is embedded, returned, logged, saved to browser state or copied.
+async (page) => {
+  if (page.url() !== "http://127.0.0.1:4354/business")
+    throw new Error("Expected the dedicated unified business fixture")
+  const fixturePath =
+    "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/worker-credentials.json"
+  const process = page.constructor.constructor("return process")()
+  const fs = process.getBuiltinModule("node:fs")
+  if ((fs.statSync(fixturePath).mode & 0o777) !== 0o600)
+    throw new Error("Worker credential file must remain private")
+  const fixture = JSON.parse(fs.readFileSync(fixturePath, "utf8"))
+  if (fixture.synthetic !== true || fixture.namespace !== "worker")
+    throw new Error("Expected the worker synthetic namespace")
+  page.__workerGuard = { offOrigin: 0, responses: [] }
+  await page.route("**/*", async (route) => {
+    if (!route.request().url().startsWith("http://127.0.0.1:4354/")) {
+      page.__workerGuard.offOrigin += 1
+      await route.abort("blockedbyclient")
+      return
+    }
+    await route.continue()
+  })
+  page.on("response", (response) => {
+    const url = response.url()
+    if (url.startsWith("http://127.0.0.1:4354/api/"))
+      page.__workerGuard.responses.push({
+        path: url.slice("http://127.0.0.1:4354".length),
+        status: response.status(),
+      })
+  })
+  try {
+    await page.getByLabel("Workspace address", { exact: true }).fill(
+      "http://127.0.0.1:4354"
+    )
+    await page.getByLabel("Personal access token", { exact: true }).fill(
+      fixture.sessions.owner.token
+    )
+    await page.getByRole("button", { name: "Connect", exact: true }).click()
+    await page.getByRole("button", { name: "Sources", exact: true }).waitFor()
+  } catch {
+    const input = page.getByLabel("Personal access token", { exact: true })
+    if (await input.count()) await input.fill("")
+    throw new Error("Synthetic login did not reach the workspace; values withheld")
+  }
+  return {
+    namespace: "worker",
+    connected: true,
+    passwordInputs: await page.locator('input[type="password"]').count(),
+    guard: page.__workerGuard,
+  }
+}

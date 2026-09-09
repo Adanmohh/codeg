@@ -2,6 +2,15 @@
 
 ## Current integration and worker state
 
+Tickets' bounded B closeout462604b00 is read; root imported its browser artifacts
+and verified all18 listed digests. Product comparison with e55 and fixture-source
+comparison with7ed are empty. Actual worker UI setup, explicit grant and enable
+passed; its import/publication sequence stopped when the owner inspected the
+headed window, with no product bug claim. PR28 remains draft. Tickets is now on
+`docs/business-ai-execution` from accepted main for the previously agreed core
+AI workflow. Its browser/worker records stay reserved for the owner; stable
+PID66200 continues serving the other namespaces.
+
 Tickets acknowledgedaa0b5b7b/ee11d3a0 and will publish its bounded B browser
 checkpoint, preserving the user-inspected window and worker records, then use a
 separate docs branch from accepted main for business-ai-execution contract/report.
