@@ -2,6 +2,24 @@
 
 ## Current integration and worker state
 
+PR32 checkpoint `79d195471c001e656e8f1ca5b3ed4cdbe3ae7be0` is read: it adds
+only the implementation report, with no product source or compiling pass yet.
+Tickets is writing000014/internal DTOs on accepted9e61. Root verified the existing
+000010 nonempty-text constraint locally and against GitHub blob3cb107d5; forward14
+must preserve rows/FKs/immutable triggers, keep empty legacy text submissions
+invalid and require exact file references atomically for file-only publication.
+Next requested milestone is compiling source with meaningful migration/CAS tests.
+Worker reports7.6Gi free and reuses only its own target; old fixtures stay intact.
+
+Root read PR29 final report at `96e0bcc174b000abdbb4f6d31f1c9c7c43f90518`:
+owner's actual4355 empty-editor recovery, prepared draft retention and concurrent
+adoption pass, with bounded12-case/840-sample Sources design evidence. These are
+owner results; independent4355 recovery remains underway. Its exact existing
+composer/transcript/xterm/asset mapping is concrete and avoids global host
+providers. Three small API details (asset envelopes, private older-version discovery
+and prompt receipt fields) are being resolved directly with tickets while isolated
+typed UI work continues. No new architecture or acceptance claim is implied.
+
 **PR31 accepted and merged** as
 `3ddb8f819964fdba006d96ad8221a0436fd1a2cb`, exact head
 `cab3b27eaf241062a56532b5cdfe885f7e648fc9`. Root read the complete final independent
