@@ -141,8 +141,9 @@ distinct. Do not change task assignment or status just by opening/prompting.
 
 Session transcript, terminal and intermediate files are private to the requesting
 human and that exact authorized execution; task Read alone does not disclose them.
-Managers may stop an execution using current Assign authority without receiving
-its private output. V1 does not grant another member interactive session access.
+**E2 only:** managers may stop an execution using current Assign authority without
+receiving its private output. E1 still requires the real original operator for
+every stop/private operation. V1 does not grant another member interactive access.
 Sharing happens by explicitly publishing selected managed versions to the task's
 current domain audience. Published versions become readable only through current
 task Read; no public URL or transcript dump. Export uses the same permission.
@@ -215,6 +216,13 @@ the exact disclosed version. Title/type are snapshotted for that version, not th
 private asset's current label. This lets the real review UI rediscover its files
 after reload without entering E1's private execution API. No private asset count,
 latest-version ID, client profile or transcript is added to TaskDetail.
+Public `tasks/deliverables/assets/get` returns
+`{version:PublishedAssetRef,createdAt,producer:{clientId,model:null|string},publication:{deliverableId,taskRevision,submittedBy:{memberId,displayName,authorityKind:"operator"|"credential"}}}`.
+This is a **distinct public projection**, not `AssetVersion`: no sessionId,
+turnId, profile ID/config, input lineage, private author authority, other review
+references or private asset version/count. Producer labels are validated safe
+display metadata; shared-token operator attribution retains the stated limit.
+Even a caller who happens to own the session gets only this projection here.
 
 `ProfileSummary = {id,revision,label,clientId,modes:("chat"|"terminal")[],custody:"original_operator"|"isolated_member",model:null|{id,reasoning},readiness:"ready"|"blocked",reason:SetupReason|null,capabilities:{start,continue,managedOutput,officePreview}}`.
 `SetupReason = missing_client | missing_configuration | model_unavailable | profile_unavailable | tenant_execution_unavailable | native_boundary_unavailable | client_resume_unsupported`.
@@ -230,7 +238,7 @@ private binding holds these plus org/requester/original credential lineage,
 captured authorization epoch, immutable task scope, profile revision and live
 generation. This is an admission/resource record around the existing runner,
 not a second task engine. `OperationSummary = {id,status:"pending"|"confirmed"|"failed"|"uncertain",reason:OperationReason|null}`.
-`OperationReason = invalid | forbidden | missing | conflict | busy | setup_required | authority_changed | cancelled | launch_uncertain | prompt_uncertain | content_changed | content_unavailable | transport_unavailable | rate_limited`.
+`OperationReason = invalid | unauthorized | forbidden | missing | conflict | busy | unavailable | setup_required | authority_changed | cancelled | launch_uncertain | prompt_uncertain | content_changed | content_unavailable | transport_unavailable | rate_limited`.
 Errors never contain provider bodies, SQL, file paths, arguments or credentials.
 
 `InputRef` is a closed tagged union: `{kind:"asset",assetId,versionId}` or
@@ -241,6 +249,9 @@ remain private. Intake private transcript excerpts are not automatically include
 Adding an intake reference requires the accepted source publication helper, not
 a new interpretation of a read grant. Source scope/status is visible in the prompt
 preview; stale account facts are explicitly labelled rather than silently freshened.
+E1 rejects every `account_snapshot` reference with `unavailable` before receipt,
+session or task mutation until E3's actual authorized snapshot resolver exists.
+Accepting the future tagged DTO does not enable its operation or treat it as text.
 
 `OutputCandidate = {id,revision,name,mediaType,byteSize,modifiedAt,status:"available"|"changed"|"unsupported"}`.
 `AssetSummary = {id,taskId,revision,title,mediaType,latestVersionId,createdAt,updatedAt}`.
@@ -387,6 +398,73 @@ tenant or profile using a supplied connection ID. Private tabs/pane state keys
 include server + organization + member + session; no credential/private prompt in
 layout persistence. Same-scope remount/locale/split moves preserve draft buffers;
 explicit logout/switch clears private rendered data and aborts subscriptions.
+
+### Exact authenticated event and content responses
+
+`POST sessions/events` uses the same existing business Authorization header and
+`{input}` envelope as other operations, then returns `200` with
+`Content-Type: application/x-ndjson; charset=utf-8`, `Cache-Control: no-store`,
+`X-Content-Type-Options: nosniff`. The UI uses authenticated `fetch` plus streamed
+UTF-8 decoding (retain split characters/lines); no EventSource/token query URL,
+redirect to a credential-bearing URL, or global WebSocket attach. Every frame is
+one complete JSON object followed by LF, at most1MiB; no raw host snapshot.
+
+Exact frame union, using the request's sessionId/generation:
+- Initial `{type:"snapshot",sessionId,generation,operation,cursor,reset:true,reason:"initial"|"cursor_expired"|"cursor_invalid",state:{status,messages:MessagePart[],tools:ToolState[]},olderCursor:null|string}`; or `{type:"replay",sessionId,generation,operation,cursor,reset:false,events:SessionEvent[]}`.
+- Live `{type:"event",sessionId,generation,cursor,event:SessionEvent}`.
+- `{type:"heartbeat",sessionId,generation,cursor}` contains no private data.
+- Terminal `{type:"detached",sessionId,generation,reason:"authority_changed"|"generation_changed"|"process_gone"|"lagged"|"server_shutdown"}` then EOF.
+
+`MessagePart = {messageId,role:"user"|"assistant",part:number,text,complete:boolean}`;
+part numbers are nonnegative, ordered per message, text≤16KiB UTF-8 split only at
+character boundaries. `ToolState = {id,name,status:"running"|"completed"|"failed"}`,
+no arbitrary arguments/config/paths. `SessionEvent` is a closed union:
+`{kind:"message",message:MessagePart}` or `{kind:"tool",tool:ToolState}` or
+`{kind:"status",status:SessionSummary.status}` or `{kind:"terminal",data}` (≤16KiB).
+Terminal data is private to the owned terminal; it is never placed in task review.
+Snapshot includes at most40 recent message parts/40 tool states. Private history
+is recoverable through proposed `sessions/history` `{input:{sessionId,beforeCursor:null|string,limit:1..40}}`
+→ `{messages:MessagePart[],nextBeforeCursor:null|string}` under the same current E1
+operator/session checks. It does not launch a process; data is not silently lost
+when it exceeds the initial frame. Permission/question controls remain on their
+existing reviewed engine semantics; these projections confer no new approval tool.
+
+Cursors are server-issued opaque positions bound to session/generation. Null
+requests a snapshot; valid retained cursors replay only later events; expired,
+future or malformed same-session positions reset to a bounded snapshot with an
+explicit reason. Foreign session/generation positions are rejected409 before
+streaming, never silently rebound. Reset replaces the UI stream cache through that
+cursor, preserving unsent human draft; later events are strictly later. Repeated
+events are deduplicated by cursor/message part, not by text. Old generation gets
+detached, never restarted by attach. Initial snapshot/replay and subscription are
+obtained under the existing ordering lock; identity/task/profile/lineage checks
+also run before initial output and subsequent bounded delivery. Revoke discards
+unsent frames and closes; lag detaches for a fresh authorized resync. Fetch abort
+detaches only; explicit stop is a separate durable operation.
+
+Before stream headers or byte output, errors use JSON
+`{error:{code:OperationReason}}`:401 authentication,403 forbidden,404 missing or
+foreign resource,409 generation/revision conflict,400 malformed input,503 known
+unavailable. No provider text/path/secret. After event headers, use detached+EOF;
+an unexpected transport EOF is reconnect/receipt lookup, never prompt resend.
+
+`POST assets/content` and the task-owned published `.../content` return verified
+immutable bytes200 with exact Content-Length, safe detected Content-Type,
+`ETag: "sha256-<hex>"`, `Cache-Control: no-store`, `X-Content-Type-Options: nosniff`
+and sanitized Content-Disposition. Download uses attachment; preview permits
+inline only for the safe supported renderer/type, otherwise503 `unavailable`.
+Version metadata includes the same hash/size; no body from the mutable original
+path. V1 rejects Range requests416 with JSON `invalid` and does not implement304
+shortcuts; conditional headers cannot bypass fresh auth. UI fetches authorized
+bytes, verifies/uses metadata, then creates a short-lived local Blob URL and
+revokes it on close/switch. It never places member/operator credentials in img,
+iframe, anchor or download URLs. Active previews need sandbox/CSP with external
+network denied, no application-origin storage or forms/popups. Failure before
+headers uses the JSON errors above; mid-transfer corruption/revocation aborts
+without returning replacement bytes. Native E1's later adapter must call the same
+authorized reader and return bounded `{metadata:{mediaType,byteSize,sha256,fileName},bytesBase64}`
+only to the actual permitted operator window; no native tenant enablement or path
+handoff. This native command/HTTP framing must be fixture-tested before exposure.
 
 The companion token entry needs a business-session family and immutable bound
 resources at **creation and dispatch**, including direct calls for tools absent
