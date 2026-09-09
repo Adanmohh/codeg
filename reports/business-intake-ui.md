@@ -12,15 +12,33 @@ provider, native-tenant, or final product acceptance is claimed.
 
 ## Current bounded acceptance and next priority
 
-Root authorized one separate corrected export on4355. The port has no listener
-(`lsof` exit1/no output); disk has8.6Gi free. Planned new output is
+Root authorized one separate corrected export on4355. Before launch the port had
+no listener (`lsof` exit1/no output); disk had8.6Gi free. New output is
 `.build/business-intake-ui-recovery-60d600db0`. The report-only
 `serve-recovery-4355.mjs` reuses the exact unified helper at60d600db0, fixes both
 API destinations to4351, rejects a supplied foreign Origin before proxying,
 retains the closed operation allowlist and disables WebSocket upgrades. It
 does not forward Origin or change the backend's authentication. Node syntax
-check exit0. No existing listener/export is replaced. Build and rendered
-recovery evidence remain pending at this checkpoint.
+check exit0. No existing listener/export is replaced. The single build passed,
+exit0,34 static routes, from docs/helper head
+`e9b69ee518d12fab465acbfd7ff78e44285017a8` with product60d600db0 unchanged.
+
+Corrected preview: **http://127.0.0.1:4355/business**, PID **85232**.
+HTML disk/HTTP SHA256 is
+`6fd453d6e8153f16119f882fe3766644f3dbd2085e5956ebc6dee2391ff1f65f`.
+All27 HTML/JS/CSS bytes match over HTTP; manifest SHA256
+`6d0ee0ca8c48350589dd94a0b70a1eff5f873acb7e8fc60033a64385d66adbc3`.
+See [handoff metadata](business-intake-ui-evidence/recovery-4355-handoff.json)
+and [asset manifest](business-intake-ui-evidence/recovery-4355-60d.sha256).
+Foreign/null Origin403, legacy route403, non-POST context403, and same-origin
+unauthenticated context401 verify the helper/auth boundary without credentials.
+Source recovery tests have not yet run in this new preview. The user-inspected
+worker4354 and root4354 sessions remain untouched.
+
+The own evidence/browser-output scan checked341 files against the five current
+ui fixture secret values: zero matching files; only counts were written. Filled
+credential controls were never captured. Preserved failed probe outputs remain
+part of the handoff, and are not represented as passes.
 
 The separate React19.2.4 and Cargo manifest reads were repeated before this
 bounded handoff. The live docs-first audit records both PreToolUse and

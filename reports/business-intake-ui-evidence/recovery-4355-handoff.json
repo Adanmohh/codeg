@@ -1,0 +1,52 @@
+{
+  "source": "60d600db0f224d44ff191490ab79bc25530ba959",
+  "url": "http://127.0.0.1:4355/business",
+  "export": ".build/business-intake-ui-recovery-60d600db0",
+  "htmlSha256": "6fd453d6e8153f16119f882fe3766644f3dbd2085e5956ebc6dee2391ff1f65f",
+  "assets": 26,
+  "httpMatchesDisk": true,
+  "manifestSha256": "6d0ee0ca8c48350589dd94a0b70a1eff5f873acb7e8fc60033a64385d66adbc3",
+  "backendPort": 4351,
+  "workspaceBackendPort": 4351,
+  "buildExit": 0,
+  "guards": [
+    {
+      "path": "/api/business/context",
+      "method": "POST",
+      "origin": "http://127.0.0.1:9999",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "path": "/api/business/context",
+      "method": "POST",
+      "origin": "null",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "path": "/api/config",
+      "method": "POST",
+      "origin": "http://127.0.0.1:4355",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "path": "/api/business/context",
+      "method": "GET",
+      "origin": "http://127.0.0.1:4355",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "path": "/api/business/context",
+      "method": "POST",
+      "origin": "http://127.0.0.1:4355",
+      "status": 401,
+      "expected": 401
+    }
+  ],
+  "pid": 85232,
+  "builtHead": "e9b69ee518d12fab465acbfd7ff78e44285017a8",
+  "helperSha256": "e64e5a7ea5ceb2ff46c6e9966667a13796768dd1639b4de86c9022f03746539d"
+}
