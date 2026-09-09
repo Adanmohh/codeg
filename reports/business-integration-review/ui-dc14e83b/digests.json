@@ -1,0 +1,11 @@
+{
+  "NOTICE": "683bb587d69303ef8e4a7dab6b86243bbece5a79de46c4809a0c0bcba53fe0a5",
+  "reviewer-source-entry.test.tsx": "42b2b682ff35db82cc74c7d0a9fc08bfc8dcd0575832873beec0d79d8d802459",
+  "source-after.json": "a25ad7b48b5804ec10c214be9b21d3bf18c3737e6d6cd9cbea97eb380727c24c",
+  "source-before.json": "ad0372c7e513da5543347fb69e903bbfaec34db2eb4d554a37f2384839f96bb0",
+  "source-entry-modal-aware-result.json": "addcc3068f24846f1638000d2ea1dbac4652413a607afccad6f1e70f58622a6a",
+  "source-entry-modal-aware.log": "9a6e15457709c85b91d865f6250d1c25691085e116a776e86b93b5a19a7fb2fb",
+  "source-entry-regression.log": "34e81e2fe564e539da20b29f089e7e5a1f821c60a74d2b1a469fb46e01590933",
+  "source-entry-result.json": "49c2c445ae69919180a95b6d2a1a6881555c6597b404abb9e2ef0da89089b0ec",
+  "vitest.reviewer.config.ts": "8bc4c262b450982f5905773d39c6d4c8a3e0b0abfc9efa8894ca953365389e12"
+}

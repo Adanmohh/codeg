@@ -1,0 +1,9 @@
+{
+  "NOTICE": "1c4ebfd0b2db131fe258915c234d1dfebd03ba34cbaab4e7a5607aed4f749c29",
+  "reviewer-source-entry.test.tsx": "42b2b682ff35db82cc74c7d0a9fc08bfc8dcd0575832873beec0d79d8d802459",
+  "source-after.json": "27b9435756ba59b46b281158cb8ac8fec99fa7b76682abc1fb5f8c660019c428",
+  "source-before.json": "27b9435756ba59b46b281158cb8ac8fec99fa7b76682abc1fb5f8c660019c428",
+  "source-entry-and-setup-result.json": "d2d71b1fd562012709d68ac4ee96c256ac1b001eef001f45bba47091fa7cbf56",
+  "source-entry-and-setup.log": "a9e896f7382c6999dd8ac75dd6bb49076749941c35ed7390583f560f630ceaf3",
+  "vitest.reviewer.config.ts": "8bc4c262b450982f5905773d39c6d4c8a3e0b0abfc9efa8894ca953365389e12"
+}

@@ -1,6 +1,8 @@
 # Independent B and tenancy integration review
 
-Review is active; **one reproduced UI P2 is open; no integrated runtime verdict yet**. Own branch
+Review is active. **Eight integrated backend tests pass at949adb02; the IUI-1
+component correction passes atdc14/a58, with actual protected browser closure
+still pending. No new backend blocker was found in this bounded checkpoint.** Own branch
 `review/business-integration` starts at accepted main
 `be46d0544f5fc5f33d3785ac5a04c5d1fd2c1935`. The completed
 `feat/business-tenancy` branch remains pushed at
@@ -73,7 +75,7 @@ Borrowing remains approved Codeg Apache/IntroMail and exact Fireflies MIT source
 no new source port is introduced by this report. Full changed-source/license
 verification and focused execution will be recorded by exact integrated head.
 
-## Current finding: IUI-1 — P2, linked-source navigation silently loses a draft
+## IUI-1 — reproduced P2 baseline; component correction verified, browser pending
 
 Frozen UI report/source `191f69b3c2b827ce2f712bfcad1f995a201981bb`, product
 `c1e618dede15368d4af39ac74391f18931b317a5`:
@@ -144,7 +146,7 @@ future-compatibility notice remain visible in the raw logs, not waived.
 All756 original Rust/Pi/NOTICE/LICENSE blobs match after execution. Test processes
 completed; no existing target, database, fixture, output or bundle was changed.
 
-## Integrated epoch checkpoint frozen for next execution
+## Historical preparation atf51154b9
 
 `gh api` resolved merge `a9a610a8b60c0aa2a8e2a4a873f9c278ec28750b`, then
 product `f51154b948ac1ae74fa1bf6a7df495e7e12e05f2`, tree
@@ -170,3 +172,109 @@ Migrator upgrade/receipt/NULL-retention and two-tenant authority probes. Native
 wrappers, integrated fixture/browser and final gates remain pending. No new
 backend blocker established from this bounded source read; this is not approval
 of the remaining B implementation or integration.
+
+## Independently executed integration at949adb02
+
+Frozen PR28 head **949adb02c18c72d0804eeb74b420520a7681ee86** was resolved
+through `gh api`. Read the full new tenancy addendum, eight new test bodies,
+native command module, all registration changes, retained migration fixture and
+NOTICE diff. Original archived source correspondence is772/772 before and after
+execution. Accepted000012 remains blob
+`a305a682bbf55e750a5d5156ac0aa4695aac08c1`; the retained000011 test fixture
+matches15bb source exactly, blob `87550f70c2197cd8333316161223599aa5c33886`.
+
+Reused only the existing own `target-15bb402b`, sequentially with `-j2`; no new
+large target or copied build output. Each command used locked/offline server-mode
+library tests and the immutable949 archive manifest:
+
+| Selector | Independent result |
+| --- | --- |
+| business_intake::tests::epoch_migration_cases | 4 passed, 0 failed/ignored; exit0;0.41s tests,169.425s first build/run |
+| business_intake::tests::tenancy_cases | 3 passed, 0 failed/ignored; exit0;0.26s tests,1.172s command |
+| business_intake::tests::tenant_http_cases | 1 passed, 0 failed/ignored; exit0;0.09s tests,0.375s command |
+
+The real Migrator tests cover fresh combined installation, populated old000011
+through000012/000013, and already-recorded A-only000012 before B installation.
+Nineteen populated tables retain their original columns/values/cardinality;
+failed later ALTERs roll back earlier ALTERs. Real SeaORM receipt-insert failures
+exercise000011 and000013 reconciliation without replacing NULL or non-NULL
+captured epochs. FK checks and downgrade refusal are asserted. Fresh columns
+are nullable with no authority default. No current fixture was upgraded.
+
+Runtime positives use actual platform-provisioned tenants and member credentials
+in one DB. Tenant Fireflies owner/admin setup intersects source domain and
+publication ceiling, starts with zero grants, denies a real foreign member FK
+and foreign IDs, and makes source read depend on an explicit grant. Suspended/
+resumed setup and provider reads retain their old Principal and fail final writes.
+Fresh login cannot disclose an old observation; identical-content refresh still
+requires explicit preview rebase before exact reviewed task publication.
+
+The protected HTTP case uses production router/middleware/core and the synthetic
+reader/store. It proves positive setup→grant→import→prepare→accept plus deduped
+receipt, server-derived task creator and no automatic transcript publication.
+Forged actor/org/epoch/credential fields are400, a member bearer is401 on the
+original-token platform router, and foreign binding/source/candidate/import/task
+references are404. Its three provider reads are local fixtures. These are actual
+protected API tests, not a persistent browser fixture or live Fireflies evidence.
+
+Owner report949 accurately retains its earlier36/1 and37/1 exploratory runs:
+one superseded Owner-denial expectation and one403-versus401 assertion, corrected
+without an auth product change. Those are owner evidence, distinct from the
+eight unchanged independent passes above. The linker unwind-size warning and
+proc-macro-error2 future-compatibility notice remain in the raw independent logs.
+
+All25 native wrappers now resolve through the accepted invoking-window
+`NativeSessions` seam and the same bounded core. Only a real operator principal
+may construct the legacy Ops operator. The prepared tenant ACL and native
+availability flag are unchanged. **Restricted tenant native windows remain
+unavailable; the existing protected original-organization platform/native path
+remains available.** This is a source review of the new wrappers, not a native
+runtime or shared-channel isolation pass.
+
+[Commands/results](business-integration-review/949adb02/unchanged-results.json),
+[before772 blobs](business-integration-review/949adb02/source-before.json),
+[post-run preservation](business-integration-review/949adb02/source-after.json).
+All three command processes finished. Root was notified before the bounded
+recompile; no old process, fixture, installed dependency or other target changed.
+
+## IUI-1 correction and setup scope atdc14/a58
+
+Read correction026c1e46 at committed **dc14e83b93529afab99e973ddbd21e0db79b851b**,
+then the complete navigation/pending-operation correction at
+**a58c004c7d5187e6455a452195985528ddf14bc7**, tree
+`4add54a24195c6597b361cc8ee0c918c81fcc959`. Read both new test files and the
+complete setup capability diff. The incoming entry uses the existing discard
+guard. Newer intent clears the prior prompt/read; same-source intent preserves
+the editor. Busy/unknown state reaches the parent guard, which disables discard
+until the exact operation is resolved. Setup kinds/domains come from the protected
+response; missing authority hides setup. Same-scope refresh retains an entered
+key, while narrowed scope removes the form and releases it from component memory.
+
+The **unchanged original probe** atdc14 reaches the required dialog, then fails
+at its previously unreachable background `getByRole("textbox")` assertion.
+The real modal correctly excludes that background from accessible queries.
+That exit1 log is retained as a probe limitation, not another product finding.
+The adjusted probe changes only this post-dialog check: original field must remain
+mounted with the sentinel, then explicit **Keep editing** must expose the same
+value. It passes1/1 atdc14, exit0,0.129s test time. The original draft-loss boundary
+assertion and zero-mutation assertion remain intact.
+
+At a58, the same adjusted reviewer probe plus the owner's unchanged4 navigation
+race/recovery and8 setup-capability cases pass **13/13**, exit0,1.00s test time/
+3.12s runner time. They cover old success/failure after newer source intent,
+cancel/stay preservation, busy→unknown→exact-operation recovery, server-granted
+setup kinds/domains and removal of out-of-ceiling destinations. These remain
+mocked-client component tests; no actual source/provider write or browser is
+involved. Vitest2.1.9/Vite5.4.21's inherited CJS warning is retained.
+
+Original UI blobs remain exact: dc141230/1230 and a581231/1231. Added reviewer
+files/cache are only in own archives. [dc14 original and adjusted runs](business-integration-review/ui-dc14e83b/digests.json),
+[a58 command/result](business-integration-review/ui-a58c004c/source-entry-and-setup-result.json),
+[reviewer probe attribution](business-integration-review/ui-dc14e83b/NOTICE).
+No component-level IUI-1 blocker remains, but final closure still requires the
+root checklist's real task-source link sequence on the coordinated unified
+protected fixture. Other UI/session/settings/source-disclosure and B browser
+gates remain pending; no full B or final Design Studio acceptance is claimed.
+
+Report/source `git diff --check` is0. Evidence staging reports2 only for final
+blank lines in the six raw tool logs; their exact bytes are deliberately retained.
