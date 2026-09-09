@@ -975,3 +975,14 @@ from src/components/business/task-form.tsx at
 a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0 Codeg). Current backend
 authorization remains decisive. The frontend adds no identity, role or source
 permission. Original LICENSE and every previous attribution remain intact.
+
+Unified business UI browser evidence (2026):
+reports/business-intake-ui-evidence/unified-*.cli.js adapts the personal sign-in,
+scoped source/task selectors and no-secret returned-evidence pattern from
+owner-personal-session.cli.js and the owned frontend in the same repository at
+1974d97f44b69db96051ace1c68717cc8c27b6e9 (Apache-2.0 Codeg). Installed
+Playwright CLI0.1.18/core1.63.0-alpha-2026-08-05 run-code implementation and
+types, Node24.19.0 with @types/node25.2.2 fs/crypto/process declarations are
+API references, not copied dependency implementations. Generated private fixture
+values are read in memory and are absent from committed scripts/results.
+Original LICENSE and all earlier NOTICE entries remain intact.

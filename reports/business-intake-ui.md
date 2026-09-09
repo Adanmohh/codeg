@@ -44,6 +44,18 @@ will stay stable during coordinated review. Existing4350/4353 exports, browsers
 and the unsaved private draft are preserved. Own upcoming sessions are
 `intake-unified-a4354` and `intake-unified-b4354`.
 
+Both named sessions now connected successfully as ui owner/manager. The
+[owner login recipe](business-intake-ui-evidence/unified-owner-login.cli.js)
+reads only ui's0600 file inside CLI0.1.18's actual Node process: the installed
+`run-code` implementation exposes Page in a Node VM; the Page function
+constructor accesses process.getBuiltinModule("node:fs"). No filesystem service,
+credential CLI argument, source literal or browser-storage export is added.
+Filled-form errors are sanitized and no snapshot is taken until the form has
+unmounted. Both returned checks have zero stored credential/legacy token,
+native chrome and engineering entry. Other reviewers must use only their own
+namespace file, not this ui path. This is real personal-session evidence; source
+setup/publication checks are still in progress.
+
 ## September 9 frontend recovery checkpoint
 
 The active scope is PR29's shared workbench and Sources frontend. Accepted PR30
