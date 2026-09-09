@@ -1,12 +1,52 @@
 # Business Sources and shared workbench
 
-Current product: **c1e618dede15368d4af39ac74391f18931b317a5**, branch
+Current source: **026c1e46cfe60d625e4d8a27223c3ebcafd8f4c9**, branch
 `feat/business-intake-ui`, [draft PR29](https://github.com/Adanmohh/codeg/pull/29).
+Preserved measured export: **c1e618dede15368d4af39ac74391f18931b317a5**.
 Base: accepted `a40b03393a466672060066ae6e0e8c9054a2349d`.
 The independent frontend implementation and structured-workspace checks are
 published. **Complete B intake runtime acceptance remains pending tenant-epoch
 integration, the protected B fixture handoff and accepted backend integration.** No complete
 provider, native-tenant, or final product acceptance is claimed.
+
+## September 9 frontend recovery checkpoint
+
+The active scope is PR29's shared workbench and Sources frontend. Accepted PR30
+merge `b3f2f6d03bbbef3ea7b4a9412e29308f1f355843` is backend authority, not this
+worker's deliverable. Root STATUS at `1d67b0d5` and the complete own report were
+read on recovery. New session `01a084ee-12a8-7833-ace9-f3f4985ba926` has live
+PreToolUse and PostToolUse records in the docs-first audit for this worktree,
+after separate React manifest and Cargo.toml reads. The stopped old Codex PID
+40904, inherited fixture children, exports and browser sessions were not touched;
+no old exec session ID was reused. Offline code-context guide exits0; installed
+docs lookup exits3 because rebrand.db remains absent. Cross-project DB advice
+does not supersede the accepted tenancy design.
+
+Source review found an incoming task reference could replace the Sources pane's
+private candidate without its discard guard. The regression failed against c1
+(missing confirmation, destination already opened). Correction026c1e46 consumes
+the incoming request once, preserves the existing editor on cancellation, leaves
+same-source references intact, and waits for explicit discard before checking
+the new binding. The authorized target read temporarily hides private controls;
+no source/task write is added. The focused case then passes; all40 affected
+intake/workbench/task workflow tests pass, typecheck and scoped ESLint exit0.
+This is a component regression, not a claimed real B browser flow. The preserved
+4350 export remains c1; its next export waits for the stable integrated handoff.
+
+Tickets' compiling integration `a9a610a8b60c0aa2a8e2a4a873f9c278ec28750b`
+was resolved via gh api and its committed report/types read. Existing25 inputs
+and DTOs are unchanged from9a4. Tickets has specified upcoming response-only
+`BindingList.setupKinds` and `setupDomains`: tenant owner/admin Fireflies versus
+actual operator legacy setup, and current Contribute domains. This UI will use
+the committed capabilities, not derive setup authority from roles or accept a
+caller epoch. Its immutable field checkpoint is still awaited.
+
+Remaining fixture needs are the integrated backend4351/upstream4352 source hash,
+guard/health details, fresh synthetic human credentials in that same database,
+safe Fireflies/email/Hafidh record references and coordinated mutation records
+for accept/link/discard/rebase/claim and response-loss recovery. Existing4353
+credentials are never reused as4351 access. No listener or export was restarted
+on recovery; no runtime response interception substitutes for these gates.
 
 ## Delivered behavior
 
