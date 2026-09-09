@@ -1,0 +1,613 @@
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/ui-191f69b3/source
+
+ ❯ src/components/business-intake/reviewer-source-entry.test.tsx (1 test | 1 failed) 1145ms
+   × independent source-entry draft ownership > guards a task source link before replacing another review's unsaved draft 1145ms
+     → Unable to find role="dialog" and name "Leave this source review?"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button>[39m
+      [0mOpen task-linked second source[0m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"@container space-y-7"[39m
+      [33mdata-business-sources[39m=[32m"true"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"@container space-y-6"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none -ms-3"[39m
+          [33mdata-size[39m=[32m"default"[39m
+          [33mdata-slot[39m=[32m"button"[39m
+          [33mdata-variant[39m=[32m"ghost"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-arrow-left size-4 rtl:rotate-180"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m12 19-7-7 7-7"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 12H5"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mSources[0m
+        [36m</button>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"border-border text-muted-foreground flex gap-3 border-b pb-5 text-sm leading-relaxed"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-lock-keyhole mt-0.5 size-4 shrink-0"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<circle[39m
+              [33mcx[39m=[32m"12"[39m
+              [33mcy[39m=[32m"16"[39m
+              [33mr[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<rect[39m
+              [33mheight[39m=[32m"12"[39m
+              [33mrx[39m=[32m"2"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mx[39m=[32m"3"[39m
+              [33my[39m=[32m"10"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M7 10V7a5 5 0 0 1 10 0v3"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-foreground mb-1 font-medium"[39m
+            [36m>[39m
+              [0mPrivate source review[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mOnly people with explicit source access can read these passages and drafts. Task access is separate.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"space-y-3"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-primary text-xs font-semibold"[39m
+          [36m>[39m
+            [0mFireflies meetings[0m
+          [36m</p>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"break-words text-2xl font-semibold tracking-tight sm:text-3xl [overflow-wrap:anywhere]"[39m
+            [33mdir[39m=[32m"auto"[39m
+          [36m>[39m
+            [0mSynthetic second source[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-muted-foreground text-sm"[39m
+          [36m>[39m
+            [0mSource version[0m
+            [0m: [0m
+            [0m2[0m
+          [36m</p>[39m
+        [36m</header>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"grid min-w-0 gap-8 @[50rem]:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"min-w-0 space-y-6"[39m
+          [36m>[39m
+            [36m<section[39m
+              [33maria-label[39m=[32m"Exact source passage"[39m
+              [33mclass[39m=[32m"space-y-4"[39m
+            [36m>[39m
+              [36m<h2[39m
+                [33mclass[39m=[32m"font-semibold"[39m
+              [36m>[39m
+                [0mExact source passage[0m
+              [36m</h2>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-muted-foreground text-sm leading-relaxed"[39m
+              [36m>[39m
+                [0mChoose 1–20 passages, up to 20,000 characters in total. Nothing is shortened or rewritten for you.[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-muted-foreground text-sm"[39m
+              [36m>[39m
+                [0mThe provider returned an empty summary.[0m
+              [36m</p>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"space-y-3"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"border-border rounded-xl border bg-background"[39m
+                [36m>[39m
+                  [36m<label[39m
+                    [33mclass[39m=[32m"flex cursor-pointer items-start gap-3 p-4 sm:p-5"[39m
+                  [36m>[39m
+                    [36m<input[39m
+                      [33maria-label[39m=[32m"Exact source passage 1"[39m
+                      [33mclass[39m=[32m"accent-primary focus-visible:outline-ring mt-1 size-4 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4"[39m
+                      [33mtype[39m=[32m"checkbox...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button>[39m
+      [0mOpen task-linked second source[0m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"@container space-y-7"[39m
+      [33mdata-business-sources[39m=[32m"true"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"@container space-y-6"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none -ms-3"[39m
+          [33mdata-size[39m=[32m"default"[39m
+          [33mdata-slot[39m=[32m"button"[39m
+          [33mdata-variant[39m=[32m"ghost"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-arrow-left size-4 rtl:rotate-180"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m12 19-7-7 7-7"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 12H5"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mSources[0m
+        [36m</button>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"border-border text-muted-foreground flex gap-3 border-b pb-5 text-sm leading-relaxed"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-lock-keyhole mt-0.5 size-4 shrink-0"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<circle[39m
+              [33mcx[39m=[32m"12"[39m
+              [33mcy[39m=[32m"16"[39m
+              [33mr[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<rect[39m
+              [33mheight[39m=[32m"12"[39m
+              [33mrx[39m=[32m"2"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mx[39m=[32m"3"[39m
+              [33my[39m=[32m"10"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M7 10V7a5 5 0 0 1 10 0v3"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-foreground mb-1 font-medium"[39m
+            [36m>[39m
+              [0mPrivate source review[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mOnly people with explicit source access can read these passages and drafts. Task access is separate.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"space-y-3"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-primary text-xs font-semibold"[39m
+          [36m>[39m
+            [0mFireflies meetings[0m
+          [36m</p>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"break-words text-2xl font-semibold tracking-tight sm:text-3xl [overflow-wrap:anywhere]"[39m
+            [33mdir[39m=[32m"auto"[39m
+          [36m>[39m
+            [0mSynthetic second source[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-muted-foreground text-sm"[39m
+          [36m>[39m
+            [0mSource version[0m
+            [0m: [0m
+            [0m2[0m
+          [36m</p>[39m
+        [36m</header>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"grid min-w-0 gap-8 @[50rem]:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"min-w-0 space-y-6"[39m
+          [36m>[39m
+            [36m<section[39m
+              [33maria-label[39m=[32m"Exact source passage"[39m
+              [33mclass[39m=[32m"space-y-4"[39m
+            [36m>[39m
+              [36m<h2[39m
+                [33mclass[39m=[32m"font-semibold"[39m
+              [36m>[39m
+                [0mExact source passage[0m
+              [36m</h2>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-muted-foreground text-sm leading-relaxed"[39m
+              [36m>[39m
+                [0mChoose 1–20 passages, up to 20,000 characters in total. Nothing is shortened or rewritten for you.[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-muted-foreground text-sm"[39m
+              [36m>[39m
+                [0mThe provider returned an empty summary.[0m
+              [36m</p>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"space-y-3"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"border-border rounded-xl border bg-background"[39m
+                [36m>[39m
+                  [36m<label[39m
+                    [33mclass[39m=[32m"flex cursor-pointer items-start gap-3 p-4 sm:p-5"[39m
+                  [36m>[39m
+                    [36m<input[39m
+                      [33maria-label[39m=[32m"Exact source passage 1"[39m
+                      [33mclass[39m=[32m"accent-primary focus-visible:outline-ring mt-1 size-4 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4"[39m
+                      [33mtype[39m=[32m"checkbox...
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/business-intake/reviewer-source-entry.test.tsx > independent source-entry draft ownership > guards a task source link before replacing another review's unsaved draft
+TestingLibraryElementError: Unable to find role="dialog" and name "Leave this source review?"
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button>[39m
+      [0mOpen task-linked second source[0m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"@container space-y-7"[39m
+      [33mdata-business-sources[39m=[32m"true"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"@container space-y-6"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none -ms-3"[39m
+          [33mdata-size[39m=[32m"default"[39m
+          [33mdata-slot[39m=[32m"button"[39m
+          [33mdata-variant[39m=[32m"ghost"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-arrow-left size-4 rtl:rotate-180"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m12 19-7-7 7-7"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 12H5"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mSources[0m
+        [36m</button>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"border-border text-muted-foreground flex gap-3 border-b pb-5 text-sm leading-relaxed"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-lock-keyhole mt-0.5 size-4 shrink-0"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<circle[39m
+              [33mcx[39m=[32m"12"[39m
+              [33mcy[39m=[32m"16"[39m
+              [33mr[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<rect[39m
+              [33mheight[39m=[32m"12"[39m
+              [33mrx[39m=[32m"2"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mx[39m=[32m"3"[39m
+              [33my[39m=[32m"10"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M7 10V7a5 5 0 0 1 10 0v3"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-foreground mb-1 font-medium"[39m
+            [36m>[39m
+              [0mPrivate source review[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mOnly people with explicit source access can read these passages and drafts. Task access is separate.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"space-y-3"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-primary text-xs font-semibold"[39m
+          [36m>[39m
+            [0mFireflies meetings[0m
+          [36m</p>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"break-words text-2xl font-semibold tracking-tight sm:text-3xl [overflow-wrap:anywhere]"[39m
+            [33mdir[39m=[32m"auto"[39m
+          [36m>[39m
+            [0mSynthetic second source[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-muted-foreground text-sm"[39m
+          [36m>[39m
+            [0mSource version[0m
+            [0m: [0m
+            [0m2[0m
+          [36m</p>[39m
+        [36m</header>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"grid min-w-0 gap-8 @[50rem]:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"min-w-0 space-y-6"[39m
+          [36m>[39m
+            [36m<section[39m
+              [33maria-label[39m=[32m"Exact source passage"[39m
+              [33mclass[39m=[32m"space-y-4"[39m
+            [36m>[39m
+              [36m<h2[39m
+                [33mclass[39m=[32m"font-semibold"[39m
+              [36m>[39m
+                [0mExact source passage[0m
+              [36m</h2>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-muted-foreground text-sm leading-relaxed"[39m
+              [36m>[39m
+                [0mChoose 1–20 passages, up to 20,000 characters in total. Nothing is shortened or rewritten for you.[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-muted-foreground text-sm"[39m
+              [36m>[39m
+                [0mThe provider returned an empty summary.[0m
+              [36m</p>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"space-y-3"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"border-border rounded-xl border bg-background"[39m
+                [36m>[39m
+                  [36m<label[39m
+                    [33mclass[39m=[32m"flex cursor-pointer items-start gap-3 p-4 sm:p-5"[39m
+                  [36m>[39m
+                    [36m<input[39m
+                      [33maria-label[39m=[32m"Exact source passage 1"[39m
+                      [33mclass[39m=[32m"accent-primary focus-visible:outline-ring mt-1 size-4 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4"[39m
+                      [33mtype[39m=[32m"checkbox...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button>[39m
+      [0mOpen task-linked second source[0m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"@container space-y-7"[39m
+      [33mdata-business-sources[39m=[32m"true"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"@container space-y-6"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none -ms-3"[39m
+          [33mdata-size[39m=[32m"default"[39m
+          [33mdata-slot[39m=[32m"button"[39m
+          [33mdata-variant[39m=[32m"ghost"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-arrow-left size-4 rtl:rotate-180"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m12 19-7-7 7-7"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M19 12H5"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mSources[0m
+        [36m</button>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"border-border text-muted-foreground flex gap-3 border-b pb-5 text-sm leading-relaxed"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-lock-keyhole mt-0.5 size-4 shrink-0"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<circle[39m
+              [33mcx[39m=[32m"12"[39m
+              [33mcy[39m=[32m"16"[39m
+              [33mr[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<rect[39m
+              [33mheight[39m=[32m"12"[39m
+              [33mrx[39m=[32m"2"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mx[39m=[32m"3"[39m
+              [33my[39m=[32m"10"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M7 10V7a5 5 0 0 1 10 0v3"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-foreground mb-1 font-medium"[39m
+            [36m>[39m
+              [0mPrivate source review[0m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0mOnly people with explicit source access can read these passages and drafts. Task access is separate.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"space-y-3"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-primary text-xs font-semibold"[39m
+          [36m>[39m
+            [0mFireflies meetings[0m
+          [36m</p>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"break-words text-2xl font-semibold tracking-tight sm:text-3xl [overflow-wrap:anywhere]"[39m
+            [33mdir[39m=[32m"auto"[39m
+          [36m>[39m
+            [0mSynthetic second source[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-muted-foreground text-sm"[39m
+          [36m>[39m
+            [0mSource version[0m
+            [0m: [0m
+            [0m2[0m
+          [36m</p>[39m
+        [36m</header>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"grid min-w-0 gap-8 @[50rem]:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"min-w-0 space-y-6"[39m
+          [36m>[39m
+            [36m<section[39m
+              [33maria-label[39m=[32m"Exact source passage"[39m
+              [33mclass[39m=[32m"space-y-4"[39m
+            [36m>[39m
+              [36m<h2[39m
+                [33mclass[39m=[32m"font-semibold"[39m
+              [36m>[39m
+                [0mExact source passage[0m
+              [36m</h2>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-muted-foreground text-sm leading-relaxed"[39m
+              [36m>[39m
+                [0mChoose 1–20 passages, up to 20,000 characters in total. Nothing is shortened or rewritten for you.[0m
+              [36m</p>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-muted-foreground text-sm"[39m
+              [36m>[39m
+                [0mThe provider returned an empty summary.[0m
+              [36m</p>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"space-y-3"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"border-border rounded-xl border bg-background"[39m
+                [36m>[39m
+                  [36m<label[39m
+                    [33mclass[39m=[32m"flex cursor-pointer items-start gap-3 p-4 sm:p-5"[39m
+                  [36m>[39m
+                    [36m<input[39m
+                      [33maria-label[39m=[32m"Exact source passage 1"[39m
+                      [33mclass[39m=[32m"accent-primary focus-visible:outline-ring mt-1 size-4 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4"[39m
+                      [33mtype[39m=[32m"checkbox...
+ ❯ waitForWrapper ../../../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/components/business-intake/reviewer-source-entry.test.tsx:81:25
+     79|     // This is the same entry seam used by BusinessWorkspace's task on…
+     80|     // The destination editor must own the discard decision before its…
+     81|     expect(await screen.findByRole("dialog", { name: "Leave this sourc…
+       |                         ^
+     82|     expect(screen.getByRole("textbox", { name: "Brief" })).toHaveValue…
+     83|     expect(intake.mock.calls.filter(([name]) => /candidates\/(edit|sel…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  10:08:06
+   Duration  2.18s (transform 173ms, setup 118ms, collect 444ms, tests 1.15s, environment 315ms, prepare 56ms)
+

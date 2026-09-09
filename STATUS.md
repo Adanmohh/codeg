@@ -9,20 +9,29 @@ entry effect bypass and keyed review remount at productc1e618de. Rebrand owns
 the fix; acceptance requires the original regression and a real browser recheck
 on the unified fixture. This component result is not browser/API evidence.
 
-Reviewer independently reports pre-epoch B15bb candidate7/import5/recovery4
-tests passing, all exit0. Integrated `f51154b948ac1ae74fa1bf6a7df495e7e12e05f2`
-is archived768/768 exact, with accepted000012 unchanged. Root read its report:
-000013 and persisted epoch/setup scope now compile, but new epoch/migration
-tests are still in progress. Final review evidence publication is pending.
+Independent review `cb05fbe8` is read and imported as
+[the integration review](reports/review-business-integration.md), including raw
+logs, source manifests and the failing IUI-1 probe. Root verified all13 listed
+evidence SHA256 digests. Reviewer independently executed pre-epoch B15bb
+candidate7/import5/recovery4 tests, all exit0; its source manifests report
+B756/756 and UI1229/1229 original blobs preserved. These are reviewer executions,
+not root reruns or integrated tenant/browser acceptance.
 
-Independent integration preparation `21d4ecaf` is read and imported as
-[the integration review](reports/review-business-integration.md). Reviewer
-archives match B15bb756/756 and UI191f69b3 1229/1229 source/licence blobs.
-This is source preparation, not runtime acceptance. PR29's current preview uses
-separate task/settings and intake backends; complete B evidence must use one
-integrated database. Compiling merge checkpoint `a9a610a8` is published to PR28
-and under review while persisted epoch/setup changes proceed. The000013 upgrade
-matrix, tenant privacy and shared-pane draft checks remain required.
+PR28 now publishes `949adb02c18c72d0804eeb74b420520a7681ee86`: eight new
+tenant/migration/protected-HTTP tests and completed native wrapper registrations.
+Owner discloses two exploratory assertion failures followed by corrected passing
+selectors; a single green final intake suite and final checks remain required.
+Approvals has this exact head for independent execution. Previously archived
+f51154b9 matches768/768; accepted000012 remains unchanged, with forward000013.
+
+PR29 publishes `dc14e83b93529afab99e973ddbd21e0db79b851b`, including the
+026c1e46 source-entry correction and response-driven setup capabilities. Root
+read the changed entry guard; rebrand is extending race coverage. IUI-1 stays
+open pending independent regression and actual integrated browser recheck.
+All three workers are active and report Astra through Herdr. Tickets owns the
+next stable synthetic4351/4352 handoff; existing4350 preview still uses separate
+backends. The unified database, tenant privacy, source workflows and shared-pane
+draft checks precede final Playwright CLI and Design Studio acceptance.
 
 Approvals recovery confirmed through new session
 `01a084ee-129a-7561-9f10-64266115e759`: worker reports live PreToolUse22873/22875

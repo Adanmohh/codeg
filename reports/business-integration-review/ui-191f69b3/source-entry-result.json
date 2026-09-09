@@ -1,0 +1,19 @@
+{
+  "head": "191f69b3c2b827ce2f712bfcad1f995a201981bb",
+  "product": "c1e618dede15368d4af39ac74391f18931b317a5",
+  "command": [
+    "node",
+    "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/node_modules/vitest/vitest.mjs",
+    "run",
+    "--config",
+    "vitest.reviewer.config.ts",
+    "src/components/business-intake/reviewer-source-entry.test.tsx",
+    "--maxWorkers",
+    "1",
+    "--minWorkers",
+    "1"
+  ],
+  "exit": 1,
+  "seconds": 2.502,
+  "evidence": "Synthetic mocked-client component test only; no browser/provider or real auth assertion"
+}
