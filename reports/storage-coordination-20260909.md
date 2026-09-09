@@ -29,8 +29,10 @@ change during the operation, not a claim that du's entire logical size became
 free or that concurrent APFS/system activity was absent.
 
 Other owners separately reported ordinary offline uv cache pruning (25.5GiB
-logical, without equivalent physical headroom) and Farha's457MiB Next cache
-removal. Root did not perform those actions. Further reclamation was stopped once
+logical, without equivalent physical headroom) and Farha's457MiB Next cache,
+265MiB unused root .next remainder and369MiB released learning .next removals,
+about1.06GiB total. Farha confirmed its access/Claude outputs remain untouched.
+Root did not perform those actions. Further reclamation was stopped once
 root's recovery restored headroom. EduBlend's separately assigned investigator
 continues read-only RAM/swap/APFS diagnostics; no second investigator was spawned.
 
@@ -40,3 +42,8 @@ do not start below10GiB available, and stop/report if approaching5GiB. Approvals
 continues source review until tickets explicitly releases the window. No parallel
 Rust build, new target, static export or native rebuild is part of this recovery.
 All active project owners received the measured capacity and preservation limits.
+Farha confirmed large writes remain paused through the single bounded regression
+suite and server check; root will relay explicit release and reassess after15
+minutes if the window is still pending. Approvals separately identified25.351GiB
+of idle prior incremental caches with no open handles; those are contingency
+candidates only, remain untouched, and are not needed for this recovered window.
