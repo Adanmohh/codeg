@@ -998,3 +998,13 @@ ImportPanel and the synthetic fixtures at that same pin. React19.2.4,
 Library16.3.2/Vitest2.1.9 are read API references. No third-party implementation,
 provider, dependency, authentication boundary or license is added or replaced.
 Original LICENSE and all preceding attribution blocks remain intact.
+
+Corrected intake browser fixture (2026):
+reports/business-intake-ui-evidence/serve-recovery-4355.mjs adapts
+serve-unified.mjs at Codeg60d600db0f224d44ff191490ab79bc25530ba959,
+Apache-2.0. It preserves the fixed loopback API allowlist and adds a supplied
+Origin equality guard for the separately authorized4355 preview. Node24.19.0
+and installed @types/node25.2.2 IncomingHttpHeaders are API grounding; official
+Node doc/api/http.md was read at cdc1b38d40cb567b7ad0b39c86addf830a0af0ae.
+No dependency implementation or production authority is copied or changed.
+Original LICENSE and all previous NOTICE sections remain intact.

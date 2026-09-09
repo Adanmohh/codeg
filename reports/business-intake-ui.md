@@ -1,8 +1,9 @@
 # Business Sources and shared workbench
 
-Current source: **1974d97f44b69db96051ace1c68717cc8c27b6e9**, branch
+Current product: **60d600db0f224d44ff191490ab79bc25530ba959**, branch
 `feat/business-intake-ui`, [draft PR29](https://github.com/Adanmohh/codeg/pull/29).
 Preserved measured export: **c1e618dede15368d4af39ac74391f18931b317a5**.
+Stable unified4354 export: **1974d97f44b69db96051ace1c68717cc8c27b6e9**.
 Base: accepted `a40b03393a466672060066ae6e0e8c9054a2349d`.
 The independent frontend implementation and structured-workspace checks are
 published. **Unified browser fixture4354 is now ready; complete B intake runtime
@@ -10,6 +11,24 @@ acceptance and accepted backend integration remain pending.** No complete
 provider, native-tenant, or final product acceptance is claimed.
 
 ## Current bounded acceptance and next priority
+
+Root authorized one separate corrected export on4355. The port has no listener
+(`lsof` exit1/no output); disk has8.6Gi free. Planned new output is
+`.build/business-intake-ui-recovery-60d600db0`. The report-only
+`serve-recovery-4355.mjs` reuses the exact unified helper at60d600db0, fixes both
+API destinations to4351, rejects a supplied foreign Origin before proxying,
+retains the closed operation allowlist and disables WebSocket upgrades. It
+does not forward Origin or change the backend's authentication. Node syntax
+check exit0. No existing listener/export is replaced. Build and rendered
+recovery evidence remain pending at this checkpoint.
+
+The separate React19.2.4 and Cargo manifest reads were repeated before this
+bounded handoff. The live docs-first audit records both PreToolUse and
+PostToolUse for session01a084ee-12a8-7833-ace9-f3f4985ba926 and this exact
+worktree at epoch1788948436–1788948448. Installed @types/node25.2.2 HTTP header
+types were read before the new fixture guard; official Node24.19.0
+`doc/api/http.md#messageheaders` was then read through gh api at immutable
+`cdc1b38d40cb567b7ad0b39c86addf830a0af0ae`. No version change or hook bypass.
 
 Owner's September9 correction is binding: persistent AI conversations and terminal
 work, managed Documents & assets, and real account/status/content/performance
