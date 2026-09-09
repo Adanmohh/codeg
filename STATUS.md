@@ -2,6 +2,13 @@
 
 ## Current integration and worker state
 
+Tickets reports desktop check and typecheck exit0; four Clippy cleanup issues
+and one complete green intake run remain before its immutable unified4351/4352
+fixture handoff. Disk space is constrained: worker observed11Gi free and root
+subsequently measured13Gi. Workers are coordinating serialized large checks in
+their current isolated targets; no additional bundle/target copies or old fixture,
+target or export cleanup is authorized by this storage coordination.
+
 **Open UI finding IUI-1/P2:** a task source-entry can replace a different active
 Sources review without its dirty-navigation guard, losing an unsaved draft.
 Reviewer reproduced it with a mocked-client component test; root confirmed the
@@ -26,7 +33,10 @@ f51154b9 matches768/768; accepted000012 remains unchanged, with forward000013.
 
 PR29 publishes `dc14e83b93529afab99e973ddbd21e0db79b851b`, including the
 026c1e46 source-entry correction and response-driven setup capabilities. Root
-read the changed entry guard; rebrand is extending race coverage. IUI-1 stays
+read that guard and the newer `a58c004c7d5187e6455a452195985528ddf14bc7`
+diff: newer navigation supersedes pending target reads, and busy/unknown writes
+block discard until recovery. Its component race tests are published; root has
+not executed them, and the owner's report closeout is pending. IUI-1 stays
 open pending independent regression and actual integrated browser recheck.
 All three workers are active and report Astra through Herdr. Tickets owns the
 next stable synthetic4351/4352 handoff; existing4350 preview still uses separate
