@@ -1,0 +1,481 @@
+Already up to date
+Done in 157ms using pnpm v11.9.0
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ❯ src/components/business-execution/session-prompt.test.tsx (8 tests | 1 failed | 7 skipped) 84ms
+   × existing RichComposer bound to an E1 prompt receipt > keeps the submitted reference review unchanged while newer task metadata arrives 84ms
+     → Unable to find an accessible element with the role "checkbox" and name "Synthetic task, revision 3"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Prompt":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Prompt"[39m
+    [33mclass[39m=[32m"border-border bg-background border-t p-4 sm:p-5"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Prompt":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Prompt"[39m
+    [33maria-multiline[39m=[32m"true"[39m
+    [33mclass[39m=[32m"tiptap ProseMirror codeg-composer-content"[39m
+    [33mcontenteditable[39m=[32m"false"[39m
+    [33mrole[39m=[32m"textbox"[39m
+    [33mtranslate[39m=[32m"no"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-muted-foreground max-w-md text-xs leading-relaxed"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Send prompt":
+  [36m<button[39m
+    [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none hover:bg-primary/95"[39m
+    [33mdata-size[39m=[32m"default"[39m
+    [33mdata-slot[39m=[32m"button"[39m
+    [33mdata-variant[39m=[32m"default"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Clear selection":
+  [36m<button[39m
+    [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"[39m
+    [33mdata-size[39m=[32m"default"[39m
+    [33mdata-slot[39m=[32m"button"[39m
+    [33mdata-variant[39m=[32m"outline"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "Include with this prompt":
+  [36m<fieldset[39m
+    [33mclass[39m=[32m"mt-3 space-y-1"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Synthetic task, revision 4":
+  [36m<input[39m
+    [33mclass[39m=[32m"accent-primary size-4 shrink-0"[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  alert:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"mt-3 space-y-2 text-sm"[39m
+    [33mrole[39m=[32m"alert"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-muted-foreground mt-3 text-sm"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"Prompt"[39m
+        [33mclass[39m=[32m"border-border bg-background border-t p-4 sm:p-5"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"focus-within:ring-ring rounded-xl border bg-background focus-within:ring-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"codeg-composer flex flex-col max-h-56 min-h-28 overflow-y-auto p-3 text-base md:text-sm"[39m
+            [33mdata-disabled[39m=[32m"true"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"codeg-composer-scroll min-h-0 flex-1 overflow-y-auto px-3 py-2 text-base md:text-sm"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"Prompt"[39m
+                [33maria-multiline[39m=[32m"true"[39m
+                [33mclass[39m=[32m"tiptap ProseMirror codeg-composer-content"[39m
+                [33mcontenteditable[39m=[32m"false"[39m
+                [33mrole[39m=[32m"textbox"[39m
+                [33mtranslate[39m=[32m"no"[39m
+              [36m>[39m
+                [36m<p>[39m
+                  [0m  Synthetic launch brief — خطة 🧭[0m
+                  [36m<br />[39m
+                  [0mKeep this exact second line.  [0m
+                [36m</p>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex flex-wrap items-center justify-between gap-3 px-3 pb-3"[39m
+          [36m>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-muted-foreground max-w-md text-xs leading-relaxed"[39m
+            [36m>[39m
+              [0mOnly the prompt text is sent unless you select context below.[0m
+            [36m</p>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none hover:bg-primary/95"[39m
+              [33mdata-size[39m=[32m"default"[39m
+              [33mdata-slot[39m=[32m"button"[39m
+              [33mdata-variant[39m=[32m"default"[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"lucide lucide-send size-4 rtl:-scale-x-100"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"m21.854 2.147-10.94 10.939"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mSend prompt[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<fieldset[39m
+          [33mclass[39m=[32m"mt-3 space-y-1"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [36m<legend[39m
+            [33mclass[39m=[32m"text-muted-foreground text-xs"[39m
+          [36m>[39m
+            [0mInclude with this prompt[0m
+          [36m</legend>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"flex min-h-11 items-center gap-2 text-sm"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mclass[39m=[32m"accent-primary size-4 shrink-0"[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<bdi[39m
+              [33mclass[39m=[32m"min-w-0 [overflow-wrap:anywhere]"[39m
+            [36m>[39m
+              [0mSynthetic task, revision 4[0m
+            [36m</bdi>[39m
+          [36m</label>[39m
+        [36m</fieldset>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"mt-3 space-y-2 text-sm"[39m
+          [33mrole[39m=[32m"alert"[39m
+        [36m>[39m
+          [36m<p>[39m
+            [0mA selected reference changed. Review the current selection before sending.[0m
+          [36m</p>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"[39m
+            [33mdata-size[39m=[32m"default"[39m
+            [33mdata-slot[39m=[32m"button"[39m
+            [33mdata-variant[39m=[32m"outline"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mClear selection[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"text-muted-foreground mt-3 text-sm"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [0mWaiting for the receipt…[0m
+        [36m</p>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/business-execution/session-prompt.test.tsx > existing RichComposer bound to an E1 prompt receipt > keeps the submitted reference review unchanged while newer task metadata arrives
+TestingLibraryElementError: Unable to find an accessible element with the role "checkbox" and name "Synthetic task, revision 3"
+
+Here are the accessible roles:
+
+  region:
+
+  Name "Prompt":
+  [36m<section[39m
+    [33maria-label[39m=[32m"Prompt"[39m
+    [33mclass[39m=[32m"border-border bg-background border-t p-4 sm:p-5"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Prompt":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Prompt"[39m
+    [33maria-multiline[39m=[32m"true"[39m
+    [33mclass[39m=[32m"tiptap ProseMirror codeg-composer-content"[39m
+    [33mcontenteditable[39m=[32m"false"[39m
+    [33mrole[39m=[32m"textbox"[39m
+    [33mtranslate[39m=[32m"no"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-muted-foreground max-w-md text-xs leading-relaxed"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Send prompt":
+  [36m<button[39m
+    [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none hover:bg-primary/95"[39m
+    [33mdata-size[39m=[32m"default"[39m
+    [33mdata-slot[39m=[32m"button"[39m
+    [33mdata-variant[39m=[32m"default"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Clear selection":
+  [36m<button[39m
+    [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"[39m
+    [33mdata-size[39m=[32m"default"[39m
+    [33mdata-slot[39m=[32m"button"[39m
+    [33mdata-variant[39m=[32m"outline"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "Include with this prompt":
+  [36m<fieldset[39m
+    [33mclass[39m=[32m"mt-3 space-y-1"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  checkbox:
+
+  Name "Synthetic task, revision 4":
+  [36m<input[39m
+    [33mclass[39m=[32m"accent-primary size-4 shrink-0"[39m
+    [33mtype[39m=[32m"checkbox"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  alert:
+
+  Name "":
+  [36m<div[39m
+    [33mclass[39m=[32m"mt-3 space-y-2 text-sm"[39m
+    [33mrole[39m=[32m"alert"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-muted-foreground mt-3 text-sm"[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"Prompt"[39m
+        [33mclass[39m=[32m"border-border bg-background border-t p-4 sm:p-5"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"focus-within:ring-ring rounded-xl border bg-background focus-within:ring-2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"codeg-composer flex flex-col max-h-56 min-h-28 overflow-y-auto p-3 text-base md:text-sm"[39m
+            [33mdata-disabled[39m=[32m"true"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"codeg-composer-scroll min-h-0 flex-1 overflow-y-auto px-3 py-2 text-base md:text-sm"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33maria-label[39m=[32m"Prompt"[39m
+                [33maria-multiline[39m=[32m"true"[39m
+                [33mclass[39m=[32m"tiptap ProseMirror codeg-composer-content"[39m
+                [33mcontenteditable[39m=[32m"false"[39m
+                [33mrole[39m=[32m"textbox"[39m
+                [33mtranslate[39m=[32m"no"[39m
+              [36m>[39m
+                [36m<p>[39m
+                  [0m  Synthetic launch brief — خطة 🧭[0m
+                  [36m<br />[39m
+                  [0mKeep this exact second line.  [0m
+                [36m</p>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex flex-wrap items-center justify-between gap-3 px-3 pb-3"[39m
+          [36m>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-muted-foreground max-w-md text-xs leading-relaxed"[39m
+            [36m>[39m
+              [0mOnly the prompt text is sent unless you select context below.[0m
+            [36m</p>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none hover:bg-primary/95"[39m
+              [33mdata-size[39m=[32m"default"[39m
+              [33mdata-slot[39m=[32m"button"[39m
+              [33mdata-variant[39m=[32m"default"[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"lucide lucide-send size-4 rtl:-scale-x-100"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"m21.854 2.147-10.94 10.939"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mSend prompt[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<fieldset[39m
+          [33mclass[39m=[32m"mt-3 space-y-1"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [36m<legend[39m
+            [33mclass[39m=[32m"text-muted-foreground text-xs"[39m
+          [36m>[39m
+            [0mInclude with this prompt[0m
+          [36m</legend>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"flex min-h-11 items-center gap-2 text-sm"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mclass[39m=[32m"accent-primary size-4 shrink-0"[39m
+              [33mtype[39m=[32m"checkbox"[39m
+            [36m/>[39m
+            [36m<bdi[39m
+              [33mclass[39m=[32m"min-w-0 [overflow-wrap:anywhere]"[39m
+            [36m>[39m
+              [0mSynthetic task, revision 4[0m
+            [36m</bdi>[39m
+          [36m</label>[39m
+        [36m</fieldset>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"mt-3 space-y-2 text-sm"[39m
+          [33mrole[39m=[32m"alert"[39m
+        [36m>[39m
+          [36m<p>[39m
+            [0mA selected reference changed. Review the current selection before sending.[0m
+          [36m</p>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"group/button inline-flex shrink-0 items-center justify-center border bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 border-border bg-input/30 hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground h-9 gap-1.5 has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 min-h-11 rounded-xl px-4 motion-reduce:transition-none"[39m
+            [33mdata-size[39m=[32m"default"[39m
+            [33mdata-slot[39m=[32m"button"[39m
+            [33mdata-variant[39m=[32m"outline"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mClear selection[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"text-muted-foreground mt-3 text-sm"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [0mWaiting for the receipt…[0m
+        [36m</p>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/components/business-execution/session-prompt.test.tsx:119:19
+    117|     }
+    118|     view.rerender(surface(client, callback, { references: [newer] }))
+    119|     expect(screen.getByRole("checkbox", { name: reference.label })).to…
+       |                   ^
+    120|     expect(screen.queryByRole("checkbox", { name: newer.label })).not.…
+    121|     await act(async () => { held.resolve(new Response(null, { status: …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 skipped (8)
+   Start at  18:55:59
+   Duration  1.07s (transform 169ms, setup 89ms, collect 489ms, tests 84ms, environment 246ms, prepare 45ms)
+

@@ -1,0 +1,21 @@
+Already up to date
+Done in 151ms using pnpm v11.9.0
+reports/business-integration-review/ui-191f69b3/reviewer-source-entry.test.tsx(10,52): error TS2307: Cannot find module './workspace' or its corresponding type declarations.
+reports/business-integration-review/ui-191f69b3/reviewer-source-entry.test.tsx(11,44): error TS2307: Cannot find module './test-fixtures' or its corresponding type declarations.
+reports/business-integration-review/ui-191f69b3/vitest.reviewer.config.ts(1,20): error TS2307: Cannot find module './vitest.config' or its corresponding type declarations.
+reports/business-integration-review/ui-a58c004c/reviewer-source-entry.test.tsx(10,52): error TS2307: Cannot find module './workspace' or its corresponding type declarations.
+reports/business-integration-review/ui-a58c004c/reviewer-source-entry.test.tsx(11,44): error TS2307: Cannot find module './test-fixtures' or its corresponding type declarations.
+reports/business-integration-review/ui-a58c004c/vitest.reviewer.config.ts(1,20): error TS2307: Cannot find module './vitest.config' or its corresponding type declarations.
+reports/business-integration-review/ui-dc14e83b/reviewer-source-entry.test.tsx(10,52): error TS2307: Cannot find module './workspace' or its corresponding type declarations.
+reports/business-integration-review/ui-dc14e83b/reviewer-source-entry.test.tsx(11,44): error TS2307: Cannot find module './test-fixtures' or its corresponding type declarations.
+reports/business-integration-review/ui-dc14e83b/vitest.reviewer.config.ts(1,20): error TS2307: Cannot find module './vitest.config' or its corresponding type declarations.
+src/lib/business-execution/client.ts(165,7): error TS2322: Type 'Promise<unknown>' is not assignable to type 'Promise<ExecutionResults[K]>'.
+  Type 'unknown' is not assignable to type 'ExecutionResults[K]'.
+    Type 'unknown' is not assignable to type 'SessionResult & { operation: OperationSummary; resourceId: string | null; } & { profiles: ProfileSummary[]; unavailableReason: "missing_client" | ... 6 more ... | null; } & ... 9 more ... & { ...; }'.
+      Type 'unknown' is not assignable to type 'SessionResult'.
+src/lib/business-execution/stream.test.ts(92,51): error TS2345: Argument of type '{ (value: any, replacer?: ((this: any, key: string, value: any) => any) | undefined, space?: string | number | undefined): string; (value: any, replacer?: (string | number)[] | null | undefined, space?: string | ... 1 more ... | undefined): string; }' is not assignable to parameter of type '(value: { type: string; sessionId: string; generation: number; cursor: string; }, index: number, array: { type: string; sessionId: string; generation: number; cursor: string; }[]) => string'.
+  Types of parameters 'replacer' and 'index' are incompatible.
+    Type 'number' is not assignable to type '(this: any, key: string, value: any) => any'.
+src/lib/business-execution/stream.test.ts(164,43): error TS2345: Argument of type '{ (value: any, replacer?: ((this: any, key: string, value: any) => any) | undefined, space?: string | number | undefined): string; (value: any, replacer?: (string | number)[] | null | undefined, space?: string | ... 1 more ... | undefined): string; }' is not assignable to parameter of type '(value: (FrameBinding & { type: "snapshot"; operation: OperationSummary; cursor: string; reset: true; reason: "initial" | "cursor_expired" | "cursor_invalid"; state: { ...; }; olderCursor: string | null; }) | (FrameBinding & { ...; }), index: number, array: ((FrameBinding & { ...; }) | (FrameBinding & { ...; }))[]) ...'.
+  Types of parameters 'replacer' and 'index' are incompatible.
+    Type 'number' is not assignable to type '(this: any, key: string, value: any) => any'.

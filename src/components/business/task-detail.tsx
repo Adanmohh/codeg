@@ -1,11 +1,12 @@
 "use client"
 
 import { useEffect, useState, type ReactNode } from "react"
-import { X } from "lucide-react"
+import { MessageSquare, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { BusinessError, type BusinessClient } from "@/lib/business/client"
 import { useBusinessCopy } from "@/lib/business/copy"
+import { useExecutionCopy } from "@/lib/business-execution/copy"
 import type { Member } from "@/lib/business/identity"
 import {
   personFor,
@@ -20,6 +21,10 @@ import { DueDay } from "./work-list"
 import { ActivityList } from "./activity"
 import { TaskSources } from "@/components/business-intake/task-sources"
 import type { SourceSummary } from "@/lib/business/intake"
+import {
+  PublishedAssetCards,
+  type PublishedFileIntent,
+} from "@/components/business-execution/published-asset"
 
 type RegisterClose = (request: (() => void) | null) => void
 
@@ -95,6 +100,8 @@ export function TaskDetailDialog({
   onClose,
   onChanged,
   onSource,
+  onAsset,
+  onAI,
   presentation = "dialog",
   registerClose,
 }: {
@@ -107,6 +114,8 @@ export function TaskDetailDialog({
   onClose: () => void
   onChanged: () => void
   onSource?: (source: SourceSummary) => void
+  onAsset?: (intent: PublishedFileIntent) => void
+  onAI?: (taskId: string) => void
   presentation?: "dialog" | "pane"
   registerClose?: RegisterClose
 }) {
@@ -159,6 +168,8 @@ export function TaskDetailDialog({
       onClose={onClose}
       onChanged={onChanged}
       onSource={onSource}
+      onAsset={onAsset}
+      onAI={onAI}
       presentation={presentation}
       registerClose={registerClose}
     />
@@ -174,6 +185,8 @@ function TaskEditor({
   onClose,
   onChanged,
   onSource,
+  onAsset,
+  onAI,
   presentation,
   registerClose,
 }: {
@@ -185,10 +198,13 @@ function TaskEditor({
   onClose: () => void
   onChanged: () => void
   onSource?: (source: SourceSummary) => void
+  onAsset?: (intent: PublishedFileIntent) => void
+  onAI?: (taskId: string) => void
   presentation: "dialog" | "pane"
   registerClose?: RegisterClose
 }) {
   const copy = useBusinessCopy()
+  const executionCopy = useExecutionCopy()
   const [detail, setDetail] = useState(initial)
   const [fields, setFields] = useState(fieldsOf(initial.task))
   const [assignment, setAssignment] = useState(assignmentOf(initial.task))
@@ -334,6 +350,12 @@ function TaskEditor({
           {copy.sourceVersion} {task.revision}
         </span>
       </div>
+      {onAI && (
+        <Action variant="outline" onClick={() => onAI(task.id)}>
+          <MessageSquare aria-hidden="true" className="size-4" />
+          {executionCopy.aiWorkspace}
+        </Action>
+      )}
       {error != null && (
         <ErrorNotice error={error}>
           {conflicted && <p>{copy.conflictHint}</p>}
@@ -368,7 +390,7 @@ function TaskEditor({
           <p className="text-sm font-medium">
             <bdi>{current.task.title}</bdi>
           </p>
-          <SavedTask detail={current} members={members} />
+          <SavedTask detail={current} members={members} onAsset={onAsset} />
           <div className="flex flex-wrap gap-3">
             <Action disabled={busy} onClick={() => adoptCurrent(true)}>
               {copy.keepDraft}
@@ -385,7 +407,7 @@ function TaskEditor({
       )}
       {mode === "view" ? (
         <>
-          <SavedTask detail={detail} members={members} />
+          <SavedTask detail={detail} members={members} onAsset={onAsset} />
           <div className="flex flex-wrap gap-2">
             {cap.edit && (
               <Action
@@ -859,9 +881,11 @@ function TaskEditor({
 function SavedTask({
   detail,
   members,
+  onAsset,
 }: {
   detail: TaskDetail
   members: Member[]
+  onAsset?: (intent: PublishedFileIntent) => void
 }) {
   const copy = useBusinessCopy()
   const task = detail.task
@@ -934,6 +958,13 @@ function SavedTask({
               >
                 {deliverable.body}
               </p>
+              {onAsset && (
+                <PublishedAssetCards
+                  taskId={task.id}
+                  deliverable={deliverable}
+                  onOpen={onAsset}
+                />
+              )}
               <Person
                 compact
                 person={{

@@ -1183,3 +1183,153 @@ and installed @types/node25.2.2 IncomingHttpHeaders are API grounding; official
 Node doc/api/http.md was read at cdc1b38d40cb567b7ad0b39c86addf830a0af0ae.
 No dependency implementation or production authority is copied or changed.
 Original LICENSE and all previous NOTICE sections remain intact.
+
+Business E1 frontend wire projection (2026):
+The isolated src/lib/business-execution/types.ts transcribes the accepted
+Adanmohh/codeg docs/contracts/business-ai-execution.md at
+3f164c2a989cd08a523e51f1e47559c15a48c0ef (blob
+ec22db669331e03c8d1d6fb4d312896924955853) and reuses the existing Apache-2.0
+TaskDetail/Deliverable types in src/lib/business/tasks.ts at accepted
+9e61fe67261219921e0a6a860c45f6e08ea99c21 (tasks.ts blob
+751813ba7d7abea191885e95d3690c4a4db5f9e2). Original Codeg source is v0.30.4,
+6f6bd648b206412644842a98d9ffeebf57292bed, Apache-2.0.
+TypeScript5.8.3 installed DOM types are API references, not copied
+implementation. No AGPL/GPL, proprietary source or new dependency is used.
+All preceding attribution and the original Apache LICENSE remain intact.
+
+Business E1 scoped transport glue checkpoint (2026):
+src/lib/business-execution/{client,content,frames,protocol,reader}.ts adapts
+the credential-closure/disposal boundary in src/lib/business/client.ts
+(blob 7b90fb8a8b9e7907571f6dbf212fd7dd610a2492) and attachment ownership concepts
+in src/lib/transport/web-event-stream.ts
+(blob fd8bd05f8d92d0f143d1980871643c5d3beca69e), both at accepted Codeg-derived
+commit 9e61fe67261219921e0a6a860c45f6e08ea99c21, Apache-2.0. E1 framing and selected
+version byte handling implement the accepted project contract above, with the
+additive Rust DTO transcription at 6195d9daf049b7cd16615e35b87d08c7f2870bf0,
+src-tauri/src/business_execution/types.rs. The global WebSocket transport and
+legacy host client are not mounted or copied into a tenant boundary.
+Installed TypeScript5.8.3 DOM declarations and Vitest2.1.9 declarations are API
+references; no compiler/test-runner implementation is ported. Existing
+Codeg v0.30.4 Apache-2.0 attribution and every other worker's notices remain.
+
+Business E1 response ownership and synthetic regressions (2026):
+src/lib/business-execution/{client,content,protocol,reader}.ts and the adjacent
+client/content/stream tests extend the scoped transport and test seams already
+in this repository at c781c9d5a29dcf29c4fbe64ca1f510aa8f0e004d, Apache-2.0.
+They capture the selected event/asset identity before asynchronous reads and
+separate local detachment from a server-confirmed operation cancellation.
+TypeScript5.8.3 DOM Response/ReadableStream/Blob/SubtleCrypto/URL declarations
+and installed Vitest2.1.9 timers/spy assertions are API references only.
+No provider fixture, dependency implementation, AGPL/GPL source or new package
+is copied. The original Apache LICENSE and all preceding notices are retained.
+
+Business-owned E1 scope lifetime (2026):
+src/lib/business/client.ts reuses its existing HTTP bearer closure, fixed
+business route envelope and close/401 behavior at accepted Codeg-derived
+f988700db6975364d35b80125af12bfe2d5baac3 (client blob
+db86ebdd13fec0a3284c8f85b49c22a60d0b31df), Apache-2.0. Its adjacent execution
+tests reuse client.test.ts and the scoped transport regression patterns at
+776e4bf5. Existing UI test doubles gain only a refusing execution method.
+No legacy transport, native fallback or third-party implementation is added.
+TypeScript5.8.3 RequestInit and Vitest2.1.9 are read API references. Original
+Codeg attribution, LICENSE and every preceding NOTICE section remain intact.
+
+Business E1 receipt-bound prompt and shared asset projection (2026):
+src/components/business-execution/session-prompt.tsx reuses RichComposer
+(src/components/chat/composer/rich-composer.tsx, blob
+7d1a646bc1bf0ad0692dd36974f4799f431341f8), business/ui.tsx Action and the
+frozen-operation recovery pattern in business-intake/candidate.tsx (blob
+daef5d5f8e8efdb07ba04cf979afa89d3b3f917f), all at accepted Codeg-derived
+f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0. The EN/AR copy follows
+the existing business/copy.ts convention. src/lib/business/tasks.ts mirrors
+the selected PublishedAssetRef/Deliverable.assets in
+src-tauri/src/business_tasks/types.rs at
+d0d56a36399d81be23787891177752022c91edf6 and the accepted E1 contract
+3f164c2a989cd08a523e51f1e47559c15a48c0ef. React19.2.4, @types/react19.2.13,
+Testing Library16.3.2, Vitest2.1.9 and TypeScript5.8.3 are read API references.
+No host composer container, dependency implementation, AGPL/GPL or proprietary
+source is copied. Original Apache LICENSE and every preceding notice remain.
+
+Business E1 selected-file reader and task-tab integration (2026):
+src/components/business-execution/published-asset.tsx adapts only the file-card
+framing from src/components/message/reply-artifacts.tsx (blob
+65474f8c8a5af35644c6ed9a3adf9e0341890dd6) and business/ui.tsx Action at accepted
+Codeg-derived f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0. Additive
+business/workspace.tsx and task-detail.tsx registrations retain their existing
+WorkSurface and SavedTask implementation at that same pin. Host file openers,
+filesystem OfficePreview and global conversation providers are not mounted.
+src/lib/business-execution/published.ts uses the existing closed frame-parser
+helpers and accepted task-selected public metadata contract at
+3f164c2a989cd08a523e51f1e47559c15a48c0ef, mirrored by business_tasks/types.rs
+at d0d56a36399d81be23787891177752022c91edf6. Test fixtures reuse the existing
+business/test-fixtures.ts and workbench.test.tsx at f988700d. React19.2.4,
+TypeScript5.8.3, @types/node25.2.2, Vitest2.1.9, Testing Library16.3.2 and
+Lucide0.563.0 are installed API/type references, not dependency source ports.
+No AGPL/GPL, proprietary source or package is added. All prior notices and the
+original Apache LICENSE remain intact.
+
+Business E1 persistent conversation presentation (2026):
+src/components/business-execution/session-conversation.tsx reuses the lower
+Message/MessageContent exports in src/components/ai-elements/message.tsx
+(blob 2db4c106c1ac32268b0a7c49a5dc7fa4d6836192), RichComposer and business/ui.tsx
+at accepted Codeg-derived f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0.
+The bounded view cache in lib/business-execution/conversation.ts follows the
+snapshot/replay/disposal seam in lib/transport/web-event-stream.ts
+(blob fd8bd05f8d92d0f143d1980871643c5d3beca69e) at that same pin, adapting only
+the accepted E1 closed NDJSON/message/history DTOs. It does not copy/mount the
+global WebSocket or host conversation implementation. session.ts mirrors the
+accepted 3f164c2a989cd08a523e51f1e47559c15a48c0ef contract and the previously
+recorded 6195d9daf Rust DTO transcription. React19.2.4/@types-react19.2.13,
+TypeScript5.8.3, Vitest2.1.9 and Testing Library16.3.2 are read API references.
+No dependency implementation, AGPL/GPL or proprietary code is ported. Every
+earlier attribution section and the original Apache LICENSE are retained.
+
+Business E1 guarded task/session workbench entry (2026):
+src/components/business-execution/session-workspace.tsx and pane-guard.tsx
+adapt the existing business/workspace.tsx WorkSurface registration and
+business/task-detail.tsx TaskFrame close/discard seam, with business/ui.tsx
+Action/Field/Modal, at accepted Codeg-derived
+f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0. The task-detail entry
+and workbench tab additions use those same existing components, not a second
+shell or auth provider. Exact profile/session/receipt parsing follows accepted
+contract 3f164c2a989cd08a523e51f1e47559c15a48c0ef and Rust DTO transcription
+6195d9daf049b7cd16615e35b87d08c7f2870bf0. Tests reuse the accepted business
+workbench and test-fixtures plus the owned closed E1 client; all transport data
+is synthetic and in memory. React19.2.4, TypeScript5.8.3, Vitest2.1.9,
+Testing Library16.3.2 and Lucide0.563.0 are read API references. No dependency
+source, AGPL/GPL or proprietary implementation is copied. All prior NOTICE
+sections and the original Apache LICENSE remain intact.
+
+Business E1 managed files and explicit human submission (2026):
+src/components/business-execution/{task-files,asset-content,import-output,
+asset-submission}.tsx adapt the accepted business/ui.tsx Field/Action/Modal/
+Person/StatusBadge and business/workspace.tsx WorkSurface registration at
+f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0. File framing and verified
+escaped-content/Blob lifetime reuse the owned published-asset.tsx at
+fee6a939e7f693d95896a44db02147a2c34383e3, itself attributed to ReplyArtifacts
+above. Pending intent and guarded close adapt the owned session prompt and
+45d7fb2f5 session pane, not a second execution/task/approval engine.
+lib/business-execution/assets.ts mirrors private closed DTOs from accepted
+3f164c2a989cd08a523e51f1e47559c15a48c0ef and Rust types at
+6195d9daf049b7cd16615e35b87d08c7f2870bf0. Exact publication receipt target and
+input bounds were read in business_execution/publication.rs and validation.rs
+at d0d56a36399d81be23787891177752022c91edf6; no Rust code is ported or edited.
+Tests adapt the owned public-reader test and accepted business/test-fixtures;
+all transport/file data is explicitly synthetic. React19.2.4, TypeScript5.8.3,
+Testing Library16.3.2/DOM10.4.1, Vitest2.1.9 and previously recorded Node Blob/
+WebCrypto declarations are read API references. No dependency implementation,
+AGPL/GPL or proprietary code is copied. Every prior NOTICE block and the
+original Apache LICENSE are preserved.
+
+Business E1 receipt-gated terminal input (2026):
+src/lib/business-execution/terminal-input.ts imports the existing
+src/lib/terminal/write-queue.ts (blob0380ef127d26c9d2b6a221ace4d59861464595ff)
+at accepted Codeg-derived f988700db6975364d35b80125af12bfe2d5baac3,
+Apache-2.0. Its tests adapt that helper's controlled promises/fake-timer tests.
+The owned closed operation/session parsers add only exact E1 input/receipt and
+generation checks from accepted contract3f164c2a. This injected component
+adapter does not specify a new wire envelope, copy a terminal emulator or
+enable host spawn/kill/global event APIs. Installed @xterm/xterm6.0.0 and
+addon-fit0.11.0 at f447274f430fd22513f6adbf9862d19524471c04 were read as API
+references only; no third-party source port occurs. Original LICENSE and all
+earlier Apache/other attribution blocks remain complete.

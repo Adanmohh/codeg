@@ -19,6 +19,7 @@ import {
   ListTodo,
   LogOut,
   Menu,
+  MessageSquare,
   Plus,
   RefreshCw,
   Search,
@@ -77,6 +78,19 @@ import {
 import { useSettingsCopy } from "@/lib/business/settings-copy"
 import { SettingsEditor } from "./settings-editor"
 import { WorkspaceAppearance, useWorkspaceAppearance } from "./appearance"
+import { useExecutionCopy } from "@/lib/business-execution/copy"
+import { ExecutionPaneGuard } from "@/components/business-execution/pane-guard"
+import { TaskFilesWorkspace } from "@/components/business-execution/task-files"
+import type { PromptGuard } from "@/components/business-execution/session-prompt"
+import {
+  BusinessSessionPane,
+  TaskAiWorkspace,
+  type SessionIntent,
+} from "@/components/business-execution/session-workspace"
+import {
+  PublishedAssetPane,
+  type PublishedFileIntent,
+} from "@/components/business-execution/published-asset"
 
 type View = "mine" | "shared" | "review" | "people" | "sources" | "settings"
 export function BusinessWorkspace({
@@ -91,6 +105,7 @@ export function BusinessWorkspace({
   disconnect: () => void
 }) {
   const copy = useBusinessCopy()
+  const executionCopy = useExecutionCopy()
   const intakeCopy = useIntakeCopy()
   const settingsCopy = useSettingsCopy()
   const locale = useLocale()
@@ -136,6 +151,19 @@ export function BusinessWorkspace({
     }[]
   >([])
   const closeRequests = useRef(new Map<string, () => void>())
+  const executionGuards = useRef(new Map<string, PromptGuard>())
+  const [openFiles, setOpenFiles] = useState<
+    { id: string; intent: PublishedFileIntent }[]
+  >([])
+  const [aiTasks, setAiTasks] = useState<
+    { id: string; taskId: string; label: string }[]
+  >([])
+  const [aiSessions, setAiSessions] = useState<
+    (SessionIntent & { id: string })[]
+  >([])
+  const [assetWorkspaces, setAssetWorkspaces] = useState<
+    { id: string; taskId: string; sessionId: string | null; label: string }[]
+  >([])
   const [refreshKey, setRefreshKey] = useState(0)
   const generation = useRef(0)
   const menuRef = useRef<HTMLButtonElement>(null)
@@ -326,10 +354,65 @@ export function BusinessWorkspace({
     setOpenTasks((current) => current.filter((task) => task.id !== id))
     setActiveTab((current) => (current === id ? "work" : current))
   }
+  function openFile(intent: PublishedFileIntent) {
+    const { taskId, deliverableId, assetId, versionId } = intent.selection
+    const id = `asset:${taskId}:${deliverableId}:${assetId}:${versionId}`
+    setOpenFiles((current) =>
+      current.some((file) => file.id === id)
+        ? current
+        : [...current, { id, intent }]
+    )
+    setActiveTab(id)
+  }
   function selectedNav(id: View) {
     return id === "sources" || id === "people" || id === "settings"
       ? activeTab === id
       : activeTab === "work" && view === id
+  }
+  function openAI(taskId: string) {
+    if (!context.capabilities.legacyOperator || client.native) return
+    const id = `ai-task:${taskId}`
+    const title =
+      openTasks.find((task) => task.id === taskId)?.label ?? copy.taskDetails
+    setAiTasks((current) =>
+      current.some((item) => item.id === id)
+        ? current
+        : [
+            ...current,
+            { id, taskId, label: `${executionCopy.aiWorkspace}: ${title}` },
+          ]
+    )
+    setActiveTab(id)
+  }
+  function openSession(intent: SessionIntent) {
+    if (!context.capabilities.legacyOperator || client.native) return
+    const id = `ai-session:${intent.sessionId}`
+    setAiSessions((current) =>
+      current.some((item) => item.id === id)
+        ? current
+        : [...current, { ...intent, id }]
+    )
+    setActiveTab(id)
+  }
+  function openAssets(taskId: string, sessionId: string | null) {
+    if (!context.capabilities.legacyOperator || client.native) return
+    const id = `task-assets:${taskId}:${sessionId ?? "library"}`
+    const title =
+      openTasks.find((task) => task.id === taskId)?.label ?? copy.taskDetails
+    setAssetWorkspaces((current) =>
+      current.some((item) => item.id === id)
+        ? current
+        : [
+            ...current,
+            {
+              id,
+              taskId,
+              sessionId,
+              label: `${executionCopy.documents}: ${title}`,
+            },
+          ]
+    )
+    setActiveTab(id)
   }
   const navigation = (
     <>
@@ -759,12 +842,154 @@ export function BusinessWorkspace({
           }}
           onClose={() => closeTask(task.id)}
           onChanged={() => void reload()}
+          onAsset={openFile}
+          onAI={
+            context.capabilities.legacyOperator && !client.native
+              ? openAI
+              : undefined
+          }
           onSource={(source) => {
             closeTask(task.id)
             setSourceEntry({ sourceId: source.id, bindingId: source.bindingId })
             navigate("sources")
           }}
         />
+      ),
+    })),
+    ...openFiles.map((file) => ({
+      id: file.id,
+      label: file.intent.expected.title,
+      icon: FileText,
+      close: () => {
+        setOpenFiles((current) => current.filter((item) => item.id !== file.id))
+        setActiveTab((current) => (current === file.id ? "work" : current))
+      },
+      render: () => <PublishedAssetPane client={client} intent={file.intent} />,
+    })),
+    ...aiTasks.map((item) => ({
+      id: item.id,
+      label: item.label,
+      icon: MessageSquare,
+      close: () => {
+        setActiveTab(item.id)
+        closeRequests.current.get(item.id)?.()
+      },
+      render: () => (
+        <ExecutionPaneGuard
+          getGuard={() =>
+            executionGuards.current.get(item.id) ?? {
+              dirty: false,
+              busy: false,
+              unresolved: false,
+            }
+          }
+          registerClose={(request) => {
+            if (request) closeRequests.current.set(item.id, request)
+            else closeRequests.current.delete(item.id)
+          }}
+          onClose={() => {
+            executionGuards.current.delete(item.id)
+            setAiTasks((current) => current.filter((row) => row.id !== item.id))
+            setActiveTab((current) => (current === item.id ? "work" : current))
+          }}
+        >
+          <TaskAiWorkspace
+            client={client}
+            taskId={item.taskId}
+            originalOperator={context.capabilities.legacyOperator}
+            onGuard={(value) => {
+              executionGuards.current.set(item.id, value)
+            }}
+            onOpen={openSession}
+            onFiles={openAssets}
+          />
+        </ExecutionPaneGuard>
+      ),
+    })),
+    ...aiSessions.map((item) => ({
+      id: item.id,
+      label: item.title,
+      icon: MessageSquare,
+      close: () => {
+        setActiveTab(item.id)
+        closeRequests.current.get(item.id)?.()
+      },
+      render: () => (
+        <ExecutionPaneGuard
+          getGuard={() =>
+            executionGuards.current.get(item.id) ?? {
+              dirty: false,
+              busy: false,
+              unresolved: false,
+            }
+          }
+          registerClose={(request) => {
+            if (request) closeRequests.current.set(item.id, request)
+            else closeRequests.current.delete(item.id)
+          }}
+          onClose={() => {
+            executionGuards.current.delete(item.id)
+            setAiSessions((current) =>
+              current.filter((row) => row.id !== item.id)
+            )
+            setActiveTab((current) => (current === item.id ? "work" : current))
+          }}
+        >
+          <BusinessSessionPane
+            client={client}
+            taskId={item.taskId}
+            sessionId={item.sessionId}
+            onFiles={openAssets}
+            originalOperator={context.capabilities.legacyOperator}
+            onGuard={(value) => {
+              executionGuards.current.set(item.id, value)
+            }}
+          />
+        </ExecutionPaneGuard>
+      ),
+    })),
+    ...assetWorkspaces.map((item) => ({
+      id: item.id,
+      label: item.label,
+      icon: FileText,
+      close: () => {
+        setActiveTab(item.id)
+        closeRequests.current.get(item.id)?.()
+      },
+      render: () => (
+        <ExecutionPaneGuard
+          getGuard={() =>
+            executionGuards.current.get(item.id) ?? {
+              dirty: false,
+              busy: false,
+              unresolved: false,
+            }
+          }
+          registerClose={(request) => {
+            if (request) closeRequests.current.set(item.id, request)
+            else closeRequests.current.delete(item.id)
+          }}
+          onClose={() => {
+            executionGuards.current.delete(item.id)
+            setAssetWorkspaces((current) =>
+              current.filter((row) => row.id !== item.id)
+            )
+            setActiveTab((current) => (current === item.id ? "work" : current))
+          }}
+        >
+          <TaskFilesWorkspace
+            business={client}
+            originalOperator={context.capabilities.legacyOperator}
+            taskId={item.taskId}
+            sessionId={item.sessionId}
+            members={members}
+            onGuard={(value) => {
+              executionGuards.current.set(item.id, value)
+            }}
+            onPublished={() => void reload()}
+            onTask={() => openTask(item.taskId)}
+          />
+        </ExecutionPaneGuard>
       ),
     })),
   ]

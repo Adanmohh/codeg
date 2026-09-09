@@ -36,6 +36,9 @@ const client: BusinessClient = {
   native: true,
   label: "local",
   close: vi.fn(),
+  execution: () => {
+    throw new Error("Execution is outside this fixture")
+  },
   intake: vi.fn(),
   identity,
   tasks,

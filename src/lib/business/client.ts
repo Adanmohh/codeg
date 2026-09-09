@@ -1,5 +1,13 @@
 import { isTauri } from "@tauri-apps/api/core"
 import { extractAppCommandError } from "@/lib/app-error"
+import {
+  createExecutionHttpClient,
+  type ExecutionClient,
+} from "@/lib/business-execution/client"
+import {
+  ExecutionError,
+  ExecutionInterrupted,
+} from "@/lib/business-execution/protocol"
 import type { IdentityOperations } from "./identity"
 import type { TaskOperations } from "./tasks"
 import {
@@ -131,11 +139,52 @@ export function createBusinessClient(
     throw new BusinessError("invalid")
   let closed = false
   const active = new Set<AbortController>()
+  const executionScopes = new Set<ExecutionClient>()
   function close() {
     closed = true
     token = ""
+    for (const scope of executionScopes) scope.close()
+    executionScopes.clear()
     for (const controller of active) controller.abort()
     active.clear()
+  }
+  function execution(): ExecutionClient {
+    if (closed) throw new ExecutionInterrupted("closed")
+    // Dedicated native E1 commands require their own backend handoff. Never
+    // substitute invoke, the host operator transport, or an ambient HTTP bearer.
+    if (native) throw new ExecutionError("unavailable")
+    const scope = createExecutionHttpClient({
+      post(path, input, signal) {
+        if (closed) throw new ExecutionInterrupted("closed")
+        return fetch(`${origin}/api/business/${path}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ input }),
+          cache: "no-store",
+          credentials: "omit",
+          redirect: "error",
+          referrerPolicy: "no-referrer",
+          signal,
+        })
+      },
+      unauthorized() {
+        if (closed) return
+        close()
+        onUnauthorized()
+      },
+    })
+    const owned: ExecutionClient = {
+      ...scope,
+      close() {
+        scope.close()
+        executionScopes.delete(owned)
+      },
+    }
+    executionScopes.add(owned)
+    return owned
   }
   async function request<T>(
     path: keyof typeof commands | `intake/${keyof IntakeOperations}`,
@@ -203,6 +252,7 @@ export function createBusinessClient(
     label: native ? "local" : origin,
     native,
     close,
+    execution,
     identity<K extends keyof IdentityOperations>(
       operation: K,
       input: IdentityOperations[K]["input"]

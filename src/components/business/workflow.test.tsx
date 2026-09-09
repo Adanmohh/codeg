@@ -30,6 +30,9 @@ const client: BusinessClient = {
   native: false,
   label: "http://127.0.0.1:4340",
   close: vi.fn(),
+  execution: () => {
+    throw new Error("Execution is outside this fixture")
+  },
   identity,
   tasks,
   intake: vi.fn(),

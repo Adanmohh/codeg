@@ -1,0 +1,329 @@
+Already up to date
+Done in 155ms using pnpm v11.9.0
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ❯ src/lib/business-execution/published.test.ts (12 tests | 11 failed) 11ms
+   × task-selected public asset projection > withholds a response for another assetId 2ms
+     → promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > withholds a response for another versionId 0ms
+     → promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > withholds a response for another deliverableId 0ms
+     → promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > rejects extra private fields rather than forwarding a broader DTO 0ms
+     → promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > rejects extra private fields rather than forwarding a broader DTO 0ms
+     → promise resolved "{ version: { …(7) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > rejects extra private fields rather than forwarding a broader DTO 0ms
+     → promise resolved "{ version: { …(6) }, …(4) }" instead of rejecting
+   × task-selected public asset projection > rejects extra private fields rather than forwarding a broader DTO 0ms
+     → promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > rejects metadata that cannot identify bounded immutable content 0ms
+     → promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > rejects metadata that cannot identify bounded immutable content 0ms
+     → promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > rejects metadata that cannot identify bounded immutable content 0ms
+     → promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+   × task-selected public asset projection > captures its selection before a caller changes it during a held response 1ms
+     → expected "spy" to be called with arguments: [ …(3) ]
+
+Received: 
+
+  1st spy call:
+
+  Array [
+    "tasks/deliverables/assets/get",
+    Object {
+      "assetId": "synthetic-asset",
+-     "deliverableId": "synthetic-deliverable",
++     "deliverableId": "new-deliverable",
+      "taskId": "synthetic-task",
+-     "versionId": "synthetic-version",
++     "versionId": "new-selection",
+    },
+-   Any<AbortSignal>,
++   AbortSignal {
++     Symbol(kEvents): Map {},
++     Symbol(events.maxEventTargetListeners): 0,
++     Symbol(events.maxEventTargetListenersWarned): false,
++     Symbol(kHandlers): undefined,
++     Symbol(kAborted): false,
++     Symbol(kReason): undefined,
++     Symbol(kComposite): false,
++   },
+  ]
+
+
+Number of calls: 1
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > withholds a response for another assetId
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > withholds a response for another versionId
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > withholds a response for another deliverableId
+AssertionError: promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+
+- Expected
++ Received
+
+- [Error: rejected promise]
++ Object {
++   "createdAt": "2026-09-09T00:00:00Z",
++   "producer": Object {
++     "clientId": "synthetic-client",
++     "model": null,
++   },
++   "publication": Object {
++     "deliverableId": "synthetic-deliverable",
++     "submittedBy": Object {
++       "authorityKind": "operator",
++       "displayName": "Synthetic Author",
++       "memberId": "synthetic-author",
++     },
++     "taskRevision": 4,
++   },
++   "version": Object {
++     "assetId": "foreign",
++     "byteSize": 12,
++     "mediaType": "text/markdown",
++     "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
++     "title": "Synthetic reviewed brief",
++     "versionId": "synthetic-version",
++   },
++ }
+
+ ❯ src/lib/business-execution/published.test.ts:62:52
+     60|       else value.version[field] = "foreign"
+     61|       const { client } = setup(vi.fn(async () => Response.json(value)))
+     62|       await expect(client.publishedAsset(selection)).rejects.toMatchOb…
+       |                                                    ^
+     63|         reason: "content_changed",
+     64|       })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > rejects extra private fields rather than forwarding a broader DTO
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > rejects extra private fields rather than forwarding a broader DTO
+AssertionError: promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+
+- Expected
++ Received
+
+- [Error: rejected promise]
++ Object {
++   "createdAt": "2026-09-09T00:00:00Z",
++   "producer": Object {
++     "clientId": "synthetic-client",
++     "model": null,
++     "sessionId": "private",
++   },
++   "publication": Object {
++     "deliverableId": "synthetic-deliverable",
++     "submittedBy": Object {
++       "authorityKind": "operator",
++       "displayName": "Synthetic Author",
++       "memberId": "synthetic-author",
++     },
++     "taskRevision": 4,
++   },
++   "version": Object {
++     "assetId": "synthetic-asset",
++     "byteSize": 12,
++     "mediaType": "text/markdown",
++     "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
++     "title": "Synthetic reviewed brief",
++     "versionId": "synthetic-version",
++   },
++ }
+
+ ❯ src/lib/business-execution/published.test.ts:75:50
+     73|   ])("rejects extra private fields rather than forwarding a broader DT…
+     74|     const { client } = setup(vi.fn(async () => Response.json(value)))
+     75|     await expect(client.publishedAsset(selection)).rejects.toMatchObje…
+       |                                                  ^
+     76|       reason: "transport_unavailable",
+     77|       message: "transport_unavailable",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > rejects extra private fields rather than forwarding a broader DTO
+AssertionError: promise resolved "{ version: { …(7) }, …(3) }" instead of rejecting
+
+- Expected
++ Received
+
+- [Error: rejected promise]
++ Object {
++   "createdAt": "2026-09-09T00:00:00Z",
++   "producer": Object {
++     "clientId": "synthetic-client",
++     "model": null,
++   },
++   "publication": Object {
++     "deliverableId": "synthetic-deliverable",
++     "submittedBy": Object {
++       "authorityKind": "operator",
++       "displayName": "Synthetic Author",
++       "memberId": "synthetic-author",
++     },
++     "taskRevision": 4,
++   },
++   "version": Object {
++     "assetId": "synthetic-asset",
++     "byteSize": 12,
++     "mediaType": "text/markdown",
++     "producer": Object {
++       "turnId": "private",
++     },
++     "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
++     "title": "Synthetic reviewed brief",
++     "versionId": "synthetic-version",
++   },
++ }
+
+ ❯ src/lib/business-execution/published.test.ts:75:50
+     73|   ])("rejects extra private fields rather than forwarding a broader DT…
+     74|     const { client } = setup(vi.fn(async () => Response.json(value)))
+     75|     await expect(client.publishedAsset(selection)).rejects.toMatchObje…
+       |                                                  ^
+     76|       reason: "transport_unavailable",
+     77|       message: "transport_unavailable",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > rejects extra private fields rather than forwarding a broader DTO
+AssertionError: promise resolved "{ version: { …(6) }, …(4) }" instead of rejecting
+
+- Expected
++ Received
+
+- [Error: rejected promise]
++ Object {
++   "createdAt": "2026-09-09T00:00:00Z",
++   "producer": Object {
++     "clientId": "synthetic-client",
++     "model": null,
++   },
++   "profileId": "private",
++   "publication": Object {
++     "deliverableId": "synthetic-deliverable",
++     "submittedBy": Object {
++       "authorityKind": "operator",
++       "displayName": "Synthetic Author",
++       "memberId": "synthetic-author",
++     },
++     "taskRevision": 4,
++   },
++   "version": Object {
++     "assetId": "synthetic-asset",
++     "byteSize": 12,
++     "mediaType": "text/markdown",
++     "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
++     "title": "Synthetic reviewed brief",
++     "versionId": "synthetic-version",
++   },
++ }
+
+ ❯ src/lib/business-execution/published.test.ts:75:50
+     73|   ])("rejects extra private fields rather than forwarding a broader DT…
+     74|     const { client } = setup(vi.fn(async () => Response.json(value)))
+     75|     await expect(client.publishedAsset(selection)).rejects.toMatchObje…
+       |                                                  ^
+     76|       reason: "transport_unavailable",
+     77|       message: "transport_unavailable",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > rejects metadata that cannot identify bounded immutable content
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > rejects metadata that cannot identify bounded immutable content
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > rejects metadata that cannot identify bounded immutable content
+AssertionError: promise resolved "{ version: { …(6) }, …(3) }" instead of rejecting
+
+- Expected
++ Received
+
+- [Error: rejected promise]
++ Object {
++   "createdAt": "2026-09-09T00:00:00Z",
++   "producer": Object {
++     "clientId": "synthetic-client",
++     "model": null,
++   },
++   "publication": Object {
++     "deliverableId": "synthetic-deliverable",
++     "submittedBy": Object {
++       "authorityKind": "operator",
++       "displayName": "Synthetic Author",
++       "memberId": "synthetic-author",
++     },
++     "taskRevision": 4,
++   },
++   "version": Object {
++     "assetId": "synthetic-asset",
++     "byteSize": -1,
++     "mediaType": "text/markdown",
++     "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
++     "title": "Synthetic reviewed brief",
++     "versionId": "synthetic-version",
++   },
++ }
+
+ ❯ src/lib/business-execution/published.test.ts:90:50
+     88|       version: { ...published.version, ...change },
+     89|     })))
+     90|     await expect(client.publishedAsset(selection)).rejects.toMatchObje…
+       |                                                  ^
+     91|       reason: "transport_unavailable",
+     92|     })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  src/lib/business-execution/published.test.ts > task-selected public asset projection > captures its selection before a caller changes it during a held response
+AssertionError: expected "spy" to be called with arguments: [ …(3) ]
+
+Received: 
+
+  1st spy call:
+
+  Array [
+    "tasks/deliverables/assets/get",
+    Object {
+      "assetId": "synthetic-asset",
+-     "deliverableId": "synthetic-deliverable",
++     "deliverableId": "new-deliverable",
+      "taskId": "synthetic-task",
+-     "versionId": "synthetic-version",
++     "versionId": "new-selection",
+    },
+-   Any<AbortSignal>,
++   AbortSignal {
++     Symbol(kEvents): Map {},
++     Symbol(events.maxEventTargetListeners): 0,
++     Symbol(events.maxEventTargetListenersWarned): false,
++     Symbol(kHandlers): undefined,
++     Symbol(kAborted): false,
++     Symbol(kReason): undefined,
++     Symbol(kComposite): false,
++   },
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/lib/business-execution/published.test.ts:105:18
+    103|     resolve(Response.json(published))
+    104|     await expect(result).resolves.toEqual(published)
+    105|     expect(post).toHaveBeenCalledWith(
+       |                  ^
+    106|       "tasks/deliverables/assets/get",
+    107|       selection,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ Test Files  1 failed (1)
+      Tests  11 failed | 1 passed (12)
+   Start at  19:07:39
+   Duration  312ms (transform 34ms, setup 101ms, collect 26ms, tests 11ms, environment 0ms, prepare 42ms)
+
