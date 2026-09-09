@@ -1,0 +1,220 @@
+{
+  "review_utc": "2026-09-09T16:13:19.278669+00:00",
+  "review_mode": "source-only; all follow-on tests UNCOMPILED and UNEXECUTED by reviewer",
+  "commits": [
+    {
+      "sha": "3841e659bec3d0161d73eaca16058b170fe751be",
+      "parent": "d0d56a36399d81be23787891177752022c91edf6",
+      "tree": "9244afb4a5e61899088764feae787ba25dbae728",
+      "gh_api_resolution_exit": 0
+    },
+    {
+      "sha": "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "parent": "3841e659bec3d0161d73eaca16058b170fe751be",
+      "tree": "a1977d7b59bd34ec2915e823119c1bb59bc8a2da",
+      "gh_api_resolution_exit": 0
+    }
+  ],
+  "changed_paths": [
+    "reports/business-ai-execution-implementation.md",
+    "src-tauri/src/business_execution/file_tests.rs",
+    "src-tauri/src/business_execution/files.rs",
+    "src-tauri/src/business_execution/publication.rs",
+    "src-tauri/src/business_execution/publication/tests.rs"
+  ],
+  "source": [
+    {
+      "commit": "3841e659bec3d0161d73eaca16058b170fe751be",
+      "path": "src-tauri/src/business_execution/publication.rs",
+      "blob": "f301ad0c2fd81f46a92ff73dcc32ae8104fa39a1",
+      "sha256": "1ea622bf298bc31b9125e51402f9e026d0caebffb27fa225ea3a2784a6cf17d6",
+      "bytes": 12997,
+      "read_scope": "complete file and delta from d0"
+    },
+    {
+      "commit": "3841e659bec3d0161d73eaca16058b170fe751be",
+      "path": "src-tauri/src/business_execution/publication/tests.rs",
+      "blob": "1d78481594274520a2c96694c635a28e1bd079dc",
+      "sha256": "c284bf2afe1a20e6b162dbe9600f9d156f7959f17b2388e4f1b26240163a6a4c",
+      "bytes": 21516,
+      "read_scope": "complete delta: two added tests and changed late-authority case; remaining prior bodies reviewed at d0"
+    },
+    {
+      "commit": "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "path": "src-tauri/src/business_execution/files.rs",
+      "blob": "ee41cfbd92dc79bcd2d0f3fefcb715b4df0e5c65",
+      "sha256": "68fc3b0f4c09562c3520570bfd24986050dbdae8bd9e296dc9d9e05804279e5c",
+      "bytes": 18529,
+      "read_scope": "complete file, shared retained extraction and recovery/non-Unix delta"
+    },
+    {
+      "commit": "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "path": "src-tauri/src/business_execution/file_tests.rs",
+      "blob": "fe7b50d1ce1eb6577ac5c345f46a864b2a5a6939",
+      "sha256": "fac1eb66e041382e4fd1d599fb88030f6a267c734f83d0a219cf71fc8eb7bec3",
+      "bytes": 11639,
+      "read_scope": "complete added recovery case, shared durability control, prior complete baseline"
+    },
+    {
+      "commit": "3841e659bec3d0161d73eaca16058b170fe751be",
+      "path": "reports/business-ai-execution-implementation.md",
+      "blob": "a7a10c57b82e5039e1b3cef76c19ccbd2dbebce9",
+      "sha256": "06fb635c61da2b9a5d88d7bc459ec990ce56681ad39f6e52b3f35096d6a5d98b",
+      "bytes": 30377,
+      "read_scope": "complete appended follow-on section; previous full report read at d0"
+    },
+    {
+      "commit": "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "path": "reports/business-ai-execution-implementation.md",
+      "blob": "53887e566499566d14d9c6b077e7179b7987a8ab",
+      "sha256": "8c2fe03eaddb73e4543ca85aba61f1bb8e4f7bb8cb4056521ff8bc357c90367b",
+      "bytes": 31569,
+      "read_scope": "complete appended follow-on section"
+    },
+    {
+      "commit": "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "path": "src-tauri/src/business_tasks/store/managed.rs",
+      "blob": "94c743c4831af5cc91f90d52877f026de025044c",
+      "sha256": "2102dea275f822949cd66bfe554a129df34e796f42fb13187c6434f4c47ba165",
+      "bytes": 7237,
+      "read_scope": "complete unchanged file"
+    },
+    {
+      "commit": "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "path": "src-tauri/src/business_execution/types.rs",
+      "blob": "47ca21b002c9c1efb898e38e0c920e9ca3456c70",
+      "sha256": "4c318c4fbd1a0d8d1481910217911adfafa84a91572977fe6d47b1682c6695ad",
+      "bytes": 11207,
+      "read_scope": "content input plus previous complete closed DTO"
+    },
+    {
+      "commit": "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "path": "src-tauri/src/business_identity/mod.rs",
+      "blob": "f7205760715d2516b11b6e2cb79fd133218672bb",
+      "sha256": "22ee10d3e89f0a555e035fe64f5196dc610416b18be39880a3899fa828e48042",
+      "bytes": 11844,
+      "read_scope": "current-authority implementation reused; relevant section reread"
+    },
+    {
+      "commit": "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "path": "src-tauri/src/business_tasks/store.rs",
+      "blob": "6cf636d67a933b5e22b286f09ec9297ae10948ee",
+      "sha256": "0885872c6071ef3258abb945f2741c9da923b6a7bc2c4e754467d9a94d0424e2",
+      "bytes": 31280,
+      "read_scope": "current visibility implementation reused; relevant section reread"
+    }
+  ],
+  "contract": {
+    "commit": "3f164c2a989cd08a523e51f1e47559c15a48c0ef",
+    "path": "docs/contracts/business-ai-execution.md",
+    "blob": "ec22db669331e03c8d1d6fb4d312896924955853",
+    "sha256": "e2cf8304fb5eababce79961da57061e244f2567eae11b75b88dbfcbccc6a114d",
+    "bytes": 50070,
+    "read_scope": "previous full read; public content, post-I/O and no-recopy clauses reread"
+  },
+  "installed_references": [
+    {
+      "package": "tokio",
+      "version": "1.49.0",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.49.0/src/task/blocking.rs",
+      "source_lines": [
+        [
+          80,
+          123
+        ]
+      ],
+      "sha256": "821efe697c70bf6b4d3203d5fad43d466ade5707fe03f5e925db6d6b91535e71"
+    },
+    {
+      "package": "tokio",
+      "version": "1.49.0",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.49.0/src/runtime/task/join.rs",
+      "source_lines": [
+        [
+          174,
+          233
+        ]
+      ],
+      "sha256": "54777ae133745e7f472802d9fd67cd14a2946f2661cabd27ffbc352f2685b0f7"
+    },
+    {
+      "package": "rust",
+      "version": "1.98.0",
+      "path": "/Users/mohamedadan/.rustup/toolchains/stable-aarch64-apple-darwin/share/doc/rust/html/src/core/future/ready.rs.html",
+      "source_lines": [
+        [
+          1,
+          69
+        ]
+      ],
+      "sha256": "0f3050831fa44f21a314274fc67624920a535d6c3484cee67df5b5bd20edb872"
+    }
+  ],
+  "unchanged_product_check": {
+    "argv": [
+      "git",
+      "diff",
+      "--quiet",
+      "d0d56a36399d81be23787891177752022c91edf6",
+      "bdfa7ca69334196448c3745a8ee0aac97166a877",
+      "--",
+      "NOTICE",
+      "LICENSE",
+      "src-tauri/Cargo.toml",
+      "src-tauri/Cargo.lock",
+      "src-tauri/build.rs",
+      "src-tauri/src/db/migration",
+      "src-tauri/src/business_identity",
+      "src-tauri/src/business_tasks",
+      "src-tauri/src/business_execution/receipts.rs",
+      "src-tauri/src/business_execution/scope.rs",
+      "src-tauri/src/business_execution/types.rs",
+      "src-tauri/src/web",
+      "src-tauri/src/commands",
+      "src-tauri/src/lib.rs"
+    ],
+    "exit": 0
+  },
+  "frozen_evidence_check": {
+    "argv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "d1fba7e4a5367b05bd93c7e58d3e3d8f78b98c89",
+      "--",
+      "reports/business-ai-execution-review/9949c8a9",
+      "reports/business-ai-execution-review/d0d56a36",
+      "reports/business-ai-execution-review/177d0f3e",
+      "reports/business-ai-execution-review/3773a027"
+    ],
+    "exit": 0
+  },
+  "source_test_inventory_not_results": {
+    "publication": [
+      "execution_publication_file_only_is_atomic_replayable_and_rediscoverable",
+      "execution_publication_agents_member_credentials_and_foreign_refs_cannot_submit",
+      "execution_publication_late_authority_loss_cannot_publish_private_verified_bytes",
+      "execution_publication_cas_and_receipt_failure_leave_no_partial_disclosure",
+      "execution_publication_missing_bytes_and_competing_revision_fail_closed",
+      "execution_publication_human_review_keeps_selected_version_after_session_revocation",
+      "execution_publication_content_survives_scratch_and_rechecks_reader_after_io",
+      "execution_publication_aborted_after_byte_verification_never_commits"
+    ],
+    "assets": [
+      "execution_assets_retained_bytes_survive_scratch_removal_and_same_object_recovery",
+      "execution_assets_reconciliation_never_recopies_missing_or_partial_object",
+      "execution_assets_path_symlink_hardlink_and_profile_hints_never_become_candidates",
+      "execution_assets_changed_observation_and_corrupt_retained_object_fail_closed",
+      "execution_assets_oversize_and_replaced_storage_parent_do_not_escape",
+      "execution_assets_recovery_retries_file_and_directory_sync_before_success"
+    ]
+  },
+  "new_tests_read_not_run": [
+    "execution_publication_content_survives_scratch_and_rechecks_reader_after_io",
+    "execution_publication_aborted_after_byte_verification_never_commits",
+    "execution_assets_reconciliation_never_recopies_missing_or_partial_object"
+  ],
+  "modified_test_read_not_run": "execution_publication_late_authority_loss_cannot_publish_private_verified_bytes",
+  "no_compile_archive_copy_or_fixture_action": true,
+  "hook_work": "none; prohibited restoration not attempted"
+}

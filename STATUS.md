@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Content/reconciliation source review imported.** Reviewer
+`2c011b27a53f34b6e625797ab4ec43460608e66f` finds no additional blocking source
+issue in3841/bdfa. Root read the full assessment/ledger, matched three artifact
+hashes and10 exact source entries plus contract, and verified prior d0/9949/177/
+3773 evidence unchanged. The recovery helper's tests remain unexecuted at this
+pin; the later owner publication8 pass at425 is separate. Mid-blocking abort,
+import receipt reconciliation and final transport delivery remain unaccepted.
+[Source review](reports/business-ai-execution-review/bdfa7ca6/review.md).
+Approvals continues425 output-discovery source review; compilation remains held.
+
 **Publication8 passed; capacity stopped the remaining queued gates.** Tickets
 reports exact `4251987071e8e7213a678be94039cd3fad1328f1` passed eight publication
 tests, exit0 (compile1m57s, tests1.05s), without a correction. All Cargo commands
