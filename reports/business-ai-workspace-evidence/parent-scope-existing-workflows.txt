@@ -1,0 +1,19 @@
+Already up to date
+Done in 159ms using pnpm v11.9.0
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /Users/mohamedadan/projects/_worktrees/ops-desk/rebrand
+
+ ✓ src/components/business-intake/setup-capabilities.test.tsx (9 tests) 308ms
+ ✓ src/components/business-intake/source-entry.test.tsx (4 tests) 622ms
+ ✓ src/components/business/native-chrome.test.tsx (14 tests) 614ms
+ ✓ src/components/business/workflow.test.tsx (15 tests) 774ms
+ ✓ src/components/business-intake/workflow.test.tsx (20 tests) 921ms
+ ✓ src/components/business/workbench.test.tsx (7 tests) 1079ms
+   ✓ business workbench uses real task seams without legacy shell providers > applies saved tenant appearance and stacked panes without replacing an open task draft or global theme 438ms
+
+ Test Files  6 passed (6)
+      Tests  69 passed (69)
+   Start at  18:41:02
+   Duration  2.09s (transform 612ms, setup 438ms, collect 3.14s, tests 4.32s, environment 1.28s, prepare 267ms)
+

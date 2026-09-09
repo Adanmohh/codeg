@@ -59,6 +59,30 @@ The admitted-body UI and parent-client lifecycle wiring are the next independent
 work; no existing fixture, export, browser, Rust source/target or credential was
 changed. No static/native build was started during tickets' Rust build window.
 
+The response-ownership checkpoint is pushed as776e4bf5. The next coherent change
+connects E1 to the existing BusinessClient's private credential closure. Creating
+a child scope makes no request. Closing a pane scope leaves sibling work and the
+parent usable; closing the business connection or receiving401 in either client
+closes all child readers/handles. The factory can create a fresh scope for a new
+pane without reusing a disposed client. There is no bearer getter or generic API
+method. The fixed business origin, POST envelope, no-store, omitted cookies,
+redirect refusal and no-referrer policy apply. Native E1 is explicitly unavailable
+until dedicated backend commands are handed off; it never falls through to a
+host API or browser credential. The factory does not confer execution authority:
+UI private reads will additionally require the actual original-operator capability,
+and the backend remains decisive on every request.
+
+Parent-scope gates:69/69 client/transport tests in parent-scope-tests.txt;69/69
+affected existing workspace/intake tests in parent-scope-existing-workflows.txt;
+normal TypeScript exit0 in parent-scope-typecheck-final.txt; scoped ESLint exit0
+in parent-scope-lint-final.txt. TypeScript first identified six existing typed
+test doubles missing the new method. Each now refuses unexpected execution use;
+no behavioral assertion was changed. One insertion initially matched the native
+window mock instead of the business mock; that test-only location was corrected,
+then its14 OS-mocked tests reran successfully (parent-scope-native-fixture.txt).
+The intermediate typecheck diagnostics are retained. This is no actual native
+or browser claim, and no execution surface is mounted yet.
+
 E1 frontend implementation is active on `feat/business-ai-workspace`,
 [draft PR33](https://github.com/Adanmohh/codeg/pull/33). First isolated type/report
 checkpoint `2bade5c4` is committed and pushed, based on

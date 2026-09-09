@@ -1222,3 +1222,14 @@ TypeScript5.8.3 DOM Response/ReadableStream/Blob/SubtleCrypto/URL declarations
 and installed Vitest2.1.9 timers/spy assertions are API references only.
 No provider fixture, dependency implementation, AGPL/GPL source or new package
 is copied. The original Apache LICENSE and all preceding notices are retained.
+
+Business-owned E1 scope lifetime (2026):
+src/lib/business/client.ts reuses its existing HTTP bearer closure, fixed
+business route envelope and close/401 behavior at accepted Codeg-derived
+f988700db6975364d35b80125af12bfe2d5baac3 (client blob
+db86ebdd13fec0a3284c8f85b49c22a60d0b31df), Apache-2.0. Its adjacent execution
+tests reuse client.test.ts and the scoped transport regression patterns at
+776e4bf5. Existing UI test doubles gain only a refusing execution method.
+No legacy transport, native fallback or third-party implementation is added.
+TypeScript5.8.3 RequestInit and Vitest2.1.9 are read API references. Original
+Codeg attribution, LICENSE and every preceding NOTICE section remain intact.
