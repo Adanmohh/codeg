@@ -49,6 +49,7 @@ pub enum Permission {
     Assign,
     Review,
     ManageMembers,
+    ManageTenantSettings,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -83,7 +84,9 @@ impl Member {
             Permission::Assign | Permission::Review => {
                 matches!(self.role, Role::Owner | Role::Admin | Role::Manager)
             }
-            Permission::ManageMembers => matches!(self.role, Role::Owner | Role::Admin),
+            Permission::ManageMembers | Permission::ManageTenantSettings => {
+                matches!(self.role, Role::Owner | Role::Admin)
+            }
         }
     }
 }
@@ -93,11 +96,21 @@ impl Member {
 pub struct Organization {
     pub id: String,
     pub name: String,
+    pub status: OrganizationStatus,
+    pub revision: i64,
+    pub authorization_epoch: i64,
+}
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum OrganizationStatus {
+    Active,
+    Suspended,
 }
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Capabilities {
     pub manage_members: bool,
+    pub manage_tenant_settings: bool,
     pub legacy_operator: bool,
 }
 #[derive(Debug, Serialize)]

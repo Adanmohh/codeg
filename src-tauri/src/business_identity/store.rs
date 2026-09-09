@@ -15,23 +15,23 @@ use sha2::{Digest, Sha256};
 pub(crate) fn statement(sql: &str, values: Vec<Value>) -> Statement {
     Statement::from_sql_and_values(DbBackend::Sqlite, sql, values)
 }
-fn now() -> String {
+pub(super) fn now() -> String {
     chrono::Utc::now().to_rfc3339()
 }
-fn id() -> String {
+pub(super) fn id() -> String {
     uuid::Uuid::new_v4().to_string()
 }
-fn parse<T: DeserializeOwned>(text: &str) -> Result<T, E> {
+pub(super) fn parse<T: DeserializeOwned>(text: &str) -> Result<T, E> {
     serde_json::from_str(text).map_err(|_| E::Invalid("Invalid stored business identity"))
 }
-fn enum_text<T: Serialize>(value: T) -> Result<String, E> {
+pub(super) fn enum_text<T: Serialize>(value: T) -> Result<String, E> {
     serde_json::to_value(value)
         .map_err(|_| E::Invalid("Invalid identity value"))?
         .as_str()
         .map(str::to_owned)
         .ok_or(E::Invalid("Invalid identity value"))
 }
-fn name(value: &str) -> Result<String, E> {
+pub(super) fn name(value: &str) -> Result<String, E> {
     let trimmed = value.trim();
     if trimmed.is_empty() || trimmed.chars().count() > 120 || trimmed.chars().any(char::is_control)
     {
@@ -41,7 +41,7 @@ fn name(value: &str) -> Result<String, E> {
     }
     Ok(trimmed.to_owned())
 }
-fn domains_json(domains: &[Domain]) -> Result<String, E> {
+pub(super) fn domains_json(domains: &[Domain]) -> Result<String, E> {
     if domains.is_empty()
         || domains.len() > Domain::ALL.len()
         || domains
@@ -100,15 +100,30 @@ pub(crate) async fn member<C: ConnectionTrait>(
     .transpose()
 }
 pub(crate) async fn organization<C: ConnectionTrait>(conn: &C) -> Result<Option<Organization>, E> {
-    conn.query_one(statement(
-        "SELECT id, name FROM business_organization WHERE singleton = 1",
-        vec![],
-    ))
-    .await?
+    let row = conn
+        .query_one(statement(
+            "SELECT original_organization_id FROM business_tenancy_metadata WHERE id = 1",
+            vec![],
+        ))
+        .await?
+        .ok_or(E::BootstrapRequired)?;
+    match row.try_get::<Option<String>>("", "original_organization_id")? {
+        Some(id) => organization_by_id(conn, &id).await,
+        None => Ok(None),
+    }
+}
+pub(crate) async fn organization_by_id<C: ConnectionTrait>(
+    conn: &C,
+    org: &str,
+) -> Result<Option<Organization>, E> {
+    conn.query_one(statement("SELECT id, name, status, revision, authorization_epoch FROM business_organization WHERE id = ?", vec![org.into()])).await?
     .map(|row| {
         Ok(Organization {
             id: row.try_get("", "id")?,
             name: row.try_get("", "name")?,
+            status: parse(&format!("\"{}\"", row.try_get::<String>("", "status")?))?,
+            revision: row.try_get("", "revision")?,
+            authorization_epoch: row.try_get("", "authorization_epoch")?,
         })
     })
     .transpose()
@@ -145,19 +160,21 @@ pub(crate) async fn resolve_credential<C: ConnectionTrait>(
     }
     let digest = format!("{:x}", Sha256::digest(token.as_bytes()));
     let row = conn.query_one(statement(
-        "SELECT id, organization_id, member_id FROM business_credential WHERE token_hash = ? AND revoked_at IS NULL",
+        "SELECT c.id, c.organization_id, c.member_id, o.authorization_epoch FROM business_credential c JOIN business_organization o ON o.id=c.organization_id WHERE c.token_hash = ? AND c.revoked_at IS NULL AND o.status='active'",
         vec![digest.into()],
     )).await?.ok_or(E::Unauthorized)?;
     let principal = Principal {
         organization_id: row.try_get("", "organization_id")?,
         member_id: row.try_get("", "member_id")?,
         authority: Authority::Credential(row.try_get("", "id")?),
+        authorization_epoch: row.try_get("", "authorization_epoch")?,
+        native_session_active: None,
     };
     super::current_human(conn, &principal).await?;
     Ok(principal)
 }
 
-async fn event<C: ConnectionTrait>(
+pub(super) async fn event<C: ConnectionTrait>(
     conn: &C,
     org: &str,
     actor: &str,
@@ -188,6 +205,9 @@ pub(crate) async fn bootstrap(
         vec![organization_id.clone().into(), organization_name.into(), timestamp.clone().into()],
     )).await?;
     if created.rows_affected() == 1 {
+        tx.execute(statement("UPDATE business_tenancy_metadata SET original_organization_id = ? WHERE id=1 AND original_organization_id IS NULL", vec![organization_id.clone().into()])).await?;
+        super::settings::initialize(&tx, &organization_id, &name(&input.organization_name)?)
+            .await?;
         let owner_id = id();
         tx.execute(statement(
             "INSERT INTO business_member (id, organization_id, display_name, kind, role, domains_json, operator_owner, created_at, updated_at) VALUES (?, ?, ?, 'human', 'owner', ?, 1, ?, ?)",
@@ -218,9 +238,10 @@ pub async fn context<C: ConnectionTrait>(conn: &C, principal: &Principal) -> Res
     .await?;
     Ok(Context {
         needs_bootstrap: false,
-        organization: organization(conn).await?,
+        organization: organization_by_id(conn, principal.organization_id()).await?,
         capabilities: Capabilities {
             manage_members: member.allows(Permission::ManageMembers, None),
+            manage_tenant_settings: member.allows(Permission::ManageTenantSettings, None),
             legacy_operator: principal.is_operator(),
         },
         member: Some(member),
@@ -238,6 +259,7 @@ pub(crate) async fn operator_context(conn: &DatabaseConnection) -> Result<Contex
             operator: true,
             capabilities: Capabilities {
                 manage_members: true,
+                manage_tenant_settings: true,
                 legacy_operator: true,
             },
         }),
@@ -377,6 +399,9 @@ pub async fn update_member(
     if target.operator_owner || target.status != MemberStatus::Active {
         return Err(E::Forbidden);
     }
+    if target.role == Role::Owner && input.role != Role::Owner {
+        retain_owner(&tx, &target).await?;
+    }
     grant_ceiling(&actor, target.kind, input.role, &input.domains)?;
     let changed = tx.execute(statement(
         "UPDATE business_member SET display_name = ?, role = ?, domains_json = ?, revision = revision + 1, updated_at = ? WHERE organization_id = ? AND id = ? AND revision = ? AND status = 'active'",
@@ -430,6 +455,7 @@ pub async fn revoke_member(
     if target.status == MemberStatus::Revoked {
         return Ok(target);
     }
+    retain_owner(&tx, &target).await?;
     let timestamp = now();
     let changed = tx.execute(statement(
         "UPDATE business_member SET status = 'revoked', revision = revision + 1, updated_at = ? WHERE organization_id = ? AND id = ? AND revision = ?",
@@ -458,7 +484,7 @@ pub async fn revoke_member(
 }
 
 const CREDENTIAL_COLUMNS: &str = "id, organization_id, member_id, label, created_at, revoked_at";
-async fn credential<C: ConnectionTrait>(
+pub(super) async fn credential<C: ConnectionTrait>(
     conn: &C,
     org: &str,
     credential_id: &str,
@@ -490,26 +516,50 @@ pub async fn issue_credential(
     if target.kind != MemberKind::Human || target.status != MemberStatus::Active {
         return Err(E::Forbidden);
     }
-    let mut bytes = [0u8; 32];
-    OsRng.try_fill_bytes(&mut bytes).map_err(|_| E::Random)?;
-    let token = format!("bdm_{}", URL_SAFE_NO_PAD.encode(bytes));
-    let token_hash = format!("{:x}", Sha256::digest(token.as_bytes()));
-    let credential_id = id();
-    tx.execute(statement(
-        "INSERT INTO business_credential (id, organization_id, member_id, token_hash, label, created_at) VALUES (?, ?, ?, ?, ?, ?)",
-        vec![credential_id.clone().into(), input.organization_id.clone().into(), input.member_id.into(), token_hash.into(), label.into(), now().into()],
-    )).await?;
+    let issued = mint_credential(&tx, &input.organization_id, &input.member_id, &label).await?;
     event(
         &tx,
         &input.organization_id,
         &actor.id,
         "credential_issued",
-        &credential_id,
+        &issued.credential.id,
     )
     .await?;
-    let credential = credential(&tx, &input.organization_id, &credential_id).await?;
     tx.commit().await?;
-    Ok(IssuedCredential { credential, token })
+    Ok(issued)
+}
+
+// Shared existing opaque credential primitive; caller owns authorization and
+// the surrounding writer transaction. Platform provisioning never impersonates
+// a tenant Principal to issue its initial credential.
+pub(super) async fn mint_credential<C: ConnectionTrait>(
+    conn: &C,
+    org: &str,
+    member_id: &str,
+    label: &str,
+) -> Result<IssuedCredential, E> {
+    let mut bytes = [0u8; 32];
+    OsRng.try_fill_bytes(&mut bytes).map_err(|_| E::Random)?;
+    let token = format!("bdm_{}", URL_SAFE_NO_PAD.encode(bytes));
+    let token_hash = format!("{:x}", Sha256::digest(token.as_bytes()));
+    let credential_id = id();
+    conn.execute(statement("INSERT INTO business_credential (id,organization_id,member_id,token_hash,label,created_at) VALUES (?,?,?,?,?,?)",vec![credential_id.clone().into(),org.into(),member_id.into(),token_hash.into(),label.into(),now().into()])).await?;
+    Ok(IssuedCredential {
+        credential: credential(conn, org, &credential_id).await?,
+        token,
+    })
+}
+async fn retain_owner<C: ConnectionTrait>(conn: &C, target: &Member) -> Result<(), E> {
+    if target.kind == MemberKind::Human
+        && target.role == Role::Owner
+        && target.status == MemberStatus::Active
+    {
+        let other=conn.query_one(statement("SELECT id FROM business_member WHERE organization_id=? AND id!=? AND kind='human' AND role='owner' AND status='active' LIMIT 1",vec![target.organization_id.clone().into(),target.id.clone().into()])).await?;
+        if other.is_none() {
+            return Err(E::Forbidden);
+        }
+    }
+    Ok(())
 }
 pub async fn list_credentials(
     conn: &DatabaseConnection,

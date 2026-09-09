@@ -23,6 +23,7 @@
     "remote-push-*"
   ],
   "permissions": [
+    "allow-host-commands",
     "core:default",
     "core:window:default",
     "core:window:allow-start-dragging",
