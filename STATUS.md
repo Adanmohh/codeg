@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**New publication checkpoint is uncompiled and queued for validation.** Tickets
+pushed `d0d56a36399d81be23787891177752022c91edf6`: task-owned selected asset
+references, human publication/CAS/receipt helpers, six new synthetic tests and
+two historical-schema test adaptations. Root verified the exact GitHub head and
+read the report/NOTICE delta; no new pass is claimed. Approvals is assigned
+source-only review after publishing its9949 execution evidence. Tickets has been
+explicitly told to hold the new publication/schema/task/server gates because
+Farha already owns the next build window. These gates are queued for the next
+coordinated allocation, not authorized by merely observing free disk/no Cargo.
+
 **Independent correction gates passed; next slot released to Farha.** Approvals
 reports14 passes at frozen9949: pagination3 (0.29s), admission3 (0.29s), authority3
 (0.26s), assets5 (0.10s), all exits0. Every reviewer command has exited; final
