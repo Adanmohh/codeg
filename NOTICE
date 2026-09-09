@@ -842,3 +842,16 @@ The channel source identifies an unresolved native-isolation prerequisite;
 it is not ported or patched. tauri?/test only exposes the already locked
 framework's test helpers through existing test-utils; no new dependency/version.
 Original Codeg Apache-2.0 LICENSE and preceding notices remain intact.
+
+Business E1 frontend wire projection (2026):
+The isolated src/lib/business-execution/types.ts transcribes the accepted
+Adanmohh/codeg docs/contracts/business-ai-execution.md at
+3f164c2a989cd08a523e51f1e47559c15a48c0ef (blob
+ec22db669331e03c8d1d6fb4d312896924955853) and reuses the existing Apache-2.0
+TaskDetail/Deliverable types in src/lib/business/tasks.ts at accepted
+9e61fe67261219921e0a6a860c45f6e08ea99c21 (tasks.ts blob
+751813ba7d7abea191885e95d3690c4a4db5f9e2). Original Codeg source is v0.30.4,
+6f6bd648b206412644842a98d9ffeebf57292bed, Apache-2.0.
+TypeScript5.8.3 installed DOM types are API references, not copied
+implementation. No AGPL/GPL, proprietary source or new dependency is used.
+All preceding attribution and the original Apache LICENSE remain intact.

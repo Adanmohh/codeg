@@ -1,0 +1,19 @@
+Command: pnpm exec tsc --noEmit
+Base: 9e61fe67261219921e0a6a860c45f6e08ea99c21
+Own addition at run: src/lib/business-execution/types.ts
+Exit: 2
+
+All nine diagnostics are in unchanged imported reviewer evidence under reports/:
+reports/business-integration-review/ui-191f69b3/reviewer-source-entry.test.tsx(10,52): TS2307 Cannot find module './workspace'.
+reports/business-integration-review/ui-191f69b3/reviewer-source-entry.test.tsx(11,44): TS2307 Cannot find module './test-fixtures'.
+reports/business-integration-review/ui-191f69b3/vitest.reviewer.config.ts(1,20): TS2307 Cannot find module './vitest.config'.
+reports/business-integration-review/ui-a58c004c/reviewer-source-entry.test.tsx(10,52): TS2307 Cannot find module './workspace'.
+reports/business-integration-review/ui-a58c004c/reviewer-source-entry.test.tsx(11,44): TS2307 Cannot find module './test-fixtures'.
+reports/business-integration-review/ui-a58c004c/vitest.reviewer.config.ts(1,20): TS2307 Cannot find module './vitest.config'.
+reports/business-integration-review/ui-dc14e83b/reviewer-source-entry.test.tsx(10,52): TS2307 Cannot find module './workspace'.
+reports/business-integration-review/ui-dc14e83b/reviewer-source-entry.test.tsx(11,44): TS2307 Cannot find module './test-fixtures'.
+reports/business-integration-review/ui-dc14e83b/vitest.reviewer.config.ts(1,20): TS2307 Cannot find module './vitest.config'.
+
+No production/type diagnostic was reported. Source-only config is separate evidence,
+not a claim the required unmodified full command passed. Review archives and the
+project tsconfig were preserved. No PR29 source imported.
