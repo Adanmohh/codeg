@@ -617,3 +617,15 @@ runtime evidence. Existing stopped-session coverage confirms cached observations
 do not advance the counter. R4 remains open until an authorized compile/test
 window produces execution evidence; no reviewer Cargo, fixture, target or
 provider action occurred.
+
+Independent R4 source review is recorded at
+`76956d6c77d35891ddfc8608b62e3cdbd147793a` (`reports/review-business-ai-execution-implementation.md`).
+The reviewer found no new blocking source issue in the monotonic counter,
+same-writer retention, additive migration000015, or the eleven planned test
+bodies. It verified the seven changed/two preserved source pairs and two borrowed
+blobs. Its limits remain explicit: failed-commit and migration receipt-retry
+coverage are source/test plans only, while process cancellation, real tenant
+execution, import lineage and transport delivery remain untested. The prior two
+historical receipt-count assertions are retained as ledger details, not runtime
+evidence. R4 therefore remains pending a root-coordinated compile/execution
+window; no reviewer Cargo, fixture, target or provider action occurred.
