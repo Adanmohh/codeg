@@ -5,6 +5,8 @@ product `60d600db0f224d44ff191490ab79bc25530ba959`, after the independent
 source/component and real 4355 recovery review at `c0c7e522600a94bcf33674f640d5f3665cffd39b`.
 This is the shared business tabs/panes, settings and intake UI. E1 AI sessions,
 chat, terminal and managed assets remain separate work in PR32/33.
+Merge `f988700db6975364d35b80125af12bfe2d5baac3` is pushed to main and GitHub
+confirms PR29 closed/merged. All three existing workers received the accepted head.
 
 ## Integration correspondence and checks
 

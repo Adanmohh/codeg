@@ -2,7 +2,8 @@
 
 ## Current integration and worker state
 
-**PR29 integration accepted and being published.** Frozen `96e0bcc1` / product
+**PR29 merged and pushed** as `f988700db6975364d35b80125af12bfe2d5baac3`;
+gh api confirms closed/merged. Frozen `96e0bcc1` / product
 `60d600db` retains the independently reviewed tabs/panes, settings and intake UI.
 Root's integrated frontend selectors pass109/109 across12 files. Normal typecheck
 passes after accepting rebrand's exact `91c98d469` compiler-discovery correction
@@ -12,6 +13,9 @@ match PR29, and the complete main NOTICE is preserved with additive attribution.
 See [integration evidence and limits](reports/business-ui-integration.md).
 This unlocks rebrand's E1 workbench integration; AI chat/terminal/assets are still
 being implemented. No running fixture, user browser or native artifact changed.
+The exact accepted head and next bounded work were relayed to all three existing
+workers; Herdr reports each working. Rebrand integrates this accepted shell,
+tickets continues E1 backend, approvals owns the independent test build window.
 
 Tickets' audit correction `ca58f2b9` is verified as report-only and imported:
 legacy timestamps1788951206–1207 are historical, not fresh hook metadata. No
