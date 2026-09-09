@@ -2,6 +2,15 @@
 
 ## Current integration and worker state
 
+**R4 output-discovery source report verified and imported.** Reviewer
+`2c37bb7c3103cc8a391521d37a60a21b12ca5be8` records the open empty/newer-no-op
+ordering defect at425, exact trigger and all five output-test limits. Root read
+the report/ledger, matched three artifact hashes and17 source entries, and
+verified historical evidence/product paths unchanged. Tickets' proposed000015
+generation-counter design is not yet an immutable reviewed correction. R4
+remains open; publication8 and prior9949 passes do not cover it.
+[R4 report](reports/business-ai-execution-review/42519870/review.md).
+
 **New source-only P2: empty/no-op scans do not fence older output observations.**
 At425198707, scan A sees a file; newer scan B sees no files and commits without
 changing output rows. Both revision vectors remain empty, so A can later insert

@@ -1,0 +1,12 @@
+{
+  "algorithm": "sha256",
+  "reviewed_commit": "4251987071e8e7213a678be94039cd3fad1328f1",
+  "verdict": "R4/P2 source-confirmed/open; no reviewer test execution",
+  "paths_relative_to_worktree": {
+    "reports/business-ai-execution-review/42519870/review.md": "a1ce233db85abd766ed2340795ca69de5bc06cd091bdf40d7e0ea73a8b6daff0",
+    "reports/business-ai-execution-review/42519870/source-ledger.json": "912b0c63c123e8b81dbeed4627957a55e3aa4d7388c1ec7d81b0e19f08b1630b",
+    "reports/review-business-ai-execution-implementation.md": "28a076ab45a3ca5d59ce18ca82713a7e8379316f503c15f0cb43a333962b49a4"
+  },
+  "historical_evidence_unchanged_against": "2c011b27a53f34b6e625797ab4ec43460608e66f",
+  "note": "This index excludes itself; hashes apply to this publication."
+}
