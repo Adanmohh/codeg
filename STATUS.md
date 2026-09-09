@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Publication8 passed; capacity stopped the remaining queued gates.** Tickets
+reports exact `4251987071e8e7213a678be94039cd3fad1328f1` passed eight publication
+tests, exit0 (compile1m57s, tests1.05s), without a correction. All Cargo commands
+have exited; final9.29 GiB free is below the10 GiB next-start threshold. Assets6,
+two adapted retention cases, existing task controls, outputs5 and server check
+were not started. Owner log/source evidence publication follows. Root verified
+the immutable GitHub checkpoint and assigned its output discovery delta for
+source-only review. No active build reservation remains; no further compilation,
+cleanup or fixture mutation is planned until capacity is coordinated.
+
 **Farha completed its window; tickets is assigned bounded publication validation.**
 Farha reports build/browser/server commands exited, server87005 closed and its
 port cleared. Root fresh disk is10.51 GiB. Tickets must freeze/push its current
