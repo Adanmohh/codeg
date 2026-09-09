@@ -1,0 +1,14 @@
+{
+  "source": "1974d97f44b69db96051ace1c68717cc8c27b6e9",
+  "builtHead": "6739c476c197e6a00f1c50fc0dfaece8ad998869",
+  "url": "http://127.0.0.1:4354/business",
+  "pid": 81173,
+  "export": ".build/business-intake-ui-unified-1974d97f",
+  "htmlSha256": "42f37747c38d180ef270e59e0a7956bfc48c848ee35782e4a5b35c9c1ae2c6b7",
+  "httpMatchesDisk": true,
+  "assets": 26,
+  "manifestSha256": "9b53750c2b200d47cd20f5e5a7272005b5fac5a12ea3d5d9a6616c727ca377a1",
+  "backendPort": 4351,
+  "workspaceBackendPort": 4351,
+  "buildExit": 0
+}

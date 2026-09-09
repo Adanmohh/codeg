@@ -5,9 +5,44 @@ Current source: **1974d97f44b69db96051ace1c68717cc8c27b6e9**, branch
 Preserved measured export: **c1e618dede15368d4af39ac74391f18931b317a5**.
 Base: accepted `a40b03393a466672060066ae6e0e8c9054a2349d`.
 The independent frontend implementation and structured-workspace checks are
-published. **Complete B intake runtime acceptance remains pending the protected
-B fixture handoff and accepted backend integration.** No complete
+published. **Unified browser fixture4354 is now ready; complete B intake runtime
+acceptance and accepted backend integration remain pending.** No complete
 provider, native-tenant, or final product acceptance is claimed.
+
+## Unified4354 review handoff
+
+Open **http://127.0.0.1:4354/business** in a fresh named browser. Frontend PID
+**81173** serves the new owned export
+`/Users/mohamedadan/projects/_worktrees/ops-desk/rebrand/.build/business-intake-ui-unified-1974d97f`.
+Product is **1974d97f44b69db96051ace1c68717cc8c27b6e9**, built from report/helper
+head **6739c476c197e6a00f1c50fc0dfaece8ad998869**. The single authorized
+`CODEG_EXPORT_DIR=... NEXT_TELEMETRY_DISABLED=1 pnpm build` passed, exit0,
+34 static routes. No Rust/native build or old export replacement occurred.
+
+`business.html` disk and HTTP SHA256 both equal
+**42f37747c38d180ef270e59e0a7956bfc48c848ee35782e4a5b35c9c1ae2c6b7**.
+[The manifest](business-intake-ui-evidence/unified-4354-1974.sha256) covers that
+HTML and26 referenced JS/CSS assets; its SHA256 is
+`9b53750c2b200d47cd20f5e5a7272005b5fac5a12ea3d5d9a6616c727ca377a1`.
+[Safe handoff metadata](business-intake-ui-evidence/unified-4354-handoff.json)
+records the source, path, PID and checks. Both workspace and Sources API traffic
+route to4351; `GET /__business_intake_fixture` confirms that configuration.
+
+Backend/upstream PID66200 is tickets-owned, source
+`7ed0dd0c28f5065f1c37983f366cc6dcb0727e08`, production
+`e55f3bfd1f069d6d6111370223993596b19ecb9b`, immutable handoff1042a0b7.
+Its complete fixture report and health were read. UI mutations use only `ui`;
+root/review/worker can independently use their allocated namespaces and fresh
+sessions. Read each namespace's private0600 file in the tickets handoff directly
+into automation memory; never print its values. Use4354 as **Workspace address**
+and that person's **Personal access token**, then **Connect**. Do not enable
+original administrator access. No provider key or token belongs in a URL, report,
+snapshot or browser storage export.
+
+This is an asset/routing/build handoff, not a Sources lifecycle pass. The fixture
+will stay stable during coordinated review. Existing4350/4353 exports, browsers
+and the unsaved private draft are preserved. Own upcoming sessions are
+`intake-unified-a4354` and `intake-unified-b4354`.
 
 ## September 9 frontend recovery checkpoint
 
@@ -76,24 +111,14 @@ inferred from that fact. Backend checkpoint
 and native wrappers. Its report is read; these remain backend-owner evidence.
 The all25 client input shapes are unchanged.
 
-Remaining fixture needs are the integrated backend4351/upstream4352 source hash,
-guard/health details, fresh synthetic human credentials in that same database,
-safe Fireflies/email/Hafidh record references and coordinated mutation records
-for accept/link/discard/rebase/claim and response-loss recovery. Existing4353
-credentials are never reused as4351 access. No listener or export was restarted
-on recovery; no runtime response interception substitutes for these gates.
-The next full export is held for root's disk/build window (read-only disk
-check:13Gi available). Root has now reserved **4354** for the unified frontend.
-This preserves inherited intake-ui-a4350 and its private unsaved4353 draft.
-Own read-only port check finds no4354 listener; it will be repeated immediately
-before launch. No new export/listener has started. The new dedicated
-`serve-unified.mjs` helper fixes both business API destinations at4351, without
-changing the4350 helper, export or runtime. Its cold route will be
-`http://127.0.0.1:4354/business`, after the immutable handoff/build window.
-`node --check` exits0 with installed Node24.19.0; comparison against the old
-helper confirms only provenance/port/strict unified routing configuration changed.
-The existing4350 helper is byte-unchanged. This is a syntax/source check, not
-an executed4354 guard or browser test.
+The integrated fixture and coordinated build window have now been supplied; the
+stable4354 handoff above supersedes the earlier hold. Existing4353 credentials
+are never reused as4351 access. `serve-unified.mjs` fixes both business API
+destinations at4351 without changing the4350 helper/export/runtime. Its Node
+syntax check and executed health/routing check pass. No runtime response
+interception substitutes for the remaining protected browser flows. Fireflies
+has real synthetic projection records; email/Hafidh fixture coverage and bounded
+response-loss recovery remain explicit follow-on evidence needs.
 
 ## Delivered behavior
 
@@ -266,12 +291,11 @@ step. `src/components/business/connect.tsx`, `src/app/business/page.tsx` and
 `src/lib/business/client.ts` are byte-identical from c1 through1974 (`git diff`
 exit0); the EN/AR labels below are read from `src/lib/business/copy.ts`.
 
-1. Wait for the published unified frontend URL/export hash and tickets' guarded
-   backend/credential-file handoff. Current4350 still routes authentication to4353;
+1. Use the published4354 handoff above and tickets'1042a0b7
+   backend/credential-file handoff. Preserved4350 still routes authentication to4353;
    **do not use any new4351 namespace credential against its default address**.
    Its older Sources code is also not a valid runtime acceptance target for the
-   later corrections. Root has reserved4354; its export/launch is still pending
-   the immutable fixture handoff and completed build window.
+   later corrections. The new4354 export is the immutable1974 review target.
 2. Open a new named CLI browser session at the published frontend `/business`,
    starting at desktop width. Use the **Workspace address** (`عنوان مساحة العمل`)
    field with **`http://127.0.0.1:4354`**, without an `/api` path. Its proxy must
@@ -292,11 +316,10 @@ exit0); the EN/AR labels below are read from `src/lib/business/copy.ts`.
    Existing link targets and record mutations must stay within those allocations.
    A namespace owner/manager/viewer account cannot be substituted across backends.
 
-This is the source-grounded recipe, not a claim that the unified URL or sessions
-are running. The current4350 listener/export and inherited browsers remain intact.
+The unified URL is running; the lifecycle gates below remain separate. The
+4350 listener/export and inherited browsers remain intact.
 
-Planned own commands **after** the handoff/build window and another4354 vacancy
-check (not yet executed):
+Executed once after the handoff/build window and another4354 vacancy check:
 
 ```text
 env CODEG_EXPORT_DIR=.build/business-intake-ui-unified-1974d97f NEXT_TELEMETRY_DISABLED=1 pnpm build
@@ -304,8 +327,7 @@ node reports/business-intake-ui-evidence/serve-unified.mjs .build/business-intak
 ```
 
 The target is a new owned export path; no old export, fixture, Rust target or
-native bundle is replaced. The actual next handoff will include its source head,
-HTML/assets hash, PID, origin and safe namespace lifetime.
+native bundle is replaced. The immutable asset/PID handoff is recorded above.
 
 ## Actual browser evidence and design corrections
 
@@ -365,8 +387,7 @@ No Rust product change requires new desktop/server/Clippy runs here; the separat
 real fixture compiled locked/offline against29774b50 with its own output, and
 PR30 owner reports its backend gates separately, with root acceptance pending.
 
-Outstanding: tickets' captured tenant-epoch integration and unified protected B
-fixture; real Fireflies/email/Hafidh safe-projection UI checks; protected B two-user
+Outstanding: real Fireflies/email/Hafidh safe-projection UI checks; protected B two-user
 passage/draft/publication/receipt/privacy flows; accepted backend integration and
 final independent Design Studio review.
 No sources/provider success is substituted with fixtures that invent responses.
