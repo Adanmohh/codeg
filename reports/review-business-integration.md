@@ -278,3 +278,34 @@ gates remain pending; no full B or final Design Studio acceptance is claimed.
 
 Report/source `git diff --check` is0. Evidence staging reports2 only for final
 blank lines in the six raw tool logs; their exact bytes are deliberately retained.
+
+## Bounded source follow-on before the unified fixture
+
+Read the complete949→**e55f3bfd1f069d6d6111370223993596b19ecb9b** product
+and report diff; immutable tree `a7a386dea91540bf30c8bc69bef0b2a1782ad86b`
+resolved through `gh api`. `Work::Detail` now boxes the same fenced Source value;
+the claim, original Principal, provider inputs and final writer checks are unchanged.
+`Reservation` groups the same six borrowed arguments, with identical INSERT values
+and both call sites. Derived enum defaults preserve the prior `pending` and
+`unfinished` choices and snake_case wire representation. The recovery test scopes
+the same mutex assertions lexically before its subsequent awaits. No new concern
+requires repeating the eight tests; no new independent runtime result is claimed
+for this follow-on. Accepted000012 comparison with PR30 exits0, byte-identical.
+
+The owner's full38/38 run, corrected desktop Clippy and focused recovery run are
+explicitly owner evidence in its committed report. Root independently verified
+the attached gate/source correspondence artifacts; this worker's unchanged949
+execution remains separately frozen above. No new backend blocker established
+in this source-only follow-on. The unified fixture is still compiling, with no
+listener handoff or persistent API/browser mutation by this reviewer.
+
+PR29 **514b5432b03667dc6a461593a224d80d14050aee** was also resolved through
+`gh api`; read its full report/source/test/NOTICE diff from a58. Product
+1974d97f narrows the source-owner selector to currently eligible contributing
+humans and prevents submitting a no-longer-eligible selected reference. Backend
+authority remains decisive. IUI-1's workspace/source-review/candidate code and
+four race tests compare byte-identical to the independently tested a58 (exit0).
+No extra UI test run is claimed for this small eligibility change; inspect it
+through the forthcoming real setup flow. Existing4350 remains its old export;
+owner has proposed a separate4354 frontend to protect its retained private draft.
+No export, browser, credential file or listener has been changed by this review.
