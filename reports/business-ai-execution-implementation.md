@@ -357,3 +357,43 @@ Next authorized bounded gates: execution_pagination_, execution_admission_,
 execution_authority_, execution_assets_ selectors and server check, all locked/
 offline, existing .docs/business-intake-tenancy-target, -j2. Start only with at
 least10GiB free; stop/report near5GiB. No new target/export/native build or cleanup.
+
+## Executed correction gates — product9949c8a9a
+
+The bounded gates ran after the source/report checkpoint
+`e56affc361ba7901e624dcc7e4d8e5a2776aee5b`, with all eight changed product files
+byte-identical to `9949c8a9ad99ffb70232c05bf1c2ad243dcaf194`. Every command used
+the existing `.docs/business-intake-tenancy-target`, locked/offline and `-j2`.
+No source changed during the run. Logs and exact command/source hashes are in
+`reports/business-ai-execution-validation/review-corrections/digests.json`.
+
+| Selector / check | Actual result | Test runtime / Cargo finish |
+| --- | --- | --- |
+| `execution_pagination_` | 3 passed, exit0 | 0.27s / 1m44s |
+| `execution_admission_` | 3 passed, exit0 | 0.30s / 0.51s |
+| `execution_authority_` | 3 passed, exit0 | 0.25s / 0.22s |
+| `execution_assets_` | 5 passed, exit0 | 0.09s / 0.21s |
+| server `cargo check --no-default-features --bin codeg-server` | exit0 | 27.46s |
+
+These are 14 owner-run focused tests, including the six new cases. The frozen177
+schema suites were not repeated. Independent9949 source review and any later
+independent execution remain separate evidence. Test build7/server check62
+warnings are retained: unused consumers are still being implemented, plus the
+inherited test linker and proc-macro-error2 future-compatibility messages. This is
+not a Clippy or complete E1 runtime acceptance claim.
+
+Initial disk observation17,653,552KiB; final16,600,328KiB (about15.83GiB).
+All own Cargo commands finished and the window was explicitly released to root
+and approvals. Farha now owns the production build window: no further Ops Cargo
+or large allocation until coordinated release. No cleanup, target copy, fixture,
+browser, provider or engine action occurred. Original paused visual report remains
+untracked and unchanged. PR32 is still draft, verified using the explicit fork
+REST endpoint; an earlier implicit-repository `gh pr view` lookup failed and made
+no change.
+
+Next source work remains managed asset records/import and task-owned selected
+reference publication, followed by existing-engine lifecycle and protected
+transports. The runner must consume an admission once; current
+`complete_launch(&Admission)` only proves internal DB/receipt binding, not that
+an actual process launch is owned or one-time. No remaining runtime prerequisite
+is waived by these correction tests.

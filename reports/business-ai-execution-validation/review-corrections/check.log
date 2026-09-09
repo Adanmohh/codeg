@@ -1,0 +1,417 @@
+    Checking codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+warning: function `statement` is never used
+  --> src/business_execution/common.rs:37:15
+   |
+37 | pub(super) fn statement(sql: &str, values: Vec<Value>) -> Statement {
+   |               ^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `id` is never used
+  --> src/business_execution/common.rs:40:15
+   |
+40 | pub(super) fn id() -> String {
+   |               ^^
+
+warning: function `now` is never used
+  --> src/business_execution/common.rs:43:15
+   |
+43 | pub(super) fn now() -> String {
+   |               ^^^
+
+warning: function `encode` is never used
+  --> src/business_execution/common.rs:46:15
+   |
+46 | pub(super) fn encode<T: Serialize>(value: &T) -> Result<String> {
+   |               ^^^^^^
+
+warning: function `decode` is never used
+  --> src/business_execution/common.rs:49:15
+   |
+49 | pub(super) fn decode<T: DeserializeOwned>(value: &str) -> Result<T> {
+   |               ^^^^^^
+
+warning: function `key` is never used
+  --> src/business_execution/common.rs:52:15
+   |
+52 | pub(super) fn key<T: Serialize>(value: T) -> Result<String> {
+   |               ^^^
+
+warning: function `digest` is never used
+  --> src/business_execution/common.rs:58:15
+   |
+58 | pub(super) fn digest(value: &[u8]) -> String {
+   |               ^^^^^^
+
+warning: struct `Files` is never constructed
+  --> src/business_execution/files.rs:10:19
+   |
+10 | pub(crate) struct Files {
+   |                   ^^^^^
+
+warning: struct `Stamp` is never constructed
+  --> src/business_execution/files.rs:15:19
+   |
+15 | pub(super) struct Stamp {
+   |                   ^^^^^
+
+warning: struct `Observation` is never constructed
+  --> src/business_execution/files.rs:26:19
+   |
+26 | pub(super) struct Observation {
+   |                   ^^^^^^^^^^^
+
+warning: struct `Candidate` is never constructed
+  --> src/business_execution/files.rs:32:19
+   |
+32 | pub(super) struct Candidate {
+   |                   ^^^^^^^^^
+
+warning: struct `Retained` is never constructed
+  --> src/business_execution/files.rs:36:19
+   |
+36 | pub(super) struct Retained {
+   |                   ^^^^^^^^
+
+warning: struct `Content` is never constructed
+  --> src/business_execution/files.rs:41:19
+   |
+41 | pub(super) struct Content {
+   |                   ^^^^^^^
+
+warning: enum `SyncPoint` is never used
+  --> src/business_execution/files.rs:47:17
+   |
+47 | pub(super) enum SyncPoint {
+   |                 ^^^^^^^^^
+
+warning: function `media_type` is never used
+  --> src/business_execution/files.rs:53:15
+   |
+53 | pub(super) fn media_type(name: &str) -> Option<&'static str> {
+   |               ^^^^^^^^^^
+
+warning: associated functions `new` and `supported` are never used
+  --> src/business_execution/files.rs:72:19
+   |
+71 | impl Files {
+   | ---------- associated functions in this implementation
+72 |     pub(crate) fn new(data_dir: PathBuf) -> Self {
+   |                   ^^^
+...
+75 |     pub(crate) fn supported() -> bool {
+   |                   ^^^^^^^^^
+
+warning: function `unavailable` is never used
+  --> src/business_execution/files.rs:95:8
+   |
+95 |     fn unavailable(_: std::io::Error) -> Error {
+   |        ^^^^^^^^^^^
+
+warning: function `component` is never used
+  --> src/business_execution/files.rs:98:8
+   |
+98 |     fn component(value: &str) -> Result<CString> {
+   |        ^^^^^^^^^
+
+warning: struct `Directory` is never constructed
+   --> src/business_execution/files.rs:108:12
+    |
+108 |     struct Directory(File);
+    |            ^^^^^^^^^
+
+warning: associated items `root`, `child`, and `file` are never used
+   --> src/business_execution/files.rs:112:12
+    |
+109 |     impl Directory {
+    |     -------------- associated items in this implementation
+...
+112 |         fn root(path: &Path) -> Result<Self> {
+    |            ^^^^
+...
+125 |         fn child(&self, name: &str, create: bool) -> Result<Self> {
+    |            ^^^^^
+...
+146 |         fn file(&self, name: &str, create: bool) -> Result<File> {
+    |            ^^^^
+
+warning: function `stamp` is never used
+   --> src/business_execution/files.rs:169:8
+    |
+169 |     fn stamp(metadata: &Metadata) -> Result<Stamp> {
+    |        ^^^^^
+
+warning: function `safe_relative` is never used
+   --> src/business_execution/files.rs:183:8
+    |
+183 |     fn safe_relative(relative: &str) -> Result<Vec<&str>> {
+    |        ^^^^^^^^^^^^^
+
+warning: function `source` is never used
+   --> src/business_execution/files.rs:212:8
+    |
+212 |     fn source(root: &Directory, relative: &str) -> Result<File> {
+    |        ^^^^^^
+
+warning: function `read_stable` is never used
+   --> src/business_execution/files.rs:220:8
+    |
+220 |     fn read_stable(
+    |        ^^^^^^^^^^^
+
+warning: multiple methods are never used
+   --> src/business_execution/files.rs:247:12
+    |
+246 |     impl Files {
+    |     ---------- methods in this implementation
+247 |         fn base(&self) -> Result<Directory> {
+    |            ^^^^
+...
+250 |         fn workspace_directory(&self, admission_id: &str, create: bool) -> Result<Directory> {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+256 |         pub(in crate::business_execution) fn workspace(
+    |                                              ^^^^^^^^^
+...
+267 |         pub(in crate::business_execution) fn scan(
+    |                                              ^^^^
+...
+337 |         pub(in crate::business_execution) fn stage(
+    |                                              ^^^^^
+...
+363 |         fn stage_with_sync(
+    |            ^^^^^^^^^^^^^^^
+...
+418 |         pub(in crate::business_execution) fn content(
+    |                                              ^^^^^^^
+
+warning: method `summary` is never used
+ --> src/business_execution/receipts.rs:9:19
+  |
+8 | impl records::Operation {
+  | ----------------------- method in this implementation
+9 |     pub(super) fn summary(&self) -> Result<OperationSummary> {
+  |                   ^^^^^^^
+
+warning: function `find` is never used
+  --> src/business_execution/receipts.rs:21:21
+   |
+21 | pub(super) async fn find(
+   |                     ^^^^
+
+warning: function `replay` is never used
+  --> src/business_execution/receipts.rs:45:21
+   |
+45 | pub(super) async fn replay<T: Serialize>(
+   |                     ^^^^^^
+
+warning: struct `Target` is never constructed
+  --> src/business_execution/receipts.rs:61:19
+   |
+61 | pub(super) struct Target<'a> {
+   |                   ^^^^^^
+
+warning: function `require_target` is never used
+  --> src/business_execution/receipts.rs:66:15
+   |
+66 | pub(super) fn require_target(
+   |               ^^^^^^^^^^^^^^
+
+warning: struct `Completion` is never constructed
+  --> src/business_execution/receipts.rs:80:19
+   |
+80 | pub(super) struct Completion<'a, T> {
+   |                   ^^^^^^^^^^
+
+warning: function `reserve` is never used
+  --> src/business_execution/receipts.rs:87:21
+   |
+87 | pub(super) async fn reserve<T: Serialize>(
+   |                     ^^^^^^^
+
+warning: function `complete` is never used
+   --> src/business_execution/receipts.rs:103:21
+    |
+103 | pub(super) async fn complete<T: Serialize>(
+    |                     ^^^^^^^^
+
+warning: struct `Profile` is never constructed
+ --> src/business_execution/records.rs:5:19
+  |
+5 | pub(super) struct Profile {
+  |                   ^^^^^^^
+
+warning: struct `Session` is never constructed
+  --> src/business_execution/records.rs:15:19
+   |
+15 | pub(super) struct Session {
+   |                   ^^^^^^^
+
+warning: struct `Generation` is never constructed
+  --> src/business_execution/records.rs:35:19
+   |
+35 | pub(super) struct Generation {
+   |                   ^^^^^^^^^^
+
+warning: struct `Operation` is never constructed
+  --> src/business_execution/records.rs:41:19
+   |
+41 | pub(super) struct Operation {
+   |                   ^^^^^^^^^
+
+warning: struct `Output` is never constructed
+  --> src/business_execution/records.rs:58:19
+   |
+58 | pub(super) struct Output {
+   |                   ^^^^^^
+
+warning: struct `Asset` is never constructed
+  --> src/business_execution/records.rs:66:19
+   |
+66 | pub(super) struct Asset {
+   |                   ^^^^^
+
+warning: struct `Version` is never constructed
+  --> src/business_execution/records.rs:79:19
+   |
+79 | pub(super) struct Version {
+   |                   ^^^^^^^
+
+warning: function `operator` is never used
+  --> src/business_execution/scope.rs:10:21
+   |
+10 | pub(super) async fn operator<C: ConnectionTrait>(
+   |                     ^^^^^^^^
+
+warning: function `authority` is never used
+  --> src/business_execution/scope.rs:26:15
+   |
+26 | pub(super) fn authority(principal: &Principal) -> Result<String> {
+   |               ^^^^^^^^^
+
+warning: struct `TaskScope` is never constructed
+  --> src/business_execution/scope.rs:32:19
+   |
+32 | pub(super) struct TaskScope {
+   |                   ^^^^^^^^^
+
+warning: function `task` is never used
+  --> src/business_execution/scope.rs:36:21
+   |
+36 | pub(super) async fn task(
+   |                     ^^^^
+
+warning: function `profile` is never used
+  --> src/business_execution/scope.rs:64:21
+   |
+64 | pub(super) async fn profile<C: ConnectionTrait>(
+   |                     ^^^^^^^
+
+warning: function `session` is never used
+  --> src/business_execution/scope.rs:82:21
+   |
+82 | pub(super) async fn session(
+   |                     ^^^^^^^
+
+warning: function `validate_session` is never used
+   --> src/business_execution/scope.rs:102:21
+    |
+102 | pub(super) async fn validate_session(
+    |                     ^^^^^^^^^^^^^^^^
+
+warning: struct `DiscoveredProfile` is never constructed
+  --> src/business_execution/session_store.rs:10:19
+   |
+10 | pub(crate) struct DiscoveredProfile {
+   |                   ^^^^^^^^^^^^^^^^^
+
+warning: function `sync_profiles` is never used
+  --> src/business_execution/session_store.rs:15:21
+   |
+15 | pub(crate) async fn sync_profiles(
+   |                     ^^^^^^^^^^^^^
+
+warning: function `summary` is never used
+  --> src/business_execution/session_store.rs:77:15
+   |
+77 | pub(super) fn summary(row: &records::Session) -> Result<SessionSummary> {
+   |               ^^^^^^^
+
+warning: function `get` is never used
+   --> src/business_execution/session_store.rs:116:21
+    |
+116 | pub(crate) async fn get(
+    |                     ^^^
+
+warning: function `list` is never used
+   --> src/business_execution/session_store.rs:130:21
+    |
+130 | pub(crate) async fn list(
+    |                     ^^^^
+
+warning: struct `Admission` is never constructed
+   --> src/business_execution/session_store.rs:170:19
+    |
+170 | pub(super) struct Admission {
+    |                   ^^^^^^^^^
+
+warning: method `session_id` is never used
+   --> src/business_execution/session_store.rs:182:19
+    |
+181 | impl Admission {
+    | -------------- method in this implementation
+182 |     pub(super) fn session_id(&self) -> &str {
+    |                   ^^^^^^^^^^
+
+warning: struct `Reservation` is never constructed
+   --> src/business_execution/session_store.rs:186:19
+    |
+186 | pub(super) struct Reservation {
+    |                   ^^^^^^^^^^^
+
+warning: function `add_generation` is never used
+   --> src/business_execution/session_store.rs:190:10
+    |
+190 | async fn add_generation(
+    |          ^^^^^^^^^^^^^^
+
+warning: function `reserve_start` is never used
+   --> src/business_execution/session_store.rs:201:21
+    |
+201 | pub(super) async fn reserve_start(
+    |                     ^^^^^^^^^^^^^
+
+warning: struct `EngineLink` is never constructed
+   --> src/business_execution/session_store.rs:301:19
+    |
+301 | pub(super) struct EngineLink {
+    |                   ^^^^^^^^^^
+
+warning: function `generation` is never used
+   --> src/business_execution/session_store.rs:306:21
+    |
+306 | pub(super) async fn generation(
+    |                     ^^^^^^^^^^
+
+warning: function `complete_launch` is never used
+   --> src/business_execution/session_store.rs:315:21
+    |
+315 | pub(super) async fn complete_launch(
+    |                     ^^^^^^^^^^^^^^^
+
+warning: function `set_status` is never used
+   --> src/business_execution/session_store.rs:386:21
+    |
+386 | pub(super) async fn set_status(
+    |                     ^^^^^^^^^^
+
+warning: function `operation` is never used
+   --> src/business_execution/session_store.rs:401:21
+    |
+401 | pub(crate) async fn operation(
+    |                     ^^^^^^^^^
+
+warning: `codeg` (lib) generated 62 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 27.46s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
