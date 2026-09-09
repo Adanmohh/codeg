@@ -1,0 +1,287 @@
+{
+  "review_kind": "source-only; no new reviewer test or compile",
+  "review_product": "3773a027a8d580bd9bac1808efdb718ae6f9e135",
+  "review_tree": "8fee327f94ac0d3b6b180180b80118d6d3bf66d5",
+  "baseline": "177d0f3e2b426d65de9573ba534ac8c11f9250f7",
+  "owner_evidence": "79703eeb50a9632d86d6c390bf7260d921593539",
+  "previous_review_evidence": "f4b12e8dccf249bce75accbb4a5f4aa69df48ac3",
+  "source_storage": "Read existing Git objects; no new source archive or build-output copy.",
+  "source_blobs": [
+    {
+      "path": "LICENSE",
+      "git_blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+    },
+    {
+      "path": "NOTICE",
+      "git_blob": "0b0ac38046c6070f84e162c98357475f3b1a027e"
+    },
+    {
+      "path": "src-tauri/src/business_execution/common.rs",
+      "git_blob": "9fb07651f8f634e1889ab6360c7b11e3e3107a16"
+    },
+    {
+      "path": "src-tauri/src/business_execution/file_tests.rs",
+      "git_blob": "0cca725ca851be5d027f4440111170b978f6694f"
+    },
+    {
+      "path": "src-tauri/src/business_execution/files.rs",
+      "git_blob": "9e4517d684cddf114b3e169409a4c33ba89fff9a"
+    },
+    {
+      "path": "src-tauri/src/business_execution/mod.rs",
+      "git_blob": "1cf2c1b1f6a2236875ce2810acf7543367079931"
+    },
+    {
+      "path": "src-tauri/src/business_execution/receipts.rs",
+      "git_blob": "452d0da5517ed9707a1ddf012ceb4ba5e1b692fd"
+    },
+    {
+      "path": "src-tauri/src/business_execution/records.rs",
+      "git_blob": "2c3e934dd7c8b4b89a28851c1a316207957cb2d0"
+    },
+    {
+      "path": "src-tauri/src/business_execution/scope.rs",
+      "git_blob": "44d0d5eef834967f5f6a38810630c6b2ffebff1f"
+    },
+    {
+      "path": "src-tauri/src/business_execution/session_store.rs",
+      "git_blob": "c3820e2f1d643f364feadbe59e06fdc58c71a48a"
+    },
+    {
+      "path": "src-tauri/src/business_execution/session_tests.rs",
+      "git_blob": "1599ec71fad674409a80e366e31ed4dbf0aa11e1"
+    },
+    {
+      "path": "src-tauri/src/business_execution/tests.rs",
+      "git_blob": "3219da46276f07e81c807cc23d338c499f4d17e3"
+    },
+    {
+      "path": "src-tauri/src/business_execution/types.rs",
+      "git_blob": "47ca21b002c9c1efb898e38e0c920e9ca3456c70"
+    },
+    {
+      "path": "src-tauri/src/business_execution/validation.rs",
+      "git_blob": "0de132a3f5ad20614196621286b94b0cfe471fef"
+    },
+    {
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.rs",
+      "git_blob": "0e8bf9e47532076561c587c89b2677ea129383e3"
+    },
+    {
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.sql",
+      "git_blob": "2369913295543dce4542c364f23567cbffd0d842"
+    }
+  ],
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "P2",
+      "status": "open at frozen product",
+      "basis": "source deduction; independently confirmed by root",
+      "path": "src-tauri/src/business_execution/session_store.rs",
+      "lines": [
+        142,
+        150,
+        151,
+        155,
+        157
+      ],
+      "summary": "Returned cursor can name a revoked/stale filtered row and then be rejected on the next page.",
+      "required_probe": "Leading/interleaved stale rows, issued cursor revoked between pages, valid pages and foreign task/tenant cursors.",
+      "reviewer_executed": false
+    },
+    {
+      "id": "R2",
+      "severity": "P2",
+      "status": "open at frozen product",
+      "basis": "internal API source deduction; independently confirmed by root; no remote caller claimed",
+      "path": "src-tauri/src/business_execution/session_store.rs",
+      "lines": [
+        166,
+        168,
+        306,
+        315,
+        336
+      ],
+      "related_path": "src-tauri/src/business_execution/receipts.rs",
+      "summary": "Mutable admission operation ID can confirm a different reservation receipt without exact target comparison.",
+      "required_probe": "Two genuine reservations cross-paired must reject with unchanged rows; correctly paired completion and replay controls.",
+      "reviewer_executed": false
+    },
+    {
+      "id": "R3",
+      "severity": "P2",
+      "status": "open at frozen product",
+      "basis": "failure-path source deduction; independently confirmed by root; no injected failure/crash execution",
+      "path": "src-tauri/src/business_execution/files.rs",
+      "lines": [
+        343,
+        347,
+        351,
+        372,
+        373
+      ],
+      "summary": "Existing-object recovery skips file/directory sync after initial post-chmod synchronization failure.",
+      "required_probe": "Post-chmod file sync and directory sync failure; persistent failure; same-object successful durable retry.",
+      "reviewer_executed": false
+    }
+  ],
+  "owner_results": [
+    {
+      "path": "reports/business-ai-execution-validation/admission-files/tests.log",
+      "sha256": "1b2acae5bc2197c6c664b140436e2f75d022744964124d99371242699f031043",
+      "independently_hashed": true,
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib business_execution::",
+      "owner_report_flags": "locked/offline; existing target",
+      "reported_exit": 0,
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "compile": "1m57s",
+      "runtime": "0.80s",
+      "warnings": 9,
+      "attribution": "owner execution only"
+    },
+    {
+      "path": "reports/business-ai-execution-validation/admission-files/check.log",
+      "sha256": "352204e540f5962f6ebab8a7833bcae1c1f89e115b9e8df5d6a6bec6bec76c55",
+      "independently_hashed": true,
+      "command": "cargo check --manifest-path src-tauri/Cargo.toml --no-default-features --bin codeg-server",
+      "owner_report_flags": "locked/offline; existing target",
+      "reported_exit": 0,
+      "runtime": "11.50s",
+      "warnings": 58,
+      "attribution": "owner execution only; no Clippy claim"
+    }
+  ],
+  "borrowing": [
+    {
+      "repository": "Adanmohh/codeg",
+      "pin": "9e61fe67261219921e0a6a860c45f6e08ea99c21",
+      "path": "src-tauri/src/web/handlers/upload_jail.rs",
+      "blob": "66621d1bccf9fe1a8080eea4a38864e90635e3df",
+      "license": "Apache-2.0",
+      "verification": "Full immutable local source read; gh api contents path/blob matched; NOTICE adaptation inspected."
+    },
+    {
+      "repository": "Adanmohh/codeg",
+      "pin": "c8453a48d441f40eb47f9c9af856235b4f9986e5",
+      "license": "Apache-2.0",
+      "verification": "gh api recursive tree untruncated, five NOTICE source blobs match",
+      "files": [
+        {
+          "path": "src-tauri/src/business_intake/records.rs",
+          "blob": "b205a8738133be163c51e921da401694e94ccff7"
+        },
+        {
+          "path": "src-tauri/src/business_intake/error.rs",
+          "blob": "7dc266736152322b5c54c4c6388e902a7672a0a9"
+        },
+        {
+          "path": "src-tauri/src/business_intake/common.rs",
+          "blob": "9f71cf5cf886b77a9b1389cceac9aaadc87efa8e"
+        },
+        {
+          "path": "src-tauri/src/business_identity/platform.rs",
+          "blob": "167b9f682cb9b2a02b2bd48e4302436164f2dcd2"
+        },
+        {
+          "path": "src-tauri/src/business_tasks/store.rs",
+          "blob": "4d45912b748f2083457ccb6ab075b335d8ec2ac2"
+        }
+      ]
+    },
+    {
+      "repository": "rust-lang/rust",
+      "version": "1.98.0",
+      "pin": "88d9e12ae178fab0fb5cc050a94da85685d449ea",
+      "use": "API documentation only, no reviewer port",
+      "verification": "Local installed rendered source first; immutable gh api contents metadata and relevant raw source reads",
+      "files": [
+        {
+          "path": "library/std/src/fs.rs",
+          "blob": "750ddb91c482b46a6f8830b1bb3885c4ef1efbab",
+          "lines": [
+            "748-780",
+            "1124-1144",
+            "3210-3225"
+          ]
+        },
+        {
+          "path": "library/std/src/os/unix/fs.rs",
+          "blob": "c119912c3b0226775b24b882a7d67e5aed0c8c2b",
+          "lines": [
+            "713-789"
+          ]
+        }
+      ]
+    }
+  ],
+  "installed_reads": [
+    {
+      "path": "/Users/mohamedadan/.rustup/toolchains/stable-aarch64-apple-darwin/share/doc/rust/html/src/std/fs.rs.html",
+      "sha256": "59777fc15ec133a22c74897d2ddf86234e1add6948b5103dd6f73cc7349cd71d",
+      "lines": [
+        "748-780",
+        "1124-1183",
+        "3210-3235"
+      ]
+    },
+    {
+      "path": "/Users/mohamedadan/.rustup/toolchains/stable-aarch64-apple-darwin/share/doc/rust/html/src/std/os/unix/fs.rs.html",
+      "sha256": "3e81e51a18a6e0e72c62c205ff649fe06b71147a7876cd0e23bd815c189f3f3f",
+      "lines": [
+        "544-616"
+      ],
+      "additional_read": "Official pinned source713-789 time fields."
+    },
+    {
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.180/src/unix/mod.rs",
+      "sha256": "1970d8f8121928b5809d18e6d6322e5736ebf2ac1c1d6c23b6b3d18e40258e9e",
+      "lines": [
+        "835-895",
+        "2096-2144"
+      ]
+    },
+    {
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.180/src/unix/bsd/apple/mod.rs",
+      "sha256": "8e4fef25e4b5911370769e31a96320e0dcc57858f8cc1cd406e48f6fb80cd1e8",
+      "lines": [
+        "1954-1983"
+      ]
+    }
+  ],
+  "code_context": {
+    "python": "/Users/mohamedadan/projects/rag-skills/.venv/bin/python",
+    "environment": "HF_HUB_OFFLINE=1",
+    "guide_query": "Review existing Rust session admission exact receipt binding, authority-safe pagination, retained immutable file custody and source-only security boundaries",
+    "guide_exit": 0,
+    "guide_count": 6,
+    "docs_query": "Installed Rust file descriptor metadata sync_all openat O_NOFOLLOW receipt transaction semantics",
+    "docs_exit": 3,
+    "docs_limitation": "data/code/approvals.db absent; no ingest/install/coverage claim",
+    "raw_rust_src_discovery_exit": 2,
+    "raw_rust_src_limitation": "Not installed; installed rendered source available and read.",
+    "applied_rule": "Atomic per-task staging: never git add -A/. in a multi-agent repo",
+    "applicability": "Mostly generic results; unrelated context7/browser instructions do not override current assignment."
+  },
+  "unchanged_comparison": {
+    "command": "git diff --quiet 177d0f3e2b426d65de9573ba534ac8c11f9250f7 3773a027a8d580bd9bac1808efdb718ae6f9e135 -- src-tauri/Cargo.toml src-tauri/Cargo.lock LICENSE src-tauri/src/db/migration/m20260908_000010_business_tasks.rs src-tauri/src/db/migration/m20260908_000011_business_intake.rs src-tauri/src/db/migration/m20260908_000012_business_tenancy.rs src-tauri/src/db/migration/m20260909_000013_business_intake_epochs.rs",
+    "exit": 0,
+    "note": "Actual dated paths enumerated before this final comparison; an earlier guessed-date comparison was not relied on."
+  },
+  "hook_coverage": {
+    "observed": "Own Git, immutable gh api, code-context and authorized Herdr commands succeeded; native report edits succeeded after an earlier file-write failure.",
+    "limitation": "Current launcher has no generic Pre/Post JSONL. No fresh all-tool hook-event claim. Previous detailed f4 coverage remains.",
+    "historical_reminder": "Before owner hook-removal override, native source-ledger patch emitted manual-grounding reminder with no automatic verification claim. Relevant installed/pinned source was read first. Historical evidence only; no fresh-hook or replacement generic audit claim. Global removal belongs to another owner; no hook work or added probe in this lane.",
+    "bypass": false,
+    "protected_state_inspected": false
+  },
+  "preservation": {
+    "paused_visual_report_sha256": "abc5fd394af657568abe32a5333df27210115204c4e7eb2630ac59b71caa4060",
+    "prior_schema_evidence": "unchanged",
+    "reviewer_cargo": "not run; still on hold",
+    "fixture_browser_native_provider_actions": false,
+    "storage": "Native patch write failure with old report intact; smaller same-tool patch succeeded before hold. Read-only cache inventory only; no reviewer cleanup. Root later recovered physical space and authorized small report publication."
+  }
+}
