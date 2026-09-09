@@ -2,6 +2,15 @@
 
 ## Current integration and worker state
 
+Independent integration preparation `21d4ecaf` is read and imported as
+[the integration review](reports/review-business-integration.md). Reviewer
+archives match B15bb756/756 and UI191f69b3 1229/1229 source/licence blobs.
+This is source preparation, not runtime acceptance. PR29's current preview uses
+separate task/settings and intake backends; complete B evidence must use one
+integrated database. Compiling merge checkpoint `a9a610a8` is published to PR28
+and under review while persisted epoch/setup changes proceed. The000013 upgrade
+matrix, tenant privacy and shared-pane draft checks remain required.
+
 Approvals recovery confirmed through new session
 `01a084ee-129a-7561-9f10-64266115e759`: worker reports live PreToolUse22873/22875
 and PostToolUse22874/22876. Its `review/business-integration` starts at accepted
