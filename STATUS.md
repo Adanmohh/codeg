@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+Approvals recovery confirmed through new session
+`01a084ee-129a-7561-9f10-64266115e759`: worker reports live PreToolUse22873/22875
+and PostToolUse22874/22876. Its `review/business-integration` starts at accepted
+`be46d054`; original tenancy branch and fixtures are preserved. Root reserves
+tickets-owned `m20260909_000013_business_intake_epochs`, a forward additive
+migration after000012. It must cover fresh combined databases, populated old B,
+and A-only installations that recorded000012 before adding B. Historical rows
+retain NULL epochs; migration does not grant fresh authority. Both workers have
+the reservation and required real-migration/receipt/retention checks.
+
 Authentication recovery: rebrand and approvals now run replacement Codex clients
 in the same panes/worktrees on Astra/max. Their auth-stale clients40904/49733 were
 suspended individually, preserving their independently running fixture processes.
