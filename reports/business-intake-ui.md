@@ -1,6 +1,6 @@
 # Business Sources and shared workbench
 
-Current source: **a58c004c7d5187e6455a452195985528ddf14bc7**, branch
+Current source: **1974d97f44b69db96051ace1c68717cc8c27b6e9**, branch
 `feat/business-intake-ui`, [draft PR29](https://github.com/Adanmohh/codeg/pull/29).
 Preserved measured export: **c1e618dede15368d4af39ac74391f18931b317a5**.
 Base: accepted `a40b03393a466672060066ae6e0e8c9054a2349d`.
@@ -58,6 +58,15 @@ saving, rather than silently retained or replaced. Eight setup cases plus18
 existing intake cases passed26/26; these are included in the final52 above.
 No role-derived setup authority, caller epoch or runtime mock is introduced.
 
+Reference eligibility follow-up **1974d97f** changes only source setup and its
+test/NOTICE; IUI-1 product remains byte-identical to a58. `access.rs::owner` at
+f51154b9 requires a current contributing human. The UI reuses the accepted task
+owner filter, excludes viewers and requires the selected person to remain in
+the eligible directory before creation. The new test failed before correction
+because a viewer appeared;27/27 setup/intake cases now pass,2.93s,exit0, with
+typecheck and scoped lint exit0. This is reference presentation/validation;
+all setup authorization still comes from the server's explicit capabilities.
+
 The f51154b9 `types.rs`, `access.rs`, `setup.rs` and identity `Member::allows`
 were read at the immutable commit. For currently eligible human owner/admin,
 Create and Contribute share the domain ceiling; no agent-role permission is
@@ -73,6 +82,12 @@ safe Fireflies/email/Hafidh record references and coordinated mutation records
 for accept/link/discard/rebase/claim and response-loss recovery. Existing4353
 credentials are never reused as4351 access. No listener or export was restarted
 on recovery; no runtime response interception substitutes for these gates.
+The next full export is additionally held for root's disk/build window
+(read-only disk check:13Gi available). An allocation question is pending:
+inherited intake-ui-a4350 holds a private unsaved4353 draft, so switching its
+origin to4351 could invalidate that session. A separate proposed4354 frontend
+would preserve4350 and its old browsers; no new port/export has been started.
+4350 remains unchanged until the allocation and draft preservation are resolved.
 
 ## Delivered behavior
 
