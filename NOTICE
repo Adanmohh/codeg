@@ -797,6 +797,85 @@ tauri2.10.2 drag.js (official06374a902a50d2bd8b8d85593623ad16ac32325a)
 is a drag-contract reference; no dependency implementation is copied.
 Original Apache LICENSE and every preceding attribution remain intact.
 
+Business intake transaction prerequisites (2026):
+Extend accepted Apache-2.0 Codeg at Adanmohh/codeg
+086eee485e6f40a8b02ea77c9dbeefe315c81596:
+src-tauri/src/keyring_store.rs, blob29fc3fb38280338aa26939c45f80ef9aefc2a394;
+src-tauri/src/business_tasks/store.rs, blobd48fdf1e85feb4410dbff51e8a671d6c9d525691;
+src-tauri/src/business_tasks/types.rs, blob6d6c4b8c9555d09ea19d57c9fa329eb548832cc3;
+src-tauri/src/business_tasks/tests.rs, blob4c7e6000a5881f979dd2bd1b0d13c88d9e1bf49a.
+The existing private credential lock/atomic-rename path now rejects malformed
+or unreadable mutation reads. Task creation/reference/CAS/audit primitives are
+extracted for one outer intake writer transaction, retaining every existing
+human/agent rule. Opaque source-link activity contains no private source text.
+The earlier approved IntroMail task mapping and all exclusions remain unchanged;
+no additional IntroMail, GPL or AGPL code is copied. Installed SeaORM1.1.19 and
+SQLx SQLite0.8.6 transaction sources are API references only, not code ports.
+
+The intake DTOs and m20260908_000011_business_intake.rs transcribe the accepted
+application contracts670af9ca2b8e3cdb7c0858ab15b58036fafbc2d5 and
+18be55edc276713fc6d46d075baec363245ba285. Migration transaction, composite
+organization foreign keys and retained-history triggers adapt the same accepted
+Codeg src-tauri/src/db/migration/m20260908_000010_business_tasks.rs at086eee48.
+Closed serde inputs and safe AppCommandError projections reuse
+business_identity/{types,mod}.rs and business_tasks/types.rs at that source.
+No third-party schema, source-key framework, dependency or copyleft code is added.
+
+Business intake fixed Fireflies reader (2026):
+src-tauri/src/business_intake/fireflies.rs reduces the read-only query and
+credential/error patterns in firefliesai/n8n-nodes-fireflies at immutable
+fbd24607bc784a2294ce402426aefe2cb8c00f50 (MIT):
+nodes/Fireflies/helpers/queries.ts, blobc775b8bbe6c0bbb16f8f7e8a60467c248ad93859;
+credentials/FirefliesApi.credentials.ts, bloba39bced68aeceb23b33641e774e3509554caac49;
+nodes/Fireflies/transport/index.ts, blob0b60c1c9e9d61f4583298cd2c0c464e9864861f5.
+Only fixed user/list/detail projections and HTTP-200 GraphQL error rejection are
+ported. No n8n runtime, mutation, raw provider error or credential disclosure.
+LICENSE.md, blob1e4b3a6e245384b89f24f2aef5e3f8e7fa1f4d23, reproduced in full:
+
+Copyright 2022 n8n
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+The surrounding intake access/setup/transport glue reuses accepted Apache Codeg
+at086eee485e6f40a8b02ea77c9dbeefe315c81596:
+business_identity/{mod,http,store,types,tests}.rs and commands/business_identity.rs;
+ops/{mod,email,email_entity}.rs; ops_intake_host/{store,types,mod}.rs;
+db/service/ticket_service/mod.rs and db/entities/ops_ticket.rs;
+email_transport/tests.rs for isolated local HTTP fixtures and ops/tests.rs for
+synthetic account fixtures. Paths are relative to src-tauri/src/.
+Existing MIT Chatwoot public-message attribution remains above; the extracted
+query applies the identical private-note/activity exclusion to one stored row.
+The new legacy generation fence and staged setup ledger implement the accepted
+application access18be55ed contract; they do not port another framework/store.
+Installed SeaORM1.1.19, Axum0.8.8, reqwest0.12.28, Tokio1.49.0 and serde1.0.228
+source/types are API references only. All prior NOTICE sections remain intact.
+
+Business intake source/import/candidate core (2026):
+src-tauri/src/business_intake/{sources,imports,candidates,decisions}.rs composes
+the existing task-owned prepare/create/link transaction helpers and private
+Principal authorization. Application-specific revision, source-claim and
+publication rules transcribe accepted contract670af9ca and access18be55ed above.
+No new upstream workflow engine, authority constructor or source framework is
+ported. Transaction/revocation fixture structure additionally follows
+src-tauri/src/business_identity/tests/transactions.rs and db/test_helpers.rs
+at the same Apache Codeg086eee485e6f40a8b02ea77c9dbeefe315c81596 pin.
+Private source records are never automatically copied into published tasks.
 Business tenancy identity and settings (2026):
 Reuses accepted Apache-2.0 Codeg at Adanmohh/codeg
 f3813e3f1edb521f1d1b20d0b372643acc4123a5:
@@ -842,3 +921,43 @@ The channel source identifies an unresolved native-isolation prerequisite;
 it is not ported or patched. tauri?/test only exposes the already locked
 framework's test helpers through existing test-utils; no new dependency/version.
 Original Codeg Apache-2.0 LICENSE and preceding notices remain intact.
+
+Business intake captured tenant authority (2026):
+Composes accepted Apache-2.0 Codeg PR30 product
+29774b50aafc29658a2f48fab1f44d366ed2c8a0, handoff
+b3dfbcb602314cee6eb0039d92cb997762c02dd8:
+src-tauri/src/business_identity/{mod.rs,types.rs,platform.rs} and
+src-tauri/src/db/migration/m20260908_000012_business_tenancy.rs.
+B adds nullable captured epoch storage and explicit current tenant setup glue;
+accepted000012 is unchanged. Forward000013 and000011 receipt recovery use the
+existing transaction/query patterns already attributed above. Installed
+SeaORM1.1.19/SQLx0.8.6 migrator, transaction, query_scalar and connection sources
+are API references only, with no dependency port or new package. Prior licenses
+and source attributions remain intact.
+
+Intake tenancy migration/runtime regression fixtures (2026):
+The retained000011 fixture is byte-identical Apache Codeg source at
+15bb402b9265006930cc9ce4428332d04c9fb34a:
+src-tauri/src/db/migration/m20260908_000011_business_intake.rs,
+Git blob87550f70c2197cd8333316161223599aa5c33886, used only by
+src-tauri/src/business_intake/tests/fixtures/retained_intake_000011.rs.
+New migration and HTTP tests compose the existing identity/platform fixtures
+and source/task tests at29774b50/15bb402b; no foreign workflow engine is ported.
+Native wrappers reuse accepted29774b50 commands/business_tasks.rs and
+business_identity/native.rs, retaining the original caller-window authority.
+All preceding notices and the Apache LICENSE remain unchanged.
+
+Unified business intake synthetic HTTP fixture (2026):
+src-tauri/src/business_intake/tests/browser.rs adapts Apache-2.0 Codeg at
+949adb02c18c72d0804eeb74b420520a7681ee86:
+src-tauri/src/business_tasks/tests/fixture.rs (1c2f30c657fb339be53392cda21e508bd866929e),
+business_intake/tests/support.rs (57db886feacfc201f2e38da002ef18832ea073a2),
+business_intake/tests/tenant_http_cases.rs (9973b928ec7e89239313eb560e94a5ddc03e35a4),
+keyring_store.rs (2973118cb2a47eabfca9fb0b3413fd534e91aba8), and
+business_intake/fireflies.rs (8c2dfc4845dc4e504e833a4e2af8c057a5e78102).
+Paths after the first are relative to src-tauri/src/. The three copied synthetic
+query expectations match the already attributed MIT Fireflies projection exactly;
+the original Copyright2022 n8n and full permission notice above still apply.
+Axum0.8.8, Tokio1.49.0, tokio-util0.7.18, tempfile3.24.0 and axum-test17.3.0
+installed source is used as API documentation only. This test-only harness adds
+no production credential store, runtime, source authority or dependency.

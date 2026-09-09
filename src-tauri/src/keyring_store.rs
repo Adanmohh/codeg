@@ -81,8 +81,17 @@ fn read_tokens() -> std::collections::HashMap<String, String> {
 /// read-only mount is not made worse by proceeding.
 #[cfg(not(feature = "tauri-runtime"))]
 fn read_tokens_at(path: &std::path::Path) -> std::collections::HashMap<String, String> {
+    tighten_token_permissions(path);
+    std::fs::read_to_string(path)
+        .ok()
+        .and_then(|s| serde_json::from_str(&s).ok())
+        .unwrap_or_default()
+}
+
+#[cfg(not(feature = "tauri-runtime"))]
+fn tighten_token_permissions(path: &std::path::Path) {
     #[cfg(unix)]
-    if path.exists() {
+    if path.is_file() {
         use std::os::unix::fs::PermissionsExt;
         if let Err(err) = std::fs::set_permissions(path, std::fs::Permissions::from_mode(0o600)) {
             // Keep reading (a read-only mount is not made worse), but make the
@@ -93,10 +102,28 @@ fn read_tokens_at(path: &std::path::Path) -> std::collections::HashMap<String, S
             );
         }
     }
-    std::fs::read_to_string(path)
-        .ok()
-        .and_then(|s| serde_json::from_str(&s).ok())
-        .unwrap_or_default()
+    // Non-file read failures stay deterministic; never chmod a directory and
+    // make its unrelated children inaccessible while rejecting that store.
+    #[cfg(not(unix))]
+    let _ = path;
+}
+
+#[cfg(not(feature = "tauri-runtime"))]
+fn read_tokens_for_write(
+    path: &std::path::Path,
+) -> Result<std::collections::HashMap<String, String>, String> {
+    // Only a genuinely absent store starts empty. In particular, malformed or
+    // unreadable existing bytes must never become a replacement empty map.
+    // The caller holds TOKEN_WRITE_LOCK across this read and the atomic write.
+    tighten_token_permissions(path);
+    let contents = match std::fs::read_to_string(path) {
+        Ok(contents) => contents,
+        Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+            return Ok(std::collections::HashMap::new());
+        }
+        Err(_) => return Err("credential store unavailable".to_owned()),
+    };
+    serde_json::from_str(&contents).map_err(|_| "credential store unavailable".to_owned())
 }
 
 #[cfg(not(feature = "tauri-runtime"))]
@@ -104,7 +131,7 @@ fn change_token_at(path: &std::path::Path, key: String, value: Option<&str>) -> 
     let _guard = TOKEN_WRITE_LOCK
         .lock()
         .map_err(|_| "credential store unavailable".to_string())?;
-    let mut tokens = read_tokens_at(path);
+    let mut tokens = read_tokens_for_write(path)?;
     match value {
         Some(value) => {
             tokens.insert(key, value.to_string());
@@ -242,6 +269,72 @@ pub fn delete_channel_token(channel_id: i32) -> Result<(), String> {
 #[cfg(all(test, not(feature = "tauri-runtime")))]
 mod tests {
     use super::*;
+
+    #[test]
+    #[cfg(unix)]
+    fn intake_store_strict_read_and_rejected_mutations_retain_0600_hardening() {
+        use std::os::unix::fs::PermissionsExt;
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("tokens.json");
+        let valid = br#"{"github-token:unrelated":"synthetic-retained"}"#;
+        std::fs::write(&path, valid).unwrap();
+        std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0o644)).unwrap();
+        {
+            let _guard = TOKEN_WRITE_LOCK.lock().unwrap();
+            assert_eq!(read_tokens_for_write(&path).unwrap().len(), 1);
+        }
+        assert_eq!(mode_bits(&path), 0o600);
+        assert_eq!(std::fs::read(&path).unwrap(), valid);
+        let malformed = br#"{"github-token:unrelated":"synthetic-retained",broken"#;
+        for value in [Some("synthetic-staged"), None] {
+            std::fs::write(&path, malformed).unwrap();
+            std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0o644)).unwrap();
+            assert!(change_token_at(&path, token_key("intake-stage"), value).is_err());
+            assert_eq!(mode_bits(&path), 0o600);
+            assert_eq!(std::fs::read(&path).unwrap(), malformed);
+            assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 1);
+        }
+    }
+
+    #[test]
+    fn intake_store_mutation_preserves_malformed_and_unreadable_stores() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("tokens.json");
+        for bytes in [
+            b"{\"unrelated\":\"synthetic\",broken".as_slice(),
+            b"{\"unrelated\":42}",
+            b"\xff",
+        ] {
+            std::fs::write(&path, bytes).unwrap();
+            for value in [Some("synthetic-staged"), None] {
+                assert!(change_token_at(&path, token_key("intake-staged"), value).is_err());
+                assert_eq!(std::fs::read(&path).unwrap(), bytes);
+                assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 1);
+            }
+        }
+        std::fs::remove_file(&path).unwrap();
+        std::fs::create_dir(&path).unwrap();
+        let retained = path.join("retained");
+        std::fs::write(&retained, b"synthetic-preserved").unwrap();
+        for value in [Some("synthetic-staged"), None] {
+            assert!(change_token_at(&path, token_key("intake-staged"), value).is_err());
+            assert_eq!(std::fs::read(&retained).unwrap(), b"synthetic-preserved");
+        }
+    }
+
+    #[test]
+    fn intake_store_missing_file_and_staged_cleanup_preserve_other_entries() {
+        let dir = tempfile::tempdir().unwrap();
+        let path = dir.path().join("tokens.json");
+        change_token_at(&path, token_key("unrelated"), Some("synthetic-original")).unwrap();
+        change_token_at(&path, token_key("intake-staged"), Some("synthetic-staged")).unwrap();
+        change_token_at(&path, token_key("intake-staged"), None).unwrap();
+        let tokens = read_tokens_for_write(&path).unwrap();
+        assert_eq!(tokens.len(), 1);
+        assert_eq!(tokens[&token_key("unrelated")], "synthetic-original");
+        #[cfg(unix)]
+        assert_eq!(mode_bits(&path), 0o600);
+    }
 
     #[test]
     fn concurrent_inbox_and_channel_updates_preserve_every_credential() {

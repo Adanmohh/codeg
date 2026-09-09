@@ -2,6 +2,23 @@
 
 ## Current integration and worker state
 
+**PR28 intake backend accepted for merge** at frozen
+`462604b00ad74a7f72c36d0bea3714a5912bf640`, production e55f3bfd and separately
+reviewed test fixture7ed0dd0c. Owner desktop/server/companion checks and Clippy,
+38-case intake run, independent epoch/core/API tests and protected browser
+publication support the bounded Fireflies/source-to-task scope. New-tenant legacy
+email/Hafidh entrustment, full native tenancy and AI execution are not included.
+Root's merge has no product conflict: the only conflict was the evidence checksum
+manifest gaining its already-committed README entry. Root retained that entry and
+verified all22 artifacts; merged product/source/NOTICE/LICENSE match the frozen
+PR28 head. No rerun/build or existing fixture mutation was needed for this merge.
+
+Reviewer reports actual4355 recovery passing:7 browser assertions,70 protected
+responses,22 setup/newer-version/persistence API requests, no browser candidate/task
+writes, explicit adoption and unchecked publication confirmation. Its new browser
+is closed; all others remain. Final committed evidence is awaited before PR29 merge.
+PR29 has only an attribution-text conflict to reconcile; reviewed product remains60d.
+
 PR32 checkpoint `79d195471c001e656e8f1ca5b3ed4cdbe3ae7be0` is read: it adds
 only the implementation report, with no product source or compiling pass yet.
 Tickets is writing000014/internal DTOs on accepted9e61. Root verified the existing

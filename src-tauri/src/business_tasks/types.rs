@@ -16,6 +16,36 @@ pub struct CreateInput {
     pub reviewer_id: Option<String>,
 }
 
+/// Exact human-prepared input with all defaults resolved, never an authority.
+/// Intake may persist this privately; creation repeats current authorization.
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct PreparedTask {
+    pub title: String,
+    pub notes: String,
+    pub domain: TaskDomain,
+    pub priority: TaskPriority,
+    pub due_date: Option<String>,
+    pub owner_id: String,
+    pub assignee_id: Option<String>,
+    pub reviewer_id: Option<String>,
+}
+
+impl From<PreparedTask> for CreateInput {
+    fn from(value: PreparedTask) -> Self {
+        Self {
+            title: value.title,
+            notes: value.notes,
+            domain: value.domain,
+            priority: value.priority,
+            due_date: value.due_date,
+            owner_id: Some(value.owner_id),
+            assignee_id: value.assignee_id,
+            reviewer_id: value.reviewer_id,
+        }
+    }
+}
+
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct UpdateInput {
