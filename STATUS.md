@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Independent correction gates passed; next slot released to Farha.** Approvals
+reports14 passes at frozen9949: pagination3 (0.29s), admission3 (0.29s), authority3
+(0.26s), assets5 (0.10s), all exits0. Every reviewer command has exited; final
+14.867 GiB free matches root's current disk check. Publication of exact logs,
+source-after correspondence and final verdict follows; full runtime acceptance
+is still pending. Root explicitly released Farha's next bounded production
+build/browser slot, with a five-minute readiness limit and near5 GiB stop rule.
+Tickets and approvals hold further compilation/large allocations during that
+window; source/report work continues.
+
 **Farha returned the unused slot; independent correction execution is assigned.**
 No Farha production build/server started within its five-minute preparation limit.
 Root observes about15.5 GiB free and assigned approvals one existing-target,
