@@ -2,6 +2,15 @@
 
 ## Current integration and worker state
 
+Owner explicitly requires managed agent-created documents/slides/assets, a
+marketing view with connected social accounts and actual current status, and
+persistent AI sessions for follow-up prompts and operations. Root updated
+[the business scope](docs/BUSINESS-WORKSPACE.md) with these views and serious
+operations requirements (freshness, deliverable versions, reviews, recoverable
+jobs and external result reconciliation). Historical ideation-pause text is
+corrected. Tickets/rebrand have the requirements for the first usable AI flow;
+no document-library, marketing connector or live execution completion is claimed.
+
 Tickets' bounded B closeout462604b00 is read; root imported its browser artifacts
 and verified all18 listed digests. Product comparison with e55 and fixture-source
 comparison with7ed are empty. Actual worker UI setup, explicit grant and enable

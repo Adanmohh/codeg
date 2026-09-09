@@ -6,6 +6,48 @@ task management must support agents and humans in both business and engineering.
 This supersedes interpreting Ops Desk as primarily an engineering or support UI.
 The current implementation is a foundation, not the complete requested product.
 
+## September 9 — connected operations and managed deliverables
+
+This records the owner's current requirements and supersedes the historical
+delivery ordering and paused-ideation wording below. Implementation is authorized
+and active. Previously agreed AI chat/agent/terminal work remains central.
+
+| View | Required business behavior |
+| --- | --- |
+| Home | Current priorities, decisions needed, blocked work, failed connections and recent outcomes, derived from actual accessible records with freshness shown. |
+| AI workspace | Continue persistent agent sessions, prompt new work, inspect tools/progress, use terminal where authorized, stop/recover jobs and return results for human review. Same tabs/panes as business data. |
+| Documents & assets | Manage agent/human-created documents, slides, PDFs, spreadsheets and campaign assets. Preview, organize/search, version, comment/review, export/share, and link each deliverable to its task, campaign, creating session and approved revision. A file on an agent's disk is not sufficient delivery. |
+| Marketing & channels | Show each connected social account, account identity, permitted actions, connection health, last successful refresh, content drafts/calendar, publication outcomes and relevant performance. Distinguish fetched facts, stale snapshots, unknown state and planned actions. |
+| Work | Shared human/agent tasks and projects, owners, deadlines, dependencies, review and handoff, linked to sessions and deliverables. Existing List/Board/Table remain alongside new planning/report views. |
+| Knowledge | Permission-scoped company documents, brand guidance, product facts, playbooks and templates that agents can cite and reuse. Keep references distinct from generated deliverables. |
+| Connections & control | Tenant/account authorization, capabilities, connection health, refresh/retry, activity/audit, approval rules, schedules and usage limits. Visible controls reflect actual backend permissions. |
+
+The app needs current situation views as well as command execution. Prefer
+official MCP/CLI integrations where available and adequate, with official APIs
+where required. Each provider needs verified read/write coverage, authentication,
+refresh/event behavior and failure semantics; a connected badge alone proves none
+of these. No provider connection or live publication/spend is authorized merely
+by adding this product requirement.
+
+For serious operations, include reusable workflows/schedules, exception handling,
+human handoff, appropriate publication/spend approvals, accountable owners,
+recoverable jobs, durable action receipts, versioned approved deliverables,
+tenant-scoped access, backup/restore and visible usage/cost limits. Do not count a
+submitted request as a confirmed external result. These are acceptance concerns,
+not permission to build unrelated accounting/ERP modules.
+
+First complete scenario: inspect a connected marketing account's current state,
+ask an agent to prepare a campaign, save its brief/deck/content as managed assets,
+review the exact proposed versions, schedule an authorized action and reconcile
+the resulting external state. The current synthetic task/Sources preview does
+not yet deliver this scenario.
+
+Protocol grounding (research only, no installed protocol upgrade): official MCP
+resources and tools pages, version2026-07-28 at commit
+aa8ce049f089f92618340190d4ece141f663310d, read via gh api. Resources expose
+application context; tools expose actions. Neither defines this app's document
+library, marketing dashboard or complete provider capability coverage.
+
 ## Product structure
 
 Business outcomes lead the main experience. Engineering features remain available
@@ -71,6 +113,6 @@ message is authorized merely by this implementation scope amendment.
 
 ## Role and meeting-source clarification
 
-Owner clarifies each organization member uses the same desktop app according to their role, with suitable MCP/CLI capabilities. Shared tasks belong across humans and agents, business and engineering. Fireflies and comparable meeting/note tools should feed source-backed task proposals and orchestration. Implementation is paused for ideation; source comparison is in reports/business-workspace-research.md. Organization identity/permissions and cross-desktop shared state are required foundations, not merely different dashboard layouts.
+Owner clarifies each organization member uses the same desktop app according to their role, with suitable MCP/CLI capabilities. Shared tasks belong across humans and agents, business and engineering. Fireflies and comparable meeting/note tools should feed source-backed task proposals and orchestration. The earlier ideation pause has ended; source comparison is in reports/business-workspace-research.md. Organization identity/permissions and cross-desktop shared state are required foundations, not merely different dashboard layouts.
 
-Research comparison is complete. The recommended foundation is one server-authoritative shared business task with explicit human ownership and human/agent execution assignments; link engineering runs and MCP approval handles as distinct records. Reuse existing task and approval patterns selectively after authorization/provenance hardening. Frappe/OpenProject/Flowable/Temporal were evaluated as mechanism references, not selected replacement stacks. Implementation remains paused for product discussion.
+Research comparison is complete. The recommended foundation is one server-authoritative shared business task with explicit human ownership and human/agent execution assignments; link engineering runs and MCP approval handles as distinct records. Reuse existing task and approval patterns selectively after authorization/provenance hardening. Frappe/OpenProject/Flowable/Temporal were evaluated as mechanism references, not selected replacement stacks. Implementation continues under the current owner priorities above.
