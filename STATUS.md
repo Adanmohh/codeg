@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+Tickets acknowledgedaa0b5b7b/ee11d3a0 and will publish its bounded B browser
+checkpoint, preserving the user-inspected window and worker records, then use a
+separate docs branch from accepted main for business-ai-execution contract/report.
+Root's [AI acceptance checklist](reports/business-ai-acceptance-checklist.md)
+defines the missing task→AI chat/terminal→deliverable→human-review journey, shared
+tabs/panes and concrete execution/credential boundaries. The contract must identify
+small implementable slices; existing original-operator reuse is assessed separately
+from tenant-safe execution and cannot substitute for it. No AI feature is delivered
+by this planning checkpoint.
+
 **User inspecting headed preview:** the owner's screenshot shows the worker
 task editor in4354, matching tickets' unexpected visible navigation. Root directed
 tickets to leave `intake-worker4354` and its task/draft untouched: no automation,
