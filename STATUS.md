@@ -2,6 +2,23 @@
 
 ## Current integration and worker state
 
+**Unified browser acceptance started:**4354 handoffea8cf9c0, UI1974d97f,
+PID81173. Root verified all27 HTML/JS/CSS entries against disk and actual HTTP,
+then signed in through the real form in new CLI session `root-intake-unified`.
+The published root task is visible. Browser source refresh and private candidate
+editing work; the unsaved brief survives tab switches and split panes. All12
+EN/AR × light/dark ×390/768/1280 checks retain the draft, keep document width
+within the viewport and expose no draft in local/session storage. Exact script,
+results and screenshots are in the root acceptance report. This is a measured
+layout/retention checkpoint, not final IUI-1 or full Design Studio acceptance.
+Root browser stays open with its unsaved draft; other namespaces are untouched.
+
+Independent fixture-source review0eb25d1f4 is imported: no concrete guard blocker,
+five source blobs and three query strings match, regular0600 reviewer file checked
+without printing contents. Approvals has the matching4354 asset handoff and owns
+the real review-namespace IUI-1 check. All existing targets/exports/listeners stay
+stable during browser work.
+
 **Unified fixture running:** handoff1042a0b7, fixture7ed0dd0c, producte55f3bfd;
 PID66200 serves4351/4352. Root verified15 evidence hashes, the305495032-byte
 stable executable313d987c and fixture source hash, then ran32 successful real
