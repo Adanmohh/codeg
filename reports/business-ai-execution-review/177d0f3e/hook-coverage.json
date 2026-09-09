@@ -1,0 +1,41 @@
+{
+  "sessionId": "01a084ee-129a-7561-9f10-64266115e759",
+  "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+  "rollout": "/Users/mohamedadan/.codex/sessions/2026/09/09/rollout-2026-09-09T09-49-49-01a084ee-129a-7561-9f10-64266115e759.jsonl",
+  "turnContext": {
+    "line": 2814,
+    "timestamp": "2026-09-09T13:05:16.458Z",
+    "model": "gpt-6-astra",
+    "effort": "max",
+    "approvalPolicy": "never",
+    "sandbox": "danger-full-access"
+  },
+  "observedThisResume": [
+    {
+      "command": "git status --short",
+      "exit": 0
+    },
+    {
+      "command": "gh api repos/Adanmohh/codeg/git/commits/177d0f3e2b426d65de9573ba534ac8c11f9250f7",
+      "exit": 0
+    },
+    {
+      "command": "herdr agent prompt wR:p4 [build window coordination]",
+      "exit": 0
+    },
+    {
+      "tool": "native apply_patch",
+      "attempt": "Delete and add same report target in one patch",
+      "denial": "patch_target_changed",
+      "remedy": "Reread unchanged report; use the same native tool with one Update File patch",
+      "outcome": "success with manual-grounding reminder"
+    },
+    {
+      "command": "read-only rg targeting docs_first_gate.py",
+      "denial": "reader_arguments_invalid",
+      "remedy": "No alternate read attempted; root supplied audit coverage answer"
+    }
+  ],
+  "genericPrePostJournal": "Unavailable in current launcher; root source-verified no replacement all-tool log. Historical audit lines27340/27341 predate this resumed window and are not fresh evidence.",
+  "limitations": "Turn metadata is not a hook event. No signed state/key inspected; no unsupported compliance inference."
+}

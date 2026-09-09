@@ -1,0 +1,147 @@
+{
+  "scope": "Actual manual pinned-source reads; not signed API receipts or proof of generic hook coverage. Ranges describe read portions, not a whole-file review.",
+  "sources": [
+    {
+      "package": "sea-orm-migration",
+      "version": "1.1.19",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sea-orm-migration-1.1.19/src/migrator.rs",
+      "readRangesInclusive": [
+        [
+          240,
+          430
+        ]
+      ],
+      "sha256": "f414cb6bb83b5c1de3bf6ef93b0be581050a0a7ef4738f0167b5bcc9b8a147c0",
+      "behavior": "SQLite migration executes before the separate SeaORM ledger insertion; no whole-run SQLite transaction."
+    },
+    {
+      "package": "sea-orm",
+      "version": "1.1.19",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sea-orm-1.1.19/src/database/mod.rs",
+      "readRangesInclusive": [
+        [
+          204,
+          236
+        ]
+      ],
+      "sha256": "5e7937e6b5201889d9997d903cfd3dad2931fcebded9eab829b12869c7253f97",
+      "behavior": "Explicit maximum/minimum pool connection count for the cancellation probe."
+    },
+    {
+      "package": "sqlx-core",
+      "version": "0.8.6",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sqlx-core-0.8.6/src/pool/connection.rs",
+      "readRangesInclusive": [
+        [
+          1,
+          155
+        ],
+        [
+          175,
+          235
+        ]
+      ],
+      "sha256": "e67d3755b3f9d57154658b1f898bb863d5fd553cdf089d86cd653ba5952bafa2",
+      "behavior": "close_on_drop retains the permit while closing, avoiding disabled-FK connection reuse."
+    },
+    {
+      "package": "sqlx-core",
+      "version": "0.8.6",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sqlx-core-0.8.6/src/transaction.rs",
+      "readRangesInclusive": [
+        [
+          90,
+          140
+        ],
+        [
+          252,
+          280
+        ]
+      ],
+      "sha256": "b0c303f7e0c75abf3afb7a76758bfa1632b9a1268ffec3173435cb1fa4d04a7e",
+      "behavior": "Open transaction drop queues rollback; commit/rollback clear open state on success."
+    },
+    {
+      "package": "sqlx-core",
+      "version": "0.8.6",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sqlx-core-0.8.6/src/pool/mod.rs",
+      "readRangesInclusive": [
+        [
+          350,
+          390
+        ]
+      ],
+      "sha256": "be3ac12cf098eb5b04e5bce69efaf11a1b7f2975de187a8bf5dcdbe7e32ffafe",
+      "behavior": "try_acquire returns None while a single connection is occupied; acquire returns the next lease."
+    },
+    {
+      "package": "sqlx-sqlite",
+      "version": "0.8.6",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sqlx-sqlite-0.8.6/src/connection/mod.rs",
+      "readRangesInclusive": [
+        [
+          244,
+          276
+        ]
+      ],
+      "sha256": "257459ec82510c6e90d0a56fa168dbf4cb162c246229d5c1d8b8d0ea3de593ff",
+      "behavior": "begin_with forwards a custom transaction statement to the transaction manager."
+    },
+    {
+      "package": "serde_derive",
+      "version": "1.0.228",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_derive-1.0.228/src/de/struct_.rs",
+      "readRangesInclusive": [
+        [
+          230,
+          312
+        ]
+      ],
+      "sha256": "7b26982ce59504a9bb5a18c3ab56eee2d75e70fd465774ff035d15c50452c118",
+      "behavior": "Duplicate fields reject; deny_unknown_fields removes the ignore-unknown branch."
+    },
+    {
+      "package": "serde_derive",
+      "version": "1.0.228",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_derive-1.0.228/src/de/enum_internally.rs",
+      "readRangesInclusive": [
+        [
+          1,
+          117
+        ]
+      ],
+      "sha256": "9d898dbc1c46262f695ef7ba1660b2af70de48e07bbac8f44b740326b7c5b303",
+      "behavior": "Internally tagged struct variants reuse the container field handling."
+    },
+    {
+      "package": "tokio",
+      "version": "1.49.0",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.49.0/src/runtime/task/join.rs",
+      "readRangesInclusive": [
+        [
+          178,
+          260
+        ]
+      ],
+      "sha256": "54777ae133745e7f472802d9fd67cd14a2946f2661cabd27ffbc352f2685b0f7",
+      "behavior": "Abort requests asynchronous cancellation; awaiting JoinHandle confirms cancellation, unlike abort alone."
+    },
+    {
+      "package": "tempfile",
+      "version": "3.24.0",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tempfile-3.24.0/src/dir/mod.rs",
+      "readRangesInclusive": [
+        [
+          45,
+          72
+        ],
+        [
+          364,
+          388
+        ]
+      ],
+      "sha256": "d144325a6528a9a6e7c78a42e0eec42ee401c3b834ef5851376323725756f219",
+      "behavior": "Temporary directory and path API; scoped cleanup is documented."
+    }
+  ]
+}

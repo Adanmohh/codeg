@@ -1,0 +1,40 @@
+{
+  "logs": [
+    {
+      "commit": "fdfe342940d1a6881005e5534b3f0090f9391ef7",
+      "path": "reports/business-ai-execution-validation/checkpoint/check-schema.log",
+      "expectedSha256": "73706e59aaae0f034ed6d47383546676590dc986249428cbc41e0431e2ca6b3e",
+      "actualSha256": "73706e59aaae0f034ed6d47383546676590dc986249428cbc41e0431e2ca6b3e",
+      "matches": true
+    },
+    {
+      "commit": "fdfe342940d1a6881005e5534b3f0090f9391ef7",
+      "path": "reports/business-ai-execution-validation/checkpoint/tests-schema.log",
+      "expectedSha256": "825c55fd1f0b6e5a794c84563114eb0c8f085536a68ae40953a6090c4c3c3bb6",
+      "actualSha256": "825c55fd1f0b6e5a794c84563114eb0c8f085536a68ae40953a6090c4c3c3bb6",
+      "matches": true
+    },
+    {
+      "commit": "177d0f3e2b426d65de9573ba534ac8c11f9250f7",
+      "path": "reports/business-ai-execution-validation/integrated-schema/tests.log",
+      "expectedSha256": "adab474c63542e411377f1681c952ac2dc2a92819111144ffb93126700a096dd",
+      "actualSha256": "adab474c63542e411377f1681c952ac2dc2a92819111144ffb93126700a096dd",
+      "matches": true
+    },
+    {
+      "commit": "25badf45db086c3dd33d841d55175f724108c6cc",
+      "path": "reports/business-ai-execution-validation/integrated-schema/b-epochs.log",
+      "expectedSha256": "0d3b0edc8b1e7a856213a7c7d9a4db3763bd7bff6860d102603093f709c79df8",
+      "actualSha256": "0d3b0edc8b1e7a856213a7c7d9a4db3763bd7bff6860d102603093f709c79df8",
+      "matches": true
+    },
+    {
+      "commit": "25badf45db086c3dd33d841d55175f724108c6cc",
+      "path": "reports/business-ai-execution-validation/integrated-schema/check.log",
+      "expectedSha256": "9dc1e031c298bdf9f8a734e747bac68a63fbf6a63708c412df629d658f8a8698",
+      "actualSha256": "9dc1e031c298bdf9f8a734e747bac68a63fbf6a63708c412df629d658f8a8698",
+      "matches": true
+    }
+  ],
+  "attribution": "Owner execution, independently verified immutable bytes only. No endorsement of old hook-audit metadata."
+}

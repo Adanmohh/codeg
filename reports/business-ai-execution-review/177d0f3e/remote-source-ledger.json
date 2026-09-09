@@ -1,0 +1,37 @@
+{
+  "productCommit": "177d0f3e2b426d65de9573ba534ac8c11f9250f7",
+  "productTree": "1c4e7f0a6e56075329a2820b32edebfd73edf89c",
+  "parent": "b73940560a69748f6774f41eb1a8de44e7c4c11f",
+  "initialProduct": "6195d9daf049b7cd16615e35b87d08c7f2870bf0",
+  "initialEvidence": "fdfe342940d1a6881005e5534b3f0090f9391ef7",
+  "acceptedB": "c8453a48d441f40eb47f9c9af856235b4f9986e5",
+  "sourceBase": "9e61fe67261219921e0a6a860c45f6e08ea99c21",
+  "remoteApi": "gh api repos/Adanmohh/codeg/git/trees/9e61fe67261219921e0a6a860c45f6e08ea99c21?recursive=1",
+  "remoteResult": {
+    "status": "fulfilled",
+    "value": {
+      "chunk_id": "a6b1cd",
+      "wall_time_seconds": 0.84198625,
+      "exit_code": 0,
+      "original_token_count": 258,
+      "output": "[{\"path\":\"LICENSE\",\"sha\":\"261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64\",\"size\":11357},{\"path\":\"src-tauri/src/business_identity/mod.rs\",\"sha\":\"f7205760715d2516b11b6e2cb79fd133218672bb\",\"size\":11844},{\"path\":\"src-tauri/src/business_identity/tests/tenancy.rs\",\"sha\":\"31ea65df078d8e62b920198b57d848fa6396d913\",\"size\":8683},{\"path\":\"src-tauri/src/business_tasks/entity.rs\",\"sha\":\"c843d4af5d79515ad52d241c126df7d4ed17d5c7\",\"size\":4420},{\"path\":\"src-tauri/src/business_tasks/policy.rs\",\"sha\":\"59c0fe10a27c52a75679bcd4f28779e1e0984055\",\"size\":1429},{\"path\":\"src-tauri/src/business_tasks/store.rs\",\"sha\":\"d48fdf1e85feb4410dbff51e8a671d6c9d525691\",\"size\":28077},{\"path\":\"src-tauri/src/business_tasks/types.rs\",\"sha\":\"6d6c4b8c9555d09ea19d57c9fa329eb548832cc3\",\"size\":5340},{\"path\":\"src-tauri/src/db/migration/m20260908_000010_business_tasks.rs\",\"sha\":\"3cb107d5bc0ab375e1b82fc64c7fefc82396b318\",\"size\":9888},{\"path\":\"src-tauri/src/db/migration/m20260908_000012_business_tenancy.rs\",\"sha\":\"a305a682bbf55e750a5d5156ac0aa4695aac08c1\",\"size\":8627}]\n"
+    }
+  },
+  "reviewerAdaptations": [
+    {
+      "path": "src-tauri/src/business_execution/tests.rs",
+      "commit": "177d0f3e2b426d65de9573ba534ac8c11f9250f7",
+      "blob": "b32527db618cbcc6e960d1bf92ed1b2fc714d51f"
+    },
+    {
+      "path": "src-tauri/src/business_identity/tests/platform.rs",
+      "commit": "9e61fe67261219921e0a6a860c45f6e08ea99c21",
+      "blob": "2ff452f1e0462ca17816770869f1ceef9cc2f506"
+    },
+    {
+      "path": "reports/business-tenancy-review/f3b408da/independent_cases.rs",
+      "commit": "c0c7e522600a94bcf33674f640d5f3665cffd39b",
+      "blob": "462ebcf33e2be70e3dafab05d8f1a360528520c2"
+    }
+  ]
+}
