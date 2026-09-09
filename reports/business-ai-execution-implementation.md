@@ -207,3 +207,22 @@ reports `gpt-6-astra`; this does not establish historical reasoning effort or
 retroactively certify earlier turns. The owner's restored Astra/max selection is
 retained. No fixture, user browser, paused visual report, target or native bundle
 was removed, restarted or replaced during recovery.
+
+At exact integrated source `177d0f3e2b426d65de9573ba534ac8c11f9250f7`:
+
+| Additional command, same existing target and locked/offline flags | Actual result |
+| --- | --- |
+| `cargo test --manifest-path src-tauri/Cargo.toml --no-default-features --lib business_intake::tests::epoch_migration_cases` | exit0; four passed,0 failed/ignored;0.48s runtime,0.75s cached compile |
+| `cargo check --manifest-path src-tauri/Cargo.toml --no-default-features --bin codeg-server` | exit0;31.10s |
+
+The B tests use the accepted real migrations and cover both installation orders,
+retained populated rows, nullable historical epochs, rollback and receipt retry
+with14 registered. Logs `integrated-schema/b-epochs.log` and `check.log` have
+SHA256 `0d3b0edc8b1e7a856213a7c7d9a4db3763bd7bff6860d102603093f709c79df8` and
+`9dc1e031c298bdf9f8a734e747bac68a63fbf6a63708c412df629d658f8a8698` respectively.
+Both processes completed before releasing the reviewer build window. No final
+runtime/asset/session gate is inferred from these migration checks.
+
+Current live hook metadata was independently read in this session without command
+payloads: own session `01a07c1c-d82f-7022-84db-778a438632f1`, exact tickets cwd,
+PreToolUse/PostToolUse exit0 records at Unix timestamps1788951206–1788951207.
