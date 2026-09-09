@@ -986,3 +986,15 @@ types, Node24.19.0 with @types/node25.2.2 fs/crypto/process declarations are
 API references, not copied dependency implementations. Generated private fixture
 values are read in memory and are absent from committed scripts/results.
 Original LICENSE and all earlier NOTICE entries remain intact.
+
+Business intake fresh-editor recovery (2026):
+src/components/business-intake/candidate.tsx reuses its initialDraft, current
+snapshot and explicit adoption logic at Codeg
+1974d97f44b69db96051ace1c68717cc8c27b6e9 (Apache-2.0). A same-revision,
+freshly authorized read may reconstruct withheld fields from that returned
+snapshot; newer revisions retain explicit adoption. Tests reuse SourceReview,
+ImportPanel and the synthetic fixtures at that same pin. React19.2.4,
+@types/react19.2.13 useCallback/SetStateAction and installed Testing
+Library16.3.2/Vitest2.1.9 are read API references. No third-party implementation,
+provider, dependency, authentication boundary or license is added or replaced.
+Original LICENSE and all preceding attribution blocks remain intact.

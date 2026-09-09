@@ -9,6 +9,65 @@ published. **Unified browser fixture4354 is now ready; complete B intake runtime
 acceptance and accepted backend integration remain pending.** No complete
 provider, native-tenant, or final product acceptance is claimed.
 
+## Current bounded acceptance and next priority
+
+Owner's September9 correction is binding: persistent AI conversations and terminal
+work, managed Documents & assets, and real account/status/content/performance
+surfaces belong in the same rich workspace. The present Sources/tasks UI **does
+not deliver that AI flow**. `docs/BUSINESS-WORKSPACE.md` was read completely via
+gh api at `f30a27da45c41ed7593c5da433759af8314a08ef`; tickets' early
+`docs/contracts/business-ai-execution.md@d1f22f85` is now read. The next source
+mapping is for existing conversation/session/terminal components, managed exact
+asset versions and tenant execution authority, not a replacement dashboard or
+empty navigation. No new execution/account capability is claimed or wired.
+
+Own unified UI evidence now covers initial owner/manager access, tenant Fireflies
+setup, disabled/zero grants, explicit historical/current/future owner and manager
+grants, enablement, three-record bounded import, original passage selection,
+private prepared task fields/date, complete audience confirmation, acceptance,
+durable receipt and opening the shared task. Manager text-free link returns200,
+preserves target title/brief, increments revision1→2 and leaves execution null.
+The accepted task is `5e9d66ac-1286-4e70-a17e-6eb79db7ab6b`; linked target is
+`bbf2436d-e84c-480b-91e6-bfd321cc07e7`. All records are synthetic ui namespace.
+No source text was inferred into a task or live provider invoked. Import-created
+pending `source_review` candidates are the explicit backend seeding behavior in
+`sources.rs@e55f3bfd`; they are not automatically published tasks.
+
+Independent reviewer6895bedf4 reports actual IUI-1 closure11/11 at1974, including
+Keep editing,390px preservation, explicit discard and no saved draft mutation.
+Root353b3a07 independently reports12 viewport/theme/EN-AR draft cases and exact
+27-asset matching. These are independent evidence, distinct from own CLI checks.
+
+The real300-second source deadline exposed one additional recovery issue:
+opening an unprepared candidate while withheld, then successfully refreshing,
+showed Edit task with **zero title inputs and zero save controls**. The source
+was fresh and no comparison was pending; the nullable initial draft had never
+been reconstructed. Own raw/screenshot `unified-fresh-empty-draft-diagnostic.*`
+preserves that failure at1974. The narrow correction restores fields/selection
+only from matching, freshly authorized source/candidate reads. Existing local
+fields survive; newer candidate/source revisions still require explicit adoption;
+destination-withheld text stays unavailable and human confirmation stays reset.
+
+Regression initially failed on the missing title after actual SourceReview →
+ImportPanel completion. The second case's first run used a withheld-text locator
+that is intentionally absent; changing it to the actual recovery control leaves
+**1 failing recovery/1 passing explicit-adoption control** before product edits.
+After correction **33/33 intake/setup/entry cases pass**,1.93s,exit0; typecheck
+and scoped ESLint exit0. Existing source-entry races/privacy checks remain intact.
+The active4354 export stays1974; no in-place export restart or after-browser
+claim is made for this newer source correction. Its next rendered check needs a
+coordinated separate export while owner/root drafts stay preserved.
+
+Retained probe failures are locator/readiness evidence: Work area was corrected
+to Area of work before setup submission; the two different Close controls were
+scoped by visible button text; the connection selector is scoped to its region;
+Find a task replaces the probe's guessed Search label. A terminal receipt's
+pending-source guard required explicit discard before opening a different saved
+candidate; its hidden background controls were not acted through. Expired source
+link controls correctly disappeared; explicit upstream refresh restored linking.
+No failed probe was rerun as an uncertain new decision, and no product assertions
+were removed to obtain passing evidence.
+
 ## Unified4354 review handoff
 
 Open **http://127.0.0.1:4354/business** in a fresh named browser. Frontend PID

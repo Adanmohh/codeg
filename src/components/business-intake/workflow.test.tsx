@@ -3,7 +3,11 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { NextIntlClientProvider } from "next-intl"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { BusinessError, type BusinessClient } from "@/lib/business/client"
-import type { CandidateDetail, IntakeImport } from "@/lib/business/intake"
+import type {
+  CandidateDetail,
+  IntakeImport,
+  SourceDetail,
+} from "@/lib/business/intake"
 import { BusinessWorkspace } from "@/components/business/workspace"
 import { TaskDetailDialog } from "@/components/business/task-detail"
 import {
@@ -300,6 +304,173 @@ describe("business Sources privacy and exact human decisions", () => {
       "candidates/discard",
       expect.objectContaining({ expectedRevision: 3 })
     )
+  })
+  it("restores an unprepared editor after the parent completes a fresh same-version read", async () => {
+    const fresh = source()
+    let reading: SourceDetail = {
+      ...fresh,
+      source: {
+        ...fresh.source,
+        access: "expired" as const,
+        requiresRefresh: true,
+      },
+      disclosure: "metadata_only" as "metadata_only" | "fresh",
+      passages: [] as typeof fresh.passages,
+    }
+    let value = candidate(reading)
+    value.candidate.hasPreparedDraft = false
+    value.candidate.draft = null
+    value.candidate.disclosure = "metadata_only"
+    value.candidate.capabilities.edit = false
+    value.candidate.capabilities.accept = false
+    const importState: IntakeImport = {
+      id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      revision: 1,
+      bindingId: binding.binding.id,
+      state: "queued",
+      coverage: "not_started",
+      discovered: 1,
+      completed: 0,
+      failed: 0,
+      nextAttemptAt: null,
+      errorCode: null,
+      capabilities: { advance: true, cancel: true },
+    }
+    intake.mockImplementation(async (operation) => {
+      if (operation === "sources/get") return reading
+      if (operation === "candidates/list")
+        return { items: [value.candidate], page: 0, hasMore: false }
+      if (operation === "candidates/get") return value
+      if (operation === "imports/list")
+        return { items: [], page: 0, hasMore: false }
+      if (operation === "imports/start") return importState
+      if (operation === "imports/advance") {
+        reading = fresh
+        value = candidate(fresh)
+        value.candidate.hasPreparedDraft = false
+        value.candidate.draft = null
+        value.candidate.capabilities.accept = false
+        return {
+          ...importState,
+          revision: 3,
+          state: "complete",
+          completed: 1,
+          capabilities: { advance: false, cancel: false },
+        }
+      }
+      throw new Error("Unexpected synthetic operation")
+    })
+    render(
+      wrapper(
+        <SourceReview
+          client={client}
+          binding={binding.binding}
+          sourceId={reading.source.id}
+          actor={member}
+          members={[member]}
+          active
+          onBack={vi.fn()}
+          onDirty={onDirty}
+          onTask={onTask}
+        />
+      )
+    )
+    fireEvent.click(await screen.findByRole("button", { name: /Pending 1/ }))
+    await screen.findByRole("heading", { name: "Private task draft" })
+    expect(
+      screen.queryByRole("textbox", { name: "Task title" })
+    ).not.toBeInTheDocument()
+    fireEvent.click(
+      screen.getByRole("button", { name: "Refresh source access" })
+    )
+    fireEvent.click(
+      await screen.findByRole("button", { name: "Read next step" })
+    )
+    const title = await screen.findByRole("textbox", { name: "Task title" })
+    expect(title).toBeEnabled()
+    expect(title).toHaveValue("")
+    expect(screen.getByRole("textbox", { name: "Brief" })).toHaveValue("")
+    expect(
+      screen.getByRole("combobox", { name: "Accountable owner" })
+    ).toHaveValue(member.id)
+    fireEvent.change(title, {
+      target: { value: "An explicitly written draft" },
+    })
+    expect(
+      screen.getByRole("button", { name: "Save private draft" })
+    ).toBeEnabled()
+    expect(
+      screen.queryByRole("button", { name: "Accept into shared work" })
+    ).not.toBeInTheDocument()
+    expect(
+      intake.mock.calls.some(
+        ([op]) => op === "candidates/edit" || op === "candidates/accept"
+      )
+    ).toBe(false)
+    expect(tasks).not.toHaveBeenCalled()
+  })
+  it("requires explicit adoption when fresh access returns a newer prepared candidate", async () => {
+    const fresh = source()
+    const stale = {
+      ...fresh,
+      source: {
+        ...fresh.source,
+        access: "expired" as const,
+        requiresRefresh: true,
+      },
+      disclosure: "metadata_only" as const,
+      passages: [],
+    }
+    const initial = candidate(stale)
+    initial.candidate.disclosure = "metadata_only"
+    initial.candidate.draft = null
+    const latest = candidate(fresh)
+    latest.candidate.revision = initial.candidate.revision + 1
+    let renewed = false
+    intake.mockImplementation(async (operation) =>
+      operation === "sources/get"
+        ? renewed
+          ? fresh
+          : stale
+        : renewed
+          ? latest
+          : initial
+    )
+    render(review(initial, stale))
+    await screen.findByRole("button", {
+      name: "Load current source and candidate",
+    })
+    renewed = true
+    await act(async () => window.dispatchEvent(new Event("focus")))
+    const comparison = await screen.findByRole("region", {
+      name: "Current saved candidate",
+    })
+    expect(comparison).toHaveTextContent("Revision 4")
+    expect(
+      screen.queryByRole("textbox", { name: "Brief" })
+    ).not.toBeInTheDocument()
+    fireEvent.click(
+      screen.getByRole("button", { name: "Use the current saved draft" })
+    )
+    expect(screen.getByRole("textbox", { name: "Brief" })).toHaveValue(
+      "Private prepared task text"
+    )
+    fireEvent.click(
+      screen.getByRole("button", { name: "Review before sharing" })
+    )
+    expect(
+      screen.getByRole("checkbox", {
+        name: /I have reviewed these exact passages/,
+      })
+    ).not.toBeChecked()
+    expect(
+      screen.getByRole("button", { name: "Accept into shared work" })
+    ).toBeDisabled()
+    expect(
+      intake.mock.calls.some(
+        ([op]) => op === "candidates/edit" || op === "candidates/accept"
+      )
+    ).toBe(false)
   })
   it("does not preload source APIs on My work or infer operator setup from an owner role", async () => {
     intake.mockResolvedValue({

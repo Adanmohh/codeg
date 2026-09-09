@@ -65,22 +65,25 @@ export function CandidateReview({
   const [detail, setDetail] = useState(initial)
   const [reading, setReading] = useState(source)
   const [current, setCurrent] = useState<CandidateDetail | null>(null)
-  function initialDraft(value: CandidateDetail): PreparedTask | null {
-    if (value.candidate.hasPreparedDraft) return value.candidate.draft
-    const domain = value.candidate.capabilities.publicationDomains[0]
-    return domain && value.candidate.disclosure === "fresh"
-      ? {
-          title: "",
-          notes: "",
-          domain,
-          priority: "normal",
-          dueDate: null,
-          ownerId: actor.id,
-          assigneeId: null,
-          reviewerId: null,
-        }
-      : null
-  }
+  const initialDraft = useCallback(
+    (value: CandidateDetail): PreparedTask | null => {
+      if (value.candidate.hasPreparedDraft) return value.candidate.draft
+      const domain = value.candidate.capabilities.publicationDomains[0]
+      return domain && value.candidate.disclosure === "fresh"
+        ? {
+            title: "",
+            notes: "",
+            domain,
+            priority: "normal",
+            dueDate: null,
+            ownerId: actor.id,
+            assigneeId: null,
+            reviewerId: null,
+          }
+        : null
+    },
+    [actor.id]
+  )
   const [fields, setFields] = useState<PreparedTask | null>(() =>
     initialDraft(initial)
   )
@@ -212,7 +215,24 @@ export function CandidateReview({
         ) {
           setCurrent(latest)
           setConflicted(true)
-        } else setDetail(latest)
+        } else {
+          setDetail(latest)
+          // A withheld editor has no private fields or selection. Restore this
+          // same version only after both reads authorize fresh disclosure;
+          // newer revisions still take the explicit comparison/adoption path.
+          if (
+            latest.candidate.disclosure === "fresh" &&
+            full.disclosure === "fresh" &&
+            sourceIsFresh(full.source)
+          ) {
+            setFields((prior) => prior ?? initialDraft(latest))
+            if (base.current.candidate.disclosure !== "fresh") {
+              setSelection(latest.passages.map((passage) => passage.id))
+              setOwnerSuggestion(latest.candidate.ownerSuggestion ?? "")
+              setDueSuggestion(latest.candidate.dueSuggestion ?? "")
+            }
+          }
+        }
         if (
           latest.candidate.disclosure !== "fresh" ||
           (latest.candidate.hasPreparedDraft && !latest.candidate.draft)
@@ -233,7 +253,7 @@ export function CandidateReview({
         }
       }
     },
-    [client, initial.candidate.id, initial.source.id]
+    [client, initial.candidate.id, initial.source.id, initialDraft]
   )
   useEffect(() => {
     if (!active) {
