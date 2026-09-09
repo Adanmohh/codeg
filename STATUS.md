@@ -2,6 +2,30 @@
 
 ## Current integration and worker state
 
+Root read the complete early AI contract/report at
+`d1f22f85a22d844660df99a770daee39df3e371f`, verified through `gh api`.
+Its task → persistent configured session → managed immutable asset versions →
+human review direction matches the owner's requirement. Tickets is closing exact
+DTOs, durable recovery and connector freshness; approvals reviews authority and
+rebrand reconciles the existing chat/terminal components. This is not implementation
+acceptance. Root relayed concrete asset-import, session audience, revocation,
+operator attribution and uncertain-outcome requirements without expanding scope.
+
+Owner reiterated docs-first, especially `gh api`. All three existing Herdr workers
+are active with Astra metadata. Root independently verified live Pre/Post hook
+records in root and each worker session, and checked the pinned conversation-source
+blob through `gh api`; see [hook evidence](reports/docs-first-hook.md).
+Hook execution is distinct from complete documentation compliance.
+
+Independent B handoff `6895bedf425db263c2d6eb1dd73641f34521f439` is read and
+imported; root verified all35 evidence digests. Reviewer reports62 actual protected
+API requests/278 assertions passing and closes IUI-1 with11 real browser checks at
+UI1974d97f/backend e55f3bfd. Keeping the draft across1280→390 and explicit discard
+both work;26 navigation reads and subsequent persistence checks show no accidental
+save. These are attributed independent executions, not root reruns. Full final
+Design Studio and AI execution acceptance remain outstanding. User-inspected
+browser/worker records and stable4351/4352/4354 processes remain untouched.
+
 Owner explicitly requires managed agent-created documents/slides/assets, a
 marketing view with connected social accounts and actual current status, and
 persistent AI sessions for follow-up prompts and operations. Root updated

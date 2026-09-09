@@ -1,0 +1,47 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - main [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e12]:
+        - paragraph [ref=e13]: Hafidh
+        - paragraph [ref=e14]: Ops Desk
+      - generic [ref=e15]:
+        - combobox "Language" [ref=e16]:
+          - option "English" [selected]
+          - option "简体中文"
+          - option "繁體中文"
+          - option "日本語"
+          - option "한국어"
+          - option "Español"
+          - option "Deutsch"
+          - option "Français"
+          - option "Português"
+          - option "العربية"
+        - combobox "Appearance" [ref=e17]:
+          - option "Device appearance" [selected]
+          - option "Light"
+          - option "Dark"
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - paragraph [ref=e20]: Workspace
+        - heading "Give shared work a clear next step." [level=1] [ref=e21]
+        - paragraph [ref=e22]: People and agents work from the same brief. Responsibility stays visible, and completed work comes back for a human decision.
+        - generic [ref=e23]:
+          - generic [ref=e24]: Accountable owner
+          - generic [ref=e27]: Assigned to
+          - generic [ref=e30]: Reviewer
+      - region [ref=e31]:
+        - heading "Sign in to your workspace" [level=2] [ref=e36]
+        - paragraph [ref=e37]: Use the personal access your organization administrator provided.
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e40]: Workspace address
+            - textbox "Workspace address" [ref=e41]: http://127.0.0.1:4354
+            - paragraph [ref=e42]: Use the HTTPS address of your organization's Desk, or a local loopback server.
+          - generic [ref=e43]:
+            - generic [ref=e44]: Personal access token
+            - textbox "Personal access token" [ref=e45]
+          - button "Connect" [disabled]
+          - paragraph [ref=e46]: Access is kept in this window only. Reloading requires signing in again.
+        - group [ref=e47]:
+          - generic "Administrator access" [ref=e48] [cursor=pointer]

@@ -1,0 +1,162 @@
+- generic:
+  - alert
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - complementary:
+            - generic:
+              - generic:
+                - generic:
+                  - paragraph: Hafidh
+                  - paragraph: Ops Desk
+            - generic:
+              - paragraph: Workspace
+              - paragraph: Intake review synthetic
+            - navigation:
+              - button: My work
+              - button: Shared work
+              - button: Review
+              - button: Sources
+              - button: People & agents
+              - button: Workspace appearance
+            - generic:
+              - generic:
+                - combobox
+                - combobox
+              - generic:
+                - generic:
+                  - generic: R
+                  - generic: review owner
+                - paragraph: Owner · Connected
+                - button: Disconnect
+          - generic:
+            - generic:
+              - generic:
+                - tablist:
+                  - tab:
+                    - generic: My work
+                  - tab [selected]:
+                    - generic: Sources
+                - button
+              - generic:
+                - tabpanel:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button: Sources
+                          - generic:
+                            - generic:
+                              - paragraph: Private source review
+                              - paragraph: Only people with explicit source access can read these passages and drafts. Task access is separate.
+                          - banner:
+                            - paragraph: Fireflies meetings
+                            - heading [level=1]: "review: meeting-follow-up"
+                            - paragraph: "Source version: 1"
+                            - button: Review access and setup
+                          - generic:
+                            - generic:
+                              - region:
+                                - heading [level=2]: Exact source passage
+                                - paragraph: Choose 1–20 passages, up to 20,000 characters in total. Nothing is shortened or rewritten for you.
+                                - list:
+                                  - listitem:
+                                    - generic:
+                                      - generic:
+                                        - generic: Exact source passage 1
+                                        - generic: "review private evidence revision one: the customer requests an onboarding follow-up. This transcript is not automatically public task text."
+                                  - listitem:
+                                    - generic:
+                                      - generic:
+                                        - generic: Exact source passage 2
+                                        - generic: "review second private passage: confirm responsibility with the human owner."
+                                  - listitem:
+                                    - generic:
+                                      - generic:
+                                        - generic: Exact source passage 3
+                                        - generic: "review: Review a customer follow-up."
+                              - group:
+                                - generic: Refresh source access
+                            - generic:
+                              - region:
+                                - generic:
+                                  - heading [level=2]: Private task draft
+                                  - generic: Revision 3 · Source version 1
+                                  - paragraph: Write the task that should be shared. Saving here does not publish it or assign work.
+                                - region:
+                                  - heading [level=3]: Selected passages
+                                  - list:
+                                    - listitem:
+                                      - generic:
+                                        - generic:
+                                          - generic: Exact source passage 1
+                                          - generic: "review private evidence revision one: the customer requests an onboarding follow-up. This transcript is not automatically public task text."
+                                  - button: Review and reselect current passages
+                                - generic:
+                                  - button: Edit task
+                                  - button: Review before sharing
+                                  - button: Link an existing task
+                                - generic:
+                                  - group:
+                                    - generic:
+                                      - generic: Task title
+                                      - textbox: "Reviewer browser A: customer conversation"
+                                    - generic:
+                                      - generic: Brief
+                                      - textbox: Synthetic unsaved source A sentinel
+                                    - generic:
+                                      - generic:
+                                        - generic: Area of work
+                                        - combobox
+                                      - generic:
+                                        - generic: Priority
+                                        - combobox
+                                      - generic:
+                                        - generic: Due date
+                                        - textbox
+                                        - paragraph: Calendar date; no time or reminder is set.
+                                  - group:
+                                    - generic: Responsibility
+                                    - paragraph: An owner is accountable for the result. The assignee does the work; a person reviews it.
+                                    - generic:
+                                      - generic:
+                                        - generic: Accountable owner
+                                        - combobox
+                                      - generic:
+                                        - generic: Assigned to
+                                        - combobox
+                                      - generic:
+                                        - generic: Reviewer
+                                        - combobox
+                                        - paragraph: Only a person with review access can accept completed work.
+                                  - generic:
+                                    - generic:
+                                      - generic: Owner mentioned in source (optional)
+                                      - textbox
+                                      - paragraph: Context only. This does not assign a person or set a date.
+                                    - generic:
+                                      - generic: Deadline mentioned in source (optional)
+                                      - textbox
+                                      - paragraph: Context only. This does not assign a person or set a date.
+                                  - button: Save private draft
+                                - generic:
+                                  - button: Discard candidate
+                              - region:
+                                - heading [level=2]: Private drafts & decisions
+                                - combobox
+                                - list:
+                                  - listitem:
+                                    - button:
+                                      - generic: "Reviewer browser A: customer conversation"
+                                      - generic: Pending · Revision 3
+  - dialog [ref=e494]:
+    - generic [ref=e495]:
+      - generic [ref=e496]:
+        - heading "Leave this source review?" [level=2] [ref=e497]
+        - paragraph [ref=e498]: Leave this source review?
+      - button "Close" [active] [ref=e499]
+    - paragraph [ref=e500]: Unsaved edits in this window will be discarded. Saved private drafts can be reopened from Sources.
+    - generic [ref=e501]:
+      - button "Keep editing" [ref=e502]
+      - button "Discard my draft" [ref=e503]

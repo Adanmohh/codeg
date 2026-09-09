@@ -1,0 +1,22 @@
+Reviewer fixture/API evidence glue (2026).
+
+protected-api.py adapts the closed synthetic setup/import/prepare/decision
+request flow and assertions from Apache-2.0 Codeg at
+7ed0dd0c28f5065f1c37983f366cc6dcb0727e08:
+src-tauri/src/business_intake/tests/tenant_http_cases.rs,
+src-tauri/src/business_intake/types.rs and tests/browser.rs.
+Exact files/blobs are recorded in source-review.json and probe-source-ledger.json.
+The surrounding test-only HTTP client/logging is original glue using
+installed Python3.12.13 standard-library documentation/source. No library code
+is ported, dependency installed, product source changed or credential copied.
+
+Codeg is Apache-2.0. The repository LICENSE and all existing NOTICE entries
+remain unchanged; this attribution supplements them for the reviewer artifact.
+
+The browser scripts reproduce the actual closed IUI-1 flow from Codeg at
+1974d97f44b69db96051ace1c68717cc8c27b6e9, src/components/business-intake/
+workspace.tsx, source-review.tsx, candidate.tsx and business/workspace.tsx.
+Exact blobs are in probe-source-ledger.json. They exercise the product without
+porting component source. The private-file login and route/logging wrapper are
+original test glue using installed @playwright/cli0.1.18 and Playwright
+1.63.0-alpha-2026-08-05 help/types. No library implementation is copied.

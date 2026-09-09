@@ -1,0 +1,6 @@
+{
+  "exit": 1,
+  "error": "ReferenceError: URL is not defined",
+  "stage": "CLI sandbox guard callback, before credentials or product mutation",
+  "correction": "Use fixed-origin string comparison in the CLI sandbox; close/reopen only this new reviewer browser."
+}

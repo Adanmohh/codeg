@@ -81,3 +81,33 @@ approvals row16181/time1788882581. Each has exit0 and its original worker
 session/owned worktree; neighboring PreToolUse records remain present. All three
 Herdr pane footers show GPT-6 Astra/max. The metadata confirms ongoing hook
 execution, with the heuristic and root-session limits above unchanged.
+
+## AI contract checkpoint — 2026-09-09
+
+Owner reiterates docs-first and especially `gh api`. Root inspected only metadata
+from the existing audit file; the following latest Pre/Post records are present:
+
+| Workspace | Session | PreToolUse row | PostToolUse row |
+| --- | --- | --- | --- |
+| Root | 01a07c1a-4df9-7023-9e16-e289bca115d9 | 26035 | 26034 |
+| Rebrand | 01a084ee-12a8-7833-ace9-f3f4985ba926 | 25983 | 25987 |
+| Approvals | 01a084ee-129a-7561-9f10-64266115e759 | 25990 | 25993 |
+| Tickets | 01a07c1c-d82f-7022-84db-778a438632f1 | 26020 | 26019 |
+
+These are latest records per event, not necessarily a matched invocation pair.
+Each has the expected cwd; all listed records have `context_emitted=false`.
+This establishes live execution in the listed root session as well as workers,
+superseding earlier root-unverified observations for this checkpoint. It does not
+establish that every source read or write met the heuristic's documentation rules.
+No hooks/configuration, sessions or processes were changed.
+
+Root read the full AI contract/report at d1f22f85, resolved its complete SHA with
+`gh api repos/Adanmohh/codeg/commits/d1f22f85`, and checked the current local
+`src-tauri/src/commands/conversations.rs` scratch-directory/chat creation seam.
+`gh api 'repos/Adanmohh/codeg/contents/src-tauri/src/commands/conversations.rs?ref=f30a27da4'`
+returns blob `01d46d718ce08cce32a5636f5c90ab0ca352b6bb`, matching local Git.
+The contract correctly treats its caller-provided existing directory and
+nontransactional folder/conversation creation as adaptation work, not tenant
+authority or durable managed-asset storage. No framework implementation occurred.
+All three workers received the renewed docs-first/official pinned GitHub/source
+and report-evidence requirement through their existing Herdr panes.

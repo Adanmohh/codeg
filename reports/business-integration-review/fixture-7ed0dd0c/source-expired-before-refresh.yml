@@ -1,0 +1,88 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e50]:
+    - complementary [ref=e51]:
+      - generic [ref=e58]:
+        - paragraph [ref=e59]: Hafidh
+        - paragraph [ref=e60]: Ops Desk
+      - generic [ref=e61]:
+        - paragraph [ref=e62]: Workspace
+        - paragraph [ref=e63]: Intake review synthetic
+      - navigation "Workspace" [ref=e64]:
+        - button "My work" [ref=e65]
+        - button "Shared work" [ref=e69]
+        - button "Review" [ref=e75]
+        - button "Sources" [ref=e79]
+        - button "People & agents" [ref=e82]
+        - button "Workspace appearance" [ref=e88]
+      - generic [ref=e92]:
+        - generic [ref=e93]:
+          - combobox "Language" [ref=e94]:
+            - option "English" [selected]
+            - option "简体中文"
+            - option "繁體中文"
+            - option "日本語"
+            - option "한국어"
+            - option "Español"
+            - option "Deutsch"
+            - option "Français"
+            - option "Português"
+            - option "العربية"
+          - combobox "Appearance" [ref=e95]:
+            - option "Device appearance" [selected]
+            - option "Light"
+            - option "Dark"
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: R
+            - generic [ref=e99]: review owner
+          - paragraph [ref=e100]: Owner · Connected
+          - button "Disconnect" [ref=e101]
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - tablist "Open work" [ref=e105]:
+          - tab "My work" [ref=e106]
+          - tab "Sources" [selected] [ref=e196]
+        - button "Show side by side" [ref=e111]
+      - tabpanel "Sources" [ref=e200]:
+        - generic [ref=e263]:
+          - button "Sources" [ref=e264]
+          - generic [ref=e270]:
+            - paragraph [ref=e271]: Private source review
+            - paragraph [ref=e272]: Only people with explicit source access can read these passages and drafts. Task access is separate.
+          - banner [ref=e273]:
+            - paragraph [ref=e274]: Fireflies meetings
+            - 'heading "review: meeting-follow-up" [level=1] [ref=e275]'
+            - paragraph [ref=e276]: "Source version: 1"
+            - button "Review access and setup" [ref=e277]
+          - status [ref=e278]:
+            - heading "Source content is currently withheld." [level=2] [ref=e279]
+            - paragraph [ref=e280]: Refresh upstream access before reading or preparing a task. Cached private text is not shown while access is stale.
+          - generic [ref=e281]:
+            - group [ref=e283]:
+              - generic "Refresh source access" [ref=e284] [cursor=pointer]
+              - region "Import progress" [ref=e285]:
+                - generic [ref=e286]:
+                  - heading "Import progress" [level=2] [ref=e287]
+                  - button "Refresh" [ref=e288]
+                - generic [ref=e289]:
+                  - paragraph [ref=e290]: Read this record again through its connection. A cached page cannot renew access.
+                  - button "Refresh source access" [ref=e291]
+                - generic [ref=e292]:
+                  - checkbox "All import attempts" [ref=e293]
+                  - text: All import attempts
+                - paragraph [ref=e294]: No import attempts in this view.
+                - list
+            - region "Private drafts & decisions" [ref=e296]:
+              - heading "Private drafts & decisions" [level=2] [ref=e297]
+              - combobox "Private drafts & decisions" [ref=e298]:
+                - option "Pending" [selected]
+                - option "Task created"
+                - option "Linked to existing task"
+                - option "Discarded"
+              - list [ref=e299]:
+                - listitem [ref=e300]:
+                  - button "Pending 1 Pending · Revision 3 A prepared draft exists, but its contents are withheld by current source or destination access." [ref=e301]:
+                    - generic [ref=e302]: Pending 1
+                    - generic [ref=e303]: Pending · Revision 3
+                    - generic [ref=e304]: A prepared draft exists, but its contents are withheld by current source or destination access.
