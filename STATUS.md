@@ -2,6 +2,32 @@
 
 ## Current integration and worker state
 
+**E1 internal implementation dispatched.** Root read the complete474-line contract
+and report at `f2af30f73e38cd929b993026df8600fde32715d6` (draft PR31), verifying
+SHA256 `8cfd910e219758cf0902be8d90acb28c68dac24198facac7efd547869e58fd2e`.
+The four initial authority requirements are addressed in the proposal; final
+independent DTO review remains pending. Root imported initial review3eb8f971 and
+verified all3 evidence digests. No runtime or final contract acceptance is claimed.
+
+Tickets is dispatched to new `feat/business-ai-execution` after docs closeout:
+typed DTOs, durable sessions/receipts/managed asset versions and task transaction
+prerequisites, with early compiling source and meaningful tests. Sole migration
+reservation is `m20260909_000014_business_execution`; preserve applied migrations
+and incoming B11/13 ordering. Rebrand completes its bounded4355 recovery handoff,
+then prepares typed clients/components on `feat/business-ai-workspace`, reusing
+the shared PR29 shell once accepted rather than recreating it from older main.
+Approvals completes the small UI follow-on and final DTO authority verdict.
+Existing workers/worktrees only; reports are
+`reports/business-ai-execution-implementation.md`, `reports/business-ai-workspace.md`
+and `reports/review-business-ai-execution.md` respectively.
+
+This dispatch permits internal product work, not new process launch or exposed
+HTTP/native authority before final review. Exact event/content framing, E1-only
+operator checks, safe published provenance and unavailable E3 input behavior must
+be reconciled before integration. No live providers, new runtime/dependency,
+fixture changes or duplicate large build targets. Existing B branches and the
+owner's inspected browser stay preserved. Root remains orchestration-only.
+
 PR29 now contains a newer product correction at
 `60d600db0f224d44ff191490ab79bc25530ba959`: after source access expires,
 successful refresh could leave an initially unprepared candidate without editor

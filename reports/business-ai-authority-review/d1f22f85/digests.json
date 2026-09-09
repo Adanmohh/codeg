@@ -1,0 +1,17 @@
+{
+  "algorithm": "sha256",
+  "files": [
+    {
+      "path": "reports/business-ai-authority-review/d1f22f85/source-ledger.json",
+      "sha256": "8bacbf543dcd63622ffad6c285d22e8483161651bbfd4a28529901cce5312bad"
+    },
+    {
+      "path": "reports/business-ai-authority-review/d1f22f85/hook-model-evidence.json",
+      "sha256": "3c5862994c31a100d4c8e1452050e2637e025f329fbb4eb2a925f3d8170500d2"
+    },
+    {
+      "path": "reports/review-business-ai-execution.md",
+      "sha256": "9a28732201ceb0f630b8e3965bff3397feef1548aa0b7535be78acd371563c8d"
+    }
+  ]
+}

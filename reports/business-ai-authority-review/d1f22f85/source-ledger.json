@@ -1,0 +1,206 @@
+{
+  "review_kind": "docs-only authority review; no runtime acceptance",
+  "refs": {
+    "contract": "d1f22f85a22d844660df99a770daee39df3e371f",
+    "current_source": "f30a27da45c41ed7593c5da433759af8314a08ef",
+    "approved_upstream": "6f6bd648b206412644842a98d9ffeebf57292bed"
+  },
+  "commits": [
+    {
+      "role": "contract",
+      "sha": "d1f22f85a22d844660df99a770daee39df3e371f",
+      "tree": "f9b6b10cfa6c4201d1043bc59f2740506436f9a5"
+    },
+    {
+      "role": "current_source",
+      "sha": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "tree": "98edae8fcac88f9d0451654b7e99b45d6992b030"
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/contracts/business-ai-execution.md",
+      "commit": "d1f22f85a22d844660df99a770daee39df3e371f",
+      "git_blob": "3320b2a4640477ba7c7f16fe7a3b0bc3c76862b6",
+      "sha256": "658a8ee8eca4bb3c0fc6c4f7f0ce610651302da4815f622e317d9cb5cf4a8c88",
+      "read_coverage": "full",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/d1f22f85a22d844660df99a770daee39df3e371f/docs/contracts/business-ai-execution.md"
+    },
+    {
+      "path": "reports/business-ai-execution.md",
+      "commit": "d1f22f85a22d844660df99a770daee39df3e371f",
+      "git_blob": "808259204591c97914803342e926faf283599e0d",
+      "sha256": "bf890f9a9e6f39b34283709821da74a0e6887f2b49314d4e161c0862b16a6449",
+      "read_coverage": "full",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/d1f22f85a22d844660df99a770daee39df3e371f/reports/business-ai-execution.md"
+    },
+    {
+      "path": "docs/BUSINESS-WORKSPACE.md",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "4d590ca1f738cc5726ffd5dcfe2dd757d7e425e1",
+      "sha256": "b752c3890406c6663d15de943eae7fa1f83b247a0bc562be1ffe80ad14c8cd8c",
+      "read_coverage": "full",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/docs/BUSINESS-WORKSPACE.md"
+    },
+    {
+      "path": "src-tauri/src/business_identity/mod.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "f7205760715d2516b11b6e2cb79fd133218672bb",
+      "sha256": "22ee10d3e89f0a555e035fe64f5196dc610416b18be39880a3899fa828e48042",
+      "read_coverage": "61-280",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/business_identity/mod.rs"
+    },
+    {
+      "path": "src-tauri/src/business_identity/native.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "17c3968446faace7c8831a3ec9366f531ad385a4",
+      "sha256": "50c6b6d99ce1cf61e53cba72e19a8185aa8bc19e0026e5faa70b2123e5580168",
+      "read_coverage": "full",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/business_identity/native.rs"
+    },
+    {
+      "path": "src-tauri/src/business_tasks/policy.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "59c0fe10a27c52a75679bcd4f28779e1e0984055",
+      "sha256": "ca06545bd4e9dc93bd403b895b4ce9429e36cd071313655d0dd74e43851348ef",
+      "read_coverage": "full",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/business_tasks/policy.rs"
+    },
+    {
+      "path": "src-tauri/src/business_tasks/store.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "d48fdf1e85feb4410dbff51e8a671d6c9d525691",
+      "sha256": "914105572ff2bcdc2daea064f889c9ff0aa837fa1f40b6292decd23c701954eb",
+      "read_coverage": "564-689",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/business_tasks/store.rs"
+    },
+    {
+      "path": "src-tauri/src/acp/delegation/listener.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "74898d66293f6eae19363d4bf79ade58493455aa",
+      "sha256": "e913227758c234f655bb6f210b121e7cc7f8998c6f91af59cf949f76f3b0c1cf",
+      "read_coverage": "672-790",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/acp/delegation/listener.rs"
+    },
+    {
+      "path": "src-tauri/src/acp/delegation/broker.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "f62029a9868032288743a2b09d362f6782615165",
+      "sha256": "895e1e1eb2b7167bb12c528d4a99cfa65d646f36be131ca985d9c916c94465cc",
+      "read_coverage": "3090-3175",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/acp/delegation/broker.rs"
+    },
+    {
+      "path": "src-tauri/src/commands/conversations.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "01d46d718ce08cce32a5636f5c90ab0ca352b6bb",
+      "sha256": "60bc2cbeac018eba0e49d2160c2b3e333cb97192f7207b8b443a77e54ba3196c",
+      "read_coverage": "1970-2048;2088-2225",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/commands/conversations.rs"
+    },
+    {
+      "path": "src-tauri/src/commands/acp.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "1ed2d91ca23fb17bdbfaf921bb52e47ae76145f6",
+      "sha256": "200a044243abab68537c4656988a27e8402c352bc67b5b1f50b78dea06217c55",
+      "read_coverage": "9806-9891",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/commands/acp.rs"
+    },
+    {
+      "path": "src-tauri/src/web/auth.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "861ad112be52f682e319255ae3173c65b1aa1cef",
+      "sha256": "de6d49bc1e0701c347dc986afb7cbb8b604a99c6a9aa5fb3a4aed63722c67314",
+      "read_coverage": "full",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/web/auth.rs"
+    },
+    {
+      "path": "src-tauri/src/web/handlers/terminal.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "3d61e09b75ab91164904a50e5bcf9a9daae59e33",
+      "sha256": "6e672bf42fce6a62fcd660fd47048a201bc6d37142cd5c5524b1cf3f1468a28d",
+      "read_coverage": "full",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/web/handlers/terminal.rs"
+    },
+    {
+      "path": "src-tauri/src/web/event_bridge.rs",
+      "commit": "f30a27da45c41ed7593c5da433759af8314a08ef",
+      "git_blob": "eee7cf4e4803d0808904eb28c97a6b1003225659",
+      "sha256": "e2cdb3126f88eed84fed6f6f7f74dc17d1fb7850ca799d15fd75b811e9d513ca",
+      "read_coverage": "1-180",
+      "remote_git_tree_match": true,
+      "url": "https://github.com/Adanmohh/codeg/blob/f30a27da45c41ed7593c5da433759af8314a08ef/src-tauri/src/web/event_bridge.rs"
+    }
+  ],
+  "license": {
+    "repository": "xintaofei/codeg",
+    "commit": "6f6bd648b206412644842a98d9ffeebf57292bed",
+    "path": "LICENSE",
+    "blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "license": "Apache-2.0",
+    "remote_bytes_match_local": true
+  },
+  "source_diff_cba079c75_to_f30_exit": 0,
+  "commands": [
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/git/commits/d1f22f85a22d844660df99a770daee39df3e371f"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/git/trees/f9b6b10cfa6c4201d1043bc59f2740506436f9a5?recursive=1"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/git/commits/f30a27da45c41ed7593c5da433759af8314a08ef"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/git/trees/98edae8fcac88f9d0451654b7e99b45d6992b030?recursive=1"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/xintaofei/codeg/contents/LICENSE?ref=6f6bd648b206412644842a98d9ffeebf57292bed"
+      ],
+      "exit": 0
+    }
+  ],
+  "limits": [
+    "Read-coverage ranges do not claim complete large-file review.",
+    "No product code or third-party-derived hunk added.",
+    "No latest dependency or framework survey.",
+    "No execution/provider/browser test for this AI contract."
+  ]
+}
