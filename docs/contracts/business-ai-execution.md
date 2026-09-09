@@ -191,7 +191,7 @@ for side effects and scoped to tenant + original actor + operation kind.
 | `assets/list` | `{taskId,query:null\|string,cursor:null\|string,limit:1..50}` | Private owned drafts plus versions already published to an accessible task; title/type search, stable pagination, no hidden counts. |
 | `assets/get` | `{assetId,versionId}` | Immutable version metadata/current capabilities. Version ID required; no moving `latest` in review. |
 | `assets/content` | `{assetId,versionId,disposition:"preview"\|"download"}` | Authorized bounded byte response, safe filename/type headers; no storage path or bearer-in-URL. Preview may explicitly be unavailable for that format/profile. |
-| `assets/submit` | `{operationId,taskId,expectedTaskRevision,versions:{assetId,versionId}[],body}` | Existing task Detail plus operation receipt; 1..16 distinct retained versions, optional empty body allowed for file-only submission (otherwise≤20000 chars). Atomic publication + task submit + activity. |
+| `assets/submit` | `{operationId,taskId,expectedTaskRevision,versions:{assetId,versionId}[],body}` | `{detail:TaskDetail,operation:OperationSummary}`; 1..16 distinct retained versions, optional empty body allowed for file-only submission (otherwise≤20000 chars). Atomic publication + task submit + activity. |
 
 Public human review uses two **task-owned** additive operations outside E1's
 private execution subtree: `/api/business/tasks/deliverables/assets/get`
@@ -208,6 +208,13 @@ when the existing `submit` capability is true. Existing agent-capable text submi
 is unchanged. A producing agent cannot use a parent token or precomputed selection
 to perform human publication. Assert rejection leaves task/assets/receipt/audit
 unchanged in the negative control.
+Add only `assets: PublishedAssetRef[]` to each existing task `Deliverable` returned
+by `tasks/get`/mutation Detail; historical text deliverables return `[]`.
+`PublishedAssetRef = {assetId,versionId,title,mediaType,byteSize,sha256}` describes
+the exact disclosed version. Title/type are snapshotted for that version, not the
+private asset's current label. This lets the real review UI rediscover its files
+after reload without entering E1's private execution API. No private asset count,
+latest-version ID, client profile or transcript is added to TaskDetail.
 
 `ProfileSummary = {id,revision,label,clientId,modes:("chat"|"terminal")[],custody:"original_operator"|"isolated_member",model:null|{id,reasoning},readiness:"ready"|"blocked",reason:SetupReason|null,capabilities:{start,continue,managedOutput,officePreview}}`.
 `SetupReason = missing_client | missing_configuration | model_unavailable | profile_unavailable | tenant_execution_unavailable | native_boundary_unavailable | client_resume_unsupported`.
