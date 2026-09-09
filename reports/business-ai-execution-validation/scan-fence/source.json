@@ -1,0 +1,91 @@
+{
+  "productCommit": "9e58f4e6a41569a96d79fc2af963acec6e5c5aa6",
+  "findingSourceCommit": "4251987071e8e7213a678be94039cd3fad1328f1",
+  "scope": "Source-only P2 accepted-scan correction; no Cargo or runtime execution.",
+  "source": [
+    {
+      "path": "NOTICE",
+      "gitBlob": "7db22d4724153c38013d95b3f79fa149a20103d6",
+      "sha256": "49b3c81c51ed3967ba811c63f3ddb6dc59fcf9dcc092b2b365a639c0ee107c91",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/outputs.rs",
+      "gitBlob": "a6f99c004c443140aa5292df68983229fc360a4a",
+      "sha256": "319bb86eaece895a534113500440054584456d5733a8eb8565084739f4d7ddc9",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/outputs/migration_tests.rs",
+      "gitBlob": "46e774ad45e76fdd4aa12137312b75e4504943c5",
+      "sha256": "167e2f13092f90f4e3112070608ee369eba6d429c4cb062a81a2d9066a2e21ea",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/outputs/tests.rs",
+      "gitBlob": "c083bf7ec0ee069f2baa9e1d109f8f10d5388370",
+      "sha256": "7f3a7062d1ce8f929ac3c9a9091f870b103c76906f05902b8e158f4b57f0864e",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/business_execution/tests.rs",
+      "gitBlob": "d08d351a7f23d3120605c8f1477daf7ea84d00fc",
+      "sha256": "ba4a062496535349f3b29f1c8211ed6ac780fea4cdb8d3bd21b9b3d92639d509",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/db/migration/m20260909_000015_business_execution_scans.rs",
+      "gitBlob": "4bf02520a6fdeddd76b17b2a28754d855a611c2b",
+      "sha256": "b1ac0757c1c1225dcd7988278a0db3d43496fe402147e1f3794d0696c6ee8c14",
+      "matchesProduct": true
+    },
+    {
+      "path": "src-tauri/src/db/migration/mod.rs",
+      "gitBlob": "6b52b8741f3759e980062ed02481044fe92d9f1f",
+      "sha256": "57df65865e7851ae4775cb0db04538c1db2ac44db63ec6586cc2335b9d5c23d9",
+      "matchesProduct": true
+    }
+  ],
+  "preservedMigration14": [
+    {
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.rs",
+      "gitBlob": "0e8bf9e47532076561c587c89b2677ea129383e3",
+      "sha256": "7cbf2342c8a6efcd64aaa5f790b765ce62cd879a25c56c43839255596aec9e5e",
+      "unchangedFromReviewed": true
+    },
+    {
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.sql",
+      "gitBlob": "2369913295543dce4542c364f23567cbffd0d842",
+      "sha256": "e113a1eb674de813475e0872211c2afc52562296dcfe6cd26292dc617edf128b",
+      "unchangedFromReviewed": true
+    }
+  ],
+  "checks": [
+    {
+      "command": "rustfmt --edition 2021 src-tauri/src/business_execution/outputs.rs src-tauri/src/business_execution/outputs/tests.rs src-tauri/src/business_execution/outputs/migration_tests.rs src-tauri/src/business_execution/tests.rs src-tauri/src/db/migration/m20260909_000015_business_execution_scans.rs",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --quiet 4251987071e8e7213a678be94039cd3fad1328f1 -- src-tauri/src/db/migration/m20260909_000014_business_execution.rs src-tauri/src/db/migration/m20260909_000014_business_execution.sql",
+      "exitCode": 0
+    }
+  ],
+  "tests": {
+    "selector": "execution_outputs_",
+    "planned": 11,
+    "new": 6,
+    "executed": 0
+  },
+  "limits": [
+    "Not compiled at this correction head.",
+    "Migration15 and new failure/cancellation probes are planned only.",
+    "No runtime import/process/transport acceptance.",
+    "The 425 publication8 result remains attributed only to that earlier source."
+  ],
+  "fixturesChanged": false,
+  "targetsChanged": false
+}

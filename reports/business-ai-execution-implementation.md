@@ -600,3 +600,9 @@ root allocation and fresh≥10GiB; this correction is not independently executed
 closed yet. Exact accepted B source blobs and pinned SeaORM references are in
 NOTICE; offline code-context staging/version rules and earlier missing corpus
 coverage still apply. Only the bounded source/tests/NOTICE/report are changed.
+
+Immutable correction source: `9e58f4e6a41569a96d79fc2af963acec6e5c5aa6`, pushed
+to draft PR32. Seven changed product/NOTICE pairs and both preserved000014 hashes
+are recorded in `reports/business-ai-execution-validation/scan-fence/source.json`.
+This is a source checkpoint, not a compiling/test result. Reviewer/root receive
+this exact pin for bounded re-review; no build window is claimed or consumed.
