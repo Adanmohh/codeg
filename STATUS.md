@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Independent correction source review verified and imported:**
+`42d5978b2fde232b8c066131407323955148ed71` finds R1–R3 addressed in code at
+`9949c8a9`, with no additional blocking source finding. Root read the complete
+assessment/ledgers, matched all four report hashes and16 product blobs, and
+verified prior3773/f4 evidence and product paths remain unchanged. The reviewer
+also verified the14 owner passes and server check; no independent execution is
+claimed. The later consuming runner permit, transport and asset/task publication
+remain unaccepted. [Correction assessment](reports/business-ai-execution-review/9949c8a9/review.md).
+Reviewer compilation remains held during Farha's window.
+
 **Bounded correction gates passed; Farha's build window is released.** Tickets has committed
 product `9949c8a9ad99ffb70232c05bf1c2ad243dcaf194` and report-only
 `e56affc361ba7901e624dcc7e4d8e5a2776aee5b`. Its bounded locked/offline `-j2`

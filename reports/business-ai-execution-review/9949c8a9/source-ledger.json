@@ -1,0 +1,215 @@
+{
+  "product": "9949c8a9ad99ffb70232c05bf1c2ad243dcaf194",
+  "tree": "84fbbc223c58efd661ea386eebad734b65d4403b",
+  "integration_base": "54daac22eba8aaab1e7b2e6da9e39a03e80e6be1",
+  "original_findings_product": "3773a027a8d580bd9bac1808efdb718ae6f9e135",
+  "preserved_review_head": "dc0e9cb06ded25122c373029c3bc9f9bbe40b42f",
+  "preserved_schema_review": "f4b12e8dccf249bce75accbb4a5f4aa69df48ac3",
+  "owner_report": "e56affc361ba7901e624dcc7e4d8e5a2776aee5b",
+  "review_basis": "Full bounded source/test-body review only; no new reviewer compile, test, archive or runtime action.",
+  "source_verdict": "R1-R3 source-addressed; no additional blocking source finding in eight-file correction. Pending independent execution.",
+  "corrections": [
+    {
+      "id": "R1",
+      "commit": "5a231349edafa0a57d3fad8792ea1ac7b95f0787",
+      "parent": "836fbdcf451b5d9181f8b6d13e14ba962f57f151",
+      "assessment": "Eligible stored authority/profile/task rows filtered before LIMIT; structural cursor constrained to org/member/task; every emitted row revalidated.",
+      "new_tests": 3
+    },
+    {
+      "id": "R2",
+      "commit": "836fbdcf451b5d9181f8b6d13e14ba962f57f151",
+      "parent": "54daac22eba8aaab1e7b2e6da9e39a03e80e6be1",
+      "assessment": "Private non-Clone/non-Serialize admission fields; receipt target checked before linkage/status writes and again before receipt completion; affected-row check and launch mode validation.",
+      "new_tests": 2,
+      "limit": "complete_launch borrows Admission. Actual runner must separately consume one permit before effect; no launch consumer acceptance here."
+    },
+    {
+      "id": "R3",
+      "commit": "9949c8a9ad99ffb70232c05bf1c2ad243dcaf194",
+      "parent": "5a231349edafa0a57d3fad8792ea1ac7b95f0787",
+      "assessment": "Hash through clone of same opened file descriptor, then real file and directory sync before recovered Retained. Injectable callback exposed only under cfg(test).",
+      "new_tests": 1
+    }
+  ],
+  "source_blobs": [
+    {
+      "path": "LICENSE",
+      "blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64"
+    },
+    {
+      "path": "NOTICE",
+      "blob": "46431286ef18c97a567f1edd8ee84a1a53b3612e"
+    },
+    {
+      "path": "src-tauri/src/business_execution/common.rs",
+      "blob": "9fb07651f8f634e1889ab6360c7b11e3e3107a16"
+    },
+    {
+      "path": "src-tauri/src/business_execution/file_tests.rs",
+      "blob": "9ed75f6cf1103ad2bc7236ad45499db2ee06ee08"
+    },
+    {
+      "path": "src-tauri/src/business_execution/files.rs",
+      "blob": "d01e7c24a95c73e6c7133e4020cca2a156f562ad"
+    },
+    {
+      "path": "src-tauri/src/business_execution/mod.rs",
+      "blob": "3e7462af221de28b64d186b86fac852c4f226779"
+    },
+    {
+      "path": "src-tauri/src/business_execution/pagination_tests.rs",
+      "blob": "fcf34b9a925ea5ea5169ffb1eae3c429293599e8"
+    },
+    {
+      "path": "src-tauri/src/business_execution/receipts.rs",
+      "blob": "5b6dfcc657f5c6e395ee6f7d82cc97963020bb28"
+    },
+    {
+      "path": "src-tauri/src/business_execution/records.rs",
+      "blob": "2c3e934dd7c8b4b89a28851c1a316207957cb2d0"
+    },
+    {
+      "path": "src-tauri/src/business_execution/scope.rs",
+      "blob": "44d0d5eef834967f5f6a38810630c6b2ffebff1f"
+    },
+    {
+      "path": "src-tauri/src/business_execution/session_store.rs",
+      "blob": "0d13988632d6e4c31f651130cbe28963fe1c412f"
+    },
+    {
+      "path": "src-tauri/src/business_execution/session_store/completion_tests.rs",
+      "blob": "83ef2beace803f68861680af0d3ece4d32b338b0"
+    },
+    {
+      "path": "src-tauri/src/business_execution/session_tests.rs",
+      "blob": "9aa4f2eadfe6a9391d79fe0e11fb3b18c4bf20b5"
+    },
+    {
+      "path": "src-tauri/src/business_execution/tests.rs",
+      "blob": "3219da46276f07e81c807cc23d338c499f4d17e3"
+    },
+    {
+      "path": "src-tauri/src/business_execution/types.rs",
+      "blob": "47ca21b002c9c1efb898e38e0c920e9ca3456c70"
+    },
+    {
+      "path": "src-tauri/src/business_execution/validation.rs",
+      "blob": "0de132a3f5ad20614196621286b94b0cfe471fef"
+    }
+  ],
+  "owner_results": {
+    "attribution": "Owner execution only. Reviewer independently matched eight source blob/SHA pairs and five log hashes, read all test results and server finish at immutable b15. No reviewer execution.",
+    "immutable_log_pin": "b15ded12cd24f557d0de9bb55b43db30b9f8bc89",
+    "verification_file": "owner-evidence-verified.json",
+    "artifact_hashes_matched": 13,
+    "source_blobs_matched": 8,
+    "test_warnings": 7,
+    "server_warnings": 62,
+    "reviewer_executed": false,
+    "commands": [
+      {
+        "selector": "execution_pagination_",
+        "passed": 3,
+        "exit": 0,
+        "runtime_seconds": 0.27
+      },
+      {
+        "selector": "execution_admission_",
+        "passed": 3,
+        "exit": 0,
+        "runtime_seconds": 0.3
+      },
+      {
+        "selector": "execution_authority_",
+        "passed": 3,
+        "exit": 0,
+        "runtime_seconds": 0.25
+      },
+      {
+        "selector": "execution_assets_",
+        "passed": 5,
+        "exit": 0,
+        "runtime_seconds": 0.09
+      },
+      {
+        "command": "server cargo check",
+        "exit": 0,
+        "runtime_seconds": 27.46
+      }
+    ],
+    "source_name_count": 14,
+    "new_test_bodies_read": 6,
+    "prior_controls": 8,
+    "clippy_claimed": false,
+    "runtime_claimed": false
+  },
+  "independent_selectors_pending": [
+    "business_execution::pagination_tests",
+    "business_execution::session_store::completion_tests",
+    "business_execution::file_tests::execution_assets_recovery_retries_file_and_directory_sync_before_success"
+  ],
+  "necessary_controls": "Existing replay/current original-operator/tenant and authority away-back cases plus four unchanged filesystem controls; no unchanged schema rerun requested.",
+  "command_evidence": [
+    {
+      "command": "git status --short --branch",
+      "exit": 0,
+      "result": "At review start only preserved untracked .build/, out-design-final/, reports/visual-refresh-baseline.md; report branch dc0e9cb06."
+    },
+    {
+      "command": "gh api repos/Adanmohh/codeg/commits/{836fbdcf451b5d9181f8b6d13e14ba962f57f151,5a231349edafa0a57d3fad8792ea1ac7b95f0787,9949c8a9ad99ffb70232c05bf1c2ad243dcaf194,e56affc36}",
+      "exit": 0,
+      "result": "Separate actual calls resolved full commits, parents and changed-file lists; e56 is report only."
+    },
+    {
+      "command": "git fetch origin feat/business-ai-execution",
+      "exit": 0,
+      "result": "Fetched committed branch; immutable objects read directly, no checkout/archive."
+    },
+    {
+      "command": "git diff --name-status 54daac22eba8aaab1e7b2e6da9e39a03e80e6be1 9949c8a9ad99ffb70232c05bf1c2ad243dcaf194",
+      "exit": 0,
+      "result": "Exactly8 files, all under src-tauri/src/business_execution."
+    },
+    {
+      "command": "git diff --quiet 54daac22eba8aaab1e7b2e6da9e39a03e80e6be1 9949c8a9ad99ffb70232c05bf1c2ad243dcaf194 -- NOTICE LICENSE src-tauri/Cargo.toml src-tauri/Cargo.lock src-tauri/src/db/migration src-tauri/src/business_identity src-tauri/src/business_tasks src-tauri/src/business_intake src-tauri/src/web src-tauri/src/commands",
+      "exit": 0
+    },
+    {
+      "command": "git diff --quiet dc0e9cb06ded25122c373029c3bc9f9bbe40b42f -- src-tauri src integrations NOTICE LICENSE reports/business-ai-execution-review/177d0f3e reports/business-ai-execution-review/3773a027",
+      "exit": 0
+    }
+  ],
+  "grounding": {
+    "previous_ledger": "../3773a027/source-ledger.json",
+    "reused_pins": [
+      "Rust1.98.0 / 88d9e12ae178fab0fb5cc050a94da85685d449ea",
+      "SeaORM1.1.19",
+      "SQLx0.8.6",
+      "libc0.2.180"
+    ],
+    "installed_additional_read": {
+      "path": "/Users/mohamedadan/.rustup/toolchains/stable-aarch64-apple-darwin/share/doc/rust/html/reference/visibility-and-privacy.html",
+      "sha256": "1b3281710db191872501df449884d425bef7c76bc258b0c4814562cf5b7c7d0f",
+      "lines": [
+        "354-392",
+        "455-478"
+      ],
+      "behavior": "Fields default private; current module/descendants may access; scoped pub(super) item visible to parent."
+    },
+    "descriptor_behavior": "Previously read installed File::try_clone shares underlying handle; File::sync_all confirms content/metadata before return. No new library API/version or vendored port.",
+    "corpus_limit": "No new code-context retrieval needed for same bounded corrections; missing dependency index disclosed in3773 remains. No expanded coverage claim.",
+    "provenance": "Existing Apache-2.0 Codeg NOTICE mappings preserved; no new third-party source or reviewer product code."
+  },
+  "constraints": {
+    "hooks": "Owner replacement AGENTS forbids restoration unless requested; no install, repair, probe or enforcement claim. Historical errors preserved elsewhere.",
+    "reviewer_cargo": "Held. Tickets released but root assigned next production build/browser window to Farha. Future reviewer run requires explicit allocation and fresh capacity check.",
+    "new_targets": false,
+    "new_archives": false,
+    "fixture_changes": false,
+    "browser_actions": false,
+    "provider_actions": false,
+    "product_edits": false,
+    "cleanup": false
+  }
+}
