@@ -42,6 +42,14 @@ pub(super) struct Content {
     pub bytes: Vec<u8>,
 }
 
+#[cfg(unix)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(super) enum SyncPoint {
+    StagedBytes,
+    SealedBytes,
+    ObjectDirectory,
+}
+
 pub(super) fn media_type(name: &str) -> Option<&'static str> {
     match Path::new(name)
         .extension()?
@@ -156,9 +164,6 @@ mod unix {
             let file = unsafe { File::from_raw_fd(fd) };
             stamp(&file.metadata().map_err(unavailable)?)?;
             Ok(file)
-        }
-        fn sync(&self) -> Result<()> {
-            self.0.sync_all().map_err(unavailable)
         }
     }
     fn stamp(metadata: &Metadata) -> Result<Stamp> {
@@ -336,6 +341,33 @@ mod unix {
             expected: &Observation,
             object_id: &str,
         ) -> Result<Retained> {
+            self.stage_with_sync(admission_id, relative, expected, object_id, |file, _| {
+                file.sync_all().map_err(unavailable)
+            })
+        }
+
+        // Fault injection is absent from production; callers cannot replace
+        // either durability operation with a successful no-op.
+        #[cfg(test)]
+        pub(in crate::business_execution) fn stage_with_test_sync(
+            &self,
+            admission_id: &str,
+            relative: &str,
+            expected: &Observation,
+            object_id: &str,
+            sync: impl FnMut(&File, SyncPoint) -> Result<()>,
+        ) -> Result<Retained> {
+            self.stage_with_sync(admission_id, relative, expected, object_id, sync)
+        }
+
+        fn stage_with_sync(
+            &self,
+            admission_id: &str,
+            relative: &str,
+            expected: &Observation,
+            object_id: &str,
+            mut sync: impl FnMut(&File, SyncPoint) -> Result<()>,
+        ) -> Result<Retained> {
             super::super::validation::uuid(object_id)?;
             let objects = self.base()?.child("objects", true)?;
             // Same-operation recovery can only reuse its completed immutable
@@ -344,10 +376,16 @@ mod unix {
                 if existing.metadata().map_err(unavailable)?.mode() & 0o777 != 0o400 {
                     return Err(R::ContentUnavailable.into());
                 }
-                let (stored, hash) = read_stable(existing, |_| Ok(()))?;
+                let (stored, hash) =
+                    read_stable(existing.try_clone().map_err(unavailable)?, |_| Ok(()))?;
                 if hash != expected.sha256 || stored.len != expected.byte_size as u64 {
                     return Err(R::ContentChanged.into());
                 }
+                // Sealed mode does not prove a preceding sync succeeded.
+                // Recovery repeats file metadata and parent-directory durability
+                // against the validated descriptors before returning Retained.
+                sync(&existing, SyncPoint::SealedBytes)?;
+                sync(&objects.0, SyncPoint::ObjectDirectory)?;
                 return Ok(Retained {
                     object_id: object_id.into(),
                     sha256: hash,
@@ -365,12 +403,12 @@ mod unix {
             if observed != expected.stamp || hash != expected.sha256 {
                 return Err(R::ContentChanged.into());
             }
-            staged.sync_all().map_err(unavailable)?;
+            sync(&staged, SyncPoint::StagedBytes)?;
             if unsafe { libc::fchmod(staged.as_raw_fd(), 0o400) } != 0 {
                 return Err(R::ContentUnavailable.into());
             }
-            staged.sync_all().map_err(unavailable)?;
-            objects.sync()?;
+            sync(&staged, SyncPoint::SealedBytes)?;
+            sync(&objects.0, SyncPoint::ObjectDirectory)?;
             Ok(Retained {
                 object_id: object_id.into(),
                 sha256: hash,

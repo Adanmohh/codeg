@@ -1,8 +1,13 @@
 //! Real temporary-file checks adapted from Apache upload_jail tests in NOTICE.
-use super::{common::*, files::Files, types::OperationReason, validation::MAX_OUTPUT_BYTES};
+use super::{
+    common::*,
+    files::{Files, SyncPoint},
+    types::OperationReason,
+    validation::MAX_OUTPUT_BYTES,
+};
 use std::{
     fs,
-    os::unix::fs::{symlink, PermissionsExt},
+    os::unix::fs::{symlink, MetadataExt, PermissionsExt},
 };
 
 #[test]
@@ -154,4 +159,109 @@ fn execution_assets_oversize_and_replaced_storage_parent_do_not_escape() {
         .stage(&admission, "ok.md", &found[0].observation, &id())
         .is_err());
     assert_eq!(fs::read_dir(outside).unwrap().count(), 0);
+}
+
+#[test]
+fn execution_assets_recovery_retries_file_and_directory_sync_before_success() {
+    for first_failure in [SyncPoint::SealedBytes, SyncPoint::ObjectDirectory] {
+        let temp = tempfile::TempDir::new().unwrap();
+        let files = Files::new(temp.path().into());
+        let admission = id();
+        let workspace = files.workspace(&admission).unwrap();
+        fs::write(workspace.join("brief.md"), b"Retain these exact bytes").unwrap();
+        let candidate = files.scan(&admission).unwrap().remove(0);
+        let object_id = id();
+        let object_path = temp
+            .path()
+            .join("business-execution/objects")
+            .join(&object_id);
+        let first = files.stage_with_test_sync(
+            &admission,
+            &candidate.relative,
+            &candidate.observation,
+            &object_id,
+            |file, point| {
+                if point == first_failure {
+                    return Err(OperationReason::ContentUnavailable.into());
+                }
+                file.sync_all()
+                    .map_err(|_| Error(OperationReason::ContentUnavailable))
+            },
+        );
+        assert!(matches!(
+            first,
+            Err(Error(OperationReason::ContentUnavailable))
+        ));
+        let inode = fs::metadata(&object_path).unwrap().ino();
+        assert_eq!(
+            fs::metadata(&object_path).unwrap().permissions().mode() & 0o777,
+            0o400
+        );
+        fs::remove_dir_all(workspace).unwrap();
+
+        // Even though the object is sealed and its hash matches, each retry
+        // must attempt durability again. Neither failure may return Retained.
+        for failed_retry in [SyncPoint::SealedBytes, SyncPoint::ObjectDirectory] {
+            let mut attempted = vec![];
+            let retry = files.stage_with_test_sync(
+                &admission,
+                &candidate.relative,
+                &candidate.observation,
+                &object_id,
+                |file, point| {
+                    attempted.push(point);
+                    if point == failed_retry {
+                        return Err(OperationReason::ContentUnavailable.into());
+                    }
+                    file.sync_all()
+                        .map_err(|_| Error(OperationReason::ContentUnavailable))
+                },
+            );
+            assert!(matches!(
+                retry,
+                Err(Error(OperationReason::ContentUnavailable))
+            ));
+            assert_eq!(attempted.first(), Some(&SyncPoint::SealedBytes));
+            assert_eq!(attempted.last(), Some(&failed_retry));
+            assert!(!attempted.contains(&SyncPoint::StagedBytes));
+            assert_eq!(fs::metadata(&object_path).unwrap().ino(), inode);
+            assert_eq!(fs::read(&object_path).unwrap(), b"Retain these exact bytes");
+        }
+
+        let mut synced = vec![];
+        let recovered = files
+            .stage_with_test_sync(
+                &admission,
+                &candidate.relative,
+                &candidate.observation,
+                &object_id,
+                |file, point| {
+                    file.sync_all()
+                        .map_err(|_| Error(OperationReason::ContentUnavailable))?;
+                    synced.push(point);
+                    Ok(())
+                },
+            )
+            .unwrap();
+        assert_eq!(
+            synced,
+            vec![SyncPoint::SealedBytes, SyncPoint::ObjectDirectory]
+        );
+        assert_eq!(recovered.object_id, object_id);
+        assert_eq!(recovered.sha256, candidate.observation.sha256);
+        assert_eq!(fs::metadata(&object_path).unwrap().ino(), inode);
+        assert_eq!(
+            fs::read_dir(object_path.parent().unwrap()).unwrap().count(),
+            1
+        );
+        // The production entry point also succeeds after real recovery sync.
+        files
+            .stage(
+                &admission,
+                &candidate.relative,
+                &candidate.observation,
+                &object_id,
+            )
+            .unwrap();
+    }
 }
