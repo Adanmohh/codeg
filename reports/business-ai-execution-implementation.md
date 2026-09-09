@@ -93,6 +93,10 @@ Commands so far: separate local docs/status/source reads, offline retrieval and
 
 ## First compiling product checkpoint
 
+Immutable product checkpoint: `6195d9daf` (full SHA in validation digests).
+The initial exact-file staging excluded ignored `.log` files; the immediately
+following evidence commit force-adds only those two owned logs and their digests.
+
 Implemented internal closed DTOs/validation and migration000014, registered only
 the module/migration. No HTTP/native handlers or runner actions exist at this
 checkpoint. Profiles remain backend discoveries, with no wire credential/command
