@@ -2,6 +2,17 @@
 
 ## Current integration and worker state
 
+**Storage write failure recovered with bounded root-cache cleanup.** After
+approvals reported117MiB free and a failed report write, root coordinated all Ops
+lanes and other active project owners. Only idle, untracked root
+`src-tauri/target/debug/incremental` was removed using Cargo1.98-grounded cache
+semantics. Measured physical free space increased about15.9GiB to17.5GiB; all six
+root/native-bundle executable hashes match. Worker targets, fixtures, source and
+evidence remain intact. [Recovery evidence](reports/storage-coordination-20260909.md).
+Small writes resume; tickets has the next single bounded existing-target build
+window after fixes, with fresh capacity checks. Approvals holds compilation until
+explicit release. No new target/export/native build or further cleanup is planned.
+
 **Two additional internal E1 handoff findings at3773a027 are open.** Root
 source-confirmed approvals' admission/receipt target mismatch and retained-file
 retry missing durability synchronization. Tickets owns private admission plus
@@ -17,7 +28,7 @@ cursor, preventing access to a later eligible session. Tickets owns the fix and
 bounded current-authority/foreign-scope regression cases; approvals continues
 source-only file/receipt review. [Finding and acceptance requirements](reports/business-ai-execution-pagination.md).
 No runtime reproduction is claimed yet. This later consumer is not accepted;
-the independent177 schema verdict remains valid. Compilation is still on hold.
+the independent177 schema verdict remains valid. Current build allocation is above.
 
 **New internal E1 checkpoint under independent source review:** product
 `3773a027a8d580bd9bac1808efdb718ae6f9e135`, report/log successor
@@ -29,7 +40,8 @@ Consumers are internal: no provider/process launch, public transport, task asset
 publication or full runtime acceptance. Approvals now reviews exact3773 source;
 its accepted11-case independent verdict below remains pinned to177.
 
-Both Cargo windows are closed. Tickets reports no active Cargo; root's subsequent
+Before the storage recovery above, both Cargo windows were closed. Tickets reported
+no active Cargo; root's subsequent
 df observes only2.5GiB available. Tickets and approvals have been instructed to
 continue source-only and coordinate capacity before any further compilation.
 No target cleanup, large archive copy, native build or fixture/browser change is

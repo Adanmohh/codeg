@@ -1,0 +1,17 @@
+{
+  "removedCache": "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/incremental",
+  "allocatedBytesReportedByDu": 26739556352,
+  "physicalFreeBefore": 1676689408,
+  "physicalFreeAfter": 18746576896,
+  "physicalFreeDelta": 17069887488,
+  "protectedArtifactSha256": {
+    "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/codeg": "a268312a00aa8c5a769f61293ca05191a40334c4f39cb4c5a7ccd33a2dee4314",
+    "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/codeg-server": "7e94301b8aefae53b15990405675b5ea84ab21bbec678bfe021aac1a665f230a",
+    "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/codeg-mcp": "9c53291347445a6ca80f057b11c59955013998f30bc3a65fa31c3e74bae7b5f5",
+    "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app/Contents/MacOS/codeg-mcp": "9c53291347445a6ca80f057b11c59955013998f30bc3a65fa31c3e74bae7b5f5",
+    "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app/Contents/MacOS/codeg": "a268312a00aa8c5a769f61293ca05191a40334c4f39cb4c5a7ccd33a2dee4314",
+    "/Users/mohamedadan/projects/ops-desk/src-tauri/target/debug/bundle/macos/Hafidh Ops Desk.app/Contents/MacOS/codeg-server": "7e94301b8aefae53b15990405675b5ea84ab21bbec678bfe021aac1a665f230a"
+  },
+  "protectedArtifactsUnchanged": true,
+  "scope": "Only idle untracked root incremental compiler cache; worker targets/fixtures/source untouched"
+}
