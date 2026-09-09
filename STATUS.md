@@ -2,6 +2,17 @@
 
 ## Current integration and worker state
 
+**Owner priority correction:** the current business preview has no usable AI chat,
+agent session or terminal. Existing engineering capabilities have not been joined
+to the business workspace; tasks/Sources acceptance alone does not deliver the
+requested product. Root acknowledged that supporting infrastructure displaced
+this central requirement. Existing workers are directed to finish bounded current
+evidence, then prioritize a concrete existing-engine AI business flow in shared
+tabs/panes: rebrand owns component integration, tickets the execution contract,
+approvals the authority review. Tenant resource/process isolation remains required;
+disabled placeholders or host-token fallback do not count as delivery. New-tenant
+legacy entrustment expansion follows this core AI work. No AI completion is claimed.
+
 **Unified browser acceptance started:**4354 handoffea8cf9c0, UI1974d97f,
 PID81173. Root verified all27 HTML/JS/CSS entries against disk and actual HTTP,
 then signed in through the real form in new CLI session `root-intake-unified`.
