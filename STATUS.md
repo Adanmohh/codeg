@@ -2,6 +2,17 @@
 
 ## Current integration and worker state
 
+**Independent R4 correction source verdict imported; execution still held.**
+Reviewer `76956d6c77d35891ddfc8608b62e3cdbd147793a` finds9e58 addresses the race
+with no additional blocking source issue. Root read the full report/ledger,
+matched three artifact hashes and14 Git source entries, and verified historical
+evidence/product paths unchanged. Both14 files remain preserved;11 output tests
+are planned, not passes. [Correction source verdict](reports/business-ai-execution-review/9e58f4e6/review.md).
+R4 remains open pending compilation/execution. Fresh root/Farha observations are
+about9.28 GiB free; Farha reports all local browser/build/server commands closed
+and no new large allocation planned. The10 GiB preflight hold remains in force;
+no active build reservation, cleanup or hook restoration is planned.
+
 **R4 correction published; source re-review assigned, tests pending.** Product
 `9e58f4e6a41569a96d79fc2af963acec6e5c5aa6` adds000015 scan state and atomic
 counter/retention, with11 planned output cases. Root read the migration and
