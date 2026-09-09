@@ -1,0 +1,175 @@
+{
+  "fixtureSource": "7ed0dd0c28f5065f1c37983f366cc6dcb0727e08",
+  "productSource": "e55f3bfd1f069d6d6111370223993596b19ecb9b",
+  "namespace": "root",
+  "startedAt": "2026-09-09T09:31:05.185Z",
+  "events": [
+    {
+      "name": "initial root binding list",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "manager cannot configure provider",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "name": "member cannot act as platform",
+      "status": 401,
+      "expected": 401
+    },
+    {
+      "name": "owner creates scoped provider",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "new provider has zero grants",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "setup does not grant source read",
+      "status": 404,
+      "expected": 404
+    },
+    {
+      "name": "explicit owner source grant",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "explicit viewer source grant",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "enable explicitly granted provider",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "granted viewer cannot import",
+      "status": 403,
+      "expected": 403
+    },
+    {
+      "name": "start authorized import",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "advance authorized import",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "advance authorized import",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "advance authorized import",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "advance authorized import",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "root source list",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "owner fresh source",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "explicitly granted viewer may read",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "source candidates",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "prepare exact public draft",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "root tenant suspended",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "suspended tenant cannot disclose source",
+      "status": 401,
+      "expected": 401
+    },
+    {
+      "name": "root tenant active",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "fresh login does not renew source observation",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "old preparation withheld after resume",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "start authorized import",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "advance authorized import",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "explicit refresh renews source",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "refresh alone does not renew preview",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "explicitly rebase exact reviewed task",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "publish reviewed task",
+      "status": 200,
+      "expected": 200
+    },
+    {
+      "name": "lost response replay yields same task",
+      "status": 200,
+      "expected": 200
+    }
+  ],
+  "scope": "Real loopback HTTP against protected synthetic fixture; no browser/native/live-provider claim",
+  "bindingId": "ef913b31-4861-44ab-95ac-5b2310132f49",
+  "sourceId": "1f4361bc-8c63-4ddf-b117-5274937495c4",
+  "candidateId": "50cdc08e-ca8e-47cf-af31-3c2209308b76",
+  "taskId": "2d79fdee-defa-4f8f-87e2-e3227dc20bae",
+  "outcome": "pass",
+  "finishedAt": "2026-09-09T09:31:05.319Z"
+}

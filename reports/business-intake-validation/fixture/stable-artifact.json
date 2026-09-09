@@ -1,0 +1,10 @@
+{
+  "sourceCommit": "7ed0dd0c28f5065f1c37983f366cc6dcb0727e08",
+  "productionCommit": "e55f3bfd1f069d6d6111370223993596b19ecb9b",
+  "originalBinary": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target/debug/deps/codeg_lib-b542e2757758a7bb",
+  "binary": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/artifacts/7ed0dd0c28f5065f1c37983f366cc6dcb0727e08/intake-fixture",
+  "binarySha256": "313d987c2c5eb159bef700e19b9dffc2f942385e76e3b9a9612cf78ad08866ea",
+  "bytes": 305495032,
+  "fixtureSourceSha256": "b37a13cfb68001fc644e5d8ddfdb340c9718c751cf1dce72a57b54a42e1cc52c",
+  "copiedExecutableCount": 1
+}

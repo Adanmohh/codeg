@@ -1,0 +1,489 @@
+    Checking tokio v1.49.0
+   Compiling serde_json v1.0.149
+   Compiling bindgen v0.69.5
+   Compiling pest_generator v2.8.6
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+    Checking rust-multipart-rfc7578_2 v0.8.0
+    Checking assert-json-diff v2.0.2
+    Checking reserve-port v2.4.0
+    Checking temp-env v0.3.6
+   Compiling pest_derive v2.8.6
+   Compiling rmcp-macros v1.3.0
+    Checking insta v1.47.2
+    Checking tokio-util v0.7.18
+    Checking tokio-stream v0.1.18
+    Checking tower v0.5.3
+    Checking tokio-native-tls v0.3.1
+    Checking async-compression v0.4.42
+    Checking tokio-tungstenite v0.28.0
+    Checking sea-orm-cli v1.1.19
+    Checking tokio-tungstenite v0.26.2
+   Compiling kill_tree v0.2.4
+    Checking sqlx-core v0.8.6
+    Checking h2 v0.4.13
+    Checking rmcp v1.3.0
+    Checking tower-http v0.6.8
+    Checking async_zip v0.0.18
+    Checking sqlx-sqlite v0.8.6
+    Checking hyper v1.8.1
+    Checking sqlx v0.8.6
+    Checking sea-query-binder v0.7.0
+    Checking sea-orm v1.1.19
+    Checking sea-schema v0.16.2
+    Checking hyper-util v0.1.20
+    Checking axum v0.8.8
+    Checking hyper-tls v0.6.0
+    Checking reqwest v0.12.28
+    Checking sea-orm-migration v1.1.19
+    Checking sacp v11.0.0
+    Checking axum-test v17.3.0
+    Checking sacp-tokio v11.0.0 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/vendor/sacp-tokio)
+error[E0432]: unresolved import `codeg_lib::acp::delegation::spawner::mock`
+   --> tests/delegation_e2e_uds.rs:24:43
+    |
+ 24 | use codeg_lib::acp::delegation::spawner::{mock::MockSpawner, ConnectionSpawner};
+    |                                           ^^^^ could not find `mock` in `spawner`
+    |
+note: found an item that was configured out
+   --> src/acp/delegation/spawner.rs:176:9
+    |
+175 | #[cfg(any(test, feature = "test-utils"))]
+    |          ------------------------------ the item is gated here
+176 | pub mod mock {
+    |         ^^^^
+
+error[E0432]: unresolved import `codeg_lib::db::test_helpers`
+ --> tests/delegation_columns.rs:6:20
+  |
+6 | use codeg_lib::db::test_helpers::{fresh_in_memory_db, seed_folder};
+  |                    ^^^^^^^^^^^^ could not find `test_helpers` in `db`
+  |
+note: found an item that was configured out
+ --> src/db/mod.rs:7:9
+  |
+6 | #[cfg(any(test, feature = "test-utils"))]
+  |          ------------------------------ the item is gated here
+7 | pub mod test_helpers;
+  |         ^^^^^^^^^^^^
+
+error[E0432]: unresolved import `codeg_lib::db::test_helpers`
+  --> tests/office_watch_proxy.rs:16:20
+   |
+16 | use codeg_lib::db::test_helpers::fresh_in_memory_db;
+   |                    ^^^^^^^^^^^^ could not find `test_helpers` in `db`
+   |
+note: found an item that was configured out
+  --> src/db/mod.rs:7:9
+   |
+ 6 | #[cfg(any(test, feature = "test-utils"))]
+   |          ------------------------------ the item is gated here
+ 7 | pub mod test_helpers;
+   |         ^^^^^^^^^^^^
+
+error[E0432]: unresolved import `codeg_lib::db::test_helpers`
+  --> tests/api_integration.rs:22:20
+   |
+22 | use codeg_lib::db::test_helpers::fresh_in_memory_db;
+   |                    ^^^^^^^^^^^^ could not find `test_helpers` in `db`
+   |
+note: found an item that was configured out
+  --> src/db/mod.rs:7:9
+   |
+ 6 | #[cfg(any(test, feature = "test-utils"))]
+   |          ------------------------------ the item is gated here
+ 7 | pub mod test_helpers;
+   |         ^^^^^^^^^^^^
+
+error[E0432]: unresolved import `codeg_lib::db::test_helpers`
+  --> tests/backup_api.rs:13:20
+   |
+13 | use codeg_lib::db::test_helpers::fresh_disk_db;
+   |                    ^^^^^^^^^^^^ could not find `test_helpers` in `db`
+   |
+note: found an item that was configured out
+  --> src/db/mod.rs:7:9
+   |
+ 6 | #[cfg(any(test, feature = "test-utils"))]
+   |          ------------------------------ the item is gated here
+ 7 | pub mod test_helpers;
+   |         ^^^^^^^^^^^^
+
+error[E0432]: unresolved import `codeg_lib::db::test_helpers`
+ --> tests/sanity.rs:8:20
+  |
+8 | use codeg_lib::db::test_helpers::fresh_in_memory_db;
+  |                    ^^^^^^^^^^^^ could not find `test_helpers` in `db`
+  |
+note: found an item that was configured out
+ --> src/db/mod.rs:7:9
+  |
+6 | #[cfg(any(test, feature = "test-utils"))]
+  |          ------------------------------ the item is gated here
+7 | pub mod test_helpers;
+  |         ^^^^^^^^^^^^
+
+error[E0432]: unresolved import `codeg_lib::db::test_helpers`
+  --> tests/ws_attach.rs:16:20
+   |
+16 | use codeg_lib::db::test_helpers::fresh_in_memory_db;
+   |                    ^^^^^^^^^^^^ could not find `test_helpers` in `db`
+   |
+note: found an item that was configured out
+  --> src/db/mod.rs:7:9
+   |
+ 6 | #[cfg(any(test, feature = "test-utils"))]
+   |          ------------------------------ the item is gated here
+ 7 | pub mod test_helpers;
+   |         ^^^^^^^^^^^^
+
+error[E0433]: cannot find `test_helpers` in `db`
+  --> tests/delegation_columns.rs:64:24
+   |
+64 |         codeg_lib::db::test_helpers::seed_conversation(&db, folder_id, AgentType::ClaudeCode).await;
+   |                        ^^^^^^^^^^^^ could not find `test_helpers` in `db`
+   |
+note: found an item that was configured out
+  --> src/db/mod.rs:7:9
+   |
+ 6 | #[cfg(any(test, feature = "test-utils"))]
+   |          ------------------------------ the item is gated here
+ 7 | pub mod test_helpers;
+   |         ^^^^^^^^^^^^
+
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::antigravity::AntigravityParser` in the current scope
+   --> tests/antigravity_trajectory.rs:44:37
+    |
+ 44 |     let parser = AntigravityParser::with_base_dir(fixture_dir());
+    |                                     ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::antigravity::AntigravityParser`
+    |
+note: if you're trying to build a new `codeg_lib::parsers::antigravity::AntigravityParser`, consider using `codeg_lib::parsers::antigravity::AntigravityParser::new` which returns `codeg_lib::parsers::antigravity::AntigravityParser`
+   --> src/parsers/antigravity.rs:492:5
+    |
+492 |     pub fn new() -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::codex::CodexParser` in the current scope
+  --> tests/codex_corpus_differential.rs:83:35
+   |
+83 |         let parser = CodexParser::with_base_dir(dir.clone());
+   |                                   ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::codex::CodexParser`
+   |
+note: if you're trying to build a new `codeg_lib::parsers::codex::CodexParser`, consider using `codeg_lib::parsers::codex::CodexParser::new` which returns `codeg_lib::parsers::codex::CodexParser`
+  --> src/parsers/codex.rs:56:5
+   |
+56 |     pub fn new() -> Self {
+   |     ^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function `insert_known_port_for_test` in module `codeg_lib::office_watch`
+   --> tests/office_watch_proxy.rs:100:30
+    |
+100 |     codeg_lib::office_watch::insert_known_port_for_test(port, TEST_CAP);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `codeg_lib::office_watch`
+    |
+note: found an item that was configured out
+   --> src/office_watch/mod.rs:633:8
+    |
+632 | #[cfg(feature = "test-utils")]
+    |       ---------------------- the item is gated behind the `test-utils` feature
+633 | pub fn insert_known_port_for_test(port: u16, cap: &str) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function `remove_known_port_for_test` in module `codeg_lib::office_watch`
+   --> tests/office_watch_proxy.rs:104:30
+    |
+104 |     codeg_lib::office_watch::remove_known_port_for_test(port);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `codeg_lib::office_watch`
+    |
+note: found an item that was configured out
+   --> src/office_watch/mod.rs:654:8
+    |
+653 | #[cfg(feature = "test-utils")]
+    |       ---------------------- the item is gated behind the `test-utils` feature
+654 | pub fn remove_known_port_for_test(port: u16) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function `insert_known_port_for_test` in module `codeg_lib::office_watch`
+   --> tests/office_watch_proxy.rs:122:30
+    |
+122 |     codeg_lib::office_watch::insert_known_port_for_test(port, TEST_CAP);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `codeg_lib::office_watch`
+    |
+note: found an item that was configured out
+   --> src/office_watch/mod.rs:633:8
+    |
+632 | #[cfg(feature = "test-utils")]
+    |       ---------------------- the item is gated behind the `test-utils` feature
+633 | pub fn insert_known_port_for_test(port: u16, cap: &str) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function `remove_known_port_for_test` in module `codeg_lib::office_watch`
+   --> tests/office_watch_proxy.rs:130:30
+    |
+130 |     codeg_lib::office_watch::remove_known_port_for_test(port);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `codeg_lib::office_watch`
+    |
+note: found an item that was configured out
+   --> src/office_watch/mod.rs:654:8
+    |
+653 | #[cfg(feature = "test-utils")]
+    |       ---------------------- the item is gated behind the `test-utils` feature
+654 | pub fn remove_known_port_for_test(port: u16) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function `insert_known_port_for_test` in module `codeg_lib::office_watch`
+   --> tests/office_watch_proxy.rs:155:30
+    |
+155 |     codeg_lib::office_watch::insert_known_port_for_test(port, TEST_CAP);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `codeg_lib::office_watch`
+    |
+note: found an item that was configured out
+   --> src/office_watch/mod.rs:633:8
+    |
+632 | #[cfg(feature = "test-utils")]
+    |       ---------------------- the item is gated behind the `test-utils` feature
+633 | pub fn insert_known_port_for_test(port: u16, cap: &str) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function `remove_known_port_for_test` in module `codeg_lib::office_watch`
+   --> tests/office_watch_proxy.rs:162:30
+    |
+162 |     codeg_lib::office_watch::remove_known_port_for_test(port);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `codeg_lib::office_watch`
+    |
+note: found an item that was configured out
+   --> src/office_watch/mod.rs:654:8
+    |
+653 | #[cfg(feature = "test-utils")]
+    |       ---------------------- the item is gated behind the `test-utils` feature
+654 | pub fn remove_known_port_for_test(port: u16) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function `insert_known_port_for_test` in module `codeg_lib::office_watch`
+   --> tests/office_watch_proxy.rs:175:30
+    |
+175 |     codeg_lib::office_watch::insert_known_port_for_test(port, TEST_CAP);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `codeg_lib::office_watch`
+    |
+note: found an item that was configured out
+   --> src/office_watch/mod.rs:633:8
+    |
+632 | #[cfg(feature = "test-utils")]
+    |       ---------------------- the item is gated behind the `test-utils` feature
+633 | pub fn insert_known_port_for_test(port: u16, cap: &str) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0425]: cannot find function `remove_known_port_for_test` in module `codeg_lib::office_watch`
+   --> tests/office_watch_proxy.rs:181:30
+    |
+181 |     codeg_lib::office_watch::remove_known_port_for_test(port);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in `codeg_lib::office_watch`
+    |
+note: found an item that was configured out
+   --> src/office_watch/mod.rs:654:8
+    |
+653 | #[cfg(feature = "test-utils")]
+    |       ---------------------- the item is gated behind the `test-utils` feature
+654 | pub fn remove_known_port_for_test(port: u16) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::claude::ClaudeParser` in the current scope
+   --> tests/parsers_snapshot.rs:72:32
+    |
+ 72 |     let parser = ClaudeParser::with_base_dir(base);
+    |                                ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::claude::ClaudeParser`
+    |
+note: if you're trying to build a new `codeg_lib::parsers::claude::ClaudeParser`, consider using `codeg_lib::parsers::claude::ClaudeParser::new` which returns `codeg_lib::parsers::claude::ClaudeParser`
+   --> src/parsers/claude.rs:900:5
+    |
+900 |     pub fn new() -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0432, E0433.
+For more information about an error, try `rustc --explain E0432`.
+error: could not compile `codeg` (test "delegation_columns") due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `codeg` (test "codex_corpus_differential") due to 1 previous error
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::codex::CodexParser` in the current scope
+   --> tests/parsers_snapshot.rs:133:31
+    |
+133 |     let parser = CodexParser::with_base_dir(base);
+    |                               ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::codex::CodexParser`
+    |
+note: if you're trying to build a new `codeg_lib::parsers::codex::CodexParser`, consider using `codeg_lib::parsers::codex::CodexParser::new` which returns `codeg_lib::parsers::codex::CodexParser`
+   --> src/parsers/codex.rs:56:5
+    |
+ 56 |     pub fn new() -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no associated function or constant named `new_for_test` found for struct `codeg_lib::app_state::AppState` in the current scope
+  --> tests/api_integration.rs:34:36
+   |
+34 |     let state = Arc::new(AppState::new_for_test(db, data_dir.path().to_path_buf()));
+   |                                    ^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::app_state::AppState`
+
+error[E0599]: no associated function or constant named `new_for_test` found for struct `codeg_lib::app_state::AppState` in the current scope
+  --> tests/ws_attach.rs:40:36
+   |
+40 |     let state = Arc::new(AppState::new_for_test(db, data_dir.path().to_path_buf()));
+   |                                    ^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::app_state::AppState`
+
+error[E0599]: no associated function or constant named `new_for_test` found for struct `codeg_lib::app_state::AppState` in the current scope
+  --> tests/backup_api.rs:34:36
+   |
+34 |     let state = Arc::new(AppState::new_for_test(db, data_dir.path().to_path_buf()));
+   |                                    ^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::app_state::AppState`
+
+error[E0599]: no variant, associated function, or constant named `test_web_only` found for enum `codeg_lib::web::event_bridge::EventEmitter` in the current scope
+   --> tests/sanity.rs:23:34
+    |
+ 23 |     let _emitter = EventEmitter::test_web_only(broadcaster);
+    |                                  ^^^^^^^^^^^^^ variant, associated function, or constant not found in `codeg_lib::web::event_bridge::EventEmitter`
+    |
+note: if you're trying to build a new `codeg_lib::web::event_bridge::EventEmitter`, consider using `codeg_lib::web::event_bridge::EventEmitter::web_only` which returns `codeg_lib::web::event_bridge::EventEmitter`
+   --> src/web/event_bridge.rs:109:5
+    |
+109 |     pub fn web_only(broadcaster: Arc<WebEventBroadcaster>, bus: Arc<InternalEventBus>) -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: there is an associated function `web_only` with a similar name
+   --> src/web/event_bridge.rs:109:5
+    |
+109 |     pub fn web_only(broadcaster: Arc<WebEventBroadcaster>, bus: Arc<InternalEventBus>) -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::gemini::GeminiParser` in the current scope
+   --> tests/parsers_snapshot.rs:193:32
+    |
+193 |     let parser = GeminiParser::with_base_dir(base);
+    |                                ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::gemini::GeminiParser`
+    |
+note: if you're trying to build a new `codeg_lib::parsers::gemini::GeminiParser`, consider using `codeg_lib::parsers::gemini::GeminiParser::new` which returns `codeg_lib::parsers::gemini::GeminiParser`
+   --> src/parsers/gemini.rs:25:5
+    |
+ 25 |     pub fn new() -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0432`.
+error[E0599]: no associated function or constant named `new_for_test` found for struct `codeg_lib::app_state::AppState` in the current scope
+   --> tests/api_integration.rs:257:36
+    |
+257 |     let state = Arc::new(AppState::new_for_test(db, data_dir.path().to_path_buf()));
+    |                                    ^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::app_state::AppState`
+
+Some errors have detailed explanations: E0432, E0599.
+error: could not compile `codeg` (test "delegation_e2e_uds") due to 1 previous error
+error: could not compile `codeg` (test "antigravity_trajectory") due to 1 previous error
+error: could not compile `codeg` (test "sanity") due to 2 previous errors
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::openclaw::OpenClawParser` in the current scope
+   --> tests/parsers_snapshot.rs:256:34
+    |
+256 |     let parser = OpenClawParser::with_base_dir(base);
+    |                                  ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::openclaw::OpenClawParser`
+    |
+note: if you're trying to build a new `codeg_lib::parsers::openclaw::OpenClawParser`, consider using `codeg_lib::parsers::openclaw::OpenClawParser::new` which returns `codeg_lib::parsers::openclaw::OpenClawParser`
+   --> src/parsers/openclaw.rs:352:5
+    |
+352 |     pub fn new() -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no associated function or constant named `new_for_test` found for struct `codeg_lib::app_state::AppState` in the current scope
+  --> tests/office_watch_proxy.rs:27:36
+   |
+27 |     let state = Arc::new(AppState::new_for_test(db, data_dir.path().to_path_buf()));
+   |                                    ^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::app_state::AppState`
+
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::cline::ClineParser` in the current scope
+   --> tests/parsers_snapshot.rs:329:31
+    |
+329 |     let parser = ClineParser::with_base_dir(base);
+    |                               ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::cline::ClineParser`
+    |
+note: if you're trying to build a new `codeg_lib::parsers::cline::ClineParser`, consider using `codeg_lib::parsers::cline::ClineParser::new` which returns `codeg_lib::parsers::cline::ClineParser`
+   --> src/parsers/cline.rs:121:5
+    |
+121 |     pub fn new() -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::opencode::OpenCodeParser` in the current scope
+   --> tests/parsers_snapshot.rs:474:34
+    |
+474 |     let parser = OpenCodeParser::with_base_dir(base);
+    |                                  ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::opencode::OpenCodeParser`
+    |
+note: if you're trying to build a new `codeg_lib::parsers::opencode::OpenCodeParser`, consider using `codeg_lib::parsers::opencode::OpenCodeParser::new` which returns `codeg_lib::parsers::opencode::OpenCodeParser`
+   --> src/parsers/opencode.rs:26:5
+    |
+ 26 |     pub fn new() -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `insert_test_connection` found for struct `codeg_lib::acp::manager::ConnectionManager` in the current scope
+    --> tests/ws_attach.rs:157:10
+     |
+ 155 | /     state
+ 156 | |         .connection_manager
+ 157 | |         .insert_test_connection(conn_id, AgentType::ClaudeCode, None, state.emitter.clone())
+     | |_________-^^^^^^^^^^^^^^^^^^^^^^
+     |
+help: there is a method `list_connections` with a similar name, but with different arguments
+    --> src/acp/manager.rs:2561:5
+     |
+2561 |     pub async fn list_connections(&self) -> Vec<ConnectionInfo> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: could not compile `codeg` (test "backup_api") due to 2 previous errors
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::opencode::OpenCodeParser` in the current scope
+   --> tests/parsers_snapshot.rs:764:34
+    |
+764 |     let parser = OpenCodeParser::with_base_dir(base);
+    |                                  ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::opencode::OpenCodeParser`
+    |
+note: if you're trying to build a new `codeg_lib::parsers::opencode::OpenCodeParser`, consider using `codeg_lib::parsers::opencode::OpenCodeParser::new` which returns `codeg_lib::parsers::opencode::OpenCodeParser`
+   --> src/parsers/opencode.rs:26:5
+    |
+ 26 |     pub fn new() -> Self {
+    |     ^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::hermes::HermesParser` in the current scope
+    --> tests/parsers_snapshot.rs:1022:32
+     |
+1022 |     let parser = HermesParser::with_base_dir(base);
+     |                                ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::hermes::HermesParser`
+     |
+note: if you're trying to build a new `codeg_lib::parsers::hermes::HermesParser`, consider using `codeg_lib::parsers::hermes::HermesParser::new` which returns `codeg_lib::parsers::hermes::HermesParser`
+    --> src/parsers/hermes.rs:41:5
+     |
+  41 |     pub fn new() -> Self {
+     |     ^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `insert_test_connection` found for struct `codeg_lib::acp::manager::ConnectionManager` in the current scope
+    --> tests/ws_attach.rs:223:10
+     |
+ 221 | /     state
+ 222 | |         .connection_manager
+ 223 | |         .insert_test_connection(conn_id, AgentType::ClaudeCode, None, state.emitter.clone())
+     | |_________-^^^^^^^^^^^^^^^^^^^^^^
+     |
+help: there is a method `list_connections` with a similar name, but with different arguments
+    --> src/acp/manager.rs:2561:5
+     |
+2561 |     pub async fn list_connections(&self) -> Vec<ConnectionInfo> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0425, E0432, E0599.
+For more information about an error, try `rustc --explain E0425`.
+error: could not compile `codeg` (test "office_watch_proxy") due to 10 previous errors
+error[E0599]: no associated function or constant named `with_base_dir` found for struct `codeg_lib::parsers::kimi_code::KimiCodeParser` in the current scope
+    --> tests/parsers_snapshot.rs:1104:34
+     |
+1104 |     let parser = KimiCodeParser::with_base_dir(base);
+     |                                  ^^^^^^^^^^^^^ associated function or constant not found in `codeg_lib::parsers::kimi_code::KimiCodeParser`
+     |
+note: if you're trying to build a new `codeg_lib::parsers::kimi_code::KimiCodeParser`, consider using `codeg_lib::parsers::kimi_code::KimiCodeParser::new` which returns `codeg_lib::parsers::kimi_code::KimiCodeParser`
+    --> src/parsers/kimi_code.rs:84:5
+     |
+  84 |     pub fn new() -> Self {
+     |     ^^^^^^^^^^^^^^^^^^^^
+
+error: could not compile `codeg` (test "parsers_snapshot") due to 9 previous errors
+error: could not compile `codeg` (test "ws_attach") due to 4 previous errors
+error: could not compile `codeg` (test "api_integration") due to 3 previous errors

@@ -1,0 +1,114 @@
+{
+  "artifact": {
+    "sourceCommit": "7ed0dd0c28f5065f1c37983f366cc6dcb0727e08",
+    "productionCommit": "e55f3bfd1f069d6d6111370223993596b19ecb9b",
+    "originalBinary": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target/debug/deps/codeg_lib-b542e2757758a7bb",
+    "binary": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/artifacts/7ed0dd0c28f5065f1c37983f366cc6dcb0727e08/intake-fixture",
+    "binarySha256": "313d987c2c5eb159bef700e19b9dffc2f942385e76e3b9a9612cf78ad08866ea",
+    "bytes": 305495032,
+    "fixtureSourceSha256": "b37a13cfb68001fc644e5d8ddfdb340c9718c751cf1dce72a57b54a42e1cc52c",
+    "copiedExecutableCount": 1
+  },
+  "metadata": {
+    "backend": "http://127.0.0.1:4351",
+    "binary": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/artifacts/7ed0dd0c28f5065f1c37983f366cc6dcb0727e08/intake-fixture",
+    "database": "source.db",
+    "directory": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8",
+    "fixtureSourceSha256": "b37a13cfb68001fc644e5d8ddfdb340c9718c751cf1dce72a57b54a42e1cc52c",
+    "initialProviderReads": 0,
+    "initialSourceBindings": 0,
+    "initialSourceGrants": 0,
+    "namespaces": {
+      "review": {
+        "credentialFile": "review-credentials.json",
+        "linkTarget": "4393d980-2fd1-450a-9519-74309f1ef38d",
+        "organizationId": "c3c1e0be-0ea1-4148-8b2c-d57f69e899d2",
+        "ownerMemberId": "e900cddd-77a7-4533-a61f-3a87c652ceaf"
+      },
+      "root": {
+        "credentialFile": "root-credentials.json",
+        "linkTarget": "22edab65-ac1a-4ac2-9a26-440a8e9900aa",
+        "organizationId": "cf614ba3-1f65-43d7-b9a5-957f63c396ca",
+        "ownerMemberId": "5f4f1630-ab88-4aca-b0de-076dc7da8d82"
+      },
+      "ui": {
+        "credentialFile": "ui-credentials.json",
+        "linkTarget": "bbf2436d-e84c-480b-91e6-bfd321cc07e7",
+        "organizationId": "eadd9e32-3d79-4230-b7cc-fb56d6c6edd8",
+        "ownerMemberId": "f2a23f60-bc4c-428b-a0aa-c90ebf839bbe"
+      },
+      "worker": {
+        "credentialFile": "worker-credentials.json",
+        "linkTarget": "40c7a91d-3f60-4d83-97f0-3c4f38e43ece",
+        "organizationId": "244d2e4f-f8d5-42c8-b292-6be683eb39cf",
+        "ownerMemberId": "edf879e9-cf24-488f-ac2d-07928b8d646d"
+      }
+    },
+    "package": "0.30.4",
+    "pid": 66200,
+    "synthetic": true,
+    "tenantWindowAvailable": false,
+    "upstream": "http://127.0.0.1:4352/graphql"
+  },
+  "health": {
+    "backendPort": 4351,
+    "browserOrigins": [
+      "http://127.0.0.1:4354",
+      "http://localhost:4354",
+      "http://127.0.0.1:4351"
+    ],
+    "counts": {
+      "apiAllowed": 25,
+      "apiBlocked": 0,
+      "detail": 0,
+      "list": 0,
+      "secretRejected": 0,
+      "upstreamRejected": 0,
+      "user": 0
+    },
+    "engineStarted": false,
+    "namespaceNames": [
+      "ui",
+      "root",
+      "review",
+      "worker"
+    ],
+    "pid": 66200,
+    "readerEndpoint": "http://127.0.0.1:4352/graphql",
+    "scenarios": {
+      "review": "fresh",
+      "root": "fresh",
+      "ui": "fresh",
+      "worker": "fresh"
+    },
+    "secretStore": "injected-memory-only",
+    "synthetic": true,
+    "tenantWindowAvailable": false,
+    "upstreamPort": 4352
+  },
+  "credentialFiles": [
+    {
+      "namespace": "ui",
+      "path": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/ui-credentials.json",
+      "mode": "0o600"
+    },
+    {
+      "namespace": "root",
+      "path": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/root-credentials.json",
+      "mode": "0o600"
+    },
+    {
+      "namespace": "review",
+      "path": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/review-credentials.json",
+      "mode": "0o600"
+    },
+    {
+      "namespace": "worker",
+      "path": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/worker-credentials.json",
+      "mode": "0o600"
+    }
+  ],
+  "ownerControlsFile": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-fixtures/unified-YQmRz8/owner-controls.json",
+  "binaryAfterStartSha256": "313d987c2c5eb159bef700e19b9dffc2f942385e76e3b9a9612cf78ad08866ea",
+  "lifetime": "Stable until tickets coordinates stop after all consumers release; no automatic reset."
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --locked --offline --no-default-features --lib --tests -- -D warnings",
+    "exit": 101,
+    "note": "Command omitted test-utils required by existing external integration tests; no product fix."
+  },
+  {
+    "command": "cargo clippy --manifest-path src-tauri/Cargo.toml --locked --offline --no-default-features --lib --tests --features test-utils -- -D warnings",
+    "exit": 0,
+    "duration": "1m32s"
+  }
+]

@@ -2,6 +2,23 @@
 
 ## Current integration and worker state
 
+**Unified fixture running:** handoff1042a0b7, fixture7ed0dd0c, producte55f3bfd;
+PID66200 serves4351/4352. Root verified15 evidence hashes, the305495032-byte
+stable executable313d987c and fixture source hash, then ran32 successful real
+HTTP checks in the root tenant. Setup/grants/viewer restrictions, actual tenant
+suspend/resume, stale source/preview withholding, explicit rebase, exact reviewed
+task publication and replay passed. Root tenant is active; other namespaces were
+not mutated. First harness plain-text401 parsing failure is retained and corrected.
+See [root acceptance](reports/business-intake-root-acceptance.md) for commands,
+source pins, actual results and limits. Rebrand has the single4354 export window;
+protected browser/IUI-1 and Design Studio acceptance remain pending.
+
+**Remaining legacy scope:** tenant-owned Fireflies is ready for the unified checks.
+Original-operator email/Hafidh projections remain implemented, but new-tenant host
+resource entrustment is still a separate pending PlatformContext/audit/epoch seam.
+No tenant owner may select arbitrary host inboxes/products; this is not counted
+as completed merely because the Fireflies/epoch gates pass.
+
 Root read the current tickets fixture recipe: one fresh file DB, four isolated
 tester namespaces, zero initial bindings/grants/provider reads, private0600
 credential files, synthetic-only reader/store and explicit route/origin guard.

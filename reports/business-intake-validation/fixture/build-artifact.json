@@ -1,0 +1,42 @@
+[
+  {
+    "reason": "compiler-artifact",
+    "package_id": "path+file:///Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri#codeg@0.30.4",
+    "manifest_path": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/Cargo.toml",
+    "target": {
+      "kind": [
+        "staticlib",
+        "cdylib",
+        "rlib"
+      ],
+      "crate_types": [
+        "staticlib",
+        "cdylib",
+        "rlib"
+      ],
+      "name": "codeg_lib",
+      "src_path": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/src/lib.rs",
+      "edition": "2021",
+      "doc": true,
+      "doctest": true,
+      "test": true
+    },
+    "profile": {
+      "opt_level": "0",
+      "debuginfo": 2,
+      "debug_assertions": true,
+      "overflow_checks": true,
+      "test": true
+    },
+    "features": [],
+    "filenames": [
+      "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target/debug/deps/codeg_lib-b542e2757758a7bb"
+    ],
+    "executable": "/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/.docs/business-intake-tenancy-target/debug/deps/codeg_lib-b542e2757758a7bb",
+    "fresh": false
+  },
+  {
+    "reason": "build-finished",
+    "success": true
+  }
+]
