@@ -1,8 +1,10 @@
 # Independent B and tenancy integration review
 
-Review is active. **Eight integrated backend tests pass at949adb02; the IUI-1
-component correction passes atdc14/a58, with actual protected browser closure
-still pending. No new backend blocker was found in this bounded checkpoint.** Own branch
+**The bounded B review found no new blocker. The real unified API pass completed
+62 requests/278 assertions, and IUI-1 is closed by the actual protected browser
+flow at UI1974d97f/backende55f3bfd.** Eight integrated backend tests at949adb02
+and the earlier16 B core tests remain separately recorded. This is not live
+provider, full business-AI, native tenant-window or final Design acceptance. Own branch
 `review/business-integration` starts at accepted main
 `be46d0544f5fc5f33d3785ac5a04c5d1fd2c1935`. The completed
 `feat/business-tenancy` branch remains pushed at
@@ -62,7 +64,7 @@ handoff; no intercepted frontend JSON will count as real B acceptance. No broad
 unchanged A suite, live providers/models, new dependencies or workers are planned.
 Native shared-channel isolation stays outside this increment and unavailable.
 
-## Grounding and current evidence limits
+## Grounding for the initial preparation
 
 Current governing documents, accepted intake/access contracts and BI1–10 read.
 Separate installed React19.2.4 package/Cargo manifest reads ran. Code-context
@@ -75,7 +77,7 @@ Borrowing remains approved Codeg Apache/IntroMail and exact Fireflies MIT source
 no new source port is introduced by this report. Full changed-source/license
 verification and focused execution will be recorded by exact integrated head.
 
-## IUI-1 — reproduced P2 baseline; component correction verified, browser pending
+## IUI-1 baseline and component review — historical; closed below
 
 Frozen UI report/source `191f69b3c2b827ce2f712bfcad1f995a201981bb`, product
 `c1e618dede15368d4af39ac74391f18931b317a5`:
@@ -271,10 +273,9 @@ Original UI blobs remain exact: dc141230/1230 and a581231/1231. Added reviewer
 files/cache are only in own archives. [dc14 original and adjusted runs](business-integration-review/ui-dc14e83b/digests.json),
 [a58 command/result](business-integration-review/ui-a58c004c/source-entry-and-setup-result.json),
 [reviewer probe attribution](business-integration-review/ui-dc14e83b/NOTICE).
-No component-level IUI-1 blocker remains, but final closure still requires the
-root checklist's real task-source link sequence on the coordinated unified
-protected fixture. Other UI/session/settings/source-disclosure and B browser
-gates remain pending; no full B or final Design Studio acceptance is claimed.
+At this component checkpoint, IUI-1 still required the root checklist's real
+task-source link sequence on the coordinated unified protected fixture. That
+closure is recorded below. No full B or final Design Studio acceptance is claimed.
 
 Report/source `git diff --check` is0. Evidence staging reports2 only for final
 blank lines in the six raw tool logs; their exact bytes are deliberately retained.
@@ -365,3 +366,112 @@ Current session metadata at line1222 records gpt-6-astra/max, never/full access.
 Own-worktree live hook records24833–24835 are PreToolUse and24836–24838 are
 PostToolUse. No model downgrade, hook bypass, old process action or fixture
 replacement occurred.
+
+## Independently executed unified protected API
+
+The review namespace alone was used on the stable4351 fixture. The credential
+file was read in memory, with a regular0600 assertion; no value was placed in
+an argument, prompt, source file or output. The Python3.12.13 standard-library
+client connects directly to fixed IPv4 loopback with a20-second timeout and no
+proxy, redirect or retry. Product source remains e55f3bfd; fixture7ed0dd0c.
+
+`protected-api.py` completed **62 requests and278 assertions, exit0,0.4831s**:
+
+- Actual owner/manager/viewer member credentials resolve the same review tenant
+  and their own identity. Missing credentials and member-to-platform requests
+  are401. Four caller authority/setup-field spoofs are400; manager/viewer setup
+  is403. A real foreign tenant task ID is404. No other namespace was mutated.
+- Owner Fireflies setup binds the exact synthetic provider principal, starts
+  disabled with zero grants, and does not imply source-owner access. Explicit
+  owner/manager grants and enablement permit the real bounded three-record
+  import. Complete attempts remain discoverable through `view: all`; the empty
+  source has no fabricated passages/candidate. Viewer private-source use is404.
+- An exact human draft becomes the shared task with the authenticated creator.
+  Stale candidate CAS is409 and leaves draft/revision unchanged. Repeating the
+  same decision receipt returns the same task/decision with no duplicate. Viewer
+  reads the deliberately published task text but receives a withheld source link;
+  neither the public task nor activity response contains the private transcript.
+- Revoking the manager's explicit grant denies its private read and changes the
+  binding epoch. Prior observations become metadata-only. Fresh source validation
+  alone does not renew an old candidate preview; explicit passage-only rebase
+  retains an absent draft. The final own pending candidate A and linked task B
+  were prepared for the actual browser regression, without executing any agent.
+
+[Exact request/status and assertion evidence](business-integration-review/fixture-7ed0dd0c/protected-api-results.json),
+[reviewer probe](business-integration-review/fixture-7ed0dd0c/protected-api.py),
+[commands/exits and retained failed attempts](business-integration-review/fixture-7ed0dd0c/command-results.json).
+The first two attempts stopped after the same three non-mutating requests:
+the probe incorrectly assumed a JSON error, then an empty body, while pinned
+`web/auth.rs` returns plain-text401. Both exact scripts/results are retained;
+the final parser checks the actual status/content-type/body contract. These
+were probe errors, not product failures or mutation retries.
+
+Health counters are shared with concurrent root/UI consumers. They are retained
+as observations, not attributed as exclusive per-reviewer provider counts.
+All setup/import traffic used the injected synthetic loopback provider. These
+checks do not establish live account access or production key-store durability.
+
+## IUI-1 closed by actual Playwright CLI
+
+UI handoff **ea8cf9c0e50b4b1c13fbe6c99e2103e819b4550b**, product
+**1974d97f44b69db96051ace1c68717cc8c27b6e9**, built
+`6739c476c197e6a00f1c50fc0dfaece8ad998869`. All27 manifest entries were
+independently hashed on disk and over HTTP4354: every entry matches, including
+HTML `42f37747c38d180ef270e59e0a7956bfc48c848ee35782e4a5b35c9c1ae2c6b7`.
+Manifest SHA256 `9b53750c2b200d47cd20f5e5a7272005b5fac5a12ea3d5d9a6616c727ca377a1`;
+`src` compares byte-identical between product and built head. The inspected
+fixture proxy sends both workspace and intake requests to4351.
+
+Own Playwright CLI0.1.18 / Playwright1.63.0-alpha-2026-08-05 session
+`review-intake-unified` used the actual personal login and protected context200.
+An ephemeral local file input transferred the authorized review file into this
+browser's memory; it was removed before filling the actual personal-token field.
+The form detached after login. No filled-form snapshot, saved browser state or
+credential literal was used. The browser guard only aborted nonfixture/legacy
+destinations; it never fulfilled a mocked response. Actual traffic stayed on the
+business API. Source freshness had expired during preparation; the visible
+withholding state and real **Refresh source access → Read next step** restored it.
+
+The actual candidate A Brief was changed without saving, then a different task
+tab's real source B link was followed. **All11 IUI assertions passed, exit0**:
+the destination guard asked before discarding, kept A's exact sentinel behind
+the modal across1280×900→390×844, and **Keep editing** retained A and its edit.
+Following B again asked again; **Discard my draft** then opened exact source B.
+The26 requests during this navigation were all reads; no candidate/task/source
+write occurred. No private draft/passages appeared in persistent browser storage.
+Three subsequent protected reads independently confirmed candidate A remains
+Pending/revision3 with its saved baseline, the unsaved sentinel was never stored,
+the published task remains exact, and the tenant still has only two tasks.
+
+[Structured closure/traffic](business-integration-review/fixture-7ed0dd0c/iui-closure-results.json),
+[desktop dialog](business-integration-review/fixture-7ed0dd0c/iui-dialog-1280.png),
+[mobile retained draft](business-integration-review/fixture-7ed0dd0c/iui-kept-390.png),
+[post-browser persistence](business-integration-review/fixture-7ed0dd0c/post-browser-persistence.json).
+Screenshots were taken after settling; the desktop dialog and unobscured mobile
+draft were visually inspected. Initial CLI harness mistakes (unavailable URL
+global, old login label and a stale details ref) are recorded separately; none
+is a product finding. Installed CLI help/types and actual labels grounded the
+corrections. No dependency was installed or updated.
+
+Design Studio Saving changes/Tabs/Modal methods and its sequential flow/reviewer
+checks support this narrow closure. This is not a repeated accessibility matrix,
+palette/motion audit or full final Design Studio pass. Private email/Hafidh
+intake browser paths and restricted native tenant windows are not certified here.
+
+Own browser PID39457 is closed, with the explicitly discarded local edit gone;
+review fixture records remain available. Backend PID66200, frontend PID81173,
+all other namespace records, user-inspected browser sessions, old fixtures,
+targets/exports and native artifact were left unchanged. Fixture lifecycle stays
+with root/tickets. [Source/tool attribution](business-integration-review/fixture-7ed0dd0c/NOTICE),
+[immutable source ledger](business-integration-review/fixture-7ed0dd0c/probe-source-ledger.json).
+
+The next assigned authority review concerns the usable task→AI session→managed
+deliverable→human review contract, including artifact version/publication access
+and per-account connector capability/freshness. Existing original-platform
+engineering access is distinct from tenant operation/resource/process authority;
+this B handoff does not make the missing tenant AI surface available or approved.
+
+Final report/evidence staged `git diff --check`: exit0. All35 evidence digests
+and the three API probe/result source hashes were verified; a private-value
+scan of the36 evidence/report files found no credential values. The preserved
+paused report and original untracked build/export paths remain unstaged.

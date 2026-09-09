@@ -1,0 +1,18 @@
+{
+  "backendCommit": "7ed0dd0c28f5065f1c37983f366cc6dcb0727e08",
+  "backendBlobs": {
+    "src-tauri/src/business_intake/types.rs": "4435959b909332b4b58b1d6a5631fa1d2fbecc30",
+    "src-tauri/src/business_intake/http.rs": "b658fbf9364e57b73038938f7f991c5cc3bde7c2",
+    "src-tauri/src/business_intake/tests/tenant_http_cases.rs": "9973b928ec7e89239313eb560e94a5ddc03e35a4",
+    "src-tauri/src/business_intake/tests/browser.rs": "a8fd171918b6879b50c1d3cb79c7ec0db85b7b3d",
+    "src-tauri/src/web/auth.rs": "861ad112be52f682e319255ae3173c65b1aa1cef"
+  },
+  "uiCommit": "1974d97f44b69db96051ace1c68717cc8c27b6e9",
+  "uiBlobs": {
+    "src/components/business-intake/workspace.tsx": "e669839cabdb03bdc652b8e473dd7531a56950eb",
+    "src/components/business-intake/source-review.tsx": "672f439b58b1fcde5aa2d40cd541b2d1f8b37378",
+    "src/components/business-intake/candidate.tsx": "b3d9ff91097c6afa0a511ab22da9fd2d6a466802",
+    "src/components/business/workspace.tsx": "4dbaa30b43037f96cf6cf5114d8712d8763dce2e"
+  },
+  "license": "Codeg Apache-2.0; installed API docs are references, no library source port"
+}

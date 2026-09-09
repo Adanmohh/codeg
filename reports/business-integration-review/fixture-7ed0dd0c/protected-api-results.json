@@ -1,0 +1,1827 @@
+{
+  "sourceCommit": "7ed0dd0c28f5065f1c37983f366cc6dcb0727e08",
+  "productionCommit": "e55f3bfd1f069d6d6111370223993596b19ecb9b",
+  "namespace": "review",
+  "backend": "http://127.0.0.1:4351",
+  "requests": [
+    {
+      "label": "live fixture identity",
+      "path": "/__business_intake_fixture/health",
+      "role": null,
+      "method": "GET",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.005,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "missing session",
+      "path": "/api/business/context",
+      "role": null,
+      "method": "POST",
+      "status": 401,
+      "expected": 401,
+      "seconds": 0.0039,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "member cannot use platform",
+      "path": "/api/platform/business/context",
+      "role": "owner",
+      "method": "POST",
+      "status": 401,
+      "expected": 401,
+      "seconds": 0.0034,
+      "cacheControl": "no-store",
+      "contentType": "text/plain; charset=utf-8"
+    },
+    {
+      "label": "owner real principal",
+      "path": "/api/business/context",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0043,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "manager real principal",
+      "path": "/api/business/context",
+      "role": "manager",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0036,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "viewer real principal",
+      "path": "/api/business/context",
+      "role": "viewer",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0037,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "initial setup scope",
+      "path": "/api/business/intake/bindings/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0044,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "closed setup organizationId",
+      "path": "/api/business/intake/bindings/create",
+      "role": "owner",
+      "method": "POST",
+      "status": 400,
+      "expected": 400,
+      "seconds": 0.0053,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "closed setup actorId",
+      "path": "/api/business/intake/bindings/create",
+      "role": "owner",
+      "method": "POST",
+      "status": 400,
+      "expected": 400,
+      "seconds": 0.0039,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "closed setup authorizationEpoch",
+      "path": "/api/business/intake/bindings/create",
+      "role": "owner",
+      "method": "POST",
+      "status": 400,
+      "expected": 400,
+      "seconds": 0.0049,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "closed setup credentialRef",
+      "path": "/api/business/intake/bindings/create",
+      "role": "owner",
+      "method": "POST",
+      "status": 400,
+      "expected": 400,
+      "seconds": 0.0041,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "manager setup denial",
+      "path": "/api/business/intake/bindings/create",
+      "role": "manager",
+      "method": "POST",
+      "status": 403,
+      "expected": 403,
+      "seconds": 0.0052,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "viewer setup denial",
+      "path": "/api/business/intake/bindings/create",
+      "role": "viewer",
+      "method": "POST",
+      "status": 403,
+      "expected": 403,
+      "seconds": 0.0055,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "owner setup",
+      "path": "/api/business/intake/bindings/create",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0074,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "zero initial grants",
+      "path": "/api/business/intake/grants/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0046,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "owner source use before grant denied",
+      "path": "/api/business/intake/sources/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 404,
+      "expected": 404,
+      "seconds": 0.0039,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "foreign existing task denied",
+      "path": "/api/business/tasks/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 404,
+      "expected": 404,
+      "seconds": 0.0042,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "owner explicit binding grant",
+      "path": "/api/business/intake/grants/upsert",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0055,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "manager explicit binding grant",
+      "path": "/api/business/intake/grants/upsert",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0062,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "explicit source enable",
+      "path": "/api/business/intake/bindings/update",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0059,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "durable window import",
+      "path": "/api/business/intake/imports/start",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0054,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "window: advance 0",
+      "path": "/api/business/intake/imports/advance",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0078,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "window: advance 1",
+      "path": "/api/business/intake/imports/advance",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0079,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "window: advance 2",
+      "path": "/api/business/intake/imports/advance",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0077,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "window: advance 3",
+      "path": "/api/business/intake/imports/advance",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0099,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "unfinished rediscovery",
+      "path": "/api/business/intake/imports/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0058,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "all rediscovery",
+      "path": "/api/business/intake/imports/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.005,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "source list",
+      "path": "/api/business/intake/sources/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.005,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "source A actual private read",
+      "path": "/api/business/intake/sources/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.005,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "manager explicitly granted source read",
+      "path": "/api/business/intake/sources/get",
+      "role": "manager",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0052,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "viewer no private source grant",
+      "path": "/api/business/intake/sources/get",
+      "role": "viewer",
+      "method": "POST",
+      "status": 404,
+      "expected": 404,
+      "seconds": 0.0046,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "empty source detail",
+      "path": "/api/business/intake/sources/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0049,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "empty source candidates",
+      "path": "/api/business/intake/candidates/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0046,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "source A candidate",
+      "path": "/api/business/intake/candidates/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0048,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "exact human preparation",
+      "path": "/api/business/intake/candidates/edit",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0071,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "stale candidate CAS rejected",
+      "path": "/api/business/intake/candidates/edit",
+      "role": "owner",
+      "method": "POST",
+      "status": 409,
+      "expected": 409,
+      "seconds": 0.0046,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "candidate after rejected CAS",
+      "path": "/api/business/intake/candidates/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0053,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "viewer publication denied",
+      "path": "/api/business/intake/candidates/accept",
+      "role": "viewer",
+      "method": "POST",
+      "status": 404,
+      "expected": 404,
+      "seconds": 0.0058,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "exact human task publication",
+      "path": "/api/business/intake/candidates/accept",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0076,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "receipt replay",
+      "path": "/api/business/intake/candidates/accept",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.006,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "viewer shared task positive",
+      "path": "/api/business/tasks/get",
+      "role": "viewer",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0047,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "viewer source-link redaction",
+      "path": "/api/business/intake/tasks/sources",
+      "role": "viewer",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0052,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "review task count after replay",
+      "path": "/api/business/tasks/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0047,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "extra candidate for authority rebase",
+      "path": "/api/business/intake/candidates/create",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0058,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "manager grant revocation",
+      "path": "/api/business/intake/grants/revoke",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0058,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "revoked manager private source denied",
+      "path": "/api/business/intake/sources/get",
+      "role": "manager",
+      "method": "POST",
+      "status": 404,
+      "expected": 404,
+      "seconds": 0.0047,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "source after binding epoch change",
+      "path": "/api/business/intake/sources/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.005,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "fresh source A validation: start",
+      "path": "/api/business/intake/imports/start",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0059,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "fresh source A validation: advance 0",
+      "path": "/api/business/intake/imports/advance",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0095,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "fresh source A validation: detail",
+      "path": "/api/business/intake/sources/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0045,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "old candidate after fresh observation",
+      "path": "/api/business/intake/candidates/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0049,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "explicit passage-only rebase",
+      "path": "/api/business/intake/candidates/select",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0087,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "prepare browser A baseline",
+      "path": "/api/business/intake/candidates/edit",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0066,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "fresh source B validation: start",
+      "path": "/api/business/intake/imports/start",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0054,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "fresh source B validation: advance 0",
+      "path": "/api/business/intake/imports/advance",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0093,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "fresh source B validation: detail",
+      "path": "/api/business/intake/sources/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0051,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "source B pending candidate",
+      "path": "/api/business/intake/candidates/list",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0048,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "source B current passage selection",
+      "path": "/api/business/intake/candidates/select",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0057,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "own source-link target",
+      "path": "/api/business/tasks/get",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0045,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "human source B task link",
+      "path": "/api/business/intake/candidates/link",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0086,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "actual task-source B browser route",
+      "path": "/api/business/intake/tasks/sources",
+      "role": "owner",
+      "method": "POST",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0071,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    },
+    {
+      "label": "fixture retained healthy",
+      "path": "/__business_intake_fixture/health",
+      "role": null,
+      "method": "GET",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0039,
+      "cacheControl": "no-store",
+      "contentType": "application/json"
+    }
+  ],
+  "assertions": [
+    {
+      "label": "credential input is regular0600",
+      "pass": true
+    },
+    {
+      "label": "only review synthetic file",
+      "pass": true
+    },
+    {
+      "label": "live fixture identity: status",
+      "pass": true
+    },
+    {
+      "label": "live fixture identity: bounded response",
+      "pass": true
+    },
+    {
+      "label": "live fixture identity: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "exact fixture runtime",
+      "pass": true
+    },
+    {
+      "label": "fixed synthetic runtime boundary",
+      "pass": true
+    },
+    {
+      "label": "missing session: status",
+      "pass": true
+    },
+    {
+      "label": "missing session: bounded response",
+      "pass": true
+    },
+    {
+      "label": "missing session: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "missing session: no-store",
+      "pass": true
+    },
+    {
+      "label": "member cannot use platform: status",
+      "pass": true
+    },
+    {
+      "label": "member cannot use platform: bounded response",
+      "pass": true
+    },
+    {
+      "label": "member cannot use platform: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "member cannot use platform: expected original-token rejection body",
+      "pass": true
+    },
+    {
+      "label": "owner real principal: status",
+      "pass": true
+    },
+    {
+      "label": "owner real principal: bounded response",
+      "pass": true
+    },
+    {
+      "label": "owner real principal: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "owner real principal: no-store",
+      "pass": true
+    },
+    {
+      "label": "owner: server-derived identity",
+      "pass": true
+    },
+    {
+      "label": "manager real principal: status",
+      "pass": true
+    },
+    {
+      "label": "manager real principal: bounded response",
+      "pass": true
+    },
+    {
+      "label": "manager real principal: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "manager real principal: no-store",
+      "pass": true
+    },
+    {
+      "label": "manager: server-derived identity",
+      "pass": true
+    },
+    {
+      "label": "viewer real principal: status",
+      "pass": true
+    },
+    {
+      "label": "viewer real principal: bounded response",
+      "pass": true
+    },
+    {
+      "label": "viewer real principal: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "viewer real principal: no-store",
+      "pass": true
+    },
+    {
+      "label": "viewer: server-derived identity",
+      "pass": true
+    },
+    {
+      "label": "initial setup scope: status",
+      "pass": true
+    },
+    {
+      "label": "initial setup scope: bounded response",
+      "pass": true
+    },
+    {
+      "label": "initial setup scope: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "initial setup scope: no-store",
+      "pass": true
+    },
+    {
+      "label": "review namespace initially empty",
+      "pass": true
+    },
+    {
+      "label": "closed setup organizationId: status",
+      "pass": true
+    },
+    {
+      "label": "closed setup organizationId: bounded response",
+      "pass": true
+    },
+    {
+      "label": "closed setup organizationId: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "closed setup organizationId: no-store",
+      "pass": true
+    },
+    {
+      "label": "closed setup actorId: status",
+      "pass": true
+    },
+    {
+      "label": "closed setup actorId: bounded response",
+      "pass": true
+    },
+    {
+      "label": "closed setup actorId: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "closed setup actorId: no-store",
+      "pass": true
+    },
+    {
+      "label": "closed setup authorizationEpoch: status",
+      "pass": true
+    },
+    {
+      "label": "closed setup authorizationEpoch: bounded response",
+      "pass": true
+    },
+    {
+      "label": "closed setup authorizationEpoch: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "closed setup authorizationEpoch: no-store",
+      "pass": true
+    },
+    {
+      "label": "closed setup credentialRef: status",
+      "pass": true
+    },
+    {
+      "label": "closed setup credentialRef: bounded response",
+      "pass": true
+    },
+    {
+      "label": "closed setup credentialRef: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "closed setup credentialRef: no-store",
+      "pass": true
+    },
+    {
+      "label": "manager setup denial: status",
+      "pass": true
+    },
+    {
+      "label": "manager setup denial: bounded response",
+      "pass": true
+    },
+    {
+      "label": "manager setup denial: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "viewer setup denial: status",
+      "pass": true
+    },
+    {
+      "label": "viewer setup denial: bounded response",
+      "pass": true
+    },
+    {
+      "label": "viewer setup denial: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "owner setup: status",
+      "pass": true
+    },
+    {
+      "label": "owner setup: bounded response",
+      "pass": true
+    },
+    {
+      "label": "owner setup: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "owner setup: no-store",
+      "pass": true
+    },
+    {
+      "label": "setup starts disabled and bound to own source",
+      "pass": true
+    },
+    {
+      "label": "zero initial grants: status",
+      "pass": true
+    },
+    {
+      "label": "zero initial grants: bounded response",
+      "pass": true
+    },
+    {
+      "label": "zero initial grants: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "zero initial grants: no-store",
+      "pass": true
+    },
+    {
+      "label": "no implicit source-owner grant",
+      "pass": true
+    },
+    {
+      "label": "owner source use before grant denied: status",
+      "pass": true
+    },
+    {
+      "label": "owner source use before grant denied: bounded response",
+      "pass": true
+    },
+    {
+      "label": "owner source use before grant denied: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "owner source use before grant denied: no-store",
+      "pass": true
+    },
+    {
+      "label": "foreign existing task denied: status",
+      "pass": true
+    },
+    {
+      "label": "foreign existing task denied: bounded response",
+      "pass": true
+    },
+    {
+      "label": "foreign existing task denied: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "foreign existing task denied: no-store",
+      "pass": true
+    },
+    {
+      "label": "owner explicit binding grant: status",
+      "pass": true
+    },
+    {
+      "label": "owner explicit binding grant: bounded response",
+      "pass": true
+    },
+    {
+      "label": "owner explicit binding grant: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "owner explicit binding grant: no-store",
+      "pass": true
+    },
+    {
+      "label": "manager explicit binding grant: status",
+      "pass": true
+    },
+    {
+      "label": "manager explicit binding grant: bounded response",
+      "pass": true
+    },
+    {
+      "label": "manager explicit binding grant: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "manager explicit binding grant: no-store",
+      "pass": true
+    },
+    {
+      "label": "explicit source enable: status",
+      "pass": true
+    },
+    {
+      "label": "explicit source enable: bounded response",
+      "pass": true
+    },
+    {
+      "label": "explicit source enable: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "explicit source enable: no-store",
+      "pass": true
+    },
+    {
+      "label": "durable window import: status",
+      "pass": true
+    },
+    {
+      "label": "durable window import: bounded response",
+      "pass": true
+    },
+    {
+      "label": "durable window import: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "durable window import: no-store",
+      "pass": true
+    },
+    {
+      "label": "window: advance permitted",
+      "pass": true
+    },
+    {
+      "label": "window: advance 0: status",
+      "pass": true
+    },
+    {
+      "label": "window: advance 0: bounded response",
+      "pass": true
+    },
+    {
+      "label": "window: advance 0: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "window: advance 0: no-store",
+      "pass": true
+    },
+    {
+      "label": "window: advance permitted",
+      "pass": true
+    },
+    {
+      "label": "window: advance 1: status",
+      "pass": true
+    },
+    {
+      "label": "window: advance 1: bounded response",
+      "pass": true
+    },
+    {
+      "label": "window: advance 1: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "window: advance 1: no-store",
+      "pass": true
+    },
+    {
+      "label": "window: advance permitted",
+      "pass": true
+    },
+    {
+      "label": "window: advance 2: status",
+      "pass": true
+    },
+    {
+      "label": "window: advance 2: bounded response",
+      "pass": true
+    },
+    {
+      "label": "window: advance 2: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "window: advance 2: no-store",
+      "pass": true
+    },
+    {
+      "label": "window: advance permitted",
+      "pass": true
+    },
+    {
+      "label": "window: advance 3: status",
+      "pass": true
+    },
+    {
+      "label": "window: advance 3: bounded response",
+      "pass": true
+    },
+    {
+      "label": "window: advance 3: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "window: advance 3: no-store",
+      "pass": true
+    },
+    {
+      "label": "bounded import complete",
+      "pass": true
+    },
+    {
+      "label": "unfinished rediscovery: status",
+      "pass": true
+    },
+    {
+      "label": "unfinished rediscovery: bounded response",
+      "pass": true
+    },
+    {
+      "label": "unfinished rediscovery: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "unfinished rediscovery: no-store",
+      "pass": true
+    },
+    {
+      "label": "all rediscovery: status",
+      "pass": true
+    },
+    {
+      "label": "all rediscovery: bounded response",
+      "pass": true
+    },
+    {
+      "label": "all rediscovery: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "all rediscovery: no-store",
+      "pass": true
+    },
+    {
+      "label": "durable terminal rediscovery",
+      "pass": true
+    },
+    {
+      "label": "source list: status",
+      "pass": true
+    },
+    {
+      "label": "source list: bounded response",
+      "pass": true
+    },
+    {
+      "label": "source list: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "source list: no-store",
+      "pass": true
+    },
+    {
+      "label": "three sources from own provider principal",
+      "pass": true
+    },
+    {
+      "label": "source A actual private read: status",
+      "pass": true
+    },
+    {
+      "label": "source A actual private read: bounded response",
+      "pass": true
+    },
+    {
+      "label": "source A actual private read: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "source A actual private read: no-store",
+      "pass": true
+    },
+    {
+      "label": "source A fresh exact passages",
+      "pass": true
+    },
+    {
+      "label": "manager explicitly granted source read: status",
+      "pass": true
+    },
+    {
+      "label": "manager explicitly granted source read: bounded response",
+      "pass": true
+    },
+    {
+      "label": "manager explicitly granted source read: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "manager explicitly granted source read: no-store",
+      "pass": true
+    },
+    {
+      "label": "viewer no private source grant: status",
+      "pass": true
+    },
+    {
+      "label": "viewer no private source grant: bounded response",
+      "pass": true
+    },
+    {
+      "label": "viewer no private source grant: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "viewer no private source grant: no-store",
+      "pass": true
+    },
+    {
+      "label": "empty source detail: status",
+      "pass": true
+    },
+    {
+      "label": "empty source detail: bounded response",
+      "pass": true
+    },
+    {
+      "label": "empty source detail: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "empty source detail: no-store",
+      "pass": true
+    },
+    {
+      "label": "empty source candidates: status",
+      "pass": true
+    },
+    {
+      "label": "empty source candidates: bounded response",
+      "pass": true
+    },
+    {
+      "label": "empty source candidates: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "empty source candidates: no-store",
+      "pass": true
+    },
+    {
+      "label": "empty summary makes no invented candidate",
+      "pass": true
+    },
+    {
+      "label": "source A candidate: status",
+      "pass": true
+    },
+    {
+      "label": "source A candidate: bounded response",
+      "pass": true
+    },
+    {
+      "label": "source A candidate: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "source A candidate: no-store",
+      "pass": true
+    },
+    {
+      "label": "candidate has no automatic public draft",
+      "pass": true
+    },
+    {
+      "label": "exact human preparation: status",
+      "pass": true
+    },
+    {
+      "label": "exact human preparation: bounded response",
+      "pass": true
+    },
+    {
+      "label": "exact human preparation: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "exact human preparation: no-store",
+      "pass": true
+    },
+    {
+      "label": "stale candidate CAS rejected: status",
+      "pass": true
+    },
+    {
+      "label": "stale candidate CAS rejected: bounded response",
+      "pass": true
+    },
+    {
+      "label": "stale candidate CAS rejected: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "stale candidate CAS rejected: no-store",
+      "pass": true
+    },
+    {
+      "label": "candidate after rejected CAS: status",
+      "pass": true
+    },
+    {
+      "label": "candidate after rejected CAS: bounded response",
+      "pass": true
+    },
+    {
+      "label": "candidate after rejected CAS: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "candidate after rejected CAS: no-store",
+      "pass": true
+    },
+    {
+      "label": "rejected edit left revision and exact draft unchanged",
+      "pass": true
+    },
+    {
+      "label": "viewer publication denied: status",
+      "pass": true
+    },
+    {
+      "label": "viewer publication denied: bounded response",
+      "pass": true
+    },
+    {
+      "label": "viewer publication denied: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "viewer publication denied: no-store",
+      "pass": true
+    },
+    {
+      "label": "exact human task publication: status",
+      "pass": true
+    },
+    {
+      "label": "exact human task publication: bounded response",
+      "pass": true
+    },
+    {
+      "label": "exact human task publication: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "exact human task publication: no-store",
+      "pass": true
+    },
+    {
+      "label": "exact public text and authenticated creator",
+      "pass": true
+    },
+    {
+      "label": "no transcript in public task response",
+      "pass": true
+    },
+    {
+      "label": "receipt replay: status",
+      "pass": true
+    },
+    {
+      "label": "receipt replay: bounded response",
+      "pass": true
+    },
+    {
+      "label": "receipt replay: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "receipt replay: no-store",
+      "pass": true
+    },
+    {
+      "label": "receipt replays same task and decision",
+      "pass": true
+    },
+    {
+      "label": "viewer shared task positive: status",
+      "pass": true
+    },
+    {
+      "label": "viewer shared task positive: bounded response",
+      "pass": true
+    },
+    {
+      "label": "viewer shared task positive: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "viewer shared task positive: no-store",
+      "pass": true
+    },
+    {
+      "label": "public task separate from private source",
+      "pass": true
+    },
+    {
+      "label": "viewer source-link redaction: status",
+      "pass": true
+    },
+    {
+      "label": "viewer source-link redaction: bounded response",
+      "pass": true
+    },
+    {
+      "label": "viewer source-link redaction: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "viewer source-link redaction: no-store",
+      "pass": true
+    },
+    {
+      "label": "withheld source reference",
+      "pass": true
+    },
+    {
+      "label": "review task count after replay: status",
+      "pass": true
+    },
+    {
+      "label": "review task count after replay: bounded response",
+      "pass": true
+    },
+    {
+      "label": "review task count after replay: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "review task count after replay: no-store",
+      "pass": true
+    },
+    {
+      "label": "no duplicate public task",
+      "pass": true
+    },
+    {
+      "label": "extra candidate for authority rebase: status",
+      "pass": true
+    },
+    {
+      "label": "extra candidate for authority rebase: bounded response",
+      "pass": true
+    },
+    {
+      "label": "extra candidate for authority rebase: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "extra candidate for authority rebase: no-store",
+      "pass": true
+    },
+    {
+      "label": "manager grant revocation: status",
+      "pass": true
+    },
+    {
+      "label": "manager grant revocation: bounded response",
+      "pass": true
+    },
+    {
+      "label": "manager grant revocation: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "manager grant revocation: no-store",
+      "pass": true
+    },
+    {
+      "label": "revoked manager private source denied: status",
+      "pass": true
+    },
+    {
+      "label": "revoked manager private source denied: bounded response",
+      "pass": true
+    },
+    {
+      "label": "revoked manager private source denied: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "revoked manager private source denied: no-store",
+      "pass": true
+    },
+    {
+      "label": "source after binding epoch change: status",
+      "pass": true
+    },
+    {
+      "label": "source after binding epoch change: bounded response",
+      "pass": true
+    },
+    {
+      "label": "source after binding epoch change: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "source after binding epoch change: no-store",
+      "pass": true
+    },
+    {
+      "label": "old observation withheld after grant epoch change",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: start: status",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: start: bounded response",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: start: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: start: no-store",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: advance permitted",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: advance 0: status",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: advance 0: bounded response",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: advance 0: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: advance 0: no-store",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: detail: status",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: detail: bounded response",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: detail: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "fresh source A validation: detail: no-store",
+      "pass": true
+    },
+    {
+      "label": "old candidate after fresh observation: status",
+      "pass": true
+    },
+    {
+      "label": "old candidate after fresh observation: bounded response",
+      "pass": true
+    },
+    {
+      "label": "old candidate after fresh observation: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "old candidate after fresh observation: no-store",
+      "pass": true
+    },
+    {
+      "label": "fresh observation does not refresh old preview authority",
+      "pass": true
+    },
+    {
+      "label": "explicit passage-only rebase: status",
+      "pass": true
+    },
+    {
+      "label": "explicit passage-only rebase: bounded response",
+      "pass": true
+    },
+    {
+      "label": "explicit passage-only rebase: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "explicit passage-only rebase: no-store",
+      "pass": true
+    },
+    {
+      "label": "passage rebase preserves absent draft",
+      "pass": true
+    },
+    {
+      "label": "prepare browser A baseline: status",
+      "pass": true
+    },
+    {
+      "label": "prepare browser A baseline: bounded response",
+      "pass": true
+    },
+    {
+      "label": "prepare browser A baseline: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "prepare browser A baseline: no-store",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: start: status",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: start: bounded response",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: start: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: start: no-store",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: advance permitted",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: advance 0: status",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: advance 0: bounded response",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: advance 0: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: advance 0: no-store",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: detail: status",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: detail: bounded response",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: detail: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "fresh source B validation: detail: no-store",
+      "pass": true
+    },
+    {
+      "label": "source B pending candidate: status",
+      "pass": true
+    },
+    {
+      "label": "source B pending candidate: bounded response",
+      "pass": true
+    },
+    {
+      "label": "source B pending candidate: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "source B pending candidate: no-store",
+      "pass": true
+    },
+    {
+      "label": "source B current passage selection: status",
+      "pass": true
+    },
+    {
+      "label": "source B current passage selection: bounded response",
+      "pass": true
+    },
+    {
+      "label": "source B current passage selection: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "source B current passage selection: no-store",
+      "pass": true
+    },
+    {
+      "label": "own source-link target: status",
+      "pass": true
+    },
+    {
+      "label": "own source-link target: bounded response",
+      "pass": true
+    },
+    {
+      "label": "own source-link target: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "own source-link target: no-store",
+      "pass": true
+    },
+    {
+      "label": "human source B task link: status",
+      "pass": true
+    },
+    {
+      "label": "human source B task link: bounded response",
+      "pass": true
+    },
+    {
+      "label": "human source B task link: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "human source B task link: no-store",
+      "pass": true
+    },
+    {
+      "label": "link preserves existing public text",
+      "pass": true
+    },
+    {
+      "label": "actual task-source B browser route: status",
+      "pass": true
+    },
+    {
+      "label": "actual task-source B browser route: bounded response",
+      "pass": true
+    },
+    {
+      "label": "actual task-source B browser route: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "actual task-source B browser route: no-store",
+      "pass": true
+    },
+    {
+      "label": "real task link resolves exact source B",
+      "pass": true
+    },
+    {
+      "label": "fixture retained healthy: status",
+      "pass": true
+    },
+    {
+      "label": "fixture retained healthy: bounded response",
+      "pass": true
+    },
+    {
+      "label": "fixture retained healthy: no credential disclosure",
+      "pass": true
+    }
+  ],
+  "status": "passed",
+  "providerTraffic": "Injected fixed loopback reader only",
+  "httpRetries": 0,
+  "startCountsSharedNotExclusive": {
+    "apiAllowed": 184,
+    "apiBlocked": 4,
+    "detail": 5,
+    "list": 1,
+    "secretRejected": 0,
+    "upstreamRejected": 0,
+    "user": 3
+  },
+  "endCountsSharedNotExclusive": {
+    "apiAllowed": 246,
+    "apiBlocked": 4,
+    "detail": 10,
+    "list": 2,
+    "secretRejected": 0,
+    "upstreamRejected": 0,
+    "user": 4
+  },
+  "elapsedSeconds": 0.4831,
+  "probeSha256": "bafd49da01e694b2255bd932876dab4d20acec3c1c5bff057ef51fd6312f283c"
+}

@@ -1,0 +1,54 @@
+{
+  "protectedApi": {
+    "command": "/Users/mohamedadan/projects/rag-skills/.venv/bin/python reports/business-integration-review/fixture-7ed0dd0c/protected-api.py",
+    "exit": 0,
+    "requests": 62,
+    "assertions": 278,
+    "elapsedSeconds": 0.4831
+  },
+  "apiInitialAttempts": [
+    {
+      "file": "protected-api-attempt1-results.json",
+      "exit": 1,
+      "stage": "three non-mutating requests; incorrect JSON-only error parsing"
+    },
+    {
+      "file": "protected-api-attempt2-results.json",
+      "exit": 1,
+      "stage": "same three non-mutating requests; empty-body correction did not handle actual plain-text401"
+    }
+  ],
+  "browser": {
+    "cli": "@playwright/cli0.1.18",
+    "playwright": "1.63.0-alpha-2026-08-05",
+    "session": "review-intake-unified",
+    "completedBrowserPid": 39457,
+    "closed": true,
+    "loginExit": 0,
+    "enterTaskExit": 0,
+    "iuiClosureExit": 0,
+    "iuiAssertions": 11,
+    "iuiReadRequests": 26,
+    "harnessCorrections": [
+      "Initial guard used URL unavailable in the CLI sandbox; new own browser only reopened.",
+      "Initial login used Server URL; actual label is Workspace address; failure withheld details and no token had been filled.",
+      "A details section was already open; clicking closed it and invalidated ref e291. Actual open state and visible role locator used before starting the import."
+    ],
+    "responseMocking": false
+  },
+  "postBrowser": {
+    "readOnlyRequests": 3,
+    "checks": 6,
+    "exit": 0
+  },
+  "metadataPreparation": [
+    "Initial git ledger lookup used nonexistent candidate-review.tsx and exited128 before writing evidence; actual tree lists candidate.tsx, used in final ledger."
+  ],
+  "runtimePreservation": {
+    "backendPid": 66200,
+    "frontendPid": 81173,
+    "otherNamespaces": "untouched",
+    "lifecycleOperations": 0,
+    "fixtureRestartOrBuild": false
+  }
+}

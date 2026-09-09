@@ -1,0 +1,29 @@
+{
+  "namespace": "review",
+  "sourceCommit": "7ed0dd0c28f5065f1c37983f366cc6dcb0727e08",
+  "status": "passed",
+  "requests": [
+    {
+      "path": "/api/business/intake/candidates/get",
+      "status": 200
+    },
+    {
+      "path": "/api/business/tasks/get",
+      "status": 200
+    },
+    {
+      "path": "/api/business/tasks/list",
+      "status": 200
+    }
+  ],
+  "checks": {
+    "candidateRevisionUnchanged": true,
+    "candidateStillPending": true,
+    "savedBriefUnchanged": true,
+    "unsavedSentinelNeverPersisted": true,
+    "publishedTaskStillExact": true,
+    "taskCountStillTwo": true
+  },
+  "credentialValueRecorded": false,
+  "mutations": 0
+}

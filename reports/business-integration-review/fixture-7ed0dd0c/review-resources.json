@@ -1,0 +1,14 @@
+{
+  "namespace": "review",
+  "organizationId": "c3c1e0be-0ea1-4148-8b2c-d57f69e899d2",
+  "linkTarget": "4393d980-2fd1-450a-9519-74309f1ef38d",
+  "bindingId": "18ec4096-cb6f-4dc1-86b6-2f7aeab4bc0b",
+  "importId": "6c77a975-8d01-4739-9813-d70dc122bc05",
+  "sourceA": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+  "sourceB": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+  "emptySource": "8db75a2a-67c0-4492-aa7a-4107b960130a",
+  "preparedCandidate": "a6c33cab-6bd8-48e3-bee9-473fef9e8091",
+  "publishedTask": "1f1f2b00-a068-4fc8-9379-b09cbff20a21",
+  "browserCandidateA": "901ec313-042f-4962-a81c-03c7db7f4f2c",
+  "browserLinkCandidateB": "38d13b7c-9ff1-44a6-b118-73380a054e64"
+}

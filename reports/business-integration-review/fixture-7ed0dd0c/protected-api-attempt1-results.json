@@ -1,0 +1,111 @@
+{
+  "sourceCommit": "7ed0dd0c28f5065f1c37983f366cc6dcb0727e08",
+  "productionCommit": "e55f3bfd1f069d6d6111370223993596b19ecb9b",
+  "namespace": "review",
+  "backend": "http://127.0.0.1:4351",
+  "requests": [
+    {
+      "label": "live fixture identity",
+      "path": "/__business_intake_fixture/health",
+      "role": null,
+      "method": "GET",
+      "status": 200,
+      "expected": 200,
+      "seconds": 0.0059,
+      "cacheControl": "no-store"
+    },
+    {
+      "label": "missing session",
+      "path": "/api/business/context",
+      "role": null,
+      "method": "POST",
+      "status": 401,
+      "expected": 401,
+      "seconds": 0.0037,
+      "cacheControl": "no-store"
+    },
+    {
+      "label": "member cannot use platform",
+      "path": "/api/platform/business/context",
+      "role": "owner",
+      "method": "POST",
+      "status": 401,
+      "expected": 401,
+      "seconds": 0.0043,
+      "cacheControl": "no-store"
+    }
+  ],
+  "assertions": [
+    {
+      "label": "credential input is regular0600",
+      "pass": true
+    },
+    {
+      "label": "only review synthetic file",
+      "pass": true
+    },
+    {
+      "label": "live fixture identity: status",
+      "pass": true
+    },
+    {
+      "label": "live fixture identity: bounded response",
+      "pass": true
+    },
+    {
+      "label": "live fixture identity: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "exact fixture runtime",
+      "pass": true
+    },
+    {
+      "label": "fixed synthetic runtime boundary",
+      "pass": true
+    },
+    {
+      "label": "missing session: status",
+      "pass": true
+    },
+    {
+      "label": "missing session: bounded response",
+      "pass": true
+    },
+    {
+      "label": "missing session: no credential disclosure",
+      "pass": true
+    },
+    {
+      "label": "missing session: no-store",
+      "pass": true
+    },
+    {
+      "label": "member cannot use platform: status",
+      "pass": true
+    },
+    {
+      "label": "member cannot use platform: bounded response",
+      "pass": true
+    },
+    {
+      "label": "member cannot use platform: no credential disclosure",
+      "pass": true
+    }
+  ],
+  "status": "failed",
+  "providerTraffic": "Injected fixed loopback reader only",
+  "httpRetries": 0,
+  "startCountsSharedNotExclusive": {
+    "apiAllowed": 149,
+    "apiBlocked": 4,
+    "detail": 5,
+    "list": 1,
+    "secretRejected": 0,
+    "upstreamRejected": 0,
+    "user": 2
+  },
+  "errorType": "JSONDecodeError",
+  "elapsedSeconds": 0.0175,
+  "probeSha256": "5296ea666280d6c2e9ded8fe351dd5b029249240110acfc3113319d5da1214fb"
+}

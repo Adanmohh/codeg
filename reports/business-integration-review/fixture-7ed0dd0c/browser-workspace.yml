@@ -1,0 +1,123 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e50]:
+    - complementary [ref=e51]:
+      - generic [ref=e58]:
+        - paragraph [ref=e59]: Hafidh
+        - paragraph [ref=e60]: Ops Desk
+      - generic [ref=e61]:
+        - paragraph [ref=e62]: Workspace
+        - paragraph [ref=e63]: Intake review synthetic
+      - navigation "Workspace" [ref=e64]:
+        - button "My work" [ref=e65]
+        - button "Shared work" [ref=e69]
+        - button "Review" [ref=e75]
+        - button "Sources" [ref=e79]
+        - button "People & agents" [ref=e82]
+        - button "Workspace appearance" [ref=e88]
+      - generic [ref=e92]:
+        - generic [ref=e93]:
+          - combobox "Language" [ref=e94]:
+            - option "English" [selected]
+            - option "简体中文"
+            - option "繁體中文"
+            - option "日本語"
+            - option "한국어"
+            - option "Español"
+            - option "Deutsch"
+            - option "Français"
+            - option "Português"
+            - option "العربية"
+          - combobox "Appearance" [ref=e95]:
+            - option "Device appearance" [selected]
+            - option "Light"
+            - option "Dark"
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: R
+            - generic [ref=e99]: review owner
+          - paragraph [ref=e100]: Owner · Connected
+          - button "Disconnect" [ref=e101]
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - tablist "Open work" [ref=e105]:
+          - tab "My work" [selected] [ref=e106]
+        - button "Show side by side" [disabled] [ref=e111]
+      - tabpanel "My work" [ref=e115]:
+        - main [ref=e117]:
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - generic [ref=e120]:
+                - heading "My work" [level=1] [ref=e121]
+                - paragraph [ref=e122]: What you own and what’s assigned to you.
+              - button "Create task" [ref=e123]
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - generic [ref=e126]:
+                  - textbox "Find a task" [ref=e127]
+                  - button "Find a task" [ref=e128]
+                - button "Refresh" [ref=e129]
+              - generic [ref=e130]:
+                - combobox "Area of work" [ref=e131]:
+                  - option "All areas" [selected]
+                  - option "Marketing"
+                  - option "Channels"
+                  - option "Ads"
+                  - option "Website"
+                  - option "Feedback"
+                  - option "Engineering"
+                - combobox "Status" [ref=e132]:
+                  - option "All statuses" [selected]
+                  - option "To do"
+                  - option "In progress"
+                  - option "Review"
+                  - option "Done"
+                  - option "Cancelled"
+                - generic [ref=e133]:
+                  - checkbox "Archived" [ref=e134]
+                  - text: Archived
+                - generic "Workspace" [ref=e135]:
+                  - button "List" [pressed] [ref=e136]
+                  - button "Board" [ref=e137]
+                  - button "Table" [ref=e138]
+            - paragraph [ref=e139]: 2 tasks loaded
+            - generic [ref=e140]:
+              - generic [ref=e141]:
+                - generic [ref=e142]: Task title
+                - generic [ref=e143]: Responsibility
+                - generic [ref=e144]: Due date
+              - list [ref=e145]:
+                - listitem [ref=e146]:
+                  - 'button "To do Feedback · Normal review: existing reviewed customer follow-up Accountable owner review owner Assigned to Unassigned 2026-11-01" [ref=e147]':
+                    - generic [ref=e148]:
+                      - generic [ref=e149]:
+                        - generic [ref=e150]: To do
+                        - generic [ref=e153]: Feedback · Normal
+                      - 'heading "review: existing reviewed customer follow-up" [level=2] [ref=e154]'
+                    - generic [ref=e155]:
+                      - generic [ref=e156]:
+                        - generic [ref=e157]: Accountable owner
+                        - generic [ref=e158]:
+                          - generic [ref=e159]: R
+                          - generic [ref=e160]: review owner
+                      - generic [ref=e161]:
+                        - generic [ref=e162]: Assigned to
+                        - generic [ref=e163]: Unassigned
+                    - time [ref=e167]: 2026-11-01
+                - listitem [ref=e171]:
+                  - 'button "To do Feedback · Normal Reviewer API: customer follow-up Accountable owner review owner Assigned to Unassigned 2026-11-01" [ref=e172]':
+                    - generic [ref=e173]:
+                      - generic [ref=e174]:
+                        - generic [ref=e175]: To do
+                        - generic [ref=e178]: Feedback · Normal
+                      - 'heading "Reviewer API: customer follow-up" [level=2] [ref=e179]'
+                    - generic [ref=e180]:
+                      - generic [ref=e181]:
+                        - generic [ref=e182]: Accountable owner
+                        - generic [ref=e183]:
+                          - generic [ref=e184]: R
+                          - generic [ref=e185]: review owner
+                      - generic [ref=e186]:
+                        - generic [ref=e187]: Assigned to
+                        - generic [ref=e188]: Unassigned
+                    - time [ref=e192]: 2026-11-01

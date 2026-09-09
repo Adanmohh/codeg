@@ -1,0 +1,7 @@
+{
+  "exit": 1,
+  "error": "Private credential login did not complete; details withheld",
+  "cause": "Harness used Server URL; the actual scoped login label is Workspace address.",
+  "credentialExposure": false,
+  "correction": "Use actual browser-login-empty.yml locator; token was never filled before this locator failed."
+}
