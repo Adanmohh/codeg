@@ -1,8 +1,41 @@
+#[cfg(feature = "tauri-runtime")]
+#[path = "src/business_identity/native_acl.rs"]
+#[allow(dead_code)]
+mod native_acl;
+
 fn main() {
     #[cfg(feature = "tauri-runtime")]
     {
         ensure_sidecar_placeholder();
-        tauri_build::build();
+        // An application manifest makes Tauri enforce ACL on custom commands.
+        // Derive the host list from the actual registry so later registrations
+        // cannot silently escape it. Generated files stay in this build output.
+        let out = std::path::PathBuf::from(std::env::var_os("OUT_DIR").expect("OUT_DIR"));
+        let permissions = out.join("business-acl");
+        std::fs::create_dir_all(&permissions).expect("create app ACL directory");
+        let source = std::fs::read_to_string("src/lib.rs").expect("read command registry");
+        std::fs::write(
+            permissions.join("commands.toml"),
+            native_acl::permissions(&source),
+        )
+        .expect("write app ACL");
+        println!("cargo:rerun-if-changed=src/lib.rs");
+        println!("cargo:rerun-if-changed=src/business_identity/native_acl.rs");
+        let pattern = Box::leak(format!("{}/*.toml", permissions.display()).into_boxed_str());
+        tauri_build::try_build(
+            tauri_build::Attributes::new()
+                .app_manifest(tauri_build::AppManifest::new().permissions_path_pattern(pattern)),
+        )
+        .expect("build app ACL");
+        // Test the same generated manifests compiled into this app, isolated
+        // from a different target's subsequent generated schema output.
+        for name in ["acl-manifests.json", "capabilities.json"] {
+            std::fs::copy(
+                std::path::Path::new("gen/schemas").join(name),
+                out.join(name),
+            )
+            .expect("snapshot generated ACL");
+        }
     }
 }
 

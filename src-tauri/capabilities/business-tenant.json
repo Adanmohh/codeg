@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "business-tenant",
+  "description": "Restricted tenant command boundary. Production window creation remains unavailable pending Tauri cross-window channel isolation.",
+  "windows": ["tenant-*"],
+  "permissions": ["allow-tenant-commands"]
+}

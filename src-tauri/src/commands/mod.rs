@@ -6,6 +6,7 @@ pub mod background;
 pub mod backup;
 pub mod business_identity;
 pub mod business_intake;
+pub mod business_tenancy;
 pub mod business_tasks;
 pub mod canvas;
 pub mod chat_authoring;

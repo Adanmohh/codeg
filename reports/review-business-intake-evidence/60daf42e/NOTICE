@@ -1,0 +1,18 @@
+Independent business intake permission regression probes
+
+The additional tests in 60daf42e-independent-permissions.patch adapt the
+existing Codeg test_read_tokens_tightens_existing_file, in
+src-tauri/src/keyring_store.rs at immutable Adanmohh/codeg commit
+60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d,
+blob efbaba1cb99423dccf6a6fc04d3fdcaee05d93b9.
+
+Codeg
+Copyright its contributors. Based on xintaofei/codeg v0.30.4,
+commit 6f6bd648b206412644842a98d9ffeebf57292bed.
+Licensed under Apache-2.0; the original license remains in ../../../LICENSE.
+Existing product attributions remain in ../../../NOTICE.
+
+Adaptation is test-only: compare the existing reader with the strict reader,
+then check rejected set and delete against synthetic 0644 temporary files.
+No product implementation is modified by the patch. All stored values are
+synthetic; the probes do not use the OS keyring or an actual token store.

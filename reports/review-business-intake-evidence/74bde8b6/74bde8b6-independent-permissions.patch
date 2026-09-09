@@ -1,0 +1,58 @@
+--- a/src-tauri/src/keyring_store.rs
++++ b/src-tauri/src/keyring_store.rs
+@@ -475,3 +475,55 @@
+         assert_eq!(mode_bits(&path), 0o600);
+     }
+ }
++
++
++// Independent reviewer tests only; no product change. Adapt the existing
++// test_read_tokens_tightens_existing_file at immutable 60daf42e.
++#[cfg(all(test, unix, not(feature = "tauri-runtime")))]
++mod independent_intake_mode_probes {
++    use super::*;
++    use std::os::unix::fs::PermissionsExt;
++
++    fn mode(path: &std::path::Path) -> u32 {
++        std::fs::metadata(path).unwrap().permissions().mode() & 0o777
++    }
++
++    #[test]
++    fn independent_intake_strict_reader_preserves_legacy_hardening() {
++        let dir = tempfile::tempdir().unwrap();
++        let old = dir.path().join("control.json");
++        let strict = dir.path().join("strict.json");
++        let bytes = br#"{"github-token:unrelated":"synthetic-preserved"}"#;
++        for path in [&old, &strict] {
++            std::fs::write(path, bytes).unwrap();
++            std::fs::set_permissions(path, std::fs::Permissions::from_mode(0o644)).unwrap();
++        }
++        let control = read_tokens_at(&old);
++        assert_eq!(control.len(), 1);
++        assert_eq!(mode(&old), 0o600);
++        let actual = {
++            let _guard = TOKEN_WRITE_LOCK.lock().unwrap();
++            read_tokens_for_write(&strict).unwrap()
++        };
++        assert_eq!(actual, control);
++        assert_eq!(std::fs::read(&strict).unwrap(), bytes);
++        assert_eq!(mode(&strict), 0o600, "strict read must retain the existing pre-read 0600 hardening");
++    }
++
++    #[test]
++    fn independent_intake_rejected_mutation_hardens_without_replacing_bytes() {
++        let mut observed_modes = Vec::new();
++        for value in [Some("synthetic-stage"), None] {
++            let dir = tempfile::tempdir().unwrap();
++            let path = dir.path().join("tokens.json");
++            let bytes = br#"{"github-token:unrelated":"synthetic-preserved",broken"#;
++            std::fs::write(&path, bytes).unwrap();
++            std::fs::set_permissions(&path, std::fs::Permissions::from_mode(0o644)).unwrap();
++            assert!(change_token_at(&path, token_key("stage"), value).is_err());
++            assert_eq!(std::fs::read(&path).unwrap(), bytes);
++            assert_eq!(std::fs::read_dir(dir.path()).unwrap().count(), 1);
++            observed_modes.push(mode(&path));
++        }
++        assert_eq!(observed_modes, vec![0o600, 0o600], "rejected set and delete must still retain permission hardening");
++    }
++}

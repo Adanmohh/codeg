@@ -1,0 +1,30 @@
+{
+  "sourceHead": "9a4c8c882cec938665bc233b4d658d8de019ccfd",
+  "parent": "60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d",
+  "independent": true,
+  "command": "cargo test --locked --offline --no-default-features --lib business_intake::tests --target-dir /Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/target -j 4",
+  "archive": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/review-business-intake/9a4c8c88",
+  "exit": 0,
+  "passed": 2,
+  "failed": 0,
+  "ignored": 0,
+  "seconds": 0.05,
+  "sourceFilesChecked": 733,
+  "sourceFilesMatching": 733,
+  "tested": [
+    "Closed/spoof/credential-header/null-replacement input cases",
+    "Fresh migration/table registration",
+    "Nonexistent member binding rejected with zero binding rows"
+  ],
+  "notTested": [
+    "Existing foreign-organization member rejection",
+    "Populated A upgrade/retention",
+    "Targeted down/reapply or migration failure rollback",
+    "Actual B protected endpoints, source access, imports, providers, claims, atomic task/receipt publication, UI"
+  ],
+  "verdict": "No additional blocking finding in schema/DTO checkpoint; inherited permission R1 remains open; full B not accepted",
+  "sha256": {
+    "9a4c8c88-types-migration.log": "92ed172259c3cefbb050909b567e8b0eecdb2825aa4bd2971bfe31548ae6fb96",
+    "9a4c8c88-source-verification.json": "8330af4d0290852fab3756df47bac86359f8b3ba214d4df99422b35470600c2b"
+  }
+}

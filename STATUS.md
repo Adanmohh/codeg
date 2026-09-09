@@ -1,7 +1,56 @@
 # Status — 2026-09-08
 
+## Current owner direction — shared rich workspace and multiple tenants
+
+Final architecture contract `af00c956787142f900384f7ba6b34ebbc005eb88`
+is reviewed and imported. **Identity/settings implementation is dispatched** to
+approvals in its existing worktree on `feat/business-tenancy`, report
+`reports/business-tenancy.md`: migration000012, explicit platform/tenant context,
+provisioning/recovery, suspension epochs, settings CAS and native ACL/session
+enforcement. Tickets retains B/migration000011, then independently reviews exact
+tenancy product heads after its compiling checkpoint. Rebrand retains the rich
+shared workspace and tenant UI. Closed settings/helper DTOs must be published
+before dependent integration; execution isolation remains a separate gate.
+No new worker, production merge, fixture migration or native acceptance is implied.
+
+Owner explicitly wants the engineering workspace's richness for business users:
+chat and terminal AI, tabs and split panes alongside shared tasks, tables, boards,
+data visualization and content calendars. A separate simplified business dashboard
+is not the target. Rebrand has this correction and must checkpoint current intake
+work before adapting the shared shell. Existing authority boundaries remain until
+tenant-safe tools and execution are reviewed; calendar and new data views are
+requirements, not implemented features.
+
+Early architecture review `a2be945d9869c9807a5e3f4d7a98dab1fc2cf2cf` is read
+in full and imported as [the tenancy proposal](reports/business-multitenancy-review.md).
+Root accepts its direction and staged boundaries as a proposal. Initial delivery
+keeps each credential scoped to one tenant, introduces explicit platform versus
+tenant context, retained-data migration and tenant settings CAS, and preserves the
+shared rich workspace. Migration `000012_business_tenancy` is reserved, not applied.
+Reviewer is completing native capability/window and B-seam consistency before
+the identity/settings implementation dispatch. Native restricted-window authority,
+legacy-resource entrustment and isolated execution profiles remain open contracts;
+no tenant isolation or runtime pass is claimed.
+
+True multi-tenancy and tenant-managed appearance are now authorized architecture
+work. Approvals is dispatched to `reports/business-multitenancy-review.md` after
+its bounded B review, using Edublend remote source
+`735e7695a44ab6e5dbda521c822f3a3809f289c8` and Payload multi-tenant plugin
+`54a0e3d24015b2e9c565bd7e695be1ec7184662e`. Root relayed both immutable pins.
+The current singleton database constraint is not yet migrated. Tenant branding,
+navigation/defaults, personal preferences, tenant-admin versus platform-operator
+authority and safe terminal execution need one reviewed contract. All three
+existing Herdr workers received the clarified direction; no new worker started.
+
+Independent B checkpoint `d92d1b9534025f994a85f070d3bb78174c876e62` is imported:
+12 unchanged setup/reader/legacy/migration tests pass at exact `67708b07`, with
+749/749 source blobs matched and no additional concrete blocker established.
+Root reads the evidence; this is reviewer execution, not a root rerun. R1 remains
+closed. Late/uncertain credential cleanup, full imports/publication/UI and final
+integration remain pending. A preview and existing fixtures are preserved.
+
 **Increment A is reviewed, merged and locally accepted. Increment B preparation
-has an accepted contract; implementation dispatch is starting.** Root remains orchestrator-only.
+implementation and independent review are dispatched across all three workers.** Root remains orchestrator-only.
 The accepted business workspace supports shared human/agent tasks, named
 responsibility, role/domain access, conflict recovery and explicit human review.
 Marketing, channels, ads, website and feedback are work areas; connected platform
@@ -46,9 +95,30 @@ Later root commits contain only documentation/evidence.
 The app is unsigned and not notarized/distributed. Live service setup, actual
 provider delivery, paid inference and real beta use remain unvalidated. Existing
 worker fixtures are preserved. Root final4318 server PID97709 remains available;
-root native and final browser sessions are closed.
+final acceptance browser sessions are closed. At the user's request, the accepted
+native preview was reopened as PID80241 with the existing synthetic N2 workspace;
+it remains open for viewing. It contains accepted A, not unfinished B changes.
 
 ## Increment B — meeting/feedback to shared tasks
+
+Latest draft PR28 head is `5de1176beb4778604b26df65f2ec669b0ab7987b`,
+production source `4a194500b76b97aa5caaf9434ce5c1f16e54ea48`. Root verified
+the GitHub head and read the report/seam inventory. Eight source/import HTTP
+operations compile; owner reports five new import tests passing for source-wide
+ordering, cancellation/expiry, current grants, version/deduplication and bounded
+retry/pagination. The later head adds tests and report only. These tests have not
+been independently rerun; product remains unmerged. Candidate/publication core
+continues with explicit Principal/organization. New native registrations await
+reviewed tenant selection. Both reviewer and UI owner received this exact handoff.
+No fixture or accepted preview changed.
+
+Tenant execution prerequisite confirmed by root at accepted `7d546c0e`:
+`acp/delegation/listener.rs` explicitly allows any valid companion token to
+resolve any non-deleted session in the inherited single-tenant model. New tenant
+AI sessions must not inherit that entire tool/token surface. Reviewed operation
+families, resource-scoped session/event/file access and isolated execution profiles
+are required; hiding tools or navigation is insufficient. This is a gap against
+the newly authorized architecture, not a regression claim against accepted A.
 
 PR25 is reviewed and merged at exact handoff `7f4d4dbc66f3b7487ffcb623769d79c9be2ac044`,
 merge `aa16a9b960ee9d59876a119c47165206f46d10d1`. Frozen contract `670af9ca`
@@ -57,34 +127,103 @@ plus access `18be55ed` has no open contract blockers in independent review
 or live configuration action are claimed. Sources stay private to explicit authorized humans; only exact
 human-reviewed task text is published to a permitted work area. Import must be
 durable/idempotent and use the existing task/identity core without launching an
-agent. A usable protected source-binding/grant setup is part of contract review.
+agent. A usable protected source-binding/grant setup is part of implementation.
 
 | Existing worker | Branch and bounded deliverable |
 | --- | --- |
-| tickets, wR:p4 | `docs/business-intake-contract`: `docs/contracts/business-intake.md` and `reports/business-intake-contract.md`; closed Fireflies/email/feedback import, claim, candidate and atomic task seams. Final companion handoff is completed separately. |
-| approvals, wR:p3 | `review/business-intake-contract`: `reports/review-business-intake-contract.md`; independent source visibility/publication/transaction review and smallest protected binding/grant API. |
-| rebrand, wR:p2 | `docs/business-intake-ui`: `reports/business-intake-ui-plan.md`; business source→passage→reviewed task flow, readiness/rebase/access recovery and visual/keyboard acceptance plan. |
+| tickets, wR:p4 | Dispatched `feat/business-intake` from accepted main `086eee48`: backend/access/staged credential and strict-store seam, sole migration `000011`, imports/candidates/atomic tasks, fixed Fireflies and safe legacy projections. Deliver `reports/business-intake.md`; early compiling checkpoints and draft PR. |
+| approvals, wR:p3 | Dispatched `review/business-intake` from accepted main: independent committed product/credential/permission/concurrency/atomicity review, later UI/session review. Deliver `reports/review-business-intake.md`; no product edits. |
+| rebrand, wR:p2 | Dispatched `feat/business-intake-ui` from accepted main: real Sources/setup/import/passage/private draft/accept/link/discard UI, typed client and EN/AR recovery. Deliver `reports/business-intake-ui.md`, actual Playwright CLI and Design Studio evidence. |
+
+All three dispatches were delivered through Herdr. UI closure PR27 was reviewed
+and merged at exact `1a876afc2ae81c7ea2066a14cdbb268fb363e37c`, merge
+`d57341370af701d26fc35300f88c3f4295149f38`; Q1–Q4 are closed for UI consistency
+against accepted `670af9ca`/`18be55ed`. No B runtime gate has run.
+New fixture ports will be coordinated; accepted A package and existing fixtures
+remain preserved. Fireflies is the first complete vertical slice; email/Hafidh
+capture remains required before claiming the complete B scope.
+
+Independent review preparation `599aa1e6b74c0841ab2753dd58c806cae0c83dcd`
+is read and imported: 16 concrete contract/BI probes covering credential failure,
+authority, cross-import ordering, atomic decisions, privacy and actual UI.
+These are planned probes. Independent review is now examining compiling backend
+prerequisite `60daf42e79fa7dc10f8118b9cdb8a73b2c07e80d`. Root read its full
+source/test/NOTICE/report diff and owner logs: strict credential mutation reads
+preserve malformed/unreadable stores; task-owned helpers let intake own one outer
+transaction while retaining task policy/CAS/activity. Owner server check passed;
+`intake_` matched 21 passing tests (four new prerequisite tests plus existing host
+coverage), one manual fixture ignored. Root has not independently run these tests.
+Two temporary unused-helper warnings remain before intake consumers are wired;
+this is not final Clippy or end-to-end B acceptance. Product is unmerged.
+
+**P2 R1 closed at `74bde8b6`: strict credential reads retain pre-read Unix
+0600 hardening.** At original `60daf42e`, independent synthetic probes failed 2/2: a valid strict read and
+rejected malformed set/delete retain0644, while the old-reader control becomes0600.
+Root read the frozen source, test-only patch and failure log and confirmed the
+source regression. Tickets is assigned to reuse the existing hardening under the
+write lock without weakening strict failure/byte preservation; exact fix review
+is required before merge. Reviewer separately reports five unchanged prerequisite/
+protected-router tests passing; those do not close this finding. No actual
+credential or existing fixture was accessed by the probes.
+Published review `473b3b316abdac67bacf09d4fef011ba3ec24ff4` is imported with
+the unchanged-test logs, failing probes, test-only patch and 728/728 source
+verification summary. Root read the report/results and verified all six recorded
+evidence digests. Correction `74bde8b6f1aeee135122cf52f78746eec36c6602` is now
+pushed to draft PR28: shared hardening runs before both readers, with a regular-file
+guard that preserves directory-failure fixtures. Root read the complete fix/report;
+owner reports all10 credential-store tests passing. Independent closure
+`435b1c046ed0dc0d889e2b47c1527196ffa823e0` passes all eight requested checks at
+the immutable fix: three store, two task, one protected-router and the identical
+two original reviewer probes. All733 source blobs match. Root imported closure
+evidence, verified all seven new and six preserved old digests, read the passing
+log results and independently compared the added test bodies as identical.
+No open finding remains in reviewed prerequisite/schema scope. Full B remains
+unmerged and unaccepted pending access/import/publication/UI and final gates.
+
+DTO/schema checkpoint `9a4c8c882cec938665bc233b4d658d8de019ccfd` is also under
+review. Root read its complete types/migration/error/tests/registration/NOTICE
+changes; endpoints are not exposed. Owner reports server check and two focused
+tests passing, with unused-consumer warnings. The migration test checks table
+registration and rejects a missing member; populated upgrade and actual cross-org
+member evidence remain separate requirements. Published independent review
+`5ea431f3c7f59b042af9b513d231c1a332a845d7` confirms two unchanged schema/DTO
+tests pass at9a4 (0.05s), all733 source blobs match, and no additional scoped schema
+blocker. Root imported the evidence and verified both recorded digests. Owner report
+at74b now corrects the same test-scope overstatement. No B runtime acceptance is implied.
+New synthetic ports are assigned: rebrand UI4350, tickets backend4351/upstream4352;
+owners must recheck availability before launching. No new fixture is claimed running.
+
+Setup/reader checkpoint `67708b0768cae3cacecd0dd1989c57bb565ab5f0` is pushed
+to draft PR28 and under independent review. Eight setup/grant HTTP/native
+registrations now exist, alongside protected access, staged credentials, fixed
+Fireflies reads and legacy projection/configuration-fence prerequisites. Root
+read the report and setup/access/service/transport paths; full source/test review
+is ongoing. Owner reports14 distinct intake cases passing across12 earlier passes
+and two corrected legacy cases, updated server check exit0, and existing Ops22
+passes/3 manual fixtures ignored. Failed iterations remain documented. Native,
+Clippy, full import/decision and real UI gates remain pending; source/import/
+candidate endpoints are not exposed at this checkpoint. No B fixture launched
+or accepted A package changed. Rebrand has the immutable setup/DTO handoff.
+[Product review](reports/review-business-intake.md).
 
 **UI planning PR26 reviewed and merged** at exact report head
 `91a69f339e99266b35bb912ae7d1cb155a6acd76`. Root read the full report and final
-diff. This accepts the business interaction plan, not B product or the unfinished
-backend contract. Independent review `ca787542` and UI reconciliation `08824564`
-agree Q2–Q4 rebase/disclosure, recovery and timing/error definitions are coherent
-at `85f6001f`. Q1 setup/capabilities still needs the owner's immutable integrated
-contract; this is now closed by PR25 and independent review `2a765db2`.
+diff. This accepted the business interaction plan. Later PR25 and PR27 close all
+four contract questions; product implementation and runtime acceptance remain
+separate from those documentation verdicts.
 [Plan](reports/business-intake-ui-plan.md) · [Root BI acceptance plan](reports/business-intake-acceptance-checklist.md).
 
 Protected access seam `18be55edc276713fc6d46d075baec363245ba285` is reviewed
 and imported: actual-operator setup, explicit binding/history audience, zero
 initial grants, owner-revision/source-refresh fences, staged secret activation
-and strict failure-preserving credential-store mutation. PR25 must reconcile
-this exact seam; its bounded final contract review is complete.
+and the required strict failure-preserving credential-store mutation. PR25
+incorporates this exact seam; its bounded final contract review is complete.
 [Access contract](docs/contracts/business-intake-access.md).
 
 All retain separate worktrees, Astra/max and live docs-first hooks; latest
 before/after hook records exit0. Installed pinned source then immutable gh api,
-approved borrowing/NOTICE and preserved paused work apply. Root reviews the
-concrete contract before assigning B implementation. Increment C business
+approved borrowing/NOTICE and preserved paused work apply. Root reviews committed
+implementation and independent evidence before merging product. Increment C business
 platform adapters follow the shared-work/import foundation. No new engine or
 unselected Sentry/SigNoz commitment is implied.
 

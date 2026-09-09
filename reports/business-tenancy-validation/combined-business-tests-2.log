@@ -1,0 +1,99 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/src-tauri)
+warning: struct `NativeSessions` is never constructed
+  --> src/business_identity/native.rs:16:12
+   |
+16 | pub struct NativeSessions(Mutex<HashMap<String, Session>>);
+   |            ^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: struct `Session` is never constructed
+  --> src/business_identity/native.rs:17:8
+   |
+17 | struct Session {
+   |        ^^^^^^^
+
+warning: associated items `clear_entry`, `clear_window`, `open`, `close`, and `principal` are never used
+  --> src/business_identity/native.rs:23:8
+   |
+22 | impl NativeSessions {
+   | ------------------- associated items in this implementation
+23 |     fn clear_entry(entries: &mut HashMap<String, Session>, window: &str) {
+   |        ^^^^^^^^^^^
+...
+28 |     pub fn clear_window(&self, window: &str) {
+   |            ^^^^^^^^^^^^
+...
+34 |     pub async fn open(
+   |                  ^^^^
+...
+79 |     pub fn close(&self, window: &str, id: &str) -> Result<(), E> {
+   |            ^^^^^
+...
+86 |     pub async fn principal(
+   |                  ^^^^^^^^^
+
+warning: struct `NativeSessionView` is never constructed
+   --> src/business_identity/native.rs:122:12
+    |
+122 | pub struct NativeSessionView {
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 5 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 03s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-tenancy-target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 44 tests
+test business_identity::tests::fixture::business_identity_browser_fixture ... ignored, manual guarded identity API fixture on loopback4341; no task/UI acceptance
+test business_identity::tests::policy::revoking_members_revokes_every_token_and_does_not_retarget_old_identity ... ok
+test business_identity::tests::transactions::explicitly_named_identity_migration_is_atomic_and_preserves_initialized_rows ... ok
+test business_identity::tests::transactions::identity_audit_failure_rolls_back_member_creation_and_history_is_immutable ... ok
+test business_identity::tests::tenancy::tenancy_epoch_away_back_never_refreshes_captured_human_or_grant ... ok
+test business_identity::tests::platform::tenancy_provision_replay_loss_reissue_preserves_one_tenant_and_unrelated_credentials ... ok
+test business_identity::tests::tenancy::tenancy_settings_cas_and_current_authority_preserve_other_fields ... ok
+test business_identity::tests::policy::self_revoke_does_not_reveal_or_revoke_another_members_credential ... ok
+test business_tasks::tests::fixture::business_tasks_browser_fixture ... ignored, manual guarded task API fixture on loopback4342; no engine or UI claims
+test business_identity::tests::member_tokens_are_hashed_individual_and_revocation_rechecks_cached_principal ... ok
+test business_identity::tests::transactions::competing_operator_bootstraps_create_one_organization_and_preserve_the_winner ... ok
+test business_identity::tests::platform::tenancy_last_owner_and_provision_receipt_failure_are_atomic ... ok
+test business_identity::tests::policy::original_credential_and_current_human_agent_grants_fence_restored_delegations ... ok
+test business_identity::tests::transactions::independent_connections_cas_member_updates_and_append_one_event ... ok
+test business_identity::tests::policy::directory_and_active_references_respect_current_domain_org_and_membership ... ok
+test business_identity::tests::policy::administrative_grants_never_exceed_current_authority_or_create_elevated_agents ... ok
+test business_identity::tests::full_router_requires_original_operator_bootstrap_and_keeps_member_bearers_out_of_legacy ... ok
+test business_identity::tests::tenancy::tenancy_migration_preserves_populated_ids_hashes_history_and_fk_after_failure ... ok
+test business_identity::tests::platform::tenancy_two_real_tenants_protected_router_positive_and_negative_resource_controls ... ok
+test business_identity::tests::platform::tenancy_two_writers_settings_cas_and_suspend_fence_captured_authority ... ok
+test business_tasks::agent::tenancy_tests::tenancy_unlinked_source_authority_epoch_cannot_resurrect_after_resume ... ok
+test business_tasks::tests::due_dates_are_calendar_values_and_closed_inputs_cannot_bypass_review_or_identity ... ok
+test business_tasks::tests::edited_payload_invalidates_review_and_stale_acceptance_cannot_complete_it ... ok
+test business_identity::tests::wire_rejects_actor_role_org_spoofing_and_viewer_writes ... ok
+test business_tasks::tests::human_only_work_progresses_to_real_human_review_without_folder_or_agent ... ok
+test business_tasks::tests::domain_visibility_viewer_denial_and_destination_references_are_real_authorization ... ok
+test business_tasks::tests::transactions::independent_sqlite_connections_race_one_revision_and_one_activity ... ok
+test business_tasks::tests::http::real_business_router_derives_actor_rejects_spoofs_and_returns_revision_conflicts ... ok
+test business_identity::tests::transactions::writer_serialization_fences_a_cached_principal_after_concurrent_revocation ... ok
+test business_tasks::tests::transactions::task_migration_is_atomic_scoped_and_refuses_to_drop_durable_history ... ok
+test business_tasks::tests::transactions::activity_failure_rolls_back_deliverable_and_revision_and_history_cannot_be_rewritten ... ok
+test business_tasks::tests::transactions::task_writer_rechecks_original_credential_after_waiting_for_revocation ... ok
+test work_task::engine::desk::tests::business::desk_business_bridge_uses_original_delegator_and_real_run_and_never_self_reviews ... ok
+test work_task::engine::desk::tests::business::desk_business_original_member_credential_revocation_survives_persisted_link_restoration ... ok
+test business_tasks::tests::list_filters_are_bounded_and_literal_and_mine_uses_real_ownership ... ok
+test work_task::engine::desk::tests::business::desk_business_revoked_generation_cannot_be_retargeted_and_fresh_run_keeps_agent_identity ... ok
+test work_task::engine::desk::tests::business::ownership::desk_business_wrong_agent_and_assignment_away_back_do_not_resurrect_entrustment ... ok
+test work_task::engine::desk::tests::business::ownership::desk_business_unrelated_live_run_and_owner_role_cannot_mint_source_ownership ... ok
+test work_task::engine::desk::tests::business::ownership::desk_business_source_revalidated_after_database_writer_changes_assignment ... ok
+test work_task::engine::desk::tests::business::ownership::desk_business_scope_and_cancel_reopen_away_back_invalidate_source_revision ... ok
+test work_task::engine::desk::tests::business::desk_business_reassignment_cancellation_and_new_generation_fence_old_launch ... ok
+test work_task::engine::desk::tests::business::desk_business_current_delegator_grants_and_agent_revocation_fence_contributions ... ok
+test work_task::engine::desk::tests::business::ownership::desk_business_retirement_precedes_queued_link_and_child_pi_cannot_impersonate_member ... ok
+test work_task::engine::desk::tests::business::desk_business_writer_rechecks_credential_and_run_after_queued_request_and_abort ... ok
+
+test result: ok. 42 passed; 0 failed; 2 ignored; 0 measured; 3668 filtered out; finished in 3.14s
+

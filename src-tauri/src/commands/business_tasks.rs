@@ -2,7 +2,7 @@
 #![cfg(feature = "tauri-runtime")]
 use crate::{
     app_error::AppCommandError,
-    business_identity::{self, IdentityError},
+    business_identity::{native::NativeSessions, IdentityError},
     business_tasks::{self, store, types::*, ActorContext},
     db::AppDatabase,
 };
@@ -10,11 +10,15 @@ use crate::{
 macro_rules! command {
     ($name:ident, $core:ident, $input:ty, $result:ty) => {
         #[tauri::command]
-        pub async fn $name(
+        pub async fn $name<R: tauri::Runtime>(
+            window: tauri::WebviewWindow<R>,
+            sessions: tauri::State<'_, NativeSessions>,
+            session: Option<String>,
             db: tauri::State<'_, AppDatabase>,
             input: $input,
         ) -> Result<$result, AppCommandError> {
-            let principal = business_identity::operator_principal(&db.conn)
+            let principal = sessions
+                .principal(&db.conn, window.label(), session.as_deref())
                 .await
                 .map_err(IdentityError::command_error)?;
             store::$core(&db.conn, &ActorContext::authenticated(principal), input)
@@ -36,11 +40,15 @@ command!(business_tasks_cancel, cancel, RevisionInput, Detail);
 command!(business_tasks_archive, archive, ArchiveInput, Detail);
 
 #[tauri::command]
-pub async fn business_tasks_link_execution(
+pub async fn business_tasks_link_execution<R: tauri::Runtime>(
+    window: tauri::WebviewWindow<R>,
+    sessions: tauri::State<'_, NativeSessions>,
+    session: Option<String>,
     db: tauri::State<'_, AppDatabase>,
     input: LinkExecutionInput,
 ) -> Result<Detail, AppCommandError> {
-    let principal = business_identity::operator_principal(&db.conn)
+    let principal = sessions
+        .principal(&db.conn, window.label(), session.as_deref())
         .await
         .map_err(IdentityError::command_error)?;
     business_tasks::link_execution(ActorContext::authenticated(principal), input)
@@ -49,11 +57,15 @@ pub async fn business_tasks_link_execution(
 }
 
 #[tauri::command]
-pub async fn business_tasks_entrust_execution(
+pub async fn business_tasks_entrust_execution<R: tauri::Runtime>(
+    window: tauri::WebviewWindow<R>,
+    sessions: tauri::State<'_, NativeSessions>,
+    session: Option<String>,
     db: tauri::State<'_, AppDatabase>,
     input: LinkExecutionInput,
 ) -> Result<Detail, AppCommandError> {
-    let principal = business_identity::operator_principal(&db.conn)
+    let principal = sessions
+        .principal(&db.conn, window.label(), session.as_deref())
         .await
         .map_err(IdentityError::command_error)?;
     business_tasks::entrust_execution(ActorContext::authenticated(principal), input)

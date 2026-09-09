@@ -170,13 +170,20 @@ async fn activity_failure_rolls_back_deliverable_and_revision_and_history_cannot
 
 #[tokio::test]
 async fn task_migration_is_atomic_scoped_and_refuses_to_drop_durable_history() {
-    let db = fresh_in_memory_db().await;
+    let db = AppDatabase {
+        conn: Database::connect("sqlite::memory:").await.unwrap(),
+    };
+    for earlier in Migrator::migrations()
+        .into_iter()
+        .take_while(|m| m.name() != "m20260908_000010_business_tasks")
+    {
+        earlier.up(&SchemaManager::new(&db.conn)).await.unwrap();
+    }
     let migration = Migrator::migrations()
         .into_iter()
         .find(|m| m.name() == "m20260908_000010_business_tasks")
         .unwrap();
     let manager = SchemaManager::new(&db.conn);
-    migration.down(&manager).await.unwrap();
     db.conn
         .execute_unprepared("CREATE TABLE business_task_execution (id INTEGER)")
         .await
@@ -191,6 +198,13 @@ async fn task_migration_is_atomic_scoped_and_refuses_to_drop_durable_history() {
         .await
         .unwrap();
     migration.up(&manager).await.unwrap();
+    for later in Migrator::migrations()
+        .into_iter()
+        .skip_while(|m| m.name() != "m20260908_000010_business_tasks")
+        .skip(1)
+    {
+        later.up(&manager).await.unwrap();
+    }
     let (op, ctx, task) = create_owned(&db).await;
     assert!(migration.down(&manager).await.is_err());
     assert!(db.conn.execute(store::statement("INSERT INTO business_task (id,organization_id,title,domain,owner_id,creator_id,created_at,updated_at) VALUES (?, ?, 'forged', 'feedback', ?, ?, 'now', 'now')", vec![uuid::Uuid::new_v4().to_string().into(), "foreign-org".into(), op.member_id().into(), op.member_id().into()])).await.is_err());

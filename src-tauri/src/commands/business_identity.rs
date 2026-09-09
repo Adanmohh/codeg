@@ -2,23 +2,39 @@
 #![cfg(feature = "tauri-runtime")]
 use crate::{
     app_error::AppCommandError,
-    business_identity::{self, store, types::*, IdentityError},
+    business_identity::{native::NativeSessions, store, types::*, IdentityError},
     db::AppDatabase,
 };
 
 #[tauri::command]
-pub async fn business_context(
+pub async fn business_context<R: tauri::Runtime>(
+    window: tauri::WebviewWindow<R>,
+    sessions: tauri::State<'_, NativeSessions>,
+    session: Option<String>,
     db: tauri::State<'_, AppDatabase>,
 ) -> Result<Context, AppCommandError> {
-    store::operator_context(&db.conn)
-        .await
-        .map_err(IdentityError::command_error)
+    if crate::business_identity::native_acl::is_platform(window.label()) && session.is_none() {
+        crate::commands::business_tenancy::platform_context(&window)?;
+        store::operator_context(&db.conn)
+            .await
+            .map_err(IdentityError::command_error)
+    } else {
+        let principal = sessions
+            .principal(&db.conn, window.label(), session.as_deref())
+            .await
+            .map_err(IdentityError::command_error)?;
+        store::context(&db.conn, &principal)
+            .await
+            .map_err(IdentityError::command_error)
+    }
 }
 #[tauri::command]
-pub async fn business_bootstrap(
+pub async fn business_bootstrap<R: tauri::Runtime>(
+    window: tauri::WebviewWindow<R>,
     db: tauri::State<'_, AppDatabase>,
     input: BootstrapInput,
 ) -> Result<Context, AppCommandError> {
+    crate::commands::business_tenancy::platform_context(&window)?;
     store::bootstrap(&db.conn, input)
         .await
         .map_err(IdentityError::command_error)
@@ -26,11 +42,15 @@ pub async fn business_bootstrap(
 macro_rules! input_command {
     ($name:ident, $core:path, $input:ty, $result:ty) => {
         #[tauri::command]
-        pub async fn $name(
+        pub async fn $name<R: tauri::Runtime>(
+            window: tauri::WebviewWindow<R>,
+            sessions: tauri::State<'_, NativeSessions>,
+            session: Option<String>,
             db: tauri::State<'_, AppDatabase>,
             input: $input,
         ) -> Result<$result, AppCommandError> {
-            let principal = business_identity::operator_principal(&db.conn)
+            let principal = sessions
+                .principal(&db.conn, window.label(), session.as_deref())
                 .await
                 .map_err(IdentityError::command_error)?;
             $core(&db.conn, &principal, input)

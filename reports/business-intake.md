@@ -402,3 +402,47 @@ implementing the captured accessor, settings and migration000012. B is preserved
 here while this worker switches to the assigned independent exact-head review.
 Platform/native runtime is not yet exposed at that checkpoint; no acceptance of
 those missing surfaces or of B's future persisted epoch integration is implied.
+
+## Reviewed tenancy integration — September 9 checkpoint
+
+Returned from preserved `review/business-tenancy` at
+`08dca9dd04dcec2106078fe53ff8b9e785bbd512` to intake checkpoint
+`15bb402b9265006930cc9ce4428332d04c9fb34a`. Integrated immutable PR30 handoff
+`b3dfbcb602314cee6eb0039d92cb997762c02dd8` (gh api verified tree
+`4271c2bf0c647729276ad6cac1951a5d7b0e35e6`; reviewed product29774b50).
+Four additive conflicts retain both NOTICE sections, intake/settings routers,
+command modules and migration000011 before000012. No dependency or lock edit by
+this integration; PR30's already reviewed test-utils feature is retained.
+
+New isolated target `.docs/business-intake-tenancy-target`, log
+`.docs/business-intake-tenancy-logs/check-integrated-server.log`:
+`cargo check --manifest-path src-tauri/Cargo.toml --locked --offline
+--no-default-features --bin codeg-server`, exit0, 1m09s. Four prior private-model
+unused-field warnings and proc-macro-error2 future-compatibility notice remain;
+this is a compiling integration checkpoint, not final Clippy or B acceptance.
+Existing targets/fixtures/exports/bundle and the untracked visual report are intact.
+
+Next persisted-authority correction: setup reservations, import attempts, source
+observations and candidate previews store the captured Principal tenant epoch.
+Null retained epochs never default to1/current. They require explicit fresh
+validation; a fresh login after resume cannot rescue an old claim/preview.
+B-owned nullable-column upgrade will run inside000012's pinned writer transaction
+when old000011 tables exist, preserving histories and migration-receipt retries.
+Fresh000011 will create those same columns in its own transaction. This plan was
+sent to approvals for the migration boundary; no passing epoch test is claimed yet.
+
+The existing25 POST operation/input DTOs are unchanged here. Tenant Fireflies
+connection administration will require current owner/admin identity and domain
+ceiling, with zero initial source grants. Legacy account/inbox/product entrustment
+remains actual protected platform authority; no implicit operator Principal or
+host resource ownership is added. Exact additive setup capabilities and native
+same-session wrappers will be published before the guarded fixture/UI handoff.
+Native restricted windows stay unavailable and no legacy terminal tool is exposed.
+
+Docs-first: separate React19.2.4 package and Cargo manifest reads; complete current
+governing docs and intake/access/tenancy contracts; pinned SeaORM1.1.19,
+SQLx0.8.6 source read. Offline code-context guide exit0; dependency docs exit3
+because tickets.db is absent. The cross-project per-tenant-DB advice does not
+replace this accepted shared-DB contract. Live own-session hook audit recorded
+PreToolUse22753/22755 and PostToolUse22750–22754 for this worktree/session
+`01a07c1c-d82f-7022-84db-778a438632f1`. No hooks were bypassed.

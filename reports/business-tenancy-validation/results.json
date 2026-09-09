@@ -1,0 +1,154 @@
+{
+  "product_commit": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+  "branch": "feat/business-tenancy",
+  "branch_point": "a4cda9d1ab0753b9941e5810f083e20422990395",
+  "pr_url": "https://github.com/Adanmohh/codeg/pull/30",
+  "executed_by": "approvals implementation worker",
+  "final_checks": [
+    {
+      "log": "final-native-business-tests.log",
+      "sha256": "d50db89271b02517de71871aff5e3b18a553d07d148e27d6a12d7ac117932bab",
+      "bytes": 7230,
+      "command": "cargo test --locked --offline --features test-utils --lib business_",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/src-tauri",
+      "exit_code": 0,
+      "source_commit": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-tenancy-target"
+      },
+      "passed": 46,
+      "failed": 0,
+      "ignored": 2,
+      "test_runtime": "3.33s"
+    },
+    {
+      "log": "final-server-business-tests.log",
+      "sha256": "2ed0d9a0923810d9072f91b3a9d916cc4a6fb590bca87f115ce8cf562498ea5e",
+      "bytes": 6763,
+      "command": "cargo test --locked --offline --no-default-features --lib business_",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/src-tauri",
+      "exit_code": 0,
+      "source_commit": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-tenancy-target"
+      },
+      "passed": 44,
+      "failed": 0,
+      "ignored": 2,
+      "test_runtime": "3.71s"
+    },
+    {
+      "log": "final-server-companion-check.log",
+      "sha256": "c82df0efd8bb78646aefd64b1b70d3d4e24cf6b460a21a9cafce9727eaa06404",
+      "bytes": 425,
+      "command": "cargo check --locked --offline --no-default-features --bin codeg-server --bin codeg-mcp",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/src-tauri",
+      "exit_code": 0,
+      "source_commit": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-tenancy-target"
+      },
+      "cargo_elapsed": "11.65s"
+    },
+    {
+      "log": "final-native-clippy.log",
+      "sha256": "4c60f04be31be514af1968062102595d09f336848684035c1ec9c04e6fe81bfb",
+      "bytes": 2707,
+      "command": "cargo clippy --locked --offline --all-targets --features test-utils -- -D warnings",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/src-tauri",
+      "exit_code": 0,
+      "source_commit": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-tenancy-target"
+      },
+      "cargo_elapsed": "2m12s including own build-lock wait"
+    },
+    {
+      "log": "final-server-companion-clippy.log",
+      "sha256": "564168d6824927576c1d17967d2afcbb00aef9bc39fdf6870e73fd50631abc22",
+      "bytes": 425,
+      "command": "cargo clippy --locked --offline --no-default-features --bin codeg-server --bin codeg-mcp --lib -- -D warnings",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/src-tauri",
+      "exit_code": 0,
+      "source_commit": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-tenancy-target"
+      },
+      "cargo_elapsed": "40.56s"
+    },
+    {
+      "log": "final-native-check.log",
+      "sha256": "9f6a79bec2b419de67b37fbb30e8ecf25157afcfeef6d5c790580b6bd6588b56",
+      "bytes": 625,
+      "command": "cargo check --locked --offline",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/src-tauri",
+      "exit_code": 0,
+      "source_commit": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-tenancy-target"
+      },
+      "cargo_elapsed": "12.64s"
+    },
+    {
+      "log": "typecheck.log",
+      "sha256": "ce753b53cf928d5a754127f60be34bdcf5116da21e1a6fa670284000a7971b8d",
+      "bytes": 52,
+      "command": "pnpm exec tsc --noEmit",
+      "cwd": "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals",
+      "exit_code": 0,
+      "source_commit": "29774b50aafc29658a2f48fab1f44d366ed2c8a0",
+      "source_note": "Executed before source commit; frontend/manifests/locks unchanged through this head."
+    }
+  ],
+  "historical_attempts": [
+    {
+      "log": "native-check-1.log",
+      "sha256": "11556a761730ae771033305eb54184f53dd5bea08e6ac2390e8e7d6f9a879247",
+      "bytes": 16221,
+      "exit_code": 101,
+      "source_commit": null,
+      "source_note": "Uncommitted intermediate implementation before29774b50; not an exact-final-head claim.",
+      "note": "Registry path compilation failure; corrected before29774b50."
+    },
+    {
+      "log": "platform-identity-tests.log",
+      "sha256": "cabe83fbd2d879548283e926c645b7e297cb248839c210db45241f85db57742a",
+      "bytes": 4558,
+      "exit_code": 101,
+      "source_commit": null,
+      "source_note": "Uncommitted intermediate implementation before29774b50; not an exact-final-head claim.",
+      "note": "19 passed,1 failed,1 ignored; test positive control used deliberately revoked principal; corrected before29774b50."
+    },
+    {
+      "log": "combined-business-tests-2.log",
+      "sha256": "8151588813ad7e6e9047531660b2d14c8979c49b269af02429ab0e2427be123f",
+      "bytes": 7772,
+      "exit_code": 0,
+      "source_commit": null,
+      "source_note": "Uncommitted intermediate implementation before29774b50; not an exact-final-head claim.",
+      "note": "42 passed,2 ignored; native session test was not registered yet; final selectors supersede this incomplete coverage."
+    }
+  ],
+  "source_correspondence_sha256": "3f312d71c8c1403c1b120af31a2e35605ba260af20df063c3a6fbb4714cecb52",
+  "limits": [
+    "A-only migration prefix; B000011 absent",
+    "Native MockRuntime ACL and command tests; production tenant windows unavailable",
+    "No browser/listener/provider/production-app or cross-platform channel claim",
+    "Independent reviewer results are attributed separately in report"
+  ],
+  "repository_checks": [
+    {
+      "command": "git diff --exit-code a4cda9d1ab0753b9941e5810f083e20422990395 HEAD -- FOUNDING.md ORCHESTRATOR.md STATUS.md DECISIONS.md AGENTS.md src package.json pnpm-lock.yaml src-tauri/Cargo.lock",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --cached --check -- docs/contracts/business-tenancy.md reports/business-tenancy.md reports/business-tenancy-validation/results.json reports/business-tenancy-validation/source-correspondence.json",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --cached --check",
+      "exit_code": 2,
+      "limit": "Only original final blank lines in combined-business-tests-2.log, final-native-business-tests.log and final-server-business-tests.log. Raw evidence unchanged."
+    }
+  ]
+}

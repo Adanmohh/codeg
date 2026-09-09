@@ -1,0 +1,57 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/src-tauri)
+warning: unused import: `TransactionTrait`
+ --> src/business_identity/tests/platform.rs:4:25
+  |
+4 | use sea_orm::{Database, TransactionTrait};
+  |                         ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: linker stderr: ld: __eh_frame section too large (max 16MB) to encode dwarf unwind offsets in compact unwind table, performance of exception handling might be affected
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: `codeg` (lib test) generated 2 warnings (run `cargo fix --lib -p codeg --tests` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 20s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-tenancy-target/debug/deps/codeg_lib-b542e2757758a7bb)
+
+running 21 tests
+test business_identity::tests::fixture::business_identity_browser_fixture ... ignored, manual guarded identity API fixture on loopback4341; no task/UI acceptance
+test business_identity::tests::transactions::identity_audit_failure_rolls_back_member_creation_and_history_is_immutable ... ok
+test business_identity::tests::transactions::explicitly_named_identity_migration_is_atomic_and_preserves_initialized_rows ... ok
+test business_identity::tests::policy::revoking_members_revokes_every_token_and_does_not_retarget_old_identity ... ok
+test business_identity::tests::tenancy::tenancy_epoch_away_back_never_refreshes_captured_human_or_grant ... ok
+test business_identity::tests::member_tokens_are_hashed_individual_and_revocation_rechecks_cached_principal ... ok
+test business_identity::tests::policy::self_revoke_does_not_reveal_or_revoke_another_members_credential ... ok
+test business_identity::tests::policy::directory_and_active_references_respect_current_domain_org_and_membership ... ok
+test business_identity::tests::policy::administrative_grants_never_exceed_current_authority_or_create_elevated_agents ... ok
+test business_identity::tests::platform::tenancy_last_owner_and_provision_receipt_failure_are_atomic ... ok
+test business_identity::tests::transactions::competing_operator_bootstraps_create_one_organization_and_preserve_the_winner ... ok
+test business_identity::tests::tenancy::tenancy_settings_cas_and_current_authority_preserve_other_fields ... ok
+test business_identity::tests::full_router_requires_original_operator_bootstrap_and_keeps_member_bearers_out_of_legacy ... ok
+test business_identity::tests::policy::original_credential_and_current_human_agent_grants_fence_restored_delegations ... ok
+test business_identity::tests::transactions::independent_connections_cas_member_updates_and_append_one_event ... ok
+test business_identity::tests::platform::tenancy_provision_replay_loss_reissue_preserves_one_tenant_and_unrelated_credentials ... FAILED
+test business_identity::tests::platform::tenancy_two_real_tenants_protected_router_positive_and_negative_resource_controls ... ok
+test business_identity::tests::tenancy::tenancy_migration_preserves_populated_ids_hashes_history_and_fk_after_failure ... ok
+test business_identity::tests::platform::tenancy_two_writers_settings_cas_and_suspend_fence_captured_authority ... ok
+test business_identity::tests::wire_rejects_actor_role_org_spoofing_and_viewer_writes ... ok
+test business_identity::tests::transactions::writer_serialization_fences_a_cached_principal_after_concurrent_revocation ... ok
+
+failures:
+
+---- business_identity::tests::platform::tenancy_provision_replay_loss_reissue_preserves_one_tenant_and_unrelated_credentials stdout ----
+
+thread 'business_identity::tests::platform::tenancy_provision_replay_loss_reissue_preserves_one_tenant_and_unrelated_credentials' (67846405) panicked at src/business_identity/tests/platform.rs:137:14:
+called `Result::unwrap()` on an `Err` value: Unauthorized
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    business_identity::tests::platform::tenancy_provision_replay_loss_reissue_preserves_one_tenant_and_unrelated_credentials
+
+test result: FAILED. 19 passed; 1 failed; 1 ignored; 0 measured; 3690 filtered out; finished in 1.19s
+
+error: test failed, to rerun pass `--lib`
