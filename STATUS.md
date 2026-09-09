@@ -2,6 +2,17 @@
 
 ## Current integration and worker state
 
+**R4 correction published; source re-review assigned, tests pending.** Product
+`9e58f4e6a41569a96d79fc2af963acec6e5c5aa6` adds000015 scan state and atomic
+counter/retention, with11 planned output cases. Root read the migration and
+output delta, verified both000014 files remain byte-identical425, matched all
+seven correction plus two preserved migration blob/SHA pairs, and imported the
+[source ledger](reports/business-ai-execution-validation/scan-fence/source.json)
+from report-only `7e28988190176caea1ae405e7c3d31e82ec53bce`. Approvals owns the
+bounded immutable source re-review. Rustfmt/diff checks are not compilation or
+test acceptance; R4 remains open. Current root free space is about9.28 GiB, so
+Cargo remains held under the10 GiB start threshold. No slot is claimed.
+
 **R4 output-discovery source report verified and imported.** Reviewer
 `2c37bb7c3103cc8a391521d37a60a21b12ca5be8` records the open empty/newer-no-op
 ordering defect at425, exact trigger and all five output-test limits. Root read
