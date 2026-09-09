@@ -6,8 +6,10 @@ from `cba079c756efe058b4b9cd27d640c022568148df`.
 Deliverable: [contract](../docs/contracts/business-ai-execution.md).
 Draft [PR31](https://github.com/Adanmohh/codeg/pull/31); early checkpoint
 `d1f22f85a22d844660df99a770daee39df3e371f` published before final DTOs.
-No product implementation or execution acceptance claimed. Final contract hash
-and immutable handoff follow after publication.
+No product implementation or execution acceptance claimed. Frozen contract head:
+`f454db7554531feb6fd8e9fd5c7949e7b7fa777e` (eight-line review-file response
+clarification after full DTO/recovery head `f2af30f73e38cd929b993026df8600fde32715d6`).
+Contract SHA256: `1872370aca8b920e66001632c06e661de776e6c62eb5569ee77b4a0183daf925`.
 
 ## Progress and preserved work
 
@@ -161,3 +163,19 @@ read-persistence checks, its own browser closed. Those are attributed independen
 B results, not AI execution proof. No new fixture health call/restart, source or
 record mutation was needed for this contract. Await exact authority/UI review;
 no runtime exposure before root dispatch/acceptance.
+
+Final closeout: explicit `git diff --check`, commit/push and `gh api` immutable
+commit/PR verification exit0; PR31 is open/draft against main. Only the two owned
+documents differ from the accepted branch point. Final report commit follows the
+frozen contract; it does not change that hash. Original paused report and all
+runtime/fixture resources remain preserved.
+
+Root has now dispatched **internal E1 prerequisites only**, separately on
+`feat/business-ai-execution`, migration `m20260909_000014_business_execution`.
+E1 must reject unimplemented `account_snapshot` input references; future manager
+stop applies to E2, never relaxes E1's every-operation operator gate. Published
+provenance remains selected-version facts only. Exact authenticated POST event
+framing/replay and content response must be pinned before UI exposure. No routes,
+native registration, profile launch or fixture/provider work until final authority
+verdict. That implementation gets `reports/business-ai-execution-implementation.md`;
+this document and PR31 remain the docs-only contract handoff.
