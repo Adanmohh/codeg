@@ -365,14 +365,15 @@ async fn intake_recovery_late_blocking_store_after_abort_and_cleanup_retries_onl
         .await
         .unwrap();
     assert!(!f.secrets.values.lock().unwrap().contains_key(&orphan));
-    let keys = f.secrets.values.lock().unwrap();
-    assert_eq!(keys.get(&active).unwrap(), "synthetic-fireflies");
-    assert_eq!(
-        keys.get("synthetic-unrelated").unwrap(),
-        "synthetic-preserved"
-    );
-    assert_eq!(keys.len(), 2);
-    drop(keys);
+    {
+        let keys = f.secrets.values.lock().unwrap();
+        assert_eq!(keys.get(&active).unwrap(), "synthetic-fireflies");
+        assert_eq!(
+            keys.get("synthetic-unrelated").unwrap(),
+            "synthetic-preserved"
+        );
+        assert_eq!(keys.len(), 2);
+    }
     assert_eq!(count(&f.db.conn, "business_intake_binding").await, 1);
     assert_eq!(count(&f.db.conn, "business_intake_grant").await, 0);
 }

@@ -542,3 +542,52 @@ credential, native keyring, provider/model/engine or existing fixture was used.
 Default/server/companion and Clippy/typecheck final gates are still running/planned;
 linker unwind-size and proc-macro-error2 warnings are disclosed. No native runtime
 or full B01–B18/BI1–10 acceptance is claimed by these backend cases alone.
+
+## Final integrated backend gates before the shared fixture
+
+Checkpoint949adb02's three production cleanups preserve the wire/authority rules:
+box the large import detail value, group setup reservation arguments, and derive
+the existing `unfinished`/`pending` enum defaults. Desktop Clippy additionally
+required a lexical mutex scope in the late-store recovery test instead of explicit
+`drop(keys)`; no assertion or core behavior changed. No lint suppression was added.
+
+One complete corrected intake run is now green: **38 passed,0 failed,0 ignored**,
+3.19s runtime,154.47s command wall time. This includes all8 new tenancy/migration/
+HTTP cases and the two corrected expectations documented above. The later
+test-only lexical-scope change was rerun separately:1 passed,0 failed,0.07s runtime,
+47.62s command time. The independent reviewer's frozen949 eight-case execution is
+separate evidence, not attributed to this worker.
+
+All commands use the existing `.docs/business-intake-tenancy-target`, locked/offline:
+
+| Gate | Result |
+| --- | --- |
+| Default desktop `cargo check --locked --offline` | exit0,52.21s after cleanup |
+| Server check `--no-default-features --bin codeg-server` | exit0,8.48s |
+| Companion check `--no-default-features --bin codeg-mcp` | exit0,39.70s |
+| Server Clippy `--no-default-features --bin codeg-server --lib -- -D warnings` | exit0,47.96s |
+| Companion Clippy `--no-default-features --bin codeg-mcp -- -D warnings` | exit0,0.91s |
+| Desktop Clippy `--all-targets --features test-utils -- -D warnings` | exit0,85.27s after the test scope fix |
+| `pnpm exec tsc --noEmit --incremental false` | exit0; no frontend source or dependency change |
+
+Logs, failed exploratory runs, exact commands/exits and SHA256/source correspondence
+are committed in `reports/business-intake-validation/tenancy/`. The existing
+proc-macro-error2 future-compatibility and test-linker unwind notices remain.
+Desktop checks rewrite only the own existing zero-byte companion placeholder;
+no sidecar/release/native bundle was built and no packaged-runtime claim is made.
+Accepted000012 and lockfiles remain byte-identical to reviewed PR30. Latest live
+hook metadata: own-session PreToolUse23834/23835 and PostToolUse23817/23819.
+Local Rust installed documentation plus existing task enum conventions ground the
+cleanup; offline code-context guide reiterates exact-file staging and tenant/platform
+separation. Installed dependency corpus remains unavailable, as previously disclosed.
+
+The next checkpoint is test-only shared fixture source: a fresh disk DB on4351,
+fixed synthetic read-only upstream4352, and separate `ui`, `root`, `review`, `worker`
+tenant records. Initial bindings/grants/provider reads are zero. Credentials go
+only into newly created private0600 files; the injected store rejects every other
+provider value. Exact API guard excludes engine, terminal, original bootstrap,
+legacy settings/provider routes and task execution linking. Existing fixtures,
+targets and static exports remain untouched. No fixture listener is started yet.
+Full B UI/BI acceptance and new-tenant legacy resource entrustment remain pending;
+restricted native tenant windows remain unavailable. PR28 remains draft:
+https://github.com/Adanmohh/codeg/pull/28.

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "clippy-desktop-v2",
+    "command": [
+      "cargo",
+      "clippy",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--all-targets",
+      "--features",
+      "test-utils",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0,
+    "seconds": 85.27
+  },
+  {
+    "name": "test-recovery-scope-final",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--lib",
+      "intake_recovery_late_blocking_store_after_abort_and_cleanup_retries_only_orphan"
+    ],
+    "exit": 0,
+    "seconds": 47.62
+  },
+  {
+    "name": "check-desktop-final",
+    "command": [
+      "cargo",
+      "check",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline"
+    ],
+    "exit": 0,
+    "seconds": 52.21
+  },
+  {
+    "name": "check-server-final",
+    "command": [
+      "cargo",
+      "check",
+      "--manifest-path",
+      "src-tauri/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--bin",
+      "codeg-server"
+    ],
+    "exit": 0,
+    "seconds": 8.48
+  }
+]

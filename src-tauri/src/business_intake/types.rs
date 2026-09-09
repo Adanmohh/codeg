@@ -29,12 +29,15 @@ vocabulary!(SourceKind {
     Email,
     HafidhTestflight
 });
-vocabulary!(CandidateState {
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum CandidateState {
+    #[default]
     Pending,
     Accepted,
     Linked,
-    Discarded
-});
+    Discarded,
+}
 vocabulary!(CandidateOrigin {
     SourceReview,
     HumanSelection
@@ -85,16 +88,12 @@ vocabulary!(GrantScope {
 });
 vocabulary!(GrantState { Active, Revoked });
 vocabulary!(CredentialState { Missing, Present });
-vocabulary!(ImportView { Unfinished, All });
-impl Default for ImportView {
-    fn default() -> Self {
-        Self::Unfinished
-    }
-}
-impl Default for CandidateState {
-    fn default() -> Self {
-        Self::Pending
-    }
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ImportView {
+    #[default]
+    Unfinished,
+    All,
 }
 
 /// Write-only input. Intentionally no Debug/Serialize/Clone.

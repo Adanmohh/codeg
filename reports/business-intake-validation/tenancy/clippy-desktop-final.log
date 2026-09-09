@@ -1,0 +1,81 @@
+    Checking tokio v1.49.0
+   Compiling tauri v2.10.2
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+   Compiling ucd-trie v0.1.7
+    Checking yansi v1.0.1
+    Checking diff v0.1.13
+    Checking rust-multipart-rfc7578_2 v0.8.0
+    Checking reserve-port v2.4.0
+    Checking assert-json-diff v2.0.2
+    Checking console v0.16.3
+    Checking similar v2.7.0
+    Checking auto-future v1.0.0
+    Checking bytesize v2.3.1
+    Checking temp-env v0.3.6
+    Checking pest v2.8.6
+    Checking pretty_assertions v1.4.1
+   Compiling pest_meta v2.8.6
+   Compiling pest_generator v2.8.6
+   Compiling pest_derive v2.8.6
+   Compiling tauri-plugin-fs v2.4.5
+   Compiling tauri-plugin-autostart v2.5.1
+   Compiling tauri-plugin-process v2.3.1
+   Compiling tauri-plugin-updater v2.10.0
+   Compiling tauri-plugin-opener v2.5.3
+   Compiling tauri-plugin-notification v2.3.3
+   Compiling tauri-plugin-window-state v2.4.1
+    Checking insta v1.47.2
+    Checking tokio-util v0.7.18
+    Checking tokio-stream v0.1.18
+    Checking tower v0.5.3
+    Checking async-compression v0.4.42
+    Checking tokio-native-tls v0.3.1
+    Checking tokio-rustls v0.26.4
+    Checking tokio-tungstenite v0.28.0
+    Checking sea-orm-cli v1.1.19
+    Checking kill_tree v0.2.4
+    Checking tokio-tungstenite v0.26.2
+    Checking sqlx-core v0.8.6
+    Checking h2 v0.4.13
+    Checking tower-http v0.6.8
+    Checking rmcp v1.3.0
+    Checking async_zip v0.0.18
+    Checking sqlx-sqlite v0.8.6
+   Compiling tauri-plugin-dialog v2.6.0
+    Checking sqlx v0.8.6
+    Checking sea-query-binder v0.7.0
+    Checking hyper v1.8.1
+    Checking sea-schema v0.16.2
+    Checking sea-orm v1.1.19
+    Checking hyper-util v0.1.20
+    Checking hyper-rustls v0.27.7
+    Checking axum v0.8.8
+    Checking hyper-tls v0.6.0
+    Checking reqwest v0.12.28
+    Checking reqwest v0.13.2
+    Checking tauri-plugin-single-instance v2.4.2
+    Checking sacp v11.0.0
+    Checking sea-orm-migration v1.1.19
+    Checking sacp-tokio v11.0.0 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri/vendor/sacp-tokio)
+    Checking axum-test v17.3.0
+warning: codeg@0.30.4: codeg-mcp sidecar missing at binaries/codeg-mcp-aarch64-apple-darwin; wrote 0-byte placeholder. Run `pnpm tauri:prepare-sidecars` before `tauri build` to ship a working binary.
+error: this `MutexGuard` is held across an await point
+   --> src/business_intake/tests/recovery_cases.rs:368:9
+    |
+368 |     let keys = f.secrets.values.lock().unwrap();
+    |         ^^^^
+    |
+    = help: consider using an async-aware `Mutex` type or ensuring the `MutexGuard` is dropped before calling `await`
+note: these are all the await points this lock is held through
+   --> src/business_intake/tests/recovery_cases.rs:376:61
+    |
+376 |     assert_eq!(count(&f.db.conn, "business_intake_binding").await, 1);
+    |                                                             ^^^^^
+377 |     assert_eq!(count(&f.db.conn, "business_intake_grant").await, 0);
+    |                                                           ^^^^^
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.98.0/index.html#await_holding_lock
+    = note: `-D clippy::await-holding-lock` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::await_holding_lock)]`
+
+warning: codeg@0.30.4: codeg-mcp sidecar missing at binaries/codeg-mcp-aarch64-apple-darwin; wrote 0-byte placeholder. Run `pnpm tauri:prepare-sidecars` before `tauri build` to ship a working binary.
+error: could not compile `codeg` (lib test) due to 1 previous error

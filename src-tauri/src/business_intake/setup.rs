@@ -106,16 +106,27 @@ async fn update_binding(
     }
     audit(tx, p, "binding_updated", &b.id, next(b.revision)?).await
 }
+struct Reservation<'a> {
+    operation_id: &'a str,
+    digest: &'a str,
+    binding_id: &'a str,
+    base: Option<&'a records::Binding>,
+    owner_revision: i64,
+    plan: &'a Plan,
+}
 async fn reserve(
     tx: &DatabaseTransaction,
     p: &Principal,
-    operation_id: &str,
-    digest: &str,
-    binding_id: &str,
-    base: Option<&records::Binding>,
-    owner_revision: i64,
-    plan: &Plan,
+    reservation: Reservation<'_>,
 ) -> Result<String> {
+    let Reservation {
+        operation_id,
+        digest,
+        binding_id,
+        base,
+        owner_revision,
+        plan,
+    } = reservation;
     let reference = format!("business-intake:{}", id());
     tx.execute(sql("INSERT INTO business_intake_setup(id,organization_id,actor_id,operation_id,digest,binding_id,base_revision,base_epoch,owner_authority_revision,plan_json,credential_ref,state,expires_at,created_at,authorization_epoch) VALUES(?,?,?,?,?,?,?,?,?,?,?,'staged',?,?,?)",
         vec![id().into(),p.organization_id().into(),p.member_id().into(),operation_id.into(),digest.into(),binding_id.into(),base.map(|b|b.revision).into(),base.map(|b|b.access_epoch).into(),owner_revision.into(),json(plan)?.into(),reference.clone().into(),future(15).into(),now().into(),p.authorization_epoch().into()])).await?;
@@ -179,12 +190,14 @@ pub(super) async fn create(
             let reference = reserve(
                 &tx,
                 p,
-                &input.operation_id,
-                &digest,
-                &binding_id,
-                None,
-                owner.revision,
-                &plan,
+                Reservation {
+                    operation_id: &input.operation_id,
+                    digest: &digest,
+                    binding_id: &binding_id,
+                    base: None,
+                    owner_revision: owner.revision,
+                    plan: &plan,
+                },
             )
             .await?;
             tx.commit().await?;
@@ -273,12 +286,14 @@ pub(super) async fn update(
             let reference = reserve(
                 &tx,
                 p,
-                &input.operation_id,
-                &digest,
-                &b.id,
-                Some(&b),
-                owner.revision,
-                &plan,
+                Reservation {
+                    operation_id: &input.operation_id,
+                    digest: &digest,
+                    binding_id: &b.id,
+                    base: Some(&b),
+                    owner_revision: owner.revision,
+                    plan: &plan,
+                },
             )
             .await?;
             tx.commit().await?;

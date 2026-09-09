@@ -266,7 +266,7 @@ enum Work {
         to: String,
         offset: i64,
     },
-    Detail(records::Source),
+    Detail(Box<records::Source>),
 }
 enum Observation {
     Page(Vec<Listed>),
@@ -334,7 +334,7 @@ pub(super) async fn advance(
         if source.binding_id != c.binding.id {
             return Err(storage());
         }
-        Work::Detail(sources::fence(&tx, p, &source).await?)
+        Work::Detail(Box::new(sources::fence(&tx, p, &source).await?))
     } else if !row.scan_done {
         let selection: Selection = parse(&row.selection_json)?;
         match selection {

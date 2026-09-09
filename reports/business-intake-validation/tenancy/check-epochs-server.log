@@ -1,0 +1,48 @@
+   Compiling codeg v0.30.4 (/Users/mohamedadan/projects/_worktrees/ops-desk/tickets/src-tauri)
+warning: field `organization_id` is never read
+ --> src/business_intake/records.rs:7:9
+  |
+5 | pub(super) struct Binding {
+  |                   ------- field in this struct
+6 |     pub id: String,
+7 |     pub organization_id: String,
+  |         ^^^^^^^^^^^^^^^
+  |
+  = note: `Binding` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `actor_id` and `operation_id` are never read
+  --> src/business_intake/records.rs:37:9
+   |
+34 | pub(super) struct Setup {
+   |                   ----- fields in this struct
+...
+37 |     pub actor_id: String,
+   |         ^^^^^^^^
+38 |     pub operation_id: String,
+   |         ^^^^^^^^^^^^
+
+warning: field `organization_id` is never read
+  --> src/business_intake/records.rs:53:9
+   |
+50 | pub(super) struct Source {
+   |                   ------ field in this struct
+...
+53 |     pub organization_id: String,
+   |         ^^^^^^^^^^^^^^^
+   |
+   = note: `Source` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: field `provider_revision` is never read
+  --> src/business_intake/records.rs:72:9
+   |
+70 | pub(super) struct Version {
+   |                   ------- field in this struct
+71 |     pub digest: String,
+72 |     pub provider_revision: Option<String>,
+   |         ^^^^^^^^^^^^^^^^^
+
+warning: `codeg` (lib) generated 4 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 9.53s
+warning: the following packages contain code that will be rejected by a future version of Rust: proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
