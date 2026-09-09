@@ -2,6 +2,17 @@
 
 ## Current integration and worker state
 
+**Farha completed its window; tickets is assigned bounded publication validation.**
+Farha reports build/browser/server commands exited, server87005 closed and its
+port cleared. Root fresh disk is10.51 GiB. Tickets must freeze/push its current
+output-discovery source before using the existing target, locked/offline `-j2`.
+Queued gates cover publication, assets/reconciliation, two adapted retention
+cases, relevant existing task controls and server check; only a focused output
+selector may accompany that frozen WIP. No new pass is claimed. Each start needs
+at least10 GiB free; monitor/stop near5 GiB and release promptly. Preparation over
+five minutes returns the slot. Approvals remains source-only; no cleanup, new
+target, broad/native/export gate or fixture changes are allocated.
+
 **Uncompiled publication/content follow-ons are under source review.** Exact
 `3841e659bec3d0161d73eaca16058b170fe751be` adds task-scoped content/current-reader
 rechecks and two planned publication cases; `bdfa7ca69334196448c3745a8ee0aac97166a877`
