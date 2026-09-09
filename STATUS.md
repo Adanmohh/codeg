@@ -1,4 +1,28 @@
-# Status — 2026-09-08
+# Status — 2026-09-09
+
+## Current integration and worker state
+
+**PR30 merged** at exact `b3dfbcb602314cee6eb0039d92cb997762c02dd8`, merge
+`b3f2f6d03bbbef3ea7b4a9412e29308f1f355843`. Root verified the unchanged
+reviewed product29774b50, ten owner log digests, source correspondence and nine
+independent artifacts, then fast-forwarded main. This accepts the reviewed
+tenant backend/platform/settings scope; restricted native windows remain unavailable.
+
+Tickets is actively integrating B with the frozen tenancy source in its own
+`feat/business-intake` branch. Old B rows retain NULL authorization epochs and
+require fresh validation. Migration must support both old000011→000012 and
+installations that already applied A-only000012 before adding B. Root relayed
+that additional upgrade path for implementation and tests.
+
+Rebrand and approvals received the next UI/integration-review assignments, but
+their resumed turns fail with an access-token refresh error after the account
+change. Current CLI login/doctor is healthy; those two sessions remain blocked.
+They own running fixtures, so root is investigating recovery without stopping
+them. Tickets remains active on Astra/max. Earlier wording that all workers were
+working is superseded by this checked live state. No existing fixture, preview,
+bundle or credential changed.
+
+## Earlier checkpoints — historical
 
 ## Status update — 2026-09-09
 
