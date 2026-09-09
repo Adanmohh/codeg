@@ -1,4 +1,4 @@
-import { type ReactNode } from "react"
+import { useCallback, useState, type ReactNode } from "react"
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { NextIntlClientProvider } from "next-intl"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
@@ -17,6 +17,7 @@ import { ImportPanel } from "./imports"
 import { TaskTarget } from "./task-target"
 import { TaskSources } from "./task-sources"
 import { SourceReview } from "./source-review"
+import { SourcesWorkspace, type SourceEntry } from "./workspace"
 import { admin, binding, candidate, decision, source } from "./test-fixtures"
 
 vi.mock("@/components/i18n-provider", () => ({
@@ -88,6 +89,120 @@ beforeEach(() => {
 afterEach(() => vi.useRealTimers())
 
 describe("business Sources privacy and exact human decisions", () => {
+  it("keeps an open private candidate until a different task source is explicitly adopted", async () => {
+    const first = source()
+    const next = source()
+    next.source.id = "99999999-9999-4999-8999-999999999999"
+    next.source.title = "Synthetic second task source"
+    const prepared = candidate(first)
+    intake.mockImplementation(async (operation, input) => {
+      if (operation === "bindings/list")
+        return {
+          canManageSetup: false,
+          items: [binding],
+          page: 0,
+          hasMore: false,
+        }
+      if (operation === "bindings/status") return binding
+      if (operation === "sources/get")
+        return input.sourceId === first.source.id ? first : next
+      if (operation === "sources/list")
+        return { items: [first.source, next.source], page: 0, hasMore: false }
+      if (operation === "candidates/list")
+        return {
+          items: input.sourceId === first.source.id ? [prepared.candidate] : [],
+          page: 0,
+          hasMore: false,
+        }
+      if (operation === "candidates/get") return prepared
+      if (operation === "imports/list")
+        return { items: [], page: 0, hasMore: false }
+      throw new Error("Unexpected synthetic operation")
+    })
+    function LinkedSourceHost() {
+      const [entry, setEntry] = useState<SourceEntry | null>({
+        sourceId: first.source.id,
+        bindingId: binding.binding.id,
+      })
+      const consumed = useCallback(() => setEntry(null), [])
+      return (
+        <>
+          <button
+            onClick={() =>
+              setEntry({
+                sourceId: first.source.id,
+                bindingId: binding.binding.id,
+              })
+            }
+          >
+            Open the current task source
+          </button>
+          <button
+            onClick={() =>
+              setEntry({
+                sourceId: next.source.id,
+                bindingId: binding.binding.id,
+              })
+            }
+          >
+            Open another task source
+          </button>
+          <SourcesWorkspace
+            client={client}
+            actor={member}
+            members={[member]}
+            active
+            entry={entry}
+            onEntryRead={consumed}
+            onTask={onTask}
+          />
+        </>
+      )
+    }
+    render(wrapper(<LinkedSourceHost />))
+    fireEvent.click(
+      await screen.findByRole("button", { name: /Synthetic customer brief/ })
+    )
+    fireEvent.change(await screen.findByRole("textbox", { name: "Brief" }), {
+      target: { value: "Private draft kept while another task opens a source" },
+    })
+    fireEvent.click(
+      screen.getByRole("button", { name: "Open the current task source" })
+    )
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
+    expect(screen.getByRole("textbox", { name: "Brief" })).toHaveValue(
+      "Private draft kept while another task opens a source"
+    )
+    fireEvent.click(
+      screen.getByRole("button", { name: "Open another task source" })
+    )
+    await screen.findByRole("dialog")
+    expect(intake).not.toHaveBeenCalledWith("sources/get", {
+      sourceId: next.source.id,
+    })
+    fireEvent.click(screen.getByRole("button", { name: "Keep editing" }))
+    expect(screen.getByRole("textbox", { name: "Brief" })).toHaveValue(
+      "Private draft kept while another task opens a source"
+    )
+    fireEvent.click(
+      screen.getByRole("button", { name: "Open another task source" })
+    )
+    fireEvent.click(screen.getByRole("button", { name: "Discard my draft" }))
+    await screen.findByRole("heading", { name: next.source.title })
+    expect(
+      screen.queryByDisplayValue(
+        "Private draft kept while another task opens a source"
+      )
+    ).not.toBeInTheDocument()
+    expect(tasks).not.toHaveBeenCalled()
+    expect(
+      intake.mock.calls.some(([operation]) =>
+        ["candidates/edit", "candidates/accept", "candidates/discard"].includes(
+          operation
+        )
+      )
+    ).toBe(false)
+  })
   it("removes passages and an already-confirmed review at the source expiry deadline", async () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date("2026-09-08T18:00:00Z"))

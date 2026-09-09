@@ -913,3 +913,16 @@ that workspace and src/app/globals.css at Adanmohh/codeg
 a40b03393a466672060066ae6e0e8c9054a2349d (Apache-2.0), with Tailwind4.1.18.
 No new palette, global token, authentication or navigation behavior is added.
 Original LICENSE and all previous attribution sections remain intact.
+
+Business linked-source private-draft navigation guard (2026):
+src/components/business-intake/workspace.tsx adapts the existing dirty-state,
+explicit discard and retained-editor pattern from Apache-2.0 Codeg
+src/components/business/task-detail.tsx at Adanmohh/codeg
+a40b03393a466672060066ae6e0e8c9054a2349d. Incoming task references reuse
+the same guarded Sources surface; no task/source write is added. React19.2.4
+and @types/react19.2.13 hooks plus Testing Library16.3.2 render/rerender are
+installed API/type references; official React source at
+90ab3f89f4824ac763b6f877c6f711200d1338d2 and Testing Library source at
+f32bd1b033d5e3989ae1cb490d515ce389c54e53 verify their matching tags.
+No dependency implementation or third-party/copyleft source is ported.
+Original Apache-2.0 LICENSE and all earlier attribution sections remain intact.

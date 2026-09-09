@@ -50,6 +50,7 @@ export function SourcesWorkspace({
   const [setup, setSetup] = useState<"new" | "current" | null>(null)
   const [dirty, setDirty] = useState(false)
   const [leave, setLeave] = useState<(() => void) | null>(null)
+  const [acceptedEntry, setAcceptedEntry] = useState<SourceEntry | null>(null)
   const alive = useRef(true)
   const serial = useRef(0)
   const invalidateReads = useCallback(() => {
@@ -176,26 +177,41 @@ export function SourcesWorkspace({
   }, [active, binding, loadSources, sourceId])
   useEffect(() => {
     if (!active || !entry) return
+    // Task references share the existing review surface. Consume the request
+    // once, but keep its private editor until the same discard guard accepts it.
+    if (
+      entry.sourceId !== sourceId ||
+      entry.bindingId !== binding?.binding.id
+    ) {
+      if (dirty) setLeave(() => () => setAcceptedEntry(entry))
+      else setAcceptedEntry(entry)
+    }
+    onEntryRead()
+  }, [active, entry, sourceId, binding?.binding.id, dirty, onEntryRead])
+  useEffect(() => {
+    if (!active || !acceptedEntry) return
     let cancelled = false
     client
-      .intake("bindings/status", { bindingId: entry.bindingId })
+      .intake("bindings/status", { bindingId: acceptedEntry.bindingId })
       .then((result) => {
         if (!cancelled) {
           setBinding(result)
-          setSourceId(entry.sourceId)
-          onEntryRead()
+          setSourceId(acceptedEntry.sourceId)
+          setSources(null)
+          setDirty(false)
+          setAcceptedEntry(null)
         }
       })
       .catch((caught) => {
         if (!cancelled) {
           setError(caught)
-          onEntryRead()
+          setAcceptedEntry(null)
         }
       })
     return () => {
       cancelled = true
     }
-  }, [active, entry, client, onEntryRead])
+  }, [active, acceptedEntry, client])
   function navigate(action: () => void) {
     if (dirty) setLeave(() => action)
     else action()
@@ -225,7 +241,7 @@ export function SourcesWorkspace({
           sourceId={sourceId}
           actor={actor}
           members={members}
-          active={active}
+          active={active && !acceptedEntry}
           onDirty={setDirty}
           onBack={() =>
             navigate(() => {
