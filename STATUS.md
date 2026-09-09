@@ -2,12 +2,25 @@
 
 ## Current integration and worker state
 
+**All three workers restarted and resumed in place.** Rebrand, approvals and
+tickets use their original saved sessions/worktrees on visually verified
+Astra/max, never/danger-full-access. Herdr reports all three working after their
+assignments were delivered. Branches/status and all seven changed file hashes
+match the pre-restart snapshots; seven checked fixture/preview PIDs remain alive.
+No new worker or pane was created. [Restart record](reports/worker-restart-20260909.md).
+Root verified actual normal Git and gh api successes in all three resumed panes.
+The missing-hook command blockage is cleared. Rebrand proceeds with E1 frontend
+fixes, approvals publishes the saved review, and tickets finishes the focused
+regressions before its coordinated compile window.
+
 **Owner override: docs-first hook removal ordered; all maintenance canceled.**
 Uramax root `wC:p1` owns complete removal while preserving unrelated hooks and
 project data. Canonical `wC:p6` is quiescent; no alias/cumulative candidate was
 activated. All three Ops workers were told to stop hook maintenance and never
-activate prior installers. Ops root makes no global changes. Actual removal
-confirmation is pending; historical hook evidence remains historical. Product
+activate prior installers. Ops root makes no global changes. Root now verifies
+hooks.json, installed launcher and engine are absent, with zero hook trust entries.
+The stale cached sessions have been restarted; no enforcement hook may be restored
+without an explicit owner request. Historical hook evidence remains historical. Product
 documentation/source reads and gh api continue, alongside the storage allocation
 below. Previously recorded candidate acceptance is superseded for installation.
 
