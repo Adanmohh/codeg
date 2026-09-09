@@ -1,0 +1,65 @@
+[
+  {
+    "selector": "candidate_cases",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/15bb402b/source/src-tauri/Cargo.toml",
+      "--target-dir",
+      "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--lib",
+      "-j",
+      "2",
+      "business_intake::tests::candidate_cases"
+    ],
+    "exit": 0,
+    "seconds": 230.711,
+    "log": ".build/business-integration-review/15bb402b/evidence/unchanged-candidate_cases.log"
+  },
+  {
+    "selector": "import_cases",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/15bb402b/source/src-tauri/Cargo.toml",
+      "--target-dir",
+      "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--lib",
+      "-j",
+      "2",
+      "business_intake::tests::import_cases"
+    ],
+    "exit": 0,
+    "seconds": 1.386,
+    "log": ".build/business-integration-review/15bb402b/evidence/unchanged-import_cases.log"
+  },
+  {
+    "selector": "recovery_cases",
+    "command": [
+      "cargo",
+      "test",
+      "--manifest-path",
+      "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/15bb402b/source/src-tauri/Cargo.toml",
+      "--target-dir",
+      "/Users/mohamedadan/projects/_worktrees/ops-desk/approvals/.build/business-integration-review/target-15bb402b",
+      "--locked",
+      "--offline",
+      "--no-default-features",
+      "--lib",
+      "-j",
+      "2",
+      "business_intake::tests::recovery_cases"
+    ],
+    "exit": 0,
+    "seconds": 0.72,
+    "log": ".build/business-integration-review/15bb402b/evidence/unchanged-recovery_cases.log"
+  }
+]

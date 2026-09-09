@@ -1,0 +1,26 @@
+[
+  {
+    "file": "source-after.json",
+    "sha256": "1c0f6dea73ec403a2962f6e10e4064f83f56cb7f2fda8639b3c2bebbcdd28be1"
+  },
+  {
+    "file": "source-before.json",
+    "sha256": "e35068d08613c1a51ca09bff5e1231d4982c164e0b7aac557dfd2149f73c6655"
+  },
+  {
+    "file": "unchanged-candidate_cases.log",
+    "sha256": "ba4f24579a7b71e541626e6d65d4c452c17cada52d81bde5950ca382a26c18e3"
+  },
+  {
+    "file": "unchanged-import_cases.log",
+    "sha256": "1fd457e98fb801aa3d3ed04aad0a3b97864383be8ade029f9c437273aea7bd28"
+  },
+  {
+    "file": "unchanged-recovery_cases.log",
+    "sha256": "5aca36ec286b99c07a38f1eee1330d2ac864987b425d42b0e1463c6eab2a6126"
+  },
+  {
+    "file": "unchanged-results.json",
+    "sha256": "69b167acf0fe5e2d0717d80b0fce86bdb246784f3975d911526f768340a715d7"
+  }
+]

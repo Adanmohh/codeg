@@ -1,0 +1,30 @@
+[
+  {
+    "file": "NOTICE",
+    "sha256": "9f4030715117215d32c08777459d3859c42baa1801fccad1c44f92ea85593d07"
+  },
+  {
+    "file": "reviewer-source-entry.test.tsx",
+    "sha256": "fd580b1b05fb7210c5823ca83eda259f67e5f249cabf4803f863c50cc577b8dd"
+  },
+  {
+    "file": "source-after.json",
+    "sha256": "d6cd9e66a19bbd3a5991a58f225472d2bde6e1df932069121012efbd4d3eae83"
+  },
+  {
+    "file": "source-before.json",
+    "sha256": "ad8862aa1bee5721cbd67e6ffe88105e2eec1ef1f0528ee60d54070b276ddfdd"
+  },
+  {
+    "file": "source-entry-regression.log",
+    "sha256": "e884b137590b8e329d1102096f303c3d92ecb98d756135fde741a1a99b9e367d"
+  },
+  {
+    "file": "source-entry-result.json",
+    "sha256": "231d874920a4f40dfa4f68926b40c969349ebee0666df0fe223c49c795a3c0a7"
+  },
+  {
+    "file": "vitest.reviewer.config.ts",
+    "sha256": "8bc4c262b450982f5905773d39c6d4c8a3e0b0abfc9efa8894ca953365389e12"
+  }
+]
