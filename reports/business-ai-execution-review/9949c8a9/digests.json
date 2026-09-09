@@ -1,0 +1,10 @@
+{
+  "algorithm": "sha256",
+  "paths_relative_to_worktree": {
+    "reports/review-business-ai-execution-implementation.md": "b216bc7d4db0a63d27ca4b37b99f67cb2eb49a94fff89d20d28afad06bf165a4",
+    "reports/business-ai-execution-review/9949c8a9/review.md": "0663b2bccd1c036221ac406abe4801de02c3ac3bda74a58948eff6d1b688acbf",
+    "reports/business-ai-execution-review/9949c8a9/source-ledger.json": "d011a720f6f166d60d59a4cf4f5e8ee6e91b4e8daf447b62795fab93df1cf6f7",
+    "reports/business-ai-execution-review/9949c8a9/owner-evidence-verified.json": "0788a02d90c459729627185a5a7c185062ca3cc31f9b3e5e3c4f3ceb44017466"
+  },
+  "note": "Own report/evidence file hashes; excludes this index. Frozen3773 and177 files are unchanged. No reviewer runtime log exists for this source-only correction assessment."
+}
