@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Final3773 source-finding publication verified and imported:**
+`dc0e9cb06ded25122c373029c3bc9f9bbe40b42f` contains exactly three report files.
+Root read the complete findings/ledger, matched all three supplied report hashes,
+16 immutable source blobs and two owner log hashes, and verified prior177/f4
+evidence and product paths are unchanged. R1 pagination, R2 admission/receipt
+binding and R3 retained-file synchronization remain open, internal/unexposed
+source findings. No new reviewer tests are claimed. Tickets owns the correction
+and current build window; approvals remains source-only until explicit release.
+See [independent findings](reports/business-ai-execution-review/3773a027/review.md).
+
 **All three workers restarted and resumed in place.** Rebrand, approvals and
 tickets use their original saved sessions/worktrees on visually verified
 Astra/max, never/danger-full-access. Herdr reports all three working after their
