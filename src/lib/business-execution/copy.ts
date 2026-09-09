@@ -86,6 +86,37 @@ const english = {
   completed: "Completed",
   currentAccessRequired:
     "Current session access is required. Your task and submitted files are separate from this private conversation.",
+  aiWorkspace: "AI workspace",
+  aiHint:
+    "Work with AI beside this task. Conversations stay private; submit selected files separately for human review.",
+  operatorOnly:
+    "AI sessions currently require the original operator's browser connection. Submitted task files remain available through your own task access.",
+  loadingSessions: "Checking available clients and saved sessions…",
+  chooseProfile: "Choose an AI profile",
+  profilePrompt: "Select an available profile",
+  startConversation: "Start conversation",
+  openConversation: "Open conversation",
+  continueSession: "Continue session",
+  savedSessions: "Your saved sessions",
+  noSessions: "No saved sessions for this task yet.",
+  noProfiles:
+    "No AI profile is available for this task. Configure an installed client with the original operator's engineering tools, then check again.",
+  managedOutputUnavailable:
+    "This profile does not report managed output support.",
+  terminalPending: "This connection cannot display this terminal session yet.",
+  savedTaskRevision: "Saved task revision",
+  moreSessions: "More saved sessions",
+  requestNotConfirmed:
+    "This request is not confirmed. Check the original receipt before starting or continuing again.",
+  requestFailed:
+    "This request was refused. Review your selection before making another request.",
+  reviewRequest: "Review selection",
+  pendingPane:
+    "Resolve the pending request here before closing this pane. No request will be repeated automatically.",
+  taskSubmitRequired:
+    "Current task contribution permission is required to start a session.",
+  profileReady: "Ready",
+  profileBlocked: "Needs setup",
 }
 export type ExecutionCopy = typeof english
 const arabic: ExecutionCopy = {
@@ -168,6 +199,35 @@ const arabic: ExecutionCopy = {
   completed: "مكتمل",
   currentAccessRequired:
     "يلزم وصول سارٍ إلى الجلسة. المهمة وملفاتها المقدّمة منفصلة عن هذه المحادثة الخاصة.",
+  aiWorkspace: "مساحة الذكاء الاصطناعي",
+  aiHint:
+    "اعمل مع الذكاء الاصطناعي بجانب هذه المهمة. تبقى المحادثات خاصة، وتُقدَّم الملفات المختارة للمراجعة البشرية بشكل منفصل.",
+  operatorOnly:
+    "تتطلب جلسات الذكاء الاصطناعي حاليًا اتصال المشغّل الأصلي عبر المتصفح. تبقى ملفات المهام المقدّمة متاحة وفق صلاحياتك الخاصة.",
+  loadingSessions: "جارٍ التحقق من الأدوات المتاحة والجلسات المحفوظة…",
+  chooseProfile: "اختيار ملف إعداد للذكاء الاصطناعي",
+  profilePrompt: "اختر ملف إعداد متاحًا",
+  startConversation: "بدء محادثة",
+  openConversation: "فتح المحادثة",
+  continueSession: "متابعة الجلسة",
+  savedSessions: "جلساتك المحفوظة",
+  noSessions: "لا توجد جلسات محفوظة لهذه المهمة بعد.",
+  noProfiles:
+    "لا يوجد ملف إعداد متاح لهذه المهمة. أعدّ أداة مثبّتة من أدوات الهندسة بحساب المشغّل الأصلي، ثم تحقق مجددًا.",
+  managedOutputUnavailable: "لا يوفّر ملف الإعداد هذا دعمًا للمخرجات المُدارة.",
+  terminalPending: "لا يمكن لهذا الاتصال عرض جلسة الطرفية هذه بعد.",
+  savedTaskRevision: "مراجعة المهمة المحفوظة",
+  moreSessions: "المزيد من الجلسات المحفوظة",
+  requestNotConfirmed:
+    "لم يتأكد هذا الطلب بعد. تحقق من سجل الاستلام الأصلي قبل البدء أو المتابعة مجددًا.",
+  requestFailed: "رُفض هذا الطلب. راجع اختيارك قبل تقديم طلب آخر.",
+  reviewRequest: "مراجعة الاختيار",
+  pendingPane:
+    "تحقق من نتيجة الطلب المعلّق هنا قبل إغلاق اللوحة. لن يُعاد أي طلب تلقائيًا.",
+  taskSubmitRequired:
+    "يلزم امتلاك صلاحية المساهمة الحالية في المهمة لبدء جلسة.",
+  profileReady: "جاهز",
+  profileBlocked: "يحتاج إلى إعداد",
 }
 export function useExecutionCopy(): ExecutionCopy {
   return useLocale() === "ar" ? arabic : english

@@ -14,8 +14,83 @@ import {
   SESSION_STATUSES,
   SETUP_REASONS,
   type ExecutionResults,
+  type ProfileSummary,
   type SessionSummary,
 } from "./types"
+
+export function parseProfiles(
+  value: unknown
+): ExecutionResults["profiles/list"] {
+  const row = record(value, ["profiles", "unavailableReason"])
+  return {
+    profiles: values(row.profiles).map((value): ProfileSummary => {
+      const profile = record(value, [
+        "id",
+        "revision",
+        "label",
+        "clientId",
+        "modes",
+        "custody",
+        "model",
+        "readiness",
+        "reason",
+        "capabilities",
+      ])
+      const cap = record(profile.capabilities, [
+        "start",
+        "continue",
+        "managedOutput",
+        "officePreview",
+      ])
+      const model =
+        profile.model === null
+          ? null
+          : record(profile.model, ["id", "reasoning"])
+      return {
+        id: text(profile.id),
+        revision: integer(profile.revision),
+        label: text(profile.label),
+        clientId: text(profile.clientId),
+        modes: values(profile.modes, 2).map((mode) =>
+          choice(mode, ["chat", "terminal"])
+        ),
+        custody: choice(profile.custody, [
+          "original_operator",
+          "isolated_member",
+        ]),
+        model: model
+          ? { id: text(model.id), reasoning: text(model.reasoning) }
+          : null,
+        readiness: choice(profile.readiness, ["ready", "blocked"]),
+        reason:
+          profile.reason === null
+            ? null
+            : choice(profile.reason, SETUP_REASONS),
+        capabilities: {
+          start: boolean(cap.start),
+          continue: boolean(cap.continue),
+          managedOutput: boolean(cap.managedOutput),
+          officePreview: boolean(cap.officePreview),
+        },
+      }
+    }),
+    unavailableReason:
+      row.unavailableReason === null
+        ? null
+        : choice(row.unavailableReason, SETUP_REASONS),
+  }
+}
+
+export function parseSessions(
+  value: unknown,
+  taskId: string
+): ExecutionResults["sessions/list"] {
+  const row = record(value, ["items", "nextCursor"])
+  return {
+    items: values(row.items, 50).map((item) => parseSession(item, { taskId })),
+    nextCursor: nullableCursor(row.nextCursor),
+  }
+}
 
 export function parseSession(
   value: unknown,

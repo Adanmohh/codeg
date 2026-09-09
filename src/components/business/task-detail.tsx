@@ -1,11 +1,12 @@
 "use client"
 
 import { useEffect, useState, type ReactNode } from "react"
-import { X } from "lucide-react"
+import { MessageSquare, X } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { BusinessError, type BusinessClient } from "@/lib/business/client"
 import { useBusinessCopy } from "@/lib/business/copy"
+import { useExecutionCopy } from "@/lib/business-execution/copy"
 import type { Member } from "@/lib/business/identity"
 import {
   personFor,
@@ -100,6 +101,7 @@ export function TaskDetailDialog({
   onChanged,
   onSource,
   onAsset,
+  onAI,
   presentation = "dialog",
   registerClose,
 }: {
@@ -113,6 +115,7 @@ export function TaskDetailDialog({
   onChanged: () => void
   onSource?: (source: SourceSummary) => void
   onAsset?: (intent: PublishedFileIntent) => void
+  onAI?: (taskId: string) => void
   presentation?: "dialog" | "pane"
   registerClose?: RegisterClose
 }) {
@@ -166,6 +169,7 @@ export function TaskDetailDialog({
       onChanged={onChanged}
       onSource={onSource}
       onAsset={onAsset}
+      onAI={onAI}
       presentation={presentation}
       registerClose={registerClose}
     />
@@ -182,6 +186,7 @@ function TaskEditor({
   onChanged,
   onSource,
   onAsset,
+  onAI,
   presentation,
   registerClose,
 }: {
@@ -194,10 +199,12 @@ function TaskEditor({
   onChanged: () => void
   onSource?: (source: SourceSummary) => void
   onAsset?: (intent: PublishedFileIntent) => void
+  onAI?: (taskId: string) => void
   presentation: "dialog" | "pane"
   registerClose?: RegisterClose
 }) {
   const copy = useBusinessCopy()
+  const executionCopy = useExecutionCopy()
   const [detail, setDetail] = useState(initial)
   const [fields, setFields] = useState(fieldsOf(initial.task))
   const [assignment, setAssignment] = useState(assignmentOf(initial.task))
@@ -343,6 +350,12 @@ function TaskEditor({
           {copy.sourceVersion} {task.revision}
         </span>
       </div>
+      {onAI && (
+        <Action variant="outline" onClick={() => onAI(task.id)}>
+          <MessageSquare aria-hidden="true" className="size-4" />
+          {executionCopy.aiWorkspace}
+        </Action>
+      )}
       {error != null && (
         <ErrorNotice error={error}>
           {conflicted && <p>{copy.conflictHint}</p>}

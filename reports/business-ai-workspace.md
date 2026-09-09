@@ -1,13 +1,61 @@
 # Business AI workspace — implementation checkpoint
 
+Current branch: `feat/business-ai-workspace`; draft
+[PR33](https://github.com/Adanmohh/codeg/pull/33). Accepted shell base is
+`f988700db6975364d35b80125af12bfe2d5baac3`. Conversation product checkpoint
+`b125aec9e5703508ac7f6948d0d2db134534c90d` is pushed. This next checkpoint adds
+the original-operator browser entry, explicit start/continue and guarded session
+tabs to that existing workbench; it does not enable a backend or prove a runner.
+
+Task detail opens AI workspace beside the retained human draft. Profiles and
+saved sessions load only after that explicit entry and only for actual
+`legacyOperator`, never member/owner role or native fallthrough. Starting requires
+a deliberate ready original-operator profile selection and captured task/profile
+revisions. Continue uses the selected saved session revision. Both requests retain
+their original operation ID during uncertainty; missing receipt never relaunches.
+The pending pane cannot close before receipt resolution. Existing sessions attach
+through the committed conversation component without spawn on mount. Closing a
+resolved pane detaches its child scope and does not stop a process. Native and
+terminal entry remain explicitly unavailable, with no enabled fallback control.
+
+The new glue reuses accepted `business/workspace.tsx`, `workbench.tsx`,
+`task-detail.tsx` TaskFrame close/discard registration and `business/ui.tsx`,
+at the exact source blobs listed in the ledger below. Private result parsing now
+also validates the closed ProfilesResult and task-bound session page. The tests
+use the real BusinessClient/Workbench/TaskDetail/conversation with an in-memory
+synthetic fetch boundary; no listening fixture or production response is changed.
+
+| Session-entry gate | Result; evidence under business-ai-workspace-evidence |
+| --- | --- |
+| New session entry/receipt/authority/retained-task-draft component tests | 12/12, exit0; session-entry-tests-first.txt |
+| Existing workbench/workflow/session/provider-isolation tests | 33/33, exit0; session-entry-shell-regressions.txt |
+| Normal `pnpm exec tsc --noEmit --incremental false` | exit0; session-entry-typecheck-final.txt |
+| Scoped ESLint including new tests and affected task/workspace files | exit0; session-entry-lint-final.txt |
+
+The initial render-prop guard implementation triggered React's render-time ref
+lint. The final implementation reads the guard only during a close event, using
+the existing registered-close seam; no lint suppression or hook maintenance.
+Earlier diagnostic logs remain. TypeScript, React and test-library installed
+references are unchanged from the grounding recorded below.
+
+Remaining implementation: private output/import/version selection and exact
+audience-confirmed publication, then the existing xterm presentation after exact
+write/resize/stop result wrappers are published. Actual E1 API/ACP/PTY/browser,
+Design Studio and export gates await a coordinated backend and build window.
+The backend `d0d56a36399d81be23787891177752022c91edf6` asset handoff is source only,
+explicitly uncompiled by its owner; no runtime or native acceptance is claimed.
+Frozen4354/4355, all old exports/browsers/targets and the paused visual report
+remain untouched. No dependency, lockfile, Rust, auth or engine change is made.
+
+## Earlier checkpoints and source evidence
+
 Latest completed public-file checkpoint:
 `fee6a939e7f693d95896a44db02147a2c34383e3`, pushed to draft PR33. The next
 compiling component adds persistent chat presentation over the existing E1
 attachment client. It reuses Codeg Message/MessageContent and RichComposer,
 without mounting the legacy conversation provider or Markdown file opener.
-The private profile/session entry, explicit start/continue and guarded tab
-registration remain in progress; this component is not an enabled private UI
-entry or runtime acceptance claim.
+At that earlier checkpoint the private profile/session entry and guarded tab
+registration were still in progress; their current source gate is recorded above.
 
 Its authenticated attachment uses the exact session/generation and opaque cursor.
 Unexpected EOF requires explicit session revalidation/reconnect, never prompt
@@ -37,9 +85,9 @@ No existing fixture/preview/target was changed and no build window was taken.
 
 The prompt checkpoint `b931b0f57` adds the inherited RichComposer with
 explicit E1 prompt receipts, EN/AR copy and in-memory context selection. Its nine
-focused tests pass, as do normal TypeScript and scoped ESLint. The component is
-not mounted in the workbench yet; no operational AI or browser acceptance is
-claimed. The preceding parent/client integration is pushed as
+focused tests pass, as do normal TypeScript and scoped ESLint. At that checkpoint
+the component was not mounted in the workbench; the current entry now mounts it.
+No operational AI or browser acceptance is claimed. The preceding parent/client integration is pushed as
 `ca3454c4bb995b48f813b024eceba2ee31a3d6ac` on draft PR33. No export, native/Rust
 build, provider, credential or existing fixture/browser was touched.
 

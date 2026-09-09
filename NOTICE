@@ -1283,3 +1283,19 @@ recorded 6195d9daf Rust DTO transcription. React19.2.4/@types-react19.2.13,
 TypeScript5.8.3, Vitest2.1.9 and Testing Library16.3.2 are read API references.
 No dependency implementation, AGPL/GPL or proprietary code is ported. Every
 earlier attribution section and the original Apache LICENSE are retained.
+
+Business E1 guarded task/session workbench entry (2026):
+src/components/business-execution/session-workspace.tsx and pane-guard.tsx
+adapt the existing business/workspace.tsx WorkSurface registration and
+business/task-detail.tsx TaskFrame close/discard seam, with business/ui.tsx
+Action/Field/Modal, at accepted Codeg-derived
+f988700db6975364d35b80125af12bfe2d5baac3, Apache-2.0. The task-detail entry
+and workbench tab additions use those same existing components, not a second
+shell or auth provider. Exact profile/session/receipt parsing follows accepted
+contract 3f164c2a989cd08a523e51f1e47559c15a48c0ef and Rust DTO transcription
+6195d9daf049b7cd16615e35b87d08c7f2870bf0. Tests reuse the accepted business
+workbench and test-fixtures plus the owned closed E1 client; all transport data
+is synthetic and in memory. React19.2.4, TypeScript5.8.3, Vitest2.1.9,
+Testing Library16.3.2 and Lucide0.563.0 are read API references. No dependency
+source, AGPL/GPL or proprietary implementation is copied. All prior NOTICE
+sections and the original Apache LICENSE remain intact.
