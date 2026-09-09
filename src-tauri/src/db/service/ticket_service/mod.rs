@@ -126,6 +126,29 @@ pub async fn list_messages<C: ConnectionTrait>(
     view: MessageView,
 ) -> Result<Vec<message::Model>, DbError> {
     get_conversation(conn, scope, id).await?;
+    Ok(message_query(scope, id, view)
+        .order_by_asc(message::Column::CreatedAt)
+        .order_by_asc(message::Column::Id)
+        .all(conn)
+        .await?)
+}
+
+/// Same public predicate as thread reads, narrowed to one stored message.
+pub(crate) async fn get_public_message<C: ConnectionTrait>(
+    conn: &C,
+    scope: Scope,
+    conversation_id: i32,
+    message_id: i32,
+) -> Result<message::Model, DbError> {
+    get_conversation(conn, scope, conversation_id).await?;
+    message_query(scope, conversation_id, MessageView::Public)
+        .filter(message::Column::Id.eq(message_id))
+        .one(conn)
+        .await?
+        .ok_or_else(|| DbError::NotFound("public ticket message".into()))
+}
+
+fn message_query(scope: Scope, id: i32, view: MessageView) -> sea_orm::Select<message::Entity> {
     let mut query = message::Entity::find()
         .filter(message::Column::AccountId.eq(scope.account_id))
         .filter(message::Column::InboxId.eq(scope.inbox_id))
@@ -135,11 +158,7 @@ pub async fn list_messages<C: ConnectionTrait>(
             .filter(message::Column::Private.eq(false))
             .filter(message::Column::MessageType.ne(2));
     }
-    Ok(query
-        .order_by_asc(message::Column::CreatedAt)
-        .order_by_asc(message::Column::Id)
-        .all(conn)
-        .await?)
+    query
 }
 
 /// First write before any SELECT, borrowed from codeg canvas_service's claim.

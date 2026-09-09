@@ -20,6 +20,7 @@ pub mod backgrounds;
 pub mod business_execution;
 pub mod business_identity;
 pub mod business_tasks;
+pub mod business_intake;
 pub mod chat_channel;
 pub mod commands;
 pub mod db;
@@ -1594,6 +1595,31 @@ mod tauri_app {
             crate::commands::business_tasks::business_tasks_entrust_execution,
             crate::commands::ops::ops_context,
             crate::commands::business_identity::business_context,
+            crate::commands::business_intake::business_intake_bindings_list,
+            crate::commands::business_intake::business_intake_bindings_status,
+            crate::commands::business_intake::business_intake_bindings_create,
+            crate::commands::business_intake::business_intake_bindings_update,
+            crate::commands::business_intake::business_intake_bindings_disable,
+            crate::commands::business_intake::business_intake_grants_list,
+            crate::commands::business_intake::business_intake_grants_upsert,
+            crate::commands::business_intake::business_intake_grants_revoke,
+            crate::commands::business_intake::business_intake_sources_list,
+            crate::commands::business_intake::business_intake_sources_get,
+            crate::commands::business_intake::business_intake_imports_start,
+            crate::commands::business_intake::business_intake_imports_capture,
+            crate::commands::business_intake::business_intake_imports_list,
+            crate::commands::business_intake::business_intake_imports_get,
+            crate::commands::business_intake::business_intake_imports_advance,
+            crate::commands::business_intake::business_intake_imports_cancel,
+            crate::commands::business_intake::business_intake_candidates_list,
+            crate::commands::business_intake::business_intake_candidates_get,
+            crate::commands::business_intake::business_intake_candidates_create,
+            crate::commands::business_intake::business_intake_candidates_select,
+            crate::commands::business_intake::business_intake_candidates_edit,
+            crate::commands::business_intake::business_intake_candidates_accept,
+            crate::commands::business_intake::business_intake_candidates_link,
+            crate::commands::business_intake::business_intake_candidates_discard,
+            crate::commands::business_intake::business_intake_tasks_sources,
             crate::commands::business_identity::business_bootstrap,
             crate::commands::business_identity::business_members_list,
             crate::commands::business_identity::business_members_create,

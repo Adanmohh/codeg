@@ -249,10 +249,18 @@ pub async fn get(
     input: TaskInput,
 ) -> Result<Detail, E> {
     let tx = conn.begin().await?;
-    let row = model(&tx, ctx.principal.organization_id(), &input.task_id).await?;
-    let detail = detail_in(&tx, ctx, row).await?;
+    let detail = get_in_transaction(&tx, ctx, &input.task_id).await?;
     tx.commit().await?;
     Ok(detail)
+}
+
+pub(crate) async fn get_in_transaction(
+    tx: &DatabaseTransaction,
+    ctx: &ActorContext,
+    task_id: &str,
+) -> Result<Detail, E> {
+    let row = model(tx, ctx.principal.organization_id(), task_id).await?;
+    detail_in(tx, ctx, row).await
 }
 
 pub async fn list(
@@ -357,10 +365,21 @@ pub async fn create(
     input: CreateInput,
 ) -> Result<Detail, E> {
     metadata(&input.title, &input.notes, input.due_date.as_deref())?;
+    let tx = identity::begin_write(conn, ctx.principal.organization_id()).await?;
+    let detail = create_in_transaction(&tx, ctx, input).await?;
+    tx.commit().await?;
+    Ok(detail)
+}
+
+async fn validated_create(
+    tx: &DatabaseTransaction,
+    ctx: &ActorContext,
+    input: CreateInput,
+) -> Result<(task::Model, Member), E> {
+    metadata(&input.title, &input.notes, input.due_date.as_deref())?;
     let org = ctx.principal.organization_id();
-    let tx = identity::begin_write(conn, org).await?;
     let actor = identity::authorize(
-        &tx,
+        tx,
         &ctx.principal,
         org,
         Permission::Create,
@@ -379,7 +398,7 @@ pub async fn create(
         || input.reviewer_id.is_some()
     {
         identity::authorize(
-            &tx,
+            tx,
             &ctx.principal,
             org,
             Permission::Assign,
@@ -408,14 +427,42 @@ pub async fn create(
         updated_at: timestamp,
         archived_at: None,
     };
-    references(&tx, &row).await?;
+    references(tx, &row).await?;
+    Ok((row, actor))
+}
+
+pub(crate) async fn prepare_in_transaction(
+    tx: &DatabaseTransaction,
+    ctx: &ActorContext,
+    input: CreateInput,
+) -> Result<PreparedTask, E> {
+    let (row, _) = validated_create(tx, ctx, input).await?;
+    Ok(PreparedTask {
+        domain: domain(&row)?,
+        title: row.title,
+        notes: row.notes,
+        priority: row.priority,
+        due_date: row.due_date,
+        owner_id: row.owner_id,
+        assignee_id: row.assignee_id,
+        reviewer_id: row.reviewer_id,
+    })
+}
+
+/// The caller owns the writer transaction and any private intake decision.
+pub(crate) async fn create_in_transaction(
+    tx: &DatabaseTransaction,
+    ctx: &ActorContext,
+    input: CreateInput,
+) -> Result<Detail, E> {
+    let (row, actor) = validated_create(tx, ctx, input).await?;
+    let org = ctx.principal.organization_id();
+    let domain = domain(&row)?;
     tx.execute(statement("INSERT INTO business_task (id,organization_id,title,notes,domain,priority,due_date,owner_id,assignee_id,creator_id,reviewer_id,created_at,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
         vec![row.id.clone().into(), org.into(), row.title.clone().into(), row.notes.clone().into(), row.domain.clone().into(), priority_key(row.priority).into(),
             row.due_date.clone().into(), row.owner_id.clone().into(), row.assignee_id.clone().into(), row.creator_id.clone().into(), row.reviewer_id.clone().into(), row.created_at.clone().into(), row.updated_at.clone().into()])).await?;
-    audit(&tx, &row, &actor, "created", json!({"title": row.title, "domain": input.domain, "ownerId": row.owner_id, "assigneeId": row.assignee_id, "reviewerId": row.reviewer_id, "dueDate": row.due_date})).await?;
-    let detail = detail_in(&tx, ctx, row).await?;
-    tx.commit().await?;
-    Ok(detail)
+    audit(tx, &row, &actor, "created", json!({"title": row.title, "domain": domain, "ownerId": row.owner_id, "assigneeId": row.assignee_id, "reviewerId": row.reviewer_id, "dueDate": row.due_date})).await?;
+    detail_in(tx, ctx, row).await
 }
 
 async fn begin_task(
@@ -458,6 +505,19 @@ fn invalidate_review(row: &mut task::Model) {
 async fn finish(
     tx: DatabaseTransaction,
     ctx: &ActorContext,
+    row: task::Model,
+    actor: &Member,
+    action: &str,
+    payload: serde_json::Value,
+) -> Result<Detail, E> {
+    let detail = finish_in_transaction(&tx, ctx, row, actor, action, payload).await?;
+    tx.commit().await?;
+    Ok(detail)
+}
+
+async fn finish_in_transaction(
+    tx: &DatabaseTransaction,
+    ctx: &ActorContext,
     mut row: task::Model,
     actor: &Member,
     action: &str,
@@ -472,10 +532,42 @@ async fn finish(
     if changed.rows_affected() != 1 {
         return Err(E::Conflict);
     }
-    audit(&tx, &row, actor, action, payload).await?;
-    let detail = detail_in(&tx, ctx, row).await?;
-    tx.commit().await?;
-    Ok(detail)
+    audit(tx, &row, actor, action, payload).await?;
+    detail_in(tx, ctx, row).await
+}
+
+/// A text-free source link has the same edit/review/CAS floor as metadata.
+/// Only an opaque backend-created link ID enters public task history.
+pub(crate) async fn link_source_in_transaction(
+    tx: &DatabaseTransaction,
+    ctx: &ActorContext,
+    task_id: &str,
+    expected_revision: i64,
+    destination: TaskDomain,
+    link_id: &str,
+) -> Result<Detail, E> {
+    if expected_revision <= 0 || uuid::Uuid::parse_str(link_id).is_err() {
+        return Err(E::Invalid("Invalid source link"));
+    }
+    let mut row = model(tx, ctx.principal.organization_id(), task_id).await?;
+    let actor = visible(tx, ctx, &row, Permission::Contribute).await?;
+    require(caps(tx, ctx, &row, &actor).await?.edit && ctx.live.is_none())?;
+    if row.revision != expected_revision {
+        return Err(E::Conflict);
+    }
+    if domain(&row)? != destination {
+        return Err(E::NotFound);
+    }
+    invalidate_review(&mut row);
+    finish_in_transaction(
+        tx,
+        ctx,
+        row,
+        &actor,
+        "source_linked",
+        json!({"linkId": link_id}),
+    )
+    .await
 }
 
 pub async fn update(

@@ -2,6 +2,42 @@
 
 ## Current integration and worker state
 
+**PR28 intake backend merged** as `c8453a48d441f40eb47f9c9af856235b4f9986e5`;
+GitHub confirms closed/merged. Accepted frozen head:
+`462604b00ad74a7f72c36d0bea3714a5912bf640`, production e55f3bfd and separately
+reviewed test fixture7ed0dd0c. Owner desktop/server/companion checks and Clippy,
+38-case intake run, independent epoch/core/API tests and protected browser
+publication support the bounded Fireflies/source-to-task scope. New-tenant legacy
+email/Hafidh entrustment, full native tenancy and AI execution are not included.
+Root's merge has no product conflict: the only conflict was the evidence checksum
+manifest gaining its already-committed README entry. Root retained that entry and
+verified all22 artifacts; merged product/source/NOTICE/LICENSE match the frozen
+PR28 head. No rerun/build or existing fixture mutation was needed for this merge.
+
+Reviewer reports actual4355 recovery passing:7 browser assertions,70 protected
+responses,22 setup/newer-version/persistence API requests, no browser candidate/task
+writes, explicit adoption and unchecked publication confirmation. Its new browser
+is closed; all others remain. Final committed evidence is awaited before PR29 merge.
+PR29 has only an attribution-text conflict to reconcile; reviewed product remains60d.
+
+PR32 checkpoint `79d195471c001e656e8f1ca5b3ed4cdbe3ae7be0` is read: it adds
+only the implementation report, with no product source or compiling pass yet.
+Tickets is writing000014/internal DTOs on accepted9e61. Root verified the existing
+000010 nonempty-text constraint locally and against GitHub blob3cb107d5; forward14
+must preserve rows/FKs/immutable triggers, keep empty legacy text submissions
+invalid and require exact file references atomically for file-only publication.
+Next requested milestone is compiling source with meaningful migration/CAS tests.
+Worker reports7.6Gi free and reuses only its own target; old fixtures stay intact.
+
+Root read PR29 final report at `96e0bcc174b000abdbb4f6d31f1c9c7c43f90518`:
+owner's actual4355 empty-editor recovery, prepared draft retention and concurrent
+adoption pass, with bounded12-case/840-sample Sources design evidence. These are
+owner results; independent4355 recovery remains underway. Its exact existing
+composer/transcript/xterm/asset mapping is concrete and avoids global host
+providers. Three small API details (asset envelopes, private older-version discovery
+and prompt receipt fields) are being resolved directly with tickets while isolated
+typed UI work continues. No new architecture or acceptance claim is implied.
+
 **PR31 accepted and merged** as
 `3ddb8f819964fdba006d96ad8221a0436fd1a2cb`, exact head
 `cab3b27eaf241062a56532b5cdfe885f7e648fc9`. Root read the complete final independent

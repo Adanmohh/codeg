@@ -54,7 +54,9 @@ mod m20260908_000007_ops_telegram;
 mod m20260908_000008_ops_telegram_issues;
 mod m20260908_000009_business_identity;
 mod m20260908_000010_business_tasks;
+mod m20260908_000011_business_intake;
 mod m20260908_000012_business_tenancy;
+mod m20260909_000013_business_intake_epochs;
 mod m20260909_000014_business_execution;
 pub struct Migrator;
 
@@ -116,7 +118,9 @@ impl MigratorTrait for Migrator {
             Box::new(m20260908_000008_ops_telegram_issues::Migration),
             Box::new(m20260908_000009_business_identity::Migration),
             Box::new(m20260908_000010_business_tasks::Migration),
+            Box::new(m20260908_000011_business_intake::Migration),
             Box::new(m20260908_000012_business_tenancy::Migration),
+            Box::new(m20260909_000013_business_intake_epochs::Migration),
             Box::new(m20260909_000014_business_execution::Migration),
         ]
     }

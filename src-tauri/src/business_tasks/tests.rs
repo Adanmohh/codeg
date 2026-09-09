@@ -97,6 +97,106 @@ async fn create_owned(db: &AppDatabase) -> (Principal, ActorContext, Detail) {
 }
 
 #[tokio::test]
+async fn intake_task_transaction_rolls_back_creation_and_preserves_explicit_editor_owner() {
+    let db = fresh_in_memory_db().await;
+    let op = initialize(&db.conn).await;
+    let (editor, _, ctx) = human(&db.conn, &op, Role::Member, vec![Domain::Feedback]).await;
+    let (_, _, other) = human(&db.conn, &op, Role::Member, vec![Domain::Feedback]).await;
+    let tx = identity::begin_write(&db.conn, op.organization_id())
+        .await
+        .unwrap();
+    let prepared = store::prepare_in_transaction(&tx, &ctx, create_input())
+        .await
+        .unwrap();
+    assert_eq!(prepared.owner_id, editor.id);
+    assert_eq!(prepared.due_date.as_deref(), Some("2028-02-29"));
+    assert!(matches!(
+        store::create_in_transaction(&tx, &other, prepared.clone().into()).await,
+        Err(E::Forbidden)
+    ));
+    let created = store::create_in_transaction(&tx, &ctx, prepared.into())
+        .await
+        .unwrap();
+    assert_eq!(created.activity.len(), 1);
+    tx.rollback().await.unwrap();
+    assert_eq!(
+        count(&db.conn, "SELECT COUNT(*) AS count FROM business_task").await,
+        0
+    );
+    assert_eq!(
+        count(
+            &db.conn,
+            "SELECT COUNT(*) AS count FROM business_task_activity"
+        )
+        .await,
+        0
+    );
+}
+
+#[tokio::test]
+async fn intake_task_source_link_is_atomic_text_free_and_invalidates_review() {
+    let db = fresh_in_memory_db().await;
+    let (op, ctx, created) = create_owned(&db).await;
+    let reviewed = store::progress(
+        &db.conn,
+        &ctx,
+        ProgressInput {
+            task_id: created.task.id.clone(),
+            expected_revision: 1,
+            status: ProgressStatus::Review,
+        },
+    )
+    .await
+    .unwrap();
+    let link_id = uuid::Uuid::new_v4().to_string();
+    let tx = identity::begin_write(&db.conn, op.organization_id())
+        .await
+        .unwrap();
+    assert!(matches!(
+        store::link_source_in_transaction(
+            &tx,
+            &ctx,
+            &created.task.id,
+            1,
+            Domain::Feedback,
+            &link_id
+        )
+        .await,
+        Err(E::Conflict)
+    ));
+    let linked = store::link_source_in_transaction(
+        &tx,
+        &ctx,
+        &created.task.id,
+        2,
+        Domain::Feedback,
+        &link_id,
+    )
+    .await
+    .unwrap();
+    assert_eq!(linked.task.title, reviewed.task.title);
+    assert_eq!(linked.task.notes, reviewed.task.notes);
+    assert_eq!(linked.task.status, TaskStatus::InProgress);
+    assert_eq!(
+        linked.activity.last().unwrap().payload,
+        json!({"linkId": link_id})
+    );
+    tx.rollback().await.unwrap();
+    let unchanged = store::get(
+        &db.conn,
+        &ctx,
+        TaskInput {
+            task_id: created.task.id,
+        },
+    )
+    .await
+    .unwrap();
+    assert_eq!(unchanged.task.revision, 2);
+    assert_eq!(unchanged.task.status, TaskStatus::Review);
+    assert_eq!(unchanged.activity.len(), 2);
+}
+
+#[tokio::test]
 async fn human_only_work_progresses_to_real_human_review_without_folder_or_agent() {
     let db = fresh_in_memory_db().await;
     let op = initialize(&db.conn).await;

@@ -23,7 +23,7 @@ pub(crate) trait SecretStore: Send + Sync {
     fn set(&self, key: &str, value: &str) -> Result<(), ()>;
     fn delete(&self, key: &str) -> Result<(), ()>;
 }
-struct ExistingStore;
+pub(crate) struct ExistingStore;
 impl SecretStore for ExistingStore {
     fn get(&self, key: &str) -> Option<String> {
         crate::keyring_store::get_token(key)
@@ -194,10 +194,16 @@ pub async fn configure(
         .await
         .map_err(|e| command_error(e.into()))?,
     };
-    runtime
+    crate::business_intake::legacy::fence_email(db, input.inbox_id, true)
+        .await
+        .map_err(|e| command_error(e.into()))?;
+    let saved = runtime
         .secrets
-        .set(&row.credential_ref, &input.api_key)
-        .map_err(|_| secret_error())?;
+        .set(&row.credential_ref, &input.api_key);
+    crate::business_intake::legacy::fence_email(db, input.inbox_id, false)
+        .await
+        .map_err(|e| command_error(e.into()))?;
+    saved.map_err(|_| secret_error())?;
     status(
         db,
         op,
@@ -216,10 +222,16 @@ pub async fn disconnect(
 ) -> Result<EmailStatus, AppCommandError> {
     let _guard = runtime.guard(op.scope(input.inbox_id))?;
     if let Some(row) = get_config(db, op, input.inbox_id).await? {
-        runtime
+        crate::business_intake::legacy::fence_email(db, input.inbox_id, true)
+            .await
+            .map_err(|e| command_error(e.into()))?;
+        let removed = runtime
             .secrets
-            .delete(&row.credential_ref)
-            .map_err(|_| secret_error())?;
+            .delete(&row.credential_ref);
+        crate::business_intake::legacy::fence_email(db, input.inbox_id, false)
+            .await
+            .map_err(|e| command_error(e.into()))?;
+        removed.map_err(|_| secret_error())?;
     }
     status(db, op, runtime, input).await
 }
