@@ -1,0 +1,286 @@
+{
+  "review_utc": "2026-09-09T15:56:49.539265+00:00",
+  "mode": "source-only; uncompiled by reviewer and no execution claim at this frozen checkpoint",
+  "pin": "d0d56a36399d81be23787891177752022c91edf6",
+  "tree": "08aaad21c63574bffd548505943accfd5c0b99ef",
+  "parent": "b15ded12cd24f557d0de9bb55b43db30b9f8bc89",
+  "changed_source_report_entries": [
+    {
+      "path": "src-tauri/src/business_execution/publication.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "f168104e9cbdaf40a06f37295d4abced6adba7d7",
+      "sha256": "2d356936114e45b5262b3ff7e0fc9300858bf004a1bd99a1cf0b7fafa600af4e",
+      "bytes": 8562,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_execution/publication/tests.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "596e59eca9a1a6db3dc4eb46dbf8d5d71c3fddbb",
+      "sha256": "06e635ddb37b78634622608fabef4c1c8e4c39926d8022e847e5566a3eb26c36",
+      "bytes": 18952,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_execution/tests.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "f34cfcd02ead4b4c7a40b64ae7ef3e4bba376621",
+      "sha256": "8ba5d838e5b510666427b847f38bdb775e31d8599ba2ac0772eb8b2212b1488f",
+      "bytes": 15667,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_tasks/store/managed.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "94c743c4831af5cc91f90d52877f026de025044c",
+      "sha256": "2102dea275f822949cd66bfe554a129df34e796f42fb13187c6434f4c47ba165",
+      "bytes": 7237,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_tasks/store.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "6cf636d67a933b5e22b286f09ec9297ae10948ee",
+      "sha256": "0885872c6071ef3258abb945f2741c9da923b6a7bc2c4e754467d9a94d0424e2",
+      "bytes": 31280,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_tasks/types.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "d092211349387baf0ca587c51ada4ec69d39930a",
+      "sha256": "c0f0e5472e1297a6bec8b77fe882009e904e0b4b03de10a6f73f1cc19df01f72",
+      "bytes": 6453,
+      "read_scope": "complete delta; unchanged base previously reviewed"
+    },
+    {
+      "path": "src-tauri/src/business_execution/mod.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "9eb979207bd02a4ebfa998b1ba09191c3b488b34",
+      "sha256": "a10852e269f81b4008cc7c7f81327c34f1a983ebefeb826e4de812ba020f26a9",
+      "bytes": 509,
+      "read_scope": "complete delta; unchanged base previously reviewed"
+    },
+    {
+      "path": "NOTICE",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "4c411e409b5e0a235117599857e6fb54cccf936b",
+      "sha256": "b38d798f54c87e8e9a431adeb6222cf5178cba9058056b9354aab541b1de000b",
+      "bytes": 76123,
+      "read_scope": "complete delta; unchanged base previously reviewed"
+    },
+    {
+      "path": "reports/business-ai-execution-implementation.md",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "004af66bf4f8803348ff9edbb3b67151cfb7b5da",
+      "sha256": "26d0572a84a0bbfc5e52a4784938479558539dc2acd67ceca99a5957ee4477ac",
+      "bytes": 29048,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_execution/receipts.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "5b6dfcc657f5c6e395ee6f7d82cc97963020bb28",
+      "sha256": "b4c0749c57056f928d2e6401cc02f9a87702798d46c5e170b5b193f3508fee17",
+      "bytes": 5221,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_execution/scope.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "44d0d5eef834967f5f6a38810630c6b2ffebff1f",
+      "sha256": "0cf0f9566c14363cfd6a3ebc9aaac90f75a440a9d39b10eaa1af9195fe048ebc",
+      "bytes": 3885,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_execution/common.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "9fb07651f8f634e1889ab6360c7b11e3e3107a16",
+      "sha256": "af26b1e274a6a94d655980ae8d1a37e2efd408936eb735c04be062505b768ceb",
+      "bytes": 2234,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_execution/validation.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "0de132a3f5ad20614196621286b94b0cfe471fef",
+      "sha256": "73fcd66cf675c63226b10b5a342ed7840455d4434de74d247ac7f5dda4e3a81d",
+      "bytes": 4154,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_execution/types.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "47ca21b002c9c1efb898e38e0c920e9ca3456c70",
+      "sha256": "4c318c4fbd1a0d8d1481910217911adfafa84a91572977fe6d47b1682c6695ad",
+      "bytes": 11207,
+      "read_scope": "relevant type definitions 280-430 plus previously reviewed full unchanged DTO"
+    },
+    {
+      "path": "src-tauri/src/business_execution/files.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "d01e7c24a95c73e6c7133e4020cca2a156f562ad",
+      "sha256": "fd35ed1068fa17b482983934824fdd64469b2114235f23a83f3326dbb523b6c4",
+      "bytes": 17338,
+      "read_scope": "previously reviewed full unchanged file"
+    },
+    {
+      "path": "src-tauri/src/business_identity/mod.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "f7205760715d2516b11b6e2cb79fd133218672bb",
+      "sha256": "22ee10d3e89f0a555e035fe64f5196dc610416b18be39880a3899fa828e48042",
+      "bytes": 11844,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_tasks/mod.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "0d24b53dd64a9b2ef95ea77da892b274a8658281",
+      "sha256": "2e368da8ee6481a572593618a7b3041b1e1cedae37eeea51a2a3a3d1a0107f44",
+      "bytes": 1815,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/business_tasks/policy.rs",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "59c0fe10a27c52a75679bcd4f28779e1e0984055",
+      "sha256": "ca06545bd4e9dc93bd403b895b4ce9429e36cd071313655d0dd74e43851348ef",
+      "bytes": 1429,
+      "read_scope": "full file"
+    },
+    {
+      "path": "src-tauri/src/db/migration/m20260909_000014_business_execution.sql",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "2369913295543dce4542c364f23567cbffd0d842",
+      "sha256": "e113a1eb674de813475e0872211c2afc52562296dcfe6cd26292dc617edf128b",
+      "bytes": 14222,
+      "read_scope": "full file"
+    },
+    {
+      "path": "LICENSE",
+      "commit": "d0d56a36399d81be23787891177752022c91edf6",
+      "blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357,
+      "read_scope": "full file"
+    }
+  ],
+  "contract": {
+    "path": "docs/contracts/business-ai-execution.md",
+    "commit": "3f164c2a989cd08a523e51f1e47559c15a48c0ef",
+    "blob": "ec22db669331e03c8d1d6fb4d312896924955853",
+    "sha256": "e2cf8304fb5eababce79961da57061e244f2567eae11b75b88dbfcbccc6a114d",
+    "bytes": 50070,
+    "read_scope": "full contract, including separately reread lines250-318"
+  },
+  "borrow": {
+    "entry": {
+      "path": "src-tauri/src/business_tasks/store.rs",
+      "commit": "c8453a48d441f40eb47f9c9af856235b4f9986e5",
+      "blob": "4d45912b748f2083457ccb6ab075b335d8ec2ac2",
+      "sha256": "026432b373e3f78ee70953b983a7d3fd119ae295a498407519a90519ea9d9340",
+      "bytes": 30797,
+      "read_scope": "full equivalent prior writer plus complete current delta"
+    },
+    "license": "Apache-2.0",
+    "NOTICE_appended_only": true,
+    "appended_bytes": 912,
+    "gh_api": {
+      "argv": [
+        "gh",
+        "api",
+        "repos/Adanmohh/codeg/contents/src-tauri/src/business_tasks/store.rs?ref=c8453a48d441f40eb47f9c9af856235b4f9986e5",
+        "--jq",
+        "{path,sha,size}"
+      ],
+      "exit": 0,
+      "returned_blob": "4d45912b748f2083457ccb6ab075b335d8ec2ac2"
+    }
+  },
+  "installed_references": [
+    {
+      "package": "tokio",
+      "version": "1.49.0",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.49.0/src/task/blocking.rs",
+      "lines": [
+        82,
+        125
+      ],
+      "sha256": "821efe697c70bf6b4d3203d5fad43d466ade5707fe03f5e925db6d6b91535e71"
+    },
+    {
+      "package": "tokio",
+      "version": "1.49.0",
+      "path": "/Users/mohamedadan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.49.0/src/sync/semaphore.rs",
+      "lines": [
+        532,
+        607
+      ],
+      "sha256": "890da65eb3135613d4d0fe6cd38661822f93ce54ee9bdd12abba4e0e37e35e61"
+    }
+  ],
+  "unchanged_checks": [
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--quiet",
+        "b15ded12cd24f557d0de9bb55b43db30b9f8bc89",
+        "d0d56a36399d81be23787891177752022c91edf6",
+        "--",
+        "src-tauri/Cargo.toml",
+        "src-tauri/Cargo.lock",
+        "src-tauri/build.rs",
+        "src-tauri/src/db/migration",
+        "src-tauri/src/business_identity",
+        "src-tauri/src/work_task",
+        "src-tauri/src/business_tasks/agent.rs",
+        "src-tauri/src/web",
+        "src-tauri/src/commands",
+        "src-tauri/src/lib.rs",
+        "LICENSE"
+      ],
+      "exit": 0
+    }
+  ],
+  "new_test_names_read_not_run": [
+    "execution_publication_file_only_is_atomic_replayable_and_rediscoverable",
+    "execution_publication_agents_member_credentials_and_foreign_refs_cannot_submit",
+    "execution_publication_late_authority_loss_cannot_publish_private_verified_bytes",
+    "execution_publication_cas_and_receipt_failure_leave_no_partial_disclosure",
+    "execution_publication_missing_bytes_and_competing_revision_fail_closed",
+    "execution_publication_human_review_keeps_selected_version_after_session_revocation"
+  ],
+  "adapted_migration_cases_read_not_run": [
+    "execution_migration_retains_review_history_and_real_receipt_retry",
+    "execution_migration_failure_rolls_back_rebuild_and_restores_enforcement"
+  ],
+  "remote_pin_command": {
+    "argv": [
+      "gh",
+      "api",
+      "repos/Adanmohh/codeg/commits/d0d56a36399d81be23787891177752022c91edf6"
+    ],
+    "exit": 0,
+    "returned_sha": "d0d56a36399d81be23787891177752022c91edf6",
+    "returned_tree": "08aaad21c63574bffd548505943accfd5c0b99ef"
+  },
+  "no_source_archive_or_target_copy": true,
+  "no_compile": true,
+  "no_new_hooks_or_fixture_action": true,
+  "frozen_review_preservation": {
+    "argv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "de3a6b8fdc2602ef743ec2e1da72f488707980af",
+      "--",
+      "reports/business-ai-execution-review/9949c8a9",
+      "reports/business-ai-execution-review/3773a027",
+      "reports/business-ai-execution-review/177d0f3e"
+    ],
+    "exit": 0,
+    "9949_handoff": "de3a6b8fdc2602ef743ec2e1da72f488707980af"
+  }
+}

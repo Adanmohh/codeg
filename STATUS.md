@@ -2,6 +2,16 @@
 
 ## Current integration and worker state
 
+**Publication source review imported; execution remains pending.** Reviewer
+`d1fba7e4a5367b05bd93c7e58d3e3d8f78b98c89` establishes no additional blocking
+source finding at d0d56a. Root read the full assessment/ledger, verified three
+artifact hashes,20 source entries, exact accepted contract/borrow hashes and
+additive NOTICE, and preserved the full9949 closure evidence. The six test
+bodies and two retained-schema adaptations are reviewed, not passing tests.
+Same-connection concurrency and a direct final-writer call do not establish
+independent-writer races or actual cancellation during file I/O; those remain
+later integration probes. [Publication source review](reports/business-ai-execution-review/d0d56a36/review.md).
+
 **R1–R3 closed within the reviewed internal helper scope at9949.** Independent
 closure `de3a6b8fdc2602ef743ec2e1da72f488707980af` is verified and imported.
 Root read the execution report and actual14 passing test summaries, matched all10

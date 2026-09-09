@@ -1,0 +1,11 @@
+{
+  "algorithm": "sha256",
+  "source_pin": "d0d56a36399d81be23787891177752022c91edf6",
+  "mode": "source-only; no compile/run claim",
+  "paths_relative_to_worktree": {
+    "reports/business-ai-execution-review/d0d56a36/review.md": "940d15f7fe03e5321aecc201af8526bef0bf75f40be9e478c719a93683c78956",
+    "reports/business-ai-execution-review/d0d56a36/source-ledger.json": "35f9afc5ec5dd8e45784159796199d5c8f815ced3f375a8655f54f504d85f8ff",
+    "reports/review-business-ai-execution-implementation.md": "668b39cdc7dc90d9b1b10ce118958ba882245f17fbed94ca56d0f6f8a4318112"
+  },
+  "note": "Current source-only follow-on. Historical 9949 independent execution remains frozen at de3a6b8fd; no runtime test evidence added here."
+}
