@@ -475,3 +475,40 @@ deleted-object refusal without recreation. The assets selector now has six
 planned cases; its five prior passes remain evidence of the earlier source only.
 Rustfmt and diff checks exit0; no runtime result is claimed for this addition.
 No schema, transport, dependency, licence source or fixture changes accompany it.
+
+## Fixed output discovery — next bounded validation window
+
+Recovery-only source is `bdfa7ca69` (full immutable head in Git). The next source
+checkpoint adds outputs.rs and five execution_outputs_ cases. The fixed workspace
+is derived from the authorized session's bound generation; no caller path enters
+the scanner. The writer repeats the same principal/task/profile/generation checks
+and compares the pre-scan observation revisions, so an older scan cannot replace
+a newer committed observation. IDs remain stable across edits/removal; revisions
+advance, removed candidates are labelled changed, and source fingerprints stay
+private. Ended runs return only previously captured observations, never refresh
+late workspace bytes after stop. A new generation cannot consume the old cursor.
+Each generation retains at most512 candidate identities, with explicit rate-limit
+refusal at the bound. No asset or publication is created by output discovery.
+
+Exact new planned selector names:
+- execution_outputs_revisioned_discovery_and_pagination_do_not_publish
+- execution_outputs_foreign_cursor_and_member_transport_fail_before_scan
+- execution_outputs_late_profile_revocation_retains_no_observation
+- execution_outputs_reordered_scan_cannot_replace_newer_observation
+- execution_outputs_stop_fence_and_new_generation_cannot_rebind_old_scan
+
+The tests use real temporary files/SQLite but synthetic admitted engine links and
+a synthetic DB stop/new-generation boundary. No process ownership/teardown or
+HTTP/native delivery acceptance is implied. Current native rustfmt and diff
+checks pass; all output/publication additions are still uncompiled at this freeze.
+Applied offline code-context Atomic per-task staging / installed-version rules;
+dependency corpus absence remains disclosed. Exact accepted B imports.rs source
+was read via gh api; NOTICE records blob c0338191beff26817d2bf85b943fd0c2602a47c0.
+Read installed chrono0.4.43 from_timestamp implementation for UTC file metadata.
+
+Root has now explicitly returned the next serialized existing-target window.
+Queued gates: publication8, assets6, the two adapted historical schema cases,
+relevant existing task core controls, outputs5 and server check. Recheck≥10GiB
+before each start and stop/report near5GiB. No new target/copy/export, fixture or
+browser action. Initial failures, any bounded correction and exact final source
+will be retained separately; nothing in this paragraph claims a test has run.

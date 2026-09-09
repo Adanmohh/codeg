@@ -3,6 +3,7 @@
 //! Reuses Codeg's existing identity/task/runner; exact attribution in NOTICE.
 pub mod common;
 mod files;
+mod outputs;
 pub(crate) mod publication;
 mod receipts;
 mod records;

@@ -29,6 +29,14 @@ pub(super) struct Observation {
     pub byte_size: i64,
     pub media_type: String,
 }
+impl Observation {
+    pub(super) fn modified_at(&self) -> Result<String> {
+        let nanos = u32::try_from(self.stamp.modified.1).map_err(|_| R::ContentUnavailable)?;
+        chrono::DateTime::from_timestamp(self.stamp.modified.0, nanos)
+            .map(|time| time.to_rfc3339())
+            .ok_or_else(|| R::ContentUnavailable.into())
+    }
+}
 pub(super) struct Candidate {
     pub relative: String,
     pub observation: Observation,

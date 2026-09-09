@@ -1232,3 +1232,12 @@ Installed Tokio1.49.0 task/blocking.rs and sync/semaphore.rs are read references
 for bounded blocking verification and cancellation limits. No runtime, dependency
 implementation, authorization constructor or copyleft source is introduced.
 All original Apache-2.0 licence and preceding NOTICE sections are preserved.
+
+E1 fixed output observations (2026): business_execution/outputs.rs adapts the
+captured-source / post-observation writer revalidation pattern from Apache-2.0
+business_intake/imports.rs at c8453a48d441f40eb47f9c9af856235b4f9986e5
+(c0338191beff26817d2bf85b943fd0c2602a47c0), read locally and through gh api.
+It reuses the already-attributed anchored Files scanner and identity writer.
+Generation/observation fencing and private candidate DTO mapping are E1 glue.
+Installed chrono0.4.43 datetime/mod.rs and Tokio1.49.0 blocking/semaphore APIs
+ground UTC metadata and bounded blocking I/O; no dependency implementation port.
