@@ -1,14 +1,18 @@
 # Business AI workspace — implementation checkpoint
 
 Current branch: `feat/business-ai-workspace`; draft
-[PR33](https://github.com/Adanmohh/codeg/pull/33). Accepted shell base is
+[PR33](https://github.com/Adanmohh/codeg/pull/33). Latest product is
+`1f37a9ef761ac4b3903d3334094588b58906f9fe`, pushed. Exact source blobs and
+validation log hashes are in `business-ai-workspace-evidence/handoff-source.json`.
+This is ready for source review; operational E1 acceptance remains pending the
+specific transport/runtime handoffs below. Accepted shell base is
 `f988700db6975364d35b80125af12bfe2d5baac3`. Guarded session entry is pushed as
 `45d7fb2f5`; the private task file workflow is pushed as
 `9c623f8e9fecebfceef8ffd8c291f7570092b127`.
-Conversation product checkpoint
-`b125aec9e5703508ac7f6948d0d2db134534c90d` is pushed. This next checkpoint adds
-the original-operator browser entry, explicit start/continue and guarded session
-tabs to that existing workbench; it does not enable a backend or prove a runner.
+Conversation checkpoint `b125aec9e5703508ac7f6948d0d2db134534c90d` precedes those
+entries. The source now includes original-operator browser start/continue,
+persistent conversation and managed-file tabs in the existing workbench. No
+backend, exported preview or runner is enabled by these source checkpoints.
 
 Task detail opens AI workspace beside the retained human draft. Profiles and
 saved sessions load only after that explicit entry and only for actual
@@ -46,14 +50,14 @@ tabs from the task AI workspace or a saved conversation. Search and opaque pages
 load actual typed retained-file metadata; checking session output is explicit and
 does not import it. Exact output ID/revision and a proposed title define the import.
 Adding a version also rechecks current addVersion capability and the captured
-asset revision. The title bound is240 Unicode characters from validation.rs at
+asset revision. The title bound is 240 Unicode characters from validation.rs at
 `d0d56a36399d81be23787891177752022c91edf6`; no caller path/hash/provenance is sent.
 
 An import retains a private immutable version and does not select it for review.
 Current assets/get metadata gates escaped Markdown/text preview and verified inert
 Blob download; exact-version pagination does not silently follow a moving latest
 pointer. Unsupported/large text and office/deck previews show an explicit gap.
-Selecting1–16 versions starts a separate submission draft. Review fetches current
+Selecting 1–16 versions starts a separate submission draft. Review fetches current
 task and every exact version, compares the retained hash/size/type, then shows
 current domain audience, owner/assignee/reviewer, status and task revision. The
 human checkbox confirms that exact selection/note/audience. Changing the note or
@@ -67,7 +71,7 @@ same-operation import replay; it does not guess which ID the opaque receipt targ
 represents. Pending/missing/uncertain receipts never reimport. Submit uncertainty
 uses the original receipt plus tasks/get to locate its exact historical deliverable;
 it does not repeat assets/submit. This target mapping is read from publication.rs
-atd0d56a36. Known failed receipts require explicit selection review. Behavior for
+at d0d56a36. Known failed receipts require explicit selection review. Behavior for
 backend refusals that do not retain a failed receipt still needs the operational
 handoff: the UI conservatively keeps unresolved intent, without inferring a retry
 from a missing receipt. Private access denial clears file content/actions; tab
@@ -82,11 +86,11 @@ retain task, prompt and submission drafts in memory.
 | Normal `pnpm exec tsc --noEmit --incremental false` | exit0; private-assets-typecheck-final.txt |
 | Scoped ESLint over E1 library/components and affected BusinessWorkspace | exit0; private-assets-lint-final.txt |
 
-The first managed component run was13/14: Testing Library's default whitespace
+The first managed component run was 13/14: Testing Library's default whitespace
 normalizer did not match the exact multiline preview string. Installed DOM10.4.1
 matches.js was read; the existing public-reader test's exact PRE.textContent
 assertion now verifies the exact displayed text. The isolated locator recheck
-passes1/1, then all17 final cases pass; initial raw evidence is retained. Initial
+passes 1/1, then all 17 final cases pass; initial raw evidence is retained. Initial
 type errors were the one-value previewReason tuple and test locale inferred as
 string; both now use the actual closed types. No compiler/lint options or behavior
 assertions were weakened. All data is synthetic in-memory HTTP; the PPTX case is
@@ -101,10 +105,10 @@ read types blob47ca21b002c9c1efb898e38e0c920e9ca3456c70 (11,207 bytes), verified
 gh api. No stop/write/resize result wrapper has appeared. Its scan-fence report
 is separate backend evidence, not this worker's compilation/runtime claim.
 
-The next terminal-input checkpoint imports the unchanged inherited
+The terminal-input checkpoint imports the unchanged inherited
 `lib/terminal/write-queue.ts` (blob0380ef127d26c9d2b6a221ace4d59861464595ff
-atf988) and adds receipt/generation handling around it. Writes stay ordered;
-each chunk is at most16KiB UTF-8 without splitting a Unicode character. The
+at f988) and adds receipt/generation handling around it. Writes stay ordered;
+each chunk is at most 16KiB UTF-8 without splitting a Unicode character. The
 64KiB local buffer rejects an entire excess incoming paste before enqueue and
 reports that rejection; it never silently truncates the paste. Uncertain/pending
 acknowledgement disposes the queue before later buffered input can follow.
@@ -117,8 +121,8 @@ receipt metadata, not typed shell text.
 This is an **injected lower adapter**, not a new HTTP envelope or enabled terminal.
 The final TerminalView was reread: its host spawn/kill/global subscriptions remain
 excluded. Its installed xterm6.0.0/addon-fit0.11.0 package manifests identify
-commitf447274f430fd22513f6adbf9862d19524471c04. No xterm renderer, client route or
-native control was added in this queue checkpoint. The13 owned queue tests pass,
+commit f447274f430fd22513f6adbf9862d19524471c04. No xterm renderer, client route or
+native control was added in this queue checkpoint. The 13 owned queue tests pass,
 exit0 (`terminal-input-first.txt`), with normal TypeScript and scoped ESLint both
 exit0 (`terminal-input-typecheck.txt`, `terminal-input-lint.txt`). These are
 controlled promises and synthetic metadata, not a real PTY/process test.
@@ -135,8 +139,9 @@ Concrete backend/runtime handoff dependencies, separate from passing source gate
 Remaining implementation: the existing xterm presentation after those exact
 transport handoffs, followed by integrated runner validation. Actual E1 API/ACP/PTY/browser,
 Design Studio and export gates await a coordinated backend and build window.
-The backend `d0d56a36399d81be23787891177752022c91edf6` asset handoff is source only,
-explicitly uncompiled by its owner; no runtime or native acceptance is claimed.
+The initial backend d0d56a36 handoff was explicitly uncompiled; later backend-only
+publication and scan review have their own pins/evidence. This worker ran no
+backend gate and claims no runtime or native acceptance.
 The manual offline code-context guide was rerun with the existing cached model;
 installed-version grounding and safe untrusted-content guidance apply. The
 cross-project content-factory/delegation rules do not apply to this task. No new
