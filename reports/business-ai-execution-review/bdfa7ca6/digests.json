@@ -1,0 +1,18 @@
+{
+  "algorithm": "sha256",
+  "mode": "source-only: no compile or execution result at these follow-on pins",
+  "reviewed_commits": [
+    "3841e659bec3d0161d73eaca16058b170fe751be",
+    "bdfa7ca69334196448c3745a8ee0aac97166a877"
+  ],
+  "paths_relative_to_worktree": {
+    "reports/business-ai-execution-review/bdfa7ca6/review.md": "55e8dfc11bad3971047088f53181d5f176f381ecef068f8a3621e33b1c383de4",
+    "reports/business-ai-execution-review/bdfa7ca6/source-ledger.json": "d3dc27e877ac8833c67b130d30ae88f0bec7d404468daf94efc41f9fc5eede60",
+    "reports/review-business-ai-execution-implementation.md": "f5930e201ec53185343cad31c514549a0870866af506259ca1bd3ce9c23927f4"
+  },
+  "preserved_verdicts": {
+    "9949_independent": "de3a6b8fdc2602ef743ec2e1da72f488707980af",
+    "d0_source": "d1fba7e4a5367b05bd93c7e58d3e3d8f78b98c89"
+  },
+  "note": "Historical evidence directories are unchanged. This index excludes itself."
+}
