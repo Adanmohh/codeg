@@ -2,7 +2,8 @@
 
 ## Current integration and worker state
 
-**PR28 intake backend accepted for merge** at frozen
+**PR28 intake backend merged** as `c8453a48d441f40eb47f9c9af856235b4f9986e5`;
+GitHub confirms closed/merged. Accepted frozen head:
 `462604b00ad74a7f72c36d0bea3714a5912bf640`, production e55f3bfd and separately
 reviewed test fixture7ed0dd0c. Owner desktop/server/companion checks and Clippy,
 38-case intake run, independent epoch/core/API tests and protected browser
