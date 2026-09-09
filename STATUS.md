@@ -2,6 +2,17 @@
 
 ## Current integration and worker state
 
+**New source-only P2: empty/no-op scans do not fence older output observations.**
+At425198707, scan A sees a file; newer scan B sees no files and commits without
+changing output rows. Both revision vectors remain empty, so A can later insert
+the disappeared file as Available. Root read the full helper/schema and confirms
+the source path; no probe or cross-tenant/import bypass is claimed. Tickets owns
+a monotonic generation scan fence advanced by every accepted active scan, plus
+the deterministic empty/newer-no-op regression and positive controls. Additive
+000015 is reserved if durable scan state needs migration;000014 remains immutable.
+Correction source/test/report edits are authorized; compilation remains held.
+The publication8 pass and9949 helper closures do not close this new output issue.
+
 **Publication8 owner evidence verified and imported.** Evidence-only
 `03c701dba3ade317a9597a49872530ddd2a17c93` preserves product425198707 exactly.
 Root matched12 product/NOTICE Git blob and SHA256 pairs, the original log digest,
