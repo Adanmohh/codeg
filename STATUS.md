@@ -2,6 +2,17 @@
 
 ## Current integration and worker state
 
+**Correction validation is running, not yet complete.** Tickets has committed
+product `9949c8a9ad99ffb70232c05bf1c2ad243dcaf194` and report-only
+`e56affc361ba7901e624dcc7e4d8e5a2776aee5b`. Its bounded locked/offline `-j2`
+window started with 16.8 GiB free in the existing target: pagination, admission,
+authority and assets selectors, followed by the server check. Approvals reports
+no additional blocker after reading the three corrected modules and six new test
+bodies; independent execution and finding closure remain pending. Reviewer Cargo
+is held. Farha's production build is queued for explicit release after this window;
+small synthetic checks requiring no build or large fixture may continue. No hook
+restoration, further cleanup or fixture mutation is planned.
+
 **Final3773 source-finding publication verified and imported:**
 `dc0e9cb06ded25122c373029c3bc9f9bbe40b42f` contains exactly three report files.
 Root read the complete findings/ledger, matched all three supplied report hashes,
