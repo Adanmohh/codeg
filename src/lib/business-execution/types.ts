@@ -1,6 +1,8 @@
 import type { Deliverable, TaskDetail } from "@/lib/business/tasks"
 
 // Accepted business-ai-execution.md, 3f164c2a989cd08a523e51f1e47559c15a48c0ef.
+// Additive private-version/prompt wrappers: compiling business_execution/types.rs
+// and contract at 6195d9daf. No runtime operation is implied by a DTO.
 // IDs/cursors remain opaque strings; no host IDs, credentials or paths on wire.
 export const SESSION_STATUSES = [
   "starting",
@@ -313,6 +315,7 @@ export interface ExecutionInputs {
     limit: number
   }
   "assets/get": AssetSelection
+  "assets/versions": { assetId: string; cursor: string | null; limit: number }
   "assets/content": AssetSelection & { disposition: Disposition }
   "assets/submit": {
     operationId: string
@@ -340,6 +343,11 @@ export interface ExecutionResults {
   "sessions/start": SessionResult
   "sessions/get": { session: SessionSummary }
   "sessions/continue": SessionResult
+  "sessions/prompt": {
+    operation: OperationSummary
+    messageId: string
+    inputHash: string
+  }
   "sessions/history": {
     messages: MessagePart[]
     nextBeforeCursor: string | null
@@ -349,6 +357,20 @@ export interface ExecutionResults {
     asset: AssetSummary
     version: AssetVersion
     operation: OperationSummary
+  }
+  "assets/list": { items: AssetSummary[]; nextCursor: string | null }
+  "assets/versions": { items: AssetVersion[]; nextCursor: string | null }
+  "assets/get": {
+    asset: AssetSummary
+    version: AssetVersion
+    capabilities: {
+      readContent: boolean
+      preview: boolean
+      download: boolean
+      submit: boolean
+      addVersion: boolean
+    }
+    previewReason: "unavailable" | null
   }
   "assets/submit": { detail: AssetTaskDetail; operation: OperationSummary }
 }

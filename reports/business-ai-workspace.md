@@ -6,6 +6,17 @@ checkpoint `2bade5c4` is committed and pushed, based on
 accepted main `9e61fe672`. Root accepted PR31 and lifted the internal-only gate;
 this report does not claim an implemented backend or runtime acceptance.
 
+Current resume: root accepted PR29 and published main
+`f988700db6975364d35b80125af12bfe2d5baac3`, including the exact narrow worker
+tsconfig correction `91c98d469`. Root reports 109/109 scoped frontend tests and
+normal `tsc --noEmit --incremental false` passing on that integrated source,
+without this E1 WIP. These are independent results, not this worker's E1 gates.
+Root explicitly authorized preserving/committing the existing E1 WIP before
+additive main integration. That checkpoint retains the known three source type
+errors and 40 formatting diagnostics; 18 stream tests pass. The alias-correcting
+hook candidate is under independent review, so the denied native patch remains
+pending and imports remain unchanged.
+
 The wire authority is
 `docs/contracts/business-ai-execution.md` at
 `3f164c2a989cd08a523e51f1e47559c15a48c0ef`, SHA256
@@ -33,6 +44,10 @@ PR29 is not in this branch's accepted base. Prepare isolated typed client and
 components first; integrate accepted main after PR29 merges before wiring its
 `WorkSurface` tabs/panes. Do not reproduce that shell or import unaccepted WIP.
 Existing human task review remains the publication/review destination.
+
+That dependency is now accepted as noted above; the next owned Git operation is
+to preserve the WIP checkpoint and integrate that exact accepted main. No shell
+source has been recreated or imported from an unaccepted branch.
 
 4355 remains PID85232, export `.build/business-intake-ui-recovery-60d600db0`;
 `business.html` SHA256
@@ -284,3 +299,44 @@ all1211 src inputs unchanged, and both `next.config.ts` and `vitest.config.ts`
 retained. See `tsconfig-file-set-check.txt`; raw lists stay in the owned ignored
 `.build/e1-tsconfig-{before,after}-files.txt`. No test include, TypeScript strict
 option, source import, lockfile, framework config or archive source changed.
+
+## Presentation implementation checkpoint
+
+The next component glue uses the accepted existing workbench's task/session/file
+surfaces. There is no additional navigation system or client-selected tenant.
+Private session reads require the actual original-operator capability before
+loading; a member sees only selected files in the existing task deliverable.
+
+| Surface | Existing implementation and E1-specific handoff |
+| --- | --- |
+| Prompt beside the task | RichComposer's once-only defaultText, onChange/onSubmit, IME-safe shortcut and onReady callbacks. Omit referenceSearch; exact task/asset references are separate explicit selections. Preserve unsent text across locale, viewport and visible-pane changes. Pending/uncertain submission retains the exact accepted draft for receipt recovery; a prompt receipt is not a completion. |
+| Persistent conversation | Message/MessageContent presentation with closed messageId/part and tool state from the authenticated stream. Snapshot/reset replaces stream state without resetting the unsent composer. History stays paged; reconnect never repeats a start/prompt. Scope/generation loss detaches and clears inaccessible private content. |
+| Interactive terminal | Adapt TerminalView's existing xterm fit/font/keyboard and single-flight write queue to injected session-bound operations. No spawn/kill/global subscribe on mount or unmount. On ambiguous write, dispose the queue before subsequent buffered input can send, then require receipt reconciliation. Closing a surface detaches only. |
+| Documents and versions | Existing file/artifact framing receives immutable asset/version IDs and authorized content handles. Private versions are listed only through assets/versions; task reviewers use the distinct selected-version get/content projection. Explicit import and submit remain separate actions with exact task/version CAS and audience confirmation. |
+
+The complete MarkdownDocumentPreview and HtmlPreview were read to resolve the
+managed-reader seam: the former has filesystem-relative image reads and link
+opening; the latter loads local resources and permits an opt-in script mode.
+Neither complete container fits the selected-version reader. Reuse framing and
+lower presentation with authorized bytes; never pass a fake fileDir/rootPath or
+expose legacy file APIs. The initial escaped text reader and bounded download
+remain honest while an office/deck preview capability is unavailable.
+
+Existing `lib/terminal/write-queue.test.ts` was read and run for this reuse seam:
+9/9 pass, exit0, `borrowed-terminal-queue-baseline.txt`. It verifies at-most-one
+send, dropped failed batches and disposal discarding buffered work. This is an
+unchanged inherited-helper baseline, **not** an E1 receipt/PTY/runtime pass.
+The 18 E1 stream baseline tests were not redundantly rerun.
+
+Checkpoint source/NOTICE/report diff whitespace check exits0. Including the raw
+new Vitest log makes diff --check exit2 for its final blank line; the runner's
+raw output is retained, rather than silently rewritten as validation evidence.
+
+Focused implementation tests still required after admitted edits: exact pending
+prompt preservation/reconciliation without replay; stale client/session response
+discard; abort and immutable byte/hash checks before Blob delivery; URL disposal
+on revocation/close; explicit terminal queue freeze after uncertain receipt;
+member selected-file reads without private sibling/session calls; same-scope
+EN/AR and narrow-pane draft retention. Actual CLI ACP/PTY/generated-file flows
+wait for a coordinated backend fixture. No current browser, export, process or
+fixture was mutated for this planning/checkpoint work.
