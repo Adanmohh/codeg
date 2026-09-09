@@ -2,6 +2,19 @@
 
 ## Current integration and worker state
 
+Independent source-only follow-on `187f93607` is read and imported. The reviewer
+found no new blocker in949→e55 cleanups, verified accepted000012 unchanged, and
+did not rerun unchanged tests. Backend independent execution remains pinned949.
+UI514b5432/production1974d97f restricts source-owner selection to eligible humans;
+root read that small diff. IUI-1 product/race tests remain unchanged from tested
+a58. Its real browser closure remains pending.
+
+Root reserves **4354** for the new unified frontend (no listener at allocation
+check). Rebrand may create one separate export after tickets' immutable4351/4352
+fixture and stable build-window handoff. Existing4350/export/browser sessions and
+their unsaved4353 draft remain intact. Tickets has the4354 origin for fixture
+configuration. No additional approval is needed for this coordinated local work.
+
 Backend handoff `e55f3bfd1f069d6d6111370223993596b19ecb9b` publishes one
 green intake run38/38, desktop/server/companion checks, both runtime and companion
 Clippy gates, and typecheck. Root reviewed the949→e55 production cleanups
