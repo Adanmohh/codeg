@@ -2,6 +2,14 @@
 
 ## Current integration and worker state
 
+**User inspecting headed preview:** the owner's screenshot shows the worker
+task editor in4354, matching tickets' unexpected visible navigation. Root directed
+tickets to leave `intake-worker4354` and its task/draft untouched: no automation,
+save, refresh or close. This is not a reproduced spontaneous-navigation finding.
+Root's own checks used only headless `root-intake-unified`. The screenshot is
+the current task-editor portion; missing business chat/agents/terminal is a real
+delivery gap, not an undiscovered control or an old-preview explanation.
+
 **Owner priority correction:** the current business preview has no usable AI chat,
 agent session or terminal. Existing engineering capabilities have not been joined
 to the business workspace; tasks/Sources acceptance alone does not deliver the
