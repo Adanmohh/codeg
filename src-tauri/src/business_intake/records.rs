@@ -4,7 +4,6 @@ use sea_orm::FromQueryResult;
 #[derive(Clone, FromQueryResult)]
 pub(super) struct Binding {
     pub id: String,
-    pub organization_id: String,
     pub kind: String,
     pub label: String,
     pub domain: String,
@@ -34,8 +33,6 @@ pub(super) struct Grant {
 pub(super) struct Setup {
     pub authorization_epoch: Option<i64>,
     pub id: String,
-    pub actor_id: String,
-    pub operation_id: String,
     pub digest: String,
     pub binding_id: String,
     pub base_revision: Option<i64>,
@@ -50,7 +47,6 @@ pub(super) struct Setup {
 pub(super) struct Source {
     pub authorization_epoch: Option<i64>,
     pub id: String,
-    pub organization_id: String,
     pub binding_id: String,
     pub kind: String,
     pub external_id: String,
@@ -69,7 +65,6 @@ pub(super) struct Source {
 #[derive(FromQueryResult)]
 pub(super) struct Version {
     pub digest: String,
-    pub provider_revision: Option<String>,
 }
 #[derive(FromQueryResult)]
 pub(super) struct Passage {

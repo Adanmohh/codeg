@@ -1,6 +1,7 @@
 use super::types::*;
 use serde_json::json;
 mod candidate_cases;
+mod epoch_migration_cases;
 mod import_cases;
 mod legacy_cases;
 mod migration_cases;
@@ -8,6 +9,8 @@ mod reader_cases;
 mod recovery_cases;
 mod setup_cases;
 mod support;
+mod tenancy_cases;
+mod tenant_http_cases;
 
 #[test]
 fn intake_closed_inputs_reject_identity_queries_secret_refs_and_null_replacement() {

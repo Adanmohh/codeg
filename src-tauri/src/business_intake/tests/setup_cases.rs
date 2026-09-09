@@ -5,11 +5,11 @@ use serde_json::{json, Value};
 use std::sync::{atomic::Ordering, Arc};
 
 #[tokio::test]
-async fn intake_setup_zero_grants_actual_operator_and_exact_replay() {
+async fn intake_setup_zero_grants_manager_denial_and_exact_replay() {
     let f = Fixture::new().await;
     let operation = common::id();
     let (_, _, owner_credential) =
-        human(&f.db.conn, &f.op, Role::Owner, vec![Domain::Feedback]).await;
+        human(&f.db.conn, &f.op, Role::Manager, vec![Domain::Feedback]).await;
     assert!(bindings_create(
         &f.db.conn,
         &owner_credential,
@@ -336,9 +336,9 @@ async fn intake_grants_ceiling_current_membership_and_owner_drift_are_rechecked(
 }
 
 #[tokio::test]
-async fn intake_protected_setup_router_rejects_member_owner_spoofs_and_redacts_keys() {
+async fn intake_protected_setup_router_rejects_manager_spoofs_and_redacts_keys() {
     let f = Fixture::new().await;
-    let (_, issued, _) = human(&f.db.conn, &f.op, Role::Owner, vec![Domain::Feedback]).await;
+    let (_, issued, _) = human(&f.db.conn, &f.op, Role::Manager, vec![Domain::Feedback]).await;
     let input = f.create_json(&common::id());
     let dir = tempfile::tempdir().unwrap();
     let state = Arc::new(crate::app_state::AppState::new_for_test(

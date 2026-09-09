@@ -934,3 +934,15 @@ existing transaction/query patterns already attributed above. Installed
 SeaORM1.1.19/SQLx0.8.6 migrator, transaction, query_scalar and connection sources
 are API references only, with no dependency port or new package. Prior licenses
 and source attributions remain intact.
+
+Intake tenancy migration/runtime regression fixtures (2026):
+The retained000011 fixture is byte-identical Apache Codeg source at
+15bb402b9265006930cc9ce4428332d04c9fb34a:
+src-tauri/src/db/migration/m20260908_000011_business_intake.rs,
+Git blob87550f70c2197cd8333316161223599aa5c33886, used only by
+src-tauri/src/business_intake/tests/fixtures/retained_intake_000011.rs.
+New migration and HTTP tests compose the existing identity/platform fixtures
+and source/task tests at29774b50/15bb402b; no foreign workflow engine is ported.
+Native wrappers reuse accepted29774b50 commands/business_tasks.rs and
+business_identity/native.rs, retaining the original caller-window authority.
+All preceding notices and the Apache LICENSE remain unchanged.

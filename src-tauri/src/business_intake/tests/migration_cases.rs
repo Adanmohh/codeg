@@ -36,6 +36,13 @@ async fn intake_populated_upgrade_retains_tasks_and_tickets_and_ddl_failure_is_a
         .await
         .unwrap();
     migration.up(&manager).await.unwrap();
+    Migrator::migrations()
+        .into_iter()
+        .find(|m| m.name() == "m20260909_000013_business_intake_epochs")
+        .unwrap()
+        .up(&manager)
+        .await
+        .unwrap();
     let after = business_tasks::store::get(
         &f.db.conn,
         &ActorContext::authenticated(f.op.clone()),

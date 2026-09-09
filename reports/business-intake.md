@@ -495,3 +495,50 @@ Subsequent formatting is restricted to changed owned files.
 The recovered approvals/rebrand same panes received the DTO/migration checkpoint
 via wR:p3 and wR:p2. Their old name aliases were absent (two earlier prompt errors);
 no suspended process or fixture was touched. Runtime4351/upstream4352 remain off.
+
+## Integrated epoch/runtime evidence and native registration
+
+Epoch/setup product checkpoint `f51154b948ac1ae74fa1bf6a7df495e7e12e05f2` is
+pushed. The subsequent source change removes four unused private query-model
+projections (stored history is unchanged) and completes all25 native wrappers
+through accepted caller-window NativeSessions plus additive registry entries.
+Restricted tenant ACL and availability=false remain unchanged. The closed additive
+contract is `docs/contracts/business-intake-tenancy.md`; legacy entrustment into
+new tenants and the guarded shared UI fixture remain explicit pending work.
+
+Executed with locked/offline server-mode library tests in the new isolated target:
+
+- `business_intake::tests::` initial:36 passed/1 failed,0 ignored,3.03s runtime,
+  2m09s compile. All7 new tenancy/migration cases passed. An old test expected an
+  owner-role credential to be refused Fireflies setup; that expectation was
+  superseded by accepted tenant-owned setup, causing an unexpected synthetic read.
+  The negative case now tests Manager denial; new tests positively prove Owner/Admin.
+- Same selector after adding the actual HTTP flow:37 passed/1 failed,0 ignored,
+  3.38s runtime/59.99s compile. The new HTTP test expected403 on the platform
+  router; actual original-token middleware correctly returns401. Assertion corrected,
+  without product/auth change.
+- Focused `business_intake::tests::tenant_http_cases`:1 passed/0 failed,0 ignored,
+  exit0,0.11s runtime/30.76s compile. Thus all38 distinct intake cases have passed
+  across the latter full run and corrected focused run; no all-green single-run
+  claim is made. Logs retain both exploratory failures. No additional provider
+  request or unchanged prerequisite test is implied by this count.
+
+The8 new cases prove: same-database real platform-provisioned A/B isolation,
+admin domain/publication ceiling and zero initial grants; actual foreign member FK
+rejection; captured setup/provider-claim suspension races; fresh login and
+identical-content refresh still requiring explicit preview rebase; exact public
+human task creation and deduplicated receipt through protected HTTP; foreign
+binding/source/candidate/import/task-source denial. Four real Migrator cases prove
+fresh order/no defaults, populated19-table preservation, rollback after partial
+column ALTERs, recorded A-only000012 then later B, and schema-commit/receipt retry
+without replacing NULL or later captured values. Lossy epoch downgrade is refused.
+The retained000011 fixture Git blob matches15bb exactly:87550f70c2197cd8333316161223599aa5c33886.
+
+Focused selectors for independent review: `business_intake::tests::tenancy_cases`
+(3), `business_intake::tests::epoch_migration_cases`(4), and
+`business_intake::tests::tenant_http_cases`(1). Tests use injected synthetic local
+reader/store and actual Principal/platform/router/migration/task code; no real
+credential, native keyring, provider/model/engine or existing fixture was used.
+Default/server/companion and Clippy/typecheck final gates are still running/planned;
+linker unwind-size and proc-macro-error2 warnings are disclosed. No native runtime
+or full B01–B18/BI1–10 acceptance is claimed by these backend cases alone.
