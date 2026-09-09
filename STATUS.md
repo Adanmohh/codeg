@@ -2,6 +2,25 @@
 
 ## Current integration and worker state
 
+**First compiling E1 source published:** product
+`6195d9daf049b7cd16615e35b87d08c7f2870bf0`, PR32 evidence
+`fdfe342940d1a6881005e5534b3f0090f9391ef7`. Internal closed DTOs/validation and
+000014 schema now exist; HTTP/native handlers and runner operations do not yet.
+Root read the complete migration Rust/SQL, input validation and additive asset/
+prompt envelope clarification, imported validation logs and verified both digests.
+Owner's server check passes on the initial schema; subsequent three-test compile
+includes the final checkpoint DTOs and passes. These are owner results, not a root
+runtime pass. Full authority/launch/file/publication/stream gates remain ahead.
+
+Approvals is assigned independent bounded E1 persistence/schema/input review in
+`reports/review-business-ai-execution-implementation.md` after4355 report closeout.
+It can read frozen619 now; execution should use the forthcoming committed combined
+B+14 head to avoid duplicate compiles. Tickets reports local merge b73940560 of
+accepted B with only additive NOTICE/registry resolution and is testing real B
+epoch migrations plus retained execution-linked/history/receipt cases. That local
+merge and its tests are not yet independently verified or accepted. No additional
+large target, active fixture or user-browser change is part of this review.
+
 **PR28 intake backend merged** as `c8453a48d441f40eb47f9c9af856235b4f9986e5`;
 GitHub confirms closed/merged. Accepted frozen head:
 `462604b00ad74a7f72c36d0bea3714a5912bf640`, production e55f3bfd and separately
