@@ -2,6 +2,38 @@
 
 ## Current integration and worker state
 
+**Global hook installed and project work resumed.** Owner ran the test-before-
+install script successfully; engine f5554c92 and backup claude-workflow-n0d8pjua
+are recorded in [the live acceptance report](reports/docs-first-live-acceptance.md).
+Root read the actual 56-test passing log and installer audit. Actual gh api tag
+and pinned source reads, Git fetch and Herdr access now pass. A disposable native
+edit was denied before docs, passed after the signed source read, and remained
+denied in another project. Framework docs-first remains required; unsupported
+surfaces need manual grounding rather than fictitious machine verification.
+
+All three existing Herdr workers were resumed and observed working. Rebrand and
+approvals show Astra/max. Tickets' actual picker had drifted to Luna/low despite
+Astra status metadata; root restored and visually verified Astra/max before its
+new implementation assignment. No historical authored-turn claim is made.
+Tickets must publish its preserved combined B migration checkpoint; approvals
+reviews that exact source with its existing target; rebrand resumes E1 client/
+parser and shared workspace glue. No new worker, fixture or user-browser action.
+
+Two narrower hook limits remain explicit: rebrand has a package_unresolved edit
+rejection after source reads, under resolver investigation; a hash command naming
+the engine path is mistakenly treated as a reader invocation. Neither is called
+fixed or bypassed. General research, coordination and review execution are usable.
+
+Reviewer final4355 evidence is published at
+c0c7e522600a94bcf33674f640d5f3665cffd39b. Root fetched and read the complete immutable
+review report: no bounded recovery blocker, seven browser checks, seventy200
+responses, twenty-two separate API requests and five persistence checks pass.
+Root imported the report and verified all thirty-one new evidence digests.
+PR29 remains unmerged pending final integration; its earlier
+source/evidence reviews and attribution-only conflict assessment remain valid.
+No product fixture/browser/process changed. Existing E1 assignments continue
+with current documentation, borrowing and task authority rules.
+
 **First compiling E1 source published:** product
 `6195d9daf049b7cd16615e35b87d08c7f2870bf0`, PR32 evidence
 `fdfe342940d1a6881005e5534b3f0090f9391ef7`. Internal closed DTOs/validation and

@@ -1,0 +1,26 @@
+{
+  "namespace": "review",
+  "unprepared": {
+    "sourceId": "406fe0be-cc06-49a1-bd97-96c70f84ee26",
+    "sourceTitle": "review: meeting-follow-up",
+    "sourceRevision": 1,
+    "accessValidUntil": "2026-09-09T10:39:32.198199+00:00",
+    "candidateId": "654db166-6394-4ae9-94db-f787d13376c8",
+    "revision": 1
+  },
+  "prepared": {
+    "sourceId": "a55bf6a1-09cf-4a18-a584-563eb28f0724",
+    "sourceTitle": "review: meeting-long",
+    "sourceRevision": 1,
+    "accessValidUntil": "2026-09-09T10:39:32.218231+00:00",
+    "candidateId": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+    "revision": 2,
+    "title": "Reviewer4355: prepared recovery control",
+    "notes": "Reviewer4355 initial private prepared text"
+  },
+  "preparedNewer": {
+    "candidateId": "8fc3e9ce-b390-4597-a173-14d6930b7c28",
+    "revision": 3,
+    "notes": "Reviewer4355 newer exact private saved text"
+  }
+}

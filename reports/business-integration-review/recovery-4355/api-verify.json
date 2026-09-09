@@ -1,0 +1,46 @@
+{
+  "action": "verify",
+  "namespace": "review",
+  "requests": [
+    {
+      "operation": "context",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/candidates/get",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/candidates/get",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "intake/candidates/get",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "tasks/get",
+      "operationId": null,
+      "status": 200
+    },
+    {
+      "operation": "tasks/list",
+      "operationId": null,
+      "status": 200
+    }
+  ],
+  "status": "passed",
+  "httpRetries": 0,
+  "checks": {
+    "unpreparedNotSaved": true,
+    "preparedExactRevision": true,
+    "priorCandidateRevisionUnchanged": true,
+    "priorSharedTextUnchanged": true,
+    "noPublicTaskCreated": true
+  },
+  "finishedAtUnix": 1788950726.348736
+}

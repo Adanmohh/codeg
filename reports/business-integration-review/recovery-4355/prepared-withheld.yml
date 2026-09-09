@@ -1,0 +1,99 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e6]:
+    - complementary [ref=e7]:
+      - generic [ref=e14]:
+        - paragraph [ref=e15]: Hafidh
+        - paragraph [ref=e16]: Ops Desk
+      - generic [ref=e17]:
+        - paragraph [ref=e18]: Workspace
+        - paragraph [ref=e19]: Intake review synthetic
+      - navigation "Workspace" [ref=e20]:
+        - button "My work" [ref=e21]
+        - button "Shared work" [ref=e25]
+        - button "Review" [ref=e31]
+        - button "Sources" [ref=e35]
+        - button "People & agents" [ref=e38]
+        - button "Workspace appearance" [ref=e44]
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - combobox "Language" [ref=e50]:
+            - option "English" [selected]
+            - option "简体中文"
+            - option "繁體中文"
+            - option "日本語"
+            - option "한국어"
+            - option "Español"
+            - option "Deutsch"
+            - option "Français"
+            - option "Português"
+            - option "العربية"
+          - combobox "Appearance" [ref=e51]:
+            - option "Device appearance" [selected]
+            - option "Light"
+            - option "Dark"
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: R
+            - generic [ref=e55]: review owner
+          - paragraph [ref=e56]: Owner · Connected
+          - button "Disconnect" [ref=e57]
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - tablist "Open work" [ref=e61]:
+          - tab "My work" [ref=e62]
+          - tab "Sources" [selected] [ref=e152]
+        - button "Show side by side" [ref=e67]
+      - tabpanel "Sources" [ref=e156]:
+        - generic [ref=e374]:
+          - button "Sources" [ref=e375]
+          - generic [ref=e381]:
+            - paragraph [ref=e382]: Private source review
+            - paragraph [ref=e383]: Only people with explicit source access can read these passages and drafts. Task access is separate.
+          - banner [ref=e384]:
+            - paragraph [ref=e385]: Fireflies meetings
+            - 'heading "review: meeting-long" [level=1] [ref=e386]'
+            - paragraph [ref=e387]: "Source version: 1"
+            - button "Review access and setup" [ref=e388]
+          - status [ref=e389]:
+            - heading "Source content is currently withheld." [level=2] [ref=e390]
+            - paragraph [ref=e391]: Refresh upstream access before reading or preparing a task. Cached private text is not shown while access is stale.
+          - generic [ref=e392]:
+            - group [ref=e394]:
+              - generic "Refresh source access" [ref=e395] [cursor=pointer]
+              - region "Import progress" [ref=e396]:
+                - generic [ref=e397]:
+                  - heading "Import progress" [level=2] [ref=e398]
+                  - button "Refresh" [ref=e399]
+                - generic [ref=e400]:
+                  - paragraph [ref=e401]: Read this record again through its connection. A cached page cannot renew access.
+                  - button "Refresh source access" [ref=e402]
+                - generic [ref=e403]:
+                  - checkbox "All import attempts" [ref=e404]
+                  - text: All import attempts
+                - paragraph [ref=e405]: No import attempts in this view.
+                - list
+            - generic [ref=e406]:
+              - region "Private task draft" [ref=e416]:
+                - generic [ref=e417]:
+                  - heading "Private task draft" [level=2] [ref=e418]
+                  - generic [ref=e419]: Revision 2 · Source version 1
+                  - paragraph [ref=e420]: Write the task that should be shared. Saving here does not publish it or assign work.
+                - status [ref=e421]:
+                  - heading "Source content is currently withheld." [level=3] [ref=e422]
+                  - paragraph [ref=e423]: Refresh upstream access before reading or preparing a task. Cached private text is not shown while access is stale.
+                  - button "Load current source and candidate" [ref=e424]
+                - button "Discard candidate" [ref=e426]
+              - region "Private drafts & decisions" [ref=e407]:
+                - heading "Private drafts & decisions" [level=2] [ref=e408]
+                - combobox "Private drafts & decisions" [ref=e409]:
+                  - option "Pending" [selected]
+                  - option "Task created"
+                  - option "Linked to existing task"
+                  - option "Discarded"
+                - list [ref=e410]:
+                  - listitem [ref=e411]:
+                    - button "Pending 1 Pending · Revision 2 A prepared draft exists, but its contents are withheld by current source or destination access." [ref=e412]:
+                      - generic [ref=e413]: Pending 1
+                      - generic [ref=e414]: Pending · Revision 2
+                      - generic [ref=e415]: A prepared draft exists, but its contents are withheld by current source or destination access.

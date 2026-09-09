@@ -1,0 +1,167 @@
+- generic [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e6]:
+    - complementary [ref=e7]:
+      - generic [ref=e14]:
+        - paragraph [ref=e15]: Hafidh
+        - paragraph [ref=e16]: Ops Desk
+      - generic [ref=e17]:
+        - paragraph [ref=e18]: Workspace
+        - paragraph [ref=e19]: Intake review synthetic
+      - navigation "Workspace" [ref=e20]:
+        - button "My work" [ref=e21]
+        - button "Shared work" [ref=e25]
+        - button "Review" [ref=e31]
+        - button "Sources" [ref=e35]
+        - button "People & agents" [ref=e38]
+        - button "Workspace appearance" [ref=e44]
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - combobox "Language" [ref=e50]:
+            - option "English" [selected]
+            - option "简体中文"
+            - option "繁體中文"
+            - option "日本語"
+            - option "한국어"
+            - option "Español"
+            - option "Deutsch"
+            - option "Français"
+            - option "Português"
+            - option "العربية"
+          - combobox "Appearance" [ref=e51]:
+            - option "Device appearance" [selected]
+            - option "Light"
+            - option "Dark"
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: R
+            - generic [ref=e55]: review owner
+          - paragraph [ref=e56]: Owner · Connected
+          - button "Disconnect" [ref=e57]
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - tablist "Open work" [ref=e61]:
+          - tab "My work" [ref=e62]
+          - tab "Sources" [selected] [ref=e152]
+        - button "Show side by side" [ref=e67]
+      - tabpanel "Sources" [ref=e156]:
+        - generic [ref=e219]:
+          - button "Sources" [ref=e220]
+          - generic [ref=e226]:
+            - paragraph [ref=e227]: Private source review
+            - paragraph [ref=e228]: Only people with explicit source access can read these passages and drafts. Task access is separate.
+          - banner [ref=e229]:
+            - paragraph [ref=e230]: Fireflies meetings
+            - 'heading "review: meeting-follow-up" [level=1] [ref=e231]'
+            - paragraph [ref=e232]: "Source version: 1"
+            - button "Review access and setup" [ref=e233]
+          - generic [ref=e237]:
+            - generic [ref=e238]:
+              - region "Exact source passage" [ref=e288]:
+                - heading "Exact source passage" [level=2] [ref=e289]
+                - paragraph [ref=e290]: Choose 1–20 passages, up to 20,000 characters in total. Nothing is shortened or rewritten for you.
+                - list [ref=e291]:
+                  - listitem [ref=e292]:
+                    - generic [ref=e294]:
+                      - generic [ref=e295]: Exact source passage 1
+                      - generic [ref=e296]: "review private evidence revision one: the customer requests an onboarding follow-up. This transcript is not automatically public task text."
+                  - listitem [ref=e297]:
+                    - generic [ref=e299]:
+                      - generic [ref=e300]: Exact source passage 2
+                      - generic [ref=e301]: "review second private passage: confirm responsibility with the human owner."
+                  - listitem [ref=e302]:
+                    - generic [ref=e304]:
+                      - generic [ref=e305]: Exact source passage 3
+                      - generic [ref=e306]: "review: Review a customer follow-up."
+              - group [ref=e239]:
+                - generic "Refresh source access" [ref=e240] [cursor=pointer]
+            - generic [ref=e251]:
+              - region "Private task draft" [ref=e265]:
+                - generic [ref=e266]:
+                  - heading "Private task draft" [level=2] [ref=e267]
+                  - generic [ref=e268]: Revision 1 · Source version 1
+                  - paragraph [ref=e269]: Write the task that should be shared. Saving here does not publish it or assign work.
+                  - paragraph [ref=e270]: Passages selected; task not prepared yet.
+                - region "Selected passages" [ref=e307]:
+                  - heading "Selected passages" [level=3] [ref=e308]
+                  - list [ref=e309]:
+                    - listitem [ref=e310]:
+                      - generic [ref=e312]:
+                        - generic [ref=e313]: Exact source passage 1
+                        - generic [ref=e314]: "review private evidence revision one: the customer requests an onboarding follow-up. This transcript is not automatically public task text."
+                  - button "Review and reselect current passages" [ref=e315]
+                - generic [ref=e316]:
+                  - button "Edit task" [ref=e317]
+                  - button "Link an existing task" [ref=e318]
+                - generic [ref=e319]:
+                  - group [ref=e320]:
+                    - generic [ref=e321]:
+                      - generic [ref=e322]: Task title
+                      - textbox "Task title" [ref=e323]: Reviewer4355 restored editor sentinel
+                    - generic [ref=e324]:
+                      - generic [ref=e325]: Brief
+                      - textbox "Brief" [active] [ref=e326]: Reviewer4355 unsaved recovery sentinel
+                    - generic [ref=e327]:
+                      - generic [ref=e328]:
+                        - generic [ref=e329]: Area of work
+                        - combobox "Area of work" [ref=e330]:
+                          - option "Feedback" [selected]
+                      - generic [ref=e331]:
+                        - generic [ref=e332]: Priority
+                        - combobox "Priority" [ref=e333]:
+                          - option "Low"
+                          - option "Normal" [selected]
+                          - option "High"
+                          - option "Urgent"
+                      - generic [ref=e334]:
+                        - generic [ref=e335]: Due date
+                        - textbox "Due date" [ref=e336]
+                        - paragraph [ref=e337]: Calendar date; no time or reminder is set.
+                  - group "Responsibility" [ref=e338]:
+                    - paragraph [ref=e340]: An owner is accountable for the result. The assignee does the work; a person reviews it.
+                    - generic [ref=e341]:
+                      - generic [ref=e342]:
+                        - generic [ref=e343]: Accountable owner
+                        - combobox "Accountable owner" [ref=e344]:
+                          - option "review manager"
+                          - option "review owner" [selected]
+                      - generic [ref=e345]:
+                        - generic [ref=e346]: Assigned to
+                        - combobox "Assigned to" [ref=e347]:
+                          - option "Unassigned" [selected]
+                          - option "review manager"
+                          - option "review owner"
+                      - generic [ref=e348]:
+                        - generic [ref=e349]: Reviewer
+                        - combobox "Reviewer" [ref=e350]:
+                          - option "Any authorized human reviewer" [selected]
+                          - option "review manager"
+                          - option "review owner"
+                        - paragraph [ref=e351]: Only a person with review access can accept completed work.
+                  - generic [ref=e352]:
+                    - generic [ref=e353]:
+                      - generic [ref=e354]: Owner mentioned in source (optional)
+                      - textbox "Owner mentioned in source (optional)" [ref=e355]
+                      - paragraph [ref=e356]: Context only. This does not assign a person or set a date.
+                    - generic [ref=e357]:
+                      - generic [ref=e358]: Deadline mentioned in source (optional)
+                      - textbox "Deadline mentioned in source (optional)" [ref=e359]
+                      - paragraph [ref=e360]: Context only. This does not assign a person or set a date.
+                  - button "Save private draft" [ref=e362]
+                - button "Discard candidate" [ref=e276]
+              - region "Private drafts & decisions" [ref=e252]:
+                - heading "Private drafts & decisions" [level=2] [ref=e253]
+                - combobox "Private drafts & decisions" [ref=e254]:
+                  - option "Pending" [selected]
+                  - option "Task created"
+                  - option "Linked to existing task"
+                  - option "Discarded"
+                - list [ref=e255]:
+                  - listitem [ref=e256]:
+                    - button "Pending 1 Pending · Revision 1" [ref=e257]:
+                      - generic [ref=e258]: Pending 1
+                      - generic [ref=e259]: Pending · Revision 1
+                  - listitem [ref=e260]:
+                    - 'button "Reviewer browser A: customer conversation Pending · Revision 3" [ref=e361]':
+                      - generic [ref=e262]: "Reviewer browser A: customer conversation"
+                      - generic [ref=e263]: Pending · Revision 3
