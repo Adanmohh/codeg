@@ -512,3 +512,34 @@ relevant existing task core controls, outputs5 and server check. Recheck≥10GiB
 before each start and stop/report near5GiB. No new target/copy/export, fixture or
 browser action. Initial failures, any bounded correction and exact final source
 will be retained separately; nothing in this paragraph claims a test has run.
+
+## Executed publication gate — capacity stop
+
+Frozen compiling source: `4251987071e8e7213a678be94039cd3fad1328f1` (PR32 draft).
+The owner-run `execution_publication_` command passed all8 cases, exit0:
+Cargo1m57s, test runtime1.05s. Command used only the existing intake-tenancy target,
+locked/offline/-j2; actual Cargo PID19985. No product correction was needed.
+All12 changed product/NOTICE file pairs match that immutable head. Exact command,
+blobs/SHA256 and log digest are in
+`reports/business-ai-execution-validation/managed-checkpoint/digests.json`.
+The unedited first log is `publication-initial.log`, SHA256
+`778247d077532fc92e97519a83d101614dd8d784929a0b200d231189e54ebc78`.
+Seven warnings remain (unused runtime consumers and inherited linker/future
+compatibility notices); this is not Clippy or final E1 acceptance.
+
+Immediate pre-start disk10,796,940KiB exceeded the required10GiB. After the gate,
+disk9,744,388KiB (about9.29GiB) was below the threshold for a new command. No next
+gate started. All-command window was explicitly released to root/approvals, and
+the preceding progress message saying PID19985 was active was immediately
+corrected when completion was collected. No own Cargo remains; no cleanup or new
+target/copy/export occurred. The existing fixture/user browser is unchanged.
+
+Pending for a later explicit window with fresh≥10GiB: assets6, outputs5, the two
+exact adapted historical migration cases, existing task core controls and server
+check. All their Rust bodies compiled in this lib-test build; their assertions
+were not executed by the publication selector. Independent source follow-on for
+3841/bdfa reported no added blocker, but is not execution evidence. The8 passes
+prove the tested post-verification cancellation / current reader checks, real
+file verification and task/receipt writer paths. They do not prove mid-blocking
+abort, import lineage, actual runner ownership, HTTP/native byte delivery or
+scoped event streaming. These remain implementation/acceptance work.
